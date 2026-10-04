@@ -1,0 +1,71 @@
+{
+  "caption": "Normalized enrichment scores (GO biological process). Selection: in each direction, up to 10 gene sets with the largest |NES| among the 20 with adjusted P < 0.05 (ties broken by smaller adjusted P, then term ID); 10 positive and 8 negative sets shown; bars ordered by NES, largest at the top (ties by term ID). NES from preranked GSEA (enrichment score normalized to the mean of permuted scores of the same sign). Red, enriched among up-regulated genes (NES > 0); blue, among down-regulated genes (NES < 0).",
+  "counts": {
+    "down": 8,
+    "significant": 20,
+    "up": 10
+  },
+  "data": {
+    "term_ids": [
+      "GO:0006991",
+      "GO:0007028",
+      "GO:0007065",
+      "GO:0007102",
+      "GO:0007139",
+      "GO:0007176",
+      "GO:0007213",
+      "GO:0007250",
+      "GO:0007287",
+      "GO:0007324",
+      "GO:0007694",
+      "GO:0007583",
+      "GO:0007546",
+      "GO:0007509",
+      "GO:0007472",
+      "GO:0007435",
+      "GO:0007398",
+      "GO:0007361"
+    ]
+  },
+  "definition": {
+    "nes": "NES from preranked GSEA (enrichment score normalized to the mean of permuted scores of the same sign)",
+    "ordering": "bars ordered by NES, largest at the top (ties by term ID)",
+    "selection": "in each direction, up to 10 gene sets with the largest |NES| among the 20 with adjusted P < 0.05 (ties broken by smaller adjusted P, then term ID)"
+  },
+  "encodings": {
+    "fill": {
+      "down": "#2166AC",
+      "up": "#B2182B"
+    }
+  },
+  "figure_type": "nes_bar",
+  "files": {
+    "pdf": {
+      "content_sha256": "f4cc8735514d9ddda24845fe83ac3324c2d9a5981fe483b7f9d68442b7b7b413",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "08_nes_bar.pdf"
+    },
+    "png": {
+      "path": "08_nes_bar.png",
+      "sha256": "cb5b6a042a8ba85b52ebb1ccecfc86e53dfe70dd0f6bcd9595c5fd4f85b2b777"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 102.8,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "1 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #2166AC/#B2182B (grayscale 3.7)",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "padj": 0.05
+  },
+  "width_mm": 89
+}

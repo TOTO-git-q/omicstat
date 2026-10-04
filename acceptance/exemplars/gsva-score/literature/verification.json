@@ -1,0 +1,21 @@
+{
+  "module": "gsva-score",
+  "date": "2026-09-27T09:38:56Z",
+  "sampled_pmids": ["36433984", "36548025", "39688922", "41424381", "42702610", "42704368"],
+  "records_checked": 48,
+  "records_passed": 48,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "notes": [
+    "Sample: `collect.py sample gsva-score --frac 0.2 --seed omicstat-s0` -> 36433984, 36548025, 39688922, 41424381, 42702610, 42704368 (6 of 30 = 20%).",
+    "Echo: fresh esummary calls (tool=omicstat, email=omicstat-s0@example.invalid; OMICSTAT_CONTACT_EMAIL was unset) to eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi for all 6 PMIDs; normalized/html-unescaped title and year match corpus.jsonl for all 6 (6/6).",
+    "48 extraction.jsonl records checked (6 articles x [_applies + method, kcdf, input, gene_set_db, gs_size, downstream_test, gsva_version]); every non-empty snippet re-run live with `collect.py check <PMCID> \"<snippet>\"` (all FOUND) and cross-read against the article's Methods to confirm the recorded value answers the parameter's question for the analysis it is anchored to; every 'not reported' record re-checked against the full `collect.py methods gsva-score <PMCID>` output to confirm the value is truly absent from the Methods.",
+    "PMC13549129 (42704368): gene_set_db recorded 'not reported' with an explicit note distinguishing the custom 'T cell suppression signature' (Ido1, Cd274, Lgals9, ...) used for this GSVA call from a named public gene-set database (MSigDB/Hallmark/GO/KEGG/Reactome, used elsewhere in the same paper for a separate clusterProfiler GSEA run) -- a defensible, documented judgment call, not a misattribution; verified the kcdf=Gaussian, input=log-CPM, downstream_test=Mann-Whitney U values against the same Methods paragraph.",
+    "PMC11948580 (39688922): all 6 non-_applies/method parameters recorded 'not reported'; confirmed against the full Methods (RNA-Seq, ATAC-Seq, 10x Genomics, and Statistics sections) -- no kcdf, input scale, gene_set_db, gs_size, downstream_test, or version is stated tied specifically to the GSVA/ECDF-based enrichment step; the general study-wide t test/ANOVA/correlation tests named in the Statistics section are not explicitly linked to the GSVA scores, so 'not reported' for downstream_test is the conservative, correct reading rather than an inference.",
+    "No enrich_cutoff parameter exists for this module (it belongs to clusterprofiler-compare / fgsea-prerank), so the DE-cutoff-vs-enrichment-cutoff failure mode does not apply here.",
+    "vendor/ untouched (read-only); `find vendor -name __pycache__` printed nothing at the end of this session."
+  ],
+  "verdict": "pass"
+}

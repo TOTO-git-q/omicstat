@@ -1,0 +1,11 @@
+COMMAND: /opt/pyvenv/bin/python mcp/test_publication.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+Traceback (most recent call last):
+  File "/mnt/data/omicstat_work/omic-MCP/mcp/test_publication.py", line 62, in <module>
+    import server  # noqa: E402
+    ^^^^^^^^^^^^^
+  File "/mnt/data/omicstat_work/omic-MCP/mcp/server.py", line 66, in <module>
+    from mcp.server.fastmcp import FastMCP
+ModuleNotFoundError: No module named 'mcp'
+
+EXIT_CODE: 1

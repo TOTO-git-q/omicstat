@@ -1,0 +1,161 @@
+{
+  "caption": "Expression of the 40 features with the smallest adjusted P values. Values are row z-scores of transformed expression, clipped at ±2; rows are ordered by hierarchical clustering (Euclidean distance, complete linkage) and columns by condition. 0 cells were clipped.",
+  "counts": {
+    "clipped_cells": 0
+  },
+  "data": {
+    "clustering": {
+      "cols": "none",
+      "rows": "euclidean/complete"
+    },
+    "col_order": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ],
+    "feature_ids": [
+      "ENSG00000000006",
+      "ENSG00000000077",
+      "ENSG00000000177",
+      "ENSG00000000213",
+      "ENSG00000000350",
+      "ENSG00000000373",
+      "ENSG00000000429",
+      "ENSG00000000509",
+      "ENSG00000000565",
+      "ENSG00000000629",
+      "ENSG00000000759",
+      "ENSG00000000770",
+      "ENSG00000000799",
+      "ENSG00000000808",
+      "ENSG00000000854",
+      "ENSG00000000923",
+      "ENSG00000000983",
+      "ENSG00000001048",
+      "ENSG00000001050",
+      "ENSG00000001172",
+      "ENSG00000001239",
+      "ENSG00000001382",
+      "ENSG00000001477",
+      "ENSG00000001533",
+      "ENSG00000001577",
+      "ENSG00000002026",
+      "ENSG00000002653",
+      "ENSG00000002749",
+      "ENSG00000002936",
+      "ENSG00000003169",
+      "ENSG00000003177",
+      "ENSG00000003222",
+      "ENSG00000003332",
+      "ENSG00000003494",
+      "ENSG00000003523",
+      "ENSG00000003604",
+      "ENSG00000003695",
+      "ENSG00000003775",
+      "ENSG00000003798",
+      "ENSG00000003975"
+    ],
+    "n_cols": 8,
+    "n_rows": 40,
+    "row_order": [
+      "ENSG00000003332",
+      "ENSG00000000429",
+      "ENSG00000000759",
+      "ENSG00000003798",
+      "ENSG00000003222",
+      "ENSG00000000509",
+      "ENSG00000002653",
+      "ENSG00000001048",
+      "ENSG00000003523",
+      "ENSG00000003177",
+      "ENSG00000003695",
+      "ENSG00000001577",
+      "ENSG00000003604",
+      "ENSG00000003775",
+      "ENSG00000000854",
+      "ENSG00000003975",
+      "ENSG00000003494",
+      "ENSG00000001382",
+      "ENSG00000002936",
+      "ENSG00000000373",
+      "ENSG00000000770",
+      "ENSG00000002749",
+      "ENSG00000000923",
+      "ENSG00000000177",
+      "ENSG00000001239",
+      "ENSG00000000006",
+      "ENSG00000000983",
+      "ENSG00000000350",
+      "ENSG00000000213",
+      "ENSG00000000808",
+      "ENSG00000000565",
+      "ENSG00000000799",
+      "ENSG00000002026",
+      "ENSG00000001533",
+      "ENSG00000003169",
+      "ENSG00000000077",
+      "ENSG00000000629",
+      "ENSG00000001050",
+      "ENSG00000001172",
+      "ENSG00000001477"
+    ],
+    "show_col_labels": true,
+    "show_row_labels": true
+  },
+  "encodings": {
+    "annotation": {
+      "condition": {
+        "control": "#666666",
+        "treated": "#D55E00"
+      }
+    },
+    "fill": {
+      "clip": 2,
+      "clipped_end_labels": true,
+      "limits": [
+        -2,
+        2
+      ],
+      "palette": [
+        "#2166AC",
+        "#4393C3",
+        "#92C5DE",
+        "#D1E5F0",
+        "#F7F7F7",
+        "#FDDBC7",
+        "#F4A582",
+        "#D6604D",
+        "#B2182B"
+      ],
+      "scale": "diverging",
+      "title": "Row z-score"
+    }
+  },
+  "figure_type": "top_heatmap",
+  "files": {
+    "pdf": {
+      "content_sha256": "f67769f5372be54b0c094b45415f5445f613304fe0cd73f277e2b7f9d5fd6ce6",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "05_top_heatmap.pdf"
+    },
+    "png": {
+      "path": "05_top_heatmap.png",
+      "sha256": "805412ab8888bbde94bdb4e9292301a6d48edbc9eb7c64b8235cc1f398fc6aaf"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 118,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

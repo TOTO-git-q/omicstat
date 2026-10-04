@@ -1,0 +1,4 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/harmony.csv,6c06ea7a35a1636a29a355038043ac5b3636ffe10c15cf71a695d2833641b7f0,container,
+tables/batch_clusters.csv,d67b8cd41464cd2d0ce7c3562b92edaf5cfc2b7f526d6f81bdbabc61cb07f1a0,container,

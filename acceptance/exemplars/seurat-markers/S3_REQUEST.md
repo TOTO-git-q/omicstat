@@ -1,0 +1,18 @@
+# seurat-markers independent S3 request
+
+Run `Rscript skills/seurat-markers/tests/run_smoke_test.R` in omicstat-r:2026.09.1 with suite /omicstat and lane scratch /scratch, then `Rscript tools/make_module_lock.R seurat-markers --check`.
+
+PACK C source: locked Seurat PBMC3k tutorial "Finding differentially expressed features (cluster biomarkers)". Real QC -> clustering -> markers chain, 2638 cells and nine clusters; complete native FindAllMarkers replay and tutorial FindMarkers(ident.1=2) replay. Native table columns and values retained. Golden binds tables/markers_full.csv. Outputs /home/<user>/omic-sol61/build_m3a_seurat/markers_anchor and markers_contrast; logs markers_smoke.log and markers_verify.log.
+
+Known printed differences: locked replay returns 11648 marker rows; avg_log2FC>1 subset has 7023 rows versus archived rendered 7019. Cluster-2 leading genes IL32,LTB,CD3D,IL7R,LDHB agree; IL32 log2FC 1.324556 versus printed 1.3070772. Wrapper/native replay matches without tolerance inflation. Archived rendering is not guaranteed the current locked dependency execution. No exhaustive historical-value reconstruction under slim owner instructions. norm.method is derived from NormalizeData history inside FindMarkers.Seurat; forwarding it duplicates the argument and is unsupported, so it is not a CLI override.
+
+Dot plot uses Seurat's log1p(mean(expm1(data))) summary and gene-wise scaling. Heatmap displays cluster means of selected genes available in native scale.data. Both retain descriptive labels and n/parameters in figure metadata. Screening and returned rows are controlled independently from the separate display table. Marker P values are descriptive cluster comparisons; condition inference uses muscat-pseudobulk. SCT/testing alternatives may need preparation or optional locked packages and are outside the PBMC anchor coverage.
+
+Router proposal: `| Seurat cluster markers / 簇标志基因 | seurat-markers | scripts/run_seurat_markers.R |`.
+Publication rule proposal: `{ "module":"seurat-markers", "id":"SM-DESCRIPTIVE", "category":"universal_hard", "rule":"Label cluster markers as descriptive; report assay, test, screening and display filters; do not treat cells as condition replicates." }`.
+
+## env_rebuild finding (2026-10-01)
+
+Installing pinned presto makes the locked Seurat WilcoxDETest automatically use presto. Existing golden was preserved: old-image native replay on the same object exactly reproduces its SHA256 c4790181bb87da7b24e341b451f4379348cd19b9686522c3dca9bca091acf27f; new output SHA256 9c3913ca5322716aa7a76f0caa8405d1d8bbe80f38418606c518579560de7d2f. All 11648 rows retain gene/cluster/order/log2FC/pct values; raw P differs in 5628 rows (max absolute 1.8041124150158794e-16), adjusted P in 2907 (max 2.398081733190338e-14). Strict golden check FAIL is recorded; no tolerance change, golden rewrite or lock refresh. Scratch evidence: /home/<user>/omic-sol61/env_rebuild/seurat_markers_diff.json and seurat_wilcox_locked_source.R. Please review this environment-dependent native backend finding independently.
+
+Environment UPDATE 2026-10-01 17:00: owner/coordinator accepts Seurat automatic presto Wilcoxon in 2026.10.1. The module smoke script regenerated its golden: 11648 rows and the same genes/order/log2FC/pct as the old image; only P-value floating-point serialization changed (raw max 1.8041124150158794e-16; adjusted max 2.398081733190338e-14). The historical 7019 genes and IL32 1.3070772 are still not reproduced: 7023 and 1.324556 remain, consistent with unchanged fold-change calculation. No tolerance changed. Independent S3 remains pending.

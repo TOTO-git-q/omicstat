@@ -1,0 +1,225 @@
+{
+  "caption": "**a**, Volcano plot (Treated vs control). Each point is one feature; 3,824 features with an adjusted P value are shown (176 features with adjusted P = NA after independent filtering are not shown). Red, up-regulated (n = 184); blue, down-regulated (n = 178); grey, not significant (n = 3,462). Significance: adjusted P < 0.05 and |log2 fold change| > 1 (DESeq2 Wald test, apeglm shrinkage, Benjamini-Hochberg). Dashed lines mark these thresholds. The 10 most significant features per direction are labelled. **b**, Principal component analysis of 8 samples using the 500 most variable features (centred, not scaled; axes NOT on a common scale because the two components span very different ranges). Each point is one sample, coloured by condition and shaped by batch. Percentages give the variance explained by each component. **c**, Expression of the 20 features with the smallest adjusted P values. Values are row z-scores of transformed expression, clipped at ±2; rows are ordered by hierarchical clustering (Euclidean distance, complete linkage) and columns by condition. 0 cells were clipped.",
+  "counts": [],
+  "data": {
+    "n_panels": 3,
+    "panels": [
+      {
+        "counts": {
+          "capped": 0,
+          "down": 178,
+          "ns": 3462,
+          "padj_na": 176,
+          "up": 184
+        },
+        "data": {
+          "labelled_feature_ids": [
+            "ENSG00000000006",
+            "ENSG00000000077",
+            "ENSG00000000177",
+            "ENSG00000000373",
+            "ENSG00000000429",
+            "ENSG00000000770",
+            "ENSG00000000799",
+            "ENSG00000000808",
+            "ENSG00000000854",
+            "ENSG00000000923",
+            "ENSG00000000983",
+            "ENSG00000001050",
+            "ENSG00000001239",
+            "ENSG00000001382",
+            "ENSG00000001577",
+            "ENSG00000002653",
+            "ENSG00000003169",
+            "ENSG00000003222",
+            "ENSG00000003494",
+            "ENSG00000003975"
+          ],
+          "x_limit": 10,
+          "y_cap": null
+        },
+        "default_height_mm": 92,
+        "encodings": {
+          "colour": {
+            "down": "#2166AC",
+            "ns": "#BDBDBD",
+            "up": "#B2182B"
+          },
+          "shape": {
+            "capped": 17,
+            "point": 16
+          }
+        },
+        "figure_type": "volcano",
+        "tag": "a",
+        "thresholds": {
+          "abs_log2fc": 1,
+          "padj": 0.05
+        }
+      },
+      {
+        "data": {
+          "common_scale": false,
+          "ntop": 500,
+          "percent_var": [
+            91.0474,
+            3.4023
+          ],
+          "samples": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05",
+            "S06",
+            "S07",
+            "S08"
+          ]
+        },
+        "default_height_mm": 70,
+        "encodings": {
+          "fill": {
+            "control": "#666666",
+            "treated": "#D55E00"
+          },
+          "shape": {
+            "batch1": 21,
+            "batch2": 24
+          }
+        },
+        "figure_type": "pca",
+        "tag": "b"
+      },
+      {
+        "counts": {
+          "clipped_cells": 0
+        },
+        "data": {
+          "clustering": {
+            "cols": "none",
+            "rows": "euclidean/complete"
+          },
+          "col_order": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05",
+            "S06",
+            "S07",
+            "S08"
+          ],
+          "feature_ids": [
+            "ENSG00000000077",
+            "ENSG00000000177",
+            "ENSG00000000373",
+            "ENSG00000000429",
+            "ENSG00000000759",
+            "ENSG00000000770",
+            "ENSG00000000799",
+            "ENSG00000000808",
+            "ENSG00000000854",
+            "ENSG00000000923",
+            "ENSG00000000983",
+            "ENSG00000001050",
+            "ENSG00000001239",
+            "ENSG00000001382",
+            "ENSG00000001577",
+            "ENSG00000002653",
+            "ENSG00000003169",
+            "ENSG00000003222",
+            "ENSG00000003494",
+            "ENSG00000003975"
+          ],
+          "n_cols": 8,
+          "n_rows": 20,
+          "row_order": [
+            "ENSG00000000429",
+            "ENSG00000000759",
+            "ENSG00000002653",
+            "ENSG00000001577",
+            "ENSG00000003222",
+            "ENSG00000000854",
+            "ENSG00000003975",
+            "ENSG00000003494",
+            "ENSG00000001382",
+            "ENSG00000000373",
+            "ENSG00000000770",
+            "ENSG00000003169",
+            "ENSG00000000808",
+            "ENSG00000000923",
+            "ENSG00000000177",
+            "ENSG00000001239",
+            "ENSG00000000799",
+            "ENSG00000000983",
+            "ENSG00000000077",
+            "ENSG00000001050"
+          ],
+          "show_col_labels": false,
+          "show_row_labels": true
+        },
+        "default_height_mm": 74,
+        "encodings": {
+          "annotation": {
+            "condition": {
+              "control": "#666666",
+              "treated": "#D55E00"
+            }
+          },
+          "fill": {
+            "clip": 2,
+            "clipped_end_labels": true,
+            "limits": [
+              -2,
+              2
+            ],
+            "palette": [
+              "#2166AC",
+              "#4393C3",
+              "#92C5DE",
+              "#D1E5F0",
+              "#F7F7F7",
+              "#FDDBC7",
+              "#F4A582",
+              "#D6604D",
+              "#B2182B"
+            ],
+            "scale": "diverging",
+            "title": "Row z-score"
+          }
+        },
+        "figure_type": "top_heatmap",
+        "tag": "c"
+      }
+    ]
+  },
+  "encodings": [],
+  "figure_type": "composite",
+  "files": {
+    "pdf": {
+      "content_sha256": "b9f6e4d5c139253fb6e9f11e833e117dfe78356067e164955521a9e37b5d5584",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "F1_composite_bulk.pdf"
+    },
+    "png": {
+      "path": "F1_composite_bulk.png",
+      "sha256": "06132c3ea65c9e7855d9106ca6770f549f719775348adb69c9b3bceb9ae2396d"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 75,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "1 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #2166AC/#B2182B (grayscale 3.7)",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 183
+}

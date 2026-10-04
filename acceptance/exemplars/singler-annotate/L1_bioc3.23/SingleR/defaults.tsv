@@ -1,0 +1,58 @@
+function	argument	default
+SingleR	test	
+SingleR	ref	
+SingleR	labels	
+SingleR	method	NULL
+SingleR	clusters	NULL
+SingleR	genes	"de"
+SingleR	sd.thresh	1
+SingleR	de.method	"classic"
+SingleR	de.n	NULL
+SingleR	de.args	list()
+SingleR	aggr.ref	FALSE
+SingleR	aggr.args	list()
+SingleR	recompute	TRUE
+SingleR	restrict	NULL
+SingleR	hint.sce	TRUE
+SingleR	quantile	0.8
+SingleR	fine.tune	TRUE
+SingleR	tune.thresh	0.05
+SingleR	fine.tune.combined	fine.tune
+SingleR	prune	TRUE
+SingleR	assay.type.test	"logcounts"
+SingleR	assay.type.ref	"logcounts"
+SingleR	check.missing.test	FALSE
+SingleR	check.missing.ref	check.missing
+SingleR	check.missing	TRUE
+SingleR	num.threads	1
+SingleR	BNPARAM	NULL
+SingleR	BPPARAM	NULL
+plotScoreHeatmap	results	
+plotScoreHeatmap	cells.use	NULL
+plotScoreHeatmap	labels.use	NULL
+plotScoreHeatmap	clusters	NULL
+plotScoreHeatmap	show.labels	TRUE
+plotScoreHeatmap	show.pruned	FALSE
+plotScoreHeatmap	max.labels	40
+plotScoreHeatmap	normalize	TRUE
+plotScoreHeatmap	cells.order	NULL
+plotScoreHeatmap	order.by	c("labels", "clusters")
+plotScoreHeatmap	rows.order	NULL
+plotScoreHeatmap	scores.use	NULL
+plotScoreHeatmap	calls.use	0
+plotScoreHeatmap	na.color	"gray30"
+plotScoreHeatmap	color	NA
+plotScoreHeatmap	breaks	NA
+plotScoreHeatmap	legend_breaks	NA
+plotScoreHeatmap	legend_labels	NA
+plotScoreHeatmap	cluster_cols	FALSE
+plotScoreHeatmap	annotation_col	NULL
+plotScoreHeatmap	show_colnames	FALSE
+plotScoreHeatmap	silent	FALSE
+plotScoreHeatmap	...	
+plotScoreHeatmap	grid.vars	list()
+pruneScores	results	
+pruneScores	nmads	3
+pruneScores	min.diff.med	-Inf
+pruneScores	min.diff.next	0
+pruneScores	get.thresholds	FALSE

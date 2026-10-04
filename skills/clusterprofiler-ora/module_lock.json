@@ -1,0 +1,34 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "clusterprofiler-ora",
+  "module_version": "1.1.0",
+  "files": {
+    "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R": "7562d03346e326f393a0122b9f8b7faf7779d81517836deb4d1ef592c9f12a71",
+    "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_qc.R": "b255535f64e4f965b09245e682328d355f9c91edeabb1c8498ca36ae234593d6",
+    "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_report.R": "7bdc9f3b432b62dc6dec4a5a1e7a9e48d5cb3abde7f2b08b0b3723c3b4d5f7fe",
+    "skills/clusterprofiler-ora/scripts/run_clusterprofiler_ora.R": "7a5c5cb99e3ce1738150b0e31890bb4291aee394718e8610ffef1cc926ea9887",
+    "skills/clusterprofiler-ora/scripts/calls_registry.json": "d6f1397b1c852b6e8173480b6b2b58a88055ff71fbcc5307727fcfcd980e1ff6",
+    "skills/clusterprofiler-ora/SKILL.md": "8bc6d0fcb2e26f4369a914be61009012058882a7075b0b00b0546bfcf2f6e41b",
+    "skills/clusterprofiler-ora/references/method-basis.md": "7e562f1726dedfd85e7208192253abba88d3683ee666a7f30c53a482203224c7",
+    "skills/clusterprofiler-ora/references/options.md": "8f8d4b6a503f0906580d58464c9dc8ed10f16649ea3d1d906bed345e694f098a",
+    "skills/clusterprofiler-ora/references/parameters.md": "b4040de711a7e5c2028e2b6238af6ec0821d6cd899e4fdb9b2e6e872ab55b8e7",
+    "skills/clusterprofiler-ora/references/qc-rules.md": "d27d6942d134bcac05007a440a19dcf17d119dce41d00a91333cdf104472f14f",
+    "skills/clusterprofiler-ora/references/reporting-templates.md": "528cbd692ea98c87852ac4bac8e1676033241516908f1ad1c14d0a30177f49c5",
+    "skills/clusterprofiler-ora/references/troubleshooting.md": "3762360bf57faaac6518639db350ff85f648ce26c7668ab1721109cf4a5aaf56",
+    "skills/clusterprofiler-ora/tests/run_smoke_test.R": "94a99956ce997e99304e736fc19884cce10c7d6a4e7db94520f8daa458a01a47",
+    "skills/clusterprofiler-ora/tests/golden_manifest.csv": "b9cb0a3bedaeef38d80faa833646803d1fdeef501fdb6464e0639f6d53a84ac8",
+    "acceptance/exemplars/clusterprofiler-ora/PACK.md": "4df39c553ed39f4c2f79e564b9deab513af002595765ec99bfb44462482a52fd"
+  },
+  "packages": {
+    "clusterProfiler": "4.20.0",
+    "enrichit": "0.2.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

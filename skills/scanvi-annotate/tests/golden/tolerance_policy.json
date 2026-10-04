@@ -1,0 +1,14 @@
+{
+  "atol": 1e-06,
+  "rtol": 1e-06,
+  "tables": {
+    "annotations.csv": [
+      "max_probability"
+    ],
+    "label_probabilities.csv": [
+      "label_0",
+      "label_1",
+      "label_2"
+    ]
+  }
+}

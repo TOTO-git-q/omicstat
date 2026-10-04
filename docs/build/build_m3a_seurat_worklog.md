@@ -1,0 +1,14 @@
+# build_m3a_seurat
+Worktree: /home/<user>/omic-b-seurat; branch: build/m3a-seurat; scratch: /home/<user>/omic-sol61/build_m3a_seurat.
+2026-09-30 setup: task/common, engineering plan, builder briefs, suite, GPT report, evidence corrections read; no previous lane state; next: seurat-qc scaffold/engine.
+seurat-qc: S2 build done (PBMC 2700 cells/13714 genes and strict-QC replay PASS; 19 smoke checks; golden/lock OK; nine PNGs reviewed; awaiting independent S3); next: seurat-cluster container smoke.
+seurat-cluster: S2 build done (real QC chain; PBMC 2638 nodes/95927 edges/nine communities and native replay PASS; golden/lock OK; six PNGs reviewed; awaiting independent S3); next: seurat-integrate container smoke.
+seurat-integrate: anchor preparation found packaged pbmc_stim lacks MT- genes; QC gains explicit missing-mito=zero opt-in while default refusal is preserved; next: verify integration chain and refresh QC lock.
+seurat-integrate: S2 build done (2000-cell printed anchor/native Harmony replay/raw counts/real QC chain/both routes PASS; golden/lock OK; ten chain PNGs reviewed; QC lock refreshed; awaiting independent S3); next: seurat-markers smoke.
+seurat-modulescore: native AddModuleScore scaffold/engine/options prepared (locked formals read; GMT/source/organism explicit; offline search; no score cutoff); next: finish marker verification before score smoke.
+seurat-frontends: option evidence maps corrected to actual S0 keys; scientific option guidance/tutorial examples and function-naming Methods added; integrated cluster/sample UMAP added through lane builder; next: finish marker smoke then module-score chain.
+seurat-cluster: follow-up static audit adds missing pure-accessor declarations only; completed native outputs retained; option keys/Methods refreshed; next: marker golden verification and score smoke.
+seurat-markers: S2 build done (real PBMC QC chain; native all/contrast replay and golden PASS; 10 smoke checks; lock OK; ten chain PNGs reviewed; archived numeric differences recorded; awaiting independent S3); next: seurat-modulescore smoke completion.
+seurat-modulescore: S2 build done (Nestorowa printed counts/features and exact AddModuleScore/CellCycleScoring replay PASS; 11 smoke checks/spec determinism/golden/lock OK; fourteen chain PNGs reviewed; awaiting independent S3); next: final lane report record.
+seurat-frontends: final verification done (all five call/default/golden checks PASS; all five module_lock --check OK; CLI docs/defaults/lint PASS; custom integration reduction and retained default embeddings PASS); next: report helper commit, then DONE.
+build_m3a_seurat: Chinese BUILD_REPORT_build_m3a_seurat.md complete (five S2 modules; owner items/anchors/tests/figures/shared code/deviations recorded; awaiting independent S3); report queued for external helper commit before DONE.

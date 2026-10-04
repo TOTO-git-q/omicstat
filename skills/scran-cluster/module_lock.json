@@ -1,0 +1,36 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "scran-cluster",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/scran-cluster/scripts/run_scran_cluster.R": "acea94418d612a235ceb4bb5dc64bc4170f6fcc14f73da318ee7488b28244409",
+    "skills/scran-cluster/scripts/scran_cluster_core.R": "f3a3989a488c1783941a2410379579f7d86f74e72160891863712b639c1dc665",
+    "skills/scran-cluster/scripts/calls_registry.json": "c2f3ee42b54fb2d487016f5e364882b55f9159776b184db06099855a8d4ec6ab",
+    "skills/scran-cluster/SKILL.md": "845b392a966e0fe16593b031ec2928c6a865eb84fadec0f14edda6a01c5804ea",
+    "skills/scran-cluster/references/method-basis.md": "cd9bde856840d95cc8d8a62a25d63030216886543982647b315a1d92a3fcda82",
+    "skills/scran-cluster/references/options.md": "458e2bc0bb8b73ff60038d0cf1f66d2a229e31693c86d7ab2a5527de63969a1e",
+    "skills/scran-cluster/references/parameters.md": "2070a3709d339a8ba237047cbd65e7dc5817e35272c712176ff4fb6aa0e3819f",
+    "skills/scran-cluster/references/reporting-templates.md": "14616831839027a76030ed510f985eb84bd6482a8dbc4d921affe9e0b550df07",
+    "skills/scran-cluster/references/troubleshooting.md": "66dd51f74a6fdaa6c815deefc902353af3a8e6f62f797376b4824df0658a9df2",
+    "skills/scran-cluster/tests/fixtures/make_grun.R": "fa5e9b64004b28f7ac2126cb86a135108cd2803e20948919763fb46e9b07efdb",
+    "skills/scran-cluster/tests/run_printed_anchor.R": "949a1418ef0cd46950749dc7fc9c79b14bd7bd48d062442610b096e31892537b",
+    "skills/scran-cluster/tests/run_smoke_test.R": "23d7c41049b0ef4e8376a75de1f8a2aa50768a225ea880cd8a4a8d1ea5cfb657",
+    "skills/scran-cluster/tests/golden_manifest.csv": "4c4a06e0022bc20f354a73e97330079d4d7e5e4d6e0781179059d0e286993906",
+    "acceptance/exemplars/scran-cluster/PACK.md": "fc7a52112a0cb30e4228364835eec65ce2e781c8b0bd18dddd8c6a70bf354d89"
+  },
+  "packages": {
+    "scran": "1.40.0",
+    "BiocParallel": "1.46.0",
+    "scuttle": "1.22.0",
+    "scater": "1.40.2",
+    "bluster": "1.22.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

@@ -1,0 +1,12 @@
+# L4 single-cell front end, Bioconductor (OSCA) line + neutral annotation / IO
+SingleCellExperiment
+scater
+scuttle
+scran
+bluster
+batchelor
+AUCell
+SingleR
+celldex
+zellkonverter
+DropletUtils

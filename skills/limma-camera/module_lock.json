@@ -1,0 +1,35 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "limma-camera",
+  "module_version": "1.1.1",
+  "files": {
+    "skills/limma-camera/scripts/limma_camera_core.R": "0247c79745a143dd87a3f3e2025db18c68454003da23a879bdbb8d7fc3ba0f59",
+    "skills/limma-camera/scripts/limma_camera_qc.R": "a3d667d961a43fa60ebf9d7d3ead529493c76573d6e58865b0b7d6fef26fa08c",
+    "skills/limma-camera/scripts/limma_camera_report.R": "9925365f9c5bc628a68d7ba45e0ac3f792a86b3778fcb89cafea630dc83d3f8e",
+    "skills/limma-camera/scripts/run_limma_camera.R": "8588b19f9bb8df161491a339eed2524532aa4c18049b5f9d77231310a5b3b465",
+    "skills/limma-camera/scripts/calls_registry.json": "4e6e2ec17ffa92b821a60977042b97f1db3cc73c36bede11f134055d20f238ae",
+    "skills/limma-camera/SKILL.md": "d08f5d94aa12e04c4094d120391189ea0cc9ccd1138ac12e092a99655e1fe43d",
+    "skills/limma-camera/references/method-basis.md": "150a793a5cf24e5edb170a0d265cbf8358cffba0e3dcb6ffb2645580f9f85e24",
+    "skills/limma-camera/references/options.md": "16ee024395476562f75e06bf5e788bcf19b43f504598f1fb4b39ff560caea031",
+    "skills/limma-camera/references/parameters.md": "d52cfa53922c8f288fffc6af040279dfc81c556ac9402d23ff355a66c43555ee",
+    "skills/limma-camera/references/qc-rules.md": "045438b23de587683857b000b46f374976eb91a2f1467f9615e28a4b7d016f60",
+    "skills/limma-camera/references/reporting-templates.md": "abbea01d338a23eed8f9ad6170f5a796ab5ef2df42f35060a35b0267f9aab61a",
+    "skills/limma-camera/references/troubleshooting.md": "223940dd17db4c38138e9c2a5ba2d7bd8653afa98709f6ce1046255a57da79a1",
+    "skills/limma-camera/tests/fixtures/make_yoruba.R": "def4e4f0c1f0d861d6b11220b7d85605a1cc17d8151c5b5276ed50715599c04a",
+    "skills/limma-camera/tests/registry_values_check.R": "4c714bcfc99d3bd0171e56b8ae0a93c4674581c779928924a2cf3253aba84b67",
+    "skills/limma-camera/tests/run_smoke_test.R": "ab73e206e182c78f4d5218d4854750c3374f87706c922186361f0b020b42995f",
+    "skills/limma-camera/tests/golden_manifest.csv": "2c653a7670e8d0e3a9b05a7ced55f11ef03d7b32eb08f931d9504fc398ab615e",
+    "acceptance/exemplars/limma-camera/PACK.md": "00dc012f579c4a8e89426a060fce966f4ba0c424f14015e6302bba1687e62d80"
+  },
+  "packages": {
+    "limma": "3.68.5"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

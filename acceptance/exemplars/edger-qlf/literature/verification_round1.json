@@ -1,0 +1,41 @@
+{
+  "module": "edger-qlf",
+  "date": "2026-09-27",
+  "sampled_pmids": ["34799566", "36229039", "36420903", "41202128", "42555706", "42557328"],
+  "records_checked": 54,
+  "records_passed": 50,
+  "pass_rate": 0.9259259259259259,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [
+    {
+      "pmid": "36420903",
+      "parameter": "padj_cutoff",
+      "recorded_value": "not reported",
+      "problem": "Methods > Chromatin immunoprecipitation (ChIP-seq) and bioinformatics analysis states 'Only regions with FDR values below the 0.05 threshold were considered differentially bound between two samples' in the same paragraph as the glmQLFit fit; this is a stated FDR cutoff for the edgeR QL test and should have been extracted rather than marked not reported (the article's own _applies=no note explains the QL pipeline is on ChIP-seq peaks rather than bulk RNA-seq, but the value is still literally present in the matched Methods text, as it was for comparable applies=no articles in this sample, e.g. PMC9825163 and PMC13558064, where present-but-off-target values were correctly extracted).",
+      "correct_value_if_known": "FDR < 0.05"
+    },
+    {
+      "pmid": "36420903",
+      "parameter": "lfc_filter",
+      "recorded_value": "not reported",
+      "problem": "Same Methods paragraph states 'Only peaks with a log2-fold change >2 were retained for further analyses,' a stated post hoc fold-change filter that was not extracted.",
+      "correct_value_if_known": "2"
+    },
+    {
+      "pmid": "41202128",
+      "parameter": "normalization",
+      "recorded_value": "not reported",
+      "problem": "Methods > Differential enrichment analysis states 'Sample normalization was performed with normFactors function using the trimmed mean of M-values (TMM) method,' in the same sentence group as the glmQLFit fit; this stated value was not extracted.",
+      "correct_value_if_known": "trimmed mean of M-values (TMM)"
+    },
+    {
+      "pmid": "41202128",
+      "parameter": "padj_cutoff",
+      "recorded_value": "not reported",
+      "problem": "Same Methods paragraph states 'Statistical significance was determined on the basis of false discovery rates (FDR; <0.05)'; this stated cutoff was not extracted.",
+      "correct_value_if_known": "FDR < 0.05"
+    }
+  ],
+  "verdict": "rework"
+}

@@ -1,0 +1,38 @@
+# S4 probe (read-only facts for F1 and F4). ASCII only.
+suite <- normalizePath(".")
+source(file.path(suite, "skills", "_shared", "scripts", "module_kit.R"))
+bladderEset <- os_acceptance_data(suite, "bladderbatch", "bladderdata")
+suppressMessages({ library(sva); library(limma); library(Biobase) })
+cat("sva", as.character(packageVersion("sva")), "limma", as.character(packageVersion("limma")), "\n")
+# ---- vignette code, verbatim (sva.Rnw sec 2-6) ----
+pheno = pData(bladderEset)
+edata = exprs(bladderEset)
+mod = model.matrix(~as.factor(cancer), data=pheno)
+mod0 = model.matrix(~1,data=pheno)
+n.sv = num.sv(edata,mod,method="leek")
+print(n.sv)
+svobj = sva(edata,mod,mod0,n.sv=n.sv)
+pValues = f.pvalue(edata,mod,mod0)
+qValues = p.adjust(pValues,method="BH")
+modSv = cbind(mod,svobj$sv)
+mod0Sv = cbind(mod0,svobj$sv)
+pValuesSv = f.pvalue(edata,modSv,mod0Sv)
+qValuesSv = p.adjust(pValuesSv,method="BH")
+fit = lmFit(edata,modSv)
+contrast.matrix <- cbind("C1"=c(-1,1,0,rep(0,svobj$n.sv)),"C2"=c(0,-1,1,rep(0,svobj$n.sv)),"C3"=c(-1,0,1,rep(0,svobj$n.sv)))
+fitContrasts = contrasts.fit(fit,contrast.matrix)
+eb = eBayes(fitContrasts)
+options(digits = 7)
+print(topTableF(eb, adjust="BH"))
+print(topTableF(eb, adjust="BH"), digits = 15)
+cat("sum(qValues<0.05)", sum(qValues < 0.05), " sum(qValuesSv<0.05)", sum(qValuesSv < 0.05), "\n")
+print(head(svobj$sv))
+print(pValuesSv[c("207783_x_at","201492_s_at")], digits = 15)
+# ---- ComBat source ----
+cat("==== deparse(sva::ComBat) ====\n")
+writeLines(deparse(sva::ComBat))
+for (f in c("aprior", "bprior", "it.sol", "postmean", "postvar", "int.eprior", "Beta.NA", "dinvgamma")) {
+  if (exists(f, envir = asNamespace("sva"), inherits = FALSE)) { cat("==== sva:::", f, " ====\n", sep = ""); writeLines(deparse(get(f, envir = asNamespace("sva")))) }
+  else cat("==== sva:::", f, " NOT FOUND ====\n", sep = "")
+}
+cat("PROBE DONE\n")

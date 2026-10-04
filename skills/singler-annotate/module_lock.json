@@ -1,0 +1,35 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "singler-annotate",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/singler-annotate/scripts/run_singler_annotate.R": "4487e1892dac386fef6a62f0fb05f950381d2d7d4bb1b45ad85e27e3d7755e0e",
+    "skills/singler-annotate/scripts/singler_annotate_core.R": "c5a2f6011d235035d9354a7c3baa52324e1ca4e0ceff75a0a784eae3d7b2eb8a",
+    "skills/singler-annotate/scripts/singler_annotate_qc.R": "5bea804b73096297a8b1aaaf175850e0aa1a1aa2a9fa3e059999e5366d61887b",
+    "skills/singler-annotate/scripts/singler_annotate_report.R": "258d543c4ac7eb3010113001ad0df2801df4564710a3972bd07fcde199c54a7e",
+    "skills/singler-annotate/scripts/calls_registry.json": "8ec28559ebf56c577ef806a29e692ee30a4db5fa1bdc6f79339707b70b22ca06",
+    "skills/singler-annotate/SKILL.md": "56cc36fabd682b9e82465df06335eed461bb173fee95d8a41df106fadc23bb67",
+    "skills/singler-annotate/references/method-basis.md": "2f0ade10bb5663f0cad3b36663487753cc6adf7c4a0a243a1f8074a410c760e2",
+    "skills/singler-annotate/references/options.md": "b186e9d0e2a454a6b68409f828e91f49d1577dae0611cfff812e215888151cdc",
+    "skills/singler-annotate/references/parameters.md": "317d90ff6eeb2bd5c8d73c70fc5b1baaa5ef48729b26790b1f9f7baa86bdde64",
+    "skills/singler-annotate/references/qc-rules.md": "9dfe39dba73c87b0819c051f1df40bdba020ee18391bec71fe744cc2792f0a32",
+    "skills/singler-annotate/references/reporting-templates.md": "755ae639f6db50ab745add32f7bab54a2ee97bdb62b395a19ab039a8cbb730de",
+    "skills/singler-annotate/references/troubleshooting.md": "f971124cdade538dac0c9c16d10a15e86c994a10555a610c8343dc9023bdf367",
+    "skills/singler-annotate/tests/fixtures/make_pancreas.R": "179c7dad4835cafa0e66cd41b956dc6481099634ddcac20dd98083082bfc65ff",
+    "skills/singler-annotate/tests/run_smoke_test.R": "71649a742e31ffb1188213e256729eb224c4bfa260375508186b2b3b164d9802",
+    "skills/singler-annotate/tests/golden_manifest.csv": "b7de633a09166524e0e1762f42c7ffc44e40b6bc2b2b527cb706bb81b4550987",
+    "acceptance/exemplars/singler-annotate/PACK.md": "88264724f18a65feeb24bd48de65745b471fea5df47dbf4d14913691aba4466e"
+  },
+  "packages": {
+    "SingleR": "2.14.2",
+    "BiocParallel": "1.46.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

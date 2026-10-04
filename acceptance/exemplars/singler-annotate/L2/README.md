@@ -1,0 +1,1 @@
+Official Bioconductor SingleRBook 3.23 chapters (CC BY according to the book front matter). Pages are pinned by URL and sha256; the complete pages are not copied. Use chapter 3 for single-cell reference marker choice, chapter 4 for diagnostics and pruning, and chapter 7 for advanced settings. The locked package vignette in L1 is authoritative when examples differ.

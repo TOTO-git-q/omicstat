@@ -1,0 +1,12 @@
+
+
+Working with multiple conditions
+
+Working with multiple conditions
+
+Kelly Street, Koen Van den Berge and Hector Roux de Bézieux
+
+June 26, 2020
+
+If your dataset contains multiple conditions, please see our Bioconductor Workshop on ‘Trajectory inference across conditions: differential expression and differential progression’.
+

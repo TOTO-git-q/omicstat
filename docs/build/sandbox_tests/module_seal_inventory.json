@@ -1,0 +1,139 @@
+{
+  "deseq2-wald": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/deseq2-wald/PACK.md"
+    ]
+  },
+  "deseq2-qc": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/deseq2-qc/PACK.md"
+    ]
+  },
+  "deseq2-lrt": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/deseq2-lrt/PACK.md"
+    ]
+  },
+  "edger-qlf": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/edger-qlf/PACK.md"
+    ]
+  },
+  "limma-voom": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/limma-voom/PACK.md"
+    ]
+  },
+  "limma-array": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/limma-array/PACK.md"
+    ]
+  },
+  "limma-dupcor": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/limma-dupcor/PACK.md"
+    ]
+  },
+  "sva-batch": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/sva-batch/PACK.md"
+    ]
+  },
+  "clusterprofiler-ora": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/clusterprofiler-ora/PACK.md"
+    ]
+  },
+  "clusterprofiler-gsea": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/clusterprofiler-gsea/PACK.md"
+    ]
+  },
+  "clusterprofiler-compare": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/clusterprofiler-compare/PACK.md"
+    ]
+  },
+  "fgsea-prerank": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/fgsea-prerank/PACK.md"
+    ]
+  },
+  "gsva-score": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "missing bound file: acceptance/exemplars/gsva-score/PACK.md"
+    ]
+  },
+  "limma-camera": {
+    "ok": false,
+    "status": "invalid",
+    "problems": [
+      "changed bound file: skills/limma-camera/scripts/limma_camera_core.R",
+      "changed bound file: skills/limma-camera/scripts/limma_camera_report.R",
+      "changed bound file: skills/limma-camera/references/reporting-templates.md",
+      "changed bound file: skills/limma-camera/tests/run_smoke_test.R",
+      "missing bound file: acceptance/exemplars/limma-camera/PACK.md"
+    ]
+  },
+  "scanpy-qc": {
+    "ok": false,
+    "status": "pending",
+    "problems": [
+      "module_lock.json missing or invalid"
+    ]
+  },
+  "scanpy-cluster": {
+    "ok": false,
+    "status": "pending",
+    "problems": [
+      "module_lock.json missing or invalid"
+    ]
+  },
+  "scanpy-markers": {
+    "ok": false,
+    "status": "pending",
+    "problems": [
+      "module_lock.json missing or invalid"
+    ]
+  },
+  "scvi-integrate": {
+    "ok": false,
+    "status": "pending",
+    "problems": [
+      "module_lock.json missing or invalid"
+    ]
+  },
+  "scanvi-annotate": {
+    "ok": false,
+    "status": "pending",
+    "problems": [
+      "module_lock.json missing or invalid"
+    ]
+  }
+}

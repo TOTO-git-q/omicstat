@@ -1,0 +1,15 @@
+{
+  "atol": 1e-06,
+  "environment_signature": "container|Python 3.12.13|py_env 2026.09.1|linux-x86_64",
+  "exemptions": [
+    "wall-clock provenance",
+    "HDF5 serialization",
+    "torch checkpoint serialization",
+    "PDF creation timestamps",
+    "absolute paths"
+  ],
+  "figures": "Python requests tested; R render and visual review remain separate gates",
+  "numerical_smoke_passed": true,
+  "rtol": 1e-06,
+  "seed": 20260925
+}

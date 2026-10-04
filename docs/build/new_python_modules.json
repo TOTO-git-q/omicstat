@@ -1,0 +1,78 @@
+{
+  "scanpy-qc": {
+    "prefix": "YQ",
+    "question": "Raw-count single-cell quality control in AnnData",
+    "packages": {
+      "scanpy": "1.12.4",
+      "anndata": "0.13.3.post0"
+    },
+    "method": "Raw integer counts were evaluated using scanpy.calculate_qc_metrics. Cells were retained only when they met all prespecified feature, count and mitochondrial cutoffs. Genes were then retained according to the declared minimum number of cells. Doublet handling was {doublet_mode}; when requested, Scrublet used the explicit expected rate and score cutoff. Counts were not normalized.",
+    "result": "Of {n_input_cells} input cells, {n_cells} cells and {n_genes} genes were retained. The cell-level audit retains all exclusion reasons; {n_predicted_doublets} cells were classified as predicted doublets. These are QC classifications, not biological findings.",
+    "example": "--input pbmc.h5ad --sample-col sample --counts-layer X --mito-prefix MT- --min-genes 200 --max-genes 2500 --min-counts 1 --max-counts 100000 --max-mito-percent 5 --min-cells 3 --doublet-mode skip",
+    "docs": [
+      "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+      "https://scanpy.readthedocs.io/en/1.12.4/api/generated/scanpy.pp.calculate_qc_metrics.html",
+      "https://scanpy.readthedocs.io/en/1.12.4/api/generated/scanpy.pp.scrublet.html"
+    ]
+  },
+  "scanpy-cluster": {
+    "prefix": "YC",
+    "question": "Normalize, find variable genes, cluster and embed AnnData cells",
+    "packages": {
+      "scanpy": "1.12.4",
+      "anndata": "0.13.3.post0"
+    },
+    "method": "Raw counts were normalized by total counts and transformed by natural log1p using scanpy. Highly variable genes were selected with the Seurat-dispersion flavor; {n_hvg} genes entered centered, scaled PCA with {n_pcs} components. The neighbor graph used Euclidean distance. Leiden clustering used the igraph backend with an undirected weighted graph and convergence iterations. PCA signs and cluster IDs were canonicalized; UMAP used seed {seed}. Counts and the full log-expression matrix were retained.",
+    "result": "{n_cells} cells from {n_samples} samples were assigned to {n_clusters} descriptive clusters. PCA and UMAP are exploratory summaries, not independent evidence of condition-specific effects.",
+    "example": "--from-run qc_run --sample-col sample --counts-layer counts --n-hvg 2000 --n-pcs 30 --n-neighbors 15 --resolution 0.5",
+    "docs": [
+      "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering.html",
+      "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.pp.pca.html",
+      "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.leiden.html"
+    ]
+  },
+  "scanpy-markers": {
+    "prefix": "YM",
+    "question": "Describe cluster markers without condition-level pseudoreplication",
+    "packages": {
+      "scanpy": "1.12.4",
+      "anndata": "0.13.3.post0"
+    },
+    "method": "Cluster markers were described using scanpy.rank_genes_groups with test {test}, each cluster versus the remaining cells, the declared natural-log1p expression layer, use_raw=False, no effect-size selection and BH adjustment within each cluster contrast. All genes were retained in the feature table. Cells are descriptive units, not biological replicates; this analysis does not test differences between conditions.",
+    "result": "{n_tested_rows} cluster-gene rows were tested across {n_clusters} clusters; {n_significant_rows} rows met BH-adjusted P <= {alpha}. These post-clustering statistics are descriptive and cannot be interpreted as confirmatory condition-level inference.",
+    "example": "--from-run cluster_run --sample-col sample --counts-layer counts --cluster-col cluster --expression-layer logcounts --purpose cluster-description",
+    "docs": [
+      "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html"
+    ]
+  },
+  "scvi-integrate": {
+    "prefix": "VI",
+    "question": "Integrate multiple batches using a CPU scVI latent model",
+    "packages": {
+      "scanpy": "1.12.4",
+      "anndata": "0.13.3.post0",
+      "scvi-tools": "1.5.1"
+    },
+    "method": "Raw counts for {n_model_genes} genes were modeled with scvi-tools SCVI using the declared nuisance batch. The architecture used 128 hidden units, one layer, dropout 0.1, gene-specific dispersion, a zero-inflated negative-binomial likelihood and a normal latent distribution with {n_latent} dimensions. CPU training used a maximum of {max_epochs} epochs, no early stopping and seed {seed}. Before/after UMAP and graph mixing diagnostics are descriptive. Integration changed the latent representation, not raw counts or original cluster labels.",
+    "result": "{n_cells} cells across {n_batches} batches were represented in {n_latent} latent dimensions. Graph mixing is reported per cell and does not establish preservation of biological signals or removal of all batch effects.",
+    "example": "--from-run cluster_run --sample-col sample --counts-layer counts --batch-col batch --cluster-col cluster --max-epochs 100 --n-neighbors 15",
+    "docs": [
+      "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+      "https://docs.scvi-tools.org/en/1.5.1/tutorials/notebooks/quick_start/api_overview.html"
+    ]
+  },
+  "scanvi-annotate": {
+    "prefix": "VA",
+    "question": "Transfer observed reference labels with scANVI",
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scvi-tools": "1.5.1"
+    },
+    "method": "scANVI was initialized from the hash-verified local scVI model. The reference contained {n_reference_cells} labeled cells in {n_label_categories} categories; {n_query_cells} cells carried the declared unlabeled category. Training used at most {max_epochs} epochs on CPU. Predictions used posterior means. Observed labels were preserved; full class probabilities and a descriptive cluster-label crosstab were exported.",
+    "result": "Labels were predicted for {n_cells} cells; {n_low_confidence} cells had maximum model probability below the prespecified display threshold {min_confidence}. Class probabilities are not calibrated accuracy estimates; no held-out accuracy is claimed.",
+    "example": "--from-run integrated_run --sample-col sample --counts-layer counts --labels-col reference_label --unlabeled-category Unknown --cluster-col cluster --max-epochs 50 --min-confidence 0.8",
+    "docs": [
+      "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html"
+    ]
+  }
+}

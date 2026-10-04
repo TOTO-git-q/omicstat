@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/enrichment_full.csv,6e52067c7b78e3b4ff96da2fc5846f7a0336ed92c0ee65d39ca3f44516d41a08,container,
+results/clusterprofiler_gsea_results.json,f59005605e67773e929c08dab33109a55ef13e57007242d48af28f6712d9fee8,container,
+figures/gsea_dotplot.figure_spec.json,bf5315e24923dc8f459f829acf32bb0ccfa7a19145b65b27dd95bff71480d283,container,
+figures/gsea_curve.figure_spec.json,a236467c3bef584a70ebc95a59245e0606254fc32d16d969b15cb79c5aabc8bf,container,
+figures/gsea_dotplot_signed.figure_spec.json,d02a5a1a74e4fbce1f74db4251d2c30b4de3f1e75c3fd1033f971afd71a5fb5a,container,
+figures/gsea_ridge.figure_spec.json,c5304b8bdc193892a3ab368afc83049bc6dac02cf372916c257310d9b4c5cf76,container,

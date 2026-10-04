@@ -1,0 +1,28 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "monocle3-trajectory",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/monocle3-trajectory/scripts/monocle3_trajectory_core.R": "9f26d87d5104f0dd3b464447145d1b98b95b78d30cfb813d80efc8629bb12c24",
+    "skills/monocle3-trajectory/scripts/run_monocle3_trajectory.R": "8b5be2351fa9a023511417b04214bcf2a78278f71c98512ed43347a694e44fe2",
+    "skills/monocle3-trajectory/scripts/calls_registry.json": "6d4e166b0966aee912574e8c55929c9c17599a58e1d94ffc15dfa820ff8e50d3",
+    "skills/monocle3-trajectory/SKILL.md": "0fa4023c1bbe70e1c6de58076de0f1d6246085741259e1fd59e85c4072446d56",
+    "skills/monocle3-trajectory/references/methods-template.md": "d5bbd163133431f085de01630d02707a523e07576615102acb6bbfb0a3e79c7b",
+    "skills/monocle3-trajectory/references/options.md": "97f1d9ede649f27411dd5982d74df6d13ddb62051ebf3043b2b6008abe8a277c",
+    "skills/monocle3-trajectory/tests/fixtures/make_packer.R": "adea2df9970a2783473181384469ece7521f51edeab6a7821448d39a5f1d19c6",
+    "skills/monocle3-trajectory/tests/run_smoke_test.R": "4937437ef36d0e26a4b5aba01aef7bbc6d46ca436dd59c3c55a9c0424edc22ad",
+    "skills/monocle3-trajectory/tests/golden_manifest.csv": "7dd6b9f1488dd2d14227011845d8279ccdb5fd5f4c739ad4763eaa49fcc9bdef",
+    "acceptance/exemplars/monocle3-trajectory/PACK.md": "fd8cc1f8d8e0befb21b6a65b13577e19993ad7a80383d715c2d6c5e435c49f4b"
+  },
+  "packages": {
+    "monocle3": "1.4.27"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

@@ -1,0 +1,20 @@
+"""{{pkg}}_{{part}}_core.py -- core layer of module {{module}}. ASCII only.
+
+TODO(S2): implement from the frozen PACK (acceptance/exemplars/{{module}}/PACK.md).
+Rules (ENGINEERING_PLAN 10.4):
+  - call only functions registered in scripts/calls_registry.json, and name
+    EVERY registered argument as a keyword, even when it equals the default
+    (lock 3; tools/check_calls.py);
+  - seed with ospy.seed.set_seed(seed) first AND pass seed explicitly to every
+    random_state= / seed= argument (lock 4);
+  - no figures here (the report layer writes a figure request).
+"""
+from ospy import seed as S
+
+
+def compute(args, seed, upstream):
+    seed_record = S.set_seed(seed)
+    # TODO(S2): read the AnnData object (args["input"] or upstream["objects"]["adata"]["path"])
+    # and run the registered calls, e.g.
+    #   sc.pp.pca(adata, n_comps=..., svd_solver=..., random_state=seed)
+    return {"seed_record": seed_record}

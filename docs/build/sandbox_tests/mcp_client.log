@@ -1,0 +1,8 @@
+COMMAND: /opt/pyvenv/bin/python mcp/test_client.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+Traceback (most recent call last):
+  File "/mnt/data/omicstat_work/omic-MCP/mcp/test_client.py", line 41, in <module>
+    from mcp import ClientSession, StdioServerParameters
+ModuleNotFoundError: No module named 'mcp'
+
+EXIT_CODE: 1

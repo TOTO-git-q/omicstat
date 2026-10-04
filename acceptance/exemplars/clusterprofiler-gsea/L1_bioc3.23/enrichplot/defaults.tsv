@@ -1,0 +1,18 @@
+function	argument	default
+gseaplot2	x	
+gseaplot2	geneSetID	
+gseaplot2	title	""
+gseaplot2	color	"green"
+gseaplot2	base_size	11
+gseaplot2	rel_heights	c(1.5, 0.5, 1)
+gseaplot2	subplots	1:3
+gseaplot2	pvalue_table	FALSE
+gseaplot2	pvalue_table_columns	c("pvalue", "p.adjust")
+gseaplot2	pvalue_table_rownames	"Description"
+gseaplot2	ES_geom	"line"
+ridgeplot	x	
+ridgeplot	showCategory	30
+ridgeplot	fill	"p.adjust"
+ridgeplot	core_enrichment	TRUE
+ridgeplot	label_format	30
+ridgeplot	...	

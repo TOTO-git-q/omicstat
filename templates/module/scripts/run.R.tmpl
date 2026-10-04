@@ -1,0 +1,82 @@
+# run_{{pkg}}_{{part}}.R -- entry point of module {{module}} (omicstat).
+# ASCII only on purpose. Structure follows ENGINEERING_PLAN lock 2 (3.2):
+# 1 locate _shared | 2 parse_args | 3 validate params | 4 validate input |
+# 5 compute (registered calls only) | 6 result object | 7 render | 8 QC |
+# 9 provenance | 10 closing line "N of M rules triggered; read X first".
+# Engine contract (_shared/docs/CONVENTIONS.md sec 14-18): flags come from ONE
+# spec (args.R); every stage runs inside os_engine_capture() (engine_run.R);
+# the design is checked with design_check.R before any statistics.
+
+options(error = function() { cat(geterrmessage(), file = stderr()); quit(status = 1, save = "no") })
+
+# ---- 1. locate _shared ------------------------------------------------------
+.this <- normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1]))
+.module_dir <- dirname(dirname(.this))
+.shared <- normalizePath(file.path(.module_dir, "..", "_shared"))
+source(file.path(.shared, "scripts", "args.R"))
+source(file.path(.shared, "scripts", "engine_run.R"))
+source(file.path(.shared, "scripts", "design_check.R"))
+source(file.path(.shared, "scripts", "fig_all.R"))
+source(file.path(.shared, "scripts", "feature_table.R"))
+source(file.path(.shared, "scripts", "handoff.R"))
+source(file.path(dirname(.this), "{{pkg}}_{{part}}_core.R"))
+source(file.path(dirname(.this), "{{pkg}}_{{part}}_report.R"))
+source(file.path(dirname(.this), "{{pkg}}_{{part}}_qc.R"))
+
+# ---- 2-3. parse_args + typed validation: ONE spec ----------------------------
+# The spec prints --help (in the line format tools/check_defaults.py reads),
+# fills defaults and raises OS_UNKNOWN_FLAG / OS_MISSING_PARAMETER /
+# OS_INVALID_PARAMETER / OS_CONFLICTING_PARAMETERS. Every default written
+# here must match references/parameters.md (a "Flag | Default" table), the
+# reporting templates and calls_registry.json ("flag" on an argument).
+SPEC <- os_arg_spec(
+  usage = "Rscript run_{{pkg}}_{{part}}.R --input <file> --outdir <dir> [options]",
+  description = "TODO(S2): one line on what {{module}} does.",
+  flags = list(
+    os_flag("input", "path", must_exist = TRUE, help = "TODO(S2) input object"),
+    os_flag("outdir", "path", required = TRUE, help = "output directory"),
+    os_flag("from-run", "path", must_exist = TRUE, help = "upstream run directory"),
+    os_flag("spec", "path", must_exist = TRUE, help = "replay a resolved spec"),
+    os_flag("seed", "int", default = 20260925L, help = "random seed"),
+    os_flag("journal", "enum", default = "nature", values = c("nature", "cell", "science", "generic"),
+            help = "figure preset")))
+  # TODO(S2): add `exclusive = list(c("a", "b"))` for flags that may not be combined,
+  # `range = c(lo, hi)` on numeric flags and `requires = "<flag>"` where one flag needs another.
+args <- os_parse_args(SPEC, commandArgs(trailingOnly = TRUE))
+if (isTRUE(args$help)) {
+  os_print_help(SPEC)
+  quit(status = 0)
+}
+seed <- args$seed
+options(omicstat.journal = args$journal)
+dir.create(args$outdir, recursive = TRUE, showWarnings = FALSE)
+elog <- os_engine_log_new(args$outdir)   # -> qc/engine_warnings.csv (stage, type, message)
+
+# ---- 4. input validation ----------------------------------------------------
+upstream <- if (!is.null(args[["from-run"]])) read_handoff(args[["from-run"]]) else NULL
+colour_reg <- if (!is.null(upstream$objects$colour_registry)) os_colour_registry_read(upstream$objects$colour_registry$path) else os_colour_registry_new()
+# TODO(S2): design checks before any statistics, e.g.
+#   os_check_sample_condition(sample_table, "sample", "condition")    # OS_INVALID_DESIGN
+#   reps <- os_classify_replicates(os_replicate_counts(sample_table, "condition", "sample"),
+#                                  blocker_below = <PACK D>, warning_below = <PACK D>)
+#   pairs <- os_align_pairs(sample_table, "subject", "condition", c("pre", "post"))  # paired designs only
+#   os_check_named_values(user_colours, levels(sample_table$condition), "--colours")
+
+# ---- 5-6. compute -> one result object -------------------------------------
+# Seed from the parsed --seed only (tools/lint_r.py LR03/LR04).
+res <- os_engine_capture({{pkg}}_{{part}}_compute(args, seed = seed), "compute", elog)   # TODO(S2)
+
+# ---- 7. render: tables, figures (ONLY via _shared fig_* functions), draft ---
+dir.create(file.path(args$outdir, "figures"), recursive = TRUE, showWarnings = FALSE)
+os_engine_capture({{pkg}}_{{part}}_render(res, args$outdir, colour_reg), "render", elog)   # TODO(S2)
+
+# ---- 8. QC ------------------------------------------------------------------
+# TODO(S2): the QC layer may turn os_engine_counts(elog) into a rule.
+qc <- os_engine_capture({{pkg}}_{{part}}_qc(res), "qc", elog)   # TODO(S2)
+
+# ---- 9. provenance ----------------------------------------------------------
+# TODO(S2): command, resolved_spec, sessionInfo, package versions, image id,
+# seed, input sha256, upstream chain (upstream$upstream_runs), refdata ids.
+
+# ---- 10. closing line -------------------------------------------------------
+cat(sprintf("%d of %d rules triggered; read %s first\n", qc$n_triggered, qc$n_rules, qc$read_first))

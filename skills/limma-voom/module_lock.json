@@ -1,0 +1,36 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "limma-voom",
+  "module_version": "1.1.0",
+  "files": {
+    "skills/limma-voom/scripts/limma_voom_core.R": "7e01a5eaaa1ae9f0df49d97966ee3d11f514dfd61716ddbab7e204312fc75e5b",
+    "skills/limma-voom/scripts/limma_voom_qc.R": "2ef18574851c41fe43ffe47983b1904913d5395efeeda3b6cad266fa8a1f3d6a",
+    "skills/limma-voom/scripts/limma_voom_report.R": "b4df0e286353ab5226a7328c1efad7c2943a63eb2da4ce672fcdc3f91ed7c481",
+    "skills/limma-voom/scripts/run_limma_voom.R": "64c187d74c87415c9752edcd207eec717d3837073f427512b1bab9d64fee3fd5",
+    "skills/limma-voom/scripts/calls_registry.json": "d9dd36fab031be22b9b75a56c8d05bbd17033795981bc7a11898305893d1cd63",
+    "skills/limma-voom/SKILL.md": "a78dfe825141b159528fc11c531412af3ec598ad4737e06bbb1112d743b62a9e",
+    "skills/limma-voom/references/method-basis.md": "74ce989b36127bc5e05ba2f583fbfea9cc3e8c7e9546083c81ea4b7122877768",
+    "skills/limma-voom/references/options.md": "d89cb0fd6b62974ec525afd0cf25c82c8b816cea317689e40940dfc6a6b77542",
+    "skills/limma-voom/references/parameters.md": "2368089ac746a7df5d4b53dbdc2a0076710600c4513525958c221489be447755",
+    "skills/limma-voom/references/qc-rules.md": "55f1c653a8e196febd6ea2ad2223af4bfb2745de2618f0b6e8dc52215e1ef3f9",
+    "skills/limma-voom/references/reporting-templates.md": "5264f9d853c13662ac51497d02a1b990568b66fff162260e12ea1344657f08a4",
+    "skills/limma-voom/references/troubleshooting.md": "6259b4e43e5f60b85dd9e5fe89c82895430f6640de9479103f65daa443af301f",
+    "skills/limma-voom/tests/fixtures/guide_yoruba.R": "999d929ecaf7ad4533b36491437ee056f5ffcb1df1d969cb5735f7819925bbc2",
+    "skills/limma-voom/tests/fixtures/make_gse63310.R": "09524eb6b3a9d4558fcead8a22086550b58046c45831b6caa70d6e833790e429",
+    "skills/limma-voom/tests/run_smoke_test.R": "9c48aa90681057865a7a0e1a09a0770eb57bcdb2b8f468699cf4e35797a2c76c",
+    "skills/limma-voom/tests/golden_manifest.csv": "c23d501235c533d228269fb5cfc8c07a81f01a46fac14887ec32c5bae5e0dfda",
+    "acceptance/exemplars/limma-voom/PACK.md": "73f00228cf7f0a5c979071b3eaf05d8c55a5ffcdad1a3699568573f94fba5e4f"
+  },
+  "packages": {
+    "edgeR": "4.10.5",
+    "limma": "3.68.5"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

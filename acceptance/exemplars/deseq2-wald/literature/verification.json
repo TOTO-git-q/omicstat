@@ -1,0 +1,27 @@
+{
+  "module": "deseq2-wald",
+  "date": "2026-09-27T07:53:23Z",
+  "sampled_pmids": [
+    "33298436",
+    "33300615",
+    "36510111",
+    "37973194",
+    "39622635",
+    "41407857"
+  ],
+  "records_checked": 60,
+  "records_passed": 59,
+  "pass_rate": 0.9833,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [
+    {
+      "pmid": "41407857",
+      "parameter": "lfc_filter",
+      "recorded_value": "not reported",
+      "problem": "The paper does state a post-hoc log2FC filter for a DESeq2 analysis in scope for this module: Methods > IPA says 'DEGs were identified using DESeq2 (ref. 2), applying a threshold of |log2 fold change| > 1 and an adjusted P value of <0.1' for its re-analysis of the public GSE84073 bulk RNA-seq dataset (HCC organoids vs tissue). This is a legitimate DESeq2 Wald-test bulk-RNA-seq analysis described in the paper's own Methods, distinct from the three lfcShrink/design-formula comparisons in 'Methods > RNA-seq data processing' that the extractor used as the article's primary analysis. The extractor documented the existence of multiple values for design, padj_cutoff and lfc_threshold_test (three separate comparisons each, noted in the 'note' field) but did not document or use this fourth, clearly-stated value for lfc_filter, and instead marked the parameter 'not reported' outright. This is an inconsistency: the same article's padj_cutoff line also silently drops the IPA section's '<0.1' value without a note (a softer version of the same gap), whereas lfc_filter drops its only literal value entirely.",
+      "correct_value_if_known": "|log2 fold change| > 1 (stated for the Methods > IPA re-analysis of GSE84073; the paper's three primary design-formula bulk comparisons in 'RNA-seq data processing' do not themselves state a post-hoc lfc_filter, only an lfcShrink fold-change threshold, already captured under lfc_threshold_test)"
+    }
+  ],
+  "verdict": "pass"
+}

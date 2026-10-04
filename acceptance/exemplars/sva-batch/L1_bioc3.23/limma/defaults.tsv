@@ -1,0 +1,8 @@
+function	argument	default
+removeBatchEffect	x	
+removeBatchEffect	batch	NULL
+removeBatchEffect	batch2	NULL
+removeBatchEffect	covariates	NULL
+removeBatchEffect	design	NULL
+removeBatchEffect	group	NULL
+removeBatchEffect	\dots	

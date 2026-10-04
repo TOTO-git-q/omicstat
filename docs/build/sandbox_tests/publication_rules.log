@@ -1,0 +1,5 @@
+COMMAND: /opt/pyvenv/bin/python skills/_shared/publication/test_publication_rules.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+publication rules valid: 21 modules, 28 unique rule IDs
+
+EXIT_CODE: 0

@@ -1,0 +1,6 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/cells.csv,fc819028863ea294beefbadf9d970762446c2f5560ef76d7ae74de9b97f6b387,container,
+tables/variance.csv,e745a72590b97717eea076eb08c2c6c1e96b82c525e244967b0760529037adb6,container,
+tables/hvgs.csv,b09fcc12d3f7ab1d5da07293f8dce63404d9ae3b32aedd768a6d90c7b28279c3,container,
+tables/pca_variance.csv,fa68abb5a1cc675d7d9640a83e60ff8e6926ce018472c17ced6ca9cf4a0c9fd5,container,

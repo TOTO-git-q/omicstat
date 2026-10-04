@@ -1,0 +1,28 @@
+# run_smoke_test.R -- module {{module}}. ASCII only on purpose.
+# Required checks (ENGINEERING_PLAN 7.2 S2): anchors (PACK C), flag
+# effectiveness, call-registry consistency, default drift, flag-doc coverage,
+# determinism, cwd independence, no Rplots.pdf.
+here <- dirname(normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])))
+module_dir <- dirname(here)
+source(file.path(module_dir, "..", "_shared", "scripts", "calls_check.R"))
+failures <- character(0)
+check <- function(cond, msg) { if (isTRUE(cond)) cat("PASS:", msg, "\n") else { cat("FAIL:", msg, "\n"); failures <<- c(failures, msg) } }
+scripts <- list.files(file.path(module_dir, "scripts"), pattern = "\\.R$", full.names = TRUE)
+cc <- check_calls(scripts, file.path(module_dir, "scripts", "calls_registry.json"))
+check(cc$ok, paste("call registry consistent", paste(cc$problems, collapse = "; ")))
+dd <- check_default_drift(file.path(module_dir, "scripts", "calls_registry.json"))
+check(dd$ok, paste("no default drift", paste(dd$problems, collapse = "; ")))
+# Default consistency (--help vs calls_registry.json vs SKILL.md / references)
+# and engine hygiene lint; both need python3 and are reported as SKIP without it.
+py <- Sys.which("python3")
+tools_dir <- file.path(module_dir, "..", "..", "tools")
+if (nzchar(py)) {
+  cd <- suppressWarnings(system2(py, c(shQuote(file.path(tools_dir, "check_defaults.py")), shQuote(module_dir)), stdout = TRUE, stderr = TRUE))
+  check((attr(cd, "status") %||% 0L) == 0L, paste("defaults consistent across --help/registry/docs", paste(cd, collapse = " | ")))
+  lr <- suppressWarnings(system2(py, c(shQuote(file.path(tools_dir, "lint_r.py")), shQuote(file.path(module_dir, "scripts"))), stdout = TRUE, stderr = TRUE))
+  check((attr(lr, "status") %||% 0L) == 0L, paste("engine hygiene lint", paste(lr, collapse = " | ")))
+} else cat("SKIP: check_defaults.py / lint_r.py need python3\n")
+# TODO(S2): anchors, flags, determinism (golden_manifest.csv), figure_spec checks,
+# qc/engine_warnings.csv (columns stage, type, message) written by every run
+check(!file.exists("Rplots.pdf"), "no Rplots.pdf device leak")
+if (length(failures)) quit(status = 1) else cat("SMOKE PASSED\n")

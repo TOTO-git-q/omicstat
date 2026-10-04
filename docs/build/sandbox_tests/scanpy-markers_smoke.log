@@ -1,0 +1,8 @@
+COMMAND: /opt/pyvenv/bin/python skills/scanpy-markers/tests/run_smoke_test.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+scanpy-markers: 18 flag(s) in --help, 18 with defaults in 2+ sources; 0 problem(s)
+18/18 flags documented
+PASS: static calls, defaults, flags, package-independent help and typed argument errors
+SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.13.5 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch 2.10.0+cpu != 2.14.0+cpu
+
+EXIT_CODE: 0

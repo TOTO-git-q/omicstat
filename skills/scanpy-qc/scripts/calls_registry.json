@@ -1,0 +1,455 @@
+{
+  "accessors": [],
+  "calls": [
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "adata"
+          ],
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "expr_type": {
+          "expressions": [
+            "'counts'"
+          ],
+          "function_default": "'counts'",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "inplace": {
+          "expressions": [
+            "True"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "layer": {
+          "expressions": [
+            "'counts'"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "log1p": {
+          "expressions": [
+            "True"
+          ],
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "parallel": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "percent_top": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "(50, 100, 200, 500)",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "qc_vars": {
+          "expressions": [
+            "['mito']"
+          ],
+          "function_default": "()",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "use_raw": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "var_type": {
+          "expressions": [
+            "'genes'"
+          ],
+          "function_default": "'genes'",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scanpy.pp.calculate_qc_metrics"
+    },
+    {
+      "args": {
+        "copy": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "data": {
+          "expressions": [
+            "adata"
+          ],
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "inplace": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "max_counts": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "max_genes": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "min_counts": {
+          "expressions": [
+            "None",
+            "a['min-counts']"
+          ],
+          "flag": "--min-counts",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "min_counts",
+          "source": "user_required",
+          "value": "required"
+        },
+        "min_genes": {
+          "expressions": [
+            "a['min-genes']",
+            "None"
+          ],
+          "flag": "--min-genes",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "min_genes",
+          "source": "user_required",
+          "value": "required"
+        }
+      },
+      "fn": "scanpy.pp.filter_cells"
+    },
+    {
+      "args": {
+        "copy": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "data": {
+          "expressions": [
+            "selected"
+          ],
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "inplace": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "max_cells": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "max_counts": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "min_cells": {
+          "expressions": [
+            "a['min-cells']"
+          ],
+          "flag": "--min-cells",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "min_cells",
+          "source": "user_required",
+          "value": "required"
+        },
+        "min_counts": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scanpy.pp.filter_genes"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "selected"
+          ],
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "adata_sim": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "batch_key": {
+          "expressions": [
+            "a['sample-col']"
+          ],
+          "flag": "--sample-col",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "batch_key",
+          "source": "user_required",
+          "value": "required"
+        },
+        "copy": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "expected_doublet_rate": {
+          "expressions": [
+            "a['expected-doublet-rate']"
+          ],
+          "flag": "--expected-doublet-rate",
+          "function_default": "0.05",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "expected_doublet_rate",
+          "source": "user_optional_default",
+          "value": null
+        },
+        "get_doublet_neighbor_parents": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "knn_dist_metric": {
+          "expressions": [
+            "options['knn-dist-metric']"
+          ],
+          "flag": "--knn-dist-metric",
+          "function_default": "'euclidean'",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "knn_dist_metric",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "euclidean"
+        },
+        "log_transform": {
+          "expressions": [
+            "options['log-transform']"
+          ],
+          "flag": "--log-transform",
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "log_transform",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "off"
+        },
+        "mean_center": {
+          "expressions": [
+            "options['mean-center']"
+          ],
+          "flag": "--mean-center",
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "mean_center",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "on"
+        },
+        "n_neighbors": {
+          "expressions": [
+            "options['n-neighbors']"
+          ],
+          "flag": "--n-neighbors",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "n_neighbors",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "n_prin_comps": {
+          "expressions": [
+            "a['scrublet-pcs']"
+          ],
+          "flag": "--scrublet-pcs",
+          "function_default": "30",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "n_prin_comps",
+          "source": "user_optional_default",
+          "value": 30
+        },
+        "normalize_variance": {
+          "expressions": [
+            "options['normalize-variance']"
+          ],
+          "flag": "--normalize-variance",
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "normalize_variance",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "on"
+        },
+        "random_state": {
+          "expressions": [
+            "a['seed']"
+          ],
+          "flag": "--seed",
+          "function_default": "0",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "none",
+          "source": "user_optional_default",
+          "value": 20260925
+        },
+        "sim_doublet_ratio": {
+          "expressions": [
+            "options['sim-doublet-ratio']"
+          ],
+          "flag": "--sim-doublet-ratio",
+          "function_default": "2.0",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "sim_doublet_ratio",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 2.0
+        },
+        "stdev_doublet_rate": {
+          "expressions": [
+            "options['stdev-doublet-rate']"
+          ],
+          "flag": "--stdev-doublet-rate",
+          "function_default": "0.02",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "stdev_doublet_rate",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 0.02
+        },
+        "synthetic_doublet_umi_subsampling": {
+          "expressions": [
+            "options['synthetic-doublet-umi-subsampling']"
+          ],
+          "flag": "--synthetic-doublet-umi-subsampling",
+          "function_default": "1.0",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "synthetic_doublet_umi_subsampling",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 1.0
+        },
+        "threshold": {
+          "expressions": [
+            "a['doublet-threshold']"
+          ],
+          "flag": "--doublet-threshold",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "none",
+          "source": "user_optional_default",
+          "value": null
+        },
+        "use_approx_neighbors": {
+          "expressions": [
+            "options['use-approx-neighbors']"
+          ],
+          "flag": "--use-approx-neighbors",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "s0_extraction_key": "use_approx_neighbors",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "none"
+        },
+        "verbose": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering-2017.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scanpy.pp.scrublet"
+    }
+  ],
+  "captured_signatures": {
+    "scanpy.pp.calculate_qc_metrics": "(adata: 'AnnData', *, expr_type: 'str' = 'counts', var_type: 'str' = 'genes', qc_vars: 'Collection[str] | str' = (), percent_top: 'Collection[int] | None' = (50, 100, 200, 500), layer: 'str | None' = None, use_raw: 'bool' = False, inplace: 'bool' = False, log1p: 'bool' = True, parallel: 'bool | None' = None) -> 'tuple[pd.DataFrame, pd.DataFrame] | None'",
+    "scanpy.pp.filter_cells": "(data: 'AnnData | CSBase | np.ndarray | DaskArray', *, min_counts: 'int | None' = None, min_genes: 'int | None' = None, max_counts: 'int | None' = None, max_genes: 'int | None' = None, inplace: 'bool' = True, copy: 'bool' = False) -> 'AnnData | tuple[np.ndarray, np.ndarray] | None'",
+    "scanpy.pp.filter_genes": "(data: 'AnnData | CSBase | np.ndarray | DaskArray', *, min_counts: 'int | None' = None, min_cells: 'int | None' = None, max_counts: 'int | None' = None, max_cells: 'int | None' = None, inplace: 'bool' = True, copy: 'bool' = False) -> 'AnnData | tuple[np.ndarray, np.ndarray] | None'",
+    "scanpy.pp.scrublet": "(adata: 'AnnData', adata_sim: 'AnnData | None' = None, *, batch_key: 'str | None' = None, sim_doublet_ratio: 'float' = 2.0, expected_doublet_rate: 'float' = 0.05, stdev_doublet_rate: 'float' = 0.02, synthetic_doublet_umi_subsampling: 'float' = 1.0, knn_dist_metric: '_Metric | _MetricFn' = 'euclidean', normalize_variance: 'bool' = True, log_transform: 'bool' = False, mean_center: 'bool' = True, n_prin_comps: 'int' = 30, use_approx_neighbors: 'bool | None' = None, get_doublet_neighbor_parents: 'bool' = False, n_neighbors: 'int | None' = None, threshold: 'float | None' = None, verbose: 'bool' = True, copy: 'bool' = False, random_state: '_LegacyRandom' = 0) -> 'AnnData | None'"
+  },
+  "default_capture_environment": {
+    "image_id": "sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f",
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scanpy": "1.12.4",
+      "scvi-tools": "1.5.1",
+      "torch": "2.14.0+cpu"
+    },
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.36",
+    "py_env_version": "2026.09.1",
+    "python": "3.12.13"
+  },
+  "default_capture_status": "captured_locked_container",
+  "flag_defaults": {
+    "--journal": "nature",
+    "--scrublet-pcs": 30,
+    "--seed": 20260925
+  },
+  "import_names": {
+    "scvi-tools": "scvi"
+  },
+  "module": "scanpy-qc",
+  "note": "Default formals were read from the pinned installed packages. Explicit scientific choices remain those recorded by the source; capturing signatures alone is not numerical acceptance.",
+  "package_versions": {
+    "anndata": "0.13.3.post0",
+    "scanpy": "1.12.4"
+  }
+}

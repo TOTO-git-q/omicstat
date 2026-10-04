@@ -1,0 +1,50 @@
+function	argument	default
+gsva	param	
+gsva	verbose	TRUE
+gsva	BPPARAM	SerialParam(progressbar = verbose)
+gsva	maxmem	"auto"
+gsvaParam	exprData	
+gsvaParam	geneSets	
+gsvaParam	assay	NA_character_
+gsvaParam	annotation	NULL
+gsvaParam	minSize	1
+gsvaParam	maxSize	Inf
+gsvaParam	kcdf	c("auto", "Gaussian", "Poisson", "none")
+gsvaParam	kcdfNoneMinSampleSize	200
+gsvaParam	tau	1
+gsvaParam	maxDiff	TRUE
+gsvaParam	absRanking	FALSE
+gsvaParam	sparse	TRUE
+gsvaParam	checkNA	c("auto", "yes", "no")
+gsvaParam	use	c("everything", "all.obs", "na.rm")
+gsvaParam	filterRows	TRUE
+gsvaParam	ondisk	c("auto", "yes", "no")
+gsvaParam	verbose	TRUE
+plageParam	exprData	
+plageParam	geneSets	
+plageParam	assay	NA_character_
+plageParam	annotation	NULL
+plageParam	minSize	1
+plageParam	maxSize	Inf
+plageParam	ondisk	c("auto", "yes", "no")
+plageParam	verbose	TRUE
+ssgseaParam	exprData	
+ssgseaParam	geneSets	
+ssgseaParam	assay	NA_character_
+ssgseaParam	annotation	NULL
+ssgseaParam	minSize	1
+ssgseaParam	maxSize	Inf
+ssgseaParam	alpha	0.25
+ssgseaParam	normalize	TRUE
+ssgseaParam	checkNA	c("auto", "yes", "no")
+ssgseaParam	use	c("everything", "all.obs", "na.rm")
+ssgseaParam	ondisk	c("auto", "yes", "no")
+ssgseaParam	verbose	TRUE
+zscoreParam	exprData	
+zscoreParam	geneSets	
+zscoreParam	assay	NA_character_
+zscoreParam	annotation	NULL
+zscoreParam	minSize	1
+zscoreParam	maxSize	Inf
+zscoreParam	ondisk	c("auto", "yes", "no")
+zscoreParam	verbose	TRUE

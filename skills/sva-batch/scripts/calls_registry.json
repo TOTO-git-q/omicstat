@@ -1,0 +1,352 @@
+{
+  "module": "sva-batch",
+  "note": "Values: references/parameters.md; function defaults recorded from sva 3.60.0 / limma 3.68.5 (Bioconductor 3.23) L1 defaults.tsv at S0 -- the container build re-checks them (check_default_drift).",
+  "package_versions": {
+    "sva": "3.60.0",
+    "limma": "3.68.5"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--num-sv-method": "be",
+    "--pca-ntop": 500
+  },
+  "accessors": [],
+  "calls": [
+    {
+      "fn": "sva::ComBat",
+      "args": {
+        "dat": {
+          "value": "input genomic measure matrix (log-scale/normalized; SB-01/SB-02 do not apply)",
+          "source": "user_required",
+          "pack": "S1 appendix P-1/P-2",
+          "function_default": ""
+        },
+        "batch": {
+          "value": "factor(--batch column), sorted levels",
+          "source": "user_required",
+          "pack": "S1 appendix P-2",
+          "function_default": ""
+        },
+        "mod": {
+          "value": "model.matrix(~ <--covariates> + <--study-var>) (protected design, intercept kept)",
+          "source": "vignette 'Applying the ComBat function to adjust for known batches'",
+          "pack": "S1 appendix P-2",
+          "function_default": "NULL"
+        },
+        "par.prior": {
+          "value": true,
+          "source": "vignette (parametric empirical Bayes adjustment)",
+          "pack": "S1 appendix P-2 (D-S4: function default)",
+          "function_default": "TRUE"
+        },
+        "prior.plots": {
+          "value": false,
+          "source": "a base-R diagnostic plot only (kernel vs parametric batch-effect density); not the returned matrix, but written out explicitly per lock 3",
+          "pack": "S1 appendix P-2 (D-S4: function default)",
+          "note": "stays FALSE so ComBat never opens a base-graphics device; the PACK F 'ComBat prior plots' content is drawn by the module instead (S4 F4): sb_combat_prior() in sva_batch_core.R recomputes gamma.hat/delta.hat/gamma.bar/t2/a.prior/b.prior line for line after the sva 3.60.0 ComBat source and the shared builder os_prior_density() draws figures/combat_prior",
+          "function_default": "FALSE"
+        },
+        "mean.only": {
+          "value": false,
+          "source": "vignette (default adjusts mean AND variance)",
+          "pack": "S1 appendix P-2 (D-S4: function default)",
+          "function_default": "FALSE"
+        },
+        "ref.batch": {
+          "value": null,
+          "source": "vignette (no reference-batch training/test workflow in v1)",
+          "pack": "S1 appendix P-2 (D-S4: function default)",
+          "function_default": "NULL"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "lock: single thread (deseq2-wald parallel = FALSE precedent)",
+          "pack": "S1 appendix P-2 (D-S4: function default)",
+          "function_default": "bpparam(\"SerialParam\")"
+        }
+      }
+    },
+    {
+      "fn": "sva::ComBat_seq",
+      "args": {
+        "counts": {
+          "value": "input raw integer count matrix (SB-01/SB-02 blockers)",
+          "source": "user_required",
+          "pack": "S1 appendix P-1/P-2",
+          "function_default": ""
+        },
+        "batch": {
+          "value": "factor(--batch column), sorted levels",
+          "source": "user_required",
+          "pack": "S1 appendix P-2",
+          "function_default": ""
+        },
+        "group": {
+          "value": "factor(--study-var) (categorical only; continuous refused, OS_UNSUPPORTED_DESIGN)",
+          "source": "vignette 'ComBat-Seq for batch adjustment on RNA-Seq count data'",
+          "pack": "S1 appendix P-2 (clarify item, see \u5f85\u88c1\u51b3)",
+          "function_default": "NULL"
+        },
+        "covar_mod": {
+          "value": "model.matrix(~ <--covariates>)[, -1] (p-1 indicator columns per level) or NULL",
+          "source": "vignette (covar_mod example: cbind(cov1, cov2))",
+          "pack": "S1 appendix P-2",
+          "function_default": "NULL"
+        },
+        "full_mod": {
+          "value": true,
+          "source": "vignette (group given -> full model)",
+          "pack": "S1 appendix P-2",
+          "function_default": "TRUE"
+        },
+        "shrink": {
+          "value": false,
+          "source": "vignette console text 'Shrinkage off - using GLM estimates for parameters'",
+          "pack": "S1 appendix P-2 (D-S5: function default)",
+          "function_default": "FALSE"
+        },
+        "shrink.disp": {
+          "value": false,
+          "source": "vignette (shrinkage off)",
+          "pack": "S1 appendix P-2 (D-S5: function default)",
+          "function_default": "FALSE"
+        },
+        "gene.subset.n": {
+          "value": null,
+          "source": "only used when shrink = TRUE (always FALSE here)",
+          "pack": "S1 appendix P-2 (D-S5: function default)",
+          "function_default": "NULL"
+        }
+      }
+    },
+    {
+      "fn": "sva::num.sv",
+      "args": {
+        "dat": {
+          "value": "the same matrix passed to sva()/svaseq() (mod-only route)",
+          "source": "user_required",
+          "pack": "S1 appendix P-3",
+          "function_default": ""
+        },
+        "mod": {
+          "value": "full model (--covariates + --study-var)",
+          "source": "vignette sec 4 (num.sv(edata, mod, method = \"leek\"))",
+          "pack": "S1 appendix P-3",
+          "function_default": ""
+        },
+        "method": {
+          "value": "be",
+          "source": "PACK P-3 (function default; 'leek' an explicit sensitivity option)",
+          "pack": "S1 appendix P-3",
+          "flag": "--num-sv-method",
+          "function_default": "c(\"be\", \"leek\")"
+        },
+        "vfilter": {
+          "value": null,
+          "source": "PACK P-3 (function default; no variance filtering in v1)",
+          "pack": "S1 appendix P-3",
+          "function_default": "NULL"
+        },
+        "B": {
+          "value": 20,
+          "source": "PACK P-3 (function default: permutations)",
+          "pack": "S1 appendix P-3",
+          "function_default": "20"
+        },
+        "seed": {
+          "value": 20260925,
+          "source": "PACK P-3 (lock 4: seed passed explicitly, recorded in provenance.json; equals the module's --seed default)",
+          "pack": "S1 appendix P-3",
+          "flag": "--seed",
+          "function_default": "NULL"
+        }
+      }
+    },
+    {
+      "fn": "sva::sva",
+      "args": {
+        "dat": {
+          "value": "input log-scale/normalized matrix",
+          "source": "user_required",
+          "pack": "S1 appendix P-2/P-3",
+          "function_default": ""
+        },
+        "mod": {
+          "value": "full model (--covariates + --study-var)",
+          "source": "vignette sec 4",
+          "pack": "S1 appendix P-2",
+          "function_default": ""
+        },
+        "mod0": {
+          "value": "null model (--covariates only)",
+          "source": "vignette sec 4",
+          "pack": "S1 appendix P-2",
+          "function_default": "NULL"
+        },
+        "n.sv": {
+          "value": "num.sv() output above",
+          "source": "vignette sec 4 (svobj = sva(edata, mod, mod0, n.sv = n.sv))",
+          "pack": "S1 appendix P-3",
+          "function_default": "NULL"
+        },
+        "controls": {
+          "value": null,
+          "source": "supervised sva is out of scope for v1 (known limitation)",
+          "pack": "S1 appendix P-3 (decision table did not revisit)",
+          "function_default": "NULL"
+        },
+        "method": {
+          "value": "irw",
+          "source": "PACK P-3 (function default)",
+          "pack": "S1 appendix P-3",
+          "function_default": "c(\"irw\", \"two-step\", \"supervised\")"
+        },
+        "vfilter": {
+          "value": null,
+          "source": "PACK P-3 (function default)",
+          "pack": "S1 appendix P-3",
+          "function_default": "NULL"
+        },
+        "B": {
+          "value": 5,
+          "source": "PACK P-3 (function default: irwsva iterations)",
+          "pack": "S1 appendix P-3",
+          "function_default": "5"
+        },
+        "numSVmethod": {
+          "value": "be",
+          "source": "PACK P-3 (function default; only used when n.sv is NULL, which never happens here since n.sv is always passed)",
+          "pack": "S1 appendix P-3",
+          "function_default": "\"be\""
+        }
+      }
+    },
+    {
+      "fn": "sva::svaseq",
+      "args": {
+        "dat": {
+          "value": "input raw count matrix (SB-01/SB-02 blockers)",
+          "source": "user_required",
+          "pack": "S1 appendix P-2/P-3",
+          "function_default": ""
+        },
+        "mod": {
+          "value": "full model (--covariates + --study-var)",
+          "source": "svaseq.Rd example",
+          "pack": "S1 appendix P-2",
+          "function_default": ""
+        },
+        "mod0": {
+          "value": "null model (--covariates only)",
+          "source": "svaseq.Rd example",
+          "pack": "S1 appendix P-2",
+          "function_default": "NULL"
+        },
+        "n.sv": {
+          "value": "num.sv() output above",
+          "source": "PACK P-3",
+          "pack": "S1 appendix P-3",
+          "function_default": "NULL"
+        },
+        "controls": {
+          "value": null,
+          "source": "supervised sva is out of scope for v1 (known limitation)",
+          "pack": "S1 appendix P-3 (decision table did not revisit)",
+          "function_default": "NULL"
+        },
+        "method": {
+          "value": "irw",
+          "source": "PACK P-3 (function default)",
+          "pack": "S1 appendix P-3",
+          "function_default": "c(\"irw\", \"two-step\", \"supervised\")"
+        },
+        "vfilter": {
+          "value": null,
+          "source": "PACK P-3 (function default)",
+          "pack": "S1 appendix P-3",
+          "function_default": "NULL"
+        },
+        "B": {
+          "value": 5,
+          "source": "PACK P-3 (function default)",
+          "pack": "S1 appendix P-3",
+          "function_default": "5"
+        },
+        "numSVmethod": {
+          "value": "be",
+          "source": "PACK P-3 (function default; unused since n.sv is always passed explicitly)",
+          "pack": "S1 appendix P-3",
+          "function_default": "\"be\""
+        },
+        "constant": {
+          "value": 1,
+          "source": "svaseq.Rd (moderated log transform log(dat + constant); function default)",
+          "pack": "S1 appendix P-3",
+          "function_default": "1"
+        }
+      }
+    },
+    {
+      "fn": "limma::removeBatchEffect",
+      "args": {
+        "x": {
+          "value": "input matrix (sva/svaseq route only)",
+          "source": "user_required",
+          "pack": "deseq2-qc P-3 cross-reference (SUITE)",
+          "function_default": ""
+        },
+        "batch": {
+          "value": null,
+          "source": "no known batch in the sva/svaseq path (unknown source of variation, hence surrogate variables); explicit NULL, never silently defaulted",
+          "pack": "S1 appendix; \u5f85\u88c1\u51b3 (see build_worklog.md)",
+          "function_default": "NULL"
+        },
+        "batch2": {
+          "value": null,
+          "source": "no second known batch series",
+          "pack": "deseq2-qc P-3 cross-reference",
+          "function_default": "NULL"
+        },
+        "covariates": {
+          "value": "sv$sv (estimated surrogate variables)",
+          "source": "Rd 'covariates argument allows correction for one or more continuous numeric effects ... a design matrix constructed from batch effects'",
+          "pack": "S1 appendix P-1 (removeBatchEffect listed alongside ComBat/ComBat_seq as a display-only corrector)",
+          "function_default": "NULL"
+        },
+        "design": {
+          "value": "mod (full protected design: --covariates + --study-var, with intercept)",
+          "source": "deseq2-qc P-3 cross-reference: 'never design = NULL'",
+          "pack": "deseq2-qc P-3 cross-reference (SUITE)",
+          "function_default": "NULL"
+        },
+        "group": {
+          "value": null,
+          "source": "Rd: 'Ignored if group is not NULL' -- design carries the protected model instead",
+          "pack": "deseq2-qc P-3 cross-reference",
+          "function_default": "NULL"
+        }
+      }
+    }
+  ],
+  "derived_diagnostics": [
+    {
+      "name": "ComBat empirical-Bayes prior diagnostic (figures/combat_prior, tables/combat_prior.csv)",
+      "module_function": "sb_combat_prior(dat, batch, mod) in scripts/sva_batch_core.R",
+      "runs_when": "--method combat only (the call above: par.prior = TRUE, mean.only = FALSE, ref.batch = NULL); ComBat_seq (shrink = FALSE) and sva/svaseq fit no such prior",
+      "reimplements": "sva 3.60.0 ComBat(): zero-variance-within-batch rows set aside; design = cbind(model.matrix(~ -1 + batch), mod) without all-one columns; B.hat, grand.mean, var.pooled, stand.mean, s.data; gamma.hat (batch.design regression of s.data); delta.hat = rowVars(s.data[, batch i]) (genefilter, n - 1); gamma.bar = rowMeans(gamma.hat); t2 = rowVars(gamma.hat); a.prior = sva:::aprior = (2 s2 + m^2)/s2; b.prior = sva:::bprior = (m s2 + m^3)/s2",
+      "source": "deparse(sva::ComBat), deparse(sva:::aprior), deparse(sva:::bprior), deparse(sva:::dinvgamma) in the locked container (acceptance/exemplars/sva-batch/_s4/probe1.log)",
+      "functions_called": [
+        "stats::model.matrix",
+        "stats::var",
+        "stats::density",
+        "stats::dnorm",
+        "base::solve",
+        "base::crossprod",
+        "base::tcrossprod",
+        "base::lgamma"
+      ],
+      "prior_grid": "100 points spanning stats::density(<estimates>)$x, as ComBat(prior.plots = TRUE) does; normal density for gamma, inverse gamma b^a/Gamma(a) x^(-a-1) exp(-b/x) for delta evaluated on the log scale",
+      "verified_by": "tests/run_smoke_test.R A1 F4: equality with ComBat's internals captured by trace(), reproduction of ComBat's adjusted matrix via sva:::it.sol, dinvgamma equality on the grid"
+    }
+  ]
+}

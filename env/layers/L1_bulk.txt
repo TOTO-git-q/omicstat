@@ -1,0 +1,7 @@
+# L1 bulk RNA-seq differential expression: deseq2-*, edger-qlf, limma-*, sva-batch
+DESeq2
+edgeR
+limma
+apeglm
+ashr
+sva

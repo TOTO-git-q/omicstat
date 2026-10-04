@@ -1,0 +1,461 @@
+{
+ "schema": "omicstat.reference.journals.v1",
+ "note": "omicstat_reference whitelist gate. Converted verbatim from omic-MCP tools/lit/journals.json; every ISSN was echoed by a live Europe PMC query on verified_on. A journal outside this list is never stored and never counts toward the daily quota. Tier M (statistics/methodology) is unused for omics.",
+ "source": {
+  "path": "tools/lit/journals.json",
+  "commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+  "sha256": "66e183cbd11031a2f951bb2272fb11da69eb78f05ccc92acdd5f06a45cdff7a0",
+  "source_schema": "omicstat.lit.journals.v1"
+ },
+ "tiers": {
+  "A": "flagship / top omics journal (L3-eligible)",
+  "B": "high-quality journal, L4 breadth only"
+ },
+ "journals": [
+  {
+   "name": "Nature",
+   "nlm_abbreviation": "Nature",
+   "issn": [
+    "0028-0836",
+    "1476-4687"
+   ],
+   "tier": "A",
+   "nlm_id": "0410462",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0028-0836\" echoed 'Nature' issn=0028-0836 essn=1476-4687 nlmid=0410462 hitCount=143112; Europe PMC ISSN:\"1476-4687\" echoed 'Nature' issn=0028-0836 essn=1476-4687 nlmid=0410462 hitCount=143112"
+  },
+  {
+   "name": "Science",
+   "nlm_abbreviation": "Science",
+   "issn": [
+    "0036-8075",
+    "1095-9203"
+   ],
+   "tier": "A",
+   "nlm_id": "0404511",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0036-8075\" echoed 'Science' issn=0036-8075 essn=1095-9203 nlmid=0404511 hitCount=189116; Europe PMC ISSN:\"1095-9203\" echoed 'Science' issn=0036-8075 essn=1095-9203 nlmid=0404511 hitCount=189116"
+  },
+  {
+   "name": "Cell",
+   "nlm_abbreviation": "Cell",
+   "issn": [
+    "0092-8674",
+    "1097-4172"
+   ],
+   "tier": "A",
+   "nlm_id": "0413066",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0092-8674\" echoed 'Cell' issn=0092-8674 essn=1097-4172 nlmid=0413066 hitCount=23781; Europe PMC ISSN:\"1097-4172\" echoed 'Cell' issn=0092-8674 essn=1097-4172 nlmid=0413066 hitCount=23781"
+  },
+  {
+   "name": "Nature Communications",
+   "nlm_abbreviation": "Nat Commun",
+   "issn": [
+    "2041-1723"
+   ],
+   "tier": "A",
+   "nlm_id": "101528555",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2041-1723\" echoed 'Nat Commun' issn=2041-1723 essn=2041-1723 nlmid=101528555 hitCount=91752"
+  },
+  {
+   "name": "Nature Methods",
+   "nlm_abbreviation": "Nat Methods",
+   "issn": [
+    "1548-7091",
+    "1548-7105"
+   ],
+   "tier": "A",
+   "nlm_id": "101215604",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1548-7091\" echoed 'Nat Methods' issn=1548-7091 essn=1548-7105 nlmid=101215604 hitCount=6487; Europe PMC ISSN:\"1548-7105\" echoed 'Nat Methods' issn=1548-7091 essn=1548-7105 nlmid=101215604 hitCount=6487"
+  },
+  {
+   "name": "Nature Biotechnology",
+   "nlm_abbreviation": "Nat Biotechnol",
+   "issn": [
+    "1087-0156",
+    "1546-1696"
+   ],
+   "tier": "A",
+   "nlm_id": "9604648",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1087-0156\" echoed 'Nat Biotechnol' issn=1087-0156 essn=1546-1696 nlmid=9604648 hitCount=12586; Europe PMC ISSN:\"1546-1696\" echoed 'Nat Biotechnol' issn=1087-0156 essn=1546-1696 nlmid=9604648 hitCount=12594"
+  },
+  {
+   "name": "Nature Genetics",
+   "nlm_abbreviation": "Nat Genet",
+   "issn": [
+    "1061-4036",
+    "1546-1718"
+   ],
+   "tier": "A",
+   "nlm_id": "9216904",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1061-4036\" echoed 'Nat Genet' issn=1061-4036 essn=1546-1718 nlmid=9216904 hitCount=10231; Europe PMC ISSN:\"1546-1718\" echoed 'Nat Genet' issn=1061-4036 essn=1546-1718 nlmid=9216904 hitCount=10231"
+  },
+  {
+   "name": "Nature Medicine",
+   "nlm_abbreviation": "Nat Med",
+   "issn": [
+    "1078-8956",
+    "1546-170X"
+   ],
+   "tier": "A",
+   "nlm_id": "9502015",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1078-8956\" echoed 'Nat Med' issn=1078-8956 essn=1546-170X nlmid=9502015 hitCount=14195; Europe PMC ISSN:\"1546-170X\" echoed 'Nat Med' issn=1078-8956 essn=1546-170X nlmid=9502015 hitCount=14195"
+  },
+  {
+   "name": "Nature Immunology",
+   "nlm_abbreviation": "Nat Immunol",
+   "issn": [
+    "1529-2908",
+    "1529-2916"
+   ],
+   "tier": "A",
+   "nlm_id": "100941354",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1529-2908\" echoed 'Nat Immunol' issn=1529-2908 essn=1529-2916 nlmid=100941354 hitCount=6419; Europe PMC ISSN:\"1529-2916\" echoed 'Nat Immunol' issn=1529-2908 essn=1529-2916 nlmid=100941354 hitCount=6419"
+  },
+  {
+   "name": "Nature Cell Biology",
+   "nlm_abbreviation": "Nat Cell Biol",
+   "issn": [
+    "1465-7392",
+    "1476-4679"
+   ],
+   "tier": "A",
+   "nlm_id": "100890575",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1465-7392\" echoed 'Nat Cell Biol' issn=1465-7392 essn=1476-4679 nlmid=100890575 hitCount=6066; Europe PMC ISSN:\"1476-4679\" echoed 'Nat Cell Biol' issn=1465-7392 essn=1476-4679 nlmid=100890575 hitCount=6066"
+  },
+  {
+   "name": "Genome Biology",
+   "nlm_abbreviation": "Genome Biol",
+   "issn": [
+    "1474-7596",
+    "1474-760X"
+   ],
+   "tier": "A",
+   "nlm_id": "100960660",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1474-760X\" echoed 'Genome Biol' issn=1474-7596 essn=1474-760X nlmid=100960660 hitCount=7168"
+  },
+  {
+   "name": "Genome Research",
+   "nlm_abbreviation": "Genome Res",
+   "issn": [
+    "1088-9051",
+    "1549-5469"
+   ],
+   "tier": "A",
+   "nlm_id": "9518021",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1088-9051\" echoed 'Genome Res' issn=1088-9051 essn=1549-5469 nlmid=9518021 hitCount=6083; Europe PMC ISSN:\"1549-5469\" echoed 'Genome Res' issn=1088-9051 essn=1549-5469 nlmid=9518021 hitCount=6083"
+  },
+  {
+   "name": "Nucleic Acids Research",
+   "nlm_abbreviation": "Nucleic Acids Res",
+   "issn": [
+    "0305-1048",
+    "1362-4962"
+   ],
+   "tier": "A",
+   "nlm_id": "0411011",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0305-1048\" echoed 'Nucleic Acids Res' issn=0305-1048 essn=1362-4962 nlmid=0411011 hitCount=57018; Europe PMC ISSN:\"1362-4962\" echoed 'Nucleic Acids Res' issn=0305-1048 essn=1362-4962 nlmid=0411011 hitCount=57018"
+  },
+  {
+   "name": "Cancer Cell",
+   "nlm_abbreviation": "Cancer Cell",
+   "issn": [
+    "1535-6108",
+    "1878-3686"
+   ],
+   "tier": "A",
+   "nlm_id": "101130617",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1535-6108\" echoed 'Cancer Cell' issn=1535-6108 essn=1878-3686 nlmid=101130617 hitCount=4150; Europe PMC ISSN:\"1878-3686\" echoed 'Cancer Cell' issn=1535-6108 essn=1878-3686 nlmid=101130617 hitCount=4150"
+  },
+  {
+   "name": "Immunity",
+   "nlm_abbreviation": "Immunity",
+   "issn": [
+    "1074-7613",
+    "1097-4180"
+   ],
+   "tier": "A",
+   "nlm_id": "9432918",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1074-7613\" echoed 'Immunity' issn=1074-7613 essn=1097-4180 nlmid=9432918 hitCount=6589; Europe PMC ISSN:\"1097-4180\" echoed 'Immunity' issn=1074-7613 essn=1097-4180 nlmid=9432918 hitCount=6589"
+  },
+  {
+   "name": "Cell Reports",
+   "nlm_abbreviation": "Cell Rep",
+   "issn": [
+    "2211-1247"
+   ],
+   "tier": "A",
+   "nlm_id": "101573691",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2211-1247\" echoed 'Cell Rep' issn=2211-1247 essn=2211-1247 nlmid=101573691 hitCount=17131"
+  },
+  {
+   "name": "Cell Genomics",
+   "nlm_abbreviation": "Cell Genom",
+   "issn": [
+    "2666-979X"
+   ],
+   "tier": "A",
+   "nlm_id": "9918284260106676",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2666-979X\" echoed 'Cell Genom' issn=2666-979X essn=2666-979X nlmid=9918284260106676 hitCount=704"
+  },
+  {
+   "name": "Cell Systems",
+   "nlm_abbreviation": "Cell Syst",
+   "issn": [
+    "2405-4712",
+    "2405-4720"
+   ],
+   "tier": "A",
+   "nlm_id": "101656080",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2405-4712\" echoed 'Cell Syst' issn=2405-4712 essn=2405-4720 nlmid=101656080 hitCount=1401; Europe PMC ISSN:\"2405-4720\" echoed 'Cell Syst' issn=2405-4712 essn=2405-4720 nlmid=101656080 hitCount=1401"
+  },
+  {
+   "name": "Molecular Cell",
+   "nlm_abbreviation": "Mol Cell",
+   "issn": [
+    "1097-2765",
+    "1097-4164"
+   ],
+   "tier": "A",
+   "nlm_id": "9802571",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1097-2765\" echoed 'Mol Cell' issn=1097-2765 essn=1097-4164 nlmid=9802571 hitCount=10305; Europe PMC ISSN:\"1097-4164\" echoed 'Mol Cell' issn=1097-2765 essn=1097-4164 nlmid=9802571 hitCount=10305"
+  },
+  {
+   "name": "Cell Metabolism",
+   "nlm_abbreviation": "Cell Metab",
+   "issn": [
+    "1550-4131",
+    "1932-7420"
+   ],
+   "tier": "A",
+   "nlm_id": "101233170",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1550-4131\" echoed 'Cell Metab' issn=1550-4131 essn=1932-7420 nlmid=101233170 hitCount=4244; Europe PMC ISSN:\"1932-7420\" echoed 'Cell Metab' issn=1550-4131 essn=1932-7420 nlmid=101233170 hitCount=4244"
+  },
+  {
+   "name": "Cell Stem Cell",
+   "nlm_abbreviation": "Cell Stem Cell",
+   "issn": [
+    "1875-9777",
+    "1934-5909"
+   ],
+   "tier": "A",
+   "nlm_id": "101311472",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1934-5909\" echoed 'Cell Stem Cell' issn=1934-5909 essn=1875-9777 nlmid=101311472 hitCount=3607; Europe PMC ISSN:\"1875-9777\" echoed 'Cell Stem Cell' issn=1934-5909 essn=1875-9777 nlmid=101311472 hitCount=3607"
+  },
+  {
+   "name": "Science Advances",
+   "nlm_abbreviation": "Sci Adv",
+   "issn": [
+    "2375-2548"
+   ],
+   "tier": "A",
+   "nlm_id": "101653440",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2375-2548\" echoed 'Sci Adv' issn=2375-2548 essn=2375-2548 nlmid=101653440 hitCount=20366"
+  },
+  {
+   "name": "eLife",
+   "nlm_abbreviation": "Elife",
+   "issn": [
+    "2050-084X"
+   ],
+   "tier": "A",
+   "nlm_id": "101579614",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2050-084X\" echoed 'Elife' issn=2050-084X essn=2050-084X nlmid=101579614 hitCount=19539"
+  },
+  {
+   "name": "Proceedings of the National Academy of Sciences of the USA",
+   "nlm_abbreviation": "Proc Natl Acad Sci U S A",
+   "issn": [
+    "0027-8424",
+    "1091-6490"
+   ],
+   "tier": "B",
+   "nlm_id": "7505876",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0027-8424\" echoed 'Proc Natl Acad Sci U S A' issn=0027-8424 essn=1091-6490 nlmid=7505876 hitCount=174788; Europe PMC ISSN:\"1091-6490\" echoed 'Proc Natl Acad Sci U S A' issn=0027-8424 essn=1091-6490 nlmid=7505876 hitCount=174788"
+  },
+  {
+   "name": "Genome Medicine",
+   "nlm_abbreviation": "Genome Med",
+   "issn": [
+    "1756-994X"
+   ],
+   "tier": "B",
+   "nlm_id": "101475844",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1756-994X\" echoed 'Genome Med' issn=1756-994X essn=1756-994X nlmid=101475844 hitCount=2233"
+  },
+  {
+   "name": "The EMBO Journal",
+   "nlm_abbreviation": "EMBO J",
+   "issn": [
+    "0261-4189",
+    "1460-2075"
+   ],
+   "tier": "B",
+   "nlm_id": "8208664",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0261-4189\" echoed 'EMBO J' issn=0261-4189 essn=1460-2075 nlmid=8208664 hitCount=21557; Europe PMC ISSN:\"1460-2075\" echoed 'EMBO J' issn=0261-4189 essn=1460-2075 nlmid=8208664 hitCount=21557"
+  },
+  {
+   "name": "Journal of Clinical Investigation",
+   "nlm_abbreviation": "J Clin Invest",
+   "issn": [
+    "0021-9738",
+    "1558-8238"
+   ],
+   "tier": "B",
+   "nlm_id": "7802877",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0021-9738\" echoed 'J Clin Invest' issn=0021-9738 essn=1558-8238 nlmid=7802877 hitCount=38307; Europe PMC ISSN:\"1558-8238\" echoed 'J Clin Invest' issn=0021-9738 essn=1558-8238 nlmid=7802877 hitCount=38307"
+  },
+  {
+   "name": "JCI Insight",
+   "nlm_abbreviation": "JCI Insight",
+   "issn": [
+    "2379-3708"
+   ],
+   "tier": "B",
+   "nlm_id": "101676073",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2379-3708\" echoed 'JCI Insight' issn=2379-3708 essn=2379-3708 nlmid=101676073 hitCount=5436"
+  },
+  {
+   "name": "Nature Metabolism",
+   "nlm_abbreviation": "Nat Metab",
+   "issn": [
+    "2522-5812"
+   ],
+   "tier": "B",
+   "nlm_id": "101736592",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2522-5812\" echoed 'Nat Metab' issn=2522-5812 essn=2522-5812 nlmid=101736592 hitCount=1610"
+  },
+  {
+   "name": "Nature Aging",
+   "nlm_abbreviation": "Nat Aging",
+   "issn": [
+    "2662-8465"
+   ],
+   "tier": "B",
+   "nlm_id": "101773306",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2662-8465\" echoed 'Nat Aging' issn=2662-8465 essn=2662-8465 nlmid=101773306 hitCount=1159"
+  },
+  {
+   "name": "Nature Cancer",
+   "nlm_abbreviation": "Nat Cancer",
+   "issn": [
+    "2662-1347"
+   ],
+   "tier": "B",
+   "nlm_id": "101761119",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2662-1347\" echoed 'Nat Cancer' issn=2662-1347 essn=2662-1347 nlmid=101761119 hitCount=1226"
+  },
+  {
+   "name": "Cell Reports Medicine",
+   "nlm_abbreviation": "Cell Rep Med",
+   "issn": [
+    "2666-3791"
+   ],
+   "tier": "B",
+   "nlm_id": "101766894",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"2666-3791\" echoed 'Cell Rep Med' issn=2666-3791 essn=2666-3791 nlmid=101766894 hitCount=2256"
+  },
+  {
+   "name": "Journal of Experimental Medicine",
+   "nlm_abbreviation": "J Exp Med",
+   "issn": [
+    "0022-1007",
+    "1540-9538"
+   ],
+   "tier": "B",
+   "nlm_id": "2985109R",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0022-1007\" echoed 'J Exp Med' issn=0022-1007 essn=1540-9538 nlmid=2985109R hitCount=25912; Europe PMC ISSN:\"1540-9538\" echoed 'J Exp Med' issn=0022-1007 essn=1540-9538 nlmid=2985109R hitCount=25912"
+  },
+  {
+   "name": "Blood",
+   "nlm_abbreviation": "Blood",
+   "issn": [
+    "0006-4971",
+    "1528-0020"
+   ],
+   "tier": "B",
+   "nlm_id": "7603509",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0006-4971\" echoed 'Blood' issn=0006-4971 essn=1528-0020 nlmid=7603509 hitCount=54192; Europe PMC ISSN:\"1528-0020\" echoed 'Blood' issn=0006-4971 essn=1528-0020 nlmid=7603509 hitCount=54192"
+  },
+  {
+   "name": "Gut",
+   "nlm_abbreviation": "Gut",
+   "issn": [
+    "0017-5749",
+    "1468-3288"
+   ],
+   "tier": "B",
+   "nlm_id": "2985108R",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0017-5749\" echoed 'Gut' issn=0017-5749 essn=1468-3288 nlmid=2985108R hitCount=23191; Europe PMC ISSN:\"1468-3288\" echoed 'Gut' issn=0017-5749 essn=1468-3288 nlmid=2985108R hitCount=23191"
+  },
+  {
+   "name": "Circulation Research",
+   "nlm_abbreviation": "Circ Res",
+   "issn": [
+    "0009-7330",
+    "1524-4571"
+   ],
+   "tier": "B",
+   "nlm_id": "0047103",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0009-7330\" echoed 'Circ Res' issn=0009-7330 essn=1524-4571 nlmid=0047103 hitCount=19384; Europe PMC ISSN:\"1524-4571\" echoed 'Circ Res' issn=0009-7330 essn=1524-4571 nlmid=0047103 hitCount=19384"
+  },
+  {
+   "name": "Nature Neuroscience",
+   "nlm_abbreviation": "Nat Neurosci",
+   "issn": [
+    "1097-6256",
+    "1546-1726"
+   ],
+   "tier": "B",
+   "nlm_id": "9809671",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"1097-6256\" echoed 'Nat Neurosci' issn=1097-6256 essn=1546-1726 nlmid=9809671 hitCount=7797; Europe PMC ISSN:\"1546-1726\" echoed 'Nat Neurosci' issn=1097-6256 essn=1546-1726 nlmid=9809671 hitCount=7797"
+  },
+  {
+   "name": "Neuron",
+   "nlm_abbreviation": "Neuron",
+   "issn": [
+    "0896-6273",
+    "1097-4199"
+   ],
+   "tier": "B",
+   "nlm_id": "8809320",
+   "verified_on": "2026-09-27",
+   "verified_via": "Europe PMC ISSN:\"0896-6273\" echoed 'Neuron' issn=0896-6273 essn=1097-4199 nlmid=8809320 hitCount=13900; Europe PMC ISSN:\"1097-4199\" echoed 'Neuron' issn=0896-6273 essn=1097-4199 nlmid=8809320 hitCount=13900"
+  }
+ ]
+}

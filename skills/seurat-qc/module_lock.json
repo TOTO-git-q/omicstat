@@ -1,0 +1,35 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "seurat-qc",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/seurat-qc/scripts/run_seurat_qc.R": "ca66be677af9055da4f49f78ed70e6224aa22ca5ccadae1e798203c247de427a",
+    "skills/seurat-qc/scripts/seurat_qc_core.R": "7a3c8335ae8f684787639dc1780ed8a7418e6794765619fb8872bb72b5397954",
+    "skills/seurat-qc/scripts/seurat_qc_qc.R": "849cb6dd6d5f10a74c20d66e3bcc8c1a9b6245dd8cbb8084c8e18604e8326502",
+    "skills/seurat-qc/scripts/seurat_qc_report.R": "a04e7c6c2b201caf4e562504ce1a628c04f0a3156e6318a470f4141992db1d79",
+    "skills/seurat-qc/scripts/calls_registry.json": "b8d37a407ed855fa0e4c481818575ddd4c990549fb0025fcce7cde016734b9ad",
+    "skills/seurat-qc/SKILL.md": "a598e8767bae08fde2586a80507b7713fdc96bf5d782fc8d3f5c89875739eb48",
+    "skills/seurat-qc/references/method-basis.md": "3041f7c771b53721313ff1fa6eea6445fb779dbb910f4e83fb21086492d916ba",
+    "skills/seurat-qc/references/options.md": "37e216658b2af7af19ef92cd0c6242777e1b423686c4e089e83bf0bd6050789f",
+    "skills/seurat-qc/references/parameters.md": "bf4d82ee93ce974fc8f5638fc4354e7ebc3814c10ea44c753df4b5796f1ddb10",
+    "skills/seurat-qc/references/qc-rules.md": "aa6cbcd2d631e61486362882fed2575245b2ea9f8aaf7b41e2c06a2764eae527",
+    "skills/seurat-qc/references/reporting-templates.md": "4a72b172f41df6047fc95622afd2f87c075157d043b08fb70dcf81da1cbc0a1e",
+    "skills/seurat-qc/references/troubleshooting.md": "8d7fb549e8a5fcfcaaa58d815e82b107d56c9d7d3cf65a77d17d28fdbac6ba06",
+    "skills/seurat-qc/tests/fixtures/seurat_chain.R": "36bdbc3334e5110945ec6461c39933a1c72c296d232ebff273a008979ed2515c",
+    "skills/seurat-qc/tests/run_smoke_test.R": "7b22eb98fc0e44388fb9a371645df09f2cc77e40b2a3531d013e560362e7f3e6",
+    "skills/seurat-qc/tests/golden_manifest.csv": "e19c632a3414234d08c3e69c5a1113240a7c82e68eb93b1b8b9122cebfc3dc1f",
+    "acceptance/exemplars/seurat-qc/PACK.md": "910aff46c561fb6571795a968b991e5c16f57a29faee7c52b7119aea3972dbee"
+  },
+  "packages": {
+    "Seurat": "5.5.1",
+    "SeuratObject": "5.4.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

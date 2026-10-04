@@ -1,0 +1,28 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "slingshot-trajectory",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/slingshot-trajectory/scripts/run_slingshot_trajectory.R": "a583ef55af4e2eeb8b9c53073944081a219694181a9822f8b6203a44e5bc4971",
+    "skills/slingshot-trajectory/scripts/slingshot_trajectory_core.R": "79ef7dfbfd11a6445ca3ba838a7c4601b0316562cddf758859c5ab33b9a4a53a",
+    "skills/slingshot-trajectory/scripts/calls_registry.json": "6807ab2602542725b2d27207b1b3cac506fce0fb0e3870a5074cd550532c7157",
+    "skills/slingshot-trajectory/SKILL.md": "d9446056398bdbc1932438a3f0b1494f8072221e71685e6800d6cb71a1411fd4",
+    "skills/slingshot-trajectory/references/methods-template.md": "6583dcc038fd0b8e06f708453afdf3488009a2e153fdbb6088eec172beeea0f9",
+    "skills/slingshot-trajectory/references/options.md": "f673d3985a522db6ebcbd53ce277a6db03210ae58a2d8ac3c82662cd1da307d2",
+    "skills/slingshot-trajectory/tests/run_smoke_test.R": "7aa83996a8355613154e86ad45b7d689ee77d32967afbff4c1d9ad5bffaf5cd3",
+    "skills/slingshot-trajectory/tests/golden_manifest.csv": "8d32f9886ac8e9c665488e9db6f5f72c98a84ffc03d2b4fdd3bd9cf3228a4f08",
+    "acceptance/exemplars/slingshot-trajectory/PACK.md": "f5ae0e12b791657aca38059ac6ba7a90a2e5b0d28f1649d0d8a2cf3278118627"
+  },
+  "packages": {
+    "slingshot": "2.20.0",
+    "tradeSeq": "1.26.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

@@ -1,0 +1,157 @@
+function	signature	argument	default
+getCurves	PseudotimeOrdering	data	
+getCurves	PseudotimeOrdering	shrink	TRUE
+getCurves	PseudotimeOrdering	extend	"y"
+getCurves	PseudotimeOrdering	reweight	TRUE
+getCurves	PseudotimeOrdering	reassign	TRUE
+getCurves	PseudotimeOrdering	thresh	0.001
+getCurves	PseudotimeOrdering	maxit	15
+getCurves	PseudotimeOrdering	stretch	2
+getCurves	PseudotimeOrdering	approx_points	NULL
+getCurves	PseudotimeOrdering	smoother	"smooth.spline"
+getCurves	PseudotimeOrdering	shrink.method	"cosine"
+getCurves	PseudotimeOrdering	allow.breaks	TRUE
+getCurves	PseudotimeOrdering	...	
+getCurves	SingleCellExperiment	data	
+getCurves	SingleCellExperiment	...	
+getCurves	SlingshotDataSet	data	
+getCurves	SlingshotDataSet	...	
+getLineages	matrix,matrix	data	
+getLineages	matrix,matrix	clusterLabels	
+getLineages	matrix,matrix	reducedDim	NULL
+getLineages	matrix,matrix	start.clus	NULL
+getLineages	matrix,matrix	end.clus	NULL
+getLineages	matrix,matrix	dist.method	"slingshot"
+getLineages	matrix,matrix	use.median	FALSE
+getLineages	matrix,matrix	omega	FALSE
+getLineages	matrix,matrix	omega_scale	1.5
+getLineages	matrix,matrix	times	NULL
+getLineages	matrix,matrix	...	
+getLineages	matrix,character	data	
+getLineages	matrix,character	clusterLabels	
+getLineages	matrix,character	...	
+getLineages	matrix,ANY	data	
+getLineages	matrix,ANY	clusterLabels	
+getLineages	matrix,ANY	...	
+getLineages	SlingshotDataSet,ANY	data	
+getLineages	SlingshotDataSet,ANY	clusterLabels	
+getLineages	SlingshotDataSet,ANY	...	
+getLineages	PseudotimeOrdering,ANY	data	
+getLineages	PseudotimeOrdering,ANY	clusterLabels	
+getLineages	PseudotimeOrdering,ANY	...	
+getLineages	data.frame,ANY	data	
+getLineages	data.frame,ANY	clusterLabels	
+getLineages	data.frame,ANY	...	
+getLineages	matrix,numeric	data	
+getLineages	matrix,numeric	clusterLabels	
+getLineages	matrix,numeric	...	
+getLineages	matrix,factor	data	
+getLineages	matrix,factor	clusterLabels	
+getLineages	matrix,factor	...	
+getLineages	SingleCellExperiment,ANY	data	
+getLineages	SingleCellExperiment,ANY	clusterLabels	
+getLineages	SingleCellExperiment,ANY	reducedDim	NULL
+getLineages	SingleCellExperiment,ANY	...	
+slingshot	matrix,character	data	
+slingshot	matrix,character	clusterLabels	
+slingshot	matrix,character	reducedDim	NULL
+slingshot	matrix,character	start.clus	NULL
+slingshot	matrix,character	end.clus	NULL
+slingshot	matrix,character	dist.method	"slingshot"
+slingshot	matrix,character	use.median	FALSE
+slingshot	matrix,character	omega	FALSE
+slingshot	matrix,character	omega_scale	1.5
+slingshot	matrix,character	times	NULL
+slingshot	matrix,character	shrink	TRUE
+slingshot	matrix,character	extend	"y"
+slingshot	matrix,character	reweight	TRUE
+slingshot	matrix,character	reassign	TRUE
+slingshot	matrix,character	thresh	0.001
+slingshot	matrix,character	maxit	15
+slingshot	matrix,character	stretch	2
+slingshot	matrix,character	approx_points	NULL
+slingshot	matrix,character	smoother	"smooth.spline"
+slingshot	matrix,character	shrink.method	"cosine"
+slingshot	matrix,character	allow.breaks	TRUE
+slingshot	matrix,character	...	
+slingshot	matrix,matrix	data	
+slingshot	matrix,matrix	clusterLabels	
+slingshot	matrix,matrix	reducedDim	NULL
+slingshot	matrix,matrix	start.clus	NULL
+slingshot	matrix,matrix	end.clus	NULL
+slingshot	matrix,matrix	dist.method	"slingshot"
+slingshot	matrix,matrix	use.median	FALSE
+slingshot	matrix,matrix	omega	FALSE
+slingshot	matrix,matrix	omega_scale	1.5
+slingshot	matrix,matrix	times	NULL
+slingshot	matrix,matrix	shrink	TRUE
+slingshot	matrix,matrix	extend	"y"
+slingshot	matrix,matrix	reweight	TRUE
+slingshot	matrix,matrix	reassign	TRUE
+slingshot	matrix,matrix	thresh	0.001
+slingshot	matrix,matrix	maxit	15
+slingshot	matrix,matrix	stretch	2
+slingshot	matrix,matrix	approx_points	NULL
+slingshot	matrix,matrix	smoother	"smooth.spline"
+slingshot	matrix,matrix	shrink.method	"cosine"
+slingshot	matrix,matrix	allow.breaks	TRUE
+slingshot	matrix,matrix	...	
+slingshot	SlingshotDataSet,ANY	data	
+slingshot	SlingshotDataSet,ANY	clusterLabels	
+slingshot	SlingshotDataSet,ANY	...	
+slingshot	data.frame,ANY	data	
+slingshot	data.frame,ANY	clusterLabels	
+slingshot	data.frame,ANY	...	
+slingshot	matrix,numeric	data	
+slingshot	matrix,numeric	clusterLabels	
+slingshot	matrix,numeric	...	
+slingshot	matrix,factor	data	
+slingshot	matrix,factor	clusterLabels	
+slingshot	matrix,factor	...	
+slingshot	matrix,ANY	data	
+slingshot	matrix,ANY	clusterLabels	
+slingshot	matrix,ANY	...	
+slingshot	ClusterExperiment,ANY	data	
+slingshot	ClusterExperiment,ANY	clusterLabels	
+slingshot	ClusterExperiment,ANY	reducedDim	NULL
+slingshot	ClusterExperiment,ANY	start.clus	NULL
+slingshot	ClusterExperiment,ANY	end.clus	NULL
+slingshot	ClusterExperiment,ANY	dist.method	"slingshot"
+slingshot	ClusterExperiment,ANY	use.median	FALSE
+slingshot	ClusterExperiment,ANY	omega	FALSE
+slingshot	ClusterExperiment,ANY	omega_scale	1.5
+slingshot	ClusterExperiment,ANY	times	NULL
+slingshot	ClusterExperiment,ANY	shrink	TRUE
+slingshot	ClusterExperiment,ANY	extend	"y"
+slingshot	ClusterExperiment,ANY	reweight	TRUE
+slingshot	ClusterExperiment,ANY	reassign	TRUE
+slingshot	ClusterExperiment,ANY	thresh	0.001
+slingshot	ClusterExperiment,ANY	maxit	15
+slingshot	ClusterExperiment,ANY	stretch	2
+slingshot	ClusterExperiment,ANY	approx_points	NULL
+slingshot	ClusterExperiment,ANY	smoother	"smooth.spline"
+slingshot	ClusterExperiment,ANY	shrink.method	"cosine"
+slingshot	ClusterExperiment,ANY	allow.breaks	TRUE
+slingshot	ClusterExperiment,ANY	...	
+slingshot	SingleCellExperiment,ANY	data	
+slingshot	SingleCellExperiment,ANY	clusterLabels	
+slingshot	SingleCellExperiment,ANY	reducedDim	NULL
+slingshot	SingleCellExperiment,ANY	start.clus	NULL
+slingshot	SingleCellExperiment,ANY	end.clus	NULL
+slingshot	SingleCellExperiment,ANY	dist.method	"slingshot"
+slingshot	SingleCellExperiment,ANY	use.median	FALSE
+slingshot	SingleCellExperiment,ANY	omega	FALSE
+slingshot	SingleCellExperiment,ANY	omega_scale	1.5
+slingshot	SingleCellExperiment,ANY	times	NULL
+slingshot	SingleCellExperiment,ANY	shrink	TRUE
+slingshot	SingleCellExperiment,ANY	extend	"y"
+slingshot	SingleCellExperiment,ANY	reweight	TRUE
+slingshot	SingleCellExperiment,ANY	reassign	TRUE
+slingshot	SingleCellExperiment,ANY	thresh	0.001
+slingshot	SingleCellExperiment,ANY	maxit	15
+slingshot	SingleCellExperiment,ANY	stretch	2
+slingshot	SingleCellExperiment,ANY	approx_points	NULL
+slingshot	SingleCellExperiment,ANY	smoother	"smooth.spline"
+slingshot	SingleCellExperiment,ANY	shrink.method	"cosine"
+slingshot	SingleCellExperiment,ANY	allow.breaks	TRUE
+slingshot	SingleCellExperiment,ANY	...	

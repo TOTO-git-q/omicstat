@@ -1,0 +1,22 @@
+{
+  "module": "deseq2-lrt",
+  "date": "2026-09-27T08:40:11Z",
+  "sampled_pmids": ["34728633", "35618862", "36316305", "36411286", "37777536", "42566531"],
+  "records_checked": 46,
+  "records_passed": 46,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "notes": [
+    "All 6 sampled PMIDs echoed a fresh PubMed esummary call (tool=omicstat, email=omicstat-s0@example.invalid) with title and year matching corpus.jsonl exactly: 34728633/PMC8563941 (2021), 35618862/PMC9135744 (2022), 36316305/PMC9622893 (2022), 36411286/PMC9678885 (2022), 37777536/PMC10542369 (2023), 42566531/PMC13450217 (2026).",
+    "PMC9135744 (35618862) is _applies=no: DESeq2 LRT is run on a pseudobulk aggregate of 10X Chromium single-cell RNA-seq clusters ('For pseudobulk analysis on our web-based tool, the likelihood ratio test in DESeq2 V1.32.0 was used', Methods > Downstream sequencing analysis), following a Seurat Wilcoxon single-cell test in the same sentence group -- correctly excluded per the pseudobulk-scRNA-seq=no rule. Confirmed by reading the full Methods (10X Chromium 5' assay, CellRanger, Seurat V4 pipeline).",
+    "The remaining 5 sampled articles (PMC8563941, PMC9622893, PMC9678885, PMC10542369, PMC13450217) are all correctly _applies=yes: each runs DESeq2 with test/likelihood-ratio-test full-vs-reduced model comparison on primary bulk RNA-seq counts (Lung Aging Cohort bulk RNA-seq; CAF/PSC/KPC MARS-seq bulk RNA-seq; multi-cell-line shRNA bulk RNA-seq; hiPSC-derived PAX4 WT/KO bulk RNA-seq; mouse embryo SMART-seq2 time course), none a Wald-only or non-DESeq2 analysis.",
+    "For every non-empty snippet in the sampled articles' extraction lines, `collect.py check <PMCID> \"<snippet>\"` printed FOUND and each snippet is <=25 words (max observed: 25, PMC9678885 reduced/full model sentence).",
+    "For every 'not reported' line in the sampled articles, the full Methods text was read with `collect.py methods deseq2-lrt <PMCID>` and the value is genuinely absent for the LRT step specifically. Two cases involved a value stated elsewhere in the same Methods for a DIFFERENT analysis in the same paper, and the extractor correctly scoped the value away from the LRT parameter with an explanatory note rather than misattributing it: (1) PMC9622893 p_adjust_method -- 'the resulting p-values were adjusted using FDR' is stated only for a separate PSC 3-group comparison, not the CAF/KPC shBrca2-vs-shControl LRT paired comparison, which states only 'Padj' with no adjustment method named; (2) PMC10542369 pattern_clustering -- UMAP/PCA dimension-reduction clustering is described only for a separate Protocol-B patient-line DESeq2 comparison, not named as clustering of the LRT (Protocol-A, RUV-covariate) gene set.",
+    "PMC13450217's padj_cutoff (0.01) and lfc_filter (0.5) are correctly drawn from the 'Transposable element differential expression analysis' subsection, which explicitly ties both thresholds to 'DESeq2 and a likelihood ratio test'; the extractor's note correctly flags that a different padj<0.05 threshold appears elsewhere in the same paper for a pairwise 18h-vs-28h gene-level comparison not explicitly stated to be the LRT step -- correctly left unattributed to this parameter.",
+    "PMC11537486 and PMC7428014 (the tRNA-seq bulk-count judgment calls flagged in the worklog) were not in this sample and so were not re-checked; flagging is deferred to whichever future sample or review draws them.",
+    "records_checked/records_passed count every extraction.jsonl line belonging to the 6 sampled PMCIDs, including the 6 _applies lines (9 lines each for the 5 applies=yes articles, 1 line for the 1 applies=no article = 46 total); no round-1 orphan lines for non-corpus articles were among the sampled set."
+  ],
+  "verdict": "pass"
+}

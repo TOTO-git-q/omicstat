@@ -1,0 +1,589 @@
+absl-py==2.5.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0c996f25c0490700fadabe6351630f6111534fa0ae252cc6d2014ea3b141135f \
+    --hash=sha256:0f17b89f2a4eaaedc4f28c622998aa690564b3012a396a4ffad0821007fe03ba
+    # via
+    #   ml-collections
+    #   tensorboard
+aiohappyeyeballs==2.7.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:065665c041c42a5938ed220bdcd7230f22527fbec085e1853d2402c8a3615d9d \
+    --hash=sha256:9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472
+    # via aiohttp
+aiohttp==3.14.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:543906c127fb1d929b95076db19b83fa2d46751006ff1e23b093aa5ac4d8db42 \
+    --hash=sha256:9491196535a88924a60afd5b5f434b5b203b6cc616250878dbdb223a8f7844bc \
+    --hash=sha256:d1558173930a5a8d3069cee5c92fc91c87c4dbcb099debbb3622053717145a19
+    # via fsspec
+aiosignal==1.4.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e \
+    --hash=sha256:f47eecd9468083c2029cc99945502cb7708b082c232f9aca65da147157b251c7
+    # via aiohttp
+anndata==0.13.3.post0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:9c564b4f04af7f84e45f28de9c4ee3455e989cb05ba1d800054033420f24e8b0 \
+    --hash=sha256:9e5eab0abadff2e97e9ea913d7f234c50bb6bea14e27acf7a5ecf14373e7e18b
+    # via
+    #   mudata
+    #   omicstat-py-env
+    #   scanpy
+    #   scvi-tools
+annotated-types==0.8.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:13b2beaad985e05e2d6407ee4c4f35590b11f8d693a258a561055cac8f64cab7 \
+    --hash=sha256:f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0
+    # via pydantic
+array-api-compat==1.15.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:53c5f922491bf15f62847afafc4e39eedfae57d218988fefb8cce39c2a9b3dea \
+    --hash=sha256:7b1b9c53269061403fd5f45a8de349f16e7887653328bfa0c5f2d45299ff0a8e
+    # via
+    #   anndata
+    #   fast-array-utils
+attrs==26.1.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309 \
+    --hash=sha256:d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32
+    # via aiohttp
+certifi==2026.7.22 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775 \
+    --hash=sha256:741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55
+    # via scanpy
+cloudpickle==3.1.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:7fda9eb655c9c230dab534f1983763de5835249750e85fbcef43aaa30a9a2414 \
+    --hash=sha256:9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a
+    # via joblib
+contourpy==1.4.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:20156f5a1ac4f8ce02656e39a61e82164a3d359796dc8026f75b062783d500e1 \
+    --hash=sha256:3863ef2e2b13fe93f8c0ebb08ee400cb07153b8b0e91c5acb26e4537f283634f \
+    --hash=sha256:875f42444c9cf48d56f724f2637e60d0f73b3b12c9041e1484580a233edf9591
+    # via matplotlib
+cycler==0.12.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30 \
+    --hash=sha256:88bb128f02ba341da8ef447245a9e138fae777f6a23943da4540077d3601eb1c
+    # via matplotlib
+docrep==0.3.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:ed8a17e201abd829ef8da78a0b6f4d51fb99a4cbd0554adbed3309297f964314
+    # via scvi-tools
+donfig==0.8.1.post1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:2a3175ce74a06109ff9307d90a230f81215cbac9a751f4d1c6194644b8204f9d \
+    --hash=sha256:3bef3413a4c1c601b585e8d297256d0c1470ea012afa6e8461dc28bfb7c23f52
+    # via zarr
+fast-array-utils==1.5 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:08a349dc9cbcfaa59b98bf00e7aa36ef11ddef91128784a65d2eb63c4681b282 \
+    --hash=sha256:6151ecbb649d74f38927f1a3b67918ca3d65b1f9d2528cfaf9abb4d1ae5762e1
+    # via scanpy
+filelock==3.32.6 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:3f16ecd0117feae0dfc147e8c62eb5daeccd8bd800378c3ddf416de9b4feb6b1 \
+    --hash=sha256:a3f55a18af3652a94d8f47d6055df434f254ca1d02ef2524850c6d249ca2512c
+    # via torch
+fonttools==4.65.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:05595385ae99f4b9626cebb973bf171b8fe38a8f40708e6e42abba0ed7537778 \
+    --hash=sha256:3060b8c1fc2329fa20265b7c138614143ea7c1624e26c5c180c76aeb74deae6f \
+    --hash=sha256:762ba5431358d0dbd4a01982484a1d494fb267e91f974cdcf20b80eab8560f6f \
+    --hash=sha256:924d06e6130429168318db71c40174a765ad016fc4b56ca811287e3d7373b3a6
+    # via matplotlib
+formulaic==1.2.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0f84ff49e3fc9dc0e68ab08a0a9427874021aa6c558e66b44dc634a35739b09b \
+    --hash=sha256:c99e8f11ff7d327eaecaf63855ca69b7fa0da100ad6c0041ef80912fbac667e6
+    # via statsmodels
+frozenlist==1.8.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0c18a16eab41e82c295618a77502e17b195883241c563b00f0aa5106fc4eaa0d \
+    --hash=sha256:3ede829ed8d842f6cd48fc7081d7a41001a56f1f38603f9d49bf3020d59a31ad \
+    --hash=sha256:494a5952b1c597ba44e0e78113a7266e656b9794eec897b19ead706bd7074383 \
+    --hash=sha256:776f352e8329135506a1d6bf16ac3f87bc25b28e765949282dcc627af36123aa
+    # via
+    #   aiohttp
+    #   aiosignal
+fsspec==2026.7.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:b57ddbafedfaef7018c1ecab32aa200a9d7ca26b77965f64e48b70061249d279 \
+    --hash=sha256:c803c40f4cf860b49dea58ee3e1c33cb9c790520e233537e1340049f89b82a88
+    # via
+    #   lightning
+    #   pytorch-lightning
+    #   torch
+google-crc32c==1.8.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:14f87e04d613dfa218d6135e81b78272c3b904e2a7053b841481b38a7d901411 \
+    --hash=sha256:a428e25fb7691024de47fecfbff7ff957214da51eddded0da0ae0e0f03a2cf79
+    # via zarr
+grpcio==1.84.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:19aaf172fc2edbefccce3f6e92c5150975dbe56c45744e9e87cf72ebdf85bfbe \
+    --hash=sha256:b44f0a0fc7bc6677d38cc80bca1a32814ce6c8f200fb8b3c1a61c9d77eaefbf3 \
+    --hash=sha256:f6c972474ce691aca74e58d17625450cef153dc4760364cadeb167983ea6d589
+    # via tensorboard
+h5py==3.16.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:2b2c02b0a160faed5fb33f1ba8a264a37ee240b22e049ecc827345d0d9043074 \
+    --hash=sha256:a0dbaad796840ccaa67a4c144a0d0c8080073c34c76d5a6941d6818678ef2738 \
+    --hash=sha256:dfc21898ff025f1e8e67e194965a95a8d4754f452f83454538f98f8a3fcb207e
+    # via
+    #   anndata
+    #   mudata
+    #   scanpy
+idna==3.19 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15 \
+    --hash=sha256:815e7be7a7806d54abb586dc943addc79e8b2ee16915059658cbeff4b1b43bf4
+    # via yarl
+igraph==1.0.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:05c79a2a8fca695b2f217a6fa7f2549f896f757d4db41be32a055400cb19cc30 \
+    --hash=sha256:2414d0be2e4d77ee5357807d100974b40f6082bb1bb71988ec46cfb6728651ee \
+    --hash=sha256:2d04c2c76f686fb1f554ee35dfd3085f5e73b7965ba6b4cf06d53e66b1955522
+    # via
+    #   leidenalg
+    #   scanpy
+interface-meta==2.0.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:902bd9a95a12f195f15753a1080075d4eca7a2cb934fac7ac03c9e362b50796a \
+    --hash=sha256:f38016bef9a4429b6d0792d809be7b65e9781820c674bf7f463999086b6e6323
+    # via formulaic
+jinja2==3.1.6 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d \
+    --hash=sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
+    # via torch
+joblib==1.6.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:2ccc96785b12046c08fd6d55839c12857831b54a3c1673ffadd2f04bfc4eda03 \
+    --hash=sha256:3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba
+    # via
+    #   pynndescent
+    #   scanpy
+    #   scikit-learn
+    #   scvi-tools
+kiwisolver==1.5.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:072bdb15a3c19a5b5dbc8f8fb1f4e1884bf4f3507eeb4cc6334401274d37a5c0 \
+    --hash=sha256:34633ecf50d16187ab8e5528b7a2530f2feb4e23f300db4672538b51cfc5cd38 \
+    --hash=sha256:b03af77d77e50edba2030fd5f7c352ff209314b09030a3cba7c14edf9a09a444 \
+    --hash=sha256:f1303ef2eec81262a4b708c3e858afe58d7c75ad91c1c05266eda7673369859a
+    # via matplotlib
+legacy-api-wrap==1.5 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:5a8ea50e3e3bcbcdec3447b77034fd0d32cb2cf4089db799238708e4d7e0098d \
+    --hash=sha256:b41ba6532f3ebfe3a897a35a7f97dec3be04b92a450f6c2bcf89f1b91c9cadf2
+    # via
+    #   anndata
+    #   scanpy
+leidenalg==0.12.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:63b49f5716c7cb155f3a3e25505bcc33f3c8c62105734fc152bc07518e63e9ab \
+    --hash=sha256:c81a45a2fb874fe71e903d43a869d0efeb7f907af70476c03f6945ef0e8f44c5 \
+    --hash=sha256:fcbd89655243cc739d28ba23fe894587d8d7235124a9248ba375819585e70090
+    # via scanpy
+lightning==2.6.6 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:1c6329e241f8a85f29fedead89c1ee138b36caa08de60c260c6a7eaee81c8295 \
+    --hash=sha256:2bcbd6ee840071cd076c7dc9953d7ac1040df92f1c5fa76583aae644f037ab85
+    # via scvi-tools
+lightning-utilities==0.15.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:6c55f1bee70084a1cbeaa41ada96e4b3a0fea5909e844dd335bd80f5a73c5f91 \
+    --hash=sha256:792ae0204c79f6859721ac7f386c237a33b0ed06ba775009cb894e010a842033
+    # via
+    #   lightning
+    #   pytorch-lightning
+    #   torchmetrics
+llvmlite==0.49.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:00f16db782f4a13c78c5804aedc434e46794a77e89999a168f9401106270e50a \
+    --hash=sha256:6acba646d88abbc87d5c113a3d62c1fbf8b8fee11c6493f516803e30f21ae870
+    # via
+    #   numba
+    #   pynndescent
+markdown==3.10.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:3589362618f743188b4d955b874402bc814f4f83f544dc207719f4baa7d9c45f \
+    --hash=sha256:fa6c92a00a4a3c98b22728c64a935ae1928250ae65058a6ded814d2cc29a4cea
+    # via tensorboard
+markdown-it-py==4.2.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49 \
+    --hash=sha256:9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a
+    # via rich
+markupsafe==3.0.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698 \
+    --hash=sha256:77f0643abe7495da77fb436f50f8dab76dbc6e5fd25d39589a0f1fe6548bfa2b \
+    --hash=sha256:d6dd0be5b5b189d31db7cda48b91d7e0a9795f31430b7f271219ab30f1d3ac9d
+    # via
+    #   jinja2
+    #   werkzeug
+matplotlib==3.11.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:3aa4b8516fd26659e4363abbf317c703d9116496c5db2e9d0609a2866dd39dd2 \
+    --hash=sha256:cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4 \
+    --hash=sha256:df4f7784aca81a94f254c0a2767d592ee25f407e488f5fa7203e51093fb6ca27
+    # via
+    #   scanpy
+    #   seaborn
+mdurl==0.1.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
+    --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
+    # via markdown-it-py
+ml-collections==1.1.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0ac1ac6511b9f1566863e0bb0afad0c64e906ea278ad3f4d2144a55322671f6f \
+    --hash=sha256:23b6fa4772aac1ae745a96044b925a5746145a70734f087eaca6626e92c05cbc
+    # via scvi-tools
+mpmath==1.3.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:7a28eb2a9774d00c7bc92411c19a89209d5da7c4c9a9e227be8330a23a25b91f \
+    --hash=sha256:a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c
+    # via sympy
+msgspec==0.21.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:21995e74b5c598c2e004110ad66ec7f1b8c20bf2bcf3b2de8fd9a3094422d3ff \
+    --hash=sha256:2313508e394b0d208f8f56892ca9b2799e2561329de9763b19619595a6c0f72c \
+    --hash=sha256:ef3ec2296248d1f8b9231acb051b6d471dfde8f21819e86c9adaaa9f42918521
+    # via zarr
+mudata==0.4.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:41dba7f83b7caf66e070292c4a7429aecdc841c6e7931558175d6c2528ce7f3c \
+    --hash=sha256:adcaeecec06aec0d7576f5f18ea474b530d661759d775dbed67fcb91fb3c4c41
+    # via scvi-tools
+multidict==6.8.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:003a3bddb32915c3f67096ea41d24e53edf710edb65a1f5d0c70ab40b0e4d20b \
+    --hash=sha256:5cd4637ce76312ba1e05eb9c5193fec231f64fee0944e135fa1e951242355b37 \
+    --hash=sha256:75daa15ca16d6285eb2e104b2f05ee6f8d9836c68da3ce5c85f615a0450eed0e \
+    --hash=sha256:ad474c11d851b6fc97cb625e4822bc0cbd567fc07dc2602e28faec5a36b42bbb
+    # via
+    #   aiohttp
+    #   yarl
+narwhals==2.26.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:29326d74f107c347fd1009bd58e38d9f7c7c5b51e6de97bc93dbc325d9038b54 \
+    --hash=sha256:6b9cadca82f375c7e4cf584fdc86ca25da54827307a9c58f94547ee6104b82dd
+    # via
+    #   formulaic
+    #   scikit-learn
+natsort==8.4.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:45312c4a0e5507593da193dedd04abb1469253b601ecaf63445ad80f0a1ea581 \
+    --hash=sha256:4732914fb471f56b5cce04d7bae6f164a592c7712e1c85f9ef585e197299521c
+    # via
+    #   anndata
+    #   scanpy
+networkx==3.6.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509 \
+    --hash=sha256:d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762
+    # via
+    #   scanpy
+    #   torch
+numba==0.67.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:cd75aa535b33fa05d9d930b1ae8af9f97a2881e96d72dfb38ec9b78284d9f851 \
+    --hash=sha256:f63d43db06b4756424d6d2484737c902e0ae944a0eec3e8b0b4de2c695b15caa
+    # via
+    #   fast-array-utils
+    #   pynndescent
+    #   scanpy
+    #   scvi-tools
+    #   sparse
+    #   umap-learn
+numcodecs==0.16.5 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0d0fb60852f84c0bd9543cc4d2ab9eefd37fc8efcc410acd4777e62a1d300318 \
+    --hash=sha256:ad1a379a45bd3491deab8ae6548313946744f868c21d5340116977ea3be5b1d6
+    # via zarr
+numpy==2.5.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:b5d93cf48f687479941d12b69c873ad2cc76bbd487f0091c2200636497f34034 \
+    --hash=sha256:b7e18c623bb5c95acb3b3328861272816ba199fb531921c5d6d0b675f1fde9e3 \
+    --hash=sha256:df2d5874ff183595a4ba404edd04f6bd9b5505c1d7708573f6a6c17489a67563
+    # via
+    #   anndata
+    #   contourpy
+    #   fast-array-utils
+    #   formulaic
+    #   h5py
+    #   matplotlib
+    #   mudata
+    #   numba
+    #   numcodecs
+    #   pandas
+    #   patsy
+    #   pyro-ppl
+    #   scanpy
+    #   scikit-learn
+    #   scikit-misc
+    #   scipy
+    #   scvi-tools
+    #   seaborn
+    #   sparse
+    #   statsmodels
+    #   tensorboard
+    #   torchmetrics
+    #   umap-learn
+    #   xarray
+    #   zarr
+opt-einsum==3.4.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:69bb92469f86a1565195ece4ac0323943e83477171b91d24c35afe028a90d7cd \
+    --hash=sha256:96ca72f1b886d148241348783498194c577fa30a8faac108586b14f1ba4473ac
+    # via pyro-ppl
+packaging==26.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79 \
+    --hash=sha256:d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c
+    # via
+    #   anndata
+    #   lightning
+    #   lightning-utilities
+    #   matplotlib
+    #   patsy
+    #   pytorch-lightning
+    #   scanpy
+    #   statsmodels
+    #   tensorboard
+    #   torchmetrics
+    #   xarray
+    #   zarr
+pandas==3.0.5 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:a5ad3b02ed6bc7d7ae9b70804b2c6aa31827489d150f8e623ce82491b82085d7 \
+    --hash=sha256:b2acb4650527eec6822c3dadb2b771277b65e7dae7a267d4bccf65fd1bb3fbce \
+    --hash=sha256:d373ce03ffd84010ed9839fa73672a9c8256990532e158440c0085db7d914b34 \
+    --hash=sha256:dca3734d6ab7c906e6730f0788b0a1dbb9f2467731f9711f77995c8e9d62d712
+    # via
+    #   anndata
+    #   formulaic
+    #   mudata
+    #   scanpy
+    #   scvi-tools
+    #   seaborn
+    #   statsmodels
+    #   xarray
+patsy==1.0.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:79ebf4c93ff4d296e58a9d5be2b2ee31bd49d737cf11d70ffbd8a44b2de42e65 \
+    --hash=sha256:d3dbebe8fd5f46e29912d030b63c6268647b59bf788a99e2af28a30234cf357c
+    # via
+    #   scanpy
+    #   statsmodels
+pillow==12.3.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0dd2064cbc55aaec028ef5fbb60fa47bb6c3e7918e07ff17935284b227a9d2df \
+    --hash=sha256:3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce \
+    --hash=sha256:78cb2c6865a35ab8ff8b75fd122f6033b92a62c82801110e48ddd6c936a45d91
+    # via
+    #   matplotlib
+    #   tensorboard
+propcache==0.5.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:22e8849a90d46d920469eacc52cf28dbfce9d9dc7fb0ee36ba3aa4b117fc8311 \
+    --hash=sha256:27a36f13d838accaa887f9e54af4866ae344a51eb59b99dbd6cfeee701fc98ff \
+    --hash=sha256:5f283fde8fd8b1944fd1a1bd11db759b55c5f190795668d5187d3e3b1165d98b \
+    --hash=sha256:abcef8e75a2c324dabd46c842c17cb005ae968596a567e43dfd6ee074f9f907b
+    # via
+    #   aiohttp
+    #   yarl
+protobuf==7.36.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:7d951e46b3f963d6c264c367c437921de9d5aedd9c3f9612b9077736b4e3ad5c \
+    --hash=sha256:97198b77e369a0abd8e262b8f6c7266c55ddb796a3a12c76d7b8881188ed83aa \
+    --hash=sha256:d0f6470f0ce2b84e3feaea2d4b816378b37ba4d4aa08a274305373de93e2d524
+    # via tensorboard
+pydantic==2.13.5 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:346a034f080da3755d8e9cb5e00e8b07de1d39e4f6e2c87d8ab7cafa0b269a73 \
+    --hash=sha256:51a9c5f7b2f8e636f04c6cada605d9b6a3bf1348fdf945a3d8869b19bba0ee08
+    # via pydantic-settings
+pydantic-core==2.46.5 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0fc5be0abd4a407e200d844b404e33639a554e7bd0d448e7b9ae181be4789ac2 \
+    --hash=sha256:10416c15b8839ecc4ef4d0885da76da6fd0f67333a0eb8aff6d93c4b8f2910fc \
+    --hash=sha256:18a09e1e1011b462f2e32774f25859ef1223d5c2b0546a633cf56654710721e0 \
+    --hash=sha256:8e24d8f05fa2d28513d94e877e9c75ad66175376209b3977f916e240e623193c
+    # via pydantic
+pydantic-settings==2.15.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0ba092c291c94baceb5eff768aa0d56400a457585bc0175925a5a5510303da42 \
+    --hash=sha256:694b793e84f766ba76a90ebdefc01d0a9a045dab0382bee70393da93712ad117
+    # via scverse-misc
+pygments==2.21.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9 \
+    --hash=sha256:610ca751c9bc2492b38eb9a38a7fbc93edbbb2d7182edaf34e66ae493dee5c8c
+    # via rich
+pynndescent==0.6.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:7ffde0fb5b400741e055a9f7d377e3702e02250616834231f6c209e39aac24f5 \
+    --hash=sha256:dc8c74844e4c7f5cbd1e0cd6909da86fdc789e6ff4997336e344779c3d5538ef
+    # via
+    #   scanpy
+    #   umap-learn
+pyparsing==3.3.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d \
+    --hash=sha256:c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc
+    # via matplotlib
+pyro-api==0.1.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:10e0e42e9e4401ce464dab79c870e50dfb4f413d326fa777f3582928ef9caf8f \
+    --hash=sha256:a1b900d9580aa1c2fab3b123ab7ff33413744da7c5f440bd4aadc4d40d14d920
+    # via pyro-ppl
+pyro-ppl==1.9.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:5e1596de276c038a3f77d2580a90d0a97126e0104900444a088eee620bb0d65e \
+    --hash=sha256:91fb2c8740d9d3bd548180ac5ecfa04552ed8c471a1ab66870180663b8f09852
+    # via scvi-tools
+python-dateutil==2.9.0.post0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
+    --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
+    # via
+    #   matplotlib
+    #   pandas
+python-dotenv==1.2.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:904552145e8bfed22162c09dab1c2b9b54fefa7b23ba780f4f26ca0316b0f0d9 \
+    --hash=sha256:a20a594dabeaa385725aa239d5244871c143ecb356add8a20fcf23773a6c3a35
+    # via
+    #   pydantic-settings
+    #   scverse-misc
+pytorch-lightning==2.6.6 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:52c52b20522dd3d3feb3bb3aae2dbe3f291e8e836d4111a74cfd72e9df018834 \
+    --hash=sha256:71f95c7b22f25c4f91cc659e1734bcdc6c69c8b66543f2ed2d78dbe29ce2f167
+    # via lightning
+pyyaml==6.0.3 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:41715c910c881bc081f1e8872880d3c650acf13dfa8214bad49ed4cede7c34ea \
+    --hash=sha256:ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc \
+    --hash=sha256:d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f
+    # via
+    #   donfig
+    #   lightning
+    #   ml-collections
+    #   pytorch-lightning
+rich==15.0.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb \
+    --hash=sha256:edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36
+    # via scvi-tools
+scanpy==1.12.4 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:a12a7ca9500e4b247fbb5fb9318fb204907125e411183bad3e9c62e5b988f37c \
+    --hash=sha256:b87a5b1413ab33b69691df69c2084ff4ea8b389728e1542b22145825f88b5037
+    # via
+    #   omicstat-py-env
+    #   scvi-tools
+scikit-learn==1.9.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:629cada3e33e2b9bf376cdc7614a47a4140b8aedc1d836579e359736fbd82977 \
+    --hash=sha256:e5d7b18a5b9dca241a74695f3275fa4c895a9dadc72b3d8df5fa9d1083c9b83e
+    # via
+    #   pynndescent
+    #   scanpy
+    #   scvi-tools
+    #   umap-learn
+scikit-misc==0.5.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:49fa30e4051b341edc7422db66a12c0f59d468729285bfe644d10924dc51be0a \
+    --hash=sha256:cd5a6e06864b07e9fe18c2bac756163e87f26615e5ddaa5f6129fd62535b7cfb
+    # via scanpy
+scipy==1.18.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:52c4b7422442aba924d03ad4019852b08a92e64ea187b933135687bfe2747307 \
+    --hash=sha256:d2924a03db38dc2e848bca2fe9f077dafb891480b91a00a0963a8cf86dfc31c1 \
+    --hash=sha256:f55fa87b6c612ecd6b058f167c53231b1d14e412efe361d3d6e38b3631c73218
+    # via
+    #   anndata
+    #   fast-array-utils
+    #   formulaic
+    #   mudata
+    #   pynndescent
+    #   scanpy
+    #   scikit-learn
+    #   scvi-tools
+    #   statsmodels
+    #   umap-learn
+scverse-misc==0.1.6 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:2310c2a0d2159311f1b44759cbd2f83b543362556396d93cb70cff01647ec835 \
+    --hash=sha256:5fc1d262981d100f9936c0729f2c38f13e8284d070c56613a4d07d58dd29c68a
+    # via
+    #   anndata
+    #   mudata
+    #   scanpy
+scvi-tools==1.5.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:413cab3a8b8865bb42712c1239ab3b1e78960e0739df844128d3577c1556fb18 \
+    --hash=sha256:89fcd8f1a8e19f1a1fbe1c409e1969a838f6b57b3dc032934836a31d5ef8b837
+    # via omicstat-py-env
+seaborn==0.13.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:636f8336facf092165e27924f223d3c62ca560b1f2bb5dff7ab7fad265361987 \
+    --hash=sha256:93e60a40988f4d65e9f4885df477e2fdaff6b73a9ded434c1ab356dd57eefff7
+    # via scanpy
+session-info2==0.4.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:d85d730621d6f75df60e15dad21258f2750f04c0c0ee5958a7bf92342c039d76 \
+    --hash=sha256:dbf5f58769115651fad28e8ffc930b6a848a629a242ce2ecd730d12f5e3e9315
+    # via
+    #   mudata
+    #   scanpy
+    #   scverse-misc
+setuptools==84.0.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670 \
+    --hash=sha256:f4695c21257f0d9b537ec2692c941d02ee143b7cc1276941349a546573b2ef73
+    # via
+    #   tensorboard
+    #   torch
+six==1.17.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
+    --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81
+    # via
+    #   docrep
+    #   python-dateutil
+sparse==0.19.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0d41a7c3f477cb4265d7193bcf12b0146674d6533ff328afa1e1d0f2b8480f00 \
+    --hash=sha256:2fcad7b83dacb5c70123a7de76db3626cbdaf567fcf12bdbf637aca6c4ee1bbe
+    # via scvi-tools
+statsmodels==0.15.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:5d257fe58d0772bc46a557880ca78e2a8e07fec7bfd9d11074aef8e33e1aecbc \
+    --hash=sha256:733887a09ff878a2e29504eda684488b26bd134ba3539ac58d2136a58914c65a \
+    --hash=sha256:c6f2bd48915cc9b3b95c3c7f6ac363b6f8aaa38172962ba5f7f6885f0dfe57f2
+    # via scanpy
+sympy==1.14.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:d3d3fe8df1e5a0b42f0e7bdf50541697dbe7d23746e894990c030e2b05e72517 \
+    --hash=sha256:e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5
+    # via torch
+tensorboard==2.21.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:7279316dcb6bd5bc391d623dea841531299cde1887310e8133bc34a996d32255
+    # via scvi-tools
+tensorboard-data-server==0.7.2 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:7e0610d205889588983836ec05dc098e80f97b7e7bbff7e994ebb78f578d0ddb \
+    --hash=sha256:ef687163c24185ae9754ed5650eb5bc4d84ff257aabdc33f0cc6f74d8ba54530
+    # via tensorboard
+texttable==1.7.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:2d2068fb55115807d3ac77a4ca68fa48803e84ebb0ee2340f858107a36522638 \
+    --hash=sha256:72227d592c82b3d7f672731ae73e4d1f88cd8e2ef5b075a7a7f01a23a3743917
+    # via igraph
+threadpoolctl==3.7.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:61348cfb77d53b9242e0017029244b559b810c142ced65b4e21eeca1843959a7 \
+    --hash=sha256:cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be
+    # via scikit-learn
+torch==2.14.0+cpu ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:a09987c95ec4cffdb6df798d3d641558110a334cfccce22f2f046d83142bc260
+    # via
+    #   lightning
+    #   omicstat-py-env
+    #   pyro-ppl
+    #   pytorch-lightning
+    #   scvi-tools
+    #   torchmetrics
+torchmetrics==1.9.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:a488609948600df52d3db4fcdab02e62aab2a85ef34da67037dc3e65b8512faa \
+    --hash=sha256:bfdcbff3dd1d96b3374bb2496eb39f23c4b28b8a845b6a18c313688e0d2d9ca1
+    # via
+    #   lightning
+    #   pytorch-lightning
+    #   scvi-tools
+tqdm==4.70.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73 \
+    --hash=sha256:cefd0eca11b2a37a3aee776544d4f4ae913f02688135b5556b8788dfa474afc4
+    # via
+    #   lightning
+    #   pyro-ppl
+    #   pytorch-lightning
+    #   scanpy
+    #   scvi-tools
+    #   umap-learn
+typing-extensions==4.16.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8 \
+    --hash=sha256:dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5
+    # via
+    #   aiohttp
+    #   aiosignal
+    #   anndata
+    #   formulaic
+    #   grpcio
+    #   lightning
+    #   lightning-utilities
+    #   numcodecs
+    #   pydantic
+    #   pydantic-core
+    #   pytorch-lightning
+    #   scanpy
+    #   scverse-misc
+    #   torch
+    #   typing-inspection
+    #   zarr
+typing-inspection==0.4.4 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:547274fa6b0a561ccf549cc9524b999a578e737d015d8709d021f9d0d13bea47 \
+    --hash=sha256:65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147
+    # via
+    #   pydantic
+    #   pydantic-settings
+umap-learn==0.5.12 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:6aff02ecac5f2aad9f3c65ee518d7ae93e1a985ae38721fdcffceee4232c33c7 \
+    --hash=sha256:f2a85d2a2adcb52b541bed9b27a23ca169b56bb1b23283abeebfb8dfb8a42fe5
+    # via scanpy
+werkzeug==3.1.8 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:63a77fb8892bf28ebc3178683445222aa500e48ebad5ec77b0ad80f8726b1f50 \
+    --hash=sha256:9bad61a4268dac112f1c5cd4630a56ede601b6ed420300677a869083d70a4c44
+    # via tensorboard
+wrapt==2.4.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:1e84ec5d89a0a07a0ef6bcd343f5c8ecdc95601d71de3058cdc63274e86c193c \
+    --hash=sha256:30d11c289b013bf384ff1a1a6553f150d0b855901708a9bef667a5680f8247c9 \
+    --hash=sha256:edd03758a7578526642508b8833d43496fdfba0f64e0025dfca153a7c1777735 \
+    --hash=sha256:fd6390aab9e8aa40c52eff3c180f098e8d9f5894b1fd4c4fd2c207067b33ed16
+    # via formulaic
+xarray==2026.7.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:361b495928fdbf5b58d0969bb6775339019da5e93ca74d61ddf4eb5edd6ce604 \
+    --hash=sha256:bf9dd130b93806dc78e90c1b7ac24851b31557b888674c53622235691cf21824
+    # via scvi-tools
+yarl==1.25.1 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:03dd38de09bc213e9a8b29761eec33ee1d5318dac0e49d8af36e4d27830e23a7 \
+    --hash=sha256:681c758b0490f9e96b78e5fa8e8dc6e648e9185bb6eaebe73183c33ea0c445f3 \
+    --hash=sha256:68782fdb4027b8d1eee25ec35e9a6db05e863b899eb0310b3a33b6c3fef55707 \
+    --hash=sha256:c6f117789d22dce188e5754e8bc65b7e6ebf8cb73963b9fa761f672a5883769d
+    # via aiohttp
+zarr==3.4.0 ; platform_machine == 'x86_64' and sys_platform == 'linux' \
+    --hash=sha256:0a5e6c9b5c4139759e612556c7fb32c8ee4e4877a46b3556244093413eb72395 \
+    --hash=sha256:b68676576a6fc42683dfcc0daeb3c0e994f71e1680696990bde056bd3acf3542
+    # via anndata

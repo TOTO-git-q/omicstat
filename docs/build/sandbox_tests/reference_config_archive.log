@@ -1,0 +1,21 @@
+COMMAND: python -m unittest discover -s tests -p test_*.py -v
+CWD: no-.git archive copy / reference_service
+test_compose_isolated_from_medstat (test_config.ConfigTests.test_compose_isolated_from_medstat) ... ok
+test_config_matches_builder (test_config.ConfigTests.test_config_matches_builder) ... skipped 'no git checkout (release archive): build_config --check needs git history'
+test_empty_seed_answers_without_unknown_module (test_config.ConfigTests.test_empty_seed_answers_without_unknown_module) ... ok
+test_journals_and_profiles_files (test_config.ConfigTests.test_journals_and_profiles_files) ... ok
+test_loaders_accept_config_and_registry_is_the_method_map (test_config.ConfigTests.test_loaders_accept_config_and_registry_is_the_method_map) ... ok
+test_query_composition (test_config.ConfigTests.test_query_composition) ... ok
+test_staged_provenance (test_config.ConfigTests.test_staged_provenance) ... ok
+test_base_is_deployed_v2_not_v21 (test_fork_provenance.ForkProvenanceTests.test_base_is_deployed_v2_not_v21) ... ok
+test_every_change_is_declared (test_fork_provenance.ForkProvenanceTests.test_every_change_is_declared) ... ok
+test_no_v21_code (test_fork_provenance.ForkProvenanceTests.test_no_v21_code) ... ok
+test_runtime_texts_are_omicstat_only (test_fork_provenance.ForkProvenanceTests.test_runtime_texts_are_omicstat_only) ... ok
+test_seed_is_empty (test_fork_provenance.ForkProvenanceTests.test_seed_is_empty) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.669s
+
+OK (skipped=1)
+
+EXIT_CODE: 0

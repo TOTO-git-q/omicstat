@@ -1,0 +1,39 @@
+{
+ "module": "muscat-pseudobulk",
+ "date": "2026-09-27",
+ "query": "(METHODS:\"muscat\" AND (METHODS:\"pseudobulk\" OR METHODS:\"pseudo-bulk\" OR METHODS:\"differential state\" OR METHODS:\"differential expression\" OR METHODS:\"aggregateData\" OR METHODS:\"pbDS\")) AND HAS_FT:Y AND OPEN_ACCESS:Y AND SRC:MED AND NOT PUB_TYPE:\"review\" AND NOT PUB_TYPE:\"preprint\" AND NOT PUB_TYPE:\"retracted publication\" AND FIRST_PDATE:[2020-01-01 TO 2026-09-27] AND (ISSN:\"0006-4971\" OR ISSN:\"0009-7330\" OR ISSN:\"0017-5749\" OR ISSN:\"0021-9738\" OR ISSN:\"0022-1007\" OR ISSN:\"0027-8424\" OR ISSN:\"0028-0836\" OR ISSN:\"0036-8075\" OR ISSN:\"0092-8674\" OR ISSN:\"0261-4189\" OR ISSN:\"0305-1048\" OR ISSN:\"0896-6273\" OR ISSN:\"1061-4036\" OR ISSN:\"1074-7613\" OR ISSN:\"1078-8956\" OR ISSN:\"1087-0156\" OR ISSN:\"1088-9051\" OR ISSN:\"1091-6490\" OR ISSN:\"1095-9203\" OR ISSN:\"1097-2765\" OR ISSN:\"1097-4164\" OR ISSN:\"1097-4172\" OR ISSN:\"1097-4180\" OR ISSN:\"1097-4199\" OR ISSN:\"1097-6256\" OR ISSN:\"1362-4962\" OR ISSN:\"1460-2075\" OR ISSN:\"1465-7392\" OR ISSN:\"1468-3288\" OR ISSN:\"1474-7596\" OR ISSN:\"1474-760X\" OR ISSN:\"1476-4679\" OR ISSN:\"1476-4687\" OR ISSN:\"1524-4571\" OR ISSN:\"1528-0020\" OR ISSN:\"1529-2908\" OR ISSN:\"1529-2916\" OR ISSN:\"1535-6108\" OR ISSN:\"1540-9538\" OR ISSN:\"1546-1696\" OR ISSN:\"1546-170X\" OR ISSN:\"1546-1718\" OR ISSN:\"1546-1726\" OR ISSN:\"1548-7091\" OR ISSN:\"1548-7105\" OR ISSN:\"1549-5469\" OR ISSN:\"1550-4131\" OR ISSN:\"1558-8238\" OR ISSN:\"1756-994X\" OR ISSN:\"1875-9777\" OR ISSN:\"1878-3686\" OR ISSN:\"1932-7420\" OR ISSN:\"1934-5909\" OR ISSN:\"2041-1723\" OR ISSN:\"2050-084X\" OR ISSN:\"2211-1247\" OR ISSN:\"2375-2548\" OR ISSN:\"2379-3708\" OR ISSN:\"2405-4712\" OR ISSN:\"2405-4720\" OR ISSN:\"2522-5812\" OR ISSN:\"2662-1347\" OR ISSN:\"2662-8465\" OR ISSN:\"2666-3791\" OR ISSN:\"2666-979X\")",
+ "hit_count": 56,
+ "hit_count_by_year": {
+  "2026": 12,
+  "2025": 15,
+  "2024": 7,
+  "2023": 6,
+  "2022": 9,
+  "2021": 6,
+  "2020": 1
+ },
+ "stratification": "per publication year, interleaved newest year first",
+ "candidates_fetched": 56,
+ "target": 30,
+ "gates": {
+  "no_methods_signal": 19,
+  "screened": 21,
+  "licence_not_countable": 8,
+  "excluded_by_regex": 5,
+  "pubtype_excluded": 2,
+  "fulltext_http_error": 1
+ },
+ "corpus": 21,
+ "l3": 10,
+ "errors": [
+  {
+   "pmcid": "PMC9297711",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9297711/fullTextXML"
+  }
+ ],
+ "journals_sha256": "66e183cbd11031a2f951bb2272fb11da69eb78f05ccc92acdd5f06a45cdff7a0",
+ "profiles_sha256": "9c953a384506b0eae1bfe29ce417fae5a45b3c4081d21141441ec208333536b3",
+ "epmc_requests": 59,
+ "l3_note": "After Methods applicability review, 10 tier-A direct pseudobulk-condition studies were marked L3; aggregate-only and per-cell studies remain in L4 and are excluded by _applies.",
+ "candidate_refresh_note": "The expanded version and aggregation patterns were applied to the same 21 JATS articles; all article hashes and Methods signals were rechecked."
+}

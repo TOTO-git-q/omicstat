@@ -1,0 +1,38 @@
+# omicstat-py -- the locked Python (scverse) environment of omicstat
+# (ENGINEERING_PLAN 10.4 lock 1). This file is ONLY the resolver input; the
+# lock is uv.lock (every file with its sha256) and its pip export
+# env/py_lock.txt, which is what the image installs with --require-hashes.
+# Pins are the newest STABLE releases uploaded to PyPI on or before
+# 2026-09-15 (pypi_cutoff in env/omicstat-env.json); transitive dependencies
+# are resolved with the same cutoff (exclude-newer). Change a pin here ->
+# bash env/py/lock.sh -> new python_lane.py_env_version -> rebuild.
+[project]
+name = "omicstat-py-env"
+version = "2026.9.1"
+description = "Locked scverse environment of the omicstat suite (not a distributable package)"
+requires-python = "==3.12.*"
+dependencies = [
+    "scanpy[leiden]==1.12.4",
+    "anndata==0.13.3.post0",
+    "scvi-tools==1.5.1",
+    "torch==2.14.0",
+]
+
+[tool.uv]
+package = false
+# The image is linux/x86_64 only; resolve for exactly that platform.
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+required-environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+# Wheels are preferred; sdist-only packages are listed in lock.sh.
+no-binary = false
+exclude-newer = "2026-09-16T00:00:00Z"
+
+# CPU-only PyTorch: torch comes ONLY from the PyTorch CPU index (explicit =
+# no other package is ever taken from it).
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }

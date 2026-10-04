@@ -1,0 +1,4 @@
+# Vendored medstat-reference@07fdebd must keep its exact bytes (seed/catalog.json is CRLF and
+# its SHA-256 is bound by the reference database). Generated omics configuration is hashed too.
+vendor/** -text
+config/** -text

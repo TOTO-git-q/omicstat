@@ -1,0 +1,27 @@
+"""{{pkg}}_{{part}}_report.py -- report layer of module {{module}}. ASCII only.
+
+TODO(S2): implement from the frozen PACK (acceptance/exemplars/{{module}}/PACK.md).
+Python modules do NOT draw publication figures (ENGINEERING_PLAN 10.5): write
+the data each figure needs with ospy.figure_request (frame / vector / matrix)
+and name an _shared R builder (os_embedding, os_marker_dotplot, os_qc_violin,
+os_volcano, ...; the allowlist is OS_RENDER_BUILDERS in
+skills/_shared/scripts/render_figure_request.R). If the PACK F section needs a
+figure the R layer lacks, extend _shared/scripts/fig_*.R first. Tables go
+through ospy.feature_table (byte-identical to the R writer); objects are
+handed on with ospy.handoff (ecosystem "scverse", type "AnnData").
+"""
+import os
+
+from ospy import figure_request as FR
+from ospy import handoff as H
+from ospy import module_kit as K
+
+
+def render(res, outdir, args, upstream):
+    req = FR.FigureRequest(outdir, module="{{module}}", module_version="0.1.0", journal=args["journal"])
+    # TODO(S2): req.add("<id>", "<os_builder>", data={"<arg>": FR.frame(...)}, args={...})
+    # d = req.to_dict(); d["colour_registry_out"] = "objects/colour_registry.json"
+    # K.write_json(d, os.path.join(outdir, *FR.REQUEST_REL.split("/")), sort_keys=False)
+    # TODO(S2): H.write_handoff(outdir, K.run_id(outdir), "{{module}}", "0.1.0", objects, ecosystem="scverse",
+    #                           upstream_runs=(upstream or {}).get("upstream_runs") or [])
+    return {}

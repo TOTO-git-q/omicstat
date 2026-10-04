@@ -1,0 +1,20 @@
+fixture_scratch <- Sys.getenv("OMICSTAT_TEST_TMP", tempdir())
+dir.create(fixture_scratch, recursive=TRUE, showWarnings=FALSE)
+.libPaths(c('/omicstat/.omicstat-acceptance',.libPaths()))
+e<-new.env(); z<-load('acceptance/data/EH2259_muscData_Kang18_8vs8.Rda',envir=e);print(z)
+sce<-e[[z[1]]];print(sce)
+sce<-sce[Matrix::rowSums(SummarizedExperiment::assay(sce,'counts')>0)>0,]
+qc<-scuttle::perCellQCMetrics(sce)
+ol<-scuttle::isOutlier(metric=qc$detected,nmads=2,log=TRUE)
+sce<-sce[,!ol]
+sce<-sce[Matrix::rowSums(SummarizedExperiment::assay(sce,'counts')>1)>=10,]
+sce$id<-paste0(sce$stim,sce$ind)
+sce<-muscat::prepSCE(sce,kid='cell',sid='id',gid='stim',drop=TRUE)
+print(dim(sce));saveRDS(sce,file.path(fixture_scratch,'muscat_anchor.rds'))
+pb<-muscat::aggregateData(sce,assay='counts',fun='sum',by=c('cluster_id','sample_id'))
+stopifnot(length(SummarizedExperiment::assayNames(pb))==8L)
+b<-SummarizedExperiment::assay(pb,'B cells');print(b[c('NOC2L','ISG15'),c('ctrl101','stim101')])
+stopifnot(b['NOC2L','ctrl101']==12,b['ISG15','ctrl101']==13,b['ISG15','stim101']==1362)
+res<-muscat::pbDS(pb,verbose=FALSE)
+isg<-res$table[[1]][['B cells']];isg<-isg[isg$gene=='ISG15',];print(isg)
+saveRDS(res,file.path(fixture_scratch,'muscat_vignette_result.rds'))

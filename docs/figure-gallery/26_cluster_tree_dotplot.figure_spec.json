@@ -1,0 +1,94 @@
+{
+  "caption": "Clusters are ordered by hierarchical clustering (Euclidean distance, complete linkage) of their marker expression profiles (avg_exp of the plotted genes); the tree is drawn on the left. Marker gene expression by cluster (6 clusters). Dot size, percentage of cells in the cluster with non-zero expression; colour, mean expression scaled across clusters (z-score, clipped at ±2); values beyond ±2 shown at the limit (8 of 48 dots). Mean expression definition: mean of log-normalised values. Markers describe clusters and are not tests of differences between conditions.",
+  "counts": {
+    "clipped_cells": 8,
+    "dots_drawn": 48
+  },
+  "data": {
+    "cluster_order": [
+      "C5",
+      "C3",
+      "C6",
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "clusters": [
+      "C5",
+      "C3",
+      "C6",
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "genes": [
+      "CD3E",
+      "IL7R",
+      "MS4A1",
+      "CD79A",
+      "LYZ",
+      "CD14",
+      "GNLY",
+      "NKG7"
+    ],
+    "tree": {
+      "heights": [
+        3.435458,
+        3.481373,
+        3.50223,
+        4.256722,
+        4.873416
+      ],
+      "method": "euclidean/complete"
+    }
+  },
+  "definition": {
+    "colour": "z-score of mean expression across clusters",
+    "mean_expression": "log_mean",
+    "mean_expression_text": "mean of log-normalised values"
+  },
+  "encodings": {
+    "colour": {
+      "clipped_end_labels": true,
+      "limits": [
+        -2,
+        2
+      ],
+      "scale": "diverging"
+    },
+    "size": {
+      "limits": [
+        0,
+        100
+      ],
+      "range_mm": [
+        0.3,
+        3.2
+      ]
+    }
+  },
+  "figure_type": "cluster_tree_dotplot",
+  "files": {
+    "pdf": {
+      "content_sha256": "46339c20bc0b9a216cbb89d66cd16506b8ead79cea920873b5c7029cbffec332",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "26_cluster_tree_dotplot.pdf"
+    },
+    "png": {
+      "path": "26_cluster_tree_dotplot.png",
+      "sha256": "0b611bef9e249628eb60b0784b4154e1c6d21591610f595cc094f0f05aec5362"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 55,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "clip": 2
+  },
+  "width_mm": 120
+}

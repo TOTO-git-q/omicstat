@@ -1,0 +1,20 @@
+# requires: scran SingleCellExperiment jsonlite digest ggplot2
+.this<-normalizePath(sub("^--file=","",grep("^--file=",commandArgs(FALSE),value=TRUE)[1]));.module<-dirname(dirname(.this));suite<-dirname(dirname(.module))
+source(file.path(suite,"skills/_shared/scripts/module_kit.R"));source(file.path(.module,"tests/fixtures/make_grun.R"))
+work<-file.path(Sys.getenv("OMICSTAT_TEST_TMP",tempdir()),"scran-markers-smoke");dir.create(work,recursive=TRUE,showWarnings=FALSE)
+check<-function(x,label){stopifnot(isTRUE(x));cat("PASS",label,"\n")}
+sce<-make_grun(suite);check(identical(dim(sce),c(20148L,1728L)),"PACK C Grun dimensions")
+# Execute the upstream QC/cluster smoke recipe on its actual anchor, without duplicating its finished module build.
+up<-file.path(Sys.getenv("OMICSTAT_TEST_TMP",tempdir()),"scran-cluster-smoke/anchor")
+if(!file.exists(file.path(up,"objects/handoff.json")))stop("OS_ACCEPTANCE_EVIDENCE_MISSING: run scran-cluster smoke first.")
+out<-file.path(work,"anchor");log<-file.path(work,"anchor.log")
+entry<-file.path(.module,"scripts/run_scran_markers.R")
+st<-system2("Rscript",c(shQuote(entry),shQuote(c("--from-run",up,"--cluster-col","cluster","--rank-by","mean.AUC","--top-n","3","--outdir",out))),stdout=log,stderr=log)
+if(st!=0)cat(readLines(log),sep="\n");check(st==0,"cluster->markers CLI from-run")
+x<-readRDS(file.path(up,"objects/sce.rds"));native<-readRDS(file.path(out,"objects/markers.rds"));direct<-scran::scoreMarkers(x,groups=factor(x$cluster),lfc=0,assay.type="logcounts",BPPARAM=BiocParallel::SerialParam())
+check(identical(native,direct),"official scoreMarkers direct replay")
+tab<-read.csv(file.path(out,"tables/markers.csv"));check(nrow(tab)==nrow(x)*length(unique(x$cluster)) && "mean.AUC"%in%names(tab),"native full marker shape/columns")
+check(!any(c("P.Value","FDR")%in%names(tab)),"effect summaries have no invented P values")
+paths<-c("tables/markers.csv","tables/marker_plot_data.csv")
+if(Sys.getenv("OMICSTAT_WRITE_GOLDEN")=="1")os_golden_write(.module,out,paths)
+check(os_golden_check(.module,out)$status=="PASS","golden")

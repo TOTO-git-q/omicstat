@@ -1,0 +1,11 @@
+# immunedeconv-infiltration independent S3 request
+S2 only. Offline omicstat-r:2026.09.1, mount repo /omicstat and scratch /scratch:
+`OMICSTAT_TEST_TMP=/scratch Rscript skills/immunedeconv-infiltration/tests/run_smoke_test.R`
+`Rscript tools/make_module_lock.R immunedeconv-infiltration --check`
+
+19 smoke checks passed: pinned Racle rda SHA256 7a3e69c89b16df3986e4d02f3dbba949be3c61321d2173a7356c1ac67ce2bef0; 32467 genes × 4 samples; 11 native cell-type rows; fractions sum to one. Full native official deconvolute quantiseq replay equals wrapper (1e-14 CSV roundtrip tolerance); from-run/spec CSV hashes identical. Website supplemental B-cell rounded row .02,.43,.02,.49 reproduced; this is not treated as an immutable scientific golden authority. Native full-precision table golden generated in container. Registry/defaults, docs and lint passed. Fraction heatmap PNG opened and readable, figure lint clean; n/scale/options/no threshold in caption. Outputs/log: /home/<user>/omic-sol61/build_m4/id-smoke/anchor, id_smoke.log. Locked API/licence/offline probes: probe_id.log, licenses.log, probe_mcp.log.
+
+Only quanTIseq/TIL10 is enabled (quantiseqr GPL-3, signature shipped). EPIC restricted licence and MCP-counter online signature dependency refused; CIBERSORT and DepMap are never used; unknown/unverified backends typed OS_METHOD_UNAVAILABLE. Only explicit non-log human TPM supported; finite/nonnegative/positive totals/upper TPM-sum sanity, input gene IDs and upstream scale checked. Normalization cannot be proved from values alone; require caller provenance. RNA-seq workflow does not offer group inference. Fixed native lsei solver is not selectable through deconvolute's conflicting method argument; extension needs a separately verified workflow. S0 §3 correction records and revised PACK counts preserved.
+
+Proposed router row: `immunedeconv-infiltration | human bulk TPM -> quanTIseq immune cell fractions | skills/immunedeconv-infiltration/scripts/run_immunedeconv_infiltration.R | R | immunedeconv`.
+Publication rules proposal: require source/normalization/HGNC/biology declarations and valid lock; label native cell fractions as estimates, distinguish from score backends, block group-inference claims without separate design/test and block unavailable/licence-restricted methods. No registry installation; awaiting independent S3.

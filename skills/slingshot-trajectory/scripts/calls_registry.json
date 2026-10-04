@@ -1,0 +1,334 @@
+{
+  "module": "slingshot-trajectory",
+  "package_versions": {
+    "slingshot": "2.20.0",
+    "tradeSeq": "1.26.0"
+  },
+  "calls": [
+    {
+      "fn": "slingshot::slingshot",
+      "args": {
+        "data": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "clusterLabels": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "reducedDim": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "locked_method_default": "NULL"
+        },
+        "start.clus": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "locked_method_default": "NULL"
+        },
+        "end.clus": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-end-clus",
+          "locked_method_default": "NULL"
+        },
+        "dist.method": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-dist-method",
+          "locked_method_default": "\"slingshot\""
+        },
+        "use.median": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-use-median",
+          "locked_method_default": "FALSE"
+        },
+        "omega": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-omega",
+          "locked_method_default": "FALSE"
+        },
+        "omega_scale": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-omega-scale",
+          "locked_method_default": "1.5"
+        },
+        "times": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-times",
+          "locked_method_default": "NULL"
+        },
+        "shrink": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-shrink",
+          "locked_method_default": "TRUE"
+        },
+        "extend": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-extend",
+          "locked_method_default": "\"y\""
+        },
+        "reweight": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-reweight",
+          "locked_method_default": "TRUE"
+        },
+        "reassign": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-reassign",
+          "locked_method_default": "TRUE"
+        },
+        "thresh": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-thresh",
+          "locked_method_default": "0.001"
+        },
+        "maxit": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-maxit",
+          "locked_method_default": "15"
+        },
+        "stretch": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-stretch",
+          "locked_method_default": "2"
+        },
+        "approx_points": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-approx-points",
+          "locked_method_default": "NULL"
+        },
+        "smoother": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-smoother",
+          "locked_method_default": "\"smooth.spline\""
+        },
+        "shrink.method": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-shrink-method",
+          "locked_method_default": "\"cosine\""
+        },
+        "allow.breaks": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--sling-allow-breaks",
+          "locked_method_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "tradeSeq::fitGAM",
+      "args": {
+        "counts": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "sds": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "locked_method_default": "NULL"
+        },
+        "pseudotime": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "locked_method_default": "NULL"
+        },
+        "cellWeights": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "locked_method_default": "NULL"
+        },
+        "conditions": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-conditions",
+          "locked_method_default": "NULL"
+        },
+        "U": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-u",
+          "locked_method_default": "NULL"
+        },
+        "genes": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-genes",
+          "locked_method_default": "seq_len(nrow(counts))"
+        },
+        "weights": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-weights",
+          "locked_method_default": "NULL"
+        },
+        "offset": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-offset",
+          "locked_method_default": "NULL"
+        },
+        "nknots": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-nknots",
+          "locked_method_default": "6"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-verbose",
+          "locked_method_default": "TRUE"
+        },
+        "parallel": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-parallel",
+          "locked_method_default": "FALSE"
+        },
+        "BPPARAM": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-bpparam",
+          "locked_method_default": "BiocParallel::bpparam()"
+        },
+        "control": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-control",
+          "locked_method_default": "mgcv::gam.control()"
+        },
+        "sce": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-sce",
+          "locked_method_default": "TRUE"
+        },
+        "family": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-family",
+          "locked_method_default": "\"nb\""
+        },
+        "gcv": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--gam-gcv",
+          "locked_method_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "tradeSeq::associationTest",
+      "args": {
+        "models": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "global": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--association-global",
+          "locked_method_default": "TRUE"
+        },
+        "lineages": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--association-lineages",
+          "locked_method_default": "FALSE"
+        },
+        "l2fc": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--association-l2fc",
+          "locked_method_default": "0"
+        },
+        "nPoints": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--association-npoints",
+          "locked_method_default": "2 * tradeSeq::nknots(models)"
+        },
+        "contrastType": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--association-contrasttype",
+          "locked_method_default": "\"start\""
+        },
+        "inverse": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "flag": "--association-inverse",
+          "locked_method_default": "ifelse(l2fc == 0, \"Chol\", \"eigen\")"
+        }
+      }
+    }
+  ],
+  "accessors": [
+    "slingshot::slingPseudotime",
+    "slingshot::slingCurves"
+  ]
+}

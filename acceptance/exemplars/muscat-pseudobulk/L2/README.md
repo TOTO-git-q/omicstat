@@ -1,0 +1,1 @@
+Official Bioconductor 3.23 multi-sample comparison chapter and the open-access muscat methods paper (Crowell et al., 2020, PMC7705760) are pinned by URL and sha256 in `manifest.tsv`. Full pages are not copied. The OSCA chapter motivates sample-level pseudobulk comparisons; the locked muscat Rd/vignette is authoritative for function arguments.

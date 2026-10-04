@@ -1,0 +1,5 @@
+Stephens M, Carbonetto P, Gerard D, Lu M, Sun L, Willwerscheid J, Xiao
+N (2023). _ashr: Methods for Adaptive Shrinkage, using Empirical
+Bayes_. doi:10.32614/CRAN.package.ashr
+<https://doi.org/10.32614/CRAN.package.ashr>, R package version 2.2-63,
+<https://CRAN.R-project.org/package=ashr>.

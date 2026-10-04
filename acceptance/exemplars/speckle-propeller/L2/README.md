@@ -1,0 +1,1 @@
+Bioconductor 3.23 OSCA differential-abundance chapter and Phipson et al. 2022 propeller method paper (PMC9563678), pinned by URL and sha256. Full pages are not copied; locked speckle Rd/vignette in L1 controls API and printed anchors.

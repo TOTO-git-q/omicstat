@@ -1,0 +1,42 @@
+function	argument	default
+ComBat	dat	
+ComBat	batch	
+ComBat	mod	NULL
+ComBat	par.prior	TRUE
+ComBat	prior.plots	FALSE
+ComBat	mean.only	FALSE
+ComBat	ref.batch	NULL
+ComBat	BPPARAM	bpparam("SerialParam")
+ComBat_seq	counts	
+ComBat_seq	batch	
+ComBat_seq	group	NULL
+ComBat_seq	covar_mod	NULL
+ComBat_seq	full_mod	TRUE
+ComBat_seq	shrink	FALSE
+ComBat_seq	shrink.disp	FALSE
+ComBat_seq	gene.subset.n	NULL
+num.sv	dat	
+num.sv	mod	
+num.sv	method	c("be", "leek")
+num.sv	vfilter	NULL
+num.sv	B	20
+num.sv	seed	NULL
+sva	dat	
+sva	mod	
+sva	mod0	NULL
+sva	n.sv	NULL
+sva	controls	NULL
+sva	method	c("irw", "two-step", "supervised")
+sva	vfilter	NULL
+sva	B	5
+sva	numSVmethod	"be"
+svaseq	dat	
+svaseq	mod	
+svaseq	mod0	NULL
+svaseq	n.sv	NULL
+svaseq	controls	NULL
+svaseq	method	c("irw", "two-step", "supervised")
+svaseq	vfilter	NULL
+svaseq	B	5
+svaseq	numSVmethod	"be"
+svaseq	constant	1

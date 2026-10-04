@@ -1,0 +1,9 @@
+{
+ "note": "Input commits for build_config.py, resolved on 2026-09-29 from origin/<ref>. build/m1m2 is the base of branch infra/omicstat-reference.",
+ "commits": {
+  "build/m1m2": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+  "s0/m3-frontends": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+  "s0/m3b-m4": "4d17ec1031f2b33c73e703441131b7a757379498",
+  "s0/m3c-scverse": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1"
+ }
+}

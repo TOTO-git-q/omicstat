@@ -1,0 +1,171 @@
+{
+  "module": "scran-markers",
+  "module_version": "1.0.0",
+  "package_versions": {
+    "scran": "1.40.0",
+    "BiocParallel": "1.46.0"
+  },
+  "calls": [
+    {
+      "fn": "scran::scoreMarkers",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "groups": {
+          "value": "groups",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "block": {
+          "value": "block",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "lfc": {
+          "value": "a$lfc",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "assay.type": {
+          "value": "\"logcounts\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "groups": "colLabels(x, onAbsence = \"error\")",
+        "...": ""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "groups": "",
+        "...": "",
+        "assay.type": "\"logcounts\""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "groups": "",
+        "block": "NULL",
+        "pairings": "NULL",
+        "lfc": "0",
+        "row.data": "NULL",
+        "full.stats": "FALSE",
+        "subset.row": "NULL",
+        "BPPARAM": "SerialParam()"
+      },
+      "locked_defaults": {
+        "x": "",
+        "...": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {},
+      "locked_defaults": {
+        "stop.on.error": "TRUE",
+        "progressbar": "FALSE",
+        "RNGseed": "NULL",
+        "timeout": "WORKER_TIMEOUT",
+        "log": "FALSE",
+        "threshold": "\"INFO\"",
+        "logdir": "NA_character_",
+        "resultdir": "NA_character_",
+        "jobname": "\"BPJOB\"",
+        "force.GC": "FALSE"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "scran::findMarkers",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "groups": {
+          "value": "groups",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "block": {
+          "value": "block",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "lfc": {
+          "value": "a$lfc",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "test.type": {
+          "value": "a[[\"test-type\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "direction": {
+          "value": "a$direction",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "pval.type": {
+          "value": "a[[\"pval-type\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "assay.type": {
+          "value": "\"logcounts\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "groups": "colLabels(x, onAbsence = \"error\")",
+        "...": ""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"logcounts\""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "groups": "",
+        "test.type": "c(\"t\", \"wilcox\", \"binom\")",
+        "...": "",
+        "pval.type": "c(\"any\", \"some\", \"all\")",
+        "min.prop": "NULL",
+        "log.p": "FALSE",
+        "full.stats": "FALSE",
+        "sorted": "TRUE",
+        "row.data": "NULL",
+        "add.summary": "FALSE",
+        "BPPARAM": "SerialParam()"
+      },
+      "locked_defaults": {
+        "x": "",
+        "...": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    }
+  ],
+  "accessors": []
+}

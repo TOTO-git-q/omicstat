@@ -1,0 +1,344 @@
+{
+  "module": "batchelor-integrate",
+  "module_version": "1.0.0",
+  "package_versions": {
+    "scran": "1.40.0",
+    "BiocParallel": "1.46.0",
+    "batchelor": "1.28.0",
+    "scater": "1.40.2",
+    "bluster": "1.22.0"
+  },
+  "calls": [
+    {
+      "fn": "scran::modelGeneVar",
+      "args": {
+        "x": {
+          "value": "x",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"logcounts\""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"logcounts\""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "block": "NULL",
+        "design": "NULL",
+        "subset.row": "NULL",
+        "subset.fit": "NULL",
+        "...": "",
+        "equiweight": "TRUE",
+        "method": "\"fisher\"",
+        "BPPARAM": "SerialParam()"
+      },
+      "locked_defaults": {
+        "x": "",
+        "...": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {},
+      "locked_defaults": {
+        "stop.on.error": "TRUE",
+        "progressbar": "FALSE",
+        "RNGseed": "NULL",
+        "timeout": "WORKER_TIMEOUT",
+        "log": "FALSE",
+        "threshold": "\"INFO\"",
+        "logdir": "NA_character_",
+        "resultdir": "NA_character_",
+        "jobname": "\"BPJOB\"",
+        "force.GC": "FALSE"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "scran::getTopHVGs",
+      "args": {
+        "stats": {
+          "value": "combined",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "n": {
+          "value": "a[[\"n-hvg\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "NULL"
+        }
+      },
+      "locked_defaults": {
+        "stats": "",
+        "var.field": "\"bio\"",
+        "n": "NULL",
+        "prop": "NULL",
+        "var.threshold": "0",
+        "fdr.field": "\"FDR\"",
+        "fdr.threshold": "NULL",
+        "row.names": "!is.null(rownames(stats))"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "batchelor::fastMNN",
+      "args": {
+        "batch": {
+          "value": "batch",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "NULL"
+        },
+        "subset.row": {
+          "value": "hvg",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "NULL"
+        },
+        "d": {
+          "value": "a[[\"n-pcs\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "50"
+        },
+        "k": {
+          "value": "a[[\"mnn-k\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "20"
+        },
+        "cos.norm": {
+          "value": "a[[\"cos-norm\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "TRUE"
+        },
+        "ndist": {
+          "value": "a$ndist",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "3"
+        },
+        "auto.merge": {
+          "value": "a[[\"auto-merge\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "FALSE"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "SerialParam()"
+        }
+      },
+      "locked_defaults": {
+        "...": "",
+        "batch": "NULL",
+        "k": "20",
+        "prop.k": "NULL",
+        "restrict": "NULL",
+        "cos.norm": "TRUE",
+        "ndist": "3",
+        "d": "50",
+        "deferred": "TRUE",
+        "weights": "NULL",
+        "get.variance": "FALSE",
+        "merge.order": "NULL",
+        "auto.merge": "FALSE",
+        "min.batch.skip": "0",
+        "subset.row": "NULL",
+        "correct.all": "FALSE",
+        "assay.type": "\"logcounts\"",
+        "BSPARAM": "IrlbaParam()",
+        "BNPARAM": "KmknnParam()",
+        "BPPARAM": "SerialParam()"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "scater::runPCA",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "subset_row": {
+          "value": "hvg",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "ncomponents": {
+          "value": "a[[\"n-pcs\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "...": "",
+        "altexp": "NULL",
+        "name": "\"PCA\""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "rank": "",
+        "center": "TRUE",
+        "scale": "FALSE",
+        "get.rotation": "TRUE",
+        "get.pcs": "TRUE",
+        "...": ""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "rank": "",
+        "center": "TRUE",
+        "scale": "FALSE",
+        "get.rotation": "TRUE",
+        "get.pcs": "TRUE",
+        "...": ""
+      },
+      "locked_defaults": {
+        "x": "",
+        "...": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "scater::runUMAP",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "dimred": {
+          "value": "\"PCA\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "n_dimred": {
+          "value": "a[[\"n-pcs\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "n_neighbors": {
+          "value": "a[[\"umap-neighbors\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "min_dist": {
+          "value": "a[[\"umap-min-dist\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "n_threads": {
+          "value": "1",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "locked_defaults": {
+        "x": "",
+        "...": "",
+        "altexp": "NULL",
+        "name": "\"UMAP\""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "bluster::neighborPurity",
+      "args": {
+        "x": {
+          "value": "corrected",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "clusters": {
+          "value": "batch",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "k": {
+          "value": "a[[\"mixing-k\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "50"
+        }
+      },
+      "locked_defaults": {
+        "x": "",
+        "clusters": "",
+        "k": "50",
+        "weighted": "TRUE",
+        "BNPARAM": "KmknnParam()",
+        "num.threads": "1",
+        "BPPARAM": "NULL"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "batchelor::multiBatchNorm",
+      "args": [],
+      "dispatch": "do.call; native supplementary CLI JSON",
+      "locked_defaults": {
+        "...": "",
+        "batch": "NULL",
+        "norm.args": "list()",
+        "min.mean": "1",
+        "subset.row": "NULL",
+        "normalize.all": "FALSE",
+        "preserve.single": "TRUE",
+        "assay.type": "\"counts\"",
+        "BPPARAM": "SerialParam()"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "scran::combineVar",
+      "args": [],
+      "dispatch": "do.call; native supplementary CLI JSON",
+      "locked_defaults": {
+        "...": "",
+        "method": "\"fisher\"",
+        "pval.field": "\"p.value\"",
+        "other.fields": "NULL",
+        "equiweight": "TRUE",
+        "ncells": "NULL"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    }
+  ],
+  "accessors": []
+}

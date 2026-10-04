@@ -1,0 +1,9 @@
+function	argument	default
+fetchReference	name	
+fetchReference	version	
+fetchReference	path	NA
+fetchReference	package	"celldex"
+fetchReference	cache	cacheDirectory()
+fetchReference	overwrite	FALSE
+fetchReference	realize.assays	FALSE
+fetchReference	...	

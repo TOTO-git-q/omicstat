@@ -1,0 +1,195 @@
+{
+  "module": "clusterprofiler-compare",
+  "note": "formals read in locked container; compareCluster forwards named enrichGO arguments through ..., which appear <absent> in its own formals.",
+  "package_versions": {
+    "clusterProfiler": "4.20.0"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--database": "GO",
+    "--top-n-per-group": 5,
+    "--journal": "nature"
+  },
+  "calls": [
+    {
+      "fn": "clusterProfiler::compareCluster",
+      "args": {
+        "geneClusters": {
+          "value": "named selected gene lists",
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": ""
+        },
+        "fun": {
+          "value": "enrichGO",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"enrichGO\""
+        },
+        "data": {
+          "value": "",
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "\"\""
+        },
+        "source_from": {
+          "value": null,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "NULL"
+        },
+        "OrgDb": {
+          "value": "org.Hs.eg.db 3.23.1",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "<absent>"
+        },
+        "keyType": {
+          "value": "ENTREZID",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "<absent>",
+          "flag": "--key-type"
+        },
+        "ont": {
+          "value": "BP",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "<absent>",
+          "flag": "--ontology"
+        },
+        "pool": {
+          "value": false,
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "<absent>"
+        },
+        "universe": {
+          "value": "shared explicit eligible background",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "<absent>"
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "<absent>"
+        },
+        "qvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "<absent>"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "<absent>"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "<absent>",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "<absent>",
+          "flag": "--max-size"
+        },
+        "readable": {
+          "value": false,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "D-C3",
+          "function_default": "<absent>"
+        }
+      }
+    },
+    {
+      "fn": "clusterProfiler::enrichGO",
+      "args": {
+        "gene": {
+          "value": "one named selected list",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": ""
+        },
+        "OrgDb": {
+          "value": "org.Hs.eg.db 3.23.1",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": ""
+        },
+        "keyType": {
+          "value": "ENTREZID",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"ENTREZID\"",
+          "flag": "--key-type"
+        },
+        "ont": {
+          "value": "BP",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"MF\"",
+          "flag": "--ontology"
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note",
+          "pack": "D-O5",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "\"BH\""
+        },
+        "universe": {
+          "value": "that list’s explicit eligible universe",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": ""
+        },
+        "qvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note",
+          "pack": "D-O5",
+          "function_default": "0.2"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "10",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "500",
+          "flag": "--max-size"
+        },
+        "readable": {
+          "value": false,
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "FALSE"
+        },
+        "pool": {
+          "value": false,
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        }
+      }
+    }
+  ]
+}

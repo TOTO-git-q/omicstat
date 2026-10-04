@@ -1,0 +1,62 @@
+[
+  {
+    "pmid": "36368318",
+    "pmcid": "PMC9767679",
+    "parameter": "input_scale",
+    "recorded_value": "not reported",
+    "ecosystem": "n/a",
+    "snippet_check": "EMPTY",
+    "result": "fail",
+    "failure": {
+      "pmcid": "PMC9767679",
+      "recorded": "not reported",
+      "expected": "TPM (TCGA LUAD/LUSC from GDC)",
+      "reason": "\"Bulk RNA-seq primary tumor samples samples of TCGA LUAD and LUSC were retrieved as TPM from the GDC portal\"; EPIC via immunedeconv is run on these TCGA samples."
+    }
+  },
+  {
+    "pmid": "32647202",
+    "pmcid": "PMC7347884",
+    "parameter": "_applies",
+    "recorded_value": "yes",
+    "ecosystem": "n/a",
+    "snippet_check": "NOT_FOUND",
+    "result": "fail",
+    "failure": {
+      "pmcid": "PMC7347884",
+      "recorded": "yes",
+      "expected": "yes (decision right, snippet not verbatim)",
+      "reason": "collect.py check NOT_FOUND: the snippet reads \"non- immune\" with an inserted space; the Methods read \"non-immune\"."
+    }
+  },
+  {
+    "pmid": "32647202",
+    "pmcid": "PMC7347884",
+    "parameter": "input_scale",
+    "recorded_value": "not reported",
+    "ecosystem": "n/a",
+    "snippet_check": "EMPTY",
+    "result": "fail",
+    "failure": {
+      "pmcid": "PMC7347884",
+      "recorded": "not reported",
+      "expected": "TPM (TCGA FPKM and CCLE RPKM converted to TPM)",
+      "reason": "\"FPKM data by gene were converted to transcripts per kilobase million (TPM)\" with the formula given, in the expression-data section feeding immunedeconv."
+    }
+  },
+  {
+    "pmid": "35810190",
+    "pmcid": "PMC9271073",
+    "parameter": "input_scale",
+    "recorded_value": "not reported",
+    "ecosystem": "n/a",
+    "snippet_check": "EMPTY",
+    "result": "fail",
+    "failure": {
+      "pmcid": "PMC9271073",
+      "recorded": "not reported",
+      "expected": "TPM or VST-normalized counts",
+      "reason": "\"Immune, stromal and tumor composition of clinical samples was inferred from transcriptomic data (TPM or VST-normalized counts) using MCP-counter ... Additional deconvolution methods (EPIC, quanTIseq, TIMER) were implemented using R package 'immunedeconv'\"."
+    }
+  }
+]

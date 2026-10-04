@@ -1,0 +1,40 @@
+{
+  "caption": "Per-cell quality-control metrics by sample (6 samples, 3,000 cells before filtering; n = 477–518 cells per sample). Violins are scaled to equal width; horizontal line inside each violin, median; dashed lines, filtering thresholds; Genes per cell and UMIs per cell on a log10 axis.",
+  "counts": {
+    "cells_per_sample": {
+      "P1": 491,
+      "P2": 518,
+      "P3": 496,
+      "P4": 513,
+      "P5": 505,
+      "P6": 477
+    }
+  },
+  "data": [],
+  "encodings": [],
+  "figure_type": "qc_violin",
+  "files": {
+    "pdf": {
+      "content_sha256": "7566a5f21be864324d39f361090ef823309ce12f994193cef44b7f502f984e4e",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "16_qc_violin.pdf"
+    },
+    "png": {
+      "path": "16_qc_violin.png",
+      "sha256": "db8056c9eaf2db85092fb3fd538e869b6b9c70e70a60aa234732ca49fc4208b3"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 115,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "nFeature": [200, 5000],
+    "percent_mt": 10
+  },
+  "width_mm": 89
+}

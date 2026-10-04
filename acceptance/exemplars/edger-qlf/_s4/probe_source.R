@@ -1,0 +1,10 @@
+# S4 probe: sources of the locked plotting/fit functions and the objects they read.
+suppressPackageStartupMessages({library(edgeR); library(limma)})
+cat("edgeR", as.character(packageVersion("edgeR")), "limma", as.character(packageVersion("limma")), "\n")
+cat("==== edgeR::plotQLDisp\n"); print(edgeR::plotQLDisp)
+cat("==== edgeR:::glmQLFit.default\n"); print(edgeR:::glmQLFit.default)
+cat("==== edgeR:::plotMDS.DGEList\n"); print(edgeR:::plotMDS.DGEList)
+cat("==== limma formals plotMDS.default\n"); print(formals(limma:::plotMDS.default))
+cat("==== estimateDisp.DGEList AveLogCPM lines\n")
+src <- deparse(edgeR:::estimateDisp.DGEList); print(grep("AveLogCPM|aveLogCPM", src, value = TRUE))
+cat("==== aveLogCPM.DGEList\n"); print(edgeR:::aveLogCPM.DGEList)

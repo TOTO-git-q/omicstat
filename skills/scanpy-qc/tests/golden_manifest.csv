@@ -1,0 +1,8 @@
+# env: container|Python 3.12.13|py_env 2026.09.1|linux-x86_64
+path,sha256,tier,exempt_fields
+tests/golden/acceptance.json,b44eb038309dfd43d7385a66aea8e16de8627943237594409a95c3a18826c036,container,
+tests/golden/cell_qc.csv,085efe5845a44489c6d09b0bc1a5c95c5c73bb1984493761f9802f99b09a6fa5,container,
+tests/golden/filter_flow.csv,8dacb140638e7609e78188f4a9617e75a288503bd11e891add3349e3399656f6,container,
+tests/golden/gene_qc.csv,9eb5b446e8fe648a2b87075d6c86b4f87d48ed01e38ac19865297ab4ffd08384,container,
+tests/golden/numeric.npz,8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85,container,
+tests/golden/tolerance_policy.json,ee1e7ceac58c24350ffd6d378d2e10e18a4df25aa941cf10330a2ba708d89054,container,

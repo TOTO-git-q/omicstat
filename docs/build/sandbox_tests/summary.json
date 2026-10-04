@@ -1,0 +1,122 @@
+[
+  {
+    "name": "ospy",
+    "outcome": "passed_with_skip",
+    "detail": "Shared tests passed; scvi-dependent seeding explicitly skipped.",
+    "log": "docs/build/sandbox_tests/ospy.log"
+  },
+  {
+    "name": "check_calls",
+    "outcome": "passed",
+    "detail": "AST registry/default-checker unit tests passed.",
+    "log": "docs/build/sandbox_tests/check_calls.log"
+  },
+  {
+    "name": "new_module_py",
+    "outcome": "passed",
+    "detail": "Python scaffolder and existing R scaffolder regression checks passed.",
+    "log": "docs/build/sandbox_tests/new_module_py.log"
+  },
+  {
+    "name": "env_config",
+    "outcome": "passed",
+    "detail": "Environment configuration checks passed; no image was started.",
+    "log": "docs/build/sandbox_tests/env_config.log"
+  },
+  {
+    "name": "py_env",
+    "outcome": "passed",
+    "detail": "Pinned Python configuration consistency passed; packages not installed.",
+    "log": "docs/build/sandbox_tests/py_env.log"
+  },
+  {
+    "name": "publication_rules",
+    "outcome": "passed",
+    "detail": "21 module records and 28 unique rule IDs validate.",
+    "log": "docs/build/sandbox_tests/publication_rules.log"
+  },
+  {
+    "name": "package_identity",
+    "outcome": "passed",
+    "detail": "3 tests passed after setting the required isolated test directory.",
+    "log": "docs/build/sandbox_tests/package_identity.log"
+  },
+  {
+    "name": "publication",
+    "outcome": "blocked_missing_dependency",
+    "detail": "Cannot import the required mcp SDK.",
+    "log": "docs/build/sandbox_tests/publication.log"
+  },
+  {
+    "name": "mcp_client",
+    "outcome": "blocked_missing_dependency",
+    "detail": "Cannot import the required mcp SDK; no real stdio acceptance.",
+    "log": "docs/build/sandbox_tests/mcp_client.log"
+  },
+  {
+    "name": "reference_config",
+    "outcome": "failed_missing_history",
+    "detail": "Synthetic input-snapshot git history lacks the overlay source commits.",
+    "log": "docs/build/sandbox_tests/reference_config.log"
+  },
+  {
+    "name": "reference_config_archive",
+    "outcome": "passed_with_skip",
+    "detail": "12 tests: 11 passed; history rebuild check explicitly skipped in release archive.",
+    "log": "docs/build/sandbox_tests/reference_config_archive.log"
+  },
+  {
+    "name": "reference_core",
+    "outcome": "blocked_missing_dependency",
+    "detail": "117 tests reported, with 4 errors caused by missing mcp SDK/import aftermath.",
+    "log": "docs/build/sandbox_tests/reference_core.log"
+  },
+  {
+    "name": "tools",
+    "outcome": "passed_with_skip",
+    "detail": "21 tests: 20 passed; one R-dependent test skipped.",
+    "log": "docs/build/sandbox_tests/tools.log"
+  },
+  {
+    "name": "build_contracts",
+    "outcome": "passed",
+    "detail": "12 source/launcher/inventory/seal tests passed; no actual Docker or R run.",
+    "log": "docs/build/sandbox_tests/build_contracts.log"
+  },
+  {
+    "name": "sc_contracts",
+    "outcome": "passed",
+    "detail": "32 pytest tests passed; pure Python/data-contract tests only.",
+    "log": "docs/build/sandbox_tests/sc_contracts.log"
+  },
+  {
+    "name": "scanpy-qc_smoke",
+    "outcome": "static_pass_numerical_skipped",
+    "detail": "Calls/docs/defaults/typed argument tests passed; locked numerical anchor/model/golden tests skipped.",
+    "log": "docs/build/sandbox_tests/scanpy-qc_smoke.log"
+  },
+  {
+    "name": "scanpy-cluster_smoke",
+    "outcome": "static_pass_numerical_skipped",
+    "detail": "Calls/docs/defaults/typed argument tests passed; locked numerical anchor/model/golden tests skipped.",
+    "log": "docs/build/sandbox_tests/scanpy-cluster_smoke.log"
+  },
+  {
+    "name": "scanpy-markers_smoke",
+    "outcome": "static_pass_numerical_skipped",
+    "detail": "Calls/docs/defaults/typed argument tests passed; locked numerical anchor/model/golden tests skipped.",
+    "log": "docs/build/sandbox_tests/scanpy-markers_smoke.log"
+  },
+  {
+    "name": "scvi-integrate_smoke",
+    "outcome": "static_pass_numerical_skipped",
+    "detail": "Calls/docs/defaults/typed argument tests passed; locked numerical anchor/model/golden tests skipped.",
+    "log": "docs/build/sandbox_tests/scvi-integrate_smoke.log"
+  },
+  {
+    "name": "scanvi-annotate_smoke",
+    "outcome": "static_pass_numerical_skipped",
+    "detail": "Calls/docs/defaults/typed argument tests passed; locked numerical anchor/model/golden tests skipped.",
+    "log": "docs/build/sandbox_tests/scanvi-annotate_smoke.log"
+  }
+]

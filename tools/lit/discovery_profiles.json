@@ -1,0 +1,978 @@
+{
+ "schema": "omicstat.lit.discovery-profiles.v1",
+ "note": "One profile per module (ENGINEERING_PLAN 2.2 step 2). epmc_query uses Europe PMC section search (METHODS:) with the package name AND a feature term of the analysis part; signal_regex must hit inside a Methods region of the open-access full text; parameters list the PACK D rows whose values are counted for section V, each with CANDIDATE regexes -- the extractor confirms or corrects every candidate from the text and writes 'not reported' when the paper does not state the value (no inference).",
+ "min_year": 2020,
+ "common_filter": "HAS_FT:Y AND OPEN_ACCESS:Y AND SRC:MED AND NOT PUB_TYPE:\"review\" AND NOT PUB_TYPE:\"preprint\" AND NOT PUB_TYPE:\"retracted publication\" AND FIRST_PDATE:[{min_year}-01-01 TO {today}]",
+ "profiles": [
+  {
+   "module": "deseq2-wald",
+   "epmc_query": "METHODS:\"DESeq2\" AND (METHODS:\"differentially expressed\" OR METHODS:\"differential expression\" OR METHODS:\"Wald\" OR METHODS:\"lfcShrink\")",
+   "signal_regex": "DESeq2",
+   "require_regex": "differential(?:ly)? express|Wald|lfcShrink|fold[- ]change",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bpseudo-?bulk\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "parameters": [
+    {
+     "parameter": "padj_cutoff",
+     "pack": "D-08",
+     "question": "Adjusted P (FDR) cutoff used to call genes differentially expressed",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "lfc_filter",
+     "pack": "D-07",
+     "question": "Fold-change criterion applied AFTER the test (post hoc filter), e.g. |log2FC| > 1",
+     "regex": [
+      "(?:\\|\\s*)?log\\s*2\\s*[- ]?\\(?\\s*fold[- ]?change\\s*\\)?(?:\\s*\\|)?\\s*(?:\\(\\s*\\|?\\s*log2FC\\s*\\|?\\s*\\)\\s*)?(?:>|≥|>=|of at least|greater than|above|of more than|exceeding)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?:\\|\\s*)?(?:log2FC|LFC|log2 FC)(?:\\s*\\|)?\\s*(?:>|≥|>=)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?<!log2 )(?<!log2)fold[- ]change\\s*(?:>|≥|>=|of at least|greater than|of more than)\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "lfc_threshold_test",
+     "pack": "D-07",
+     "question": "Fold-change threshold built into the test (results(lfcThreshold = ...))",
+     "regex": [
+      "lfcThreshold\\s*(?:=|of|set to)?\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "shrinkage",
+     "pack": "D-09",
+     "question": "Log2 fold-change shrinkage estimator (apeglm / ashr / normal / none)",
+     "regex": [
+      "(?P<value>apeglm|ashr|lfcShrink|normal prior|betaPrior)"
+     ]
+    },
+    {
+     "parameter": "prefilter",
+     "pack": "D-11",
+     "question": "Low-count pre-filter rule (count threshold x number of samples)",
+     "regex": [
+      "(?:at least|≥|>=|more than|minimum of|greater than)\\s*(?P<value>\\d+)\\s*(?:raw |total |normali[sz]ed )?(?:reads|counts)",
+      "(?:rowSums|row sums?)[^.;]{0,40}?(?:>=|≥|>)\\s*(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "test",
+     "pack": "D-02",
+     "question": "Test used (Wald vs likelihood ratio)",
+     "regex": [
+      "(?P<value>Wald test|Wald statistic|likelihood[- ]ratio test|\\bLRT\\b)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-08",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bIHW\\b|Storey)"
+     ]
+    },
+    {
+     "parameter": "design",
+     "pack": "D-01",
+     "question": "Design formula / covariates adjusted for (e.g. ~ batch + condition)",
+     "regex": [
+      "(?:design(?: formula)?|model)\\s*(?:=|of|:|was)?\\s*(?P<value>~\\s*[A-Za-z0-9_.]+(?:\\s*[+*:]\\s*[A-Za-z0-9_.]+)*)"
+     ]
+    },
+    {
+     "parameter": "deseq2_version",
+     "pack": "X",
+     "question": "DESeq2 version reported",
+     "regex": [
+      "DESeq2\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>1\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "deseq2-qc",
+   "epmc_query": "METHODS:\"DESeq2\" AND (METHODS:\"variance stabilizing\" OR METHODS:\"variance-stabilizing\" OR METHODS:\"vst\" OR METHODS:\"rlog\" OR METHODS:\"regularized log\")",
+   "signal_regex": "(?:variance[- ]stabili[sz]\\w*|\\bvst\\b|varianceStabilizingTransformation|\\brlog\\b|regularized[- ]log\\w*)[^.;]{0,250}?(?:principal[- ]component|\\bPCA\\b|sample[- ](?:to[- ]sample )?distance|sample clustering|hierarchical clustering of (?:the )?samples|outlier|quality control|\\bQC\\b)|(?:principal[- ]component|\\bPCA\\b|sample[- ](?:to[- ]sample )?distance|outlier)[^.;]{0,250}?(?:variance[- ]stabili[sz]\\w*|\\bvst\\b|\\brlog\\b)",
+   "require_regex": "DESeq2",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b|FindVariableFeatures",
+   "parameters": [
+    {
+     "parameter": "transform",
+     "pack": "D-QC1",
+     "question": "Transformation used for QC / visualisation (vst or rlog)",
+     "regex": [
+      "(?P<value>variance[- ]stabili[sz]\\w* transform\\w*|\\bvst\\b|varianceStabilizingTransformation|\\brlog\\b|regularized[- ]log(?:arithm)?)"
+     ]
+    },
+    {
+     "parameter": "blind",
+     "pack": "D-QC2",
+     "question": "blind = TRUE / FALSE for the transformation",
+     "regex": [
+      "blind\\s*=\\s*(?P<value>TRUE|FALSE|T\\b|F\\b)",
+      "(?P<value>blind(?:ed)? to (?:the )?(?:experimental )?design|not blind)"
+     ]
+    },
+    {
+     "parameter": "pca_ntop",
+     "pack": "D-QC3",
+     "question": "Number of most variable genes used for PCA",
+     "regex": [
+      "(?:top|most variable)\\s*(?P<value>\\d{2,5})\\s*(?:most )?(?:variable )?genes",
+      "ntop\\s*=\\s*(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "sample_distance",
+     "pack": "D-QC4",
+     "question": "Sample distance used for clustering / heatmap",
+     "regex": [
+      "(?P<value>Euclidean distance|Poisson distance|Pearson correlation|Spearman correlation|PoiClaClu)"
+     ]
+    },
+    {
+     "parameter": "outlier_rule",
+     "pack": "D-QC5",
+     "question": "Rule used to call / remove outlier samples",
+     "regex": [
+      "(?P<value>outlier[^.;]{0,80})"
+     ]
+    },
+    {
+     "parameter": "prefilter",
+     "pack": "D-11",
+     "question": "Low-count pre-filter rule (count threshold x number of samples)",
+     "regex": [
+      "(?:at least|≥|>=|more than|minimum of|greater than)\\s*(?P<value>\\d+)\\s*(?:raw |total |normali[sz]ed )?(?:reads|counts)",
+      "(?:rowSums|row sums?)[^.;]{0,40}?(?:>=|≥|>)\\s*(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "deseq2_version",
+     "pack": "X",
+     "question": "DESeq2 version reported",
+     "regex": [
+      "DESeq2\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>1\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ],
+   "note": "Signal tightened 2026-09-27 after extraction: the transformation must share a sentence with a sample-level QC use (PCA, sample distances, outliers); 10 of 30 first-round articles used vst/rlog for other purposes."
+  },
+  {
+   "module": "deseq2-lrt",
+   "epmc_query": "METHODS:\"DESeq2\" AND (METHODS:\"likelihood ratio test\" OR METHODS:\"likelihood-ratio test\" OR METHODS:\"LRT\")",
+   "signal_regex": "DESeq2[^.;]{0,250}?(?:likelihood[- ]ratio test|\\bLRT\\b|test\\s*=\\s*[\"']LRT)|(?:likelihood[- ]ratio test|\\bLRT\\b)[^.;]{0,250}?DESeq2|nbinomLRT",
+   "require_regex": "DESeq2",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b|\\bCox\\b|\\bPAML\\b|codeml|\\blme4\\b|\\bglmer\\b",
+   "parameters": [
+    {
+     "parameter": "reduced_model",
+     "pack": "D-L1",
+     "question": "Reduced model of the LRT (e.g. reduced = ~ batch)",
+     "regex": [
+      "reduced\\s*(?:model|design|formula)?\\s*(?:=|of|:)?\\s*(?P<value>~\\s*[A-Za-z0-9_.]+(?:\\s*[+*:]\\s*[A-Za-z0-9_.]+)*|~\\s*1)"
+     ]
+    },
+    {
+     "parameter": "full_model",
+     "pack": "D-L2",
+     "question": "Full model / design of the LRT",
+     "regex": [
+      "full\\s*(?:model|design|formula)?\\s*(?:=|of|:)?\\s*(?P<value>~\\s*[A-Za-z0-9_.]+(?:\\s*[+*:]\\s*[A-Za-z0-9_.]+)*)"
+     ]
+    },
+    {
+     "parameter": "design_type",
+     "pack": "D-L3",
+     "question": "Kind of comparison (time course / multi-group / interaction)",
+     "regex": [
+      "(?P<value>time[- ]course|time series|interaction term|multi(?:ple)?[- ]group|across (?:all )?(?:time ?points|groups|conditions))"
+     ]
+    },
+    {
+     "parameter": "padj_cutoff",
+     "pack": "D-08",
+     "question": "Adjusted P (FDR) cutoff used to call genes differentially expressed",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-08",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bIHW\\b|Storey)"
+     ]
+    },
+    {
+     "parameter": "lfc_filter",
+     "pack": "D-07",
+     "question": "Fold-change criterion applied AFTER the test (post hoc filter), e.g. |log2FC| > 1",
+     "regex": [
+      "(?:\\|\\s*)?log\\s*2\\s*[- ]?\\(?\\s*fold[- ]?change\\s*\\)?(?:\\s*\\|)?\\s*(?:\\(\\s*\\|?\\s*log2FC\\s*\\|?\\s*\\)\\s*)?(?:>|≥|>=|of at least|greater than|above|of more than|exceeding)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?:\\|\\s*)?(?:log2FC|LFC|log2 FC)(?:\\s*\\|)?\\s*(?:>|≥|>=)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?<!log2 )(?<!log2)fold[- ]change\\s*(?:>|≥|>=|of at least|greater than|of more than)\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "pattern_clustering",
+     "pack": "D-L4",
+     "question": "How gene patterns were clustered (degPatterns, k-means, ...)",
+     "regex": [
+      "(?P<value>degPatterns|DEGreport|k-means|hierarchical clustering|Mfuzz|fuzzy c-means)"
+     ]
+    },
+    {
+     "parameter": "deseq2_version",
+     "pack": "X",
+     "question": "DESeq2 version reported",
+     "regex": [
+      "DESeq2\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>1\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ],
+   "note": "Signal tightened 2026-09-27 after extraction: DESeq2 and the LRT must share a sentence (17 of 30 first-round articles used an unrelated LRT)."
+  },
+  {
+   "module": "edger-qlf",
+   "epmc_query": "METHODS:\"edgeR\" AND (METHODS:\"quasi-likelihood\" OR METHODS:\"glmQLFit\" OR METHODS:\"glmQLFTest\" OR METHODS:\"QL F-test\")",
+   "signal_regex": "quasi[- ]likelihood|glmQLF(?:it|Test)|QL F[- ]test",
+   "require_regex": "edgeR",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "parameters": [
+    {
+     "parameter": "filter",
+     "pack": "D-E1",
+     "question": "Low-expression filter (filterByExpr, CPM threshold)",
+     "regex": [
+      "(?P<value>filterByExpr)",
+      "(?P<value>CPM\\s*(?:>|≥|>=|of at least)\\s*\\d+(?:\\.\\d+)?[^.;]{0,40})"
+     ]
+    },
+    {
+     "parameter": "normalization",
+     "pack": "D-E2",
+     "question": "Normalization (TMM, upper quartile, ...)",
+     "regex": [
+      "(?P<value>\\bTMM\\b|trimmed mean of M[- ]values|upper[- ]quartile|calcNormFactors|normLibSizes)"
+     ]
+    },
+    {
+     "parameter": "robust",
+     "pack": "D-E3",
+     "question": "robust = TRUE in estimateDisp / glmQLFit",
+     "regex": [
+      "robust\\s*=\\s*(?P<value>TRUE|FALSE)",
+      "(?P<value>robust(?:ly)? (?:estimat|empirical))"
+     ]
+    },
+    {
+     "parameter": "treat",
+     "pack": "D-E4",
+     "question": "glmTreat fold-change threshold (test-based)",
+     "regex": [
+      "glmTreat[^.;]{0,60}?(?:lfc|log2 ?FC|fold[- ]change)\\s*(?:=|of|threshold)?\\s*(?P<value>[\\d.]+)",
+      "(?P<value>glmTreat)"
+     ]
+    },
+    {
+     "parameter": "padj_cutoff",
+     "pack": "D-08",
+     "question": "Adjusted P (FDR) cutoff used to call genes differentially expressed",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-08",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bIHW\\b|Storey)"
+     ]
+    },
+    {
+     "parameter": "lfc_filter",
+     "pack": "D-07",
+     "question": "Fold-change criterion applied AFTER the test (post hoc filter), e.g. |log2FC| > 1",
+     "regex": [
+      "(?:\\|\\s*)?log\\s*2\\s*[- ]?\\(?\\s*fold[- ]?change\\s*\\)?(?:\\s*\\|)?\\s*(?:\\(\\s*\\|?\\s*log2FC\\s*\\|?\\s*\\)\\s*)?(?:>|≥|>=|of at least|greater than|above|of more than|exceeding)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?:\\|\\s*)?(?:log2FC|LFC|log2 FC)(?:\\s*\\|)?\\s*(?:>|≥|>=)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?<!log2 )(?<!log2)fold[- ]change\\s*(?:>|≥|>=|of at least|greater than|of more than)\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "edger_version",
+     "pack": "X",
+     "question": "edgeR version reported",
+     "regex": [
+      "edgeR\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>[34]\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "limma-voom",
+   "epmc_query": "METHODS:\"voom\" AND METHODS:\"limma\"",
+   "signal_regex": "\\bvoom(?:WithQualityWeights)?\\b",
+   "require_regex": "limma",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "parameters": [
+    {
+     "parameter": "voom_variant",
+     "pack": "D-V1",
+     "question": "voom or voomWithQualityWeights (sample weights)",
+     "regex": [
+      "(?P<value>voomWithQualityWeights|voom with (?:sample )?quality weights|arrayWeights|\\bvoom\\b)"
+     ]
+    },
+    {
+     "parameter": "filter",
+     "pack": "D-V2",
+     "question": "Low-expression filter",
+     "regex": [
+      "(?P<value>filterByExpr)",
+      "(?P<value>CPM\\s*(?:>|≥|>=|of at least)\\s*\\d+(?:\\.\\d+)?[^.;]{0,40})"
+     ]
+    },
+    {
+     "parameter": "normalization",
+     "pack": "D-V3",
+     "question": "Normalization before voom (TMM, ...)",
+     "regex": [
+      "(?P<value>\\bTMM\\b|trimmed mean of M[- ]values|upper[- ]quartile|calcNormFactors|normLibSizes|quantile normali[sz]ation)"
+     ]
+    },
+    {
+     "parameter": "ebayes",
+     "pack": "D-V4",
+     "question": "eBayes options (robust, trend) or treat",
+     "regex": [
+      "eBayes\\s*\\([^)]*?(?P<value>robust\\s*=\\s*TRUE|trend\\s*=\\s*TRUE)",
+      "(?P<value>\\btreat\\b\\s*\\(|treat function|TREAT)"
+     ]
+    },
+    {
+     "parameter": "padj_cutoff",
+     "pack": "D-08",
+     "question": "Adjusted P (FDR) cutoff used to call genes differentially expressed",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-08",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bIHW\\b|Storey)"
+     ]
+    },
+    {
+     "parameter": "lfc_filter",
+     "pack": "D-07",
+     "question": "Fold-change criterion applied AFTER the test (post hoc filter), e.g. |log2FC| > 1",
+     "regex": [
+      "(?:\\|\\s*)?log\\s*2\\s*[- ]?\\(?\\s*fold[- ]?change\\s*\\)?(?:\\s*\\|)?\\s*(?:\\(\\s*\\|?\\s*log2FC\\s*\\|?\\s*\\)\\s*)?(?:>|≥|>=|of at least|greater than|above|of more than|exceeding)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?:\\|\\s*)?(?:log2FC|LFC|log2 FC)(?:\\s*\\|)?\\s*(?:>|≥|>=)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?<!log2 )(?<!log2)fold[- ]change\\s*(?:>|≥|>=|of at least|greater than|of more than)\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "limma_version",
+     "pack": "X",
+     "question": "limma version reported",
+     "regex": [
+      "limma\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>3\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "limma-array",
+   "epmc_query": "METHODS:\"limma\" AND (METHODS:\"microarray\" OR METHODS:\"Affymetrix\" OR METHODS:\"Illumina BeadChip\" OR METHODS:\"Agilent\")",
+   "signal_regex": "\\blimma\\b",
+   "require_regex": "microarray|Affymetrix|BeadChip|Agilent|GeneChip",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b|\\bRNA-seq\\b",
+   "parameters": [
+    {
+     "parameter": "normalization",
+     "pack": "D-A1",
+     "question": "Array normalization (RMA, quantile, normalizeBetweenArrays, ...)",
+     "regex": [
+      "(?P<value>\\bRMA\\b|robust multi-?array average|GCRMA|quantile normali[sz]ation|normalizeBetweenArrays|neqc|loess|vsn)"
+     ]
+    },
+    {
+     "parameter": "probe_filter",
+     "pack": "D-A2",
+     "question": "Probe / gene filtering and summarisation",
+     "regex": [
+      "(?P<value>(?:filter|remov)\\w*[^.;]{0,60}probe\\w*|collapse\\w*[^.;]{0,40}|avereps)"
+     ]
+    },
+    {
+     "parameter": "ebayes",
+     "pack": "D-A3",
+     "question": "eBayes options (robust, trend) or treat",
+     "regex": [
+      "eBayes\\s*\\([^)]*?(?P<value>robust\\s*=\\s*TRUE|trend\\s*=\\s*TRUE)",
+      "(?P<value>\\btreat\\b\\s*\\(|TREAT)"
+     ]
+    },
+    {
+     "parameter": "padj_cutoff",
+     "pack": "D-08",
+     "question": "Adjusted P (FDR) cutoff used to call genes differentially expressed",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-08",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bIHW\\b|Storey)"
+     ]
+    },
+    {
+     "parameter": "lfc_filter",
+     "pack": "D-07",
+     "question": "Fold-change criterion applied AFTER the test (post hoc filter), e.g. |log2FC| > 1",
+     "regex": [
+      "(?:\\|\\s*)?log\\s*2\\s*[- ]?\\(?\\s*fold[- ]?change\\s*\\)?(?:\\s*\\|)?\\s*(?:\\(\\s*\\|?\\s*log2FC\\s*\\|?\\s*\\)\\s*)?(?:>|≥|>=|of at least|greater than|above|of more than|exceeding)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?:\\|\\s*)?(?:log2FC|LFC|log2 FC)(?:\\s*\\|)?\\s*(?:>|≥|>=)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?<!log2 )(?<!log2)fold[- ]change\\s*(?:>|≥|>=|of at least|greater than|of more than)\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "limma_version",
+     "pack": "X",
+     "question": "limma version reported",
+     "regex": [
+      "limma\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>3\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "limma-dupcor",
+   "epmc_query": "METHODS:\"duplicateCorrelation\" OR METHODS:\"duplicate correlation\"",
+   "signal_regex": "duplicateCorrelation|duplicate correlation",
+   "require_regex": "limma",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "parameters": [
+    {
+     "parameter": "block",
+     "pack": "D-D1",
+     "question": "Blocking factor (the repeated-measures unit, e.g. patient, donor)",
+     "regex": [
+      "block\\s*=\\s*(?P<value>[A-Za-z0-9_.$]+)",
+      "(?P<value>(?:patient|donor|subject|individual|mouse|animal)s? (?:was|were) (?:used|treated|included) as (?:a )?block\\w*)"
+     ]
+    },
+    {
+     "parameter": "two_rounds",
+     "pack": "D-D2",
+     "question": "voom + duplicateCorrelation run twice (as in the limma guide)",
+     "regex": [
+      "(?P<value>(?:twice|second (?:time|round|iteration))[^.;]{0,60}(?:voom|duplicateCorrelation)|(?:voom|duplicateCorrelation)[^.;]{0,60}(?:twice|second (?:time|round|iteration)))"
+     ]
+    },
+    {
+     "parameter": "consensus_correlation",
+     "pack": "D-D3",
+     "question": "Consensus correlation value reported",
+     "regex": [
+      "(?:consensus (?:correlation)?|intra-?(?:block|subject|patient) correlation)[^.;]{0,40}?(?P<value>0\\.\\d+)"
+     ]
+    },
+    {
+     "parameter": "padj_cutoff",
+     "pack": "D-08",
+     "question": "Adjusted P (FDR) cutoff used to call genes differentially expressed",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-08",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bIHW\\b|Storey)"
+     ]
+    },
+    {
+     "parameter": "lfc_filter",
+     "pack": "D-07",
+     "question": "Fold-change criterion applied AFTER the test (post hoc filter), e.g. |log2FC| > 1",
+     "regex": [
+      "(?:\\|\\s*)?log\\s*2\\s*[- ]?\\(?\\s*fold[- ]?change\\s*\\)?(?:\\s*\\|)?\\s*(?:\\(\\s*\\|?\\s*log2FC\\s*\\|?\\s*\\)\\s*)?(?:>|≥|>=|of at least|greater than|above|of more than|exceeding)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?:\\|\\s*)?(?:log2FC|LFC|log2 FC)(?:\\s*\\|)?\\s*(?:>|≥|>=)\\s*(?P<value>\\d+(?:\\.\\d+)?)",
+      "(?<!log2 )(?<!log2)fold[- ]change\\s*(?:>|≥|>=|of at least|greater than|of more than)\\s*(?P<value>\\d+(?:\\.\\d+)?)"
+     ]
+    },
+    {
+     "parameter": "limma_version",
+     "pack": "X",
+     "question": "limma version reported",
+     "regex": [
+      "limma\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>3\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "sva-batch",
+   "epmc_query": "(METHODS:\"ComBat\" OR METHODS:\"ComBat-seq\" OR METHODS:\"ComBat_seq\" OR METHODS:\"svaseq\" OR METHODS:\"surrogate variable analysis\") AND (METHODS:\"batch\" OR METHODS:\"surrogate variable\")",
+   "signal_regex": "ComBat(?:[-_]seq)?|svaseq|surrogate variable|\\bsva\\b",
+   "require_regex": "batch|surrogate",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "parameters": [
+    {
+     "parameter": "method",
+     "pack": "D-S1",
+     "question": "Correction method (ComBat, ComBat-seq, sva, svaseq, removeBatchEffect)",
+     "regex": [
+      "(?P<value>ComBat[-_]seq|ComBat|svaseq|\\bsva\\b|surrogate variable analysis|removeBatchEffect|RUVSeq|RUVg|RUVs)"
+     ]
+    },
+    {
+     "parameter": "corrected_used_for",
+     "pack": "D-S2",
+     "question": "What the corrected matrix was used for (visualisation / clustering / differential testing)",
+     "regex": [
+      "(?P<value>(?:corrected|adjusted)[^.;]{0,40}(?:used|applied|input)[^.;]{0,60}(?:differential|DESeq2|edgeR|limma|PCA|visuali[sz]|cluster|heatmap))",
+      "(?P<value>batch (?:was )?(?:included|added|modelled|modeled) as a covariate)"
+     ]
+    },
+    {
+     "parameter": "n_sv",
+     "pack": "D-S3",
+     "question": "Number of surrogate variables (num.sv / n.sv)",
+     "regex": [
+      "(?:num\\.sv|n\\.sv|number of surrogate variables)[^.;]{0,30}?(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "mod",
+     "pack": "D-S4",
+     "question": "Model matrix / biological covariates protected in ComBat (mod / group)",
+     "regex": [
+      "(?:mod|group|covar_mod)\\s*=\\s*(?P<value>[A-Za-z0-9_.$~ +]+)",
+      "(?P<value>(?:preserv|protect)\\w*[^.;]{0,40}(?:biological|condition|group))"
+     ]
+    },
+    {
+     "parameter": "sva_version",
+     "pack": "X",
+     "question": "sva version reported",
+     "regex": [
+      "\\bsva\\b\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>3\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "clusterprofiler-ora",
+   "epmc_query": "METHODS:\"clusterProfiler\" AND (METHODS:\"enrichGO\" OR METHODS:\"enricher\" OR METHODS:\"enrichKEGG\" OR METHODS:\"over-representation\" OR METHODS:\"overrepresentation\" OR METHODS:\"enrichment analysis\")",
+   "signal_regex": "\\b(?:enrichGO|enricher|enrichKEGG|enrichPathway|enrichDO|enrichWP)\\b|clusterProfiler[^.;]{0,250}?(?:over[- ]?representation|enrichment analys[ie]s|hypergeometric|Fisher)|(?:over[- ]?representation|enrichment analys[ie]s|hypergeometric)[^.;]{0,250}?clusterProfiler",
+   "require_regex": "clusterProfiler",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "note": "M2 profile (2026-09-27), built with the M1 extractor lessons: the tool and the analysis must share a sentence; enrichment cutoffs are distinct from the DE cutoffs that define the input list; a GSEA-only paper (gseGO/GSEA) does not apply to ORA; tool/software papers excluded.",
+   "parameters": [
+    {
+     "parameter": "input_genes",
+     "pack": "D-O1",
+     "question": "How the input gene list was defined (e.g. DE genes padj < 0.05 and |log2FC| > 1; markers)",
+     "regex": [
+      "(?P<value>(?:differentially expressed|DEGs?|up-?regulated|down-?regulated|marker) genes?[^.;]{0,80}?(?:<|>|≤|≥)\\s*[\\d.]+)"
+     ]
+    },
+    {
+     "parameter": "gene_set_db",
+     "pack": "D-O2",
+     "question": "Gene-set databases / ontologies tested (GO BP/CC/MF, KEGG, Reactome, MSigDB ...)",
+     "regex": [
+      "(?P<value>Gene Ontology|\\bGO\\b(?:[- ](?:BP|CC|MF))?|biological process|\\bKEGG\\b|Reactome|MSigDB|Hallmark|WikiPathways|\\bC2\\b|\\bC5\\b|\\bC7\\b|DisGeNET|\\bDO\\b|Disease Ontology)"
+     ]
+    },
+    {
+     "parameter": "universe",
+     "pack": "D-O3",
+     "question": "Background / universe gene set (all expressed genes, all genes in the genome, default)",
+     "regex": [
+      "(?P<value>(?:background|universe)[^.;]{0,80})"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-O4",
+     "question": "Multiple-testing adjustment of the enrichment P values",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bBY\\b|Benjamini[- –]Yekutieli|Storey|q[- ]?value)"
+     ]
+    },
+    {
+     "parameter": "enrich_cutoff",
+     "pack": "D-O5",
+     "question": "Significance cutoff for enriched terms (pvalueCutoff / qvalueCutoff / adjusted P)",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]?values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)",
+      "(?:pvalueCutoff|qvalueCutoff)\\s*=\\s*(?P<value>[\\d.]+)"
+     ]
+    },
+    {
+     "parameter": "gs_size",
+     "pack": "D-O6",
+     "question": "minGSSize / maxGSSize (gene-set size limits)",
+     "regex": [
+      "(?:min(?:GS)?Size|max(?:GS)?Size|minimum|maximum)[^.;]{0,40}?(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "simplify",
+     "pack": "D-O7",
+     "question": "Redundancy reduction of GO terms (simplify cutoff, semantic similarity)",
+     "regex": [
+      "(?P<value>simplify\\s*\\([^)]*\\)|simplify(?:ied)? function|semantic similarity[^.;]{0,60}|cutoff\\s*=\\s*0?\\.\\d+)"
+     ]
+    },
+    {
+     "parameter": "clusterprofiler_version",
+     "pack": "X",
+     "question": "clusterProfiler version reported",
+     "regex": [
+      "clusterProfiler\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>\\d+\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "clusterprofiler-gsea",
+   "epmc_query": "METHODS:\"clusterProfiler\" AND (METHODS:\"gseGO\" OR METHODS:\"gseKEGG\" OR METHODS:\"GSEA\" OR METHODS:\"gene set enrichment analysis\")",
+   "signal_regex": "\\b(?:gseGO|gseKEGG|gsePathway|gseMSigDB|gseDO|gseWP)\\b|clusterProfiler[^.;]{0,250}?(?:\\bGSEA\\b|gene[- ]set enrichment analysis)|(?:\\bGSEA\\b|gene[- ]set enrichment analysis)[^.;]{0,250}?clusterProfiler",
+   "require_regex": "clusterProfiler",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "note": "M2 profile (2026-09-27). GSEA run with clusterProfiler (gseGO / GSEA()); GSEA with the Broad desktop tool or fgsea alone does not apply. The ranking metric is the key parameter; enrichment cutoffs are distinct from DE cutoffs.",
+   "parameters": [
+    {
+     "parameter": "ranking_metric",
+     "pack": "D-G1",
+     "question": "Statistic used to rank the genes (log2FC, Wald stat, signed -log10 P, t ...)",
+     "regex": [
+      "(?:rank(?:ed|ing)?|sorted|ordered)[^.;]{0,60}?(?:by|according to|based on)\\s*(?P<value>[^.;]{3,60})"
+     ]
+    },
+    {
+     "parameter": "gene_set_db",
+     "pack": "D-G2",
+     "question": "Gene-set databases tested",
+     "regex": [
+      "(?P<value>Gene Ontology|\\bGO\\b(?:[- ](?:BP|CC|MF))?|biological process|\\bKEGG\\b|Reactome|MSigDB|Hallmark|WikiPathways|\\bC2\\b|\\bC5\\b|\\bC7\\b|DisGeNET|\\bDO\\b|Disease Ontology)"
+     ]
+    },
+    {
+     "parameter": "permutation",
+     "pack": "D-G3",
+     "question": "Permutations / eps / multilevel settings (nPerm, eps, by = 'fgsea')",
+     "regex": [
+      "(?P<value>\\d[\\d,]*\\s*permutations|nPerm\\s*=\\s*\\d+|eps\\s*=\\s*[\\d.e-]+|by\\s*=\\s*[\\\"']?\\w+)"
+     ]
+    },
+    {
+     "parameter": "gs_size",
+     "pack": "D-G4",
+     "question": "minGSSize / maxGSSize",
+     "regex": [
+      "(?:min(?:GS)?Size|max(?:GS)?Size|minimum|maximum)[^.;]{0,40}?(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-G5",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bBY\\b|Benjamini[- –]Yekutieli|Storey|q[- ]?value)"
+     ]
+    },
+    {
+     "parameter": "enrich_cutoff",
+     "pack": "D-G6",
+     "question": "Significance cutoff for enriched sets",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]?values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)",
+      "pvalueCutoff\\s*=\\s*(?P<value>[\\d.]+)"
+     ]
+    },
+    {
+     "parameter": "clusterprofiler_version",
+     "pack": "X",
+     "question": "clusterProfiler version reported",
+     "regex": [
+      "clusterProfiler\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>\\d+\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "clusterprofiler-compare",
+   "epmc_query": "METHODS:\"compareCluster\"",
+   "signal_regex": "\\bcompareCluster\\b",
+   "require_regex": "clusterProfiler|compareCluster",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "note": "M2 profile (2026-09-27). Multi-list enrichment comparison with compareCluster.",
+   "parameters": [
+    {
+     "parameter": "fun",
+     "pack": "D-C1",
+     "question": "Enrichment function inside compareCluster (enrichGO, enrichKEGG, enricher, groupGO ...)",
+     "regex": [
+      "fun\\s*=\\s*[\\\"']?(?P<value>\\w+)|(?P<value2>enrichGO|enrichKEGG|enrichPathway|enricher|groupGO)"
+     ]
+    },
+    {
+     "parameter": "clusters",
+     "pack": "D-C2",
+     "question": "What the compared gene lists are (clusters, time points, up/down per contrast ...)",
+     "regex": [
+      "(?P<value>(?:gene )?(?:clusters?|modules?|lists?|groups?)[^.;]{0,80})"
+     ]
+    },
+    {
+     "parameter": "gene_set_db",
+     "pack": "D-C3",
+     "question": "Gene-set databases tested",
+     "regex": [
+      "(?P<value>Gene Ontology|\\bGO\\b(?:[- ](?:BP|CC|MF))?|biological process|\\bKEGG\\b|Reactome|MSigDB|Hallmark|WikiPathways|\\bC2\\b|\\bC5\\b|\\bC7\\b|DisGeNET|\\bDO\\b|Disease Ontology)"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-C4",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bBY\\b|Benjamini[- –]Yekutieli|Storey|q[- ]?value)"
+     ]
+    },
+    {
+     "parameter": "enrich_cutoff",
+     "pack": "D-C5",
+     "question": "Significance cutoff for enriched terms",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]?values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)",
+      "(?:pvalueCutoff|qvalueCutoff)\\s*=\\s*(?P<value>[\\d.]+)"
+     ]
+    },
+    {
+     "parameter": "clusterprofiler_version",
+     "pack": "X",
+     "question": "clusterProfiler version reported",
+     "regex": [
+      "clusterProfiler\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>\\d+\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "fgsea-prerank",
+   "epmc_query": "METHODS:\"fgsea\"",
+   "signal_regex": "\\bfgsea(?:Multilevel|Simple)?\\b",
+   "require_regex": "fgsea",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "note": "M2 profile (2026-09-27). Pre-ranked GSEA with the fgsea package (also when called through clusterProfiler by = 'fgsea' only if fgsea is named).",
+   "parameters": [
+    {
+     "parameter": "ranking_metric",
+     "pack": "D-F1",
+     "question": "Statistic used to rank the genes",
+     "regex": [
+      "(?:rank(?:ed|ing)?|sorted|ordered)[^.;]{0,60}?(?:by|according to|based on)\\s*(?P<value>[^.;]{3,60})"
+     ]
+    },
+    {
+     "parameter": "gene_set_db",
+     "pack": "D-F2",
+     "question": "Gene-set collections tested",
+     "regex": [
+      "(?P<value>Gene Ontology|\\bGO\\b(?:[- ](?:BP|CC|MF))?|biological process|\\bKEGG\\b|Reactome|MSigDB|Hallmark|WikiPathways|\\bC2\\b|\\bC5\\b|\\bC7\\b|DisGeNET|\\bDO\\b|Disease Ontology)"
+     ]
+    },
+    {
+     "parameter": "algorithm",
+     "pack": "D-F3",
+     "question": "fgseaMultilevel (eps) or fgseaSimple (nperm); number of permutations",
+     "regex": [
+      "(?P<value>fgseaMultilevel|fgseaSimple|multilevel|nperm\\s*=\\s*\\d+|\\d[\\d,]*\\s*permutations|eps\\s*=\\s*[\\d.e-]+)"
+     ]
+    },
+    {
+     "parameter": "gs_size",
+     "pack": "D-F4",
+     "question": "minSize / maxSize",
+     "regex": [
+      "(?:minSize|maxSize|minimum|maximum)[^.;]{0,40}?(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "enrich_cutoff",
+     "pack": "D-F5",
+     "question": "Significance cutoff for enriched sets (padj)",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]?values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "collapse",
+     "pack": "D-F6",
+     "question": "collapsePathways / leading-edge redundancy handling",
+     "regex": [
+      "(?P<value>collapsePathways|leading[- ]edge)"
+     ]
+    },
+    {
+     "parameter": "fgsea_version",
+     "pack": "X",
+     "question": "fgsea version reported",
+     "regex": [
+      "fgsea\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>\\d+\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "gsva-score",
+   "epmc_query": "METHODS:\"GSVA\" AND (METHODS:\"gene set variation analysis\" OR METHODS:\"ssGSEA\" OR METHODS:\"gsva\")",
+   "signal_regex": "\\bGSVA\\b|gene[- ]set variation analysis|\\bgsva\\s*\\(|gsvaParam|ssgseaParam",
+   "require_regex": "\\bGSVA\\b|gene[- ]set variation analysis",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "note": "M2 profile (2026-09-27). Sample-wise pathway scores with the GSVA package (methods gsva / ssgsea / zscore / plage). ssGSEA from GenePattern or other tools without the GSVA package does not apply.",
+   "parameters": [
+    {
+     "parameter": "method",
+     "pack": "D-GV1",
+     "question": "GSVA method (gsva, ssgsea, zscore, plage)",
+     "regex": [
+      "(?P<value>method\\s*=\\s*[\\\"']?\\w+|\\bssGSEA\\b|single[- ]sample GSEA|\\bz-?score\\b|\\bPLAGE\\b)"
+     ]
+    },
+    {
+     "parameter": "kcdf",
+     "pack": "D-GV2",
+     "question": "kcdf (Gaussian for log-expression, Poisson for counts)",
+     "regex": [
+      "kcdf\\s*=\\s*[\\\"']?(?P<value>\\w+)|(?P<value2>Gaussian|Poisson) (?:kernel|kcdf)"
+     ]
+    },
+    {
+     "parameter": "input",
+     "pack": "D-GV3",
+     "question": "Input expression scale (log2 CPM / vst / TPM / microarray log2)",
+     "regex": [
+      "(?P<value>(?:log2?[- ]?)?(?:TPM|FPKM|CPM|counts|vst|normali[sz]ed expression)[^.;]{0,40})"
+     ]
+    },
+    {
+     "parameter": "gene_set_db",
+     "pack": "D-GV4",
+     "question": "Gene-set collections scored",
+     "regex": [
+      "(?P<value>Gene Ontology|\\bGO\\b(?:[- ](?:BP|CC|MF))?|biological process|\\bKEGG\\b|Reactome|MSigDB|Hallmark|WikiPathways|\\bC2\\b|\\bC5\\b|\\bC7\\b|DisGeNET|\\bDO\\b|Disease Ontology)"
+     ]
+    },
+    {
+     "parameter": "gs_size",
+     "pack": "D-GV5",
+     "question": "min.sz / max.sz (gene-set size limits)",
+     "regex": [
+      "(?:min\\.sz|max\\.sz|minSize|maxSize|minimum|maximum)[^.;]{0,40}?(?P<value>\\d+)"
+     ]
+    },
+    {
+     "parameter": "downstream_test",
+     "pack": "D-GV6",
+     "question": "How scores were compared between groups (limma, t-test, Wilcoxon ...)",
+     "regex": [
+      "(?P<value>limma|Wilcoxon|t-test|Mann[- ]Whitney|Kruskal)"
+     ]
+    },
+    {
+     "parameter": "gsva_version",
+     "pack": "X",
+     "question": "GSVA version reported",
+     "regex": [
+      "GSVA\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>\\d+\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  },
+  {
+   "module": "limma-camera",
+   "epmc_query": "METHODS:\"limma\" AND (METHODS:\"camera\" OR METHODS:\"fry\" OR METHODS:\"roast\" OR METHODS:\"mroast\")",
+   "signal_regex": "\\b(?:camera|cameraPR|fry|mroast|roast)\\b[^.;]{0,200}?\\blimma\\b|\\blimma\\b[^.;]{0,200}?\\b(?:camera|cameraPR|fry|mroast|roast)\\b|\\bcameraPR\\b|\\bmroast\\b|\\bcamera\\s+(?:function|test|method|procedure|algorithm)\\b|competitive gene[- ]set test(?:ing)?[^.;]{0,120}?\\blimma\\b",
+   "require_regex": "limma",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom|\\bXCMS\\b|\\bCAMERA\\b package",
+   "note": "M2 profile (2026-09-27). limma gene-set tests: camera (competitive), roast / mroast / fry (self-contained). 'camera' must share a sentence with limma (the English word and the metabolomics CAMERA package do not apply). Signal tightened 2026-09-27 after extraction: the alternative `camera (` matched microscope cameras (\"Leica camera (Wetzlar)\") and only 11 of 30 articles applied; the test name must now share a sentence with limma, or be written as cameraPR / mroast / 'camera function|test|method'. Corpus re-collected; extraction lines of dropped articles stay but are not counted.",
+   "parameters": [
+    {
+     "parameter": "test",
+     "pack": "D-CM1",
+     "question": "Which test (camera, fry, roast, mroast)",
+     "regex": [
+      "(?P<value>\\bcamera\\b|\\bfry\\b|\\bmroast\\b|\\broast\\b)"
+     ]
+    },
+    {
+     "parameter": "inter_gene_cor",
+     "pack": "D-CM2",
+     "question": "inter.gene.cor setting (default 0.01) or estimated correlation",
+     "regex": [
+      "inter\\.gene\\.cor\\s*=\\s*(?P<value>[\\w.]+)|(?P<value2>inter-?gene correlation[^.;]{0,40})"
+     ]
+    },
+    {
+     "parameter": "gene_set_db",
+     "pack": "D-CM3",
+     "question": "Gene-set collections tested",
+     "regex": [
+      "(?P<value>Gene Ontology|\\bGO\\b(?:[- ](?:BP|CC|MF))?|biological process|\\bKEGG\\b|Reactome|MSigDB|Hallmark|WikiPathways|\\bC2\\b|\\bC5\\b|\\bC7\\b|DisGeNET|\\bDO\\b|Disease Ontology)"
+     ]
+    },
+    {
+     "parameter": "expression_input",
+     "pack": "D-CM4",
+     "question": "Input (voom object, logCPM, array log-expression)",
+     "regex": [
+      "(?P<value>voom|logCPM|log-?CPM|normali[sz]ed log2?[^.;]{0,30})"
+     ]
+    },
+    {
+     "parameter": "p_adjust_method",
+     "pack": "D-CM5",
+     "question": "Multiple-testing adjustment",
+     "regex": [
+      "(?P<value>Benjamini[- –]Hochberg|Benjamini and Hochberg|\\bBH\\b|Bonferroni|\\bBY\\b|Benjamini[- –]Yekutieli|Storey|q[- ]?value)"
+     ]
+    },
+    {
+     "parameter": "enrich_cutoff",
+     "pack": "D-CM6",
+     "question": "Significance cutoff for gene sets",
+     "regex": [
+      "(?:adjusted p(?:[- ]values?)?|p[._ ]?adj(?:usted)?|padj|FDR|false discovery rate|q[- ]?values?|Benjamini[- ]Hochberg[- ]adjusted p)[^.;]{0,60}?(?:<|≤|<=|less than|lower than|below|of)\\s*(?P<value>0?\\.\\d+|\\d+(?:\\.\\d+)?\\s*%)"
+     ]
+    },
+    {
+     "parameter": "limma_version",
+     "pack": "X",
+     "question": "limma version reported",
+     "regex": [
+      "limma\\s*\\(?\\s*(?:v(?:ersion)?\\.?\\s*)?(?P<value>\\d+\\.\\d+(?:\\.\\d+)?)"
+     ]
+    }
+   ]
+  }
+ ]
+}

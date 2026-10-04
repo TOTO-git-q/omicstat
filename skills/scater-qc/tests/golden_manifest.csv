@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/metrics.csv,aadd99142f52f8e09cee1c190f431966107da30076a2fe48fbafb8dacf6c116f,container,
+tables/thresholds.csv,8ac69ef8e41b1b0b52f87834a67e9d2fc2267f5e81fb294503164967df733862,container,
+tables/flow.csv,27669bb12d928d43bd7b22c8bb4d9937f5b16e289f0f680827af591dc7d974cb,container,
+figures/detected.png,dda27f1f0a9e3b11308ae5533e0a6b8466a059b051eb199bb4bf96a208bd80c0,container,
+figures/subsets_Mito_percent.png,f6bd1f81b58c09a4b5c1555ca98ba630682d558d06e2997e2bd2a8c16e088e55,container,
+figures/qc_violin.png,4a0740e258b00522496d67d56c0660a9e6286ef8772f0dc6c5c612af09f675f4,container,

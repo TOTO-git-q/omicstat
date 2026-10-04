@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omicstat.local/schemas/publication_review.v1.schema.json",
+  "title": "PublicationReview v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "module", "status", "reviewed_at", "rules_version", "summary", "automated_checks", "human_review_pending", "rule_execution", "findings"],
+  "properties": {
+    "schema_version": {"const": "omicstat.publication-review.v1"},
+    "run_id": {"type": "string", "format": "uuid"},
+    "module": {"type": "string", "minLength": 1},
+    "status": {"enum": ["blocked", "needs_input", "review_required", "ready_for_manuscript_integration"]},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "rules_version": {"type": "string", "minLength": 1},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicable", "checked", "pending", "triggered", "blocking", "human_review"],
+      "properties": {
+        "applicable": {"type": "integer", "minimum": 0},
+        "checked": {"type": "integer", "minimum": 0},
+        "pending": {"type": "integer", "minimum": 0},
+        "triggered": {"type": "integer", "minimum": 0},
+        "blocking": {"type": "integer", "minimum": 0},
+        "human_review": {"type": "integer", "minimum": 0}
+      }
+    },
+    "automated_checks": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["effect_table_schema", "artifact_expectations", "figures", "cross_artifact_numeric_consistency"],
+      "properties": {
+        "effect_table_schema": {"type": "object"},
+        "artifact_expectations": {"type": "array", "items": {"type": "object"}},
+        "figures": {"type": "array", "items": {"type": "object"}},
+        "cross_artifact_numeric_consistency": {"type": "object"}
+      }
+    },
+    "human_review_pending": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id", "scope", "reason", "artifacts"],
+        "properties": {
+          "rule_id": {"type": "string", "minLength": 1},
+          "scope": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1},
+          "artifacts": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "reviewer_decisions": {"type": "object", "additionalProperties": {"type": "object", "required": ["decision", "decided_at"], "properties": {"decision": {"enum": ["accepted", "rejected", "pending"]}, "decided_at": {"type": "string", "format": "date-time"}, "reviewer": {"type": "string", "pattern": "\\S"}, "evidence_locations": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "\\S"}}, "evidence_sha256": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}}, "rationale": {"type": "string"}}, "allOf": [{"if": {"properties": {"decision": {"enum": ["accepted", "rejected"]}}}, "then": {"required": ["reviewer", "evidence_locations", "evidence_sha256"]}}], "additionalProperties": false}},
+    "rule_execution": {"type": "array", "items": {"type": "object", "required": ["rule_id", "category", "applicable", "status", "evidence"], "properties": {"rule_id": {"type": "string"}, "category": {"enum": ["universal_hard", "design_conditional", "advisory", "journal_specific"]}, "applicable": {"type": "boolean"}, "status": {"enum": ["pass", "fail", "warning", "needs_input", "not_checked", "decision"]}, "evidence": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id", "category", "severity", "message", "evidence_locations", "affected_artifacts", "recommendation", "blocking", "human_review", "check_status"],
+        "properties": {
+          "rule_id": {"type": "string", "minLength": 1},
+          "category": {"enum": ["universal_hard", "design_conditional", "advisory", "journal_specific"]},
+          "severity": {"enum": ["critical", "error", "warning", "info"]},
+          "message": {"type": "string", "minLength": 1},
+          "evidence_locations": {"type": "array", "items": {"type": "string"}},
+          "affected_artifacts": {"type": "array", "items": {"type": "string"}},
+          "recommendation": {"type": "string"},
+          "blocking": {"type": "boolean"},
+          "human_review": {"type": "boolean"},
+          "check_status": {"enum": ["pass", "fail", "warning", "needs_input", "not_checked"]}
+        }
+      }
+    }
+  }
+}

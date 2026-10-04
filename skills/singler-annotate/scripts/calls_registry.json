@@ -1,0 +1,276 @@
+{
+  "module": "singler-annotate",
+  "package_versions": {
+    "SingleR": "2.14.2",
+    "BiocParallel": "1.46.0"
+  },
+  "calls": [
+    {
+      "fn": "SingleR::SingleR",
+      "args": {
+        "test": {
+          "value": "input SCE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": ""
+        },
+        "ref": {
+          "value": "reference SCE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": ""
+        },
+        "labels": {
+          "value": "reference-label-col",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": ""
+        },
+        "method": {
+          "value": "NULL",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "NULL",
+          "flag": "--singler-method",
+          "cli_default": null
+        },
+        "clusters": {
+          "value": "NULL (cell); cluster-col (cluster)",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "NULL"
+        },
+        "genes": {
+          "value": "\"de\"",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "\"de\"",
+          "flag": "--singler-genes",
+          "cli_default": null
+        },
+        "sd.thresh": {
+          "value": "1",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "1",
+          "flag": "--singler-sd-thresh",
+          "cli_default": null
+        },
+        "de.method": {
+          "value": "classic",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "\"classic\"",
+          "flag": "--singler-de-method",
+          "cli_default": null
+        },
+        "de.n": {
+          "value": null,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "NULL",
+          "flag": "--singler-de-n",
+          "cli_default": null
+        },
+        "de.args": {
+          "value": "list()",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "list()",
+          "flag": "--singler-de-args",
+          "cli_default": null
+        },
+        "aggr.ref": {
+          "value": false,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "FALSE",
+          "flag": "--singler-aggr-ref",
+          "cli_default": null
+        },
+        "aggr.args": {
+          "value": "list()",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "list()",
+          "flag": "--singler-aggr-args",
+          "cli_default": null
+        },
+        "recompute": {
+          "value": "TRUE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "TRUE",
+          "flag": "--singler-recompute",
+          "cli_default": null
+        },
+        "restrict": {
+          "value": "NULL",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "NULL",
+          "flag": "--singler-restrict",
+          "cli_default": null
+        },
+        "hint.sce": {
+          "value": "TRUE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "TRUE",
+          "flag": "--singler-hint-sce",
+          "cli_default": null
+        },
+        "quantile": {
+          "value": 0.8,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "0.8",
+          "flag": "--singler-quantile",
+          "cli_default": null
+        },
+        "fine.tune": {
+          "value": true,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "TRUE",
+          "flag": "--singler-fine-tune",
+          "cli_default": null
+        },
+        "tune.thresh": {
+          "value": 0.05,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "0.05",
+          "flag": "--singler-tune-thresh",
+          "cli_default": null
+        },
+        "fine.tune.combined": {
+          "value": true,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "fine.tune",
+          "flag": "--singler-fine-tune-combined",
+          "cli_default": null
+        },
+        "prune": {
+          "value": "TRUE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "TRUE",
+          "flag": "--singler-prune",
+          "cli_default": null
+        },
+        "assay.type.test": {
+          "value": "logcounts",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "\"logcounts\"",
+          "flag": "--singler-assay-type-test",
+          "cli_default": null
+        },
+        "assay.type.ref": {
+          "value": "\"logcounts\"",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "\"logcounts\"",
+          "flag": "--singler-assay-type-ref",
+          "cli_default": null
+        },
+        "check.missing.test": {
+          "value": false,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "FALSE",
+          "flag": "--singler-check-missing-test",
+          "cli_default": null
+        },
+        "check.missing.ref": {
+          "value": true,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "check.missing",
+          "flag": "--singler-check-missing-ref",
+          "cli_default": null
+        },
+        "check.missing": {
+          "value": "TRUE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "TRUE",
+          "flag": "--singler-check-missing",
+          "cli_default": null
+        },
+        "num.threads": {
+          "value": 1,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "1",
+          "flag": "--singler-num-threads",
+          "cli_default": null
+        },
+        "BNPARAM": {
+          "value": "NULL",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "NULL",
+          "flag": "--singler-bnparam",
+          "cli_default": null
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "NULL",
+          "flag": "--singler-bpparam",
+          "cli_default": null
+        }
+      }
+    },
+    {
+      "fn": "SingleR::pruneScores",
+      "args": {
+        "results": {
+          "value": "",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": ""
+        },
+        "nmads": {
+          "value": 3,
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "3",
+          "flag": "--prune-nmads",
+          "cli_default": null
+        },
+        "min.diff.med": {
+          "value": "-Inf",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "-Inf",
+          "flag": "--prune-min-diff-med",
+          "cli_default": null
+        },
+        "min.diff.next": {
+          "value": "0",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "0",
+          "flag": "--prune-min-diff-next",
+          "cli_default": null
+        },
+        "get.thresholds": {
+          "value": "FALSE",
+          "source": "locked function default; explicit input where required",
+          "pack": "PACK D; container formals 2026-10-01",
+          "function_default": "FALSE",
+          "flag": "--prune-get-thresholds",
+          "cli_default": null
+        }
+      }
+    }
+  ],
+  "accessors": [
+    "BiocParallel::SerialParam"
+  ]
+}

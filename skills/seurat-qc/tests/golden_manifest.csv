@@ -1,0 +1,7 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/cell_qc.csv,54e664d09913e51e95c19e9adb39567f4b6a76d4dd45fbc9e72b0d32ccf711cd,container,
+tables/filter_flow.csv,27a9f7fecbff8825128350bb51925a049488ae3c77153ba423a50a55dc8677de,container,
+figures/qc_metrics.png,bb8a6d56d43b59e0ff4c0805a4ef22eb384c97d35cac3e28cecd1ade3952ad75,container,
+figures/qc_scatter_percent.mt.png,dd847cccb50a1d8818c7764b81be167f4fb83034ebd2aa71138a7a259076e158,container,
+figures/qc_scatter_nFeature_RNA.png,6207160dcf3c56f3452030a87e03c3e47250fb9ae1315ebcf7c6695f6110a5ec,container,

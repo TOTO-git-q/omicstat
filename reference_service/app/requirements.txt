@@ -1,0 +1,2 @@
+# Existing local runtime; do not silently upgrade to an incompatible SDK major.
+mcp==1.28.0

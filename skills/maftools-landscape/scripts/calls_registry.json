@@ -1,0 +1,173 @@
+{
+  "module": "maftools-landscape",
+  "package_versions": {
+    "maftools": "2.28.0"
+  },
+  "calls": [
+    {
+      "fn": "maftools::read.maf",
+      "args": {
+        "maf": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "",
+          "flag": "--input"
+        },
+        "clinicalData": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--clinical"
+        },
+        "rmFlags": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "FALSE",
+          "flag": "--rm-flags",
+          "value": false
+        },
+        "removeDuplicatedVariants": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": "--remove-duplicates",
+          "value": true
+        },
+        "useAll": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": "--use-all",
+          "value": true
+        },
+        "gisticAllLesionsFile": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--gistic-lesions"
+        },
+        "gisticAmpGenesFile": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--gistic-amp"
+        },
+        "gisticDelGenesFile": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--gistic-del"
+        },
+        "gisticScoresFile": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--gistic-scores"
+        },
+        "cnLevel": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "\"all\"",
+          "flag": "--cn-level",
+          "value": "all"
+        },
+        "cnTable": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--cn-table"
+        },
+        "isTCGA": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "FALSE",
+          "flag": "--is-tcga",
+          "value": false
+        },
+        "vc_nonSyn": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--non-synonymous"
+        },
+        "verbose": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": ""
+        }
+      }
+    },
+    {
+      "fn": "maftools::tmb",
+      "args": {
+        "maf": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "",
+          "flag": "--input"
+        },
+        "captureRegions": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "",
+          "value": "a[[\"capture-regions\"]]"
+        },
+        "captureSize": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "50",
+          "flag": "--capture-size",
+          "value": "a[[\"capture-size\"]] %||% 50",
+          "cli_default": "none"
+        },
+        "logScale": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": ""
+        },
+        "ignoreCNV": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": "--ignore-cnv",
+          "value": true
+        },
+        "plotType": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "\"classic\"",
+          "flag": ""
+        },
+        "pointcol": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "\"#2c3e50\"",
+          "flag": ""
+        },
+        "verbose": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": ""
+        }
+      }
+    },
+    {
+      "fn": "maftools::somaticInteractions",
+      "args": {
+        "maf": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "",
+          "flag": "--input"
+        },
+        "top": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "25",
+          "flag": "--interaction-top",
+          "value": 25
+        },
+        "genes": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "NULL",
+          "flag": "--interaction-genes"
+        },
+        "pvalue": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "c(0.05, 0.01)",
+          "flag": ""
+        },
+        "returnAll": {
+          "source": "locked formals / official maftools vignette; exposed CLI options",
+          "function_default": "TRUE",
+          "flag": ""
+        }
+      }
+    }
+  ],
+  "accessors": [
+    "maftools::getSampleSummary",
+    "maftools::getGeneSummary",
+    "maftools::getClinicalData"
+  ]
+}

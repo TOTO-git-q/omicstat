@@ -1,0 +1,194 @@
+{
+  "module": "monocle3-trajectory",
+  "package_versions": {
+    "monocle3": "1.4.27"
+  },
+  "calls": [
+    {
+      "fn": "monocle3::new_cell_data_set",
+      "args": {
+        "expression_data": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "cell_metadata": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "gene_metadata": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--cds-verbose"
+        }
+      }
+    },
+    {
+      "fn": "monocle3::learn_graph",
+      "args": {
+        "cds": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "use_partition": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--learn-use-partition"
+        },
+        "close_loop": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--learn-close-loop"
+        },
+        "learn_graph_control": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--learn-learn-graph-control"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--learn-verbose"
+        }
+      }
+    },
+    {
+      "fn": "monocle3::order_cells",
+      "args": {
+        "cds": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "reduction_method": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"UMAP\"",
+          "flag": "--order-reduction-method"
+        },
+        "root_pr_nodes": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--order-root-pr-nodes"
+        },
+        "root_cells": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--order-root-cells"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--order-verbose"
+        }
+      }
+    },
+    {
+      "fn": "monocle3::graph_test",
+      "args": {
+        "cds": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "neighbor_graph": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"knn\", \"principal_graph\")",
+          "flag": "--test-neighbor-graph"
+        },
+        "reduction_method": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"UMAP\"",
+          "flag": "--test-reduction-method"
+        },
+        "k": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "25",
+          "flag": "--test-k"
+        },
+        "method": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"Moran_I\")",
+          "flag": "--test-method"
+        },
+        "alternative": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"greater\"",
+          "flag": "--test-alternative"
+        },
+        "expression_family": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"quasipoisson\"",
+          "flag": "--test-expression-family"
+        },
+        "cores": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "1",
+          "flag": "--test-cores"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--test-verbose"
+        },
+        "nn_control": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "list()",
+          "flag": "--test-nn-control"
+        }
+      }
+    }
+  ],
+  "accessors": [
+    "monocle3::principal_graph",
+    "monocle3::pseudotime"
+  ]
+}

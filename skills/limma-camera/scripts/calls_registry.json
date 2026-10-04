@@ -1,0 +1,747 @@
+{
+  "module": "limma-camera",
+  "package_versions": {
+    "limma": "3.68.5"
+  },
+  "accessors": [],
+  "flag_defaults": {
+    "--alpha": 0.05,
+    "--seed": 20260925,
+    "--nrot": 9999
+  },
+  "value_semantics": "kind=fixed: code is the literal written at every call site and value is that literal; kind=flag: code reads the flag and value is the flag default; kind=input: code is the variable bound to the named input (binding). function_default is the locked formals() value, checked separately (default drift). tests/registry_values_check.R verifies code against every call site.",
+  "calls": [
+    {
+      "fn": "limma::ids2indices",
+      "args": {
+        "gene.sets": {
+          "kind": "input",
+          "code": "collection$sets",
+          "value": null,
+          "binding": "registered offline collection (--collection)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "identifiers": {
+          "kind": "input",
+          "code": "identifiers",
+          "value": null,
+          "binding": "row IDs of the expression input or feature_id of the ranked list",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "remove.empty": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "limma::cameraPR",
+      "args": {
+        "statistic": {
+          "kind": "input",
+          "code": "input$rank$stats",
+          "value": null,
+          "binding": "ranked_list scores (metadata from the producer or declared with --direction)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "index": {
+          "kind": "input",
+          "code": "index",
+          "value": null,
+          "binding": "limma::ids2indices() of the registered collection on the input IDs",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "use.ranks": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        },
+        "inter.gene.cor": {
+          "kind": "fixed",
+          "code": "0.01",
+          "value": 0.01,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "0.01"
+        },
+        "sort": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "TRUE"
+        },
+        "directional": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "limma::camera",
+      "args": {
+        "y": {
+          "kind": "input",
+          "code": "input$matrix",
+          "value": null,
+          "binding": "EList E of a limma upstream, or the continuous expression matrix (CSV / non-limma hand-off)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "index": {
+          "kind": "input",
+          "code": "index",
+          "value": null,
+          "binding": "limma::ids2indices() of the registered collection on the input IDs",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "design": {
+          "kind": "input",
+          "code": "design",
+          "value": null,
+          "binding": "fitted design of the limma upstream (unchanged), else ~ group + covariates built from the sample table",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "contrast": {
+          "kind": "input",
+          "code": "contrast",
+          "value": null,
+          "binding": "column index of the tested coefficient (limma upstream state$coefficient, else group<target>)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "ncol(design)"
+        },
+        "weights": {
+          "kind": "input",
+          "code": "weights",
+          "value": null,
+          "binding": "EList precision weights of a limma upstream, else the --weights matrix, else NULL",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "use.ranks": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        },
+        "allow.neg.cor": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        },
+        "inter.gene.cor": {
+          "kind": "fixed",
+          "code": "0.01",
+          "value": 0.01,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "0.01"
+        },
+        "trend.var": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        },
+        "sort": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "TRUE"
+        },
+        "directional": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "limma::fry",
+      "args": {
+        "y": {
+          "kind": "input",
+          "code": "input$matrix",
+          "value": null,
+          "binding": "EList E of a limma upstream, or the continuous expression matrix (CSV / non-limma hand-off)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "index": {
+          "kind": "input",
+          "code": "index",
+          "value": null,
+          "binding": "limma::ids2indices() of the registered collection on the input IDs",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "design": {
+          "kind": "input",
+          "code": "design",
+          "value": null,
+          "binding": "fitted design of the limma upstream (unchanged), else ~ group + covariates built from the sample table",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "contrast": {
+          "kind": "input",
+          "code": "contrast",
+          "value": null,
+          "binding": "column index of the tested coefficient (limma upstream state$coefficient, else group<target>)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "ncol(design)"
+        },
+        "geneid": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "gene.weights": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "standardize": {
+          "kind": "fixed",
+          "code": "\"posterior.sd\"",
+          "value": "posterior.sd",
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"posterior.sd\""
+        },
+        "sort": {
+          "kind": "fixed",
+          "code": "\"directional\"",
+          "value": "directional",
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"directional\""
+        },
+        "block": {
+          "kind": "input",
+          "code": "block",
+          "value": null,
+          "binding": "upstream limma-dupcor block column of the sample table, else --block-col; NULL without block or for camera",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "correlation": {
+          "kind": "input",
+          "code": "cor",
+          "value": null,
+          "binding": "upstream limma-dupcor consensus correlation, else --correlation; NULL without block",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "weights": {
+          "kind": "input",
+          "code": "weights",
+          "value": null,
+          "binding": "EList precision weights of a limma upstream, else the --weights matrix, else NULL",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        }
+      }
+    },
+    {
+      "fn": "limma::roast",
+      "args": {
+        "y": {
+          "kind": "input",
+          "code": "input$matrix",
+          "value": null,
+          "binding": "EList E of a limma upstream, or the continuous expression matrix (CSV / non-limma hand-off)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "index": {
+          "kind": "input",
+          "code": "index[[a[[\"set-id\"]]]]",
+          "value": null,
+          "binding": "members of the one prespecified set (--set-id)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "design": {
+          "kind": "input",
+          "code": "design",
+          "value": null,
+          "binding": "fitted design of the limma upstream (unchanged), else ~ group + covariates built from the sample table",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "contrast": {
+          "kind": "input",
+          "code": "contrast",
+          "value": null,
+          "binding": "column index of the tested coefficient (limma upstream state$coefficient, else group<target>)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "ncol(design)"
+        },
+        "geneid": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "set.statistic": {
+          "kind": "fixed",
+          "code": "\"mean\"",
+          "value": "mean",
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "\"mean\""
+        },
+        "gene.weights": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "var.prior": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "df.prior": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "nrot": {
+          "kind": "flag",
+          "code": "a$nrot",
+          "flag": "--nrot",
+          "value": 9999,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "1999"
+        },
+        "approx.zscore": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "TRUE"
+        },
+        "legacy": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "FALSE"
+        },
+        "block": {
+          "kind": "input",
+          "code": "block",
+          "value": null,
+          "binding": "upstream limma-dupcor block column of the sample table, else --block-col; NULL without block or for camera",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "correlation": {
+          "kind": "input",
+          "code": "cor",
+          "value": null,
+          "binding": "upstream limma-dupcor consensus correlation, else --correlation; NULL without block",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "weights": {
+          "kind": "input",
+          "code": "weights",
+          "value": null,
+          "binding": "EList precision weights of a limma upstream, else the --weights matrix, else NULL",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        }
+      }
+    },
+    {
+      "fn": "limma::mroast",
+      "args": {
+        "y": {
+          "kind": "input",
+          "code": "input$matrix",
+          "value": null,
+          "binding": "EList E of a limma upstream, or the continuous expression matrix (CSV / non-limma hand-off)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "index": {
+          "kind": "input",
+          "code": "index",
+          "value": null,
+          "binding": "limma::ids2indices() of the registered collection on the input IDs",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "design": {
+          "kind": "input",
+          "code": "design",
+          "value": null,
+          "binding": "fitted design of the limma upstream (unchanged), else ~ group + covariates built from the sample table",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "contrast": {
+          "kind": "input",
+          "code": "contrast",
+          "value": null,
+          "binding": "column index of the tested coefficient (limma upstream state$coefficient, else group<target>)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "ncol(design)"
+        },
+        "geneid": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "set.statistic": {
+          "kind": "fixed",
+          "code": "\"mean\"",
+          "value": "mean",
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "\"mean\""
+        },
+        "gene.weights": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "var.prior": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "df.prior": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "nrot": {
+          "kind": "flag",
+          "code": "a$nrot",
+          "flag": "--nrot",
+          "value": 9999,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "1999"
+        },
+        "approx.zscore": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "TRUE"
+        },
+        "legacy": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "FALSE"
+        },
+        "adjust.method": {
+          "kind": "fixed",
+          "code": "\"BH\"",
+          "value": "BH",
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "\"BH\""
+        },
+        "midp": {
+          "kind": "fixed",
+          "code": "TRUE",
+          "value": true,
+          "source": "PACK limma-camera S1 appendix P-2",
+          "pack": "P-2",
+          "function_default": "TRUE"
+        },
+        "sort": {
+          "kind": "fixed",
+          "code": "\"directional\"",
+          "value": "directional",
+          "source": "PACK limma-camera S1 appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"directional\""
+        },
+        "block": {
+          "kind": "input",
+          "code": "block",
+          "value": null,
+          "binding": "upstream limma-dupcor block column of the sample table, else --block-col; NULL without block or for camera",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "correlation": {
+          "kind": "input",
+          "code": "cor",
+          "value": null,
+          "binding": "upstream limma-dupcor consensus correlation, else --correlation; NULL without block",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "weights": {
+          "kind": "input",
+          "code": "weights",
+          "value": null,
+          "binding": "EList precision weights of a limma upstream, else the --weights matrix, else NULL",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        }
+      }
+    },
+    {
+      "fn": "limma::lmFit",
+      "args": {
+        "object": {
+          "kind": "input",
+          "code": "input$matrix",
+          "value": null,
+          "binding": "EList E of a limma upstream, or the continuous expression matrix (CSV / non-limma hand-off)",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "design": {
+          "kind": "input",
+          "code": "design",
+          "value": null,
+          "binding": "fitted design of the limma upstream (unchanged), else ~ group + covariates built from the sample table",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "ndups": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "NULL"
+        },
+        "spacing": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "NULL"
+        },
+        "block": {
+          "kind": "input",
+          "code": "block",
+          "value": null,
+          "binding": "upstream limma-dupcor block column of the sample table, else --block-col; NULL without block or for camera",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "correlation": {
+          "kind": "input",
+          "code": "cor",
+          "value": null,
+          "binding": "upstream limma-dupcor consensus correlation, else --correlation; NULL without block",
+          "source": "S4 contract b / module input",
+          "pack": "P-1"
+        },
+        "weights": {
+          "kind": "input",
+          "code": "weights",
+          "value": null,
+          "binding": "EList precision weights of a limma upstream, else the --weights matrix, else NULL",
+          "source": "S4 contract b / module input",
+          "pack": "P-1",
+          "function_default": "NULL"
+        },
+        "method": {
+          "kind": "fixed",
+          "code": "\"ls\"",
+          "value": "ls",
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "\"ls\""
+        }
+      }
+    },
+    {
+      "fn": "limma::eBayes",
+      "args": {
+        "fit": {
+          "kind": "input",
+          "code": "dfit",
+          "value": null,
+          "binding": "display-only lmFit of a plain expression input (a limma upstream supplies its own fit)",
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F"
+        },
+        "proportion": {
+          "kind": "fixed",
+          "code": "0.01",
+          "value": 0.01,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "0.01"
+        },
+        "stdev.coef.lim": {
+          "kind": "fixed",
+          "code": "c(0.1, 4)",
+          "value": [
+            0.1,
+            4
+          ],
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "c(0.1, 4)"
+        },
+        "trend": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "FALSE"
+        },
+        "span": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "NULL"
+        },
+        "robust": {
+          "kind": "fixed",
+          "code": "FALSE",
+          "value": false,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "FALSE"
+        },
+        "winsor.tail.p": {
+          "kind": "fixed",
+          "code": "c(0.05, 0.1)",
+          "value": [
+            0.05,
+            0.1
+          ],
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "c(0.05, 0.1)"
+        },
+        "legacy": {
+          "kind": "fixed",
+          "code": "NULL",
+          "value": null,
+          "source": "display statistic for barcode/MD figures (S3 F3), limma default",
+          "pack": "F",
+          "function_default": "NULL"
+        }
+      }
+    },
+    {
+      "fn": "limma::tricubeMovingAverage",
+      "args": {
+        "x": {
+          "kind": "input",
+          "code": "idx",
+          "value": null,
+          "binding": "set membership indicator in rank order (barcodeplot worm)",
+          "source": "limma barcodeplot source",
+          "pack": "F"
+        },
+        "span": {
+          "kind": "fixed",
+          "code": "0.45",
+          "value": 0.45,
+          "source": "limma::barcodeplot span.worm default (limma 3.68.5 source)",
+          "pack": "F",
+          "function_default": "0.5"
+        },
+        "power": {
+          "kind": "fixed",
+          "code": "3",
+          "value": 3,
+          "source": "limma::tricubeMovingAverage default",
+          "pack": "F",
+          "function_default": "3"
+        }
+      }
+    }
+  ]
+}

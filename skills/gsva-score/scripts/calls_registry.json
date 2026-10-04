@@ -1,0 +1,159 @@
+{
+  "module": "gsva-score",
+  "package_versions": {
+    "GSVA": "2.6.6",
+    "BiocParallel": "1.46.0"
+  },
+  "calls": [
+    {
+      "fn": "GSVA::gsvaParam",
+      "args": {
+        "exprData": {
+          "value": "expression matrix",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1"
+        },
+        "geneSets": {
+          "value": "registered offline collection",
+          "source": "S1-appendix P-2",
+          "pack": "gsva-score P-2"
+        },
+        "assay": {
+          "value": "NA_character_",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "NA_character_"
+        },
+        "annotation": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "NULL"
+        },
+        "minSize": {
+          "value": "5",
+          "source": "S1-appendix P-2",
+          "pack": "gsva-score P-2",
+          "function_default": "1",
+          "flag": "min-size"
+        },
+        "maxSize": {
+          "value": "500",
+          "source": "S1-appendix P-2",
+          "pack": "gsva-score P-2",
+          "function_default": "Inf",
+          "flag": "max-size"
+        },
+        "kcdf": {
+          "value": "auto",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "c(\"auto\", \"Gaussian\", \"Poisson\", \"none\")",
+          "flag": "kcdf"
+        },
+        "kcdfNoneMinSampleSize": {
+          "value": "200",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "200"
+        },
+        "tau": {
+          "value": "1",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "1"
+        },
+        "maxDiff": {
+          "value": "TRUE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "TRUE"
+        },
+        "absRanking": {
+          "value": "FALSE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "FALSE"
+        },
+        "sparse": {
+          "value": "TRUE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "TRUE"
+        },
+        "checkNA": {
+          "value": "auto",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "c(\"auto\", \"yes\", \"no\")"
+        },
+        "use": {
+          "value": "everything",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "c(\"everything\", \"all.obs\", \"na.rm\")"
+        },
+        "filterRows": {
+          "value": "TRUE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "TRUE"
+        },
+        "ondisk": {
+          "value": "auto",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "c(\"auto\", \"yes\", \"no\")"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "GSVA::gsva",
+      "args": {
+        "param": {
+          "value": "gsvaParam object",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1"
+        },
+        "BPPARAM": {
+          "value": "SerialParam",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1"
+        }
+      }
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {
+        "progressbar": {
+          "value": "FALSE",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "FALSE"
+        },
+        "RNGseed": {
+          "value": "20260925",
+          "source": "S1-appendix P-1",
+          "pack": "gsva-score P-1",
+          "function_default": "NULL",
+          "flag": "seed"
+        }
+      }
+    }
+  ],
+  "accessors": [
+    "GSVA::geneSetSizes",
+    "GSVA::geneSets"
+  ]
+}

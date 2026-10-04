@@ -1,0 +1,166 @@
+{
+  "module": "clusterprofiler-gsea",
+  "note": "Locked clusterProfiler 4.20.0 gseGO calls enrichit::gsea_gson without forwarding ...; downstream values are enrichit 0.2.1 defaults, sampled seed is controlled by set.seed before gseGO.",
+  "package_versions": {
+    "clusterProfiler": "4.20.0",
+    "enrichit": "0.2.1"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--database": "GO",
+    "--ranking-metric": null,
+    "--direction": null,
+    "--exploratory-fdr": false,
+    "--top-n": 15,
+    "--journal": "nature"
+  },
+  "calls": [
+    {
+      "fn": "clusterProfiler::gseGO",
+      "args": {
+        "geneList": {
+          "value": "all finite signed scores, named and decreasing",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": ""
+        },
+        "ont": {
+          "value": "BP",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "\"BP\"",
+          "flag": "--ontology"
+        },
+        "OrgDb": {
+          "value": "org.Hs.eg.db 3.23.1",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": ""
+        },
+        "keyType": {
+          "value": "ENTREZID",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "\"ENTREZID\"",
+          "flag": "--key-type"
+        },
+        "exponent": {
+          "value": 1,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "1"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "10",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "500",
+          "flag": "--max-size"
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "\"BH\""
+        },
+        "verbose": {
+          "value": false,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "TRUE"
+        },
+        "nPerm": {
+          "value": 1000,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "1000"
+        },
+        "method": {
+          "value": "multilevel",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "\"multilevel\""
+        },
+        "adaptive": {
+          "value": false,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "FALSE"
+        },
+        "minPerm": {
+          "value": 101,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "101"
+        },
+        "maxPerm": {
+          "value": 100000,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "1e+05"
+        },
+        "pvalThreshold": {
+          "value": 0.1,
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": "0.1"
+        }
+      }
+    }
+  ],
+  "downstream_defaults": {
+    "fn": "enrichit::gsea",
+    "args": {
+      "eps": {
+        "value": 1e-10,
+        "function_default": "1e-10",
+        "source": "locked enrichit 0.2.1 formals via gseGO wrapper",
+        "pack": "P-2"
+      },
+      "sampleSize": {
+        "value": 101,
+        "function_default": "101",
+        "source": "locked enrichit 0.2.1 formals via gseGO wrapper",
+        "pack": "P-2"
+      },
+      "seed": {
+        "value": false,
+        "function_default": "FALSE",
+        "source": "locked enrichit 0.2.1 formals via gseGO wrapper",
+        "pack": "P-2"
+      },
+      "nPermSimple": {
+        "value": 1000,
+        "function_default": "1000",
+        "source": "locked enrichit 0.2.1 formals via gseGO wrapper",
+        "pack": "P-2"
+      },
+      "scoreType": {
+        "value": "std",
+        "function_default": "\"std\"",
+        "source": "locked enrichit 0.2.1 formals via gseGO wrapper",
+        "pack": "P-2"
+      },
+      "weight": {
+        "value": null,
+        "function_default": "NULL",
+        "source": "locked enrichit 0.2.1 formals via gseGO wrapper",
+        "pack": "P-2"
+      }
+    },
+    "parallel": "single thread; no BiocParallel argument is forwarded by gseGO"
+  }
+}

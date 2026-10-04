@@ -1,0 +1,170 @@
+{
+  "module": "muscat-pseudobulk",
+  "package_versions": {
+    "muscat": "1.26.0"
+  },
+  "calls": [
+    {
+      "fn": "muscat::prepSCE",
+      "args": {
+        "x": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "kid": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"cluster_id\""
+        },
+        "sid": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"sample_id\""
+        },
+        "gid": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"group_id\""
+        },
+        "drop": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--prep-drop"
+        }
+      }
+    },
+    {
+      "fn": "muscat::aggregateData",
+      "args": {
+        "x": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "assay": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "by": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"cluster_id\", \"sample_id\")"
+        },
+        "fun": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"sum\", \"mean\", \"median\", \"prop.detected\", \"num.detected\")",
+          "flag": "--aggregate-fun"
+        },
+        "scale": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--aggregate-scale"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--aggregate-verbose"
+        },
+        "BPPARAM": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "SerialParam(progressbar = verbose)",
+          "flag": "--aggregate-bpparam"
+        }
+      }
+    },
+    {
+      "fn": "muscat::pbDS",
+      "args": {
+        "pb": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "method": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"edgeR\", \"DESeq2\", \"limma-trend\", \"limma-voom\", \"DD\")",
+          "flag": "--ds-method"
+        },
+        "design": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--ds-design"
+        },
+        "coef": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--ds-coef"
+        },
+        "contrast": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--ds-contrast"
+        },
+        "min_cells": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "10",
+          "flag": "--ds-min-cells"
+        },
+        "filter": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"both\", \"genes\", \"samples\", \"none\")",
+          "flag": "--ds-filter"
+        },
+        "treat": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--ds-treat"
+        },
+        "verbose": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--ds-verbose"
+        },
+        "BPPARAM": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "SerialParam(progressbar = verbose)",
+          "flag": "--ds-bpparam"
+        }
+      }
+    }
+  ],
+  "accessors": []
+}

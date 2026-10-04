@@ -1,0 +1,21 @@
+{
+  "module": "clusterprofiler-compare",
+  "date": "2026-09-27T09:38:56Z",
+  "sampled_pmids": ["32459996", "34764255", "35637228", "36332016", "38123840", "42351220"],
+  "records_checked": 42,
+  "records_passed": 42,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "notes": [
+    "Sample: `collect.py sample clusterprofiler-compare --frac 0.2 --seed omicstat-s0` -> 32459996, 34764255, 35637228, 36332016, 38123840, 42351220 (6 of 30 = 20%).",
+    "Echo: fresh esummary calls (tool=omicstat, email=omicstat-s0@example.invalid; OMICSTAT_CONTACT_EMAIL was unset) to eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi for all 6 PMIDs; normalized/html-unescaped title and year match corpus.jsonl for all 6 (6/6).",
+    "42 extraction.jsonl records checked (6 articles x [_applies + fun, clusters, gene_set_db, p_adjust_method, enrich_cutoff, clusterprofiler_version]); every non-empty snippet re-run live with `collect.py check <PMCID> \"<snippet>\"` (all FOUND after correcting shell-escaping of curly quotes/apostrophes in the snippets -- the extractor's own recorded snippets were verbatim and correct throughout); every 'not reported' record re-checked against the full `collect.py methods clusterprofiler-compare <PMCID>` Methods text.",
+    "PMC13307697 (42351220): correctly avoided the DE-cutoff/enrichment-cutoff trap -- the paper's 'adjusted p-value < 0.05' threshold is stated for the Srr2del/del vs WT DESeq2 DEG call, not for the compareCluster(fun='enrichGO') step, and enrich_cutoff was correctly recorded as 'not reported' rather than borrowing the DE cutoff.",
+    "PMC9151784 (35637228): 'clusters' value ('orthogroup-inherited functional terms across myriapod lineages/taxa') is a reasonable synthesis of the surrounding eggNOG/OrthoFinder/CAFE5 context (gene-family gain/loss across lineages feeding into the compareCluster GO/KOG/KEGG/KO enrichment) rather than a single explicit sentence naming the compared groups; flagged here as a borderline case but not counted as a failure since it does not contradict or misattribute any stated value.",
+    "No case among the 6 sampled articles had `_applies = no`.",
+    "vendor/ untouched (read-only); `find vendor -name __pycache__` printed nothing at the end of this session."
+  ],
+  "verdict": "pass"
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "pmid": "41404730",
+    "parameter": "maf_source",
+    "pmcid": "PMC12711199",
+    "recorded": "not reported",
+    "expected": "TCGA gene mutation data",
+    "reason": "\"The data are from the gene mutation data of TCGA tumor samples ... The calculation of TMB and difference mutation analysis was used by the maftools\"."
+  },
+  {
+    "pmid": "34931711",
+    "parameter": "maf_source",
+    "pmcid": "PMC8762556",
+    "recorded": "not reported",
+    "expected": "COSMIC v92 (TCGA cohorts)",
+    "reason": "\"Somatic mutations of BID previously described in cancer (TCGA cohorts) were retrieved from the COSMIC database v92 ... MAF file parsing and analysis of mutations were facilitated by the maftools library\"."
+  },
+  {
+    "pmid": "39428388",
+    "parameter": "maf_source",
+    "pmcid": "PMC11491468",
+    "recorded": "not reported",
+    "expected": "TCGA HNSCC MAF (GDCquery_Maf, TCGAbiolinks) and own targeted-panel variants",
+    "reason": "\"MAF files were acquired via the genomic data commons (GDC) portal using GDCquery_Maf of the TCGAbiolinks R package\" plus the in-house capture panel whose filtered variants feed the maftools oncoplots."
+  },
+  {
+    "pmid": "39428388",
+    "parameter": "variant_classes",
+    "pmcid": "PMC11491468",
+    "recorded": "not reported",
+    "expected": "intronic, silent and UTR variants removed (except TERT promoter / TP53 5' UTR)",
+    "reason": "\"Finally, intronic, silent and UTR variants were removed, with exception of TERT promoter mutations and TP53 5' UTR mutations\" before the Maftools oncoplots."
+  },
+  {
+    "pmid": "37460463",
+    "parameter": "maf_source",
+    "pmcid": "PMC10352361",
+    "recorded": "not reported",
+    "expected": "in-house WES of ccRCC tumours with matched germline",
+    "reason": "Methods > DNA extraction and WES: \"DNA isolated from frozen tumor tissue samples was used for WES, and matched germline DNA was obtained from tumor-adjacent tissues\"; the same kind of statement is recorded as 'WES' for two other papers."
+  }
+]

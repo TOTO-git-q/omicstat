@@ -1,0 +1,8 @@
+# The image only needs env/ and mcp/requirements.txt; keep the context small.
+*
+!env/omicstat-env.json
+!env/r/
+!env/layers/
+!mcp/requirements.txt
+!env/refdata_registry.json
+!env/basilisk_pkg_lock.txt

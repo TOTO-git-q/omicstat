@@ -1,0 +1,78 @@
+function	signature	argument	default
+associationTest	SingleCellExperiment	models	
+associationTest	SingleCellExperiment	global	TRUE
+associationTest	SingleCellExperiment	lineages	FALSE
+associationTest	SingleCellExperiment	l2fc	0
+associationTest	SingleCellExperiment	nPoints	2 * tradeSeq::nknots(models)
+associationTest	SingleCellExperiment	contrastType	"start"
+associationTest	SingleCellExperiment	inverse	ifelse(l2fc == 0, "Chol", "eigen")
+associationTest	list	models	
+associationTest	list	global	TRUE
+associationTest	list	lineages	FALSE
+associationTest	list	l2fc	0
+diffEndTest	SingleCellExperiment	models	
+diffEndTest	SingleCellExperiment	global	TRUE
+diffEndTest	SingleCellExperiment	pairwise	FALSE
+diffEndTest	SingleCellExperiment	l2fc	0
+diffEndTest	list	models	
+diffEndTest	list	global	TRUE
+diffEndTest	list	pairwise	FALSE
+diffEndTest	list	l2fc	0
+fitGAM	matrix	counts	
+fitGAM	matrix	sds	NULL
+fitGAM	matrix	pseudotime	NULL
+fitGAM	matrix	cellWeights	NULL
+fitGAM	matrix	conditions	NULL
+fitGAM	matrix	U	NULL
+fitGAM	matrix	genes	seq_len(nrow(counts))
+fitGAM	matrix	weights	NULL
+fitGAM	matrix	offset	NULL
+fitGAM	matrix	nknots	6
+fitGAM	matrix	verbose	TRUE
+fitGAM	matrix	parallel	FALSE
+fitGAM	matrix	BPPARAM	BiocParallel::bpparam()
+fitGAM	matrix	control	mgcv::gam.control()
+fitGAM	matrix	sce	TRUE
+fitGAM	matrix	family	"nb"
+fitGAM	matrix	gcv	FALSE
+fitGAM	dgCMatrix	counts	
+fitGAM	dgCMatrix	sds	NULL
+fitGAM	dgCMatrix	pseudotime	NULL
+fitGAM	dgCMatrix	cellWeights	NULL
+fitGAM	dgCMatrix	conditions	NULL
+fitGAM	dgCMatrix	U	NULL
+fitGAM	dgCMatrix	genes	seq_len(nrow(counts))
+fitGAM	dgCMatrix	weights	NULL
+fitGAM	dgCMatrix	offset	NULL
+fitGAM	dgCMatrix	nknots	6
+fitGAM	dgCMatrix	verbose	TRUE
+fitGAM	dgCMatrix	parallel	FALSE
+fitGAM	dgCMatrix	BPPARAM	BiocParallel::bpparam()
+fitGAM	dgCMatrix	control	mgcv::gam.control()
+fitGAM	dgCMatrix	sce	TRUE
+fitGAM	dgCMatrix	family	"nb"
+fitGAM	dgCMatrix	gcv	FALSE
+fitGAM	SingleCellExperiment	counts	
+fitGAM	SingleCellExperiment	U	NULL
+fitGAM	SingleCellExperiment	genes	seq_len(nrow(counts))
+fitGAM	SingleCellExperiment	conditions	NULL
+fitGAM	SingleCellExperiment	weights	NULL
+fitGAM	SingleCellExperiment	offset	NULL
+fitGAM	SingleCellExperiment	nknots	6
+fitGAM	SingleCellExperiment	verbose	TRUE
+fitGAM	SingleCellExperiment	parallel	FALSE
+fitGAM	SingleCellExperiment	BPPARAM	BiocParallel::bpparam()
+fitGAM	SingleCellExperiment	control	mgcv::gam.control()
+fitGAM	SingleCellExperiment	sce	TRUE
+fitGAM	SingleCellExperiment	family	"nb"
+fitGAM	SingleCellExperiment	gcv	FALSE
+startVsEndTest	SingleCellExperiment	models	
+startVsEndTest	SingleCellExperiment	global	TRUE
+startVsEndTest	SingleCellExperiment	lineages	FALSE
+startVsEndTest	SingleCellExperiment	pseudotimeValues	NULL
+startVsEndTest	SingleCellExperiment	l2fc	0
+startVsEndTest	list	models	
+startVsEndTest	list	global	TRUE
+startVsEndTest	list	lineages	FALSE
+startVsEndTest	list	pseudotimeValues	NULL
+startVsEndTest	list	l2fc	0

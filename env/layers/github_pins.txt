@@ -1,0 +1,20 @@
+# GitHub-only packages: <package> <owner/repo> <40-hex commit SHA>
+# Refs are resolved ONCE with env/pin_github.sh on a machine with internet
+# (GT103), committed, and never floated again (ENGINEERING_PLAN 3.1). Rows are
+# installed in file order, so transitive GitHub dependencies can be pinned by
+# listing them first (env/pin_github.sh --from-lock appends them after the
+# first build from the image's pkg_lock.csv).
+# Pinned 2026-09-27 from the cloud session (git ls-remote HEAD); BPCells and
+# speedglm added on GT103 from the 2026.09.1 image's pkg_lock (--from-lock).
+# layer   package       repo                          sha
+DEP  BPCells       bnprks/BPCells                 016296413cd7a5725c8b35816df02365d7def853
+DEP  ConsensusTME  cansysbio/ConsensusTME         6e14ba3d09e39d48b5b9a6b5fa9cd10296cce06a
+DEP  EPIC          GfellerLab/EPIC                50a4f404f96c2842b2891b517b4e3bfaa6c64b8f
+DEP  MCPcounter    grst/MCPcounter                7ea6e040af68d8e0641d80ddf6b0d06226752b87
+DEP  mMCPcounter   grst/mMCPcounter               cec69714e0028a0b46f19b3192c48d26f8eaa177
+DEP  speedglm      cole-trapnell-lab/speedglm     ca34b4e53319424b60c442bb550adf3574b4bfec
+DEP  xCell         dviraran/xCell                 20e2919eefd37e15af35f29f4944e30697098a28
+L5   monocle3      cole-trapnell-lab/monocle3     536f1033d6de7c957f26a1f403f81efbd825e0db
+L5   CellChat      jinworks/CellChat              75253cd0c9e68410e6e721a6d3a0419a1d7e358f
+L6   immunedeconv  omnideconv/immunedeconv        e625e6c28ed14a30f9f40f159925cc9f0df4fa49
+L8   presto       immunogenomics/presto         b5df6ee6097eb62522f2e557aa93ac21bab2d05f

@@ -1,0 +1,83 @@
+{
+  "module": "speckle-propeller",
+  "package_versions": {
+    "speckle": "1.12.0"
+  },
+  "calls": [
+    {
+      "fn": "speckle::propeller",
+      "args": {
+        "x": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "clusters": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "sample": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "group": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "trend": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--prop-trend"
+        },
+        "robust": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--prop-robust"
+        },
+        "transform": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"logit\"",
+          "flag": "--prop-transform"
+        }
+      }
+    },
+    {
+      "fn": "speckle::getTransformedProps",
+      "args": {
+        "clusters": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "clusters"
+        },
+        "sample": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "sample"
+        },
+        "transform": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--props-transform"
+        }
+      }
+    }
+  ],
+  "accessors": []
+}

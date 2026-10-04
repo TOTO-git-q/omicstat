@@ -1,0 +1,3 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/differential.csv,cf6f02404091d9cc74cdb7f41bcad993fa1b6f0567cfc4ec15599b073a74c95e,container,

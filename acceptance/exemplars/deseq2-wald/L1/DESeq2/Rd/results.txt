@@ -1,0 +1,385 @@
+Extract results from a DESeq analysis
+
+Description:
+
+     'results' extracts a result table from a DESeq analysis giving
+     base means across samples, log2 fold changes, standard errors,
+     test statistics, p-values and adjusted p-values; 'resultsNames'
+     returns the names of the estimated effects (coefficents) of the
+     model; 'removeResults' returns a 'DESeqDataSet' object with
+     results columns removed.
+
+Usage:
+
+     results(
+       object,
+       contrast,
+       name,
+       lfcThreshold = 0,
+       altHypothesis = c("greaterAbs", "greaterAbsUPSHOT", "lessAbs", "greater", "less",
+         "greaterAbs2014"),
+       listValues = c(1, -1),
+       cooksCutoff,
+       independentFiltering = TRUE,
+       alpha = 0.1,
+       filter,
+       theta,
+       pAdjustMethod = "BH",
+       filterFun,
+       format = c("DataFrame", "GRanges", "GRangesList"),
+       saveCols = NULL,
+       test = c("Wald", "LRT"),
+       addMLE = FALSE,
+       tidy = FALSE,
+       parallel = FALSE,
+       BPPARAM = bpparam(),
+       minmu = 0.5
+     )
+     
+     resultsNames(object)
+     
+     removeResults(object)
+     
+Arguments:
+
+  object: a DESeqDataSet, on which one of the following functions has
+          already been called: 'DESeq', 'nbinomWaldTest', or
+          'nbinomLRT'
+
+contrast: this argument specifies what comparison to extract from the
+          'object' to build a results table. one of either:
+
+            * a character vector with exactly three elements: the name
+              of a factor in the design formula, the name of the
+              numerator level for the fold change, and the name of the
+              denominator level for the fold change (simplest case)
+
+            * a list of 2 character vectors: the names of the fold
+              changes for the numerator, and the names of the fold
+              changes for the denominator. these names should be
+              elements of 'resultsNames(object)'. if the list is length
+              1, a second element is added which is the empty character
+              vector, 'character()'. (more general case, can be to
+              combine interaction terms and main effects)
+
+            * a numeric contrast vector with one element for each
+              element in 'resultsNames(object)' (most general case)
+
+          If specified, the 'name' argument is ignored.
+
+    name: the name of the individual effect (coefficient) for building
+          a results table. Use this argument rather than 'contrast' for
+          continuous variables, individual effects or for individual
+          interaction terms. The value provided to 'name' must be an
+          element of 'resultsNames(object)'.
+
+lfcThreshold: a non-negative value which specifies a log2 fold change
+          threshold. The default value is 0, corresponding to a test
+          that the log2 fold changes are equal to zero. The user can
+          specify the alternative hypothesis using the 'altHypothesis'
+          argument, which defaults to testing for log2 fold changes
+          greater in absolute value than a given threshold. If
+          'lfcThreshold' is specified, the results are for Wald tests,
+          and LRT p-values will be overwritten.
+
+altHypothesis: character which specifies the alternative hypothesis,
+          i.e. those values of log2 fold change which the user is
+          interested in finding. The complement of this set of values
+          is the null hypothesis which will be tested. If the log2 fold
+          change specified by 'name' or by 'contrast' is written as
+          beta , then the possible values for 'altHypothesis' represent
+          the following alternate hypotheses:
+
+            * greaterAbs: |beta| > lfcThreshold , and p-values are
+              two-tailed
+
+            * greaterAbsUPSHOT: same as 'greaterAbs'. Provides more
+              power than '"greaterAbs"' and is valid when the
+              distribution for beta is unimodal about zero in the
+              interval [-lfcThreshold,lfcThreshold]
+
+            * lessAbs: |beta| < lfcThreshold , p-values are the maximum
+              of the upper and lower tests. The Wald statistic given is
+              positive, an SE-scaled distance from the closest boundary
+
+            * greater: beta > lfcThreshold
+
+            * less: beta < -lfcThreshold
+
+            * greaterAbs2014: older implementation of greaterAbs from
+              2014, less power
+
+listValues: only used if a list is provided to 'contrast': a numeric of
+          length two: the log2 fold changes in the list are multiplied
+          by these values. the first number should be positive and the
+          second negative.  by default this is 'c(1,-1)'
+
+cooksCutoff: theshold on Cook's distance, such that if one or more
+          samples for a row have a distance higher, the p-value for the
+          row is set to NA. The default cutoff is the .99 quantile of
+          the F(p, m-p) distribution, where p is the number of
+          coefficients being fitted and m is the number of samples. Set
+          to 'Inf' or 'FALSE' to disable the resetting of p-values to
+          NA. Note: this test excludes the Cook's distance of samples
+          belonging to experimental groups with only 2 samples.
+
+independentFiltering: logical, whether independent filtering should be
+          applied automatically
+
+   alpha: the significance cutoff used for optimizing the independent
+          filtering (by default 0.1). If the adjusted p-value cutoff
+          (FDR) will be a value other than 0.1, 'alpha' should be set
+          to that value.
+
+  filter: the vector of filter statistics over which the independent
+          filtering will be optimized. By default the mean of
+          normalized counts is used.
+
+   theta: the quantiles at which to assess the number of rejections
+          from independent filtering
+
+pAdjustMethod: the method to use for adjusting p-values, see
+          '?p.adjust'
+
+filterFun: an optional custom function for performing independent
+          filtering and p-value adjustment, with arguments 'res' (a
+          DESeqResults object), 'filter' (the quantitity for filtering
+          tests), 'alpha' (the target FDR), 'pAdjustMethod'. This
+          function should return a DESeqResults object with a 'padj'
+          column.
+
+  format: character, either '"DataFrame"', '"GRanges"', or
+          '"GRangesList"', whether the results should be printed as a
+          'DESeqResults' DataFrame, or if the results DataFrame should
+          be attached as metadata columns to the 'GRanges' or
+          'GRangesList' 'rowRanges' of the 'DESeqDataSet'. If the
+          'rowRanges' is a 'GRangesList', and 'GRanges' is requested,
+          the range of each gene will be returned
+
+saveCols: character or numeric vector, the columns of 'mcols(object)'
+          to pass into the 'results' output
+
+    test: this is automatically detected internally if not provided.
+          the one exception is after 'nbinomLRT' has been run,
+          'test="Wald"' will generate Wald statistics and Wald test
+          p-values.
+
+  addMLE: if 'betaPrior=TRUE' was used (non-default), this logical
+          argument specifies if the "unshrunken" maximum likelihood
+          estimates (MLE) of log2 fold change should be added as a
+          column to the results table (default is FALSE). This argument
+          is preserved for backward compatability, as now
+          'betaPrior=FALSE' by default and the recommended pipeline is
+          to generate shrunken MAP estimates using 'lfcShrink'. This
+          argument functionality is only implemented for 'contrast'
+          specified as three element character vectors.
+
+    tidy: whether to output the results table with rownames as a first
+          column 'row'. the table will also be coerced to 'data.frame'
+
+parallel: if FALSE, no parallelization. if TRUE, parallel execution
+          using 'BiocParallel', see next argument 'BPPARAM'
+
+ BPPARAM: an optional parameter object passed internally to 'bplapply'
+          when 'parallel=TRUE'. If not specified, the parameters last
+          registered with 'register' will be used.
+
+   minmu: lower bound on the estimated count (used when calculating
+          contrasts)
+
+Details:
+
+     The results table when printed will provide the information about
+     the comparison, e.g. "log2 fold change (MAP): condition treated vs
+     untreated", meaning that the estimates are of log2(treated /
+     untreated), as would be returned by
+     'contrast=c("condition","treated","untreated")'. Multiple results
+     can be returned for analyses beyond a simple two group comparison,
+     so 'results' takes arguments 'contrast' and 'name' to help the
+     user pick out the comparisons of interest for printing a results
+     table. The use of the 'contrast' argument is recommended for exact
+     specification of the levels which should be compared and their
+     order.
+
+     If 'results' is run without specifying 'contrast' or 'name', it
+     will return the comparison of the last level of the last variable
+     in the design formula over the first level of this variable. For
+     example, for a simple two-group comparison, this would return the
+     log2 fold changes of the second group over the first group (the
+     reference level). Please see examples below and in the vignette.
+
+     The argument 'contrast' can be used to generate results tables for
+     any comparison of interest, for example, the log2 fold change
+     between two levels of a factor, and its usage is described below.
+     It can also accomodate more complicated numeric comparisons. Note
+     that 'contrast' will set to 0 the estimated LFC in a comparison of
+     two groups, where all of the counts in the two groups are equal to
+     0 (while other groups have positive counts), while 'name' will not
+     automatically set these LFC to 0. The test statistic used for a
+     contrast is:
+
+                        c' beta / sqrt( c' Sigma c )                    
+     
+     The argument 'name' can be used to generate results tables for
+     individual effects, which must be individual elements of
+     'resultsNames(object)'. These individual effects could represent
+     continuous covariates, effects for individual levels, or
+     individual interaction effects.
+
+     Information on the comparison which was used to build the results
+     table, and the statistical test which was used for p-values (Wald
+     test or likelihood ratio test) is stored within the object
+     returned by 'results'. This information is in the metadata columns
+     of the results table, which is accessible by calling 'mcols' on
+     the 'DESeqResults' object returned by 'results'.
+
+     On p-values:
+
+     By default, independent filtering is performed to select a set of
+     genes for multiple test correction which maximizes the number of
+     adjusted p-values less than a given critical value 'alpha' (by
+     default 0.1). See the reference in this man page for details on
+     independent filtering. The filter used for maximizing the number
+     of rejections is the mean of normalized counts for all samples in
+     the dataset. Several arguments from the 'filtered_p' function of
+     the genefilter package (used within the 'results' function) are
+     provided here to control the independent filtering behavior. (Note
+     'filtered_p' R code is now copied into DESeq2 package to avoid
+     gfortran requirements.) In DESeq2 version >= 1.10, the threshold
+     that is chosen is the lowest quantile of the filter for which the
+     number of rejections is close to the peak of a curve fit to the
+     number of rejections over the filter quantiles. 'Close to' is
+     defined as within 1 residual standard deviation. The adjusted
+     p-values for the genes which do not pass the filter threshold are
+     set to 'NA'.
+
+     By default, 'results' assigns a p-value of 'NA' to genes
+     containing count outliers, as identified using Cook's distance.
+     See the 'cooksCutoff' argument for control of this behavior.
+     Cook's distances for each sample are accessible as a matrix
+     "cooks" stored in the 'assays()' list. This measure is useful for
+     identifying rows where the observed counts might not fit to a
+     Negative Binomial distribution.
+
+     For analyses using the likelihood ratio test (using 'nbinomLRT'),
+     the p-values are determined solely by the difference in deviance
+     between the full and reduced model formula. A single log2 fold
+     change is printed in the results table for consistency with other
+     results table outputs, however the test statistic and p-values may
+     nevertheless involve the testing of one or more log2 fold changes.
+     Which log2 fold change is printed in the results table can be
+     controlled using the 'name' argument, or by default this will be
+     the estimated coefficient for the last element of
+     'resultsNames(object)'.
+
+     If 'useT=TRUE' was specified when running 'DESeq' or
+     'nbinomWaldTest', then the p-value generated by 'results' will
+     also make use of the t distribution for the Wald statistic, using
+     the degrees of freedom in 'mcols(object)$tDegreesFreedom'.
+
+Value:
+
+     For 'results': a 'DESeqResults' object, which is a simple subclass
+     of DataFrame. This object contains the results columns:
+     'baseMean', 'log2FoldChange', 'lfcSE', 'stat', 'pvalue' and
+     'padj', and also includes metadata columns of variable
+     information. The 'lfcSE' gives the standard error of the
+     'log2FoldChange'. For the Wald test, 'stat' is the Wald statistic:
+     the 'log2FoldChange' divided by 'lfcSE', which is compared to a
+     standard Normal distribution to generate a two-tailed 'pvalue'.
+     For the likelihood ratio test (LRT), 'stat' is the difference in
+     deviance between the reduced model and the full model, which is
+     compared to a chi-squared distribution to generate a 'pvalue'.
+
+     For 'resultsNames': the names of the columns available as results,
+     usually a combination of the variable name and a level
+
+     For 'removeResults': the original 'DESeqDataSet' with results
+     metadata columns removed
+
+References:
+
+     Richard Bourgon, Robert Gentleman, Wolfgang Huber: Independent
+     filtering increases detection power for high-throughput
+     experiments. PNAS (2010),
+     <http://dx.doi.org/10.1073/pnas.0914005107>
+
+See Also:
+
+     'DESeq', 'lfcShrink'
+
+Examples:
+
+     ## Example 1: two-group comparison
+     
+     dds <- makeExampleDESeqDataSet(m=4)
+     
+     dds <- DESeq(dds)
+     res <- results(dds, contrast=c("condition","B","A"))
+     
+     # with more than two groups, the call would look similar, e.g.:
+     # results(dds, contrast=c("condition","C","A"))
+     # etc.
+     
+     ## Example 2: two conditions, two genotypes, with an interaction term
+     
+     dds <- makeExampleDESeqDataSet(n=100,m=12)
+     dds$genotype <- factor(rep(rep(c("I","II"),each=3),2))
+     
+     design(dds) <- ~ genotype + condition + genotype:condition
+     dds <- DESeq(dds) 
+     resultsNames(dds)
+     
+     # the condition effect for genotype I (the main effect)
+     results(dds, contrast=c("condition","B","A"))
+     
+     # the condition effect for genotype II
+     # this is, by definition, the main effect *plus* the interaction term
+     # (the extra condition effect in genotype II compared to genotype I).
+     results(dds, list( c("condition_B_vs_A","genotypeII.conditionB") ))
+     
+     # the interaction term, answering: is the condition effect *different* across genotypes?
+     results(dds, name="genotypeII.conditionB")
+      
+     ## Example 3: two conditions, three genotypes
+     
+     # ~~~ Using interaction terms ~~~
+     
+     dds <- makeExampleDESeqDataSet(n=100,m=18)
+     dds$genotype <- factor(rep(rep(c("I","II","III"),each=3),2))
+     design(dds) <- ~ genotype + condition + genotype:condition
+     dds <- DESeq(dds)
+     resultsNames(dds)
+     
+     # the condition effect for genotype I (the main effect)
+     results(dds, contrast=c("condition","B","A"))
+     
+     # the condition effect for genotype III.
+     # this is the main effect *plus* the interaction term
+     # (the extra condition effect in genotype III compared to genotype I).
+     results(dds, contrast=list( c("condition_B_vs_A","genotypeIII.conditionB") ))
+      
+     # the interaction term for condition effect in genotype III vs genotype I.
+     # this tests if the condition effect is different in III compared to I
+     results(dds, name="genotypeIII.conditionB")
+     
+     # the interaction term for condition effect in genotype III vs genotype II.
+     # this tests if the condition effect is different in III compared to II
+     results(dds, contrast=list("genotypeIII.conditionB", "genotypeII.conditionB"))
+     
+     # Note that a likelihood ratio could be used to test if there are any
+     # differences in the condition effect between the three genotypes.
+     
+     # ~~~ Using a grouping variable ~~~
+     
+     # This is a useful construction when users just want to compare
+     # specific groups which are combinations of variables.
+     
+     dds$group <- factor(paste0(dds$genotype, dds$condition))
+     design(dds) <- ~ group
+     dds <- DESeq(dds)
+     resultsNames(dds)
+     
+     # the condition effect for genotypeIII
+     results(dds, contrast=c("group", "IIIB", "IIIA"))
+     

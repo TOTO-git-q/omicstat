@@ -1,0 +1,26 @@
+[1] "y"
+Loading required namespace: edgeR
+dim 16918 86 
+calcNormFactors has been renamed to normLibSizes
+adaptive.span=TRUE span=0.400455: cor1=0.4449716 cor2=0.4454514
+  Down NotSig     Up 
+    27  16869     22 
+      Symbol    logFC        t      P.Value
+64595 TTTY15 6.527254 53.84239 8.614802e-69
+6192  RPS4Y1 9.679521 44.29837 1.197324e-61
+9086  EIF1AY 7.955656 43.14332 1.089759e-60
+  NGenes Direction        PValue           FDR
+Y     13        Up 1.791224e-262 3.582449e-262
+X     54      Down  6.020183e-26  6.020183e-26
+adaptive.span=FALSE span=NA: cor1=0.4455442 cor2=0.4459984
+  Down NotSig     Up 
+    27  16869     22 
+      Symbol    logFC        t      P.Value
+64595 TTTY15 6.528862 52.97238 3.627088e-68
+6192  RPS4Y1 9.690881 44.07693 1.911639e-61
+9086  EIF1AY 7.961722 42.43732 4.524801e-60
+  NGenes Direction        PValue           FDR
+Y     13        Up 2.402131e-262 4.804263e-262
+X     54      Down  5.576931e-26  5.576931e-26
+limma 3.68.5 edgeR 4.10.5 
+EXIT 0

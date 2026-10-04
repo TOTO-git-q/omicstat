@@ -1,0 +1,244 @@
+{
+  "accessors": [],
+  "calls": [
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "adata"
+          ],
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "copy": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "corr_method": {
+          "expressions": [
+            "options['corr-method']"
+          ],
+          "flag": "--corr-method",
+          "function_default": "'benjamini-hochberg'",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "corr_method",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "benjamini-hochberg"
+        },
+        "groupby": {
+          "expressions": [
+            "a['cluster-col']"
+          ],
+          "flag": "--cluster-col",
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "groupby",
+          "source": "user_required",
+          "value": "required"
+        },
+        "groups": {
+          "expressions": [
+            "options['groups']"
+          ],
+          "flag": "--groups",
+          "function_default": "'all'",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "groups",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "all"
+        },
+        "key_added": {
+          "expressions": [
+            "'omicstat_markers'"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "layer": {
+          "expressions": [
+            "None if a['expression-layer'] == 'X' else a['expression-layer']"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "mask_var": {
+          "expressions": [
+            "options['mask-var']"
+          ],
+          "flag": "--mask-var",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "mask_var",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "method": {
+          "expressions": [
+            "a['test']"
+          ],
+          "flag": "--test",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "method",
+          "source": "user_optional_default",
+          "value": "t-test"
+        },
+        "n_genes": {
+          "expressions": [
+            "options['n-genes']"
+          ],
+          "flag": "--n-genes",
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "n_genes",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "pts": {
+          "expressions": [
+            "True"
+          ],
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "rankby_abs": {
+          "expressions": [
+            "options['rankby-abs']"
+          ],
+          "flag": "--rankby-abs",
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "rankby_abs",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "off"
+        },
+        "reference": {
+          "expressions": [
+            "options['reference']"
+          ],
+          "flag": "--reference",
+          "function_default": "'rest'",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "reference",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "rest"
+        },
+        "tie_correct": {
+          "expressions": [
+            "options['tie-correct']"
+          ],
+          "flag": "--tie-correct",
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "s0_extraction_key": "tie_correct",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "off"
+        },
+        "use_raw": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scanpy.tl.rank_genes_groups"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "adata"
+          ],
+          "function_default": "<required>",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        },
+        "gene_symbols": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        },
+        "group": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "<required>",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        },
+        "key": {
+          "expressions": [
+            "'omicstat_markers'"
+          ],
+          "function_default": "'rank_genes_groups'",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        },
+        "log2fc_max": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        },
+        "log2fc_min": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        },
+        "pval_cutoff": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "source": "native unfiltered accessor; preserve native columns and order"
+        }
+      },
+      "fn": "scanpy.get.rank_genes_groups_df"
+    }
+  ],
+  "captured_signatures": {
+    "scanpy.get.rank_genes_groups_df": "(adata: 'AnnData', group: 'str | Iterable[str] | None', *, key: 'str' = 'rank_genes_groups', pval_cutoff: 'float | None' = None, log2fc_min: 'float | None' = None, log2fc_max: 'float | None' = None, gene_symbols: 'str | None' = None) -> 'pd.DataFrame'",
+    "scanpy.tl.rank_genes_groups": "(adata: 'AnnData', groupby: 'str', *, mask_var: 'NDArray[np.bool] | str | None' = None, use_raw: 'bool | None' = None, groups: \"Literal['all'] | Iterable[str]\" = 'all', reference: 'str' = 'rest', n_genes: 'int | None' = None, rankby_abs: 'bool' = False, pts: 'bool' = False, key_added: 'str | None' = None, copy: 'bool' = False, method: '_Method | None' = None, corr_method: '_CorrMethod' = 'benjamini-hochberg', tie_correct: 'bool' = False, layer: 'str | None' = None, **kwds) -> 'AnnData | None'"
+  },
+  "default_capture_environment": {
+    "image_id": "sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f",
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scanpy": "1.12.4",
+      "scvi-tools": "1.5.1",
+      "torch": "2.14.0+cpu"
+    },
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.36",
+    "py_env_version": "2026.09.1",
+    "python": "3.12.13"
+  },
+  "default_capture_status": "captured_locked_container",
+  "flag_defaults": {
+    "--alpha": 0.05,
+    "--journal": "nature",
+    "--seed": 20260925,
+    "--test": "t-test",
+    "--top-n": 5
+  },
+  "import_names": {
+    "scvi-tools": "scvi"
+  },
+  "module": "scanpy-markers",
+  "note": "Default formals were read from the pinned installed packages. Explicit scientific choices remain those recorded by the source; capturing signatures alone is not numerical acceptance.",
+  "package_versions": {
+    "anndata": "0.13.3.post0",
+    "scanpy": "1.12.4"
+  }
+}

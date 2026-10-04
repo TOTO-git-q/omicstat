@@ -1,0 +1,8 @@
+*
+!.gitignore
+!fetch_anchor_data.sh
+!README.md
+!ANCHOR_REGISTRY.md
+!worklog-anchors.md
+!install_acceptance_lib.R
+!acceptance_lib_lock.csv

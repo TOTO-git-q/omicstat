@@ -1,0 +1,50 @@
+Package: fgsea
+Title: Fast Gene Set Enrichment Analysis
+Version: 1.38.0
+Authors@R: c(person("Gennady", "Korotkevich", role = "aut"),
+             person("Vladimir", "Sukhov", role = "aut"),
+             person("Nikita", "Golikov", role = "aut"),
+             person("Nikolay", "Budin", role = "ctb"),
+             person("Nikita", "Gusak", role = "ctb"),
+             person("Zieman", "Mark", role = "ctb"),
+			 person("Alexey", "Sergushichev", email = "alsergbox@gmail.com", role = c("aut", "cre")))
+Description: The package implements an algorithm for fast gene set enrichment
+    analysis. Using the fast algorithm allows to make more permutations and get
+    more fine grained p-values, which allows to use accurate stantard approaches to
+    multiple hypothesis correction.
+biocViews: GeneExpression, DifferentialExpression, GeneSetEnrichment, Pathways
+Depends:
+    R (>= 4.1)
+Imports:
+    Rcpp,
+    data.table,
+    BiocParallel,
+    stats,
+    ggplot2 (>= 2.2.0),
+    cowplot,
+    grid,
+    fastmatch,
+    Matrix,
+    scales,
+    utils
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown,
+    reactome.db,
+    AnnotationDbi,
+    parallel,
+    org.Mm.eg.db,
+    limma,
+    GEOquery,
+    msigdbr,
+    aggregation,
+    Seurat
+License: MIT + file LICENCE
+LazyData: true
+LinkingTo: Rcpp, BH
+RoxygenNote: 7.3.3
+Encoding: UTF-8
+VignetteBuilder: knitr
+URL: https://github.com/alserglab/fgsea/
+BugReports: https://github.com/alserglab/fgsea/issues

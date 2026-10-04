@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+"""run_smoke_test.py -- module {{module}}. ASCII only.
+
+Required checks (ENGINEERING_PLAN 7.2 S2, Python lane 10.4): anchors (PACK C,
+tolerance tier for embeddings / clusters / latent spaces), flag effectiveness,
+call-registry consistency + default drift (tools/check_calls.py), default
+consistency (tools/check_defaults.py), flag-doc coverage
+(tools/check_flag_docs.py), determinism, cwd independence.
+Run in the omicstat-py image: bash env/py/test.sh (tools/run_tests_py.sh).
+The R render step is exercised end to end by mcp/test_client.py.
+"""
+import os
+import pathlib
+import subprocess
+import sys
+import tempfile
+
+HERE = pathlib.Path(__file__).resolve().parent
+MODULE = HERE.parent
+SUITE = MODULE.parent.parent
+ENTRY = MODULE / "scripts" / "run_{{pkg}}_{{part}}.py"
+FAILS = []
+
+
+def check(cond, msg):
+    print(("PASS: " if cond else "FAIL: ") + msg, flush=True)
+    if not cond:
+        FAILS.append(msg)
+
+
+work = pathlib.Path(tempfile.mkdtemp(prefix="{{module}}_smoke_"))
+os.chdir(work)                      # cwd independence
+for tool in ("check_calls.py", "check_defaults.py", "check_flag_docs.py"):
+    r = subprocess.run([sys.executable, str(SUITE / "tools" / tool), str(MODULE)], capture_output=True, text=True)
+    check(r.returncode == 0, "%s (%s)" % (tool, (r.stdout + r.stderr).strip()[-200:]))
+r = subprocess.run([sys.executable, str(ENTRY), "--help"], capture_output=True, text=True)
+check(r.returncode == 0 and "--outdir" in r.stdout, "--help")
+# TODO(S2): anchors, flags, determinism (golden_manifest.csv), figure request
+# (ospy.figure_request.validate_request), qc/engine_warnings.csv columns.
+print("SMOKE %s" % ("PASSED" if not FAILS else "FAILED: %d" % len(FAILS)))
+sys.exit(1 if FAILS else 0)

@@ -1,0 +1,24 @@
+{
+  "atol": 1e-06,
+  "rtol": 1e-06,
+  "tables": {
+    "batch_mixing.csv": [
+      "same_batch_weight_fraction",
+      "normalized_batch_entropy"
+    ],
+    "embedding_comparison.csv": [
+      "x",
+      "y"
+    ],
+    "latent_coordinates.csv": [
+      "latent_1",
+      "latent_2",
+      "latent_3",
+      "latent_4",
+      "latent_5"
+    ],
+    "training_history.csv": [
+      "value"
+    ]
+  }
+}

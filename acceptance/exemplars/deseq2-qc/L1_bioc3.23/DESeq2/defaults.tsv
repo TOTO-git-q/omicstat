@@ -1,0 +1,24 @@
+function	argument	default
+DESeqDataSetFromMatrix	countData	
+DESeqDataSetFromMatrix	colData	
+DESeqDataSetFromMatrix	design	
+DESeqDataSetFromMatrix	tidy	FALSE
+DESeqDataSetFromMatrix	ignoreRank	FALSE
+DESeqDataSetFromMatrix	...	
+plotPCA	object	
+plotPCA	intgroup	"condition"
+plotPCA	ntop	500
+plotPCA	returnData	FALSE
+plotPCA	pcsToUse	1:2
+rlog	object	
+rlog	blind	TRUE
+rlog	intercept	
+rlog	betaPriorVar	
+rlog	fitType	"parametric"
+varianceStabilizingTransformation	object	
+varianceStabilizingTransformation	blind	TRUE
+varianceStabilizingTransformation	fitType	"parametric"
+vst	object	
+vst	blind	TRUE
+vst	nsub	1000
+vst	fitType	"parametric"

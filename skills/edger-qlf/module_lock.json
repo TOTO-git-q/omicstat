@@ -1,0 +1,35 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "edger-qlf",
+  "module_version": "1.1.0",
+  "files": {
+    "skills/edger-qlf/scripts/edger_qlf_core.R": "081c9d9528c854c36e3ec1b86f8ede1506f371e93ae3c1e005f44e23356e6dfa",
+    "skills/edger-qlf/scripts/edger_qlf_qc.R": "3a33179b53b9995986d534f0fd88fa532317155c129c40d01ad14de287ef5aea",
+    "skills/edger-qlf/scripts/edger_qlf_report.R": "1cbb88d518adeb57cf83584500a3e658fc0eacd176568598ab66c3040a5f22b1",
+    "skills/edger-qlf/scripts/run_edger_qlf.R": "51ad76e7ffe49a5aa92f74222aabc9149bf4da1a973cd5f10e9e5c0bd671de47",
+    "skills/edger-qlf/scripts/calls_registry.json": "f2f2ab7ea705c182123e4c1e6edc770989297aba70738f42a7a378646d474143",
+    "skills/edger-qlf/SKILL.md": "55e99891acba2d034915cdc6c0497a8c5c54a8a97a6aa22ec6d1e6e7dff87614",
+    "skills/edger-qlf/references/method-basis.md": "d99db6a015d45189aa8e50c184d2c34dbbdde000f60a2318c86a64277f967bf4",
+    "skills/edger-qlf/references/options.md": "969e2bfda395d53b6738e6ea345c7ca45a8e26f284228f27ccf4b20cec5f5ce3",
+    "skills/edger-qlf/references/parameters.md": "4398ccab9ae07d289cf71c193e6721f218d85f4c54228d3452fa3589590fe597",
+    "skills/edger-qlf/references/qc-rules.md": "e30bb39acdbb5c2330c93e1a8670ee7d45d0dde09d03e0285879c28c9147eba3",
+    "skills/edger-qlf/references/reporting-templates.md": "de784f14efe8f9706b47149899e9f4e046daefbc84b98c3608a714137849e115",
+    "skills/edger-qlf/references/troubleshooting.md": "fb799cd0c321c22f48b9bc3718f4f394ec0707f267f89b995d090360e86f2a97",
+    "skills/edger-qlf/tests/fixtures/make_gse60450.R": "93f69264e667e43770e9a36413116b8349c3d2c76ec58a5948c433dc82671e29",
+    "skills/edger-qlf/tests/run_smoke_test.R": "afa46cd00b2db4593dd0c58419ee82218e122cac1262644789ea13ea10c733a8",
+    "skills/edger-qlf/tests/golden_manifest.csv": "48cf335ebc2f75138de8442f72affb6bf8cb62c84b0cb70c1fb939abf09c0050",
+    "acceptance/exemplars/edger-qlf/PACK.md": "a9c7c75522c4529c10dabcf86dc9aa1275ab21ec6cea257f0662a4493c66e7f7"
+  },
+  "packages": {
+    "edgeR": "4.10.5",
+    "limma": "3.68.5"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

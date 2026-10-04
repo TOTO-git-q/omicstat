@@ -1,0 +1,4 @@
+# L6 network / mutation / immune infiltration: wgcna-network, maftools-landscape;
+# immunedeconv is GitHub-only -> github_pins.txt
+WGCNA
+maftools

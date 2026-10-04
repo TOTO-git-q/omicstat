@@ -1,0 +1,368 @@
+== python3 env/test_env_config.py
+PASS: server.py has no hard-coded R installation
+== Rscript env/r/test_layer_lib.R
+ALL LAYER LIB CHECKS PASSED
+== Rscript skills/_shared/tests/test_figures.R
+ALL FIGURE CHECKS PASSED
+== Rscript skills/_shared/tests/test_figures_ext.R
+ALL EXTENDED FIGURE CHECKS PASSED
+== Rscript skills/_shared/tests/test_omics_shared.R
+ALL OMICS SHARED CHECKS PASSED
+== Rscript skills/_shared/tests/test_convert.R
+ALL CONVERT CHECKS PASSED
+== Rscript skills/_shared/tests/test_effect_table.R
+All checks passed.
+== Rscript skills/_shared/tests/test_render.R
+All checks passed. Rendered files are in /tmp/Rtmp9CCsPY/omicstat_render_test
+== Rscript skills/_shared/tests/test_engine_contract.R
+ALL ENGINE CONTRACT CHECKS PASSED
+== Rscript tools/test_calls_wrapper_sites.R
+PASS: wrapper dispatch preserves C1/C2/C3 and rejects unproved dynamic arguments
+== python3 env/py/test_py_env_config.py
+== python_lane config: ALL PASSED
+== python3 skills/_shared/py/tests/test_ospy.py
+== ospy: ALL PASSED (2 skipped)
+== python3 tools/test_check_calls.py
+== check_calls.py: ALL PASSED
+== python3 tools/test_new_module_py.py
+== new_module --python: ALL PASSED
+== python3 tools/test_build_contracts.py
+Captured 1 installed API signatures for x-test
+== Rscript skills/_shared/tests/test_render_figure_request.R
+ALL RENDER-REQUEST CHECKS PASSED
+== python3 tools/test_tools.py
+OK
+== python3 tools/lint_r.py
+lint_r: 159 file(s) scanned; 0 problem(s)
+== python3 tools/check_skill_frontmatter.py
+41 SKILL.md front matter(s) checked; 0 problem(s)
+== Rscript skills/aucell-score/tests/run_smoke_test.R
+PASS required licence acknowledgement
+== Rscript skills/batchelor-integrate/tests/run_smoke_test.R
+PASS golden
+== Rscript skills/cellchat-communication/tests/run_smoke_test.R
+PASS: default do.fast=TRUE human skin anchor and explicit Wilcoxon goldens; old golden retained
+== Rscript skills/clusterprofiler-compare/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/clusterprofiler-gsea/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/clusterprofiler-ora/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/deseq2-lrt/tests/run_smoke_test.R
+PASS: P3 opt-in patterns do not change LRT table
+== Rscript skills/deseq2-qc/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/deseq2-wald/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/edger-qlf/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/fgsea-prerank/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/gsva-score/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/immunedeconv-infiltration/tests/run_smoke_test.R
+PASS: locked CIBERSORT abs_method default
+== Rscript skills/limma-array/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/limma-camera/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/limma-dupcor/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/limma-voom/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/maftools-landscape/tests/run_smoke_test.R
+PASS: required territory input
+== Rscript skills/monocle3-trajectory/tests/run_smoke_test.R
+PASS: PACK C anchor, native output, --from-run chain equality, static calls/default drift and golden
+== Rscript skills/muscat-pseudobulk/tests/run_smoke_test.R
+PASS: PACK C anchor, native output, --from-run chain equality, static calls/default drift and golden
+== Rscript skills/omicstat-selftest/tests/run_smoke_test.R
+SMOKE PASSED
+== Rscript skills/scater-qc/tests/run_smoke_test.R
+PASS no Rplots.pdf
+== Rscript skills/scran-cluster/tests/run_smoke_test.R
+PASS official size-factor median 0.753183
+== Rscript skills/scran-markers/tests/run_smoke_test.R
+PASS golden
+== Rscript skills/seurat-cluster/tests/run_smoke_test.R
+This warning is displayed once per session.
+== Rscript skills/seurat-integrate/tests/run_smoke_test.R
+PASS no device leak
+== Rscript skills/seurat-markers/tests/run_smoke_test.R
+PASS resolved Methods/test/prefilters/Bonferroni both routes
+== Rscript skills/seurat-modulescore/tests/run_smoke_test.R
+PASS locked defaults
+== Rscript skills/seurat-qc/tests/run_smoke_test.R
+19 checks PASS
+== Rscript skills/singler-annotate/tests/run_smoke_test.R
+PASS: pancreas overrides native labels/pruning, actual Methods/results/captions/provenance
+== Rscript skills/slingshot-trajectory/tests/run_smoke_test.R
+tradeSeq seeded vignette converged genes: 240
+== Rscript skills/speckle-propeller/tests/run_smoke_test.R
+PASS: PACK C anchor, native output, --from-run chain equality, static calls/default drift and golden
+== Rscript skills/sva-batch/tests/run_smoke_test.R
+SMOKE PASSED (with 2 documented KNOWN-FAILING anchor(s), listed above)
+== Rscript skills/wgcna-network/tests/run_smoke_test.R
+PASS: actual adjustment caption
+== python3 skills/omicstat-selftest-py/tests/run_smoke_test.py
+SMOKE PASSED (3 skipped)
+== python3 skills/scanpy-cluster/tests/run_smoke_test.py
+SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 skills/scanpy-markers/tests/run_smoke_test.py
+SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 skills/scanpy-qc/tests/run_smoke_test.py
+SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 skills/scanvi-annotate/tests/run_smoke_test.py
+SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 skills/scvi-integrate/tests/run_smoke_test.py
+SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 tools/check_defaults.py skills/aucell-score
+aucell-score: 21 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/aucell-score
+21/21 flags documented
+== Rscript tools/check_calls.R skills/aucell-score
+166 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/batchelor-integrate
+batchelor-integrate: 25 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/batchelor-integrate
+25/25 flags documented
+== Rscript tools/check_calls.R skills/batchelor-integrate
+161 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/cellchat-communication
+cellchat-communication: 94 flag(s) in --help, 80 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/cellchat-communication
+94/94 flags documented
+== Rscript tools/check_calls.R skills/cellchat-communication
+152 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/clusterprofiler-compare
+clusterprofiler-compare: 12 flag(s) in --help, 12 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/clusterprofiler-compare
+12/12 flags documented
+== Rscript tools/check_calls.R skills/clusterprofiler-compare
+333 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/clusterprofiler-gsea
+clusterprofiler-gsea: 17 flag(s) in --help, 17 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/clusterprofiler-gsea
+17/17 flags documented
+== Rscript tools/check_calls.R skills/clusterprofiler-gsea
+288 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/clusterprofiler-ora
+clusterprofiler-ora: 18 flag(s) in --help, 18 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/clusterprofiler-ora
+18/18 flags documented
+== Rscript tools/check_calls.R skills/clusterprofiler-ora
+472 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/deseq2-lrt
+deseq2-lrt: 26 flag(s) in --help, 25 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/deseq2-lrt
+26/26 flags documented
+== Rscript tools/check_calls.R skills/deseq2-lrt
+555 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/deseq2-qc
+deseq2-qc: 17 flag(s) in --help, 17 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/deseq2-qc
+17/17 flags documented
+== Rscript tools/check_calls.R skills/deseq2-qc
+405 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/deseq2-wald
+deseq2-wald: 23 flag(s) in --help, 23 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/deseq2-wald
+23/23 flags documented
+== Rscript tools/check_calls.R skills/deseq2-wald
+571 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/edger-qlf
+edger-qlf: 23 flag(s) in --help, 23 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/edger-qlf
+23/23 flags documented
+== Rscript tools/check_calls.R skills/edger-qlf
+475 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/fgsea-prerank
+fgsea-prerank: 14 flag(s) in --help, 14 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/fgsea-prerank
+14/14 flags documented
+== Rscript tools/check_calls.R skills/fgsea-prerank
+207 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/gsva-score
+gsva-score: 19 flag(s) in --help, 19 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/gsva-score
+19/19 flags documented
+== Rscript tools/check_calls.R skills/gsva-score
+343 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/immunedeconv-infiltration
+immunedeconv-infiltration: 24 flag(s) in --help, 11 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/immunedeconv-infiltration
+24/24 flags documented
+== Rscript tools/check_calls.R skills/immunedeconv-infiltration
+215 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/limma-array
+limma-array: 28 flag(s) in --help, 28 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/limma-array
+28/28 flags documented
+== Rscript tools/check_calls.R skills/limma-array
+304 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/limma-camera
+limma-camera: 29 flag(s) in --help, 29 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/limma-camera
+29/29 flags documented
+== Rscript tools/check_calls.R skills/limma-camera
+642 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/limma-dupcor
+limma-dupcor: 26 flag(s) in --help, 26 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/limma-dupcor
+26/26 flags documented
+== Rscript tools/check_calls.R skills/limma-dupcor
+244 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/limma-voom
+limma-voom: 19 flag(s) in --help, 19 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/limma-voom
+19/19 flags documented
+== Rscript tools/check_calls.R skills/limma-voom
+216 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/maftools-landscape
+maftools-landscape: 27 flag(s) in --help, 17 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/maftools-landscape
+27/27 flags documented
+== Rscript tools/check_calls.R skills/maftools-landscape
+187 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/monocle3-trajectory
+monocle3-trajectory: 35 flag(s) in --help, 18 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/monocle3-trajectory
+35/35 flags documented
+== Rscript tools/check_calls.R skills/monocle3-trajectory
+138 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/muscat-pseudobulk
+muscat-pseudobulk: 32 flag(s) in --help, 14 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/muscat-pseudobulk
+32/32 flags documented
+== Rscript tools/check_calls.R skills/muscat-pseudobulk
+103 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/omicstat-selftest-py
+omicstat-selftest-py: 6 flag(s) in --help, 6 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/omicstat-selftest-py
+6/6 flags documented
+== python3 tools/check_calls_py_static.py skills/omicstat-selftest-py
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/omicstat-selftest
+omicstat-selftest: 4 flag(s) in --help, 4 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/omicstat-selftest
+4/4 flags documented
+== Rscript tools/check_calls.R skills/omicstat-selftest
+375 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/scanpy-cluster
+scanpy-cluster: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-cluster
+48/48 flags documented
+== python3 tools/check_calls_py_static.py skills/scanpy-cluster
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/scanpy-markers
+scanpy-markers: 25 flag(s) in --help, 25 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-markers
+25/25 flags documented
+== python3 tools/check_calls_py_static.py skills/scanpy-markers
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/scanpy-qc
+scanpy-qc: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-qc
+32/32 flags documented
+== python3 tools/check_calls_py_static.py skills/scanpy-qc
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/scanvi-annotate
+scanvi-annotate: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanvi-annotate
+27/27 flags documented
+== python3 tools/check_calls_py_static.py skills/scanvi-annotate
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/scater-qc
+scater-qc: 17 flag(s) in --help, 17 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scater-qc
+17/17 flags documented
+== Rscript tools/check_calls.R skills/scater-qc
+207 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/scran-cluster
+scran-cluster: 28 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scran-cluster
+28/28 flags documented
+== Rscript tools/check_calls.R skills/scran-cluster
+179 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/scran-markers
+scran-markers: 17 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scran-markers
+17/17 flags documented
+== Rscript tools/check_calls.R skills/scran-markers
+137 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/scvi-integrate
+scvi-integrate: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scvi-integrate
+48/48 flags documented
+== python3 tools/check_calls_py_static.py skills/scvi-integrate
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/seurat-cluster
+seurat-cluster: 87 flag(s) in --help, 80 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/seurat-cluster
+87/87 flags documented
+== Rscript tools/check_calls.R skills/seurat-cluster
+334 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/seurat-integrate
+seurat-integrate: 69 flag(s) in --help, 69 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/seurat-integrate
+69/69 flags documented
+== Rscript tools/check_calls.R skills/seurat-integrate
+252 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/seurat-markers
+seurat-markers: 43 flag(s) in --help, 42 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/seurat-markers
+43/43 flags documented
+== Rscript tools/check_calls.R skills/seurat-markers
+220 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/seurat-modulescore
+seurat-modulescore: 16 flag(s) in --help, 14 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/seurat-modulescore
+16/16 flags documented
+== Rscript tools/check_calls.R skills/seurat-modulescore
+150 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/seurat-qc
+seurat-qc: 22 flag(s) in --help, 21 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/seurat-qc
+22/22 flags documented
+== Rscript tools/check_calls.R skills/seurat-qc
+170 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/singler-annotate
+singler-annotate: 54 flag(s) in --help, 54 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/singler-annotate
+54/54 flags documented
+== Rscript tools/check_calls.R skills/singler-annotate
+204 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/slingshot-trajectory
+slingshot-trajectory: 53 flag(s) in --help, 36 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/slingshot-trajectory
+53/53 flags documented
+== Rscript tools/check_calls.R skills/slingshot-trajectory
+115 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/speckle-propeller
+speckle-propeller: 18 flag(s) in --help, 4 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/speckle-propeller
+18/18 flags documented
+== Rscript tools/check_calls.R skills/speckle-propeller
+93 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/sva-batch
+sva-batch: 15 flag(s) in --help, 15 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/sva-batch
+15/15 flags documented
+== Rscript tools/check_calls.R skills/sva-batch
+851 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/wgcna-network
+wgcna-network: 65 flag(s) in --help, 24 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/wgcna-network
+65/65 flags documented
+== Rscript tools/check_calls.R skills/wgcna-network
+392 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 skills/_shared/publication/test_publication_rules.py
+publication rules valid: 40 modules, 47 unique rule IDs
+== python3 mcp/test_package_identity.py
+OK
+== python3 mcp/test_publication.py
+OK (skipped=2)
+== python3 mcp/test_client.py
+sample manifest written to /tmp/omicstat-test/mcp/sample_manifest.json (5164 chars)
+== done: ALL PASSED (0 skipped for missing packages)
+image: omicstat-r:2026.10.1 sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7

@@ -1,0 +1,260 @@
+{
+  "module": "limma-array",
+  "note": "Locked formals from omicstat-r:2026.09.1; owner decisions in PACK S1 appendix.",
+  "package_versions": {
+    "edgeR": "4.10.5",
+    "limma": "3.68.5"
+  },
+  "flag_defaults": [],
+  "accessors": [],
+  "calls": [
+    {
+      "fn": "limma::avereps",
+      "args": {
+        "x": {
+          "value": "mat2",
+          "source": "D-V2/D-V3",
+          "pack": "D-V2/D-V3",
+          "function_default": ""
+        },
+        "ID": {
+          "value": "probe_map$technical_id",
+          "source": "D-V2/D-V3",
+          "pack": "D-V2/D-V3",
+          "function_default": "rownames(x)"
+        }
+      },
+      "method": "avereps.default"
+    },
+    {
+      "fn": "limma::lmFit",
+      "args": {
+        "object": {
+          "value": "mat2",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": ""
+        },
+        "design": {
+          "value": "model$design",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": "NULL"
+        },
+        "ndups": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": "NULL"
+        },
+        "spacing": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": "NULL"
+        },
+        "block": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": "NULL"
+        },
+        "correlation": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": ""
+        },
+        "weights": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": "NULL"
+        },
+        "method": {
+          "value": "\"ls\"",
+          "source": "S1-appendix P-1",
+          "pack": "S1-appendix P-1",
+          "function_default": "\"ls\""
+        }
+      }
+    },
+    {
+      "fn": "limma::treat",
+      "args": {
+        "fit": {
+          "value": "fit",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": ""
+        },
+        "fc": {
+          "value": "a[[\"min-effect-fc\"]]",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "1.2"
+        },
+        "lfc": {
+          "value": "log2(a[[\"min-effect-fc\"]])",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "trend": {
+          "value": "trend",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "FALSE"
+        },
+        "robust": {
+          "value": "robust",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "FALSE"
+        },
+        "winsor.tail.p": {
+          "value": "c(0.05, 0.1)",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "c(0.05, 0.1)"
+        },
+        "legacy": {
+          "value": "NULL",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "upshot": {
+          "value": "FALSE",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "limma::eBayes",
+      "args": {
+        "fit": {
+          "value": "fit",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": ""
+        },
+        "proportion": {
+          "value": "0.01",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "0.01"
+        },
+        "stdev.coef.lim": {
+          "value": "c(0.1, 4)",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "c(0.1, 4)"
+        },
+        "trend": {
+          "value": "trend",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "FALSE"
+        },
+        "span": {
+          "value": "NULL",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "robust": {
+          "value": "robust",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "FALSE"
+        },
+        "winsor.tail.p": {
+          "value": "c(0.05, 0.1)",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "c(0.05, 0.1)"
+        },
+        "legacy": {
+          "value": "NULL",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        }
+      }
+    },
+    {
+      "fn": "limma::topTable",
+      "args": {
+        "fit": {
+          "value": "fit",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": ""
+        },
+        "coef": {
+          "value": "model$coef",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "number": {
+          "value": "Inf",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "10"
+        },
+        "genelist": {
+          "value": "fit$genes",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "fit$genes"
+        },
+        "adjust.method": {
+          "value": "\"BH\"",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "\"BH\""
+        },
+        "sort.by": {
+          "value": "\"P\"",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "\"B\""
+        },
+        "resort.by": {
+          "value": "NULL",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "p.value": {
+          "value": "1",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "1"
+        },
+        "fc": {
+          "value": "NULL",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "lfc": {
+          "value": "NULL",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "NULL"
+        },
+        "confint": {
+          "value": "FALSE",
+          "source": "S1-appendix P-2",
+          "pack": "S1-appendix P-2",
+          "function_default": "FALSE"
+        }
+      }
+    }
+  ]
+}

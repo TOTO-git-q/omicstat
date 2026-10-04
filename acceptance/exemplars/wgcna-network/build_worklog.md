@@ -1,0 +1,10 @@
+# wgcna-network S2 worklog
+Worktree /home/<user>/omic-b-m4; branch build/m4; lane build_m4.
+Steps: scaffold pending; engine pending; registry pending; QC/docs pending; anchors pending; smoke pending; goldens/lock pending; figures pending; S3 handover/commit pending.
+NEXT STEP: scaffold and locked API probe.
+## 待裁决 (S2)
+Soft power and input preprocessing/outlier decisions must be explicit. Tutorial values are examples.
+2026-10-01 VERIFIED scaffold, engine, registry and QC/docs completed. check_calls exit 0, 231 call sites, zero registry/default-drift problems; defaults/flag docs/lint pass. Full FemaleLiver engine: 134 samples x3600 genes; all assignments match tutorial. Original PDF printed table includes label0=99 and 18 assigned modules, not 18 total labels. Exact sizes match; no relaxed tolerance. Input missing values accepted only under goodSamplesGenes, eigengenes impute per locked default; noncomplete traits refused. other_fat is complete. Four anchor PNGs opened: soft fit/mean connectivity and trait cells readable; sample tree readable; gene tree dense as expected for3600 leaves, shortened height label to avoid clipping. NEXT STEP: final smoke/goldens, reopen changed gene tree, lock and S3 request. Git commit blocked by read-only worktree metadata; runner auto WIP observed.
+2026-10-01 smoke PASSED 26 checks in locked container; exact 19 label counts (18 assigned + grey), full assignment/trait replay, deterministic tables/figures, spec/from-run and refusal checks. Integer-vs-double and numeric-vs-colour eigengene labels corrected in test; 200-probe all-grey subset cannot establish power effect, so full anchor power8 used. Four anchor PNGs opened; dense 3600-leaf tree expected; added left margin for axis label. Container goldens and module_lock --check OK; S3_REQUEST written. S2 finished; awaiting independent S3.
+2026-10-01 env_rebuild: baseline new-image smoke PASS; existing golden retained; lock refreshed/check; addon-specific checks pending
+wgcna-network: final 2026.10.1 smoke PASS (non-root/offline; golden unchanged; lock checked; awaiting independent S3); next remaining full R suite

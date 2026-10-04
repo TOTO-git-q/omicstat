@@ -1,0 +1,73 @@
+function	argument	default
+contrasts.fit	fit	
+contrasts.fit	contrasts	NULL
+contrasts.fit	coefficients	NULL
+eBayes	fit	
+eBayes	proportion	0.01
+eBayes	stdev.coef.lim	c(0.1,4)
+eBayes	trend	FALSE
+eBayes	span	NULL
+eBayes	robust	FALSE
+eBayes	winsor.tail.p	c(0.05,0.1)
+eBayes	legacy	NULL
+treat	fit	
+treat	fc	1.2
+treat	lfc	NULL
+treat	trend	FALSE
+treat	robust	FALSE
+treat	winsor.tail.p	c(0.05,0.1)
+treat	legacy	NULL
+treat	upshot	FALSE
+lmFit	object	
+lmFit	design	NULL
+lmFit	ndups	NULL
+lmFit	spacing	NULL
+lmFit	block	NULL
+lmFit	correlation	
+lmFit	weights	NULL
+lmFit	method	"ls"
+lmFit	\dots	
+topTable	fit	
+topTable	coef	NULL
+topTable	number	10
+topTable	genelist	fit$genes
+topTable	adjust.method	"BH"
+topTable	sort.by	"B"
+topTable	resort.by	NULL
+topTable	p.value	1
+topTable	fc	NULL
+topTable	lfc	NULL
+topTable	confint	FALSE
+topTreat	fit	
+topTreat	coef	1
+topTreat	sort.by	"p"
+topTreat	resort.by	NULL
+topTreat	\dots	
+voom	counts	
+voom	design	NULL
+voom	lib.size	NULL
+voom	offset	NULL
+voom	offset.prior	NULL
+voom	normalize.method	"none"
+voom	block	NULL
+voom	correlation	NULL
+voom	weights	NULL
+voom	span	0.5
+voom	adaptive.span	TRUE
+voom	plot	FALSE
+voom	save.plot	FALSE
+voomWithQualityWeights	counts	
+voomWithQualityWeights	design	NULL
+voomWithQualityWeights	lib.size	NULL
+voomWithQualityWeights	normalize.method	"none"
+voomWithQualityWeights	plot	FALSE
+voomWithQualityWeights	span	0.5
+voomWithQualityWeights	adaptive.span	TRUE
+voomWithQualityWeights	var.design	NULL
+voomWithQualityWeights	var.group	NULL
+voomWithQualityWeights	method	"genebygene"
+voomWithQualityWeights	maxiter	50
+voomWithQualityWeights	tol	1e-5
+voomWithQualityWeights	trace	FALSE
+voomWithQualityWeights	col	NULL
+voomWithQualityWeights	\dots	

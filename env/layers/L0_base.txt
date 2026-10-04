@@ -1,0 +1,5 @@
+# L0 base tooling (CRAN). RhpcBLASctl = R-side single-thread BLAS switch (lock 1).
+BiocManager
+remotes
+RhpcBLASctl
+yaml

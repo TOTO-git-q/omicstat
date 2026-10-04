@@ -1,0 +1,173 @@
+COMMAND: /opt/pyvenv/bin/python -m unittest discover -s tests -p test_*.py -v
+CWD: /mnt/data/omicstat_work/omic-MCP/reference_service/app
+test_domain_profile_runs_even_when_every_module_yields (test_curation.DomainRotationRemediationTests.test_domain_profile_runs_even_when_every_module_yields) ... ok
+test_reference_failure_deactivates_the_new_profile (test_curation.DomainRotationRemediationTests.test_reference_failure_deactivates_the_new_profile) ... ok
+test_same_slug_proposals_get_distinct_active_keys (test_curation.DomainRotationRemediationTests.test_same_slug_proposals_get_distinct_active_keys) ... ok
+test_supplement_lookup_on_v1_shaped_reference_is_read_only (test_curation.DomainRotationRemediationTests.test_supplement_lookup_on_v1_shaped_reference_is_read_only) ... ok
+test_accept_and_ack_restrictions (test_curation.DomainTests.test_accept_and_ack_restrictions) ... ok
+test_accept_with_profile_requires_live_validation_then_joins_rotation (test_curation.DomainTests.test_accept_with_profile_requires_live_validation_then_joins_rotation) ... ok
+test_proposal_validation_and_pii (test_curation.DomainTests.test_proposal_validation_and_pii) ... ok
+test_no_mcp_promotion_tool (test_curation.PromotionTests.test_no_mcp_promotion_tool) ... ERROR
+test_promote_demote_versions_and_seed_untouched (test_curation.PromotionTests.test_promote_demote_versions_and_seed_untouched) ... ok
+test_promote_requires_review_and_screened_candidate (test_curation.PromotionTests.test_promote_requires_review_and_screened_candidate) ... ok
+test_three_labelled_columns_and_legacy_hidden (test_curation.SearchColumnTests.test_three_labelled_columns_and_legacy_hidden) ... ok
+test_actual_method_map_order_is_durable_across_days (test_harvest.HarvestTests.test_actual_method_map_order_is_durable_across_days) ... ok
+test_candidate_and_map_advance_share_one_checkpoint (test_harvest.HarvestTests.test_candidate_and_map_advance_share_one_checkpoint) ... ok
+test_candidate_is_short_excerpt_unreviewed_and_idempotent_daily_target (test_harvest.HarvestTests.test_candidate_is_short_excerpt_unreviewed_and_idempotent_daily_target) ... ok
+test_changed_map_is_blocked_instead_of_reinterpreting_cursor (test_harvest.HarvestTests.test_changed_map_is_blocked_instead_of_reinterpreting_cursor) ... ok
+test_concurrent_lease_and_stale_recovery (test_harvest.HarvestTests.test_concurrent_lease_and_stale_recovery) ... ok
+test_deferred_first_module_does_not_starve_following_map_module (test_harvest.HarvestTests.test_deferred_first_module_does_not_starve_following_map_module) ... ok
+test_fixture_body_limit_applies_before_parsing (test_harvest.HarvestTests.test_fixture_body_limit_applies_before_parsing) ... ok
+test_gt_http_failure_is_not_ssh_outage (test_harvest.HarvestTests.test_gt_http_failure_is_not_ssh_outage) ... ok
+test_imported_full_day_initializes_map_without_network_or_advance (test_harvest.HarvestTests.test_imported_full_day_initializes_map_without_network_or_advance) ... ok
+test_introduction_mention_is_not_methods_evidence (test_harvest.HarvestTests.test_introduction_mention_is_not_methods_evidence) ... ok
+test_jats_defenses_mismatch_and_headers_only (test_harvest.HarvestTests.test_jats_defenses_mismatch_and_headers_only) ... ok
+test_live_api_contract_and_raw_hash (test_harvest.HarvestTests.test_live_api_contract_and_raw_hash) ... ok
+test_med_id_and_nested_journal_metadata_shape (test_harvest.HarvestTests.test_med_id_and_nested_journal_metadata_shape) ... ok
+test_mismatched_fulltext_is_rejected_without_daily_credit (test_harvest.HarvestTests.test_mismatched_fulltext_is_rejected_without_daily_credit) ... ok
+test_preprint_is_excluded_and_rights_unknown_is_not_ready (test_harvest.HarvestTests.test_preprint_is_excluded_and_rights_unknown_is_not_ready) ... ok
+test_quota_and_input_bounds (test_harvest.HarvestTests.test_quota_and_input_bounds) ... ok
+test_seed_and_alias_collisions_not_counted (test_harvest.HarvestTests.test_seed_and_alias_collisions_not_counted) ... ok
+test_standard_jats_declaration_is_ignored_but_entities_rejected (test_harvest.HarvestTests.test_standard_jats_declaration_is_ignored_but_entities_rejected) ... ok
+test_unapproved_url_never_reaches_injected_fetcher (test_harvest.HarvestTests.test_unapproved_url_never_reaches_injected_fetcher) ... ok
+test_version_only_payload_is_error_not_zero_search (test_harvest.HarvestTests.test_version_only_payload_is_error_not_zero_search) ... ok
+setUpClass (test_interfaces.OmicstatEntryTests) ... ERROR
+test_ten_tools_and_v1_parameters_unchanged (test_interfaces.ReferenceToolSchemaTests.test_ten_tools_and_v1_parameters_unchanged) ... ERROR
+test_name_and_instructions (test_interfaces.ServerIdentityTests.test_name_and_instructions) ... ERROR
+test_every_module_answers_no_curated_evidence_yet (test_reference_core.EmptySeedTests.test_every_module_answers_no_curated_evidence_yet) ... ok
+test_seed_is_empty (test_reference_core.EmptySeedTests.test_seed_is_empty) ... ok
+test_bare_verified_or_passed_text_cannot_clear_the_gate (test_reference_core.ReferenceCoreTests.test_bare_verified_or_passed_text_cannot_clear_the_gate) ... ok
+test_description_fields_accept_objects (test_reference_core.ReferenceCoreTests.test_description_fields_accept_objects) ... ok
+test_get_relations_and_structured_errors (test_reference_core.ReferenceCoreTests.test_get_relations_and_structured_errors) ... ok
+test_missing_and_wrong_typed_context_needs_input (test_reference_core.ReferenceCoreTests.test_missing_and_wrong_typed_context_needs_input) ... ok
+test_module_search_includes_related_papers_and_evidence_first_decisions (test_reference_core.ReferenceCoreTests.test_module_search_includes_related_papers_and_evidence_first_decisions) ... ok
+test_only_located_root_reviewed_usages_become_parameter_options (test_reference_core.ReferenceCoreTests.test_only_located_root_reviewed_usages_become_parameter_options) ... ok
+test_pagination_is_deterministic_and_bounded (test_reference_core.ReferenceCoreTests.test_pagination_is_deterministic_and_bounded) ... ok
+test_registered_module_without_records_is_not_unknown (test_reference_core.ReferenceCoreTests.test_registered_module_without_records_is_not_unknown) ... ok
+test_registry_is_the_method_map_not_the_seed (test_reference_core.ReferenceCoreTests.test_registry_is_the_method_map_not_the_seed) ... ok
+test_seed_immutability_duplicate_dangling_and_unregistered_rejection (test_reference_core.ReferenceCoreTests.test_seed_immutability_duplicate_dangling_and_unregistered_rejection) ... ok
+test_status_and_seed_hash (test_reference_core.ReferenceCoreTests.test_status_and_seed_hash) ... ok
+test_unicode_alias_and_sql_like_queries_are_safe (test_reference_core.ReferenceCoreTests.test_unicode_alias_and_sql_like_queries_are_safe) ... ok
+test_unknown_sentinels_and_contract_bounds_fail_closed (test_reference_core.ReferenceCoreTests.test_unknown_sentinels_and_contract_bounds_fail_closed) ... ok
+test_accent_folding_and_non_latin_tokens (test_remediation_requests.RequestRemediationTests.test_accent_folding_and_non_latin_tokens) ... ok
+test_concurrent_identical_submissions_leave_one_active_row (test_remediation_requests.RequestRemediationTests.test_concurrent_identical_submissions_leave_one_active_row) ... ok
+test_mrn_followed_by_digits_is_refused (test_remediation_requests.RequestRemediationTests.test_mrn_followed_by_digits_is_refused) ... ok
+test_next_action_wording (test_remediation_requests.RequestRemediationTests.test_next_action_wording) ... ok
+test_partially_fulfilled_is_terminal_after_exhausted_attempts (test_remediation_requests.RequestRemediationTests.test_partially_fulfilled_is_terminal_after_exhausted_attempts) ... ok
+test_queue_caps (test_remediation_requests.RequestRemediationTests.test_queue_caps) ... ok
+test_request_phase_is_capped_and_unstarted_requests_keep_attempts (test_remediation_requests.RequestRemediationTests.test_request_phase_is_capped_and_unstarted_requests_keep_attempts) ... ok
+test_resubmission_after_cancel_expire_and_unavailable_creates_new_request (test_remediation_requests.RequestRemediationTests.test_resubmission_after_cancel_expire_and_unavailable_creates_new_request) ... ok
+test_empty_queue_gives_rotation_all_ten (test_requests.BudgetAndStateTests.test_empty_queue_gives_rotation_all_ten) ... ok
+test_existing_screened_candidate_is_linked_without_quota (test_requests.BudgetAndStateTests.test_existing_screened_candidate_is_linked_without_quota) ... ok
+test_fulfilled_is_not_endorsement (test_requests.BudgetAndStateTests.test_fulfilled_is_not_endorsement) ... ok
+test_nonempty_queue_takes_at_most_four (test_requests.BudgetAndStateTests.test_nonempty_queue_takes_at_most_four) ... ok
+test_three_attempts_on_three_days_then_unavailable_with_gap_report (test_requests.BudgetAndStateTests.test_three_attempts_on_three_days_then_unavailable_with_gap_report) ... ok
+test_unused_request_slots_return_to_rotation (test_requests.BudgetAndStateTests.test_unused_request_slots_return_to_rotation) ... ok
+test_attempt_reservation_is_once_per_day (test_requests.StoreTests.test_attempt_reservation_is_once_per_day) ... ok
+test_cancel_expire_and_terminal (test_requests.StoreTests.test_cancel_expire_and_terminal) ... ok
+test_duplicate_merges_and_concurrent_submissions_create_one_row (test_requests.StoreTests.test_duplicate_merges_and_concurrent_submissions_create_one_row) ... ok
+test_submit_is_immediate_and_refusal_stores_nothing (test_requests.StoreTests.test_submit_is_immediate_and_refusal_stores_nothing) ... ok
+test_unmapped_is_unavailable_without_search (test_requests.StoreTests.test_unmapped_is_unavailable_without_search) ... ok
+test_defaults_and_schema_enums_match_method_map (test_requests.ValidationTests.test_defaults_and_schema_enums_match_method_map) ... ok
+test_fingerprint_normalizes_order_and_case (test_requests.ValidationTests.test_fingerprint_normalizes_order_and_case) ... ok
+test_keywords_are_sanitized_and_bounded (test_requests.ValidationTests.test_keywords_are_sanitized_and_bounded) ... ok
+test_schema_rejections (test_requests.ValidationTests.test_schema_rejections) ... ok
+test_sensitive_content_is_refused (test_requests.ValidationTests.test_sensitive_content_is_refused) ... ok
+test_busy_and_broken_storage_are_structured (test_service.NewToolFailureShapeTests.test_busy_and_broken_storage_are_structured) ... ok
+test_invalid_inputs_are_needs_input (test_service.NewToolFailureShapeTests.test_invalid_inputs_are_needs_input) ... ok
+test_budget_preserves_json (test_service.ServiceTests.test_budget_preserves_json) ... ok
+test_no_nonfinite_json (test_service.ServiceTests.test_no_nonfinite_json) ... ok
+test_pointer_escaping_and_bounds (test_service.ServiceTests.test_pointer_escaping_and_bounds) ... ok
+test_review_idempotent_no_promotion (test_service.ServiceTests.test_review_idempotent_no_promotion) ... ok
+test_text_pages_explicit (test_service.ServiceTests.test_text_pages_explicit) ... ok
+test_unknown_candidate_cannot_review (test_service.ServiceTests.test_unknown_candidate_cannot_review) ... ok
+test_every_profile_signal_is_specific_not_generic (test_v2_gates.ConfigTests.test_every_profile_signal_is_specific_not_generic) ... ok
+test_journal_whitelist_is_verified_and_tiered (test_v2_gates.ConfigTests.test_journal_whitelist_is_verified_and_tiered) ... ok
+test_limma_array_signal_needs_microarray_context (test_v2_gates.ConfigTests.test_limma_array_signal_needs_microarray_context) ... ok
+test_profiles_cover_the_registry_and_validation_is_recorded (test_v2_gates.ConfigTests.test_profiles_cover_the_registry_and_validation_is_recorded) ... ok
+test_query_has_gate_filters_and_journal_clause (test_v2_gates.ConfigTests.test_query_has_gate_filters_and_journal_clause) ... ok
+test_introduction_or_results_mentions_are_not_methods_signal (test_v2_gates.FulltextGateTests.test_introduction_or_results_mentions_are_not_methods_signal) ... ok
+test_negated_method_mention_is_not_a_signal (test_v2_gates.FulltextGateTests.test_negated_method_mention_is_not_a_signal) ... ok
+test_nested_statistical_analysis_hit_has_locator_and_short_snippet (test_v2_gates.FulltextGateTests.test_nested_statistical_analysis_hit_has_locator_and_short_snippet) ... ok
+test_r1_licence_fixtures (test_v2_gates.FulltextGateTests.test_r1_licence_fixtures) ... ok
+test_require_regex_must_also_hit (test_v2_gates.FulltextGateTests.test_require_regex_must_also_hit) ... ok
+test_rights_and_missing_methods (test_v2_gates.FulltextGateTests.test_rights_and_missing_methods) ... ok
+test_candidate_never_stores_article_body (test_v2_gates.HarvestGateTests.test_candidate_never_stores_article_body) ... ok
+test_off_whitelist_is_counted_but_never_stored (test_v2_gates.HarvestGateTests.test_off_whitelist_is_counted_but_never_stored) ... ok
+test_quota_counts_only_screened_and_shortfall_is_reported (test_v2_gates.HarvestGateTests.test_quota_counts_only_screened_and_shortfall_is_reported) ... ok
+test_screened_counts_and_off_topic_is_not_refetched (test_v2_gates.HarvestGateTests.test_screened_counts_and_off_topic_is_not_refetched) ... ok
+test_new_rows_after_migration_are_not_legacy (test_v2_gates.LegacyMigrationTests.test_new_rows_after_migration_are_not_legacy) ... ok
+test_v1_rows_are_kept_marked_hidden_and_uncounted (test_v2_gates.LegacyMigrationTests.test_v1_rows_are_kept_marked_hidden_and_uncounted) ... ok
+test_exclude_regex_on_title_and_abstract (test_v2_gates.MetadataGateTests.test_exclude_regex_on_title_and_abstract) ... ok
+test_retracted_preprint_and_review_types (test_v2_gates.MetadataGateTests.test_retracted_preprint_and_review_types) ... ok
+test_whitelist_gate (test_v2_gates.MetadataGateTests.test_whitelist_gate) ... ok
+test_year_interception (test_v2_gates.MetadataGateTests.test_year_interception) ... ok
+test_meta_analysis_rejected_by_wald_is_later_screened_by_a_meta_profile (test_v2_gates.RemediationGateTests.test_meta_analysis_rejected_by_wald_is_later_screened_by_a_meta_profile) ... ok
+test_nd_article_is_metadata_only_and_not_counted (test_v2_gates.RemediationGateTests.test_nd_article_is_metadata_only_and_not_counted) ... ok
+test_off_topic_in_module_a_can_be_screened_in_module_b (test_v2_gates.RemediationGateTests.test_off_topic_in_module_a_can_be_screened_in_module_b) ... ok
+test_paper_level_rejection_applies_to_every_module (test_v2_gates.RemediationGateTests.test_paper_level_rejection_applies_to_every_module) ... ok
+test_pre_r2_v2_schema_is_refused (test_v2_gates.RemediationGateTests.test_pre_r2_v2_schema_is_refused) ... ok
+test_request_exclusion_is_not_remembered (test_v2_gates.RemediationGateTests.test_request_exclusion_is_not_remembered) ... ok
+test_screened_records_only_carry_countable_licences (test_v2_gates.RemediationGateTests.test_screened_records_only_carry_countable_licences) ... ok
+test_study_protocols_are_excluded_by_every_profile (test_v2_gates.RemediationGateTests.test_study_protocols_are_excluded_by_every_profile) ... ok
+test_attempt_slot_is_reserved_before_network_work (test_worker.WorkerTests.test_attempt_slot_is_reserved_before_network_work) ... ok
+test_daily_attempt_cap_prevents_restart_retry_storm (test_worker.WorkerTests.test_daily_attempt_cap_prevents_restart_retry_storm) ... ok
+test_event_wait_wakes_promptly_for_shutdown (test_worker.WorkerTests.test_event_wait_wakes_promptly_for_shutdown) ... ok
+test_health_reads_only_recent_resident_heartbeat (test_worker.WorkerTests.test_health_reads_only_recent_resident_heartbeat) ... ok
+test_once_uses_direct_and_never_overwrites_resident_heartbeat (test_worker.WorkerTests.test_once_uses_direct_and_never_overwrites_resident_heartbeat) ... ok
+test_os_lock_singleton_releases_without_sqlite_lease_ttl (test_worker.WorkerTests.test_os_lock_singleton_releases_without_sqlite_lease_ttl) ... ok
+test_restart_obeys_persisted_due_gate_and_utc8_day (test_worker.WorkerTests.test_restart_obeys_persisted_due_gate_and_utc8_day) ... ok
+test_shutdown_publishes_non_live_status (test_worker.WorkerTests.test_shutdown_publishes_non_live_status) ... ok
+
+======================================================================
+ERROR: test_no_mcp_promotion_tool (test_curation.PromotionTests.test_no_mcp_promotion_tool)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/omicstat_work/omic-MCP/reference_service/app/tests/test_curation.py", line 103, in test_no_mcp_promotion_tool
+    server = load_reference_server()
+  File "/mnt/data/omicstat_work/omic-MCP/reference_service/app/tests/v2fixtures.py", line 148, in load_reference_server
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/mnt/data/omicstat_work/omic-MCP/reference_service/app/server.py", line 4, in <module>
+    from mcp.server.fastmcp import FastMCP
+ModuleNotFoundError: No module named 'mcp'
+
+======================================================================
+ERROR: setUpClass (test_interfaces.OmicstatEntryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/omicstat_work/omic-MCP/reference_service/app/tests/test_interfaces.py", line 63, in setUpClass
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/mnt/data/omicstat_work/omic-MCP/mcp/server.py", line 66, in <module>
+    from mcp.server.fastmcp import FastMCP
+ModuleNotFoundError: No module named 'mcp'
+
+======================================================================
+ERROR: test_ten_tools_and_v1_parameters_unchanged (test_interfaces.ReferenceToolSchemaTests.test_ten_tools_and_v1_parameters_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/omicstat_work/omic-MCP/reference_service/app/tests/test_interfaces.py", line 30, in test_ten_tools_and_v1_parameters_unchanged
+    tools = {t.name: t for t in asyncio.run(server.mcp.list_tools())}
+                                            ^^^^^^^^^^
+AttributeError: module '_omicstat_reference_server_under_test' has no attribute 'mcp'
+
+======================================================================
+ERROR: test_name_and_instructions (test_interfaces.ServerIdentityTests.test_name_and_instructions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/omicstat_work/omic-MCP/reference_service/app/tests/test_interfaces.py", line 50, in test_name_and_instructions
+    self.assertEqual(server.mcp.name, "omicstat_reference")
+                     ^^^^^^^^^^
+AttributeError: module '_omicstat_reference_server_under_test' has no attribute 'mcp'
+
+----------------------------------------------------------------------
+Ran 117 tests in 1.491s
+
+FAILED (errors=4)
+
+EXIT_CODE: 1

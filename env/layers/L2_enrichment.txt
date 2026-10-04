@@ -1,0 +1,10 @@
+# L2 enrichment and pathway scoring: clusterprofiler-*, fgsea-prerank, gsva-score, limma-camera
+clusterProfiler
+enrichplot
+fgsea
+GSVA
+msigdbr
+org.Hs.eg.db
+org.Mm.eg.db
+GO.db
+ReactomePA

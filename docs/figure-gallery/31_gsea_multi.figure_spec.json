@@ -1,0 +1,71 @@
+{
+  "caption": "GSEA running enrichment scores of 3 gene sets in one ranked list of 4,000 genes. Top, running enrichment score (weighted Kolmogorov–Smirnov statistic, weight 1), one line per set. Middle, positions of the set members, one row per set in legend order. Bottom, ranking metric; dashed line, where it crosses zero. Sets: inflammatory response (80 genes in the list, NES = 2.61, adjusted P = 3.2 × 10^−6); cellular response to interleukin-1 (100 genes in the list, NES = 1.93, adjusted P = 0.0042); oxidative phosphorylation (75 genes in the list, NES = −2.20, adjusted P = 1.1 × 10^−4).",
+  "counts": {
+    "cellular response to interleukin-1": 100,
+    "inflammatory response": 80,
+    "oxidative phosphorylation": 75
+  },
+  "data": {
+    "es_peak": {
+      "cellular response to interleukin-1": 0.79641,
+      "inflammatory response": 0.919388,
+      "oxidative phosphorylation": -0.943439
+    },
+    "list_size": 4000,
+    "nes": {
+      "cellular response to interleukin-1": 1.93,
+      "inflammatory response": 2.61,
+      "oxidative phosphorylation": -2.2
+    },
+    "padj": {
+      "cellular response to interleukin-1": 0.0042,
+      "inflammatory response": 3.2e-06,
+      "oxidative phosphorylation": 0.00011
+    },
+    "sets": [
+      "inflammatory response",
+      "cellular response to interleukin-1",
+      "oxidative phosphorylation"
+    ]
+  },
+  "encodings": {
+    "colour": {
+      "cellular response to interleukin-1": "#0072B2",
+      "inflammatory response": "#D55E00",
+      "oxidative phosphorylation": "#009E73"
+    }
+  },
+  "figure_type": "gsea_multi",
+  "files": {
+    "pdf": {
+      "content_sha256": "bbd182d815c42c0c8d0dc67aa81d0d24aac21b804660a08076b192e24f5ef883",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "31_gsea_multi.pdf"
+    },
+    "png": {
+      "path": "31_gsea_multi.png",
+      "sha256": "5d06517c3edad89bfb4f8675d21ca7f186e777a3425c72d79ab83dcbb07af7fe"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 90,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "2 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #009E73/#D55E00 (grayscale 3.3), #0072B2/#D55E00 (grayscale 8.3)",
+      "rule": "FIG-03",
+      "severity": "info"
+    },
+    {
+      "message": "2 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #009E73/#D55E00 (grayscale 3.3), #0072B2/#D55E00 (grayscale 8.3)",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

@@ -1,0 +1,60 @@
+{
+  "module": "edger-qlf",
+  "round": 2,
+  "seed": "omicstat-s0-r2",
+  "date": "2026-09-27",
+  "sampled_pmids": ["33350385", "34320181", "34686194", "42555706", "42635042", "42728798"],
+  "records_checked": 54,
+  "records_passed": 54,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "round1_failures_recheck": [
+    {
+      "pmid": "36420903",
+      "pmcid": "PMC9756944",
+      "parameter": "padj_cutoff",
+      "round1_recorded_value": "not reported",
+      "round2_recorded_value": "FDR < 0.05",
+      "status": "fixed",
+      "note": "Methods > Chromatin immunoprecipitation (ChIP-seq) and bioinformatics analysis states 'Only regions with FDR values below the 0.05 threshold were considered differentially bound between two samples'; snippet FOUND via collect.py check (16 words); confirmed against full Methods text."
+    },
+    {
+      "pmid": "36420903",
+      "pmcid": "PMC9756944",
+      "parameter": "lfc_filter",
+      "round1_recorded_value": "not reported",
+      "round2_recorded_value": "2",
+      "status": "fixed",
+      "note": "Same paragraph states 'Only peaks with a log2-fold change >2 were retained for further analyses'; snippet FOUND via collect.py check (12 words); confirmed against full Methods text."
+    },
+    {
+      "pmid": "41202128",
+      "pmcid": "PMC12594174",
+      "parameter": "normalization",
+      "round1_recorded_value": "not reported",
+      "round2_recorded_value": "trimmed mean of M-values (TMM)",
+      "status": "fixed",
+      "note": "Methods > Differential enrichment analysis states 'Sample normalization was performed with normFactors function using the trimmed mean of M-values (TMM) method and windows of 10 kb'; snippet FOUND via collect.py check (20 words); confirmed against full Methods text."
+    },
+    {
+      "pmid": "41202128",
+      "pmcid": "PMC12594174",
+      "parameter": "padj_cutoff",
+      "round1_recorded_value": "not reported",
+      "round2_recorded_value": "FDR < 0.05",
+      "status": "fixed",
+      "note": "Same section states 'Statistical significance was determined on the basis of false discovery rates (FDR; <0.05)'; snippet FOUND via collect.py check (13 words); confirmed against full Methods text."
+    }
+  ],
+  "verdict": "pass",
+  "notes": [
+    "Fresh esummary echo (tool=omicstat, email=omicstat-s0@example.invalid) for all 6 sampled PMIDs: normalized, HTML-unescaped title and year both match corpus.jsonl (6/6).",
+    "All 29 non-empty snippets across the 6 sampled articles (54 lines total, 9 parameters x 6 articles) verified FOUND via collect.py check, all <=25 words.",
+    "All 25 'not reported' lines among the 54 checked lines were confirmed genuinely absent by reading the full Methods text via collect.py methods for each of the 6 sampled PMCIDs (PMC7755388, PMC8565305, PMC8532352, PMC13440409, PMC13502174, PMC13569496).",
+    "_applies verdicts confirmed against the module definition (edgeR QL glmQLFit/glmQLFTest/glmTreat DE on bulk RNA-seq counts) for all 6 sampled articles, all yes: PMC7755388 (honey bee brain RNA-seq), PMC8565305 (RNA-seq validation of DMRcate DMRs, secondary analysis but genuine edgeR glmQLFit/glmQLFTest on matched RNA-seq samples), PMC8532352 / MINTIE (transcript-assembly EC counts fitted with glmQLFit but tested with glmLRT rather than glmQLFTest/glmTreat -- borderline call, accepted as yes because glmQLFit is explicitly run on RNA-seq-derived counts and the extractor's note transparently records the glmLRT caveat, consistent with how comparable borderline cases were treated in round 1), PMC13440409 (bulk RNA-seq, explicit 'quasi-likelihood test with edgeR'), PMC13502174 (mouse-liver bulk RNA-seq via glmQLFTest; correctly distinguished from the same paper's human-platelet DESeq2 analysis), PMC13569496 (trypanosome mRNA-seq, explicit glmQLFit + glmQLFTest).",
+    "Round-1 failures re-check: all 4 lines fixed correctly by the extractor's rework (see round1_failures_recheck); values match what the Methods snippets say and were independently re-confirmed against the full Methods text in this round. These 4 lines are excluded from the round-2 pass rate per the verification protocol.",
+    "vendor/ left read-only; no __pycache__ created."
+  ]
+}

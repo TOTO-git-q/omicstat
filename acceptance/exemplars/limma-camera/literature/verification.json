@@ -1,0 +1,22 @@
+{
+  "module": "limma-camera",
+  "date": "2026-09-27T09:57:46Z",
+  "sampled_pmids": ["38032734", "40500437", "40926076", "42209519", "42258354", "42258753"],
+  "records_checked": 48,
+  "records_passed": 48,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "notes": [
+    "Sample = collect.py sample limma-camera --frac 0.2 --seed omicstat-s0 -> 6 PMIDs (all currently in corpus.jsonl): 38032734/PMC10849759, 40500437/PMC12286861, 40926076/PMC12479364, 42209519/PMC13388965, 42258354/PMC13383671, 42258753/PMC13313547.",
+    "Echo: fresh esummary.fcgi calls (tool=omicstat, email=omicstat-s0@example.invalid; OMICSTAT_CONTACT_EMAIL was unset) for all 6 PMIDs; normalized/html-unescaped title and year matched corpus.jsonl exactly for all 6 (6/6).",
+    "48 extraction lines checked = 6 sampled articles x 8 lines (_applies + 7 parameters). 27 lines had a non-empty snippet; every one re-checked live with collect.py check against its PMCID and came back FOUND, each <=25 words, and each snippet's wording was re-read in context and does answer the anchored parameter's question for the limma gene-set test the line is anchored to.",
+    "21 lines were pure 'not reported' with an empty snippet (inter_gene_cor in all 6 articles; several of gene_set_db/expression_input/p_adjust_method/enrich_cutoff/limma_version). For every one, the article's full Methods (collect.py methods) was read in full and no value for that parameter is stated anywhere for the gene-set test the line is anchored to -- confirmed truly absent, not merely unextracted.",
+    "2 lines (PMC13313547 p_adjust_method and enrich_cutoff) recorded 'not reported' but carried a non-empty snippet with an explanatory note ('FDR was controlled for by Benjamini-Hochberg adjustment' / 'P < 0.05 was considered significant'). Read in full context these sentences sit earlier/later in the same Statistics paragraph, tied to the differential-expression step and to the paragraph's other, unrelated tests (ROC/Mann-Whitney/Kruskal-Wallis/Dunn), not re-attached to the ROAST/CAMERA gene-set output itself -- 'not reported' for the gene-set parameter is the correct call and does not hold a DE cutoff under a gene-set-test label.",
+    "Borderline but accepted as applies=yes: PMC13383671 (MoTrPAC liver paper) runs 'CAMERA-PR' via the TMSig R/Bioconductor package's cameraPR.matrix function rather than calling limma::cameraPR directly. Checked TMSig's own Bioconductor listing: it lists limma under Depends (R >= 4.4.0, limma) and its vignette describes cameraPR.matrix as performing CAMERA-PR 'via a flexible matrix method (see limma for the original implementation)' -- i.e. a limma-dependent wrapper of the same test for matrix input, not an independent reimplementation from an unrelated gene-set tool. Treated as a genuine limma cameraPR run; flagged here for visibility rather than as a failure.",
+    "No microscope-camera, metabolomics-CAMERA-package, or gene-symbol-FRY false positives in this sample; one article (PMC12286861) does contain an unrelated 'camera' hit ('Zeiss microscopes ... equipped with an Mrc 5 camera') and the extraction correctly anchored to the actual gene-set-test sentence elsewhere in the Methods instead.",
+    "No DE-cutoff-held-as-gene-set-cutoff violations found in the sample; every p_adjust_method/enrich_cutoff value or 'not reported' call was checked against which analysis step (DE vs. gene-set test) the sentence actually attaches to."
+  ],
+  "verdict": "pass"
+}

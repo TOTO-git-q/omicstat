@@ -1,0 +1,19 @@
+COMMAND: /opt/pyvenv/bin/python tools/test_check_calls.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+PASS: a fully explicit script passes ([])
+PASS: all call sites are counted (7)
+PASS: no default drift against the installed fake package ([])
+PASS: C1: a positional argument does not count as naming it
+PASS: C3: never-called registered function
+PASS: C2: unregistered package call
+PASS: C5: **kwargs at a registered call site
+PASS: C4: unresolved receiver of a registered method
+PASS: accessors are exempt from C2
+PASS: D1: default drift is reported with both values
+PASS: D1 on a keyword-only signature
+PASS: D0: unresolvable registered function
+PASS: CLI exit 0 and summary line (7 call sites scanned; 0 registry problems; 0 default-drift problems)
+PASS: CLI fails on a problem
+== check_calls.py: ALL PASSED
+
+EXIT_CODE: 0

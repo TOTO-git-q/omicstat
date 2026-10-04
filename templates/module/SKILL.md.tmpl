@@ -1,0 +1,50 @@
+---
+name: {{module}}
+description: >
+  TODO(S2): <verb + publication product>, e.g. "Run {{pkg}}'s {{part}} analysis on <input> and produce the
+  <main table>, <main figures> and a Methods/Results draft with the numbers filled in." Use for <when>.
+  NOT for <confusable case> (use <other module>). Triggers: {{pkg}}, <function names>, <Chinese terms> ...
+---
+# {{module}}
+
+## When to use / when not
+<!-- TODO(S2): every "not for" line names the module to use instead. -->
+
+## Input requirements
+<!-- object type, counts vs normalized, required sample-table columns, --from-run upstream modules -->
+
+## Run
+```
+Rscript scripts/run_{{pkg}}_{{part}}.R --input <path> --outdir <dir> [--from-run <upstream run dir>]
+```
+
+Every flag, its type and its default come from one spec in the entry script (`SPEC`,
+`_shared/scripts/args.R`); `--help` prints it. Invalid input stops with a typed error
+(`OS_UNKNOWN_FLAG`, `OS_MISSING_PARAMETER`, `OS_INVALID_PARAMETER`, `OS_CONFLICTING_PARAMETERS`,
+`OS_INVALID_DESIGN`). Warnings raised by the engine are kept in `qc/engine_warnings.csv`.
+
+### Via MCP
+Call `omicstat_run` with `module="{{module}}"` and the same flags as `args`; read the result with `omicstat_read`.
+`--help` lists every option; the ones that matter most:
+<!-- TODO(S2): table of key flags -> references/parameters.md -->
+
+## What gets produced
+- `tables/feature_table.csv` -- primary table (feature_table schema, `_shared/scripts/feature_table.R`)
+- `figures/*.pdf|png|figure_spec.json` -- standard figures from `_shared/scripts/fig_*.R` (style: `_shared/docs/FIGURE_STYLE.md`)
+- `draft/methods_results.md`, `qc_report.md`, `provenance.json`, `objects/handoff.json`
+- `qc/engine_warnings.csv` -- every warning / message / error raised inside a stage (`stage, type, message`)
+
+## Reading the results
+<!-- named failure modes + correct form; see references/reporting-templates.md -->
+
+## When a QC rule fires
+Rules `{{prefix}}-01..` -- see references/qc-rules.md.
+
+## Known limitations
+
+## Reference files
+- references/method-basis.md -- sources (package@version, vignette section, PMID/DOI)
+- references/parameters.md -- every parameter value and why (generated table + human rationale)
+- references/qc-rules.md -- rule id, severity, criterion, message, action, source
+- references/reporting-templates.md -- W-section templates and placeholder map
+- references/troubleshooting.md -- symptom -> cause -> fix (English)

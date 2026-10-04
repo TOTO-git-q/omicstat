@@ -1,0 +1,9 @@
+COMMAND: /opt/pyvenv/bin/python mcp/test_package_identity.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK
+
+EXIT_CODE: 0

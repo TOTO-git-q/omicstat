@@ -1,0 +1,78 @@
+{
+  "caption": "Over-representation analysis (GO biological process). Selection: the 15 gene sets with the smallest adjusted P among the 20 with adjusted P < 0.05 (ties broken by larger gene ratio, then term ID); ordered by gene ratio, largest at the top (ties by adjusted P, then term ID). Gene ratio = input genes in the set / input genes annotated in the database. Dot colour, -log10 adjusted P; dot size, number of input genes in the set.",
+  "counts": {
+    "shown": 15,
+    "significant": 20
+  },
+  "data": {
+    "term_ids": [
+      "GO:0007657",
+      "GO:0007509",
+      "GO:0007213",
+      "GO:0007065",
+      "GO:0006991",
+      "GO:0007176",
+      "GO:0007620",
+      "GO:0007028",
+      "GO:0007361",
+      "GO:0007398",
+      "GO:0007287",
+      "GO:0007583",
+      "GO:0007472",
+      "GO:0007102",
+      "GO:0007435"
+    ]
+  },
+  "definition": {
+    "gene_ratio": "gene ratio = input genes in the set / input genes annotated in the database",
+    "ordering": "ordered by gene ratio, largest at the top (ties by adjusted P, then term ID)",
+    "selection": "the 15 gene sets with the smallest adjusted P among the 20 with adjusted P < 0.05 (ties broken by larger gene ratio, then term ID)"
+  },
+  "encodings": {
+    "colour": {
+      "palette": [
+        "#440154",
+        "#482878",
+        "#3E4A89",
+        "#31688E",
+        "#26828E",
+        "#1F9E89",
+        "#35B779",
+        "#6DCD59",
+        "#B4DE2C",
+        "#FDE725"
+      ],
+      "scale": "sequential"
+    },
+    "size": {
+      "range_mm": [
+        1,
+        3.6
+      ]
+    }
+  },
+  "figure_type": "enrichment_dotplot",
+  "files": {
+    "pdf": {
+      "content_sha256": "d9785034530a74d902c8f35156932d6ada2b4953a7fb94e702b4ffe345b9bc7b",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "06_ora_dotplot.pdf"
+    },
+    "png": {
+      "path": "06_ora_dotplot.png",
+      "sha256": "f83ccfa81b806b853e730442ab7006f820b0cb9abf9c11ab6738674f12808aa8"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 100,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "padj": 0.05
+  },
+  "width_mm": 89
+}

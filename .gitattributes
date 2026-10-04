@@ -1,0 +1,22 @@
+# Byte-exact files must never be touched by line-ending normalization
+# (IMPLEMENTATION_SPEC sec 3 step 2; medstat-reference had a deployment
+# incident from CRLF normalization of seed data).
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.rds binary
+*.gz binary
+skills/**/tests/fixtures/** -text
+skills/**/tests/golden_manifest.csv -text
+docs/figure-gallery/** -text
+docker/refdata_registry.json -text
+*.ps1 text eol=crlf
+# Read-only reference sources: keep their bytes exactly as delivered.
+reference/** -text
+# S0 evidence is hashed in manifest.tsv / corpus.jsonl: keep upstream bytes
+# (some Bioconductor sources use CRLF).
+acceptance/exemplars/**/L1/** -text
+acceptance/exemplars/**/L1_bioc*/** -text
+acceptance/exemplars/**/L1_cran*/** -text
+acceptance/exemplars/**/literature/efetch/** -text
+vendor/** -text

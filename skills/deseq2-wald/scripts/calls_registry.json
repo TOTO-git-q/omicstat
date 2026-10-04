@@ -1,0 +1,309 @@
+{
+  "module": "deseq2-wald",
+  "note": "Values: references/parameters.md; frozen owner decisions: PACK 'S1 审定附录（2026-09-27）' (sources 'S1-appendix P-n'). function_default re-read from formals() in the locked container omicstat-r:2026.09.1 (DESeq2 1.52.0, Bioconductor 3.23) on 2026-09-27; check_default_drift passes there.",
+  "package_versions": {
+    "DESeq2": "1.52.0",
+    "apeglm": "1.34.0",
+    "ashr": "2.2-63"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--min-count": 10,
+    "--min-samples": 0,
+    "--top-n": 50,
+    "--label-n": 10,
+    "--display-lfc-filter": 0
+  },
+  "accessors": [
+    "DESeq2::resultsNames",
+    "DESeq2::sizeFactors",
+    "DESeq2::design"
+  ],
+  "calls": [
+    {
+      "fn": "DESeq2::DESeqDataSetFromMatrix",
+      "args": {
+        "countData": {
+          "value": "pre-filtered integer count matrix",
+          "source": "user_required",
+          "pack": "C",
+          "function_default": ""
+        },
+        "colData": {
+          "value": "sample table: covariates + condition releveled to --reference",
+          "source": "user_required",
+          "pack": "D-01",
+          "function_default": ""
+        },
+        "design": {
+          "value": "~ <covariates> + <condition>",
+          "source": "vignette",
+          "pack": "D-01",
+          "note": "condition last so the coefficient is condition_<target>_vs_<reference>",
+          "function_default": ""
+        },
+        "tidy": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        },
+        "ignoreRank": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::DESeq",
+      "args": {
+        "test": {
+          "value": "Wald",
+          "source": "vignette",
+          "pack": "D-02",
+          "function_default": "c(\"Wald\", \"LRT\")"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "vignette",
+          "pack": "D-03",
+          "flag": "--fit-type",
+          "function_default": "c(\"parametric\", \"local\", \"mean\", \"glmGamPoi\")"
+        },
+        "sfType": {
+          "value": "ratio",
+          "source": "vignette",
+          "pack": "D-04",
+          "flag": "--sf-type",
+          "function_default": "c(\"ratio\", \"poscounts\", \"iterate\")"
+        },
+        "betaPrior": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-05",
+          "function_default": ""
+        },
+        "minReplicatesForReplace": {
+          "value": 7,
+          "source": "vignette",
+          "pack": "D-06",
+          "function_default": "7"
+        },
+        "useT": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-02",
+          "function_default": "FALSE"
+        },
+        "minmu": {
+          "value": 0.5,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "if (fitType == \"glmGamPoi\") 1e-06 else 0.5"
+        },
+        "quiet": {
+          "value": true,
+          "source": "vignette",
+          "pack": "D-00",
+          "note": "console only",
+          "function_default": "FALSE"
+        },
+        "parallel": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "note": "lock 1: single thread",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::results",
+      "args": {
+        "contrast": {
+          "value": "c(<condition>, <target>, <reference>)",
+          "source": "user_required",
+          "pack": "D-01; S1 P-2",
+          "function_default": ""
+        },
+        "lfcThreshold": {
+          "value": 0,
+          "source": "S1-appendix P-2",
+          "pack": "D-07; S1 P-2",
+          "flag": "--lfc-threshold",
+          "function_default": "0"
+        },
+        "altHypothesis": {
+          "value": "greaterAbs",
+          "source": "S1-appendix P-2",
+          "pack": "D-07; S1 P-2",
+          "function_default": "c(\"greaterAbs\", \"greaterAbsUPSHOT\", \"lessAbs\", \"greater\", \"less\",     \"greaterAbs2014\")"
+        },
+        "cooksCutoff": {
+          "value": true,
+          "source": "vignette",
+          "pack": "D-06",
+          "note": "TRUE = the default 0.99 quantile of F(p, m - p)",
+          "function_default": ""
+        },
+        "independentFiltering": {
+          "value": true,
+          "source": "vignette",
+          "pack": "D-08",
+          "function_default": "TRUE"
+        },
+        "alpha": {
+          "value": 0.05,
+          "source": "S1-appendix P-2",
+          "pack": "D-08; S1 P-2",
+          "flag": "--alpha",
+          "function_default": "0.1"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "S1-appendix P-2",
+          "pack": "D-08; S1 P-2",
+          "function_default": "\"BH\""
+        },
+        "format": {
+          "value": "DataFrame",
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "c(\"DataFrame\", \"GRanges\", \"GRangesList\")"
+        },
+        "test": {
+          "value": "Wald",
+          "source": "vignette",
+          "pack": "D-02",
+          "function_default": "c(\"Wald\", \"LRT\")"
+        },
+        "parallel": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::lfcShrink",
+      "args": {
+        "coef": {
+          "value": "<condition>_<target>_vs_<reference>",
+          "source": "user_required",
+          "pack": "D-01; S1 P-1",
+          "function_default": ""
+        },
+        "res": {
+          "value": "results() object above",
+          "source": "S1-appendix P-1",
+          "pack": "D-09; S1 P-1",
+          "function_default": ""
+        },
+        "type": {
+          "value": "apeglm",
+          "source": "S1-appendix P-1",
+          "pack": "D-09; S1 P-1",
+          "flag": "--shrinkage",
+          "function_default": "c(\"apeglm\", \"ashr\", \"normal\")"
+        },
+        "lfcThreshold": {
+          "value": 0,
+          "source": "S1-appendix P-1",
+          "pack": "D-09; S1 P-1",
+          "function_default": "0"
+        },
+        "svalue": {
+          "value": false,
+          "source": "S1-appendix P-1",
+          "pack": "D-09; S1 P-1",
+          "function_default": "FALSE"
+        },
+        "apeAdapt": {
+          "value": true,
+          "source": "S1-appendix P-1",
+          "pack": "D-09; S1 P-1",
+          "function_default": "TRUE"
+        },
+        "apeMethod": {
+          "value": "nbinomCR",
+          "source": "S1-appendix P-1",
+          "pack": "D-09; S1 P-1",
+          "function_default": "\"nbinomCR\""
+        },
+        "format": {
+          "value": "DataFrame",
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "c(\"DataFrame\", \"GRanges\", \"GRangesList\")"
+        },
+        "parallel": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        },
+        "quiet": {
+          "value": true,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::vst",
+      "args": {
+        "blind": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-10",
+          "function_default": "TRUE"
+        },
+        "nsub": {
+          "value": 1000,
+          "source": "vignette",
+          "pack": "D-10",
+          "function_default": "1000"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "vignette",
+          "pack": "D-10",
+          "flag": "--fit-type",
+          "function_default": "\"parametric\""
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::varianceStabilizingTransformation",
+      "args": {
+        "blind": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-10",
+          "function_default": "TRUE"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "vignette",
+          "pack": "D-10",
+          "flag": "--fit-type",
+          "function_default": "\"parametric\""
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::counts",
+      "args": {
+        "normalized": {
+          "value": true,
+          "source": "vignette",
+          "pack": "D-00"
+        }
+      }
+    }
+  ]
+}

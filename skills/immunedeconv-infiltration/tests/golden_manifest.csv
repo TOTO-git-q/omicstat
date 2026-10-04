@@ -1,0 +1,10 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/infiltration.csv,bad848a59be20b7ed9de2773e42b5a08a69cc44de8cbc24da92409e2f6f6ed33,container,
+"methods/mcp_counter/infiltration.csv","3c0aac4d75773ec2986725c846927c32bd88aa527b11425558572045cd2183fe","container",""
+"methods/epic/infiltration.csv","a5408d87f4143a8a7311b2505601362329df0576f93ec84332f3e3ed6b3ebbaa","container",""
+"methods/xcell/infiltration.csv","9e4a174d2ad0fbcbf817258295f2085d193c09a7d0e0222489ba4241e0038cbe","container",""
+"methods/timer/infiltration.csv","81011531ce6f23ad2e840dc4891ac35470f020b52dd0c507c826691070712a37","container",""
+"methods/abis/infiltration.csv","c9c83b3662b4df767ccbdf0547e3ec0016f00d2e615879984d57555d763e9919","container",""
+"methods/consensus_tme/infiltration.csv","2d4aef3e6d95cc368d380e82c9ec8b030d0ec220bdc6c1a8d2eaa14aaf40c9f3","container",""
+"methods/estimate/infiltration.csv","4aac7361a1788a4467e616269906d13bb9c8b8c4fff5501f98fbf58b496393a5","container",""

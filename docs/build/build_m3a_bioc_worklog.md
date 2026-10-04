@@ -1,0 +1,14 @@
+# build_m3a_bioc worklog
+Worktree: /home/<user>/omic-b-bioc; branch: build/m3a-bioc; scratch: /home/<user>/omic-sol61/build_m3a_bioc.
+- setup: verified branch and clean worktree; no prior lane worklog or modules. Read task/common/build briefs and engineering requirements; next: scater-qc scaffold and evidence.
+- scater-qc scaffold: generated via tools/new_module.py; copied PACK and three existing Zeisel anchors; commit BLOCKED (git index.lock: read-only filesystem); next: engine/registry. R 4.6.1 and locked analysis versions verified; compatibility QC API executes with visible deprecation warning (scrapper absent).
+- scater-qc: S2 build done (Zeisel 20006x3005, MAD3 replay 2874 retained; container smoke/golden/lock OK; 3 PNGs inspected; awaiting independent S3); next scran-cluster.
+- scran-cluster engine: scaffold and official native workflow/options written; Grun checksum/shape verified; removed lane-helper integer-count restriction because official Grun has fractional processed counts; locked scran printed size-factor path requires absent scrapper, recorded as unreplayed; next container smoke.
+- scran-cluster: S2 build done (Grun 20148x1728; real QC handoff 396 cells/1000 HVGs/15 PCs/9 clusters; smoke/golden and container lock OK; five PNGs inspected; awaiting independent S3); next batchelor-integrate.
+- batchelor-integrate engine/fixtures: official normalization/HVG/fastMNN and suite pre/post UMAP implemented; printed input shapes passed and real Tasic QC/cluster passed; fixed archived metadata/merged IDs and namespace cbind; next finish smoke/golden/figures/lock.
+- batchelor-integrate: S2 build done (Zeisel/Tasic printed shapes; 300-cell joined same-ecosystem handoff; 15 corrected dimensions and original logcounts preserved; container smoke/golden/lock OK; four PNGs inspected; awaiting independent S3); next scran-markers checkpoint.
+- scran-markers: S2 build done (Grun 20148x1728; real 396-cell/9-cluster upstream; scoreMarkers replay identical and native full tables; container smoke/golden/lock OK; two PNGs inspected; awaiting independent S3); next aucell-score final validation.
+- aucell-score: S2 build done (official 5000x3005 printed dimension; native 120-cell AUC replay/golden/refdata refusal PASS; Seurat compatible-feature scoring identical; AnnData OS_ENV_MISSING documented; container lock OK; two PNGs inspected; awaiting independent S3); next final report/checkpoint.
+- build_m3a_bioc: Chinese build report complete (five S2 modules and container locks OK; eight new PNGs reviewed; owner decisions and AnnData environment limitation documented; awaiting independent S3 and external commit helper); next DONE after report commit.
+- build_m3a_bioc: report committed by external helper at adc6636; all five module locks OK; S2 handover complete with documented limitations; next independent S3.
+DONE

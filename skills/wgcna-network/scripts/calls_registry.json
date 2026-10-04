@@ -1,0 +1,683 @@
+{
+  "module": "wgcna-network",
+  "package_versions": {
+    "WGCNA": "1.74"
+  },
+  "calls": [
+    {
+      "fn": "WGCNA::goodSamplesGenes",
+      "args": {
+        "datExpr": {
+          "value": "datExpr",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "weights": {
+          "value": "wg_option(a,\"gsg-weights\",NULL)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "minFraction": {
+          "value": "wg_option(a,\"gsg-min-fraction\",1/2)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "1/2"
+        },
+        "minNSamples": {
+          "value": "wg_option(a,\"gsg-min-nsamples\",4)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "..minNSamples"
+        },
+        "minNGenes": {
+          "value": "wg_option(a,\"gsg-min-ngenes\",4)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "..minNGenes"
+        },
+        "tol": {
+          "value": "wg_option(a,\"gsg-tol\",NULL)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "minRelativeWeight": {
+          "value": "wg_option(a,\"gsg-min-relative-weight\",0.1)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0.1"
+        },
+        "verbose": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "1"
+        },
+        "indent": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        }
+      }
+    },
+    {
+      "fn": "WGCNA::pickSoftThreshold",
+      "args": {
+        "data": {
+          "value": "datExpr",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "dataIsExpr": {
+          "value": "TRUE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "weights": {
+          "value": "wg_option(a,\"soft-weights\",NULL)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "RsquaredCut": {
+          "value": "wg_option(a,\"soft-rsquared-cut\",0.85)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0.85"
+        },
+        "powerVector": {
+          "value": "powers",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "c(seq(1, 10, by = 1), seq(12, 20, by = 2))"
+        },
+        "removeFirst": {
+          "value": "wg_option(a,\"soft-remove-first\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "nBreaks": {
+          "value": "wg_option(a,\"soft-n-breaks\",10)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "10"
+        },
+        "blockSize": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "corFnc": {
+          "value": "wg_native_function(a,\"soft-cor-fnc\",\"WGCNA::cor\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "cor"
+        },
+        "corOptions": {
+          "value": "wg_option(a,\"soft-cor-options\",list(use = \"p\"))",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "list(use = \"p\")"
+        },
+        "networkType": {
+          "value": "a[[\"network-type\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"unsigned\""
+        },
+        "moreNetworkConcepts": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "gcInterval": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "verbose": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "indent": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        }
+      }
+    },
+    {
+      "fn": "WGCNA::blockwiseModules",
+      "args": {
+        "datExpr": {
+          "value": "datExpr",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "weights": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "checkMissingData": {
+          "value": "TRUE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "blocks": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "maxBlockSize": {
+          "value": "a[[\"max-block-size\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "5000"
+        },
+        "blockSizePenaltyPower": {
+          "value": "5",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "5"
+        },
+        "nPreclusteringCenters": {
+          "value": "as.integer(min(ncol(datExpr)/20, 100 * ncol(datExpr)/a[[\"max-block-size\"]]))",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "as.integer(min(ncol(datExpr)/20, 100 * ncol(datExpr)/maxBlockSize))"
+        },
+        "randomSeed": {
+          "value": "a$seed",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "54321"
+        },
+        "loadTOM": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "corType": {
+          "value": "wg_option(a,\"network-cor-type\",\"pearson\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"pearson\""
+        },
+        "maxPOutliers": {
+          "value": "wg_option(a,\"network-max-poutliers\",1)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "1"
+        },
+        "quickCor": {
+          "value": "wg_option(a,\"network-quick-cor\",0)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "pearsonFallback": {
+          "value": "wg_option(a,\"network-pearson-fallback\",\"individual\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"individual\""
+        },
+        "cosineCorrelation": {
+          "value": "wg_option(a,\"network-cosine-correlation\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "power": {
+          "value": "a$power",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "6"
+        },
+        "networkType": {
+          "value": "a[[\"network-type\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"unsigned\""
+        },
+        "replaceMissingAdjacencies": {
+          "value": "wg_option(a,\"network-replace-missing-adjacencies\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "TOMType": {
+          "value": "a[[\"tom-type\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"signed\""
+        },
+        "TOMDenom": {
+          "value": "wg_option(a,\"network-tomdenom\",\"min\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"min\""
+        },
+        "suppressTOMForZeroAdjacencies": {
+          "value": "wg_option(a,\"network-suppress-tomfor-zero-adjacencies\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "suppressNegativeTOM": {
+          "value": "wg_option(a,\"network-suppress-negative-tom\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "getTOMs": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "saveTOMs": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "saveTOMFileBase": {
+          "value": "\"blockwiseTOM\"",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"blockwiseTOM\""
+        },
+        "deepSplit": {
+          "value": "a[[\"deep-split\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "2"
+        },
+        "detectCutHeight": {
+          "value": "wg_option(a,\"network-detect-cut-height\",0.995)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0.995"
+        },
+        "minModuleSize": {
+          "value": "minSize",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "min(20, ncol(datExpr)/2)"
+        },
+        "maxCoreScatter": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "minGap": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "maxAbsCoreScatter": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "minAbsGap": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "minSplitHeight": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "minAbsSplitHeight": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "useBranchEigennodeDissim": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "minBranchEigennodeDissim": {
+          "value": "a[[\"merge-height\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "mergeCutHeight"
+        },
+        "stabilityLabels": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "stabilityCriterion": {
+          "value": "c(\"Individual fraction\", \"Common fraction\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "c(\"Individual fraction\", \"Common fraction\")"
+        },
+        "minStabilityDissim": {
+          "value": "NULL",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "pamStage": {
+          "value": "wg_option(a,\"network-pam-stage\",TRUE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "pamRespectsDendro": {
+          "value": "a[[\"pam-respects-dendro\"]] == \"true\"",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "reassignThreshold": {
+          "value": "a[[\"reassign-threshold\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "1e-06"
+        },
+        "minCoreKME": {
+          "value": "wg_option(a,\"network-min-core-kme\",0.5)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0.5"
+        },
+        "minCoreKMESize": {
+          "value": "wg_option(a,\"network-min-core-kmesize\",minSize/3)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "minModuleSize/3"
+        },
+        "minKMEtoStay": {
+          "value": "wg_option(a,\"network-min-kmeto-stay\",0.3)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0.3"
+        },
+        "mergeCutHeight": {
+          "value": "a[[\"merge-height\"]]",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0.15"
+        },
+        "impute": {
+          "value": "wg_option(a,\"network-impute\",TRUE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "trapErrors": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "numericLabels": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "nThreads": {
+          "value": "1",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "useInternalMatrixAlgebra": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "useCorOptionsThroughout": {
+          "value": "TRUE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "verbose": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "indent": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        }
+      }
+    },
+    {
+      "fn": "WGCNA::moduleEigengenes",
+      "args": {
+        "expr": {
+          "value": "datExpr",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "colors": {
+          "value": "net$colors",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "impute": {
+          "value": "wg_option(a,\"eigengene-impute\",TRUE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "nPC": {
+          "value": "wg_option(a,\"eigengene-n-pc\",1)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "1"
+        },
+        "align": {
+          "value": "wg_option(a,\"eigengene-align\",\"along average\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"along average\""
+        },
+        "excludeGrey": {
+          "value": "wg_option(a,\"eigengene-exclude-grey\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "grey": {
+          "value": "\"grey\"",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "if (is.numeric(colors)) 0 else \"grey\""
+        },
+        "subHubs": {
+          "value": "wg_option(a,\"eigengene-sub-hubs\",TRUE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "trapErrors": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "returnValidOnly": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "trapErrors"
+        },
+        "softPower": {
+          "value": "a$power",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "6"
+        },
+        "scale": {
+          "value": "wg_option(a,\"eigengene-scale\",TRUE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "TRUE"
+        },
+        "verbose": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "indent": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        }
+      }
+    },
+    {
+      "fn": "WGCNA::cor",
+      "args": {
+        "x": {
+          "value": "x",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "y": {
+          "value": "y",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "use": {
+          "value": "wg_option(a,\"cor-use\",\"p\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "\"all.obs\""
+        },
+        "method": {
+          "value": "wg_option(a,\"cor-method\",\"pearson\")",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "c(\"pearson\", \"kendall\", \"spearman\")"
+        },
+        "weights.x": {
+          "value": "wg_option(a,\"cor-weights-x\",NULL)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "weights.y": {
+          "value": "wg_option(a,\"cor-weights-y\",NULL)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "NULL"
+        },
+        "quick": {
+          "value": "wg_option(a,\"cor-quick\",0)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "cosine": {
+          "value": "wg_option(a,\"cor-cosine\",FALSE)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "cosineX": {
+          "value": "wg_option(a,\"cor-cosine-x\",wg_option(a,\"cor-cosine\",FALSE))",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "cosine"
+        },
+        "cosineY": {
+          "value": "wg_option(a,\"cor-cosine-y\",wg_option(a,\"cor-cosine\",FALSE))",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "cosine"
+        },
+        "drop": {
+          "value": "FALSE",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "FALSE"
+        },
+        "nThreads": {
+          "value": "1",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "verbose": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        },
+        "indent": {
+          "value": "0",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": "0"
+        }
+      }
+    },
+    {
+      "fn": "WGCNA::corPvalueStudent",
+      "args": {
+        "cor": {
+          "value": "r",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        },
+        "nSamples": {
+          "value": "nrow(datExpr)",
+          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "pack": "D-WG",
+          "function_default": ""
+        }
+      }
+    }
+  ],
+  "flag_defaults": {
+    "--trait-p-adjust": "BH"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "immunedeconv-infiltration",
+  "module_version": "1.1.0",
+  "files": {
+    "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R": "3efa1d73317073096985d7ef6fdf0b8d7f6a8ef5909c765603f4d86a23fa9943",
+    "skills/immunedeconv-infiltration/scripts/run_immunedeconv_infiltration.R": "c784ae447fd745dac5d3cfabde5df89960f72e63cd771b1707137c522c09c999",
+    "skills/immunedeconv-infiltration/scripts/calls_registry.json": "385f9ad144fc7304301d70bf7418045b9821d78359be0e8f7b1b756382714d86",
+    "skills/immunedeconv-infiltration/SKILL.md": "ac8e107d24bcb80713d3b427de942af7ede6fa3f479606ec0d119a592a897acd",
+    "skills/immunedeconv-infiltration/references/options.md": "e78173bb3ea0c6b0f531de510cb5adef56ef021e9d2f6bb91a9862cfec73a352",
+    "skills/immunedeconv-infiltration/references/reporting-templates.md": "9fa6e6a1cfdb243676f77a0a3d81ccd5366bb7ae7ed209032759e8b4fd9a49e3",
+    "skills/immunedeconv-infiltration/tests/run_smoke_test.R": "ccee874c9560b5e0fc36fcd5a10930608807f0e7b1a4358b70b4934306e4a26c",
+    "skills/immunedeconv-infiltration/tests/golden_manifest.csv": "88be12994cac8133c57b91123dc532565cc073e79fdca52b52514da52c994471",
+    "acceptance/exemplars/immunedeconv-infiltration/PACK.md": "66f1d361650281515c52fe2139e22bd40a4d53c301597675398ea68914444cb0"
+  },
+  "packages": {
+    "immunedeconv": "2.1.4",
+    "quantiseqr": "1.20.0",
+    "EPIC": "1.1.7",
+    "MCPcounter": "1.2.0",
+    "xCell": "1.1.0",
+    "ConsensusTME": "0.0.1.9000"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

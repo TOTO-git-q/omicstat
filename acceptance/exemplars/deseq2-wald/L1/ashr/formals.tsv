@@ -1,0 +1,6 @@
+function	argument	default
+ash	betahat	
+ash	sebetahat	
+ash	mixcompdist	c("uniform", "halfuniform", "normal", "+uniform", "-uniform",     "halfnormal")
+ash	df	NULL
+ash	...	

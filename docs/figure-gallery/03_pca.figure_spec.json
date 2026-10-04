@@ -1,0 +1,54 @@
+{
+  "caption": "Principal component analysis of 8 samples using the 500 most variable features (centred, not scaled; axes NOT on a common scale because the two components span very different ranges). Each point is one sample, coloured by condition and shaped by batch. Percentages give the variance explained by each component.",
+  "counts": [],
+  "data": {
+    "common_scale": false,
+    "ntop": 500,
+    "percent_var": [
+      91.0474,
+      3.4023
+    ],
+    "samples": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ]
+  },
+  "encodings": {
+    "fill": {
+      "control": "#666666",
+      "treated": "#D55E00"
+    },
+    "shape": {
+      "batch1": 21,
+      "batch2": 24
+    }
+  },
+  "figure_type": "pca",
+  "files": {
+    "pdf": {
+      "content_sha256": "4e4bbdc84c4b2cb7f70b57e79b262bfcf0abc3841163ea35ac94ba870b338e50",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "03_pca.pdf"
+    },
+    "png": {
+      "path": "03_pca.png",
+      "sha256": "45e55bfa01bb013d6deae92eac27fefb908281440c2d439c9a11461822781f27"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 70,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

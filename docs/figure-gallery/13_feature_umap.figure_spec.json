@@ -1,0 +1,42 @@
+{
+  "caption": "LYZ expression on the UMAP embedding (6,000 cells); cells are drawn in order of increasing expression.",
+  "counts": [],
+  "data": [],
+  "encodings": {
+    "colour": {
+      "palette": [
+        "#E5E5E5",
+        "#CBC9E2",
+        "#9E9AC8",
+        "#756BB1",
+        "#54278F",
+        "#3F007D"
+      ],
+      "scale": "expression"
+    }
+  },
+  "figure_type": "feature_embedding",
+  "files": {
+    "pdf": {
+      "content_sha256": "4212dac482590cec76ea8691c267672ac1d483f33e16085e8fffec3e2cd4231a",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "13_feature_umap.pdf"
+    },
+    "png": {
+      "path": "13_feature_umap.png",
+      "sha256": "2022d97caa7190035e5e5bbf277be070c67883e909460ab10567a1d120930a06"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 70,
+  "journal": "nature",
+  "lint": [],
+  "notes": {
+    "rasterised_points": false
+  },
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

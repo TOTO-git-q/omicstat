@@ -1,0 +1,15 @@
+function	argument	default
+normLibSizes	object	
+normLibSizes	method	c("TMM", "TMMwsp", "RLE", "upperquartile", "none")
+normLibSizes	refColumn	NULL
+normLibSizes	logratioTrim	.3
+normLibSizes	sumTrim	0.05
+normLibSizes	doWeighting	TRUE
+normLibSizes	Acutoff	-1e10
+normLibSizes	p	0.75
+normLibSizes	\dots	
+filterByExpr	y	
+filterByExpr	design	NULL
+filterByExpr	group	NULL
+filterByExpr	lib.size	NULL
+filterByExpr	\dots	

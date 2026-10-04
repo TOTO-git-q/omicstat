@@ -1,0 +1,26 @@
+function	argument	default
+apeglm	Y	
+apeglm	x	
+apeglm	log.lik	
+apeglm	param	NULL
+apeglm	coef	NULL
+apeglm	mle	NULL
+apeglm	no.shrink	FALSE
+apeglm	interval.type	c("laplace", "HPD", "credible")
+apeglm	interval.level	0.95
+apeglm	threshold	NULL
+apeglm	contrasts	
+apeglm	weights	NULL
+apeglm	offset	NULL
+apeglm	flip.sign	TRUE
+apeglm	prior.control	
+apeglm	multiplier	1
+apeglm	ngrid	50
+apeglm	nsd	5
+apeglm	ngrid.nuis	5
+apeglm	nsd.nuis	2
+apeglm	log.link	TRUE
+apeglm	param.sd	NULL
+apeglm	method	c("general", "nbinomR", "nbinomCR", "nbinomC", "nbinomC*", "betabinR",     "betabinCR", "betabinC", "betabinC*")
+apeglm	optim.method	"BFGS"
+apeglm	bounds	c(-Inf, Inf)

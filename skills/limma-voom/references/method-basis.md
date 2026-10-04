@@ -1,0 +1,6 @@
+# Method basis
+
+- edgeR 4.10.5 `voomLmFit` Rd (locked export `../../../../acceptance/exemplars/limma-voom/L1_bioc3.23/edgeR/Rd/voomLmFit.txt`) specifies the sparse-count variance fit, sample weights, `EList`, and MArrayLM return. The limma 3.68.5 User's Guide §15.7 recommends the interface.
+- The User's Guide §15.3 and PACK D-V2/D-V3 support `filterByExpr` then TMM library normalization.
+- limma 3.68.5 `eBayes.Rd`, `treat.Rd`, and PACK S1 P-2 define zero-effect and minimum-effect tests.
+- Anchors (S4): RNAseq123 workflow (git.bioconductor.org RNAseq123 RELEASE_3_23 @09a5145, `limmaWorkflow.Rmd`; release rendering with limma 3.68.4 / edgeR 4.10.1) is replayed in the smoke test on the sha-locked GSE63310 files; its printed values are asserted with the workflow's own code, and the engine is compared with the same chain except for two documented differences (filterByExpr with the design, PACK D-V2; the target coefficient tested directly instead of `contrasts.fit`, whose standard errors are approximate for weighted non-orthogonal designs). The User's Guide §18.1 Yoruba printed values are asserted with the guide's code and the guide-era `adaptive.span = FALSE` (limma NEWS 3.66.0 changed the default).

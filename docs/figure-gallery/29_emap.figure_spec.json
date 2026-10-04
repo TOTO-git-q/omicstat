@@ -1,0 +1,185 @@
+{
+  "caption": "Enrichment map of the 20 gene sets with the smallest adjusted P (adjusted P < 0.05). Nodes are gene sets (colour, -log10 adjusted P; size, number of genes); an edge joins two sets whose Jaccard index (shared genes / all genes of the two sets) is at least 0.2 (edge width, Jaccard index; 53 edges, 0 unconnected sets). Positions are a two-dimensional classical multidimensional scaling of 1 − Jaccard index, with overlapping nodes pushed apart; the axes have no units.",
+  "counts": {
+    "edges": 53,
+    "sets": 20,
+    "unconnected": 0
+  },
+  "data": {
+    "coordinates": [
+      {
+        "term_id": "GO:0006991",
+        "x": -0.025638511,
+        "y": -0.0020908224
+      },
+      {
+        "term_id": "GO:0007028",
+        "x": -0.5447128284,
+        "y": -0.0520390378
+      },
+      {
+        "term_id": "GO:0007361",
+        "x": 0.4193761847,
+        "y": 0.309171389
+      },
+      {
+        "term_id": "GO:0007435",
+        "x": 0.0147404799,
+        "y": 0.3652987216
+      },
+      {
+        "term_id": "GO:0007065",
+        "x": -0.2417670746,
+        "y": -0.320264489
+      },
+      {
+        "term_id": "GO:0007213",
+        "x": -0.281507406,
+        "y": 0.2384427828
+      },
+      {
+        "term_id": "GO:0007472",
+        "x": 0.1027544092,
+        "y": 0.1898127391
+      },
+      {
+        "term_id": "GO:0007398",
+        "x": 0.2254007011,
+        "y": 0.3431087563
+      },
+      {
+        "term_id": "GO:0007583",
+        "x": 0.0099465534,
+        "y": -0.2253398614
+      },
+      {
+        "term_id": "GO:0007287",
+        "x": 0.4552871716,
+        "y": -0.1767950026
+      },
+      {
+        "term_id": "GO:0007509",
+        "x": 0.1705329065,
+        "y": 0.0055632965
+      },
+      {
+        "term_id": "GO:0007102",
+        "x": -0.4222017495,
+        "y": 0.1014939048
+      },
+      {
+        "term_id": "GO:0007657",
+        "x": 0.1384111376,
+        "y": -0.3737940038
+      },
+      {
+        "term_id": "GO:0007620",
+        "x": 0.3345946944,
+        "y": -0.3335218532
+      },
+      {
+        "term_id": "GO:0007176",
+        "x": -0.0934182055,
+        "y": 0.1821912544
+      },
+      {
+        "term_id": "GO:0007694",
+        "x": 0.2981027273,
+        "y": 0.15478703
+      },
+      {
+        "term_id": "GO:0007139",
+        "x": -0.3621299313,
+        "y": -0.1241865774
+      },
+      {
+        "term_id": "GO:0007546",
+        "x": -0.1663689752,
+        "y": -0.1389997423
+      },
+      {
+        "term_id": "GO:0007250",
+        "x": -0.2341057743,
+        "y": 0.0452650342
+      },
+      {
+        "term_id": "GO:0007324",
+        "x": 0.20270349,
+        "y": -0.1881035188
+      }
+    ],
+    "layout": "cmdscale(1 - Jaccard), sign-normalised, overlap removal",
+    "term_ids": [
+      "GO:0006991",
+      "GO:0007028",
+      "GO:0007361",
+      "GO:0007435",
+      "GO:0007065",
+      "GO:0007213",
+      "GO:0007472",
+      "GO:0007398",
+      "GO:0007583",
+      "GO:0007287",
+      "GO:0007509",
+      "GO:0007102",
+      "GO:0007657",
+      "GO:0007620",
+      "GO:0007176",
+      "GO:0007694",
+      "GO:0007139",
+      "GO:0007546",
+      "GO:0007250",
+      "GO:0007324"
+    ]
+  },
+  "encodings": {
+    "edge_pt": [
+      0.25,
+      1.5
+    ],
+    "fill": {
+      "palette": [
+        "#440154",
+        "#482878",
+        "#3E4A89",
+        "#31688E",
+        "#26828E",
+        "#1F9E89",
+        "#35B779",
+        "#6DCD59",
+        "#B4DE2C",
+        "#FDE725"
+      ],
+      "scale": "sequential"
+    },
+    "size_mm": [
+      1.6,
+      5
+    ]
+  },
+  "figure_type": "emap",
+  "files": {
+    "pdf": {
+      "content_sha256": "2c43082b81d1adeecb843f2943174427f796a4492807f73af3ad9ccf16741985",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "29_emap.pdf"
+    },
+    "png": {
+      "path": "29_emap.png",
+      "sha256": "81eee3efdeaea89c0d64999db9e0986c902846d2bb09e3cbd764e5eda7e795bb"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 85,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "jaccard": 0.2,
+    "padj": 0.05
+  },
+  "width_mm": 120
+}

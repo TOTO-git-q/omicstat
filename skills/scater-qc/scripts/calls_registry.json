@@ -1,0 +1,102 @@
+{
+  "module": "scater-qc",
+  "module_version": "1.0.0",
+  "package_versions": {
+    "scuttle": "1.22.0",
+    "BiocParallel": "1.46.0"
+  },
+  "calls": [
+    {
+      "fn": "scuttle::perCellQCMetrics",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "subsets": {
+          "value": "list(Mito = mt)",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "assay.type": {
+          "value": "\"counts\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "subsets": "NULL",
+        "percent.top": "integer(0)",
+        "...": "",
+        "flatten": "TRUE",
+        "assay.type": "\"counts\"",
+        "use.altexps": "NULL",
+        "percent_top": "NULL",
+        "exprs_values": "NULL",
+        "use_altexps": "NULL"
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "subsets": "NULL",
+        "percent.top": "integer(0)",
+        "threshold": "0",
+        "BPPARAM": "SerialParam()",
+        "flatten": "TRUE",
+        "percent_top": "NULL",
+        "detection_limit": "NULL"
+      }
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {}
+    },
+    {
+      "fn": "scuttle::perCellQCFilters",
+      "args": {
+        "x": {
+          "value": "metrics",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "sum.field": {
+          "value": "\"sum\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "\"sum\""
+        },
+        "detected.field": {
+          "value": "\"detected\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "\"detected\""
+        },
+        "sub.fields": {
+          "value": "\"subsets_Mito_percent\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "NULL"
+        },
+        "nmads": {
+          "value": "a$nmads",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "batch": {
+          "value": "batch",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      }
+    }
+  ],
+  "accessors": []
+}

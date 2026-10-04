@@ -1,0 +1,163 @@
+{
+ "schema": "omicstat.method-applicability.catalog.test-fixture",
+ "status": "synthetic_test_fixture_not_evidence",
+ "papers": [
+  {
+   "paper_id": "F-P-001",
+   "title": "Fixture bulk RNA-seq differential expression study",
+   "authors_or_group": "Synthetic fixture",
+   "journal": "Genome Biology",
+   "year": 2024,
+   "doi": "10.9999/omicstat.fixture.1",
+   "pmid": null,
+   "pmcid": null,
+   "url": null,
+   "fixture_note": "synthetic test record, not a real publication"
+  },
+  {
+   "paper_id": "F-P-002",
+   "title": "Fixture single-cell quality control study",
+   "authors_or_group": "Synthetic fixture",
+   "journal": "Genome Biology",
+   "year": 2024,
+   "doi": "10.9999/omicstat.fixture.2",
+   "pmid": null,
+   "pmcid": null,
+   "url": null,
+   "fixture_note": "synthetic test record, not a real publication"
+  },
+  {
+   "paper_id": "F-P-003",
+   "title": "Fixture DESeq2 shrinkage application",
+   "authors_or_group": "Synthetic fixture",
+   "journal": "Genome Biology",
+   "year": 2024,
+   "doi": "10.9999/omicstat.fixture.3",
+   "pmid": null,
+   "pmcid": null,
+   "url": null,
+   "fixture_note": "synthetic test record, not a real publication"
+  },
+  {
+   "paper_id": "F-P-004",
+   "title": "Fixture scran clustering application",
+   "authors_or_group": "Synthetic fixture",
+   "journal": "Genome Biology",
+   "year": 2024,
+   "doi": "10.9999/omicstat.fixture.4",
+   "pmid": null,
+   "pmcid": null,
+   "url": null,
+   "fixture_note": "synthetic test record, not a real publication"
+  }
+ ],
+ "usages": [
+  {
+   "usage_id": "F-U-001",
+   "paper_id": "F-P-001",
+   "module_tags": [
+    "deseq2-wald"
+   ],
+   "method": "DESeq2 Wald test, differential expression",
+   "parameters": {
+    "padj_cutoff": "0.05"
+   },
+   "verification_status": "metadata_only"
+  },
+  {
+   "usage_id": "F-U-002",
+   "paper_id": "F-P-002",
+   "module_tags": [
+    "seurat-qc"
+   ],
+   "method": "Seurat quality control thresholds",
+   "parameters": {
+    "percent_mt_max": "10"
+   },
+   "verification_status": "pending_fulltext_check",
+   "support_role": "direct_application",
+   "reviewer_status": "ready_for_root_review",
+   "implementation_compatibility": {
+    "status": "inventory_supported"
+   }
+  },
+  {
+   "usage_id": "F-U-003",
+   "paper_id": "F-P-003",
+   "module_tags": [
+    "deseq2-wald"
+   ],
+   "method": "DESeq2 lfcShrink with apeglm",
+   "parameters": {
+    "shrinkage": "apeglm"
+   },
+   "verification_status": "full_text_locator_verified",
+   "support_role": "direct_application",
+   "reviewer_status": "root_reviewed",
+   "implementation_compatibility": {
+    "status": "inventory_supported"
+   },
+   "source_locator": {
+    "section": "Methods > RNA-seq analysis"
+   },
+   "transfer_conditions": [
+    "two-group bulk RNA-seq"
+   ],
+   "reported_rationale": "fixture",
+   "limitations": [
+    "synthetic"
+   ]
+  },
+  {
+   "usage_id": "F-U-004",
+   "paper_id": "F-P-004",
+   "module_tags": [
+    "scran-cluster"
+   ],
+   "method": "scran graph clustering",
+   "parameters": {
+    "k": "20"
+   },
+   "verification_status": "passed verified",
+   "support_role": "direct_application",
+   "reviewer_status": "root_reviewed",
+   "implementation_compatibility": {
+    "status": "inventory_supported"
+   }
+  }
+ ],
+ "decisions": [
+  {
+   "decision_id": "F-D-001",
+   "modules": [
+    "deseq2-wald"
+   ],
+   "question": "Which LFC shrinkage estimator is reported?",
+   "status": "fixture",
+   "options": [
+    "apeglm",
+    "ashr",
+    "none"
+   ],
+   "evidence_usage_ids": [
+    "F-U-001",
+    "F-U-003"
+   ]
+  },
+  {
+   "decision_id": "F-D-002",
+   "modules": [
+    "seurat-qc"
+   ],
+   "question": "Which mitochondrial fraction threshold is reported?",
+   "status": "fixture",
+   "options": [],
+   "evidence_usage_ids": [
+    "F-U-002"
+   ]
+  }
+ ],
+ "limitations": [
+  "Synthetic fixture for unit tests only."
+ ]
+}

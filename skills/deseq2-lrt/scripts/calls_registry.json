@@ -1,0 +1,259 @@
+{
+  "module": "deseq2-lrt",
+  "note": "Function defaults exported from formals() in omicstat-r:2026.09.1, DESeq2 1.52.0, on 2026-09-28. Missing-argument defaults are recorded as empty strings. DEGreport 1.48.0 optional patterns are off by default; explicit tested-gene list/time metadata and native options are recorded.",
+  "package_versions": {
+    "DESeq2": "1.52.0",
+    "DEGreport": "1.48.0"
+  },
+  "accessors": [
+    "DESeq2::resultsNames",
+    "DESeq2::sizeFactors",
+    "DESeq2::counts"
+  ],
+  "calls": [
+    {
+      "fn": "DESeq2::DESeqDataSetFromMatrix",
+      "args": {
+        "countData": {
+          "value": "pre-filtered integer matrix",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1",
+          "function_default": ""
+        },
+        "colData": {
+          "value": "sample design table",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1",
+          "function_default": ""
+        },
+        "design": {
+          "value": "--full",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1",
+          "function_default": ""
+        },
+        "tidy": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        },
+        "ignoreRank": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::DESeq",
+      "args": {
+        "test": {
+          "value": "LRT",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "c(\"Wald\", \"LRT\")"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "c(\"parametric\", \"local\", \"mean\", \"glmGamPoi\")",
+          "flag": "--fit-type"
+        },
+        "sfType": {
+          "value": "ratio",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "c(\"ratio\", \"poscounts\", \"iterate\")",
+          "flag": "--sf-type"
+        },
+        "betaPrior": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": ""
+        },
+        "full": {
+          "value": "--full",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "design(object)"
+        },
+        "reduced": {
+          "value": "--reduced",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": ""
+        },
+        "minReplicatesForReplace": {
+          "value": 7,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "7"
+        },
+        "useT": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "FALSE"
+        },
+        "minmu": {
+          "value": 0.5,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "if (fitType == \"glmGamPoi\") 1e-06 else 0.5"
+        },
+        "quiet": {
+          "value": true,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "FALSE"
+        },
+        "parallel": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-1; D-L3",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::results",
+      "args": {
+        "name": {
+          "value": null,
+          "value_rule": "--report-coef when given (must be one of resultsNames(dds)); otherwise resultsNames(dds)[length(resultsNames(dds))], written out explicitly",
+          "source": "DESeq2 1.52.0 results() body: `if (missing(name)) name <- lastCoefName(object)` (probe acceptance/exemplars/deseq2-qc/_s4/probe_env.R: explicit last name gives an identical DataFrame); vignette FAQ 'I ran a likelihood ratio test, but results() only gives me one comparison'",
+          "pack": "S1 P-3 (lock 3); S4 F3",
+          "flag": "--report-coef",
+          "note": "value null = flag absent. With test = \"LRT\" the name selects only the displayed log2FoldChange/lfcSE; stat, pvalue and padj are the joint LRT's (smoke test F3 asserts this).",
+          "function_default": ""
+        },
+        "lfcThreshold": {
+          "value": 0,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "0"
+        },
+        "altHypothesis": {
+          "value": "greaterAbs",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "c(\"greaterAbs\", \"greaterAbsUPSHOT\", \"lessAbs\", \"greater\", \"less\",     \"greaterAbs2014\")"
+        },
+        "cooksCutoff": {
+          "value": true,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": ""
+        },
+        "independentFiltering": {
+          "value": true,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "TRUE"
+        },
+        "alpha": {
+          "value": 0.05,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "0.1",
+          "flag": "--alpha"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "\"BH\""
+        },
+        "format": {
+          "value": "DataFrame",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "c(\"DataFrame\", \"GRanges\", \"GRangesList\")"
+        },
+        "test": {
+          "value": "LRT",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "c(\"Wald\", \"LRT\")"
+        },
+        "parallel": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-3; D-L4",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::vst",
+      "args": {
+        "blind": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-4",
+          "function_default": "TRUE"
+        },
+        "nsub": {
+          "value": 1000,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-4",
+          "function_default": "1000"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-4",
+          "function_default": "\"parametric\"",
+          "flag": "--fit-type"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::varianceStabilizingTransformation",
+      "args": {
+        "blind": {
+          "value": false,
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-4",
+          "function_default": "TRUE"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "locked DESeq2 1.52.0 formals; S1 appendix",
+          "pack": "P-4",
+          "function_default": "\"parametric\"",
+          "flag": "--fit-type"
+        }
+      }
+    },
+    {
+      "fn": "DEGreport::degPatterns",
+      "args": {
+        "ma": {
+          "source": "locked DEGreport 1.48.0 formals; S1 P-2",
+          "function_default": "",
+          "flag": "--pattern-genes"
+        },
+        "metadata": {
+          "source": "locked DEGreport 1.48.0 formals; S1 P-2",
+          "function_default": "",
+          "flag": "--samples"
+        },
+        "time": {
+          "source": "locked DEGreport 1.48.0 formals; S1 P-2",
+          "function_default": "\"time\"",
+          "flag": "--time-col"
+        },
+        "col": {
+          "source": "locked DEGreport 1.48.0 formals; S1 P-2",
+          "function_default": "NULL",
+          "flag": "--pattern-group-col"
+        }
+      }
+    }
+  ]
+}

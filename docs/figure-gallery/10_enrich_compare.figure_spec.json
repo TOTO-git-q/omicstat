@@ -1,0 +1,51 @@
+{
+  "caption": "Comparison of enriched gene sets across groups. Selection: in each group, up to 4 gene sets with the smallest adjusted P among those with adjusted P < 0.05 (ties broken by larger gene ratio, then term ID); the union of 8 sets is shown; rows grouped by the first group (in axis order) in which the set has adjusted P < 0.05, then ordered by its smallest adjusted P across groups (ties by term ID). Gene ratio = input genes in the set / input genes annotated in the database. Dot colour, -log10 adjusted P; dot size, gene ratio. An empty position means the set is not significant in that group.",
+  "counts": [],
+  "data": {
+    "groups": [
+      "Cluster 1",
+      "Cluster 2",
+      "Cluster 3"
+    ],
+    "term_ids": [
+      "GO:0006991",
+      "GO:0007694",
+      "GO:0007028",
+      "GO:0007657",
+      "GO:0007324",
+      "GO:0007361",
+      "GO:0007250",
+      "GO:0007435"
+    ]
+  },
+  "definition": {
+    "gene_ratio": "gene ratio = input genes in the set / input genes annotated in the database",
+    "ordering": "rows grouped by the first group (in axis order) in which the set has adjusted P < 0.05, then ordered by its smallest adjusted P across groups (ties by term ID)",
+    "selection": "in each group, up to 4 gene sets with the smallest adjusted P among those with adjusted P < 0.05 (ties broken by larger gene ratio, then term ID); the union of 8 sets is shown"
+  },
+  "encodings": [],
+  "figure_type": "enrichment_compare",
+  "files": {
+    "pdf": {
+      "content_sha256": "0873ffdc90783f71d2dbe903ccf192c0b364b424630c3db94fb4a0e7c16a22e0",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "10_enrich_compare.pdf"
+    },
+    "png": {
+      "path": "10_enrich_compare.png",
+      "sha256": "31d8e713717d3138b4c9266dd3e5f229a5d7f5af6bdb60aa7341474c0560ab60"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 63.4,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "padj": 0.05
+  },
+  "width_mm": 89
+}

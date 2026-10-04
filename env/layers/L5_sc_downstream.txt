@@ -1,0 +1,6 @@
+# L5 single-cell back end (ecosystem neutral): muscat-pseudobulk, speckle-propeller,
+# slingshot-trajectory; monocle3 and CellChat are GitHub-only -> github_pins.txt
+muscat
+speckle
+slingshot
+tradeSeq

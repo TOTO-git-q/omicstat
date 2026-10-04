@@ -1,0 +1,14 @@
+# Rprofile.omicstat -- makes a native R session see ONLY the omicstat library
+# (plus R's own base/recommended packages). No user or site library -- in
+# particular no medstat or other project packages -- can leak into an engine.
+# Used by mcp/server.py (engine "native") via R_PROFILE_USER; ASCII only.
+local({
+  lib <- Sys.getenv("OMICSTAT_R_LIBS")
+  if (!nzchar(lib) || !dir.exists(lib)) {
+    stop("OS_ENV_MISSING: OMICSTAT_R_LIBS does not point to the omicstat library; run Rscript env/native/setup_native.R", call. = FALSE)
+  }
+  # .libPaths() always re-adds .Library.site; set the internal location list
+  # directly so the search path is exactly c(omicstat library, base library).
+  assign(".lib.loc", c(normalizePath(lib, winslash = "/"), .Library), envir = environment(.libPaths))
+  Sys.setenv(OMP_NUM_THREADS = "1", OPENBLAS_NUM_THREADS = "1", MKL_NUM_THREADS = "1")
+})

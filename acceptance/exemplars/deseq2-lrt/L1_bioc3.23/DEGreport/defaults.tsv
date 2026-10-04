@@ -1,0 +1,18 @@
+function	argument	default
+degPatterns	ma	
+degPatterns	metadata	
+degPatterns	minc	15
+degPatterns	summarize	"merge"
+degPatterns	time	"time"
+degPatterns	col	NULL
+degPatterns	consensusCluster	FALSE
+degPatterns	reduce	FALSE
+degPatterns	cutoff	0.7
+degPatterns	scale	TRUE
+degPatterns	pattern	NULL
+degPatterns	groupDifference	NULL
+degPatterns	eachStep	FALSE
+degPatterns	plot	TRUE
+degPatterns	fixy	NULL
+degPatterns	nClusters	NULL
+degPatterns	skipDendrogram	TRUE

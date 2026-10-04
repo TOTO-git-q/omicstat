@@ -1,0 +1,28 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "cellchat-communication",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/cellchat-communication/scripts/cellchat_communication_core.R": "cebec3dc09211cd6a97de7cfcc76bb00f1735ffb4f4396993cad1cbc36c00e7c",
+    "skills/cellchat-communication/scripts/run_cellchat_communication.R": "7b92213ffd254278cff8f59bd1cde984cd34f21db1b8062a8dc24689edf31e3a",
+    "skills/cellchat-communication/scripts/calls_registry.json": "acce9f3d4879dea7615309679a58515d407d9e3d5b19f6f675cf4ceecdeb8b6d",
+    "skills/cellchat-communication/SKILL.md": "5caecbf89ec822be19db9774acb3f7e7656fe7faf39e9219d9ea771a4d7a5d63",
+    "skills/cellchat-communication/references/methods-template.md": "ecc5f39c8574f2605918531faec4ca57556d8ccfa6463258c10fd6a560799954",
+    "skills/cellchat-communication/references/options.md": "6b2f1371385ee85100a291efbe635247cddf9ac9ab1c9bbb4c333514c9f6f972",
+    "skills/cellchat-communication/tests/fixtures/make_skin.R": "c718c3d3feee1be1e99ba2703c99b49b39a02807a73b5b9e7fe1c6a131ba09e3",
+    "skills/cellchat-communication/tests/run_smoke_test.R": "13abf45c5145fe5b74338b7698f22b48a9a2f146a25b01c5b9c1b50a00706e08",
+    "skills/cellchat-communication/tests/golden_manifest.csv": "c659722e98e1a815af0333a9e91eb8feda0823a02efe6c307098dc4d2527cb89",
+    "acceptance/exemplars/cellchat-communication/PACK.md": "72eb4eea3340ad01a452e047c88e9aa443fba832a7ad9f539ec471b6cd62b18d"
+  },
+  "packages": {
+    "CellChat": "2.2.0.9001"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

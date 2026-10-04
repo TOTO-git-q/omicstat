@@ -1,0 +1,109 @@
+{
+  "caption": "Hierarchical clustering of the 20 gene sets with the smallest adjusted P (adjusted P < 0.05) by gene overlap (distance 1 − Jaccard index, ward.D linkage), cut into 4 clusters (branch colours). Dot colour, -log10 adjusted P; dot size, number of genes in the set.",
+  "counts": {
+    "Cluster 1": 10,
+    "Cluster 2": 4,
+    "Cluster 3": 3,
+    "Cluster 4": 3
+  },
+  "data": {
+    "clusters": {
+      "GO:0006991": "Cluster 1",
+      "GO:0007028": "Cluster 1",
+      "GO:0007065": "Cluster 1",
+      "GO:0007102": "Cluster 1",
+      "GO:0007139": "Cluster 1",
+      "GO:0007176": "Cluster 1",
+      "GO:0007213": "Cluster 1",
+      "GO:0007250": "Cluster 1",
+      "GO:0007287": "Cluster 2",
+      "GO:0007324": "Cluster 2",
+      "GO:0007361": "Cluster 3",
+      "GO:0007398": "Cluster 3",
+      "GO:0007435": "Cluster 3",
+      "GO:0007472": "Cluster 4",
+      "GO:0007509": "Cluster 4",
+      "GO:0007546": "Cluster 1",
+      "GO:0007583": "Cluster 1",
+      "GO:0007620": "Cluster 2",
+      "GO:0007657": "Cluster 2",
+      "GO:0007694": "Cluster 4"
+    },
+    "method": "1 - Jaccard / ward.D",
+    "term_order": [
+      "GO:0006991",
+      "GO:0007176",
+      "GO:0007028",
+      "GO:0007546",
+      "GO:0007102",
+      "GO:0007213",
+      "GO:0007250",
+      "GO:0007583",
+      "GO:0007065",
+      "GO:0007139",
+      "GO:0007287",
+      "GO:0007657",
+      "GO:0007620",
+      "GO:0007324",
+      "GO:0007435",
+      "GO:0007361",
+      "GO:0007398",
+      "GO:0007509",
+      "GO:0007472",
+      "GO:0007694"
+    ]
+  },
+  "encodings": {
+    "colour": {
+      "Cluster 1": "#0072B2",
+      "Cluster 2": "#D55E00",
+      "Cluster 3": "#009E73",
+      "Cluster 4": "#CC79A7"
+    },
+    "fill": {
+      "palette": [
+        "#440154",
+        "#482878",
+        "#3E4A89",
+        "#31688E",
+        "#26828E",
+        "#1F9E89",
+        "#35B779",
+        "#6DCD59",
+        "#B4DE2C",
+        "#FDE725"
+      ],
+      "scale": "sequential"
+    }
+  },
+  "figure_type": "term_tree",
+  "files": {
+    "pdf": {
+      "content_sha256": "68f1bbf9e2d825b170b1938f3fa608b5c1f8a8fde0ff19b76ff8b7af5bf03e43",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "30_term_tree.pdf"
+    },
+    "png": {
+      "path": "30_term_tree.png",
+      "sha256": "6b5f2e5d9d6ec8c4894c1eddbc688b37cdcf439c7e0bce98f8507401d54b72a1"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 106,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "4 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #009E73/#CC79A7 (grayscale 2.7), #009E73/#D55E00 (grayscale 3.3), #CC79A7/#D55E00 (grayscale 6.0), #0072B2/#D55E00 (grayscale 8.3)",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "padj": 0.05
+  },
+  "width_mm": 120
+}

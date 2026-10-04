@@ -1,0 +1,212 @@
+function	argument	default
+aggregateNet	object	
+aggregateNet	sources.use	NULL
+aggregateNet	targets.use	NULL
+aggregateNet	signaling	NULL
+aggregateNet	pairLR.use	NULL
+aggregateNet	remove.isolate	TRUE
+aggregateNet	thresh	0.05
+aggregateNet	return.object	TRUE
+computeCommunProb	object	
+computeCommunProb	type	c("triMean", "truncatedMean", "thresholdedMean", "median")
+computeCommunProb	trim	0.1
+computeCommunProb	LR.use	NULL
+computeCommunProb	raw.use	TRUE
+computeCommunProb	population.size	FALSE
+computeCommunProb	distance.use	TRUE
+computeCommunProb	interaction.range	250
+computeCommunProb	scale.distance	0.01
+computeCommunProb	k.min	10
+computeCommunProb	contact.dependent	TRUE
+computeCommunProb	contact.range	NULL
+computeCommunProb	contact.knn.k	NULL
+computeCommunProb	contact.dependent.forced	FALSE
+computeCommunProb	do.symmetric	TRUE
+computeCommunProb	nboot	100
+computeCommunProb	seed.use	1L
+computeCommunProb	Kh	0.5
+computeCommunProb	n	1
+computeCommunProbPathway	object	NULL
+computeCommunProbPathway	net	NULL
+computeCommunProbPathway	pairLR.use	NULL
+computeCommunProbPathway	thresh	0.05
+createCellChat	object	
+createCellChat	meta	NULL
+createCellChat	group.by	NULL
+createCellChat	datatype	c("RNA", "spatial")
+createCellChat	coordinates	NULL
+createCellChat	spatial.factors	NULL
+createCellChat	assay	NULL
+createCellChat	do.sparse	T
+filterCommunication	object	
+filterCommunication	min.cells	10
+filterCommunication	min.samples	NULL
+filterCommunication	rare.keep	FALSE
+filterCommunication	nonFilter.keep	FALSE
+identifyOverExpressedGenes	object	
+identifyOverExpressedGenes	data.use	NULL
+identifyOverExpressedGenes	group.by	NULL
+identifyOverExpressedGenes	idents.use	NULL
+identifyOverExpressedGenes	invert	FALSE
+identifyOverExpressedGenes	group.dataset	NULL
+identifyOverExpressedGenes	pos.dataset	NULL
+identifyOverExpressedGenes	group.DE.combined	FALSE
+identifyOverExpressedGenes	features.name	"features"
+identifyOverExpressedGenes	only.pos	TRUE
+identifyOverExpressedGenes	features	NULL
+identifyOverExpressedGenes	return.object	TRUE
+identifyOverExpressedGenes	thresh.pc	0
+identifyOverExpressedGenes	thresh.fc	0
+identifyOverExpressedGenes	thresh.p	0.05
+identifyOverExpressedGenes	do.DE	TRUE
+identifyOverExpressedGenes	do.fast	TRUE
+identifyOverExpressedGenes	min.cells	10
+identifyOverExpressedInteractions	object	
+identifyOverExpressedInteractions	features.name	"features"
+identifyOverExpressedInteractions	variable.both	TRUE
+identifyOverExpressedInteractions	features	NULL
+identifyOverExpressedInteractions	return.object	TRUE
+netAnalysis_computeCentrality	object	NULL
+netAnalysis_computeCentrality	slot.name	"netP"
+netAnalysis_computeCentrality	net	NULL
+netAnalysis_computeCentrality	net.name	NULL
+netAnalysis_computeCentrality	thresh	0.05
+netAnalysis_contribution	object	
+netAnalysis_contribution	signaling	
+netAnalysis_contribution	signaling.name	NULL
+netAnalysis_contribution	sources.use	NULL
+netAnalysis_contribution	targets.use	NULL
+netAnalysis_contribution	width	0.1
+netAnalysis_contribution	vertex.receiver	NULL
+netAnalysis_contribution	thresh	0.05
+netAnalysis_contribution	return.data	FALSE
+netAnalysis_contribution	x.rotation	0
+netAnalysis_contribution	title	"Contribution of each L-R pair"
+netAnalysis_contribution	font.size	10
+netAnalysis_contribution	font.size.title	10
+netAnalysis_diff_signalingRole_scatter	object	
+netAnalysis_diff_signalingRole_scatter	color.use	NULL
+netAnalysis_diff_signalingRole_scatter	comparison	c(1, 2)
+netAnalysis_diff_signalingRole_scatter	signaling	NULL
+netAnalysis_diff_signalingRole_scatter	signaling.exclude	NULL
+netAnalysis_diff_signalingRole_scatter	idents.exclude	NULL
+netAnalysis_diff_signalingRole_scatter	slot.name	"netP"
+netAnalysis_diff_signalingRole_scatter	group	NULL
+netAnalysis_diff_signalingRole_scatter	dot.size	2.5
+netAnalysis_diff_signalingRole_scatter	point.shape	c(21, 22, 24, 23, 25, 8, 3)
+netAnalysis_diff_signalingRole_scatter	label.size	3
+netAnalysis_diff_signalingRole_scatter	dot.alpha	0.6
+netAnalysis_diff_signalingRole_scatter	x.measure	"outdeg"
+netAnalysis_diff_signalingRole_scatter	y.measure	"indeg"
+netAnalysis_diff_signalingRole_scatter	xlabel	"Outgoing interaction strength"
+netAnalysis_diff_signalingRole_scatter	ylabel	"Incoming interaction strength"
+netAnalysis_diff_signalingRole_scatter	title	NULL
+netAnalysis_diff_signalingRole_scatter	font.size	10
+netAnalysis_diff_signalingRole_scatter	font.size.title	10
+netAnalysis_diff_signalingRole_scatter	do.label	T
+netAnalysis_diff_signalingRole_scatter	show.legend	T
+netAnalysis_diff_signalingRole_scatter	show.axes	T
+netAnalysis_dot	object	
+netAnalysis_dot	slot.name	"netP"
+netAnalysis_dot	pattern	c("outgoing", "incoming")
+netAnalysis_dot	cutoff	NULL
+netAnalysis_dot	color.use	NULL
+netAnalysis_dot	pathway.show	NULL
+netAnalysis_dot	group.show	NULL
+netAnalysis_dot	shape	21
+netAnalysis_dot	dot.size	c(1, 3)
+netAnalysis_dot	dot.alpha	1
+netAnalysis_dot	main.title	NULL
+netAnalysis_dot	font.size	10
+netAnalysis_dot	font.size.title	12
+netAnalysis_river	object	
+netAnalysis_river	slot.name	"netP"
+netAnalysis_river	pattern	c("outgoing", "incoming")
+netAnalysis_river	cutoff	0.5
+netAnalysis_river	sources.use	NULL
+netAnalysis_river	targets.use	NULL
+netAnalysis_river	signaling	NULL
+netAnalysis_river	color.use	NULL
+netAnalysis_river	color.use.pattern	NULL
+netAnalysis_river	color.use.signaling	"grey50"
+netAnalysis_river	do.order	FALSE
+netAnalysis_river	main.title	NULL
+netAnalysis_river	font.size	2.5
+netAnalysis_river	font.size.title	12
+netAnalysis_signalingChanges_scatter	object	
+netAnalysis_signalingChanges_scatter	idents.use	
+netAnalysis_signalingChanges_scatter	color.use	c("grey10", "#F8766D", "#00BFC4")
+netAnalysis_signalingChanges_scatter	comparison	c(1, 2)
+netAnalysis_signalingChanges_scatter	signaling	NULL
+netAnalysis_signalingChanges_scatter	signaling.label	NULL
+netAnalysis_signalingChanges_scatter	top.label	1
+netAnalysis_signalingChanges_scatter	signaling.exclude	NULL
+netAnalysis_signalingChanges_scatter	xlims	NULL
+netAnalysis_signalingChanges_scatter	ylims	NULL
+netAnalysis_signalingChanges_scatter	slot.name	"netP"
+netAnalysis_signalingChanges_scatter	dot.size	2.5
+netAnalysis_signalingChanges_scatter	point.shape	c(21, 22, 24, 23)
+netAnalysis_signalingChanges_scatter	label.size	3
+netAnalysis_signalingChanges_scatter	dot.alpha	0.6
+netAnalysis_signalingChanges_scatter	x.measure	"outdeg"
+netAnalysis_signalingChanges_scatter	y.measure	"indeg"
+netAnalysis_signalingChanges_scatter	xlabel	"Differential outgoing interaction strength"
+netAnalysis_signalingChanges_scatter	ylabel	"Differential incoming interaction strength"
+netAnalysis_signalingChanges_scatter	title	NULL
+netAnalysis_signalingChanges_scatter	font.size	10
+netAnalysis_signalingChanges_scatter	font.size.title	10
+netAnalysis_signalingChanges_scatter	do.label	T
+netAnalysis_signalingChanges_scatter	show.legend	T
+netAnalysis_signalingChanges_scatter	show.axes	T
+netAnalysis_signalingRole_heatmap	object	
+netAnalysis_signalingRole_heatmap	signaling	NULL
+netAnalysis_signalingRole_heatmap	pattern	c("outgoing", "incoming", "all")
+netAnalysis_signalingRole_heatmap	slot.name	"netP"
+netAnalysis_signalingRole_heatmap	color.use	NULL
+netAnalysis_signalingRole_heatmap	color.heatmap	"BuGn"
+netAnalysis_signalingRole_heatmap	title	NULL
+netAnalysis_signalingRole_heatmap	width	10
+netAnalysis_signalingRole_heatmap	height	8
+netAnalysis_signalingRole_heatmap	ylim.top	NULL
+netAnalysis_signalingRole_heatmap	ylim.right	NULL
+netAnalysis_signalingRole_heatmap	font.size	8
+netAnalysis_signalingRole_heatmap	font.size.title	10
+netAnalysis_signalingRole_heatmap	cluster.rows	FALSE
+netAnalysis_signalingRole_heatmap	cluster.cols	FALSE
+netAnalysis_signalingRole_network	object	
+netAnalysis_signalingRole_network	signaling	
+netAnalysis_signalingRole_network	slot.name	"netP"
+netAnalysis_signalingRole_network	measure	c("outdeg", "indeg", "flowbet", "info")
+netAnalysis_signalingRole_network	measure.name	c("Sender", "Receiver", "Mediator", "Influencer")
+netAnalysis_signalingRole_network	color.use	NULL
+netAnalysis_signalingRole_network	color.heatmap	"BuGn"
+netAnalysis_signalingRole_network	width	6.5
+netAnalysis_signalingRole_network	height	1.4
+netAnalysis_signalingRole_network	font.size	8
+netAnalysis_signalingRole_network	font.size.title	10
+netAnalysis_signalingRole_network	cluster.rows	FALSE
+netAnalysis_signalingRole_network	cluster.cols	FALSE
+netAnalysis_signalingRole_scatter	object	
+netAnalysis_signalingRole_scatter	signaling	NULL
+netAnalysis_signalingRole_scatter	color.use	NULL
+netAnalysis_signalingRole_scatter	slot.name	"netP"
+netAnalysis_signalingRole_scatter	group	NULL
+netAnalysis_signalingRole_scatter	weight.MinMax	NULL
+netAnalysis_signalingRole_scatter	dot.size	c(2, 6)
+netAnalysis_signalingRole_scatter	point.shape	c(21, 22, 24, 23, 25, 8, 3)
+netAnalysis_signalingRole_scatter	label.size	3
+netAnalysis_signalingRole_scatter	dot.alpha	0.6
+netAnalysis_signalingRole_scatter	x.measure	"outdeg"
+netAnalysis_signalingRole_scatter	y.measure	"indeg"
+netAnalysis_signalingRole_scatter	xlabel	"Outgoing interaction strength"
+netAnalysis_signalingRole_scatter	ylabel	"Incoming interaction strength"
+netAnalysis_signalingRole_scatter	title	NULL
+netAnalysis_signalingRole_scatter	font.size	10
+netAnalysis_signalingRole_scatter	font.size.title	10
+netAnalysis_signalingRole_scatter	do.label	T
+netAnalysis_signalingRole_scatter	show.legend	T
+netAnalysis_signalingRole_scatter	show.axes	T
+subsetDB	CellChatDB	
+subsetDB	search	c()
+subsetDB	key	"annotation"
+subsetDB	non_protein	FALSE

@@ -1,0 +1,6 @@
+ref_seed: step 1 done (read task/common, required handoff/build documents, schema/gates, S0 redo and verification reports; branch infra/reference-seed; curated seed stays empty; next importer and store loader)
+ref_seed: step 2 done (deterministic hashed S0 importer, empty seed preserved, existing supplement/discovery SQLite loader, reviewed locator gate and bounded advice; next full offline tests)
+ref_seed: step 3 done (749 papers; 760 reviewed/194 discovery usages; 3024 observations/15963 coverage; R-image app 122 passed, outer 12 passed/1 inherited method_map stale failure, no skips; byte-identical import and unchanged reload; next owner-only deployment instructions and Chinese report)
+ref_seed: steps 4-5 done (DEPLOY_SEED.md owner-approved build/backup/load/verify/rollback commands; Chinese REF_SEED_REPORT.md with 38-module counts, 3855 exclusions, mapping and metadata gaps, tests; no deployment; awaiting final document checks)
+ref_seed: final checks done (fork provenance clean, diff whitespace clean, empty seed and bundle hash verified; final R-image app 122 passed, outer 12 passed/1 inherited registry mismatch, zero skips; deployment untouched; reports complete for owner review)
+DONE

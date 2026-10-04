@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+"""run_{{pkg}}_{{part}}.py -- entry point of module {{module}} (omicstat, Python/scverse lane).
+
+ASCII only. Structure follows ENGINEERING_PLAN lock 2 (3.2 / 10.4):
+1 locate _shared | 2 parse_args (--spec replay) | 3 validate params |
+4 validate input (--from-run handoff) | 5 compute (registered calls only) |
+6 result object | 7 render (tables, objects, figure REQUEST, handoff) | 8 QC |
+9 provenance | 10 closing line "N of M rules triggered; read X first".
+Engine contract (skills/_shared/py/ospy, one-to-one with _shared/scripts/*.R):
+flags come from ONE spec (ospy.args); every stage runs inside
+EngineLog.capture (ospy.engine_run); --seed goes through ospy.seed.set_seed AND
+is passed explicitly to every random_state=/seed= argument (lock 4); every
+registered call names every registered argument (lock 3, tools/check_calls.py).
+Python modules never draw publication figures: they write figure_data/ +
+figure_data/figure_request.json (ospy.figure_request) and the R render step
+(skills/_shared/scripts/render_figure_request.R, in omicstat-r) draws them.
+Scientific packages are imported only after --help (so --help works anywhere).
+"""
+import os
+import sys
+
+# ---- 1. locate _shared -------------------------------------------------------
+HERE = os.path.dirname(os.path.abspath(__file__))
+MODULE_DIR = os.path.dirname(HERE)
+SUITE = os.path.dirname(os.path.dirname(MODULE_DIR))
+sys.path.insert(0, os.path.join(SUITE, "skills", "_shared", "py"))
+sys.path.insert(0, HERE)
+
+from ospy import args as A                                    # noqa: E402
+from ospy import engine_run, handoff as H, module_kit as K    # noqa: E402
+from ospy.errors import OmicstatError, run_entry              # noqa: E402
+
+MODULE = "{{module}}"
+MODULE_VERSION = "0.1.0"
+
+# ---- 2-3. ONE spec: parsing, typed OS_* errors and --help ----------------------
+# Every default written here must match references/parameters.md (a
+# "Flag | Default" table), the reporting templates and calls_registry.json
+# ("flag" on an argument): tools/check_defaults.py.
+SPEC = A.os_arg_spec(
+    usage="python run_{{pkg}}_{{part}}.py --input <file> --outdir <dir> [options]",
+    description="TODO(S2): one line on what {{module}} does.",
+    flags=[
+        A.os_flag("input", "path", must_exist=True, help="TODO(S2) input object (.h5ad)"),
+        A.os_flag("outdir", "path", required=True, help="output directory"),
+        A.os_flag("from-run", "path", must_exist=True, help="upstream run directory"),
+        A.os_flag("spec", "path", must_exist=True, help="replay a resolved spec"),
+        A.os_flag("seed", "int", default=20260925, help="random seed"),
+        A.os_flag("journal", "enum", default="nature", values=["nature", "cell", "science", "generic"],
+                  help="figure preset")],
+    exclusive=[("input", "from-run")])
+# TODO(S2): range=(lo, hi) on numeric flags, requires="<flag>" where one flag needs another.
+
+
+def main(argv):
+    args = A.os_parse_args(SPEC, K.spec_argv(argv))
+    if args["help"]:
+        A.os_print_help(SPEC)
+        return 0
+    seed = args["seed"]
+    outdir = os.path.abspath(args["outdir"])
+    os.makedirs(outdir, exist_ok=True)
+    elog = engine_run.EngineLog(outdir)          # -> qc/engine_warnings.csv (stage, type, message)
+
+    # ---- 4. input validation --------------------------------------------------
+    upstream = None
+    if args["from-run"]:
+        # Front-end scverse modules stay in their ecosystem (OS_ECOSYSTEM_MIXED).
+        upstream = H.read_handoff(args["from-run"], expect={"adata": H.ANNDATA_TYPE}, front_end_ecosystem="scverse")
+    elif not args["input"]:
+        raise OmicstatError("OS_MISSING_PARAMETER", "give --input or --from-run")
+    import {{pkg}}_{{part}}_core as core                      # noqa: PLC0415
+    import {{pkg}}_{{part}}_qc as qcmod                       # noqa: PLC0415
+    import {{pkg}}_{{part}}_report as rep                     # noqa: PLC0415
+    # TODO(S2): design / object checks before any statistics (layer present,
+    # integer counts, obs columns) -> typed OS_INVALID_INPUT / OS_INVALID_DESIGN.
+
+    # ---- 5-6. compute -> one result object ------------------------------------
+    res = elog.capture("compute", core.compute, args, seed, upstream)
+
+    # ---- 7. render: tables, objects, figure request, handoff -------------------
+    rend = elog.capture("render", rep.render, res, outdir, args, upstream)
+
+    # ---- 8. QC -------------------------------------------------------------------
+    qc = elog.capture("qc", qcmod.qc, res, rend)
+    elog.capture("qc_write", K.write_qc_results, qc, outdir)
+
+    # ---- 9. provenance -----------------------------------------------------------
+    # TODO(S2): inputs sha256, package versions of the registered packages,
+    # refdata ids; the render step is recorded automatically (render_step).
+    elog.capture("provenance", K.write_provenance, outdir, MODULE, MODULE_VERSION, K.canonical_argv(SPEC, args),
+                 os.path.basename(__file__), seed, upstream=upstream, seed_record=res.get("seed_record"))
+
+    # ---- 10. closing line ------------------------------------------------------------
+    print(K.closing_line(qc), flush=True)
+    return 0
+
+
+if __name__ == "__main__":
+    run_entry(main)

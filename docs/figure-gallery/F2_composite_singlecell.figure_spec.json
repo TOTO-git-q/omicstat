@@ -1,0 +1,220 @@
+{
+  "caption": "**a**, UMAP embedding of 6,000 cells coloured by celltype (10 categories). Category names are placed at the median position of their cells. **b**, Marker gene expression by cluster (10 clusters; n = 120–1,440 cells per cluster). Dot size, percentage of cells in the cluster with non-zero expression; colour, mean expression scaled across clusters (z-score, clipped at ±2); values beyond ±2 shown at the limit (20 of 200 dots). Mean expression definition: mean of log-normalised values. Markers describe clusters and are not tests of differences between conditions. **c**, Proportion of cells assigned to each celltype in each sample (6 samples, 6,000 cells), grouped by condition (control, n = 3 samples; disease, n = 3 samples); n = 966–1,068 cells per sample. Each bar is one sample, the unit of replication. Proportions are descriptive; differences between conditions are tested separately at the sample level.",
+  "counts": [],
+  "data": {
+    "n_panels": 3,
+    "panels": [
+      {
+        "counts": {
+          "B": 798,
+          "CD14 Mono": 1200,
+          "CD4 T": 1429,
+          "CD8 T": 868,
+          "FCGR3A Mono": 419,
+          "NK": 471,
+          "Plasma": 126,
+          "Platelet": 304,
+          "cDC": 254,
+          "pDC": 131
+        },
+        "data": {
+          "n_cells": 6000
+        },
+        "default_height_mm": 80,
+        "encodings": {
+          "colour": {
+            "B": "#0072B2",
+            "CD14 Mono": "#D55E00",
+            "CD4 T": "#009E73",
+            "CD8 T": "#CC79A7",
+            "FCGR3A Mono": "#E69F00",
+            "NK": "#56B4E9",
+            "Plasma": "#882255",
+            "Platelet": "#44AA99",
+            "cDC": "#332288",
+            "pDC": "#999933"
+          },
+          "point_mm": 0.5
+        },
+        "figure_type": "embedding",
+        "notes": {
+          "rasterised_points": false
+        },
+        "tag": "a"
+      },
+      {
+        "counts": {
+          "cells_per_cluster": {
+            "B": 780,
+            "CD14 Mono": 1200,
+            "CD4 T": 1440,
+            "CD8 T": 900,
+            "FCGR3A Mono": 420,
+            "NK": 480,
+            "Plasma": 120,
+            "Platelet": 300,
+            "cDC": 240,
+            "pDC": 120
+          },
+          "clipped_cells": 20,
+          "dots_drawn": 200
+        },
+        "data": {
+          "clusters": [
+            "B",
+            "CD14 Mono",
+            "CD4 T",
+            "CD8 T",
+            "FCGR3A Mono",
+            "NK",
+            "Platelet",
+            "cDC",
+            "pDC",
+            "Plasma"
+          ],
+          "genes": [
+            "MS4A1",
+            "CD79A",
+            "CD14",
+            "LYZ",
+            "IL7R",
+            "CCR7",
+            "CD8A",
+            "GZMK",
+            "FCGR3A",
+            "MS4A7",
+            "GNLY",
+            "NKG7",
+            "PPBP",
+            "PF4",
+            "FCER1A",
+            "CST3",
+            "LILRA4",
+            "IRF7",
+            "JCHAIN",
+            "MZB1"
+          ]
+        },
+        "default_height_mm": 60,
+        "definition": {
+          "colour": "z-score of mean expression across clusters",
+          "mean_expression": "log_mean",
+          "mean_expression_text": "mean of log-normalised values"
+        },
+        "encodings": {
+          "colour": {
+            "clipped_end_labels": true,
+            "limits": [
+              -2,
+              2
+            ],
+            "scale": "diverging"
+          },
+          "size": {
+            "limits": [
+              0,
+              100
+            ],
+            "range_mm": [
+              0.3,
+              3.2
+            ]
+          }
+        },
+        "figure_type": "marker_dotplot",
+        "notes": [],
+        "tag": "b",
+        "thresholds": {
+          "clip": 2
+        }
+      },
+      {
+        "counts": {
+          "cells_per_sample": {
+            "P1": 968,
+            "P2": 1068,
+            "P3": 1014,
+            "P4": 983,
+            "P5": 1001,
+            "P6": 966
+          },
+          "samples_per_condition": {
+            "control": 3,
+            "disease": 3
+          }
+        },
+        "data": {
+          "samples": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+          ]
+        },
+        "default_height_mm": 65,
+        "encodings": {
+          "fill": {
+            "B": "#0072B2",
+            "CD14 Mono": "#D55E00",
+            "CD4 T": "#009E73",
+            "CD8 T": "#CC79A7",
+            "FCGR3A Mono": "#E69F00",
+            "NK": "#56B4E9",
+            "Plasma": "#882255",
+            "Platelet": "#44AA99",
+            "cDC": "#332288",
+            "pDC": "#999933"
+          }
+        },
+        "figure_type": "proportion_bar",
+        "tag": "c"
+      }
+    ]
+  },
+  "encodings": [],
+  "figure_type": "composite",
+  "files": {
+    "pdf": {
+      "content_sha256": "5bec7ef728dc971899b2193cd97e92d3e5100b741b0dfb27a3c44f0fcafa6a68",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "F2_composite_singlecell.pdf"
+    },
+    "png": {
+      "path": "F2_composite_singlecell.png",
+      "sha256": "167587b0c6870db40e0674f2358fcf40d5d5a4605471e0be9b788fbdced54ed4"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 80,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "6 colour pair(s) of different categories closer than CIEDE2000 10 under colour-vision simulation: #44AA99/#CC79A7 (deutan 3.9), #009E73/#44AA99 (tritan 4.9), #999933/#D55E00 (deutan 5.1), #999933/#E69F00 (protan 6.0), #44AA99/#56B4E9 (tritan 7.4), ...",
+      "rule": "FIG-03",
+      "severity": "warning"
+    },
+    {
+      "message": "19 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #999933/#CC79A7 (grayscale 0.3), #56B4E9/#E69F00 (grayscale 0.6), #44AA99/#999933 (grayscale 1.9), #44AA99/#CC79A7 (grayscale 2.3), #009E73/#CC79A7 (grayscale 2.7), ...",
+      "rule": "FIG-03",
+      "severity": "info"
+    },
+    {
+      "message": "6 colour pair(s) of different categories closer than CIEDE2000 10 under colour-vision simulation: #44AA99/#CC79A7 (deutan 3.9), #009E73/#44AA99 (tritan 4.9), #999933/#D55E00 (deutan 5.1), #999933/#E69F00 (protan 6.0), #44AA99/#56B4E9 (tritan 7.4), ...",
+      "rule": "FIG-03",
+      "severity": "warning"
+    },
+    {
+      "message": "19 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #999933/#CC79A7 (grayscale 0.3), #56B4E9/#E69F00 (grayscale 0.6), #44AA99/#999933 (grayscale 1.9), #44AA99/#CC79A7 (grayscale 2.3), #009E73/#CC79A7 (grayscale 2.7), ...",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 183
+}

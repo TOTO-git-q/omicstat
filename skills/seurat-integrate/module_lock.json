@@ -1,0 +1,35 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "seurat-integrate",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/seurat-integrate/scripts/run_seurat_integrate.R": "f2881ff3624e665427430c017ea537ede41a692e92faa9b239905dc100935fb2",
+    "skills/seurat-integrate/scripts/seurat_integrate_core.R": "7008b247ac03b93e72ba4e6788096565708f8dec3569095c684383924f4a3491",
+    "skills/seurat-integrate/scripts/seurat_integrate_qc.R": "b4df562c615dab8dc79391b40cd254c98a52e8cbaeb30b31620f7e5fda795e3d",
+    "skills/seurat-integrate/scripts/seurat_integrate_report.R": "cb68b218fb2e6a4ec33cff82700115d7610c4662711c9a71a9bad0638a24b1c9",
+    "skills/seurat-integrate/scripts/calls_registry.json": "df4a8733626d3e13ee1665a266e403002c2fd6ab6b10172291b049780d4accb6",
+    "skills/seurat-integrate/SKILL.md": "79f2877f0bafcc048c4adac46b7b9e1952b202ae6ee6132915f3a31cbcc95c30",
+    "skills/seurat-integrate/references/method-basis.md": "20df97e2bdee289ff20f2399728dd39ec3208a38cf26d9a105c6f7c007af4fbe",
+    "skills/seurat-integrate/references/options.md": "e44a9ff922cf8dced92d633653fb6b29e011371322699920d986c1c99057966d",
+    "skills/seurat-integrate/references/parameters.md": "086ec57837e0c753d483d0c4221527408c404d042dc6dd3c7d791143d1e4cf86",
+    "skills/seurat-integrate/references/qc-rules.md": "1ad96007b9201713b290a89e6606a6089fe2f6637bb2d1ac4be5e92fca9c7e9d",
+    "skills/seurat-integrate/references/reporting-templates.md": "d9f542c25de9a01bd0035cb5c92d1fb2d4761cf7ac9fba9a0674a592e05c6ae4",
+    "skills/seurat-integrate/references/troubleshooting.md": "8d7fb549e8a5fcfcaaa58d815e82b107d56c9d7d3cf65a77d17d28fdbac6ba06",
+    "skills/seurat-integrate/tests/run_smoke_test.R": "750e170295f15daf4c643554314eb98f12392da0b10111db0b418d116af788b6",
+    "skills/seurat-integrate/tests/golden_manifest.csv": "551983eb2e64343c8a972f5c331296f3f11c296f24ecee5eeadaa0d1b72ae360",
+    "acceptance/exemplars/seurat-integrate/PACK.md": "064c263e82b9f0644f0881848e3c5354c8df7df5e36cced9072b5e8f3d5b49c7"
+  },
+  "packages": {
+    "Seurat": "5.5.1",
+    "SeuratObject": "5.4.0",
+    "harmony": "2.0.5"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

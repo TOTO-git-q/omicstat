@@ -1,0 +1,4 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/communication.csv,56f455639c3498fe53c4b0abd81c04d35984f28cb552e81e10fba992341f4ddd,container,
+"tables/communication_fast.csv","56f455639c3498fe53c4b0abd81c04d35984f28cb552e81e10fba992341f4ddd","container",""

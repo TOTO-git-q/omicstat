@@ -1,0 +1,778 @@
+{
+  "accessors": [
+    "scvi.model.SCVI.save",
+    "scvi.model.SCANVI.save",
+    "scvi.model.SCVI.history.items"
+  ],
+  "calls": [
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "model_data"
+          ],
+          "function_default": "<required>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "batch_key": {
+          "expressions": [
+            "a['batch-col']"
+          ],
+          "flag": "--batch-col",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "batch_key",
+          "source": "user_required",
+          "value": "required"
+        },
+        "categorical_covariate_keys": {
+          "expressions": [
+            "options['categorical-covariate-keys']"
+          ],
+          "flag": "--categorical-covariate-keys",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "categorical_covariate_keys",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "continuous_covariate_keys": {
+          "expressions": [
+            "options['continuous-covariate-keys']"
+          ],
+          "flag": "--continuous-covariate-keys",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "continuous_covariate_keys",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "labels_key": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "layer": {
+          "expressions": [
+            "'counts'"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "size_factor_key": {
+          "expressions": [
+            "options['size-factor-key']"
+          ],
+          "flag": "--size-factor-key",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "size_factor_key",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        }
+      },
+      "fn": "scvi.model.SCVI.setup_anndata"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "model_data"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "dispersion": {
+          "expressions": [
+            "options['dispersion']"
+          ],
+          "flag": "--dispersion",
+          "function_default": "'gene'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "dispersion",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "gene"
+        },
+        "dropout_rate": {
+          "expressions": [
+            "options['dropout-rate']"
+          ],
+          "flag": "--dropout-rate",
+          "function_default": "0.1",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "dropout_rate",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 0.1
+        },
+        "gene_likelihood": {
+          "expressions": [
+            "options['gene-likelihood']"
+          ],
+          "flag": "--gene-likelihood",
+          "function_default": "'zinb'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "gene_likelihood",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "zinb"
+        },
+        "latent_distribution": {
+          "expressions": [
+            "options['latent-distribution']"
+          ],
+          "flag": "--latent-distribution",
+          "function_default": "'normal'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "latent_distribution",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "normal"
+        },
+        "n_hidden": {
+          "expressions": [
+            "options['n-hidden']"
+          ],
+          "flag": "--n-hidden",
+          "function_default": "128",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "n_hidden",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 128
+        },
+        "n_latent": {
+          "expressions": [
+            "a['n-latent']"
+          ],
+          "flag": "--n-latent",
+          "function_default": "10",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "n_latent",
+          "source": "user_optional_default",
+          "value": 10
+        },
+        "n_layers": {
+          "expressions": [
+            "options['n-layers']"
+          ],
+          "flag": "--n-layers",
+          "function_default": "1",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "n_layers",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 1
+        },
+        "registry": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "use_observed_lib_size": {
+          "expressions": [
+            "options['use-observed-lib-size']"
+          ],
+          "flag": "--use-observed-lib-size",
+          "function_default": "True",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "use_observed_lib_size",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "on"
+        }
+      },
+      "fn": "scvi.model.SCVI"
+    },
+    {
+      "args": {
+        "accelerator": {
+          "expressions": [
+            "'cpu'"
+          ],
+          "function_default": "'auto'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "batch_size": {
+          "expressions": [
+            "a['batch-size']"
+          ],
+          "flag": "--batch-size",
+          "function_default": "128",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "batch_size",
+          "source": "user_optional_default",
+          "value": 128
+        },
+        "check_val_every_n_epoch": {
+          "expressions": [
+            "1"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "datamodule": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "datasplitter_kwargs": {
+          "expressions": [
+            "options['datasplitter-kwargs']"
+          ],
+          "flag": "--datasplitter-kwargs",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "datasplitter_kwargs",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "deterministic": {
+          "expressions": [
+            "True"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "devices": {
+          "expressions": [
+            "1"
+          ],
+          "function_default": "'auto'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "early_stopping": {
+          "expressions": [
+            "options['early-stopping']"
+          ],
+          "flag": "--early-stopping",
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "early_stopping",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "off"
+        },
+        "enable_checkpointing": {
+          "expressions": [
+            "False"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "enable_progress_bar": {
+          "expressions": [
+            "False"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "load_sparse_tensor": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "logger": {
+          "expressions": [
+            "None"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "locked scvi.train.Trainer logger=None creates native SimpleLogger for model.history"
+        },
+        "max_epochs": {
+          "expressions": [
+            "a['max-epochs']"
+          ],
+          "flag": "--max-epochs",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "max_epochs",
+          "source": "user_required",
+          "value": "required"
+        },
+        "num_sanity_val_steps": {
+          "expressions": [
+            "0"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "plan_config": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "plan_kwargs": {
+          "expressions": [
+            "options['plan-kwargs']"
+          ],
+          "flag": "--plan-kwargs",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "plan_kwargs",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "shuffle_set_split": {
+          "expressions": [
+            "options['shuffle-set-split']"
+          ],
+          "flag": "--shuffle-set-split",
+          "function_default": "True",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "shuffle_set_split",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "on"
+        },
+        "train_size": {
+          "expressions": [
+            "options['train-size']"
+          ],
+          "flag": "--train-size",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "train_size",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "trainer_config": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "validation_size": {
+          "expressions": [
+            "options['validation-size']"
+          ],
+          "flag": "--validation-size",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "validation_size",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        }
+      },
+      "fn": "scvi.model.SCVI.train"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "model_data"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "batch_size": {
+          "expressions": [
+            "a['batch-size']"
+          ],
+          "flag": "--batch-size",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "batch_size",
+          "source": "user_optional_default",
+          "value": 128
+        },
+        "dataloader": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "give_mean": {
+          "expressions": [
+            "True"
+          ],
+          "function_default": "True",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "indices": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "mc_samples": {
+          "expressions": [
+            "5000"
+          ],
+          "function_default": "5000",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "return_dist": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scvi.model.SCVI.get_latent_representation"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "adata"
+          ],
+          "function_default": "<required>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "copy": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "distances": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "Locked scanpy 1.12.4 inspect.signature; L1_pypi2026-09-15/defaults.tsv",
+          "source": "locked_function_default"
+        },
+        "key_added": {
+          "expressions": [
+            "'scvi_neighbors'"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "knn": {
+          "expressions": [
+            "True"
+          ],
+          "function_default": "True",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "method": {
+          "expressions": [
+            "options['neighbors-method']"
+          ],
+          "flag": "--neighbors-method",
+          "function_default": "'umap'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "umap"
+        },
+        "metric": {
+          "expressions": [
+            "options['neighbors-metric']"
+          ],
+          "flag": "--neighbors-metric",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default None; native preset resolves the metric for the selected representation",
+          "value": null
+        },
+        "metric_kwds": {
+          "expressions": [
+            "options['neighbors-metric-kwds']"
+          ],
+          "flag": "--neighbors-metric-kwds",
+          "function_default": "mappingproxy({})",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "{}"
+        },
+        "n_neighbors": {
+          "expressions": [
+            "a['n-neighbors']"
+          ],
+          "flag": "--n-neighbors",
+          "function_default": "15",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "user_required",
+          "value": "required"
+        },
+        "n_pcs": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "random_state": {
+          "expressions": [
+            "a['seed']"
+          ],
+          "flag": "--seed",
+          "function_default": "0",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "seed",
+          "source": "user_optional_default",
+          "value": 20260925
+        },
+        "transformer": {
+          "expressions": [
+            "options['neighbors-transformer']"
+          ],
+          "flag": "--neighbors-transformer",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "none"
+        },
+        "use_rep": {
+          "expressions": [
+            "'X_scVI'"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scanpy.pp.neighbors"
+    },
+    {
+      "args": {
+        "a": {
+          "expressions": [
+            "options['umap-a']"
+          ],
+          "flag": "--umap-a",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "adata": {
+          "expressions": [
+            "adata"
+          ],
+          "function_default": "<required>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "alpha": {
+          "expressions": [
+            "options['umap-alpha']"
+          ],
+          "flag": "--umap-alpha",
+          "function_default": "1.0",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 1.0
+        },
+        "b": {
+          "expressions": [
+            "options['umap-b']"
+          ],
+          "flag": "--umap-b",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "copy": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "gamma": {
+          "expressions": [
+            "options['umap-gamma']"
+          ],
+          "flag": "--umap-gamma",
+          "function_default": "1.0",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 1.0
+        },
+        "init_pos": {
+          "expressions": [
+            "options['umap-init-pos']"
+          ],
+          "flag": "--umap-init-pos",
+          "function_default": "'spectral'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "spectral"
+        },
+        "key_added": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "Locked scanpy 1.12.4 inspect.signature; L1_pypi2026-09-15/defaults.tsv",
+          "source": "locked_function_default"
+        },
+        "maxiter": {
+          "expressions": [
+            "options['umap-maxiter']"
+          ],
+          "flag": "--umap-maxiter",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "method": {
+          "expressions": [
+            "'umap'"
+          ],
+          "function_default": "'umap'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "min_dist": {
+          "expressions": [
+            "a['min-dist']"
+          ],
+          "flag": "--min-dist",
+          "function_default": "0.5",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "user_optional_default",
+          "value": 0.5
+        },
+        "n_components": {
+          "expressions": [
+            "2"
+          ],
+          "function_default": "2",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "negative_sample_rate": {
+          "expressions": [
+            "options['umap-negative-sample-rate']"
+          ],
+          "flag": "--umap-negative-sample-rate",
+          "function_default": "5",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 5
+        },
+        "neighbors_key": {
+          "expressions": [
+            "'scvi_neighbors'"
+          ],
+          "function_default": "'neighbors'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "random_state": {
+          "expressions": [
+            "a['seed']"
+          ],
+          "flag": "--seed",
+          "function_default": "0",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "seed",
+          "source": "user_optional_default",
+          "value": 20260925
+        },
+        "spread": {
+          "expressions": [
+            "options['umap-spread']"
+          ],
+          "flag": "--umap-spread",
+          "function_default": "1.0",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
+          "s0_extraction_key": "none",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 1.0
+        }
+      },
+      "fn": "scanpy.tl.umap"
+    }
+  ],
+  "captured_signatures": {
+    "scanpy.pp.neighbors": "(adata: 'AnnData', n_neighbors: 'int' = 15, n_pcs: 'int | None' = None, *, distances: 'np.ndarray | SpBase | None' = None, use_rep: 'str | None' = None, knn: 'bool' = True, method: '_Method' = 'umap', transformer: 'KnnTransformerLike | _KnownTransformer | None' = None, metric: '_Metric | _MetricFn | None' = None, metric_kwds: 'Mapping[str, Any]' = mappingproxy({}), random_state: '_LegacyRandom' = 0, key_added: 'str | None' = None, copy: 'bool' = False) -> 'AnnData | None'",
+    "scanpy.tl.umap": "(adata: 'AnnData', *, min_dist: 'float' = 0.5, spread: 'float' = 1.0, n_components: 'int' = 2, maxiter: 'int | None' = None, alpha: 'float' = 1.0, gamma: 'float' = 1.0, negative_sample_rate: 'int' = 5, init_pos: '_InitPos | np.ndarray | None' = 'spectral', random_state: '_LegacyRandom' = 0, a: 'float | None' = None, b: 'float | None' = None, method: \"Literal['umap', 'rapids']\" = 'umap', key_added: 'str | None' = None, neighbors_key: 'str' = 'neighbors', copy: 'bool' = False) -> 'AnnData | None'",
+    "scvi.model.SCVI": "(self, adata: 'AnnData | None' = None, registry: 'dict | None' = None, n_hidden: 'int' = 128, n_latent: 'int' = 10, n_layers: 'int' = 1, dropout_rate: 'float' = 0.1, dispersion: \"Literal['gene', 'gene-batch', 'gene-label', 'gene-cell']\" = 'gene', gene_likelihood: \"Literal['zinb', 'nb', 'poisson', 'normal']\" = 'zinb', use_observed_lib_size: 'bool' = True, latent_distribution: \"Literal['normal', 'ln']\" = 'normal', **kwargs)",
+    "scvi.model.SCVI.get_latent_representation": "(self, adata: 'AnnData | None' = None, indices: 'Sequence[int] | None' = None, give_mean: 'bool' = True, mc_samples: 'int' = 5000, batch_size: 'int | None' = None, return_dist: 'bool' = False, dataloader: 'Iterator[dict[str, Tensor | None]]' = None, **data_loader_kwargs) -> 'npt.NDArray | tuple[npt.NDArray, npt.NDArray]'",
+    "scvi.model.SCVI.setup_anndata": "(adata: 'AnnData', layer: 'str | None' = None, batch_key: 'str | None' = None, labels_key: 'str | None' = None, size_factor_key: 'str | None' = None, categorical_covariate_keys: 'list[str] | None' = None, continuous_covariate_keys: 'list[str] | None' = None, **kwargs)",
+    "scvi.model.SCVI.train": "(self, max_epochs: 'int | None' = None, accelerator: 'str' = 'auto', devices: 'int | list[int] | str' = 'auto', train_size: 'float | None' = None, validation_size: 'float | None' = None, shuffle_set_split: 'bool' = True, load_sparse_tensor: 'bool' = False, batch_size: 'int' = 128, early_stopping: 'bool' = False, datasplitter_kwargs: 'dict | None' = None, plan_config: 'KwargsLike | None' = None, plan_kwargs: 'KwargsLike | None' = None, datamodule: 'LightningDataModule | None' = None, trainer_config: 'KwargsLike | None' = None, **trainer_kwargs)"
+  },
+  "default_capture_environment": {
+    "image_id": "sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f",
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scanpy": "1.12.4",
+      "scvi-tools": "1.5.1",
+      "torch": "2.14.0+cpu"
+    },
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.36",
+    "py_env_version": "2026.09.1",
+    "python": "3.12.13"
+  },
+  "default_capture_status": "captured_locked_container",
+  "flag_defaults": {
+    "--batch-size": 128,
+    "--journal": "nature",
+    "--min-dist": 0.5,
+    "--n-latent": 10,
+    "--seed": 20260925
+  },
+  "import_names": {
+    "scvi-tools": "scvi"
+  },
+  "module": "scvi-integrate",
+  "note": "Default formals were read from the pinned installed packages. Explicit scientific choices remain those recorded by the source; capturing signatures alone is not numerical acceptance.",
+  "package_versions": {
+    "anndata": "0.13.3.post0",
+    "scanpy": "1.12.4",
+    "scvi-tools": "1.5.1"
+  }
+}

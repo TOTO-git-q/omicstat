@@ -1,0 +1,437 @@
+{
+  "accessors": [
+    "scvi.model.SCVI.save",
+    "scvi.model.SCANVI.save"
+  ],
+  "calls": [
+    {
+      "args": {
+        "accelerator": {
+          "expressions": [
+            "'cpu'"
+          ],
+          "function_default": "'auto'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "adata": {
+          "expressions": [
+            "model_data"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "allowed_classes_names_list": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "backup_url": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "datamodule": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "device": {
+          "expressions": [
+            "'auto'"
+          ],
+          "function_default": "'auto'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "dir_path": {
+          "expressions": [
+            "str(Path(expected_file['path']).parent)"
+          ],
+          "function_default": "<required>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "prefix": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        }
+      },
+      "fn": "scvi.model.SCVI.load",
+      "returns": "scvi.model.SCVI"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "model_data"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "labels_key": {
+          "expressions": [
+            "a['labels-col']"
+          ],
+          "flag": "--labels-col",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "labels_key",
+          "source": "user_required",
+          "value": "required"
+        },
+        "registry": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "scvi_model": {
+          "expressions": [
+            "base"
+          ],
+          "function_default": "<required>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "unlabeled_category": {
+          "expressions": [
+            "a['unlabeled-category']"
+          ],
+          "flag": "--unlabeled-category",
+          "function_default": "<required>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "unlabeled_category",
+          "source": "user_required",
+          "value": "required"
+        }
+      },
+      "fn": "scvi.model.SCANVI.from_scvi_model",
+      "returns": "scvi.model.SCANVI"
+    },
+    {
+      "args": {
+        "accelerator": {
+          "expressions": [
+            "'cpu'"
+          ],
+          "function_default": "'auto'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "adversarial_classifier": {
+          "expressions": [
+            "options['adversarial-classifier']"
+          ],
+          "flag": "--adversarial-classifier",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "adversarial_classifier",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "none"
+        },
+        "batch_size": {
+          "expressions": [
+            "a['batch-size']"
+          ],
+          "flag": "--batch-size",
+          "function_default": "128",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "batch_size",
+          "source": "user_optional_default",
+          "value": 128
+        },
+        "check_val_every_n_epoch": {
+          "expressions": [
+            "1"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "datamodule": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "datasplitter_kwargs": {
+          "expressions": [
+            "options['datasplitter-kwargs']"
+          ],
+          "flag": "--datasplitter-kwargs",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "datasplitter_kwargs",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "deterministic": {
+          "expressions": [
+            "True"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "devices": {
+          "expressions": [
+            "1"
+          ],
+          "function_default": "'auto'",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "enable_checkpointing": {
+          "expressions": [
+            "False"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "enable_progress_bar": {
+          "expressions": [
+            "False"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "logger": {
+          "expressions": [
+            "False"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "max_epochs": {
+          "expressions": [
+            "a['max-epochs']"
+          ],
+          "flag": "--max-epochs",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "max_epochs",
+          "source": "user_required",
+          "value": "required"
+        },
+        "n_samples_per_label": {
+          "expressions": [
+            "a['samples-per-label']"
+          ],
+          "flag": "--samples-per-label",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "n_samples_per_label",
+          "source": "user_optional_default",
+          "value": null
+        },
+        "num_sanity_val_steps": {
+          "expressions": [
+            "0"
+          ],
+          "forwarded_argument": true,
+          "function_default": "<absent>",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "plan_config": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "plan_kwargs": {
+          "expressions": [
+            "options['plan-kwargs']"
+          ],
+          "flag": "--plan-kwargs",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "plan_kwargs",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        },
+        "shuffle_set_split": {
+          "expressions": [
+            "options['shuffle-set-split']"
+          ],
+          "flag": "--shuffle-set-split",
+          "function_default": "True",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "shuffle_set_split",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "on"
+        },
+        "train_size": {
+          "expressions": [
+            "options['train-size']"
+          ],
+          "flag": "--train-size",
+          "function_default": "0.9",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "train_size",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": 0.9
+        },
+        "trainer_config": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "validation_size": {
+          "expressions": [
+            "options['validation-size']"
+          ],
+          "flag": "--validation-size",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "validation_size",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": null
+        }
+      },
+      "fn": "scvi.model.SCANVI.train"
+    },
+    {
+      "args": {
+        "adata": {
+          "expressions": [
+            "model_data"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "batch_size": {
+          "expressions": [
+            "a['batch-size']"
+          ],
+          "flag": "--batch-size",
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "batch_size",
+          "source": "user_optional_default",
+          "value": 128
+        },
+        "dataloader": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "ig_args": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "ig_interpretability": {
+          "expressions": [
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "indices": {
+          "expressions": [
+            "None"
+          ],
+          "function_default": "None",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "soft": {
+          "expressions": [
+            "True",
+            "False"
+          ],
+          "function_default": "False",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "source": "explicit engine argument; package API or declared user choice"
+        },
+        "use_posterior_mean": {
+          "expressions": [
+            "options['use-posterior-mean']"
+          ],
+          "flag": "--use-posterior-mean",
+          "function_default": "True",
+          "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCANVI.html",
+          "s0_extraction_key": "use_posterior_mean",
+          "source": "locked API default or retained cited workflow value; explicit user override",
+          "value": "on"
+        }
+      },
+      "fn": "scvi.model.SCANVI.predict"
+    }
+  ],
+  "captured_signatures": {
+    "scvi.model.SCANVI.from_scvi_model": "(scvi_model: 'SCVI', unlabeled_category: 'str', labels_key: 'str | None' = None, adata: 'AnnData | None' = None, registry: 'dict | None' = None, **scanvi_kwargs)",
+    "scvi.model.SCANVI.predict": "(self, adata: 'AnnOrMuData | None' = None, indices: 'Sequence[int] | None' = None, soft: 'bool' = False, batch_size: 'int | None' = None, use_posterior_mean: 'bool' = True, ig_interpretability: 'bool' = False, ig_args: 'dict | None' = None, dataloader: 'Iterator[dict[str, Tensor | None]] | None' = None) -> '(np.ndarray | pd.DataFrame, None | np.ndarray)'",
+    "scvi.model.SCANVI.train": "(self, max_epochs: 'int | None' = None, n_samples_per_label: 'float | None' = None, check_val_every_n_epoch: 'int | None' = None, train_size: 'float' = 0.9, validation_size: 'float | None' = None, shuffle_set_split: 'bool' = True, batch_size: 'int' = 128, accelerator: 'str' = 'auto', devices: 'int | list[int] | str' = 'auto', adversarial_classifier: 'bool | None' = None, datasplitter_kwargs: 'dict | None' = None, plan_config: 'KwargsLike | None' = None, plan_kwargs: 'KwargsLike | None' = None, datamodule: 'LightningDataModule | None' = None, trainer_config: 'KwargsLike | None' = None, **trainer_kwargs)",
+    "scvi.model.SCVI.load": "(dir_path: 'str', adata: 'AnnOrMuData | None' = None, accelerator: 'str' = 'auto', device: 'int | str' = 'auto', prefix: 'str | None' = None, backup_url: 'str | None' = None, datamodule: 'LightningDataModule | None' = None, allowed_classes_names_list: 'list[str] | None' = None)"
+  },
+  "default_capture_environment": {
+    "image_id": "sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f",
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scanpy": "1.12.4",
+      "scvi-tools": "1.5.1",
+      "torch": "2.14.0+cpu"
+    },
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.36",
+    "py_env_version": "2026.09.1",
+    "python": "3.12.13"
+  },
+  "default_capture_status": "captured_locked_container",
+  "flag_defaults": {
+    "--batch-size": 128,
+    "--journal": "nature",
+    "--prediction-col": "scanvi_label",
+    "--seed": 20260925
+  },
+  "import_names": {
+    "scvi-tools": "scvi"
+  },
+  "module": "scanvi-annotate",
+  "note": "Default formals were read from the pinned installed packages. Explicit scientific choices remain those recorded by the source; capturing signatures alone is not numerical acceptance.",
+  "package_versions": {
+    "anndata": "0.13.3.post0",
+    "scvi-tools": "1.5.1"
+  }
+}

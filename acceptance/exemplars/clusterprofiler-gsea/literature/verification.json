@@ -1,0 +1,20 @@
+{
+  "module": "clusterprofiler-gsea",
+  "date": "2026-09-27T09:35:13Z",
+  "sampled_pmids": ["33108271", "38001542", "39284687", "39361432", "41406948", "42658766"],
+  "records_checked": 48,
+  "records_passed": 48,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "notes": [
+    "Fresh esummary echo (tool=omicstat, email=omicstat-s0@example.invalid) for all 6 sampled PMIDs: title (html-unescaped, tag-stripped) and year matched corpus.jsonl exactly. 6/6 verified.",
+    "All 19 unique non-empty (pmcid, snippet) pairs across the 6 sampled articles re-checked live with collect.py check: FOUND, all <=25 words.",
+    "All 6 sampled articles are '_applies'=yes; each cites a real GSEA function/language sharing a sentence with clusterProfiler (gseGO x3, generic gse* family x1, generic 'gene set enrichment analysis ... using the clusterProfiler package' x2). PMC10668425 names clusterProfiler jointly with the javaGSEA Desktop Application without separating which tool produced which result -- the extractor's own note flags this ambiguity; kept as applies=yes since clusterProfiler is explicitly named as running the GSEA, which is a defensible read.",
+    "All 'not reported' lines (30 of 48) confirmed absent by reading the full Methods region.",
+    "enrich_cutoff correctly holds only the GSEA/enrichment-specific significance cutoff in every article that reports one, and is correctly kept separate from a DE cutoff stated elsewhere in the same Methods: PMC13535199 records 'P cutoff = 0.05' for gseGO, distinct from the DESeq2 'Padj < 0.1' DE threshold in the same paragraph; PMC10668425 records 'FDR <= 0.25' for GSEA pathways, distinct from the unstated DESeq2 DEG-calling step; PMC7591261 correctly leaves enrich_cutoff 'not reported' rather than reusing the edgeR DEG cutoff (|fold change| >= 1.5, FDR < 0.05) stated in the same paragraph. No DE-cutoff contamination found in this sample.",
+    "Judgment call reviewed and accepted: PMC12765837 ranking_metric ('fold change (log2 protein fold-change, AD vs healthy controls)') elaborates beyond the cited GSEA-subsection snippet, but the log2(fold change) definition and the Alzheimer's-vs-healthy-controls comparison are both stated verbatim in the adjacent 'Differential expression protein analysis' Methods subsection of the same article, so the value is grounded in Methods text (not inferred from Results/figures); kept as pass."
+  ],
+  "verdict": "pass"
+}

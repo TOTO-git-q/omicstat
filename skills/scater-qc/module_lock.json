@@ -1,0 +1,35 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "scater-qc",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/scater-qc/scripts/run_scater_qc.R": "ff0a9dafd1e0f74b8f275d3e628631e13058539c0cd0c2132959b3cb2b408a23",
+    "skills/scater-qc/scripts/scater_qc_core.R": "9eb11d8adfd03e6a5fee0a4528f6539a2c5163c0170a913f7e05ad491c5eb601",
+    "skills/scater-qc/scripts/scater_qc_qc.R": "ab6509fe7a60ee6db1c33e4edf18bf3f7d114a06757f103f45bced75c9764927",
+    "skills/scater-qc/scripts/scater_qc_report.R": "7af31dc70ed3b6c83a43b5bc0c142fd39ab3c8ef38914a4fddec7f254898af5c",
+    "skills/scater-qc/scripts/calls_registry.json": "4286290a138654bf3d312f0198dedc95c208f6603463f836de0c6bb893b369e7",
+    "skills/scater-qc/SKILL.md": "e3e76ec5e5429186d6163149a2ebaab3a3a15b5dc12bf2857b98d289d294a6bb",
+    "skills/scater-qc/references/method-basis.md": "0a755b954acf4550f3c5083ebd437b2d9c464031452a82fe7a970fac6573cf41",
+    "skills/scater-qc/references/options.md": "fba81474f4a895977927f7894b369db0d3456490910137a327ecf302ab7c2ec1",
+    "skills/scater-qc/references/parameters.md": "27c604453941d2a42f435e79dcdb0b73820ae790a8457d839b39a6042c5fd879",
+    "skills/scater-qc/references/qc-rules.md": "14da0b3b6f91b05a7390940bacc5cf78ff1e2d522ff0967155565869d5402f12",
+    "skills/scater-qc/references/reporting-templates.md": "a27f02cbc367371712f888426d2d6b4cc6a794787afd762f17288bf5add61970",
+    "skills/scater-qc/references/troubleshooting.md": "66dd51f74a6fdaa6c815deefc902353af3a8e6f62f797376b4824df0658a9df2",
+    "skills/scater-qc/tests/fixtures/make_zeisel.R": "80f5409825de4dcbe44afd776456ec0a45114199538821ce2c5577b132c3aa5d",
+    "skills/scater-qc/tests/run_smoke_test.R": "fd1a44e4f07ddfe94e752f0fd5d101e65a16faf3e6b2be0695d46d4b41052c66",
+    "skills/scater-qc/tests/golden_manifest.csv": "13eea3d00f6921ffc49e1d9483fca147123f358879defb3a6156ce2f08531ac9",
+    "acceptance/exemplars/scater-qc/PACK.md": "afc960576b1f083e0f56ae4b1ff3a92e24fef87b9f6ce1dc3ea2e92ac8de14d8"
+  },
+  "packages": {
+    "scuttle": "1.22.0",
+    "BiocParallel": "1.46.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

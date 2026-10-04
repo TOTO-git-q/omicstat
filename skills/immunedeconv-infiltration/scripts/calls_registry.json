@@ -1,0 +1,102 @@
+{
+  "module": "immunedeconv-infiltration",
+  "package_versions": {
+    "immunedeconv": "2.1.4",
+    "quantiseqr": "1.20.0",
+    "EPIC": "1.1.7",
+    "MCPcounter": "1.2.0",
+    "xCell": "1.1.0",
+    "ConsensusTME": "0.0.1.9000"
+  },
+  "calls": [
+    {
+      "fn": "immunedeconv::deconvolute",
+      "args": {
+        "gene_expression": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "",
+          "flag": "--input"
+        },
+        "method": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "deconvolution_methods",
+          "flag": "--method",
+          "value": "required"
+        },
+        "indications": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "NULL",
+          "flag": "--indications"
+        },
+        "tumor": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "TRUE",
+          "flag": "--tumor",
+          "value": true
+        },
+        "arrays": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "FALSE",
+          "flag": "--arrays",
+          "value": false
+        },
+        "column": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "\"gene_symbol\""
+        },
+        "rmgenes": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "NULL",
+          "flag": "--rmgenes"
+        },
+        "scale_mrna": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "TRUE",
+          "flag": "--scale-mrna",
+          "value": true
+        },
+        "expected_cell_types": {
+          "source": "locked immunedeconv 2.1.4 official Racle workflow",
+          "function_default": "NULL",
+          "flag": "--expected-cell-types"
+        }
+      }
+    },
+    {
+      "fn": "immunedeconv::set_cibersort_binary",
+      "args": {
+        "path": {
+          "source": "locked public config setter",
+          "function_default": "",
+          "flag": "--cibersort-source"
+        }
+      }
+    },
+    {
+      "fn": "immunedeconv::set_cibersort_mat",
+      "args": {
+        "path": {
+          "source": "locked public config setter",
+          "function_default": "",
+          "flag": "--cibersort-matrix"
+        }
+      }
+    }
+  ],
+  "note": "Locked immunedeconv 2.1.4 native public wrappers; do.call dispatch audited from locked function bodies. MCP-counter receives pinned local genes/probesets, never lazy online defaults. EPIC/xCell attached for their native data lookup.",
+  "method_arguments": {
+    "immunedeconv::deconvolute_cibersort": {
+      "abs_method": {
+        "flag": "--cibersort-abs-method / --method-args abs_method",
+        "value": "extra$abs_method",
+        "function_default": "\"sig.score\"",
+        "source": "locked formals omicstat-r:2026.10.1; forwarded through deconvolute ...",
+        "pack": "C/D/F"
+      }
+    }
+  },
+  "flag_defaults": {
+    "--cibersort-abs-method": "sig.score"
+  },
+  "native_method_args": "--method-args offline named JSON object; merge over convenience method options; reserved top-level inputs rejected"
+}

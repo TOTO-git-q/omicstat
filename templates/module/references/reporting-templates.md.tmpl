@@ -1,0 +1,8 @@
+# reporting-templates -- {{module}}
+
+TODO(S2)
+
+A default value written into template prose is wrapped in a marker so that
+`tools/check_defaults.py` compares it with `--help`, e.g.
+`adjusted P < <!-- default --alpha -->0.05<!-- /default -->`. Prefer a `{placeholder}` filled from
+the run whenever the value can change.

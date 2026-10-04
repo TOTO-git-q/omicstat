@@ -1,0 +1,401 @@
+sva 3.60.0 limma 3.68.5 
+[1] 4
+Number of significant surrogate variables is:  4 
+Iteration (out of 5 ):1  2  3  4  5  ####
+  topTableF is obsolete and will be removed in Bioconductor 3.24. Please use topTable instead.
+####
+                   C1          C2        C3   AveExpr        F      P.Value
+207783_x_at -13.50399  0.26823867 -13.23575 12.938786 8551.258 1.072143e-67
+201492_s_at -13.29651  0.14660085 -13.14990 13.336090 8375.769 1.862497e-67
+212869_x_at -13.83754  0.25511067 -13.58243 13.452076 6861.657 3.763357e-65
+208834_x_at -12.74367  0.05457491 -12.68910 13.160201 6385.787 2.547983e-64
+212284_x_at -13.64523  0.28701654 -13.35821 13.070844 5465.201 1.600957e-62
+208825_x_at -12.68226  0.07553956 -12.60672 13.108072 4998.946 1.713256e-61
+211445_x_at -10.15203 -0.06929372 -10.22132  9.853817 4873.332 3.369191e-61
+213084_x_at -12.55629  0.02114436 -12.53515 13.046529 4443.330 3.919598e-60
+201429_s_at -13.37974  0.27163600 -13.10810 12.941208 4439.713 4.005277e-60
+214327_x_at -12.65933  0.20484043 -12.45449 11.832607 4402.703 5.002442e-60
+               adj.P.Val
+207783_x_at 2.075101e-63
+201492_s_at 2.075101e-63
+212869_x_at 2.795296e-61
+208834_x_at 1.419417e-60
+212284_x_at 7.134823e-59
+208825_x_at 6.362746e-58
+211445_x_at 1.072510e-57
+213084_x_at 9.916620e-57
+201429_s_at 9.916620e-57
+214327_x_at 1.114694e-56
+####
+  topTableF is obsolete and will be removed in Bioconductor 3.24. Please use topTable instead.
+####
+                           C1                  C2                C3
+207783_x_at -13.5039857339413  0.2682386736734323 -13.2357470602679
+201492_s_at -13.2965051919759  0.1466008492188832 -13.1499043427571
+212869_x_at -13.8375411504641  0.2551106658457491 -13.5824304846184
+208834_x_at -12.7436747611658  0.0545749062954713 -12.6890998548703
+212284_x_at -13.6452294761541  0.2870165445462690 -13.3582129316079
+208825_x_at -12.6822624182516  0.0755395581295273 -12.6067228601221
+211445_x_at -10.1520276459478 -0.0692937184253533 -10.2213213643732
+213084_x_at -12.5562943203037  0.0211443581949000 -12.5351499621088
+201429_s_at -13.3797367903498  0.2716359974676919 -13.1081007928821
+214327_x_at -12.6593320291817  0.2048404252447174 -12.4544916039370
+                      AveExpr                F              P.Value
+207783_x_at 12.93878647930846 8551.25807548830 1.07214267235281e-67
+201492_s_at 13.33608986766206 8375.76856975109 1.86249665578809e-67
+212869_x_at 13.45207634742891 6861.65663828618 3.76335720318395e-65
+208834_x_at 13.16020073479613 6385.78692378328 2.54798270525564e-64
+212284_x_at 13.07084364381993 5465.20065923659 1.60095657740429e-62
+208825_x_at 13.10807157295112 4998.94564719775 1.71325577918234e-61
+211445_x_at  9.85381735508016 4873.33172771598 3.36919119833529e-61
+213084_x_at 13.04652851545658 4443.32963016526 3.91959837331377e-60
+201429_s_at 12.94120840229747 4439.71330873113 4.00527683263470e-60
+214327_x_at 11.83260659553407 4402.70276941805 5.00244216521025e-60
+                       adj.P.Val
+207783_x_at 2.07510064904630e-63
+201492_s_at 2.07510064904630e-63
+212869_x_at 2.79529628528493e-61
+208834_x_at 1.41941746553029e-60
+212284_x_at 7.13482308285995e-59
+208825_x_at 6.36274642125333e-58
+211445_x_at 1.07250982103579e-57
+213084_x_at 9.91662040684433e-57
+201429_s_at 9.91662040684433e-57
+214327_x_at 1.11469418767380e-56
+sum(qValues<0.05) 15193  sum(qValuesSv<0.05) 15101 
+             [,1]         [,2]          [,3]         [,4]
+[1,] -0.030082581  0.008084029 -0.0975831747  0.081670634
+[2,] -0.013575762 -0.192898955  0.0004580164  0.086581880
+[3,]  0.080529247 -0.190628914 -0.0033147636 -0.069238536
+[4,] -0.004940944 -0.052940414  0.0478054740  0.037726912
+[5,] -0.024539837  0.053148721 -0.0117303957  0.094001279
+[6,]  0.087750772  0.195866394 -0.0698951598 -0.004235956
+         207783_x_at          201492_s_at 
+8.04615285510124e-09 2.63911823319078e-02 
+==== deparse(sva::ComBat) ====
+function (dat, batch, mod = NULL, par.prior = TRUE, prior.plots = FALSE, 
+    mean.only = FALSE, ref.batch = NULL, BPPARAM = bpparam("SerialParam")) 
+{
+    if (length(dim(batch)) > 1) {
+        stop("This version of ComBat only allows one batch variable")
+    }
+    dat <- as.matrix(dat)
+    batch <- as.factor(batch)
+    zero.rows.lst <- lapply(levels(batch), function(batch_level) {
+        if (sum(batch == batch_level) > 1) {
+            return(which(apply(dat[, batch == batch_level], 1, 
+                function(x) {
+                  var(x) == 0
+                })))
+        }
+        else {
+            return(which(rep(1, 3) == 2))
+        }
+    })
+    zero.rows <- Reduce(union, zero.rows.lst)
+    keep.rows <- setdiff(1:nrow(dat), zero.rows)
+    if (length(zero.rows) > 0) {
+        cat(sprintf("Found %d genes with uniform expression within a single batch (all zeros); these will not be adjusted for batch.\n", 
+            length(zero.rows)))
+        dat.orig <- dat
+        dat <- dat[keep.rows, ]
+    }
+    if (any(table(batch) == 1)) {
+        mean.only = TRUE
+    }
+    if (mean.only == TRUE) {
+        message("Using the 'mean only' version of ComBat")
+    }
+    batchmod <- model.matrix(~-1 + batch)
+    if (!is.null(ref.batch)) {
+        if (!(ref.batch %in% levels(batch))) {
+            stop("reference level ref.batch is not one of the levels of the batch variable")
+        }
+        message("Using batch =", ref.batch, "as a reference batch (this batch won't change)")
+        ref <- which(levels(as.factor(batch)) == ref.batch)
+        batchmod[, ref] <- 1
+    }
+    else {
+        ref <- NULL
+    }
+    message("Found", nlevels(batch), "batches")
+    n.batch <- nlevels(batch)
+    batches <- list()
+    for (i in 1:n.batch) {
+        batches[[i]] <- which(batch == levels(batch)[i])
+    }
+    n.batches <- sapply(batches, length)
+    if (any(n.batches == 1)) {
+        mean.only = TRUE
+        message("Note: one batch has only one sample, setting mean.only=TRUE")
+    }
+    n.array <- sum(n.batches)
+    design <- cbind(batchmod, mod)
+    check <- apply(design, 2, function(x) all(x == 1))
+    if (!is.null(ref)) {
+        check[ref] <- FALSE
+    }
+    design <- as.matrix(design[, !check])
+    message("Adjusting for", ncol(design) - ncol(batchmod), "covariate(s) or covariate level(s)")
+    if (qr(design)$rank < ncol(design)) {
+        if (ncol(design) == (n.batch + 1)) {
+            stop("The covariate is confounded with batch! Remove the covariate and rerun ComBat")
+        }
+        if (ncol(design) > (n.batch + 1)) {
+            if ((qr(design[, -c(1:n.batch)])$rank < ncol(design[, 
+                -c(1:n.batch)]))) {
+                stop("The covariates are confounded! Please remove one or more of the covariates so the design is not confounded")
+            }
+            else {
+                stop("At least one covariate is confounded with batch! Please remove confounded covariates and rerun ComBat")
+            }
+        }
+    }
+    NAs <- any(is.na(dat))
+    if (NAs) {
+        message(c("Found", sum(is.na(dat)), "Missing Data Values"), 
+            sep = " ")
+    }
+    message("Standardizing Data across genes")
+    if (!NAs) {
+        B.hat <- solve(crossprod(design), tcrossprod(t(design), 
+            as.matrix(dat)))
+    }
+    else {
+        B.hat <- apply(dat, 1, Beta.NA, design)
+    }
+    if (!is.null(ref.batch)) {
+        grand.mean <- t(B.hat[ref, ])
+    }
+    else {
+        grand.mean <- crossprod(n.batches/n.array, B.hat[1:n.batch, 
+            ])
+    }
+    if (!NAs) {
+        if (!is.null(ref.batch)) {
+            ref.dat <- dat[, batches[[ref]]]
+            var.pooled <- ((ref.dat - t(design[batches[[ref]], 
+                ] %*% B.hat))^2) %*% rep(1/n.batches[ref], n.batches[ref])
+        }
+        else {
+            var.pooled <- ((dat - t(design %*% B.hat))^2) %*% 
+                rep(1/n.array, n.array)
+        }
+    }
+    else {
+        if (!is.null(ref.batch)) {
+            ref.dat <- dat[, batches[[ref]]]
+            var.pooled <- rowVars(ref.dat - t(design[batches[[ref]], 
+                ] %*% B.hat), na.rm = TRUE)
+        }
+        else {
+            var.pooled <- rowVars(dat - t(design %*% B.hat), 
+                na.rm = TRUE)
+        }
+    }
+    stand.mean <- t(grand.mean) %*% t(rep(1, n.array))
+    if (!is.null(design)) {
+        tmp <- design
+        tmp[, c(1:n.batch)] <- 0
+        stand.mean <- stand.mean + t(tmp %*% B.hat)
+    }
+    s.data <- (dat - stand.mean)/(sqrt(var.pooled) %*% t(rep(1, 
+        n.array)))
+    message("Fitting L/S model and finding priors")
+    batch.design <- design[, 1:n.batch]
+    if (!NAs) {
+        gamma.hat <- solve(crossprod(batch.design), tcrossprod(t(batch.design), 
+            as.matrix(s.data)))
+    }
+    else {
+        gamma.hat <- apply(s.data, 1, Beta.NA, batch.design)
+    }
+    delta.hat <- NULL
+    for (i in batches) {
+        if (mean.only == TRUE) {
+            delta.hat <- rbind(delta.hat, rep(1, nrow(s.data)))
+        }
+        else {
+            delta.hat <- rbind(delta.hat, rowVars(s.data[, i], 
+                na.rm = TRUE))
+        }
+    }
+    gamma.bar <- rowMeans(gamma.hat)
+    t2 <- rowVars(gamma.hat)
+    a.prior <- apply(delta.hat, 1, aprior)
+    b.prior <- apply(delta.hat, 1, bprior)
+    if (prior.plots && par.prior) {
+        old_pars <- par(no.readonly = TRUE)
+        on.exit(par(old_pars))
+        par(mfrow = c(2, 2))
+        tmp <- density(gamma.hat[1, ])
+        plot(tmp, type = "l", main = expression(paste("Density Plot of First Batch ", 
+            hat(gamma))))
+        xx <- seq(min(tmp$x), max(tmp$x), length = 100)
+        lines(xx, dnorm(xx, gamma.bar[1], sqrt(t2[1])), col = 2)
+        qqnorm(gamma.hat[1, ], main = expression(paste("Normal Q-Q Plot of First Batch ", 
+            hat(gamma))))
+        qqline(gamma.hat[1, ], col = 2)
+        tmp <- density(delta.hat[1, ])
+        xx <- seq(min(tmp$x), max(tmp$x), length = 100)
+        tmp1 <- list(x = xx, y = dinvgamma(xx, a.prior[1], b.prior[1]))
+        plot(tmp, typ = "l", ylim = c(0, max(tmp$y, tmp1$y)), 
+            main = expression(paste("Density Plot of First Batch ", 
+                hat(delta))))
+        lines(tmp1, col = 2)
+        invgam <- 1/qgamma(1 - ppoints(ncol(delta.hat)), a.prior[1], 
+            b.prior[1])
+        qqplot(invgam, delta.hat[1, ], main = expression(paste("Inverse Gamma Q-Q Plot of First Batch ", 
+            hat(delta))), ylab = "Sample Quantiles", xlab = "Theoretical Quantiles")
+        lines(c(0, max(invgam)), c(0, max(invgam)), col = 2)
+    }
+    gamma.star <- delta.star <- matrix(NA, nrow = n.batch, ncol = nrow(s.data))
+    if (par.prior) {
+        message("Finding parametric adjustments")
+        results <- bplapply(1:n.batch, function(i) {
+            if (mean.only) {
+                gamma.star <- postmean(gamma.hat[i, ], gamma.bar[i], 
+                  1, 1, t2[i])
+                delta.star <- rep(1, nrow(s.data))
+            }
+            else {
+                temp <- it.sol(s.data[, batches[[i]]], gamma.hat[i, 
+                  ], delta.hat[i, ], gamma.bar[i], t2[i], a.prior[i], 
+                  b.prior[i])
+                gamma.star <- temp[1, ]
+                delta.star <- temp[2, ]
+            }
+            list(gamma.star = gamma.star, delta.star = delta.star)
+        }, BPPARAM = BPPARAM)
+        for (i in 1:n.batch) {
+            gamma.star[i, ] <- results[[i]]$gamma.star
+            delta.star[i, ] <- results[[i]]$delta.star
+        }
+    }
+    else {
+        message("Finding nonparametric adjustments")
+        results <- bplapply(1:n.batch, function(i) {
+            if (mean.only) {
+                delta.hat[i, ] = 1
+            }
+            temp <- int.eprior(as.matrix(s.data[, batches[[i]]]), 
+                gamma.hat[i, ], delta.hat[i, ])
+            list(gamma.star = temp[1, ], delta.star = temp[2, 
+                ])
+        }, BPPARAM = BPPARAM)
+        for (i in 1:n.batch) {
+            gamma.star[i, ] <- results[[i]]$gamma.star
+            delta.star[i, ] <- results[[i]]$delta.star
+        }
+    }
+    if (!is.null(ref.batch)) {
+        gamma.star[ref, ] <- 0
+        delta.star[ref, ] <- 1
+    }
+    message("Adjusting the Data\n")
+    bayesdata <- s.data
+    j <- 1
+    for (i in batches) {
+        bayesdata[, i] <- (bayesdata[, i] - t(batch.design[i, 
+            ] %*% gamma.star))/(sqrt(delta.star[j, ]) %*% t(rep(1, 
+            n.batches[j])))
+        j <- j + 1
+    }
+    bayesdata <- (bayesdata * (sqrt(var.pooled) %*% t(rep(1, 
+        n.array)))) + stand.mean
+    if (!is.null(ref.batch)) {
+        bayesdata[, batches[[ref]]] <- dat[, batches[[ref]]]
+    }
+    if (length(zero.rows) > 0) {
+        dat.orig[keep.rows, ] <- bayesdata
+        bayesdata <- dat.orig
+    }
+    return(bayesdata)
+}
+==== sva:::aprior ====
+function (gamma.hat) 
+{
+    m <- mean(gamma.hat)
+    s2 <- var(gamma.hat)
+    (2 * s2 + m^2)/s2
+}
+==== sva:::bprior ====
+function (gamma.hat) 
+{
+    m <- mean(gamma.hat)
+    s2 <- var(gamma.hat)
+    (m * s2 + m^3)/s2
+}
+==== sva:::it.sol ====
+function (sdat, g.hat, d.hat, g.bar, t2, a, b, conv = 1e-04) 
+{
+    n <- rowSums(!is.na(sdat))
+    g.old <- g.hat
+    d.old <- d.hat
+    change <- 1
+    count <- 0
+    while (change > conv) {
+        g.new <- postmean(g.hat, g.bar, n, d.old, t2)
+        sum2 <- rowSums((sdat - g.new %*% t(rep(1, ncol(sdat))))^2, 
+            na.rm = TRUE)
+        d.new <- postvar(sum2, n, a, b)
+        change <- max(abs(g.new - g.old)/g.old, abs(d.new - d.old)/d.old)
+        g.old <- g.new
+        d.old <- d.new
+        count <- count + 1
+    }
+    adjust <- rbind(g.new, d.new)
+    rownames(adjust) <- c("g.star", "d.star")
+    adjust
+}
+==== sva:::postmean ====
+function (g.hat, g.bar, n, d.star, t2) 
+{
+    (t2 * n * g.hat + d.star * g.bar)/(t2 * n + d.star)
+}
+==== sva:::postvar ====
+function (sum2, n, a, b) 
+{
+    (0.5 * sum2 + b)/(n/2 + a - 1)
+}
+==== sva:::int.eprior ====
+function (sdat, g.hat, d.hat) 
+{
+    g.star <- d.star <- NULL
+    r <- nrow(sdat)
+    for (i in 1:r) {
+        g <- g.hat[-i]
+        d <- d.hat[-i]
+        x <- sdat[i, !is.na(sdat[i, ])]
+        n <- length(x)
+        j <- numeric(n) + 1
+        dat <- matrix(as.numeric(x), length(g), n, byrow = TRUE)
+        resid2 <- (dat - g)^2
+        sum2 <- resid2 %*% j
+        LH <- 1/(2 * pi * d)^(n/2) * exp(-sum2/(2 * d))
+        LH[LH == "NaN"] = 0
+        g.star <- c(g.star, sum(g * LH)/sum(LH))
+        d.star <- c(d.star, sum(d * LH)/sum(LH))
+    }
+    adjust <- rbind(g.star, d.star)
+    rownames(adjust) <- c("g.star", "d.star")
+    adjust
+}
+==== sva:::Beta.NA ====
+function (y, X) 
+{
+    des <- X[!is.na(y), ]
+    y1 <- y[!is.na(y)]
+    B <- solve(crossprod(des), crossprod(des, y1))
+    B
+}
+==== sva:::dinvgamma ====
+function (x, shape, rate = 1/scale, scale = 1) 
+{
+    stopifnot(shape > 0)
+    stopifnot(rate > 0)
+    ifelse(x <= 0, 0, ((rate^shape)/gamma(shape)) * x^(-shape - 
+        1) * exp(-rate/x))
+}
+PROBE DONE
+EXIT 0

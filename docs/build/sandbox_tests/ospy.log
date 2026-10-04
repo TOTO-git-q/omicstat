@@ -1,0 +1,92 @@
+COMMAND: /opt/pyvenv/bin/python skills/_shared/py/tests/test_ospy.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+PASS: os_help layout == args.R layout
+PASS: os_help_parse inverts os_help
+PASS: parse: values and defaults
+PASS: --help short-circuits validation
+PASS: OS_UNKNOWN_FLAG for ['--outdir', 'o', '--nope', '1'] (OS_UNKNOWN_FLAG: --nope (known: --outdir --seed --alpha --journal --strict --label --input --from-run --layer --help))
+PASS: OS_UNKNOWN_FLAG for ['stray'] (OS_UNKNOWN_FLAG: stray (a value without a flag) (known: --outdir --seed --alpha --journal --strict --label --input --from-run --layer --help))
+PASS: OS_MISSING_PARAMETER for ['--seed', '1'] (OS_MISSING_PARAMETER: --outdir is required (<path>))
+PASS: OS_MISSING_PARAMETER for ['--outdir'] (OS_MISSING_PARAMETER: --outdir needs a value (<path>))
+PASS: OS_MISSING_PARAMETER for ['--outdir', 'o', '--layer', 'X'] (OS_MISSING_PARAMETER: --layer requires --from-run)
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--seed', '1.5'] (OS_INVALID_PARAMETER: --seed: expected an integer, got '1.5')
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--seed', '3000000000'] (OS_INVALID_PARAMETER: --seed: expected an integer, got '3000000000')
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--alpha', '2'] (OS_INVALID_PARAMETER: --alpha: expected a value in [0, 1], got '2')
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--alpha', 'inf'] (OS_INVALID_PARAMETER: --alpha: expected a finite number, got 'inf')
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--journal', 'lancet'] (OS_INVALID_PARAMETER: --journal: expected one of nature|cell, got 'lancet')
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--input', '/tmp/ospy-test-qmzrcj52/absent.csv'] (OS_INVALID_PARAMETER: --input: expected an existing file or directory, got '/tmp/ospy-test-qmzrcj52/absent.csv' (not found))
+PASS: OS_INVALID_PARAMETER for ['--outdir', 'o', '--strict=yes'] (OS_INVALID_PARAMETER: --strict: expected a bare switch without a value, got 'yes')
+PASS: OS_CONFLICTING_PARAMETERS for ['--outdir', 'o', '--seed', '1', '--seed', '2'] (OS_CONFLICTING_PARAMETERS: --seed given twice)
+PASS: OS_CONFLICTING_PARAMETERS for ['--outdir', 'o', '--input', '/tmp/ospy-test-qmzrcj52', '--from-run', '/tmp/ospy-test-qmzrcj52'] (OS_CONFLICTING_PARAMETERS: --input, --from-run are mutually exclusive (give at most one))
+PASS: error text says expected ..., got '...'
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: default of --a does not validate (an int flag needs an int default)
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: --a is an enum without values
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: --a is a bool switch: no default, never required
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: --a is required and also has a default
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: flag names must match [A-Za-z0-9][A-Za-z0-9-]* (got a b)
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: default of --a contains two consecutive spaces
+PASS: OS_INVALID_ARG_SPEC: OS_INVALID_ARG_SPEC: --a: range must be (lo, hi) on an int/num flag
+PASS: fmt_value follows R format(x, digits = 15, scientific = FALSE)
+PASS: os_check_named_values checklist
+PASS: spec_argv: command line wins over the replayed argv
+PASS: spec_argv: no --spec is a no-op
+PASS: spec_argv: missing file is OS_INVALID_PARAMETER
+PASS: canonical_argv: resolved flags in spec order, switches only when on
+PASS: qc_finalize summary
+PASS: qc_results.csv dialect (quoted, TRUE/FALSE, LF)
+PASS: closing line
+PASS: unknown QC severity is refused
+PASS: run_id: basename of the output directory
+PASS: run_id: OMICSTAT_RUN_ID wins (container outdir is /ws)
+PASS: template fill
+PASS: missing template slot is typed
+PASS: warnings and messages recorded
+PASS: warning echoed as OS_ENGINE_WARNING
+PASS: an error propagates unchanged
+PASS: engine_warnings.csv records the error and is flushed
+PASS: no conditions -> header only
+PASS: canonical order; Ensembl version stripped
+PASS: validation: ok with a non-finite warning
+PASS: pvalue outside [0, 1] is an error
+PASS: duplicated feature within a contrast is an error
+PASS: feature table bytes are reproducible
+PASS: R write.csv dialect of formatC(digits = 10, 'g') cells
+PASS: format_g10 (formatC width 11)
+PASS: writing an invalid table is OS_SCHEMA_INVALID
+PASS: write_handoff document
+PASS: read_handoff verifies and describes
+PASS: front-end ecosystem mixing is refused
+PASS: contract mismatch is refused
+PASS: type mismatch is refused
+PASS: missing object is refused
+PASS: no handoff.json is OS_HANDOFF_MISSING
+PASS: an object outside the run directory is refused
+PASS: AnnData must be an .h5ad file
+PASS: unknown ecosystem is refused
+PASS: batch-corrected matrix requested as counts is OS_BATCH_CORRECTED_INPUT
+PASS: a changed object file fails the sha256 check
+PASS: figure_request.json written
+PASS: frame CSV: quoted characters, 17-digit numbers, integers plain
+PASS: factor levels travel in the request
+PASS: vector CSV with NA
+PASS: matrix CSV with row ids
+PASS: validate_request: files and sha256 agree
+PASS: validate_request catches a changed data file
+PASS: figure request refuses: OS_INVALID_PARAMETER: figure id 'emb' is invalid or duplicated
+PASS: figure request refuses: OS_INVALID_PARAMETER: builder 'ggplot' is not an os_* figure builder
+PASS: figure request refuses: OS_INVALID_PARAMETER: out_stem '../escape' must lie under figures/
+PASS: figure request refuses: OS_INVALID_PARAMETER: data['ft'] must come from frame()/vector()/matrix()
+PASS: figure request refuses: OS_INVALID_PARAMETER: frame(): columns have different lengths [1, 2]
+PASS: figure request refuses: OS_INVALID_PARAMETER: frame(): column a has values outside its levels: ['x']
+PASS: set_seed record
+PASS: set_seed makes random reproducible
+PASS: torch deterministic, 1 thread
+PASS: a non-int seed is refused
+PASS: typed error -> exit 1, message only
+PASS: untyped error -> exit 1 with traceback
+PASS: normal return -> exit 0
+PASS: os_error message format
+SKIP: scvi parts of set_seed (scvi-tools not installed)
+== ospy: ALL PASSED (1 skipped)
+
+EXIT_CODE: 0

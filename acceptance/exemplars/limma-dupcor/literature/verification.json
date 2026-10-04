@@ -1,0 +1,12 @@
+{
+  "module": "limma-dupcor",
+  "date": "2026-09-27T09:05:00Z",
+  "sampled_pmids": ["34533985", "37452040", "39228367", "40632859", "40662355", "42048163"],
+  "records_checked": 48,
+  "records_passed": 48,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "verdict": "pass"
+}

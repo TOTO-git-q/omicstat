@@ -1,0 +1,64 @@
+== python env/py/selftest_image.py --functional
+== omicstat-py image self-test: ALL PASSED
+== python env/py/test_py_env_config.py
+== python_lane config: ALL PASSED
+== python skills/_shared/py/tests/test_ospy.py
+== ospy: ALL PASSED (0 skipped)
+== python tools/test_check_calls.py
+== check_calls.py: ALL PASSED
+== python tools/test_new_module_py.py
+== new_module --python: ALL PASSED
+== python tools/test_build_contracts.py
+OK
+== python tools/check_skill_frontmatter.py
+41 SKILL.md front matter(s) checked; 0 problem(s)
+== python tools/check_calls.py skills/omicstat-selftest-py
+262 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/omicstat-selftest-py
+omicstat-selftest-py: 6 flag(s) in --help, 6 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/omicstat-selftest-py
+6/6 flags documented
+== python skills/omicstat-selftest-py/tests/run_smoke_test.py
+SMOKE PASSED (1 skipped)
+== python tools/check_calls.py skills/scanpy-cluster
+99 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanpy-cluster
+scanpy-cluster: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanpy-cluster
+48/48 flags documented
+== python skills/scanpy-cluster/tests/run_smoke_test.py
+PASS: scanpy-cluster pinned numerical smoke; R rendering/visual review must run separately
+== python tools/check_calls.py skills/scanpy-markers
+97 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanpy-markers
+scanpy-markers: 25 flag(s) in --help, 25 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanpy-markers
+25/25 flags documented
+== python skills/scanpy-markers/tests/run_smoke_test.py
+PASS: scanpy-markers pinned numerical smoke; R rendering/visual review must run separately
+== python tools/check_calls.py skills/scanpy-qc
+96 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanpy-qc
+scanpy-qc: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanpy-qc
+32/32 flags documented
+== python skills/scanpy-qc/tests/run_smoke_test.py
+PASS: scanpy-qc pinned numerical smoke; R rendering/visual review must run separately
+== python tools/check_calls.py skills/scanvi-annotate
+116 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanvi-annotate
+scanvi-annotate: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanvi-annotate
+27/27 flags documented
+== python skills/scanvi-annotate/tests/run_smoke_test.py
+PASS: scanvi-annotate pinned numerical smoke; R rendering/visual review must run separately
+== python tools/check_calls.py skills/scvi-integrate
+126 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scvi-integrate
+scvi-integrate: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scvi-integrate
+48/48 flags documented
+== python skills/scvi-integrate/tests/run_smoke_test.py
+PASS: scvi-integrate pinned numerical smoke; R rendering/visual review must run separately
+== done: ALL PASSED (31 commands)
+image: omicstat-py:2026.09.1 sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f

@@ -1,0 +1,9 @@
+function	argument	default
+getCurves	data	
+getCurves	...	
+getLineages	data	
+getLineages	clusterLabels	
+getLineages	...	
+slingshot	data	
+slingshot	clusterLabels	
+slingshot	...	

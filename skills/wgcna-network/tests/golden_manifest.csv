@@ -1,0 +1,9 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/gene_modules.csv,1b9b5e6132b5a8415b2201edfc3d704b2dabce9dcd279990527535b0f8f4fb4d,container,
+tables/module_sizes.csv,7f24290e8947f00b967a3e6aac785094bb0779adc8cf16d56c88effc96f2ec63,container,
+tables/module_traits.csv,c6a183c8ea7d586aa01a2520af5bac8cc0baaca3dc76cfc3613e3d559a20a5e0,container,
+tables/soft_threshold.csv,3ba3bdc113b0f90eb04be413d4fb98d2a4947180b8ed12e1e5a08f28a1b416cf,container,
+draft/methods_results.md,29f32f1920d7a54ab23be1c68931dc7c5fd90e54fb40ba57d62316bbc40ea5a2,container,
+figures/soft_threshold.figure_spec.json,16700464c62d38c8d5d3b68be1f94b83e224eec385f2adee509d39ab9dde85b9,container,
+figures/module_traits.figure_spec.json,df398e0084ca31ecb05f8a668494f7dc6ba4aa02ee17f4212ac243af43ba9282,container,

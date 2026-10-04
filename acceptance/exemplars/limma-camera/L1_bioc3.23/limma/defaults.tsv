@@ -1,0 +1,67 @@
+function	argument	default
+barcodeplot	statistics	
+barcodeplot	index	NULL
+barcodeplot	index2	NULL
+barcodeplot	gene.weights	NULL
+barcodeplot	weights.label	"Weight"
+barcodeplot	labels	c("Down","Up")
+barcodeplot	quantiles	c(-1,1)*sqrt(2)
+barcodeplot	col.bars	NULL
+barcodeplot	alpha	0.4
+barcodeplot	worm	TRUE
+barcodeplot	span.worm	0.45
+barcodeplot	xlab	"Statistic"
+barcodeplot	\dots	
+camera	y	
+camera	index	
+camera	design	
+camera	contrast	ncol(design)
+camera	weights	NULL
+camera	use.ranks	FALSE
+camera	allow.neg.cor	FALSE
+camera	inter.gene.cor	0.01
+camera	trend.var	FALSE
+camera	sort	TRUE
+camera	directional	TRUE
+camera	\dots	
+ids2indices	gene.sets	
+ids2indices	identifiers	
+ids2indices	remove.empty	TRUE
+fry	y	
+fry	index	NULL
+fry	design	NULL
+fry	contrast	ncol(design)
+fry	geneid	NULL
+fry	gene.weights	NULL
+fry	standardize	"posterior.sd"
+fry	sort	"directional"
+fry	\dots	
+roast	y	
+roast	index	NULL
+roast	design	NULL
+roast	contrast	ncol(design)
+roast	geneid	NULL
+roast	set.statistic	"mean"
+roast	gene.weights	NULL
+roast	var.prior	NULL
+roast	df.prior	NULL
+roast	nrot	1999
+roast	approx.zscore	TRUE
+roast	legacy	FALSE
+roast	\dots	
+mroast	y	
+mroast	index	NULL
+mroast	design	NULL
+mroast	contrast	ncol(design)
+mroast	geneid	NULL
+mroast	set.statistic	"mean"
+mroast	gene.weights	NULL
+mroast	var.prior	NULL
+mroast	df.prior	NULL
+mroast	nrot	1999
+mroast	approx.zscore	TRUE
+mroast	legacy	FALSE
+mroast	adjust.method	"BH"
+mroast	midp	TRUE
+mroast	sort	"directional"
+mroast	\dots	

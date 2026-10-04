@@ -1,0 +1,360 @@
+{
+  "module": "scran-cluster",
+  "module_version": "1.0.0",
+  "package_versions": {
+    "scran": "1.40.0",
+    "BiocParallel": "1.46.0",
+    "scuttle": "1.22.0",
+    "scater": "1.40.2",
+    "bluster": "1.22.0"
+  },
+  "calls": [
+    {
+      "fn": "scran::quickCluster",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "min.size": {
+          "value": "a[[\"quick-min-size\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "method": {
+          "value": "a[[\"quick-method\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "block.BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"counts\""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"counts\""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "min.size": "100",
+        "method": "c(\"igraph\", \"hclust\")",
+        "use.ranks": "FALSE",
+        "d": "NULL",
+        "subset.row": "NULL",
+        "min.mean": "NULL",
+        "graph.fun": "\"walktrap\"",
+        "BSPARAM": "bsparam()",
+        "BPPARAM": "SerialParam()",
+        "block": "NULL",
+        "block.BPPARAM": "SerialParam()",
+        "...": ""
+      }
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {}
+    },
+    {
+      "fn": "scran::computeSumFactors",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "clusters": {
+          "value": "qc",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "sizes": {
+          "value": "as.integer(strsplit(a[[\"pool-sizes\"]], \",\", fixed = TRUE)[[1]])",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      }
+    },
+    {
+      "fn": "scuttle::logNormCounts",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "pseudo.count": {
+          "value": "a[[\"pseudo-count\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "size.factors": "sizeFactors(x)",
+        "log": "NULL",
+        "transform": "c(\"log\", \"none\", \"asinh\")",
+        "pseudo.count": "1",
+        "center.size.factors": "TRUE",
+        "...": "",
+        "subset.row": "NULL",
+        "normalize.all": "FALSE",
+        "assay.type": "\"counts\"",
+        "use.altexps": "FALSE",
+        "name": "NULL",
+        "BPPARAM": "SerialParam()",
+        "size_factors": "NULL",
+        "pseudo_count": "NULL",
+        "center_size_factors": "NULL",
+        "exprs_values": "NULL",
+        "use_altexps": "NULL"
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "size.factors": "NULL",
+        "log": "NULL",
+        "transform": "c(\"log\", \"none\", \"asinh\")",
+        "pseudo.count": "1",
+        "center.size.factors": "TRUE",
+        "...": "",
+        "subset.row": "NULL",
+        "normalize.all": "FALSE",
+        "assay.type": "\"counts\"",
+        "name": "NULL",
+        "BPPARAM": "SerialParam()",
+        "size_factors": "NULL",
+        "pseudo_count": "NULL",
+        "center_size_factors": "NULL",
+        "exprs_values": "NULL"
+      }
+    },
+    {
+      "fn": "scran::modelGeneVar",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "block": {
+          "value": "block",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"logcounts\""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "...": "",
+        "assay.type": "\"logcounts\""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "block": "NULL",
+        "design": "NULL",
+        "subset.row": "NULL",
+        "subset.fit": "NULL",
+        "...": "",
+        "equiweight": "TRUE",
+        "method": "\"fisher\"",
+        "BPPARAM": "SerialParam()"
+      }
+    },
+    {
+      "fn": "scran::getTopHVGs",
+      "args": {
+        "stats": {
+          "value": "dec",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "n": {
+          "value": "a[[\"n-hvg\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "NULL"
+        }
+      }
+    },
+    {
+      "fn": "scater::runPCA",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "subset_row": {
+          "value": "hvg",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "ncomponents": {
+          "value": "a[[\"n-pcs\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      },
+      "method_defaults_SingleCellExperiment": {
+        "x": "",
+        "...": "",
+        "altexp": "NULL",
+        "name": "\"PCA\""
+      },
+      "method_defaults_SummarizedExperiment": {
+        "x": "",
+        "rank": "",
+        "center": "TRUE",
+        "scale": "FALSE",
+        "get.rotation": "TRUE",
+        "get.pcs": "TRUE",
+        "...": ""
+      },
+      "method_defaults_ANY": {
+        "x": "",
+        "rank": "",
+        "center": "TRUE",
+        "scale": "FALSE",
+        "get.rotation": "TRUE",
+        "get.pcs": "TRUE",
+        "...": ""
+      }
+    },
+    {
+      "fn": "bluster::NNGraphParam",
+      "args": {
+        "k": {
+          "value": "a[[\"graph-k\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "10"
+        },
+        "cluster.fun": {
+          "value": "a[[\"cluster-method\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "\"walktrap\""
+        },
+        "cluster.args": {
+          "value": "ca",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "list()"
+        },
+        "num.threads": {
+          "value": "1",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "1"
+        }
+      }
+    },
+    {
+      "fn": "bluster::clusterRows",
+      "args": {
+        "x": {
+          "value": "SingleCellExperiment::reducedDim(sce, \"PCA\")",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "BLUSPARAM": {
+          "value": "param",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "full": {
+          "value": "FALSE",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "scater::runUMAP",
+      "args": {
+        "x": {
+          "value": "sce",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "dimred": {
+          "value": "\"PCA\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "n_dimred": {
+          "value": "a[[\"n-pcs\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "n_neighbors": {
+          "value": "a[[\"umap-neighbors\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "min_dist": {
+          "value": "a[[\"umap-min-dist\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "n_threads": {
+          "value": "1",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D"
+        }
+      }
+    }
+  ],
+  "accessors": []
+}

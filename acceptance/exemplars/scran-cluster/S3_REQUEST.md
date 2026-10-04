@@ -1,0 +1,8 @@
+# scran-cluster: independent S3 request
+Run `Rscript skills/scran-cluster/tests/run_smoke_test.R` in omicstat-r:2026.09.1, with OMICSTAT_TEST_TMP pointing to a writable scratch directory; then `Rscript tools/make_module_lock.R scran-cluster --check`.
+Checked: SHA256-verified PACK C Grun shape 20148 x 1728; deterministic first 400 cells through actual scater-qc `--from-run` (396 retained), deconvolution/log-normalization/HVG/PCA/graph/UMAP pipeline; 1000 HVGs, 15 PCs, nine clusters; finite native objects/tables; golden PASS. Five anchor figures opened; lint has no blockers.
+Outputs/log: `/home/<user>/omic-sol61/build_m3a_bioc/scran-cluster-smoke/anchor/`, lane scratch `scran-cluster-smoke.log`.
+Sources: locked scran vignette Quick clustering, scater overview, scuttle userguide, bluster clusterRows; PACK C. Environment rebuild: full official ERCC-split workflow with scrapper analyze.se and seed 100 asserts median 0.753182785733022 (printed 0.753183) exactly; this independent full-data check preserves the subset golden. Native non-positive size-factor warning is captured; read it when interpreting this subset. All package tables keep native columns. Supplementary native options are named JSON; old static scanner does not trace this dynamic wrapper.
+Proposed router row: `| SCE pooling/HVG/PCA/graph clustering and UMAP / scran 聚类 | scran-cluster | scripts/run_scran_cluster.R |`.
+Proposed publication rule: advisory `XC-CHOICES`, declare dimensions/neighbours/clustering algorithm, resolution where applicable, variance blocking, seed. Descriptive cell clusters do not establish condition effects.
+Awaiting independent S3; no installation performed.

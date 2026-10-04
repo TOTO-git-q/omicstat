@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omicstat.local/schemas/study_contract.v1.schema.json",
+  "title": "StudyContract v1",
+  "description": "omicstat StudyContract v1. Field names are identical to medstat StudyContract v1 (medstat-55692f7); only their meaning is mapped to omics experiments (IMPLEMENTATION_SPEC section 4). A declaration that disagrees with the executed run parameters is a publication blocker.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "study_design",
+    "analysis_population",
+    "estimand",
+    "exposure_or_intervention",
+    "comparator",
+    "outcomes",
+    "covariates",
+    "missing_data",
+    "multiplicity",
+    "analysis_sets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "omicstat.study-contract.v1"
+    },
+    "study_design": {
+      "description": "omicstat meaning: the experimental design - two-group, multi-group, paired, time-course, and the batch structure (e.g. 'two-group, 3 vs 3 biological replicates, one sequencing batch').",
+      "$ref": "#/$defs/meaningfulString"
+    },
+    "analysis_population": {
+      "description": "omicstat meaning: the sample set - path of the sample sheet, samples (or cells) included and excluded, and the biological-replicate unit. Single-cell analyses must name the column that identifies the biological sample.",
+      "$ref": "#/$defs/nonemptyDescription"
+    },
+    "estimand": {
+      "description": "omicstat meaning: the contrast and effect size - design formula, contrast (e.g. 'condition: treated vs control'), and the effect-size measure (log2 fold change, with or without shrinkage).",
+      "$ref": "#/$defs/nonemptyDescription"
+    },
+    "exposure_or_intervention": {
+      "description": "omicstat meaning: the condition variable being compared (e.g. the sample-sheet column 'condition') and its non-reference level.",
+      "$ref": "#/$defs/nonemptyDescription"
+    },
+    "comparator": {
+      "description": "omicstat meaning: the reference level of the condition variable (e.g. 'control').",
+      "$ref": "#/$defs/nonemptyDescription"
+    },
+    "outcomes": {
+      "description": "omicstat meaning: the feature space - genes, cell-type proportions or co-expression modules - with species and annotation version (e.g. 'Homo sapiens genes, GENCODE_v44'). timepoint/time_horizon records the sampling time point (e.g. 'single post-treatment sampling at 24 h').",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/outcomeDescription"
+      }
+    },
+    "covariates": {
+      "description": "omicstat meaning: additional design-formula terms such as batch, sex or donor, in the order they enter the design.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonemptyDescription"
+      }
+    },
+    "missing_data": {
+      "description": "omicstat meaning: the filtering strategy - low-count filtering, QC thresholds, and the samples or cells removed with the reason for each.",
+      "$ref": "#/$defs/nonemptyDescription"
+    },
+    "multiplicity": {
+      "description": "omicstat meaning: multiple-testing control - method (e.g. Benjamini-Hochberg) and the adjusted-p threshold; for enrichment analyses the correction applied across gene sets.",
+      "$ref": "#/$defs/nonemptyDescription"
+    },
+    "analysis_sets": {
+      "description": "omicstat meaning: the named analysis sets (e.g. 'all samples passing QC', 'sensitivity: outlier sample removed').",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/nonemptyDescription"
+      }
+    },
+    "semantic_declarations": {
+      "description": "Machine-checkable declarations required before a contract can support ready status. Legacy descriptive fields remain accepted but are not sufficient by themselves. Field names are unchanged from medstat StudyContract v1; the omics meaning of each is given in its description (IMPLEMENTATION_SPEC section 4).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "study_design",
+        "population",
+        "estimand",
+        "exposure",
+        "comparator",
+        "outcomes",
+        "missing_data",
+        "multiplicity"
+      ],
+      "properties": {
+        "study_design": {
+          "description": "design_type: the experimental design type (two-group, multi-group, paired, time-course, with batch structure).",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "design_type"
+          ],
+          "properties": {
+            "design_type": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        },
+        "population": {
+          "description": "definition: the sample set and the biological-replicate unit (single-cell: the sample column).",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "definition"
+          ],
+          "properties": {
+            "definition": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        },
+        "estimand": {
+          "description": "measure: effect-size measure (e.g. 'log2 fold change, apeglm-shrunken'); target: the contrast (e.g. 'condition: treated vs control').",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "measure",
+            "target"
+          ],
+          "properties": {
+            "measure": {
+              "$ref": "#/$defs/meaningfulString"
+            },
+            "target": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        },
+        "exposure": {
+          "description": "variable_or_intervention: the condition variable and its compared level.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "variable_or_intervention"
+          ],
+          "properties": {
+            "variable_or_intervention": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        },
+        "comparator": {
+          "description": "definition: the reference level of the condition variable.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "definition"
+          ],
+          "properties": {
+            "definition": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        },
+        "outcomes": {
+          "description": "identity: the feature space with species and annotation version (e.g. 'genes, Homo sapiens, GENCODE_v44'); timing: the sampling time point.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "identity",
+              "timing"
+            ],
+            "properties": {
+              "identity": {
+                "$ref": "#/$defs/meaningfulString"
+              },
+              "timing": {
+                "$ref": "#/$defs/meaningfulString"
+              }
+            }
+          }
+        },
+        "missing_data": {
+          "description": "strategy: low-count / QC filtering and removed samples or cells with reasons.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy"
+          ],
+          "properties": {
+            "strategy": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        },
+        "multiplicity": {
+          "description": "strategy: multiple-testing method and threshold (e.g. 'BH, padj < 0.05').",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "strategy"
+          ],
+          "properties": {
+            "strategy": {
+              "$ref": "#/$defs/meaningfulString"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonemptyDescription": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/meaningfulString"
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "\\S"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/meaningfulValue"
+          }
+        }
+      ]
+    },
+    "meaningfulString": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "meaningfulValue": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/meaningfulString"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "\\S"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/meaningfulValue"
+          }
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/meaningfulValue"
+          }
+        }
+      ]
+    },
+    "outcomeDescription": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "\\S"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/meaningfulValue"
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "name"
+              ]
+            },
+            {
+              "required": [
+                "definition"
+              ]
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "required": [
+                "timepoint"
+              ]
+            },
+            {
+              "required": [
+                "time_horizon"
+              ]
+            }
+          ]
+        },
+        {
+          "properties": {
+            "name": {
+              "$ref": "#/$defs/nonemptyDescription"
+            },
+            "definition": {
+              "$ref": "#/$defs/nonemptyDescription"
+            },
+            "timepoint": {
+              "$ref": "#/$defs/nonemptyDescription"
+            },
+            "time_horizon": {
+              "$ref": "#/$defs/nonemptyDescription"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "module": "limma-array",
+  "date": "2026-09-27T09:05:00Z",
+  "sampled_pmids": ["33305733", "34758847", "37709492", "41388153", "42587147", "42616886"],
+  "records_checked": 41,
+  "records_passed": 41,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "verdict": "pass"
+}

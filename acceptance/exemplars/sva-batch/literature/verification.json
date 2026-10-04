@@ -1,0 +1,12 @@
+{
+  "module": "sva-batch",
+  "date": "2026-09-27T09:05:00Z",
+  "sampled_pmids": ["33317623", "34939926", "38055614", "38134284", "42490144", "42647619"],
+  "records_checked": 26,
+  "records_passed": 26,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "verdict": "pass"
+}

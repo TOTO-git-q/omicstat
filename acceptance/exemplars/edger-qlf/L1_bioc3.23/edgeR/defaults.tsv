@@ -1,0 +1,61 @@
+function	argument	default
+DGEList	counts	
+DGEList	lib.size	NULL
+DGEList	norm.factors	NULL
+DGEList	samples	NULL
+DGEList	group	NULL
+DGEList	genes	NULL
+DGEList	remove.zeros	FALSE
+DGEList	\dots	
+normLibSizes	object	
+normLibSizes	method	c("TMM", "TMMwsp", "RLE", "upperquartile", "none")
+normLibSizes	refColumn	NULL
+normLibSizes	logratioTrim	.3
+normLibSizes	sumTrim	0.05
+normLibSizes	doWeighting	TRUE
+normLibSizes	Acutoff	-1e10
+normLibSizes	p	0.75
+normLibSizes	\dots	
+calcNormFactors	object	
+calcNormFactors	method	c("TMM","TMMwsp","RLE","upperquartile","none")
+calcNormFactors	refColumn	NULL
+calcNormFactors	logratioTrim	.3
+calcNormFactors	sumTrim	0.05
+calcNormFactors	doWeighting	TRUE
+calcNormFactors	Acutoff	-1e10
+calcNormFactors	p	0.75
+calcNormFactors	\dots	
+filterByExpr	y	
+filterByExpr	design	NULL
+filterByExpr	group	NULL
+filterByExpr	lib.size	NULL
+filterByExpr	\dots	
+glmQLFTest	glmfit	
+glmQLFTest	coef	ncol(glmfit$design)
+glmQLFTest	contrast	NULL
+glmQLFTest	poisson.bound	TRUE
+glmQLFit	y	
+glmQLFit	design	NULL
+glmQLFit	dispersion	NULL
+glmQLFit	offset	NULL
+glmQLFit	lib.size	NULL
+glmQLFit	weights	NULL
+glmQLFit	abundance.trend	TRUE
+glmQLFit	AveLogCPM	NULL
+glmQLFit	covariate.trend	NULL
+glmQLFit	robust	FALSE
+glmQLFit	winsor.tail.p	c(0.05, 0.1)
+glmQLFit	legacy	FALSE
+glmQLFit	top.proportion	NULL
+glmQLFit	keep.unit.mat	FALSE
+glmQLFit	\dots	
+glmTreat	glmfit	
+glmTreat	coef	ncol(glmfit$design)
+glmTreat	contrast	NULL
+glmTreat	lfc	log2(1.2)
+glmTreat	null	"interval"
+topTags	object	
+topTags	n	10
+topTags	adjust.method	"BH"
+topTags	sort.by	"PValue"
+topTags	p.value	1

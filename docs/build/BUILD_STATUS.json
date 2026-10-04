@@ -1,0 +1,261 @@
+{
+  "schema": "omicstat.source-build-status.v1",
+  "complete_request": false,
+  "implemented_new": [
+    "scanpy-qc",
+    "scanpy-cluster",
+    "scanpy-markers",
+    "scvi-integrate",
+    "scanvi-annotate",
+    "seurat-qc",
+    "seurat-cluster",
+    "seurat-integrate",
+    "seurat-markers",
+    "seurat-modulescore",
+    "scater-qc",
+    "scran-cluster",
+    "batchelor-integrate",
+    "scran-markers",
+    "aucell-score",
+    "singler-annotate",
+    "muscat-pseudobulk",
+    "speckle-propeller",
+    "cellchat-communication",
+    "monocle3-trajectory",
+    "slingshot-trajectory",
+    "wgcna-network",
+    "maftools-landscape",
+    "immunedeconv-infiltration"
+  ],
+  "unimplemented_new": [],
+  "modules": [
+    {
+      "module": "deseq2-wald",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "deseq2-qc",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "deseq2-lrt",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "edger-qlf",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "limma-voom",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "limma-array",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "limma-dupcor",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "sva-batch",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "clusterprofiler-ora",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "clusterprofiler-gsea",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "clusterprofiler-compare",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "fgsea-prerank",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "gsva-score",
+      "status": "untouched",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "limma-camera",
+      "status": "changed",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "seurat-qc",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "seurat-cluster",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "seurat-integrate",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "seurat-markers",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "seurat-modulescore",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "scater-qc",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "scran-cluster",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "batchelor-integrate",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "scran-markers",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "aucell-score",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "singler-annotate",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "muscat-pseudobulk",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "speckle-propeller",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "cellchat-communication",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "monocle3-trajectory",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "slingshot-trajectory",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "wgcna-network",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "maftools-landscape",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "immunedeconv-infiltration",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "scanpy-qc",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "scanpy-cluster",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "scanpy-markers",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "scvi-integrate",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "scanvi-annotate",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_this_build"
+    }
+  ]
+}

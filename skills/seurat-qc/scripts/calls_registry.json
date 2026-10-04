@@ -1,0 +1,109 @@
+{
+  "module": "seurat-qc",
+  "note": "Formals probed in omicstat-r:2026.09.1; policy 2026-09-29 overrides unfrozen S1 drafts.",
+  "package_versions": {
+    "Seurat": "5.5.1",
+    "SeuratObject": "5.4.0"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--journal": "nature",
+    "--input-format": "10x",
+    "--sample": "sample"
+  },
+  "accessors": [
+    "SeuratObject::Layers"
+  ],
+  "calls": [
+    {
+      "fn": "SeuratObject::CreateSeuratObject",
+      "method": "CreateSeuratObject.default",
+      "args": {
+        "assay": {
+          "value": "\"RNA\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"RNA\""
+        },
+        "names.field": {
+          "value": "os_seurat_option(a,\"create-names-field\",1L)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "names.delim": {
+          "value": "os_seurat_option(a,\"create-names-delim\",\"_\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"_\""
+        },
+        "meta.data": {
+          "value": "md",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "project": {
+          "value": "os_seurat_option(a,\"create-project\",\"SeuratProject\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"CreateSeuratObject\""
+        },
+        "min.cells": {
+          "value": "a[[\"min-cells\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0"
+        },
+        "min.features": {
+          "value": "a[[\"create-min-features\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0"
+        },
+        "counts": {
+          "value": "mat",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::PercentageFeatureSet",
+      "method": "PercentageFeatureSet",
+      "args": {
+        "pattern": {
+          "value": "a[[\"mito-pattern\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "features": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "col.name": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "assay": {
+          "value": "\"RNA\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "caption": "Gene–concept network of the 5 gene sets with the smallest adjusted P (adjusted P < 0.05). Open circles, gene sets (size, number of their genes in the network); small circles, the 60 genes coloured by log2 fold change (symmetric scale); lines connect each gene to the sets that contain it. Sets are placed clockwise from the top in order of adjusted P; each gene sits on the outer ring near the mean direction of its sets. 40 of 60 genes are labelled (genes in several sets first, then by |log2 fold change|).",
+  "counts": {
+    "genes": 60,
+    "labelled_genes": 40,
+    "sets": 5,
+    "shared_genes": 26
+  },
+  "data": {
+    "labelled": [
+      "BUB1",
+      "CCL2",
+      "CCNB1",
+      "CDK1",
+      "CXCL2",
+      "CXCL8",
+      "G025",
+      "G026",
+      "G031",
+      "G032",
+      "G034",
+      "G040",
+      "G043",
+      "G049",
+      "G050",
+      "G052",
+      "G053",
+      "G054",
+      "G055",
+      "G056",
+      "G057",
+      "G060",
+      "G063",
+      "G064",
+      "G065",
+      "G067",
+      "G070",
+      "G076",
+      "G080",
+      "G081",
+      "G085",
+      "G089",
+      "G159",
+      "IL1B",
+      "MKI67",
+      "NFKBIA",
+      "PLK1",
+      "SOCS3",
+      "TNF",
+      "TOP2A"
+    ],
+    "layout": "sets on inner circle; genes evenly spaced on outer ring by mean set angle",
+    "term_ids": [
+      "GO:0006991",
+      "GO:0007028",
+      "GO:0007361",
+      "GO:0007435",
+      "GO:0007065"
+    ]
+  },
+  "encodings": {
+    "fill": {
+      "palette": [
+        "#2166AC",
+        "#4393C3",
+        "#92C5DE",
+        "#D1E5F0",
+        "#F7F7F7",
+        "#FDDBC7",
+        "#F4A582",
+        "#D6604D",
+        "#B2182B"
+      ],
+      "scale": "diverging"
+    },
+    "set_size_mm": [
+      2.4,
+      5.2
+    ]
+  },
+  "figure_type": "cnet",
+  "files": {
+    "pdf": {
+      "content_sha256": "d277b661c77d2f5094ea32f3fcbcf4bd8e471b123cc677e57a7f85afafcb4de3",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "28_cnet.pdf"
+    },
+    "png": {
+      "path": "28_cnet.png",
+      "sha256": "61e1666e52c3634296b8272472d7f926b7b7083a0262a0d3a76ff21df49cb9b5"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 89,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "padj": 0.05
+  },
+  "width_mm": 120
+}

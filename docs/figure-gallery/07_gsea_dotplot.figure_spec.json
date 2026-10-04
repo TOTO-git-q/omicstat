@@ -1,0 +1,78 @@
+{
+  "caption": "Gene set enrichment analysis (GO biological process). Selection: the 15 gene sets with the largest |NES| among the 20 with adjusted P < 0.05 (ties broken by smaller adjusted P, then term ID); ordered by NES, largest at the top (ties by adjusted P, then term ID). NES from preranked GSEA (enrichment score normalized to the mean of permuted scores of the same sign). Dot colour, -log10 adjusted P; dot size, gene set size.",
+  "counts": {
+    "shown": 15,
+    "significant": 20
+  },
+  "data": {
+    "term_ids": [
+      "GO:0006991",
+      "GO:0007028",
+      "GO:0007065",
+      "GO:0007102",
+      "GO:0007139",
+      "GO:0007176",
+      "GO:0007213",
+      "GO:0007250",
+      "GO:0007583",
+      "GO:0007546",
+      "GO:0007509",
+      "GO:0007472",
+      "GO:0007435",
+      "GO:0007398",
+      "GO:0007361"
+    ]
+  },
+  "definition": {
+    "nes": "NES from preranked GSEA (enrichment score normalized to the mean of permuted scores of the same sign)",
+    "ordering": "ordered by NES, largest at the top (ties by adjusted P, then term ID)",
+    "selection": "the 15 gene sets with the largest |NES| among the 20 with adjusted P < 0.05 (ties broken by smaller adjusted P, then term ID)"
+  },
+  "encodings": {
+    "colour": {
+      "palette": [
+        "#440154",
+        "#482878",
+        "#3E4A89",
+        "#31688E",
+        "#26828E",
+        "#1F9E89",
+        "#35B779",
+        "#6DCD59",
+        "#B4DE2C",
+        "#FDE725"
+      ],
+      "scale": "sequential"
+    },
+    "size": {
+      "range_mm": [
+        1,
+        3.6
+      ]
+    }
+  },
+  "figure_type": "enrichment_dotplot",
+  "files": {
+    "pdf": {
+      "content_sha256": "f45fcaae03a22dac8b847b81b26a8fcbaa522fbfc5260cea4362ed9acf68a8f9",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "07_gsea_dotplot.pdf"
+    },
+    "png": {
+      "path": "07_gsea_dotplot.png",
+      "sha256": "7caed4dccdb00a0cbe7a9ef25fd88a3ac02facfb750253887cd67fd6c2f6345d"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 100,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "padj": 0.05
+  },
+  "width_mm": 89
+}

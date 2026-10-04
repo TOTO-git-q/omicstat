@@ -1,0 +1,154 @@
+{
+ "source": "git show afbd01d:server.py (baseline v1, 20260920-gt103-v1)",
+ "tools": {
+  "reference_advise": {
+   "inputSchema": {
+    "properties": {
+     "module": {
+      "title": "Module",
+      "type": "string"
+     },
+     "study_contract": {
+      "additionalProperties": true,
+      "title": "Study Contract",
+      "type": "object"
+     }
+    },
+    "required": [
+     "module",
+     "study_contract"
+    ],
+    "title": "reference_adviseArguments",
+    "type": "object"
+   }
+  },
+  "reference_get_record": {
+   "inputSchema": {
+    "properties": {
+     "limit": {
+      "default": 10,
+      "title": "Limit",
+      "type": "integer"
+     },
+     "offset": {
+      "default": 0,
+      "title": "Offset",
+      "type": "integer"
+     },
+     "pointer": {
+      "default": "",
+      "title": "Pointer",
+      "type": "string"
+     },
+     "record_id": {
+      "title": "Record Id",
+      "type": "string"
+     },
+     "record_type": {
+      "title": "Record Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "record_type",
+     "record_id"
+    ],
+    "title": "reference_get_recordArguments",
+    "type": "object"
+   }
+  },
+  "reference_list_candidates": {
+   "inputSchema": {
+    "properties": {
+     "limit": {
+      "default": 10,
+      "title": "Limit",
+      "type": "integer"
+     },
+     "module": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Module"
+     },
+     "offset": {
+      "default": 0,
+      "title": "Offset",
+      "type": "integer"
+     }
+    },
+    "title": "reference_list_candidatesArguments",
+    "type": "object"
+   }
+  },
+  "reference_search": {
+   "inputSchema": {
+    "properties": {
+     "limit": {
+      "default": 10,
+      "title": "Limit",
+      "type": "integer"
+     },
+     "module": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "default": null,
+      "title": "Module"
+     },
+     "offset": {
+      "default": 0,
+      "title": "Offset",
+      "type": "integer"
+     },
+     "query": {
+      "default": "",
+      "title": "Query",
+      "type": "string"
+     }
+    },
+    "title": "reference_searchArguments",
+    "type": "object"
+   }
+  },
+  "reference_status": {
+   "inputSchema": {
+    "properties": {},
+    "title": "reference_statusArguments",
+    "type": "object"
+   }
+  },
+  "reference_submit_review": {
+   "inputSchema": {
+    "properties": {
+     "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+     },
+     "review": {
+      "additionalProperties": true,
+      "title": "Review",
+      "type": "object"
+     }
+    },
+    "required": [
+     "candidate_id",
+     "review"
+    ],
+    "title": "reference_submit_reviewArguments",
+    "type": "object"
+   }
+  }
+ }
+}

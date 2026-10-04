@@ -1,0 +1,104 @@
+function	argument	default
+align_cds	cds	
+align_cds	preprocess_method	c("PCA", "LSI")
+align_cds	alignment_group	NULL
+align_cds	alignment_k	20
+align_cds	residual_model_formula_str	NULL
+align_cds	verbose	FALSE
+align_cds	build_nn_index	FALSE
+align_cds	nn_control	list()
+align_cds	...	
+cluster_cells	cds	
+cluster_cells	reduction_method	c("UMAP", "tSNE", "PCA", "LSI", "Aligned")
+cluster_cells	k	20
+cluster_cells	cluster_method	c("leiden", "louvain")
+cluster_cells	num_iter	2
+cluster_cells	partition_qval	0.05
+cluster_cells	weight	FALSE
+cluster_cells	resolution	NULL
+cluster_cells	random_seed	42
+cluster_cells	verbose	FALSE
+cluster_cells	nn_control	list()
+cluster_cells	...	
+fit_models	cds	
+fit_models	model_formula_str	
+fit_models	expression_family	"quasipoisson"
+fit_models	reduction_method	"UMAP"
+fit_models	cores	1
+fit_models	clean_model	TRUE
+fit_models	verbose	FALSE
+fit_models	...	
+graph_test	cds	
+graph_test	neighbor_graph	c("knn", "principal_graph")
+graph_test	reduction_method	"UMAP"
+graph_test	k	25
+graph_test	method	c("Moran_I")
+graph_test	alternative	"greater"
+graph_test	expression_family	"quasipoisson"
+graph_test	cores	1
+graph_test	verbose	FALSE
+graph_test	nn_control	list()
+learn_graph	cds	
+learn_graph	use_partition	TRUE
+learn_graph	close_loop	TRUE
+learn_graph	learn_graph_control	NULL
+learn_graph	verbose	FALSE
+new_cell_data_set	expression_data	
+new_cell_data_set	cell_metadata	NULL
+new_cell_data_set	gene_metadata	NULL
+new_cell_data_set	verbose	FALSE
+order_cells	cds	
+order_cells	reduction_method	"UMAP"
+order_cells	root_pr_nodes	NULL
+order_cells	root_cells	NULL
+order_cells	verbose	FALSE
+plot_cells	cds	
+plot_cells	x	1
+plot_cells	y	2
+plot_cells	reduction_method	c("UMAP", "tSNE", "PCA", "LSI", "Aligned")
+plot_cells	color_cells_by	"cluster"
+plot_cells	group_cells_by	"cluster"
+plot_cells	genes	NULL
+plot_cells	show_trajectory_graph	TRUE
+plot_cells	trajectory_graph_color	"grey28"
+plot_cells	trajectory_graph_segment_size	0.75
+plot_cells	norm_method	c("log", "size_only")
+plot_cells	label_cell_groups	TRUE
+plot_cells	label_groups_by_cluster	TRUE
+plot_cells	group_label_size	2
+plot_cells	labels_per_group	1
+plot_cells	label_branch_points	TRUE
+plot_cells	label_roots	TRUE
+plot_cells	label_leaves	TRUE
+plot_cells	graph_label_size	2
+plot_cells	cell_size	0.35
+plot_cells	cell_stroke	I(cell_size/2)
+plot_cells	alpha	1
+plot_cells	min_expr	0.1
+plot_cells	rasterize	FALSE
+plot_cells	scale_to_range	TRUE
+plot_cells	label_principal_points	FALSE
+preprocess_cds	cds	
+preprocess_cds	method	c("PCA", "LSI")
+preprocess_cds	num_dim	50
+preprocess_cds	norm_method	c("log", "size_only", "none")
+preprocess_cds	use_genes	NULL
+preprocess_cds	pseudo_count	NULL
+preprocess_cds	scaling	TRUE
+preprocess_cds	verbose	FALSE
+preprocess_cds	build_nn_index	FALSE
+preprocess_cds	nn_control	list()
+reduce_dimension	cds	
+reduce_dimension	max_components	2
+reduce_dimension	reduction_method	c("UMAP", "tSNE", "PCA", "LSI", "Aligned")
+reduce_dimension	preprocess_method	NULL
+reduce_dimension	umap.metric	"cosine"
+reduce_dimension	umap.min_dist	0.1
+reduce_dimension	umap.n_neighbors	15L
+reduce_dimension	umap.fast_sgd	FALSE
+reduce_dimension	umap.nn_method	"annoy"
+reduce_dimension	verbose	FALSE
+reduce_dimension	cores	1
+reduce_dimension	build_nn_index	FALSE
+reduce_dimension	nn_control	list()
+reduce_dimension	...	

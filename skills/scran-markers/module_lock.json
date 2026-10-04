@@ -1,0 +1,28 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "scran-markers",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/scran-markers/scripts/run_scran_markers.R": "93248cc93d53bfc2651b97f5a29911392cbabdc078ebe42b3a496511485151ba",
+    "skills/scran-markers/scripts/scran_markers_core.R": "07cff2bd579070304420a991349a65884ae9300d9384c6ec1e13e6af883728ce",
+    "skills/scran-markers/scripts/calls_registry.json": "e47530539c7766743777635ce8d4746a9489f1ee7df5d40a85757f70ad3c18d6",
+    "skills/scran-markers/SKILL.md": "f4620eb1d0d4b32c58e2c237ecc44f3dcbfdf13d5e806528719788ae16696422",
+    "skills/scran-markers/references/options.md": "bc66d38b6803903ec25dc0670222bcc995dd5fab34ef826184b553d81ca75456",
+    "skills/scran-markers/tests/fixtures/make_grun.R": "fa5e9b64004b28f7ac2126cb86a135108cd2803e20948919763fb46e9b07efdb",
+    "skills/scran-markers/tests/run_smoke_test.R": "ae40f7838e1e8e3fd54221d3265b7c4847f2cb21e4d885bd74e5d9fe4a6c5835",
+    "skills/scran-markers/tests/golden_manifest.csv": "371c6645b02eb3e008a4a0d99b317abf6111dd52e08f7b1f5053c70b4a25b2b9",
+    "acceptance/exemplars/scran-markers/PACK.md": "940318cb3f4072513ecbb70f5146a66365adb6acc4550118774b5cfacf76311d"
+  },
+  "packages": {
+    "scran": "1.40.0",
+    "BiocParallel": "1.46.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

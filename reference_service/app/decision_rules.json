@@ -1,0 +1,34 @@
+{
+ "schema": "omicstat.reference.decision-rules.v1",
+ "note": "omicstat_reference advise checklist. common_required = the omicstat StudyContract v1 fields (skills/_shared/schemas/study_contract.v1.schema.json required list, without schema_version and analysis_sets) with the omics meanings of IMPLEMENTATION_SPEC section 4. Module-specific rules are empty until PACK-derived omics rules are written.",
+ "common_required": {
+  "study_design": "nonempty_string",
+  "analysis_population": "nonempty_description",
+  "estimand": "nonempty_description",
+  "exposure_or_intervention": "nonempty_description",
+  "comparator": "nonempty_description",
+  "outcomes": "list_or_not_applicable",
+  "covariates": "list_or_not_applicable",
+  "missing_data": "nonempty_description",
+  "multiplicity": "nonempty_description"
+ },
+ "reusable_covariate_goals": [
+  {
+   "goal": "design_adjustment",
+   "prompt": "Covariates in the design formula (batch, pairing/donor, sex) are declared from the experimental design; do not select them by testing their association with expression."
+  },
+  {
+   "goal": "batch_correction_for_display_only",
+   "prompt": "A batch-corrected matrix is for visualisation or downstream scoring only; differential analysis models the batch in the design instead (ENGINEERING_PLAN sva-batch rule)."
+  },
+  {
+   "goal": "surrogate_variables",
+   "prompt": "Surrogate variables added to a design must be reported with their number and the estimation method."
+  },
+  {
+   "goal": "biological_replicate_unit",
+   "prompt": "Condition comparisons in single-cell data are made at the biological-sample level (pseudobulk or proportion models); cells are not independent replicates."
+  }
+ ],
+ "modules": {}
+}

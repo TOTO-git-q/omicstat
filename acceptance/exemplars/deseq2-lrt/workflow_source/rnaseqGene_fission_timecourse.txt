@@ -1,0 +1,110 @@
+rnaseqGene workflow -- fission time course: verbatim source and printed output
+==============================================================================
+
+Saved for S4 F1 (deseq2-lrt S3_REVIEW_astra.md). Everything below the provenance block is copied
+verbatim (code lines prefixed with their line number in the source Rmd; printed output lines
+copied from the rendered HTML with HTML entities decoded). Nothing is paraphrased.
+
+Provenance
+----------
+- Code: https://raw.githubusercontent.com/mikelove/rnaseqGene/master/vignettes/rnaseqGene.Rmd
+  last commit touching the file: 0d7e27dde3ca9875cf94770ed9de35e346dd3676 (2026-04-14T19:28:39Z);
+  sha256 of the fetched file 4f60dbc348b9176ce7b3e63a0df9eeef0e89115b0c30aa5156be48ff79b3d86e;
+  fetched 2026-09-29. (The Bioconductor git browser code.bioconductor.org served an expired TLS
+  certificate on that day, so RELEASE_3_23 could not be read there; the code chunks below are
+  identical to the code echoed in the rendered Bioc 3.23 HTML.)
+- Printed output: https://bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html
+  sha256 d117c2d053997ae4a50466f79129ffdec5a2f09fd6a0f24f1279318b4f14a224; its header states
+  Bioconductor version 3.23, R 4.6.0 RC (2026-04-17), and its sessionInfo lists DESeq2_1.52.0
+  (the locked container runs DESeq2 1.52.0, R 4.6.1).
+- License: rnaseqGene workflow, Artistic-2.0.
+
+How the suite differs from the workflow (read before using these numbers)
+--------------------------------------------------------------------------
+1. PRE-FILTER. The workflow's time-course section applies NO pre-filter to fission: the LRT runs
+   on all 7,039 rows of data("fission"). The workflow's only pre-filter is in its airway section
+   ("Pre-filtering the dataset", Rmd:746-769: count >= 10 in >= smallestGroupSize = 4 samples, the
+   airway group size). The suite always requires an explicit --min-samples; its fission anchor run
+   (smoke A1) uses --min-count 10 --min-samples 3 (3 = replicates per strain x minute cell) and
+   keeps 6,205 rows. The workflow-identical run (smoke A0) uses --min-count 0 --min-samples 1,
+   which keeps every row.
+2. ALPHA. results(ddsTC) uses results()'s default alpha = 0.1 for independent filtering; the
+   suite's default --alpha is 0.05 (A1). A0 passes --alpha 0.1.
+3. REFERENCE LEVEL. data("fission") has strain levels wt, mut, so the workflow's last coefficient
+   (printed log2 fold change) is strainmut.minute180. The suite orders levels by radix (mut, wt),
+   so its last coefficient is strainwt.minute180, a different parameterization. baseMean, the LRT
+   statistic, P and adjusted P are invariant; log2FoldChange/lfcSE are not the same coefficient.
+
+Section "Pre-filtering the dataset" (airway; the workflow's pre-filter rule)
+---------------------------------------------------------------------------
+Rmd:763  ```{r}
+Rmd:764  nrow(dds)
+Rmd:765  smallestGroupSize <- 4
+Rmd:766  keep <- rowSums(counts(dds) >= 10) >= smallestGroupSize
+Rmd:767  dds <- dds[keep,]
+Rmd:768  nrow(dds)
+Rmd:769  ```
+
+Section "Time course experiments" (fission): every code chunk
+--------------------------------------------------------------
+Rmd:1885  ```{r}
+Rmd:1886  library("fission")
+Rmd:1887  data("fission")
+Rmd:1888  ddsTC <- DESeqDataSet(fission, ~ strain + minute + strain:minute)
+Rmd:1889  ```
+
+Rmd:1898  ```{r fissionDE}
+Rmd:1899  ddsTC <- DESeq(ddsTC, test="LRT", reduced = ~ strain + minute)
+Rmd:1900  resTC <- results(ddsTC)
+Rmd:1901  resTC$symbol <- mcols(ddsTC)$symbol
+Rmd:1902  head(resTC[order(resTC$padj),], 4)
+Rmd:1903  ```
+
+Rmd:1919  ```{r fissioncounts, fig.width=6, fig.height=4.5}
+Rmd:1920  fiss <- plotCounts(ddsTC, which.min(resTC$padj), 
+Rmd:1921                     intgroup = c("minute","strain"), returnData = TRUE)
+Rmd:1922  fiss$minute <- as.numeric(as.character(fiss$minute))
+Rmd:1923  ggplot(fiss,
+Rmd:1924    aes(x = minute, y = count, color = strain, group = strain)) + 
+Rmd:1925    geom_point() + stat_summary(fun.y=mean, geom="line") +
+Rmd:1926    scale_y_log10()
+Rmd:1927  ```
+
+Rmd:1933  ```{r}
+Rmd:1934  resultsNames(ddsTC)
+Rmd:1935  res30 <- results(ddsTC, name="strainmut.minute30", test="Wald")
+Rmd:1936  res30[which.min(res30$padj),]
+Rmd:1937  ```
+
+Rmd:1945  ```{r}
+Rmd:1946  betas <- coef(ddsTC)
+Rmd:1947  colnames(betas)
+Rmd:1948  ```
+
+Rmd:1952  ```{r fissionheatmap}
+Rmd:1953  topGenes <- head(order(resTC$padj),20)
+Rmd:1954  mat <- betas[topGenes, -c(1,2)]
+Rmd:1955  thr <- 3 
+Rmd:1956  mat[mat < -thr] <- -thr
+Rmd:1957  mat[mat > thr] <- thr
+Rmd:1958  pheatmap(mat, breaks=seq(from=-thr, to=thr, length=101),
+Rmd:1959           cluster_col=FALSE)
+Rmd:1960  ```
+
+Printed output of chunk fissionDE (head(resTC[order(resTC$padj),], 4)), rendered Bioc 3.23 HTML
+-------------------------------------------------------------------------------------------
+## log2 fold change (MLE): strainmut.minute180 
+## LRT p-value: '~ strain + minute + strain:minute' vs '~ strain + minute' 
+## DataFrame with 4 rows and 7 columns
+##               baseMean log2FoldChange     lfcSE      stat      pvalue
+##              <numeric>      <numeric> <numeric> <numeric>   <numeric>
+## SPBC2F12.09c   174.671     -2.6567195  0.752261   97.2834 1.97415e-19
+## SPAC1002.18    444.505     -0.0509321  0.204299   56.9536 5.16955e-11
+## SPAC1002.19    336.373     -0.3927490  0.573494   43.5339 2.87980e-08
+## SPAC1002.17c   261.773     -1.1387648  0.606129   39.3158 2.05137e-07
+##                     padj      symbol
+##                <numeric> <character>
+## SPBC2F12.09c 1.33453e-15       atf21
+## SPAC1002.18  1.74731e-07        urg3
+## SPAC1002.19  6.48916e-05        urg1
+## SPAC1002.17c 3.46682e-04        urg2

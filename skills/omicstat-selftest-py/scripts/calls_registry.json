@@ -1,0 +1,8 @@
+{
+  "module": "omicstat-selftest-py",
+  "language": "python",
+  "note": "Environment self-test of the Python lane: no statistical engine is called, so no call is registered (same as omicstat-selftest). Version probes (importlib.metadata), the seeding helper ospy.seed.set_seed and the AnnData write/read of the synthetic object are not governed by lock 3. tools/check_calls.py still runs on this module (0 registry problems expected).",
+  "package_versions": {},
+  "calls": [],
+  "flag_defaults": {"--seed": 20260925, "--journal": "nature", "--strict": false}
+}

@@ -1,0 +1,68 @@
+{
+ "module": "limma-camera",
+ "date": "2026-09-27",
+ "query": "(METHODS:\"limma\" AND (METHODS:\"camera\" OR METHODS:\"fry\" OR METHODS:\"roast\" OR METHODS:\"mroast\")) AND HAS_FT:Y AND OPEN_ACCESS:Y AND SRC:MED AND NOT PUB_TYPE:\"review\" AND NOT PUB_TYPE:\"preprint\" AND NOT PUB_TYPE:\"retracted publication\" AND FIRST_PDATE:[2020-01-01 TO 2026-09-27] AND (ISSN:\"0006-4971\" OR ISSN:\"0009-7330\" OR ISSN:\"0017-5749\" OR ISSN:\"0021-9738\" OR ISSN:\"0022-1007\" OR ISSN:\"0027-8424\" OR ISSN:\"0028-0836\" OR ISSN:\"0036-8075\" OR ISSN:\"0092-8674\" OR ISSN:\"0261-4189\" OR ISSN:\"0305-1048\" OR ISSN:\"0896-6273\" OR ISSN:\"1061-4036\" OR ISSN:\"1074-7613\" OR ISSN:\"1078-8956\" OR ISSN:\"1087-0156\" OR ISSN:\"1088-9051\" OR ISSN:\"1091-6490\" OR ISSN:\"1095-9203\" OR ISSN:\"1097-2765\" OR ISSN:\"1097-4164\" OR ISSN:\"1097-4172\" OR ISSN:\"1097-4180\" OR ISSN:\"1097-4199\" OR ISSN:\"1097-6256\" OR ISSN:\"1362-4962\" OR ISSN:\"1460-2075\" OR ISSN:\"1465-7392\" OR ISSN:\"1468-3288\" OR ISSN:\"1474-7596\" OR ISSN:\"1474-760X\" OR ISSN:\"1476-4679\" OR ISSN:\"1476-4687\" OR ISSN:\"1524-4571\" OR ISSN:\"1528-0020\" OR ISSN:\"1529-2908\" OR ISSN:\"1529-2916\" OR ISSN:\"1535-6108\" OR ISSN:\"1540-9538\" OR ISSN:\"1546-1696\" OR ISSN:\"1546-170X\" OR ISSN:\"1546-1718\" OR ISSN:\"1546-1726\" OR ISSN:\"1548-7091\" OR ISSN:\"1548-7105\" OR ISSN:\"1549-5469\" OR ISSN:\"1550-4131\" OR ISSN:\"1558-8238\" OR ISSN:\"1756-994X\" OR ISSN:\"1875-9777\" OR ISSN:\"1878-3686\" OR ISSN:\"1932-7420\" OR ISSN:\"1934-5909\" OR ISSN:\"2041-1723\" OR ISSN:\"2050-084X\" OR ISSN:\"2211-1247\" OR ISSN:\"2375-2548\" OR ISSN:\"2379-3708\" OR ISSN:\"2405-4712\" OR ISSN:\"2405-4720\" OR ISSN:\"2522-5812\" OR ISSN:\"2662-1347\" OR ISSN:\"2662-8465\" OR ISSN:\"2666-3791\" OR ISSN:\"2666-979X\")",
+ "hit_count": 709,
+ "hit_count_by_year": {
+  "2026": 104,
+  "2025": 140,
+  "2024": 101,
+  "2023": 104,
+  "2022": 84,
+  "2021": 96,
+  "2020": 80
+ },
+ "stratification": "per publication year, interleaved newest year first",
+ "candidates_fetched": 350,
+ "target": 30,
+ "gates": {
+  "screened": 30,
+  "no_methods_signal": 223,
+  "licence_not_countable": 9,
+  "fulltext_http_error": 9,
+  "excluded_by_regex": 5
+ },
+ "corpus": 30,
+ "l3": 10,
+ "errors": [
+  {
+   "pmcid": "PMC9780780",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9780780/fullTextXML"
+  },
+  {
+   "pmcid": "PMC8733895",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8733895/fullTextXML"
+  },
+  {
+   "pmcid": "PMC9010342",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9010342/fullTextXML"
+  },
+  {
+   "pmcid": "PMC7588622",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7588622/fullTextXML"
+  },
+  {
+   "pmcid": "PMC9515386",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9515386/fullTextXML"
+  },
+  {
+   "pmcid": "PMC8432578",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8432578/fullTextXML"
+  },
+  {
+   "pmcid": "PMC11240284",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11240284/fullTextXML"
+  },
+  {
+   "pmcid": "PMC7381997",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7381997/fullTextXML"
+  },
+  {
+   "pmcid": "PMC9533230",
+   "error": "HTTPError: 500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9533230/fullTextXML"
+  }
+ ],
+ "journals_sha256": "66e183cbd11031a2f951bb2272fb11da69eb78f05ccc92acdd5f06a45cdff7a0",
+ "profiles_sha256": "49f10ab8c17c2830f052cb82a3b620648047d0905597b90023a1a7bf5e620ec3",
+ "epmc_requests": 305
+}

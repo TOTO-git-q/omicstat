@@ -1,0 +1,6 @@
+{
+  "module": "omicstat-selftest",
+  "note": "Environment self-test: no statistical engine is called, so no call is registered. The environment probes (utils::packageVersion, BiocManager::version, systemfonts::system_fonts) read versions only and are not governed by lock 3.",
+  "package_versions": {},
+  "calls": []
+}

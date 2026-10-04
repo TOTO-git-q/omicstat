@@ -1,0 +1,179 @@
+/home/<user>/omic-s5/.venv/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(
+native engine: None (no Rscript on PATH)
+PASS   planted 7-column table is only a module-local summary  -- ('module-local', ['tables/et.csv'])
+PASS   planted table yields 3 effect rows  -- 3
+PASS   degenerate scan catches the zero-width CI  -- zero-width CI (3.1) estimate 9.9 lies outside its CI (1.1 to 1.83)
+PASS   degenerate scan catches an estimate outside its CI  -- zero-width CI (3.1) estimate 9.9 lies outside its CI (1.1 to 1.83)
+PASS   degenerate scan leaves the healthy row alone  -- [{'row': 'joint / frailty_nonconverged', 'issue': 'zero-width CI (3.1)'}, {'row': 'model2 / impossible', 'issue': 'estimate 9.9 lies outside its CI (1.1 to 1.83)'}]
+PASS   planted feature table is detected by header  -- feature-table
+PASS   feature degeneracy: padj NA for every feature is flagged  -- [{'row': 'tables/feature_table.csv / contrast a', 'issue': 'padj is NA for all 2 features'}, {'row': 'tables/feature_table.csv / contrast b', 'issue': 'all 2 features with non-NA padj have padj < 0.05'}]
+PASS   feature degeneracy: all features significant is flagged  -- [{'row': 'tables/feature_table.csv / contrast a', 'issue': 'padj is NA for all 2 features'}, {'row': 'tables/feature_table.csv / contrast b', 'issue': 'all 2 features with non-NA padj have padj < 0.05'}]
+PASS   engine_warnings captures an OS_ typed code  -- ['In coxph(): Ran out of iterations and did not converge', 'OS_ENGINE_OUTPUT: joint frailty convergence code 4']
+PASS   engine_warnings unwraps a bare 'Warning message:' header  -- ['In coxph(): Ran out of iterations and did not converge', 'OS_ENGINE_OUTPUT: joint frailty convergence code 4']
+PASS   engine_warnings ignores ordinary progress lines  -- ['In coxph(): Ran out of iterations and did not converge', 'OS_ENGINE_OUTPUT: joint frailty convergence code 4']
+/home/<user>/omic-s5/.venv/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+  warnings.warn(
+PASS   list_tools returns exactly 5 tools  -- ['omicstat_describe', 'omicstat_list_modules', 'omicstat_read', 'omicstat_run', 'omicstat_validate_publication']
+PASS   the 5 tools are the designed ones  -- ['omicstat_describe', 'omicstat_list_modules', 'omicstat_read', 'omicstat_run', 'omicstat_validate_publication']
+PASS   omicstat_run exposes optional study_contract  -- {'properties': {'module': {'title': 'Module', 'type': 'string'}, 'args': {'additionalProperties': True, 'title': 'Args', 'type': 'object'}, 'engine': {'default': 'container', 'title': 'Engine', 'type': 'string'}, 'study_contract': {'anyOf': [{'additionalProperties': True, 'type': 'object'}, {'type':
+PASS   omicstat://router resource is listed  -- ['omicstat://router']
+PASS   skill/help resource templates are listed  -- ['omicstat://skill/{module}', 'omicstat://help/{module}']
+PASS   omicstat://router reads back the routing map  -- 14116
+PASS   omicstat_list_modules returns every router-table module (40)  -- 40
+PASS   each module row has name, summary and entry script
+PASS   listed entry scripts exactly match the router registry
+PASS   describe(scanpy-qc) exposes registered entry, help and options
+PASS   describe(scanpy-cluster) exposes registered entry, help and options
+PASS   describe(scanpy-markers) exposes registered entry, help and options
+PASS   describe(scvi-integrate) exposes registered entry, help and options
+PASS   describe(scanvi-annotate) exposes registered entry, help and options
+PASS   describe(seurat-qc) exposes registered entry, help and options
+PASS   describe(seurat-cluster) exposes registered entry, help and options
+PASS   describe(seurat-integrate) exposes registered entry, help and options
+PASS   describe(seurat-markers) exposes registered entry, help and options
+PASS   describe(seurat-modulescore) exposes registered entry, help and options
+PASS   describe(scater-qc) exposes registered entry, help and options
+PASS   describe(scran-cluster) exposes registered entry, help and options
+PASS   describe(batchelor-integrate) exposes registered entry, help and options
+PASS   describe(scran-markers) exposes registered entry, help and options
+PASS   describe(aucell-score) exposes registered entry, help and options
+PASS   describe(singler-annotate) exposes registered entry, help and options
+PASS   describe(muscat-pseudobulk) exposes registered entry, help and options
+PASS   describe(speckle-propeller) exposes registered entry, help and options
+PASS   describe(cellchat-communication) exposes registered entry, help and options
+PASS   describe(monocle3-trajectory) exposes registered entry, help and options
+PASS   describe(slingshot-trajectory) exposes registered entry, help and options
+PASS   describe(wgcna-network) exposes registered entry, help and options
+PASS   describe(maftools-landscape) exposes registered entry, help and options
+PASS   describe(immunedeconv-infiltration) exposes registered entry, help and options
+PASS   describe(unknown module) is refused with 'unknown module'  -- Error executing tool omicstat_describe: unknown module 'no-such-module'. Closest: seurat-modulescore, gsva-score, scran-markers. Call omicstat_list_modules for all 40.
+PASS   omicstat_read refuses a path outside the allowed roots  -- {
+ "error": "path refused",
+ "path": "/etc/hostname",
+ "allowed_roots": [
+  "/home/<user>/omic-s5",
+  "/home/<user>/omic-s5",
+  "/home/<user>/omic-sol61/s5/e2e",
+  "/
+PASS   describe(omicstat-selftest) contains --strict  -- 6972
+PASS   describe includes both SKILL.md and --help sections
+PASS   unknown flag is refused  -- Error executing tool omicstat_run: unknown flag '--totally-made-up-flag' for module 'omicstat-selftest'. Closest known flags: --journal, --help, --strict. The whitelist is parsed from this module's ow
+PASS   refusal echoes the closest known flags  -- Error executing tool omicstat_run: unknown flag '--totally-made-up-flag' for module 'omicstat-selftest'. Closest known flags: --journal, --help, --strict. The whitelist is parsed from this module's ow
+PASS   out-of-root path value is refused  -- Error executing tool omicstat_run: path refused: --journal = '/etc/hostname' resolves outside the allowed roots (/home/<user>/omic-s5; /home/<user>/omic-s5; /home/<user>/omic-sol61/s5/e2e; /tmp)
+PASS   path refusal names the allowed roots  -- Error executing tool omicstat_run: path refused: --journal = '/etc/hostname' resolves outside the allowed roots (/home/<user>/omic-s5; /home/<user>/omic-s5; /home/<user>/omic-sol61/s5/e2e; /tmp)
+PASS   out-of-root --outdir is refused  -- Error executing tool omicstat_run: path refused: --outdir = '/etc/omicstat-escape' resolves outside the allowed roots (/home/<user>/omic-s5; /home/<user>/omic-s5; /home/<user>/omic-sol61/s5/e2e; /tmp)
+PASS   outdir refusal names the allowed roots  -- Error executing tool omicstat_run: path refused: --outdir = '/etc/omicstat-escape' resolves outside the allowed roots (/home/<user>/omic-s5; /home/<user>/omic-s5; /home/<user>/omic-sol61/s5/e2e; /tmp)
+SKIP   real run on engine native  -- no Rscript on PATH
+       (omicstat-selftest/container took 14.9s)
+PASS   selftest/container: manifest is JSON  -- {
+ "run_id": "68a65d62-0531-4764-afe9-0200bbe49612",
+ "module": "omicstat-selftest",
+ "engine": "container",
+ "exit_code
+PASS   selftest/container: exit_code == 0  -- exit=0 stderr=
+PASS   selftest/container: artifacts non-empty  -- 12
+PASS   selftest/container: manifest under 8k chars  -- 5326
+PASS   selftest/container: qc_triggered field present
+PASS   selftest/container: engine_warnings field present (list)
+PASS   selftest/container: degenerate_estimates field present
+PASS   selftest/container: feature table detected as the primary payload  -- schema=feature-table sources=['tables/feature_table.csv']
+PASS   selftest/container: feature rows are non-empty and identifiable  -- [{'feature_id': 'ENSG00000000828', 'symbol': 'GENE828', 'contrast': 'condition: treated vs control', 'base_mean': '767.5', 'log2fc': '7.508', 'log2fc_se': '0.1933', 'stat': '38.84', 'pvalue': '0', 'padj': '0'}]
+PASS   selftest/container: a healthy fixture has no degenerate estimates
+PASS   selftest/container: on-disk publication manifest validates
+PASS   selftest/container: on-disk publication review validates
+PASS   selftest/container: clean run retains human publication review  -- needs_input
+PASS   selftest/container: UUID leaf directory  -- /home/<user>/omic-sol61/s5/e2e/run_selftest_container/68a65d62-0531-4764-afe9-0200bbe49612
+PASS   selftest/container: requested_outdir is parent  -- /home/<user>/omic-sol61/s5/e2e/run_selftest_container
+PASS   selftest/container: upstream_runs ends with this run (handoff.json)  -- ['68a65d62-0531-4764-afe9-0200bbe49612']
+PASS   selftest/container: five publication artifacts  -- ['/home/<user>/omic-sol61/s5/e2e/run_selftest_container/68a65d62-0531-4764-afe9-0200bbe49612/provenance/publication_manifest.json', '/home/<user>/omic-sol61/s5/e2e/run_selftest_container/68a65d62-0531-4764-afe9-0200bbe49612/publication/review.json', '/home/<user>/omic-sol61/s5/e2e/run_selftest_container/6
+PASS   selftest/container: engine/all artifact views are consistent  -- (12, 0)
+PASS   selftest/container: structured Python/R/repository/module provenance  -- {'path': 'skills/omicstat-selftest/scripts/run_omicstat_selftest.R', 'sha256': '58378424a2eac4ede331bf39e3d0f390f9779d6d4dba53ff959d108105c4d5e9'}
+PASS   selftest/container: the engine's R session is the one probed for provenance  -- ['ALL', 'AUCell', 'AnnotationDbi', 'AnnotationHub', 'BH']
+PASS   selftest/container: random_seed is recorded from args  -- 20260925
+PASS   selftest/container: dirty worktree has replayable code identity  -- {'status_sha256': 'aafd20caac54aa52ee75e8d63e8c5b0876b124806561a14657d49ec2e61bab12', 'diff_sha256': '3b19477e4f7cb3a56fd5d811722923901930f2fc3157e6a36805e12144da462b', 'untracked_sha256': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'code_inventory_sha256': '8ca9095282e49ffd0
+PASS   selftest/container: no-candidate validator is not_applicable  -- {'effect_table': 'skills/_shared/scripts/validate_effect_table_cli.R', 'path': 'skills/_shared/scripts/validate_effect_table_cli.R', 'sha256': '411271128d43a77de25aab62c8b01091ba8e5c65942949f66879c8d14e053111', 'status': 'not_applicable'}
+PASS   selftest/container: feature table is not mistaken for a canonical effect table  -- {'ok': True, 'canonical': [], 'invalid_named': [], 'errors': []}
+PASS   selftest/container: fixture anchors (1000 features; 195 up, 175 down, 43 padj NA)  -- {'n_features': 1000, 'n_up': 195, 'n_down': 175, 'n_padj_na': 43}
+PASS   selftest/container: results_summary is read from results/*.json  -- {'module': 'omicstat-selftest', 'module_version': '0.1.0', 'execution_mode': 'container', 'env_version': '2026.10.1', 'r_version': '4.6.1', 'r_pin': '4.6.1', 'environment_ok': True, 'n_rules': 8, 'n_triggered': 1, 'failed_rules': [], 'n_features': 1000, 'n_up': 195, 'n_down': 175, 'n_ns': 587, 'n_pa
+PASS   selftest/container: QC rules are the module's ST-xx rules  -- ['ST-04']
+PASS   selftest/container: a managed engine is not reported as unmanaged (ST-07)  -- (['ST-04'], 'container')
+PASS   selftest/container: the library path does not leak (ST-08)  -- ['ST-04']
+PASS   selftest/container: qc_triggered agrees with the module's own summary  -- (['ST-04'], 1)
+PASS   selftest/container: outline has no None or pipe-delimited labels  -- # Results outline
+
+Publication status: `needs_input`.
+
+## Methods
+
+- Study design: requires StudyContract input.
+## Results
+
+- Use only estimates that passed the canonical effect-table and module QC checks.
+## Tables and figures
+
+- Numeric text coverage: checked; coverage share: 0.8275862068965517.
+
+PASS   selftest/container: a figure was produced  -- ['tables', 'figures', 'draft', 'qc', 'provenance', 'machine']
+PASS   selftest/container: a draft .md is listed  -- ['tables', 'figures', 'draft', 'qc', 'provenance', 'machine']
+PASS   selftest/container: omicstat_read returns a non-empty draft  -- 1183
+PASS   selftest/container: draft says it is a self-test  -- # omicstat-selftest: environment self-test (not an analysis)
+
+This run checked the omicstat R environment. Its table and
+PASS   selftest/container: omicstat_read returns no bytes for a figure  -- {
+ "path": "/home/<user>/omic-sol61/s5/e2e/run_selftest_container/68a65d62-0531-4764-afe9-0200bbe49612/figures/volcano.png",
+ "bytes": 249537,
+ "kind": "binary",
+
+PASS   container manifest records an immutable image ID  -- sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7
+PASS   legacy call without study_contract still runs  -- needs_input
+SKIP   native-only checks (legacy status, --strict, validate_publication, default outdir)  -- native engine unavailable
+PASS   python module is listed from the same registry with its .py entry  -- {'module': 'omicstat-selftest-py', 'summary': 'Check that the omicstat Python (scverse) environment is installed correctly and prove that the Python lane works end to end: argument whitelist and typed errors, the randomness lock, the shared feature table, an AnnData (.h5ad) object with a --from-run
+PASS   R and Python modules share one registry  -- ['aucell-score', 'batchelor-integrate', 'cellchat-communication', 'clusterprofiler-compare', 'clusterprofiler-gsea', 'clusterprofiler-ora', 'deseq2-lrt', 'deseq2-qc', 'deseq2-wald', 'edger-qlf', 'fgsea-prerank', 'gsva-score', 'immunedeconv-infiltration', 'limma-array', 'limma-camera', 'limma-dupcor'
+SKIP   python module on engine native  -- no native environment file
+PASS   describe(python module): --help comes from the Python entry in the R format  -- ult: none      upstream omicstat-selftest-py run to continue (handoff check)
+  --spec <path>                            default: none      replay the argv of a provenance/resolved_spec.json
+  --help <switch>                          default: off       show this help and exit
+```
+
+## references/ (5 f
+PASS   python module: unknown flag refused against its own --help  -- Error executing tool omicstat_run: unknown flag '--no-such-flag' for module 'omicstat-selftest-py'. Closest known flags: --journal, --spec, --help. The whitelist is parsed from this module's own --hel
+       (omicstat-selftest-py/container took 16.4s)
+PASS   selftest-py/container: manifest is JSON  -- {
+ "run_id": "542d4ab2-4bbe-4add-9786-2da766b81013",
+ "module": "omicstat-selftest-py",
+ "engine": "container",
+ "exit_c
+PASS   selftest-py/container: exit_code == 0  -- exit=0 stderr=INFO: Seed set to 20260925
+PASS   selftest-py/container: artifacts non-empty  -- 22
+PASS   selftest-py/container: manifest under 8k chars  -- 6550
+PASS   selftest-py/container: qc_triggered field present
+PASS   selftest-py/container: engine_warnings field present (list)
+PASS   selftest-py/container: degenerate_estimates field present
+PASS   selftest-py/container: feature table detected as the primary payload  -- schema=feature-table sources=['tables/feature_table.csv']
+PASS   selftest-py/container: feature rows are non-empty and identifiable  -- [{'feature_id': 'PYFX0263', 'symbol': 'Gene0263', 'contrast': 'Synthetic fixture: treated vs control', 'base_mean': '77.79', 'log2fc': '-3.481', 'log2fc_se': '0.1743', 'stat': '-19.97', 'pvalue': '1.013e-88', 'padj': '9.864e-86'}]
+PASS   selftest-py/container: a healthy fixture has no degenerate estimates
+PASS   selftest-py/container: on-disk publication manifest validates
+PASS   selftest-py/container: on-disk publication review validates
+PASS   selftest-py/container: clean run retains human publication review  -- needs_input
+PASS   selftest-py/container: engine command is python  -- ['python', 'run_omicstat_selftest_py.py', '--seed', '20260925', '--outdir', '/home/<user>/omic-sol61/s5/e2e/run_selftest_py_container/542d4ab2-4bbe-4add-9786-2da766b81013']
+PASS   selftest-py/container: R render step ran in omicstat-r and rendered  -- {'script': 'skills/_shared/scripts/render_figure_request.R', 'request': 'figure_data/figure_request.json', 'engine': 'container', 'runs_in': 'omicstat-r', 'status': 'rendered', 'exit_code': 0, 'duration_s': 8.21, 'timed_out': False, 'command_argv': ['Rscript', 'render_figure_request.R', '--run-dir',
+PASS   selftest-py/container: both requested figures exist (volcano, umap_clusters; pdf + png)  -- ['figures/umap_clusters.figure_spec.json', 'figures/umap_clusters.pdf', 'figures/umap_clusters.png', 'figures/volcano.figure_spec.json', 'figures/volcano.pdf', 'figures/volcano.png']
+PASS   selftest-py/container: render step recorded in provenance (figure_render.json + render_step)
+PASS   selftest-py/container: fixture anchors {'n_features': 1000, 'n_up': 144, 'n_down': 116, 'n_padj_na': 26, 'n_cells': 300}  -- {'n_features': 1000, 'n_up': 144, 'n_down': 116, 'n_padj_na': 26, 'n_cells': 300}
+PASS   selftest-py/container: R volcano counts agree with the Python feature table  -- {'capped': 0, 'down': 116, 'ns': 714, 'padj_na': 26, 'up': 144}
+PASS   selftest-py/container: QC rules are the module's PY-xx rules
+PASS   selftest-py/container: managed engine, verdict PASS (no blocker/error rule)  -- ('container', [])
+PASS   selftest-py/container: upstream_runs ends with this run (scverse handoff)  -- ['542d4ab2-4bbe-4add-9786-2da766b81013']
+PASS   selftest-py/container: handoff is scverse with AnnData + the colour registry written by the R step  -- [{'name': 'adata', 'type': 'AnnData', 'path': 'objects/adata.h5ad', 'sha256': '2aa2f946ca5e7b79d50891a2f7d8e1f35e4c2b0e98c284b56c708eeb044d1d9f'}, {'name': 'colour_registry', 'type': 'colour_registry', 'path': 'objects/colour_registry.json', 'sha256': '897ef237d5b3efa7198038baac3aa41c5c77b12996f203b
+PASS   selftest-py/container: provenance probe carries the Python environment (interpreter + package versions)  -- {'python': '3.12.13', 'engine': 'container', 'py_env_version': '2026.09.1'}
+PASS   selftest-py/container: provenance entry script is the .py entry  -- {'path': 'skills/omicstat-selftest-py/scripts/run_omicstat_selftest_py.py', 'sha256': 'e8cc6de3960e616d4d320c3c0067950399380661a36beab9ed03961ac00fffa4'}
+PASS   selftest-py/container: the render session's R packages are recorded
+PASS   selftest-py/container: container_image_id is the omicstat-py image; render image ID recorded  -- ('sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f', 'sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f', 'sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7')
+
+========================================================================
+123 assertions, 123 passed, 0 failed, 3 skipped
+  SKIPPED: real run on engine native -- no Rscript on PATH
+  SKIPPED: native-only checks (legacy status, --strict, validate_publication, default outdir) -- native engine unavailable
+  SKIPPED: python module on engine native -- no native environment file
+sample manifest written to /home/<user>/omic-sol61/s5/e2e/sample_manifest.json (5326 chars)

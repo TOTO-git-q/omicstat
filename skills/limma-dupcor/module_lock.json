@@ -1,0 +1,36 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "limma-dupcor",
+  "module_version": "1.1.0",
+  "files": {
+    "skills/limma-dupcor/scripts/limma_dupcor_core.R": "a6f59f7f1107e62e65fa64a4dfa705db5e164b162f4a2c1dbf490ac40f692c83",
+    "skills/limma-dupcor/scripts/limma_dupcor_qc.R": "2ef18574851c41fe43ffe47983b1904913d5395efeeda3b6cad266fa8a1f3d6a",
+    "skills/limma-dupcor/scripts/limma_dupcor_report.R": "ea1beb50213becdc81a23314870cb720fd846a2e9f68081074574ec49e951b8c",
+    "skills/limma-dupcor/scripts/run_limma_dupcor.R": "ac6c01539e9bbbbe1fc7e9b7225065a56ef549225a5a7c325c8529b3040e89c1",
+    "skills/limma-dupcor/scripts/calls_registry.json": "ef410ba9cdb3329928809d6d0aea6bd3bcec12088b7c62cd360e3fc2710f5018",
+    "skills/limma-dupcor/SKILL.md": "3c46f66951bc02c3255dd2bbfc56574d4052b0e92a79e0a83db51dfe261f8b55",
+    "skills/limma-dupcor/references/method-basis.md": "5e301f400d22411e5827be8a3c810d54c8787f433d8f7d23b657e55443741492",
+    "skills/limma-dupcor/references/options.md": "d7d4ef71e2b1b68c6b0bbba5a84fb048ac7327612e6fa5835db2b45a8f0134a7",
+    "skills/limma-dupcor/references/parameters.md": "c188304b05900187791de9f9235dfe49b1b28cc6e1b8044c6b6387ba289f7299",
+    "skills/limma-dupcor/references/qc-rules.md": "251b5ba73d5338754c57bbe41a5a311d98c8c5cce9368d2f0cbfce54bf2b7e98",
+    "skills/limma-dupcor/references/reporting-templates.md": "7ae62f18a72a23a15c7aed4e0cd72f50141838f663b0b095ff34289610fe1997",
+    "skills/limma-dupcor/references/troubleshooting.md": "625b3056273e609bc5f59ffd9d07c949aa8736f919cd80cae26b0a39ae429849",
+    "skills/limma-dupcor/tests/fixtures/guide_yoruba.R": "999d929ecaf7ad4533b36491437ee056f5ffcb1df1d969cb5735f7819925bbc2",
+    "skills/limma-dupcor/tests/fixtures/make_illumina.R": "faa5479d73d5cfca27c78b4a455c2699f106847bea8b0f2af4e684751e79df80",
+    "skills/limma-dupcor/tests/run_smoke_test.R": "a423e1c59b1227efdb89f527d3d2a4a5b4c1b667e8bbfe2daf85f05ffe85621f",
+    "skills/limma-dupcor/tests/golden_manifest.csv": "8e24435f9f447d1856db456adb7b09bf3b941b50e61ab9dc403cb92ea10418ff",
+    "acceptance/exemplars/limma-dupcor/PACK.md": "5f5b8fa45218a04ad3101c8b87110dd285c683276d36ed4ab4c5e525daafbe96"
+  },
+  "packages": {
+    "edgeR": "4.10.5",
+    "limma": "3.68.5"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

@@ -1,0 +1,133 @@
+                        Changes in version 1.25.4
+                        
++ update Gilis et al. citation for DD
++ remove 'cowplot' in favor of 'patchwork'
++ move 'IHW', 'DESeq2' and 'sctransform' to 'Suggests:'
++ omit 'data.table' and 'purrr' everywhere and remove from 'Imports:'
++ #102 fix: use correct CPM values in 'resDS' when 'method=limma-voom'
+                        
+                        Changes in version 1.25.3
+                        
++ up R version dependency to ≥ 4.6
++ rename 'edgeR::calcNormFactors' to 'normLibSizes'
+                        
+                        Changes in version 1.25.2
+
++ bug fix in '.mm_dream' (underlying 'mmDS' methods 'poisson' and 'nbinom'):
+  transform size factors from linear- to log-scale before being used as offset
+                        
+                        Changes in version 1.25.1
+                        
++ fix #146: support for sparse matrices by 'pbDS'
++ updated Germain et al. citation for BBHW
+                        
+                        Changes in version 1.24.0
+
++ Bioconductor 3.22 release
+
+                        Changes in version 1.23.2
+
++ fixed unit test with edge-case failure
++ added missing '@importFrom grDevices hcl.colors'
++ fixed 'BiocParallel::SerialParam progressbar' arg
+
+                        Changes in version 1.23.1
+
++ added bulk-based hypothesis weighing
+
+                        Changes in version 1.23.0
+                        
++ Bioconductor 3.21 release
+
+                        Changes in version 1.19.1
+                        
++ added J Gilis, D Risso, L Clement as authors
++ differential detection with 'pbDS(..., method="DD")' or 'pbDD()'
+  & stagewise testing [Gilis et al.], plus corresponding vignette
++ replace 'aes_string()' in 'ggplot()' by '.data$.' from 'rlang'
+  
+                        Changes in version 1.15.1
+                        
++ bug fix in 'pbDS': too stringent filtering causing no genes in any clusters
+  to be tested previously resulted in a 'subscript out of bounds' error;
+  execution is stopped and an informative error thrown instead.
+  
++ bug fix in 'mmDS': 'dream' (new version?) wouldn't recognize
+  model variables provided as data; fixed via adding 'as.formula()'.
+  
++ "analysis" vignette: replaced suspended 'dplyr' function
+  'top_n' with 'slice_min' when filtering for top DS hits;
+  fixed some typos; updated preprint to journal reference.
+
+                        Changes in version 1.15.0
+                        
++ Bioconductor release v3.17
+
+                        Changes in version 1.12.1
+
++ fixed various typos in both vignettes
++ internal fixes to keep up with 'ggplot2' & 'dplyr' updates
++ bug fix in 'simDS' computing means when one group is missing
++ bug fix in 'resDS' until testing when 'cpm/frq = TRUE'
+
+                        Changes in version 1.11.1
+
++ bug fix in pbHeatmap(): previously failed for results from 'mmDS()'
+
+                        Changes in version 1.9.3
+
++ bug fix in pbDS(): drop samples w/o any detected features,
+  otherwise edgeR::calcNormFactors() fails when lib.size 0
+  
+                        Changes in version 1.8.1
+
++ bug fix in prepSim(): removal of genes with NA coefficients
+  was previously not propagated to the dispersion estimates 
+
++ bug fix in test-resDR.R: set 'min_cells = 0' to assure that
+  everything is being tested, otherwise unit tests could fail
+
+                        Changes in version 1.8.0
+
++ Bioconductor 3.14 release
+
+                        Changes in version 1.7.2
+
++ bug fix in prepSim(): removal of NA coefficients and 
+  subsetting of the input SCE was previously out of synch
+  
+                        Changes in version 1.5.2
+
++ added edgeR::calcNormFactors() step in prepSim()
+
++ added argument 'dd' to simData() specifying  
+  whether or not to simulate 2 groups
+
++ prepSim() and simData() now support simulation of "singular" design  
+  (no samples, no clusters), as well as only samples/clusters
+  
++ simData() defaults to simulating as many samples as available  
+  in order to avoid re-use (duplication) of reference samples
+
+                        Changes in version 1.5.1
+
++ significant speed-up of aggregateData() by replacing usage  
+  of rowX() over a list with scuttle::summarizeAssayByGroup()
+  
++ added options use "prop.detected" and "num.detected" 
+  as summary statistic (argument 'fun') in aggregateData()
+
++ added parallelization support in aggregateData() and pbDS() through argument BBPARAM
+  (passed to scater::sumCountsAcrossCells() and BiocParallel::bplapply, respectively)
+
++ aggregateData() now stores the number of cells that went into aggregation under
+  int_colData(.)$n_cells (vs. metadata(.)$n_cells) to support automated subsetting
+  
++ replaced argument n_threads with BPPARAM throughout all 
+  parallelizable functions (aggregateData(), pbDS(), mmDS())
+  
++ bug fix in prepSim(): the function previously failed when 
+  cluster/sample/group_id cell metadata columns were non-factors
+  
++ bug fix in resDS(): cpm = TRUE previously didn't handle
+  missing cluster-sample combinations correctly

@@ -1,0 +1,17 @@
+test_exactly_five_mcp_tools (__main__.InventoryTests.test_exactly_five_mcp_tools) ... ok
+test_method_map_and_source_status_cover_all_38 (__main__.InventoryTests.test_method_map_and_source_status_cover_all_38) ... ok
+test_router_only_lists_real_entries (__main__.InventoryTests.test_router_only_lists_real_entries) ... ok
+test_routing_dataset_structure_not_accuracy (__main__.InventoryTests.test_routing_dataset_structure_not_accuracy) ... ok
+test_container_launcher_forwards_run_id_argument (__main__.InvocationTests.test_container_launcher_forwards_run_id_argument) ... ok
+test_entry_extension_dispatch (__main__.InvocationTests.test_entry_extension_dispatch) ... ok
+test_exec_passes_run_id_and_closes_protocol_stdin (__main__.InvocationTests.test_exec_passes_run_id_and_closes_protocol_stdin) ... ok
+test_native_launcher_preserves_run_id_and_spaces (__main__.InvocationTests.test_native_launcher_preserves_run_id_and_spaces) ... ok
+test_bound_files_tamper_and_missing (__main__.SealTests.test_bound_files_tamper_and_missing) ... ok
+test_module_identity_is_checked (__main__.SealTests.test_module_identity_is_checked) ... ok
+test_traversal_and_unbound_golden_are_rejected (__main__.SealTests.test_traversal_and_unbound_golden_are_rejected) ... ok
+test_unsealed_real_python_modules_are_blocked (__main__.SealTests.test_unsealed_real_python_modules_are_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 3.272s
+
+OK

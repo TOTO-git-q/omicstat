@@ -1,0 +1,85 @@
+{
+  "schema": "omicstat.publication_rules",
+  "version": "1.1.0",
+  "scope": "shared publication rules; data only",
+  "rule_categories": [
+    "universal_hard",
+    "design_conditional",
+    "advisory",
+    "journal_specific"
+  ],
+  "severities": [
+    "hard_error",
+    "major",
+    "minor",
+    "info"
+  ],
+  "rules": [
+    {
+      "rule_id": "PUB-U-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "title": "Traceable analysed sample set and denominators",
+      "requirement": "Every reportable table and figure identifies the analysed sample set and its denominators - number of samples (biological replicates per group), cells where applicable, and features tested versus filtered - plus the sampling time point where applicable and units.",
+      "automated_checks": [
+        {
+          "name": "omics_case_flow",
+          "severity": "warning",
+          "blocking": false,
+          "requirement": "Compare feature filtering, cell retention or biological-sample ledgers with matching result denominators; absent matching evidence is not_present."
+        }
+      ]
+    },
+    {
+      "rule_id": "PUB-U-002",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "title": "Effect estimates are not p-value-only",
+      "requirement": "Inferential results report the contrast or summary measure, the effect size (for example log2 fold change), its uncertainty (standard error or interval) when estimable, and effect direction; a p value or adjusted p value alone is insufficient."
+    },
+    {
+      "rule_id": "PUB-U-003",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "title": "Cross-artifact numeric consistency",
+      "requirement": "The finalizer compares numbers, directions, units, labels, sample sizes, time points, and rounding across narrative, tables, figure captions, and manifest.",
+      "automated_checks": [
+        {
+          "name": "numeric_text_coverage",
+          "severity": "warning",
+          "blocking": false,
+          "human_review": true,
+          "requirement": "Trace draft and caption numbers at printed precision to canonical tables, result scalars, QC evidence or declared number sources; exclude package versions and years."
+        }
+      ]
+    },
+    {
+      "rule_id": "PUB-U-004",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "title": "Figure minimum information",
+      "requirement": "Figures require a caption, axis labels and units, sample size where relevant, readable legend, explicit reference-line or interval meaning, and an accessible colour palette."
+    },
+    {
+      "rule_id": "PUB-U-005",
+      "category": "design_conditional",
+      "severity": "major",
+      "title": "Methods-to-results traceability",
+      "requirement": "Methods, results, tables or figures, and limitations must be traceable to the declared study contract and executed analysis."
+    },
+    {
+      "rule_id": "PUB-U-006",
+      "category": "advisory",
+      "severity": "minor",
+      "title": "Readable graphical presentation",
+      "requirement": "Avoid truncated scales, unreadable fonts, unexplained decorative elements, and visually misleading encodings."
+    },
+    {
+      "rule_id": "PUB-U-007",
+      "category": "journal_specific",
+      "severity": "minor",
+      "title": "Journal profile differences",
+      "requirement": "A journal-specific preference is warning-only unless an explicit journal profile makes it mandatory."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+COMMAND: /opt/pyvenv/bin/python tools/test_new_module_py.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+PASS: scaffold runs (created skills/scanpy-cluster (QC prefix YC, Python lane))
+PASS: every skeleton file exists (missing: [])
+PASS: no R entry and no unrendered template
+PASS: every placeholder filled
+PASS: registry keyed by distribution name
+PASS: parameters.md comes from templates/module_py
+PASS: run_smoke_test.py byte-compiles
+PASS: scanpy_cluster_qc.py byte-compiles
+PASS: run_scanpy_cluster.py byte-compiles
+PASS: scanpy_cluster_report.py byte-compiles
+PASS: scanpy_cluster_core.py byte-compiles
+PASS: --help works before any scientific import, in the os_help format
+PASS: check_defaults.py passes on the fresh skeleton (scanpy-cluster: 6 flag(s) in --help, 6 with defaults in 2+ sources; 0 problem(s))
+PASS: check_flag_docs.py passes on the fresh skeleton (6/6 flags documented)
+PASS: check_calls.py passes on the fresh skeleton (38 call sites scanned; 0 registry problems; 0 default-drift problems)
+PASS: typed refusal without --input/--from-run
+PASS: an existing module is not overwritten without --force
+PASS: the R scaffold is unchanged (run_*.R, no .py)
+== new_module --python: ALL PASSED
+
+EXIT_CODE: 0

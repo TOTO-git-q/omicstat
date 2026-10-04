@@ -1,0 +1,2 @@
+# Methods template
+Analysis used scran {version}, scuttle, scater and bluster in the locked container. quickCluster and computeSumFactors provided deconvolution size factors; logNormCounts, modelGeneVar, getTopHVGs, runPCA, NNGraphParam/clusterRows and runUMAP produced the native SCE and tables. State the actual CLI and supplementary native options, seed, retained cells, HVGs, PCA rank and neighbour settings. The entry fills versions and actual settings directly; cluster discovery is descriptive.

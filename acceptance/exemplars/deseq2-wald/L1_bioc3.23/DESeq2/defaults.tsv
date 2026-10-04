@@ -1,0 +1,65 @@
+function	argument	default
+DESeq	object	
+DESeq	test	c("Wald", "LRT")
+DESeq	fitType	c("parametric", "local", "mean", "glmGamPoi")
+DESeq	sfType	c("ratio", "poscounts", "iterate")
+DESeq	betaPrior	
+DESeq	full	design(object)
+DESeq	reduced	
+DESeq	quiet	FALSE
+DESeq	minReplicatesForReplace	7
+DESeq	modelMatrixType	
+DESeq	useT	FALSE
+DESeq	minmu	if (fitType == "glmGamPoi") 1e-06 else 0.5
+DESeq	parallel	FALSE
+DESeq	BPPARAM	bpparam()
+DESeqDataSetFromMatrix	countData	
+DESeqDataSetFromMatrix	colData	
+DESeqDataSetFromMatrix	design	
+DESeqDataSetFromMatrix	tidy	FALSE
+DESeqDataSetFromMatrix	ignoreRank	FALSE
+DESeqDataSetFromMatrix	...	
+lfcShrink	dds	
+lfcShrink	coef	
+lfcShrink	contrast	
+lfcShrink	res	
+lfcShrink	type	c("apeglm", "ashr", "normal")
+lfcShrink	lfcThreshold	0
+lfcShrink	svalue	FALSE
+lfcShrink	returnList	FALSE
+lfcShrink	format	c("DataFrame", "GRanges", "GRangesList")
+lfcShrink	saveCols	NULL
+lfcShrink	apeAdapt	TRUE
+lfcShrink	apeMethod	"nbinomCR"
+lfcShrink	parallel	FALSE
+lfcShrink	BPPARAM	bpparam()
+lfcShrink	quiet	FALSE
+lfcShrink	...	
+results	object	
+results	contrast	
+results	name	
+results	lfcThreshold	0
+results	altHypothesis	c("greaterAbs", "greaterAbsUPSHOT", "lessAbs", "greater", "less", "greaterAbs2014")
+results	listValues	c(1, -1)
+results	cooksCutoff	
+results	independentFiltering	TRUE
+results	alpha	0.1
+results	filter	
+results	theta	
+results	pAdjustMethod	"BH"
+results	filterFun	
+results	format	c("DataFrame", "GRanges", "GRangesList")
+results	saveCols	NULL
+results	test	c("Wald", "LRT")
+results	addMLE	FALSE
+results	tidy	FALSE
+results	parallel	FALSE
+results	BPPARAM	bpparam()
+results	minmu	0.5
+varianceStabilizingTransformation	object	
+varianceStabilizingTransformation	blind	TRUE
+varianceStabilizingTransformation	fitType	"parametric"
+vst	object	
+vst	blind	TRUE
+vst	nsub	1000
+vst	fitType	"parametric"

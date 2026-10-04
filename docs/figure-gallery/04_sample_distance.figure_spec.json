@@ -1,0 +1,86 @@
+{
+  "caption": "Sample-to-sample Euclidean distances on transformed expression values (8 samples). Samples are ordered by hierarchical clustering (complete linkage); darker blue indicates more similar samples. The top bar shows condition.",
+  "counts": {
+    "clipped_cells": 0
+  },
+  "data": {
+    "clustering": {
+      "cols": "euclidean/complete",
+      "rows": "euclidean/complete"
+    },
+    "col_order": [
+      "S02",
+      "S04",
+      "S01",
+      "S03",
+      "S05",
+      "S07",
+      "S06",
+      "S08"
+    ],
+    "n_cols": 8,
+    "n_rows": 8,
+    "row_order": [
+      "S02",
+      "S04",
+      "S01",
+      "S03",
+      "S05",
+      "S07",
+      "S06",
+      "S08"
+    ],
+    "show_col_labels": false,
+    "show_row_labels": true
+  },
+  "encodings": {
+    "annotation": {
+      "condition": {
+        "control": "#666666",
+        "treated": "#D55E00"
+      }
+    },
+    "fill": {
+      "clip": null,
+      "limits": [
+        0,
+        67.45535322
+      ],
+      "palette": [
+        "#08306B",
+        "#08519C",
+        "#2171B5",
+        "#4292C6",
+        "#6BAED6",
+        "#9ECAE1",
+        "#C6DBEF",
+        "#DEEBF7",
+        "#F7FBFF"
+      ],
+      "scale": "distance",
+      "title": "Euclidean\ndistance"
+    }
+  },
+  "figure_type": "sample_distance",
+  "files": {
+    "pdf": {
+      "content_sha256": "45e587215026981b34c0f89b479c750aa186db22e405f8dffc3caff7d269474b",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "04_sample_distance.pdf"
+    },
+    "png": {
+      "path": "04_sample_distance.png",
+      "sha256": "bb1141e32fe2c4a6f6779086ec3b5c5d4b0170166d3153deb8ac92d2ff769135"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 75,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

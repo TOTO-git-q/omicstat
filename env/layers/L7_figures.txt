@@ -1,0 +1,13 @@
+# L7 shared figure + report stack (_shared fig_*.R, render_*.R). fonts-liberation via apt.
+ggplot2
+ggrepel
+patchwork
+scales
+svglite
+ragg
+systemfonts
+jsonlite
+digest
+ggrastr
+gt
+testthat

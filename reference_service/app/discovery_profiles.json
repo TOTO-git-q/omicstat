@@ -1,0 +1,791 @@
+{
+ "schema": "omicstat.reference.discovery-profiles.v1",
+ "note": "omicstat_reference discovery profiles. Converted from the omicstat S0 profiles (tools/lit/discovery_profiles.json): epmc_query, signal_regex, require_regex -> signal_require_regex and exclude_regex are copied verbatim (exclude patterns without an inline (?i) are wrapped in (?-i:...) to keep their S0 case-sensitive meaning under the re.I compile of discovery.py); the PACK parameter regexes are dropped (the reference service does not extract parameters). profile_status comes from the S0 live search logs (ok = at least one screened article). The journal whitelist is the gate; the query only ranks within it.",
+ "common_filter": "HAS_FT:Y AND OPEN_ACCESS:Y AND SRC:MED AND NOT PUB_TYPE:\"review\" AND NOT PUB_TYPE:\"preprint\" AND NOT PUB_TYPE:\"retracted publication\" AND FIRST_PDATE:[2020-01-01 TO {today}]",
+ "meta_filter": "HAS_FT:Y AND OPEN_ACCESS:Y AND SRC:MED AND NOT PUB_TYPE:\"review\" AND NOT PUB_TYPE:\"preprint\" AND NOT PUB_TYPE:\"retracted publication\" AND FIRST_PDATE:[2020-01-01 TO {today}]",
+ "sources": {
+  "build/m1m2": {
+   "commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+   "path": "tools/lit/discovery_profiles.json",
+   "sha256": "49f10ab8c17c2830f052cb82a3b620648047d0905597b90023a1a7bf5e620ec3"
+  },
+  "s0/m3-frontends": {
+   "commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+   "path": "tools/lit/discovery_profiles.json",
+   "sha256": "06e1096df0977e0390132d94668adf46717a7b5d7af1ea8f8f03b4cbc5ac97fc"
+  },
+  "s0/m3b-m4": {
+   "commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+   "path": "tools/lit/discovery_profiles.json",
+   "sha256": "c956232634f829d31e083860af0c8d1d586bc722340ad14bd38c7903d93a441e"
+  },
+  "s0/m3c-scverse": {
+   "commit": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1",
+   "path": "tools/lit/discovery_profiles.json",
+   "sha256": "30ba5a209f821d0c4a969263556e04645db420a98ba0844fca4c84fbf4abcfe8"
+  }
+ },
+ "shared_m1m2_profile_drift": {},
+ "profiles": [
+  {
+   "module": "deseq2-wald",
+   "epmc_query": "METHODS:\"DESeq2\" AND (METHODS:\"differentially expressed\" OR METHODS:\"differential expression\" OR METHODS:\"Wald\" OR METHODS:\"lfcShrink\")",
+   "meta": false,
+   "signal_regex": "DESeq2",
+   "signal_require_regex": "differential(?:ly)? express|Wald|lfcShrink|fold[- ]change",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bpseudo-?bulk\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 8834,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/deseq2-wald/literature/search_log.json"
+   }
+  },
+  {
+   "module": "deseq2-qc",
+   "epmc_query": "METHODS:\"DESeq2\" AND (METHODS:\"variance stabilizing\" OR METHODS:\"variance-stabilizing\" OR METHODS:\"vst\" OR METHODS:\"rlog\" OR METHODS:\"regularized log\")",
+   "meta": false,
+   "signal_regex": "(?:variance[- ]stabili[sz]\\w*|\\bvst\\b|varianceStabilizingTransformation|\\brlog\\b|regularized[- ]log\\w*)[^.;]{0,250}?(?:principal[- ]component|\\bPCA\\b|sample[- ](?:to[- ]sample )?distance|sample clustering|hierarchical clustering of (?:the )?samples|outlier|quality control|\\bQC\\b)|(?:principal[- ]component|\\bPCA\\b|sample[- ](?:to[- ]sample )?distance|outlier)[^.;]{0,250}?(?:variance[- ]stabili[sz]\\w*|\\bvst\\b|\\brlog\\b)",
+   "signal_require_regex": "DESeq2",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b|FindVariableFeatures",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 1435,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/deseq2-qc/literature/search_log.json"
+   }
+  },
+  {
+   "module": "deseq2-lrt",
+   "epmc_query": "METHODS:\"DESeq2\" AND (METHODS:\"likelihood ratio test\" OR METHODS:\"likelihood-ratio test\" OR METHODS:\"LRT\")",
+   "meta": false,
+   "signal_regex": "DESeq2[^.;]{0,250}?(?:likelihood[- ]ratio test|\\bLRT\\b|test\\s*=\\s*[\"']LRT)|(?:likelihood[- ]ratio test|\\bLRT\\b)[^.;]{0,250}?DESeq2|nbinomLRT",
+   "signal_require_regex": "DESeq2",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b|\\bCox\\b|\\bPAML\\b|codeml|\\blme4\\b|\\bglmer\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 498,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/deseq2-lrt/literature/search_log.json"
+   }
+  },
+  {
+   "module": "edger-qlf",
+   "epmc_query": "METHODS:\"edgeR\" AND (METHODS:\"quasi-likelihood\" OR METHODS:\"glmQLFit\" OR METHODS:\"glmQLFTest\" OR METHODS:\"QL F-test\")",
+   "meta": false,
+   "signal_regex": "quasi[- ]likelihood|glmQLF(?:it|Test)|QL F[- ]test",
+   "signal_require_regex": "edgeR",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 469,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/edger-qlf/literature/search_log.json"
+   }
+  },
+  {
+   "module": "limma-voom",
+   "epmc_query": "METHODS:\"voom\" AND METHODS:\"limma\"",
+   "meta": false,
+   "signal_regex": "\\bvoom(?:WithQualityWeights)?\\b",
+   "signal_require_regex": "limma",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 941,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/limma-voom/literature/search_log.json"
+   }
+  },
+  {
+   "module": "limma-array",
+   "epmc_query": "METHODS:\"limma\" AND (METHODS:\"microarray\" OR METHODS:\"Affymetrix\" OR METHODS:\"Illumina BeadChip\" OR METHODS:\"Agilent\")",
+   "meta": false,
+   "signal_regex": "\\blimma\\b",
+   "signal_require_regex": "microarray|Affymetrix|BeadChip|Agilent|GeneChip",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b|\\bRNA-seq\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 2372,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/limma-array/literature/search_log.json"
+   }
+  },
+  {
+   "module": "limma-dupcor",
+   "epmc_query": "METHODS:\"duplicateCorrelation\" OR METHODS:\"duplicate correlation\"",
+   "meta": false,
+   "signal_regex": "duplicateCorrelation|duplicate correlation",
+   "signal_require_regex": "limma",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 89,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/limma-dupcor/literature/search_log.json"
+   }
+  },
+  {
+   "module": "sva-batch",
+   "epmc_query": "(METHODS:\"ComBat\" OR METHODS:\"ComBat-seq\" OR METHODS:\"ComBat_seq\" OR METHODS:\"svaseq\" OR METHODS:\"surrogate variable analysis\") AND (METHODS:\"batch\" OR METHODS:\"surrogate variable\")",
+   "meta": false,
+   "signal_regex": "ComBat(?:[-_]seq)?|svaseq|surrogate variable|\\bsva\\b",
+   "signal_require_regex": "batch|surrogate",
+   "exclude_regex": "(?i)\\bsingle[- ]cell\\b|\\bscRNA-seq\\b|\\bsnRNA-seq\\b|\\bmicrobiome\\b|\\b16S\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 941,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/sva-batch/literature/search_log.json"
+   }
+  },
+  {
+   "module": "clusterprofiler-ora",
+   "epmc_query": "METHODS:\"clusterProfiler\" AND (METHODS:\"enrichGO\" OR METHODS:\"enricher\" OR METHODS:\"enrichKEGG\" OR METHODS:\"over-representation\" OR METHODS:\"overrepresentation\" OR METHODS:\"enrichment analysis\")",
+   "meta": false,
+   "signal_regex": "\\b(?:enrichGO|enricher|enrichKEGG|enrichPathway|enrichDO|enrichWP)\\b|clusterProfiler[^.;]{0,250}?(?:over[- ]?representation|enrichment analys[ie]s|hypergeometric|Fisher)|(?:over[- ]?representation|enrichment analys[ie]s|hypergeometric)[^.;]{0,250}?clusterProfiler",
+   "signal_require_regex": "clusterProfiler",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 3128,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/clusterprofiler-ora/literature/search_log.json"
+   }
+  },
+  {
+   "module": "clusterprofiler-gsea",
+   "epmc_query": "METHODS:\"clusterProfiler\" AND (METHODS:\"gseGO\" OR METHODS:\"gseKEGG\" OR METHODS:\"GSEA\" OR METHODS:\"gene set enrichment analysis\")",
+   "meta": false,
+   "signal_regex": "\\b(?:gseGO|gseKEGG|gsePathway|gseMSigDB|gseDO|gseWP)\\b|clusterProfiler[^.;]{0,250}?(?:\\bGSEA\\b|gene[- ]set enrichment analysis)|(?:\\bGSEA\\b|gene[- ]set enrichment analysis)[^.;]{0,250}?clusterProfiler",
+   "signal_require_regex": "clusterProfiler",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 1804,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/clusterprofiler-gsea/literature/search_log.json"
+   }
+  },
+  {
+   "module": "clusterprofiler-compare",
+   "epmc_query": "METHODS:\"compareCluster\"",
+   "meta": false,
+   "signal_regex": "\\bcompareCluster\\b",
+   "signal_require_regex": "clusterProfiler|compareCluster",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 115,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/clusterprofiler-compare/literature/search_log.json"
+   }
+  },
+  {
+   "module": "fgsea-prerank",
+   "epmc_query": "METHODS:\"fgsea\"",
+   "meta": false,
+   "signal_regex": "\\bfgsea(?:Multilevel|Simple)?\\b",
+   "signal_require_regex": "fgsea",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 1379,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/fgsea-prerank/literature/search_log.json"
+   }
+  },
+  {
+   "module": "gsva-score",
+   "epmc_query": "METHODS:\"GSVA\" AND (METHODS:\"gene set variation analysis\" OR METHODS:\"ssGSEA\" OR METHODS:\"gsva\")",
+   "meta": false,
+   "signal_regex": "\\bGSVA\\b|gene[- ]set variation analysis|\\bgsva\\s*\\(|gsvaParam|ssgseaParam",
+   "signal_require_regex": "\\bGSVA\\b|gene[- ]set variation analysis",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 1047,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/gsva-score/literature/search_log.json"
+   }
+  },
+  {
+   "module": "limma-camera",
+   "epmc_query": "METHODS:\"limma\" AND (METHODS:\"camera\" OR METHODS:\"fry\" OR METHODS:\"roast\" OR METHODS:\"mroast\")",
+   "meta": false,
+   "signal_regex": "\\b(?:camera|cameraPR|fry|mroast|roast)\\b[^.;]{0,200}?\\blimma\\b|\\blimma\\b[^.;]{0,200}?\\b(?:camera|cameraPR|fry|mroast|roast)\\b|\\bcameraPR\\b|\\bmroast\\b|\\bcamera\\s+(?:function|test|method|procedure|algorithm)\\b|competitive gene[- ]set test(?:ing)?[^.;]{0,120}?\\blimma\\b",
+   "signal_require_regex": "limma",
+   "exclude_regex": "(?i)\\bmicrobiome\\b|\\b16S\\b|\\bstudy protocol\\b|\\bweb[- ]?server\\b|\\bR package\\b|\\bBioconductor package\\b|\\bmetagenom|\\bXCMS\\b|\\bCAMERA\\b package",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "build/m1m2",
+    "source_commit": "2ddf174fb36cbaa3c280af00b52b92fe7f039d04",
+    "date": "2026-09-27",
+    "hit_count": 709,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/limma-camera/literature/search_log.json"
+   }
+  },
+  {
+   "module": "seurat-qc",
+   "epmc_query": "METHODS:\"Seurat\" AND (METHODS:\"quality control\" OR METHODS:\"mitochondrial\" OR METHODS:\"nFeature_RNA\" OR METHODS:\"filtered cells\")",
+   "meta": false,
+   "signal_regex": "\\bSeurat\\b[^.;\\n]{0,220}?\\b(?:quality control|QC|mitochondrial|nFeature_RNA|nCount_RNA|cell filtering|filtered cells|low[- ]quality cells)\\b|\\b(?:quality control|QC|mitochondrial|nFeature_RNA|nCount_RNA|cell filtering|filtered cells|low[- ]quality cells)\\b[^.;\\n]{0,220}?\\bSeurat\\b",
+   "signal_require_regex": "\\bSeurat\\b",
+   "exclude_regex": "(?i)\\breview\\b|\\bprotocol\\b|\\bbenchmark\\b|\\bspatial transcriptomics\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 6988,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/seurat-qc/literature/search_log.json"
+   }
+  },
+  {
+   "module": "seurat-cluster",
+   "epmc_query": "METHODS:\"Seurat\" AND (METHODS:\"FindClusters\" OR METHODS:\"FindNeighbors\" OR METHODS:\"RunUMAP\" OR METHODS:\"clustering\")",
+   "meta": false,
+   "signal_regex": "\\bSeurat\\b(?:[^.;!?\\n]|\\d[.]\\d){0,220}?\\b(?:cluster(?:ing|ed|s)?|FindClusters|FindNeighbors|RunUMAP|UMAP|Leiden|Louvain)\\b|\\b(?:cluster(?:ing|ed|s)?|FindClusters|FindNeighbors|RunUMAP|UMAP|Leiden|Louvain)\\b(?:[^.;!?\\n]|\\d[.]\\d){0,220}?\\bSeurat\\b",
+   "signal_require_regex": "\\bSeurat\\b",
+   "exclude_regex": "(?i)\\breview\\b|\\bprotocol\\b|\\bbenchmark\\b|\\bspatial transcriptomics\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 7210,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/seurat-cluster/literature/search_log.json"
+   }
+  },
+  {
+   "module": "seurat-integrate",
+   "epmc_query": "METHODS:\"Harmony\" AND METHODS:\"Seurat\" AND (METHODS:\"integration\" OR METHODS:\"batch correction\" OR METHODS:\"RunHarmony\")",
+   "meta": false,
+   "signal_regex": "\\bHarmony\\b(?:[^.;!?\\n]|\\d[.]\\d){0,220}?\\b(?:integrat(?:ion|e|ed|ing)|batch[ -]?correct(?:ion|ed|ing)?|RunHarmony|HarmonyIntegration)\\b|\\b(?:integrat(?:ion|e|ed|ing)|batch[ -]?correct(?:ion|ed|ing)?|RunHarmony|HarmonyIntegration)\\b(?:[^.;!?\\n]|\\d[.]\\d){0,220}?\\bHarmony\\b",
+   "signal_require_regex": "\\bSeurat\\b",
+   "exclude_regex": "(?i)\\breview\\b|\\bprotocol\\b|\\bspatial transcriptomics\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 1151,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/seurat-integrate/literature/search_log.json"
+   }
+  },
+  {
+   "module": "seurat-markers",
+   "epmc_query": "METHODS:\"Seurat\" AND (METHODS:\"FindAllMarkers\" OR METHODS:\"FindMarkers\" OR METHODS:\"marker genes\" OR METHODS:\"differentially expressed genes\")",
+   "meta": false,
+   "signal_regex": "\\b(?:Seurat\\b[^.!?]{0,220}\\b(?:FindAllMarkers|FindMarkers|marker genes?|differential(?:ly)? express(?:ion|ed)?)\\b|(?:FindAllMarkers|FindMarkers|marker genes?|differential(?:ly)? express(?:ion|ed)?)\\b[^.!?]{0,220}\\bSeurat)\\b",
+   "signal_require_regex": "\\b(?:FindAllMarkers|FindMarkers|marker genes?|differential(?:ly)? express(?:ion|ed)?)\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 6383,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/seurat-markers/literature/search_log.json"
+   }
+  },
+  {
+   "module": "seurat-modulescore",
+   "epmc_query": "METHODS:\"Seurat\" AND (METHODS:\"AddModuleScore\" OR METHODS:\"module score\" OR METHODS:\"gene signature score\")",
+   "meta": false,
+   "signal_regex": "\\b(?:Seurat\\b[^.!?]{0,220}\\b(?:AddModuleScore|module scores?|gene signature scores?)\\b|(?:AddModuleScore|module scores?|gene signature scores?)\\b[^.!?]{0,220}\\bSeurat)\\b",
+   "signal_require_regex": "\\b(?:AddModuleScore|module scores?|gene signature scores?)\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 1397,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/seurat-modulescore/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scater-qc",
+   "epmc_query": "(METHODS:\"scater\" OR METHODS:\"scuttle\") AND (METHODS:\"quality control\" OR METHODS:\"cell filtering\" OR METHODS:\"mitochondrial\" OR METHODS:\"perCellQCMetrics\")",
+   "meta": false,
+   "signal_regex": "\\b(?:(?:scater|scuttle)\\b[^.!?]{0,220}\\b(?:quality control|filter(?:ed|ing)? cells?|mitochondrial|perCellQCMetrics|perCellQCFilters|isOutlier)\\b|(?:quality control|filter(?:ed|ing)? cells?|mitochondrial|perCellQCMetrics|perCellQCFilters|isOutlier)\\b[^.!?]{0,220}\\b(?:scater|scuttle))\\b",
+   "signal_require_regex": "\\b(?:quality control|filter(?:ed|ing)? cells?|mitochondrial|perCellQCMetrics|perCellQCFilters|isOutlier)\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 332,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scater-qc/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scran-cluster",
+   "epmc_query": "METHODS:\"scran\" AND (METHODS:\"clustering\" OR METHODS:\"computeSumFactors\" OR METHODS:\"modelGeneVar\" OR METHODS:\"highly variable genes\")",
+   "meta": false,
+   "signal_regex": "\\b(?:scran\\b[^.!?]{0,240}\\b(?:clustering|computeSumFactors|modelGeneVar|variable genes|PCA|UMAP)\\b|(?:clustering|computeSumFactors|modelGeneVar|variable genes|PCA|UMAP)\\b[^.!?]{0,240}\\bscran)\\b",
+   "signal_require_regex": "\\b(?:clustering|computeSumFactors|modelGeneVar|variable genes|PCA|UMAP)\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 469,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scran-cluster/literature/search_log.json"
+   }
+  },
+  {
+   "module": "batchelor-integrate",
+   "epmc_query": "METHODS:\"batchelor\" AND (METHODS:\"fastMNN\" OR METHODS:\"multiBatchNorm\" OR METHODS:\"batch correction\" OR METHODS:\"integration\")",
+   "meta": false,
+   "signal_regex": "\\b(?:batchelor\\b[^.!?]{0,240}\\b(?:fastMNN|multiBatchNorm|batch correction|integrat(?:ion|ed))\\b|(?:fastMNN|multiBatchNorm|batch correction|integrat(?:ion|ed))\\b[^.!?]{0,240}\\bbatchelor)\\b",
+   "signal_require_regex": "\\b(?:fastMNN|multiBatchNorm|batch correction|integrat(?:ion|ed))\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 142,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/batchelor-integrate/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scran-markers",
+   "epmc_query": "METHODS:\"scran\" AND (METHODS:\"scoreMarkers\" OR METHODS:\"findMarkers\" OR METHODS:\"marker genes\" OR METHODS:\"differential expression\")",
+   "meta": false,
+   "signal_regex": "\\b(?:scran\\b[^.!?]{0,240}\\b(?:scoreMarkers|findMarkers|marker genes?|differential(?:ly)? express(?:ion|ed)?)\\b|(?:scoreMarkers|findMarkers|marker genes?|differential(?:ly)? express(?:ion|ed)?)\\b[^.!?]{0,240}\\bscran)\\b",
+   "signal_require_regex": "\\b(?:scoreMarkers|findMarkers|marker genes?|differential(?:ly)? express(?:ion|ed)?)\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 392,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scran-markers/literature/search_log.json"
+   }
+  },
+  {
+   "module": "aucell-score",
+   "epmc_query": "(METHODS:\"AUCell\" OR METHODS:\"GSVA\") AND (METHODS:\"single-cell\" OR METHODS:\"scRNA-seq\" OR METHODS:\"snRNA-seq\") AND (METHODS:\"gene set\" OR METHODS:\"activity score\" OR METHODS:\"enrichment score\" OR METHODS:\"signature\")",
+   "meta": false,
+   "signal_regex": "\\b(?:(?:AUCell|GSVA)\\b[^.!?]{0,260}\\b(?:gene[- ]set|signature|activit\\w*|enrichment|scor\\w*)\\b|(?:gene[- ]set|signature|activit\\w*|enrichment|scor\\w*)\\b[^.!?]{0,260}\\b(?:AUCell|GSVA))\\b",
+   "signal_require_regex": "\\b(?:gene[- ]set|signature|activit\\w*|enrichment|scor\\w*)\\b",
+   "exclude_regex": "(?i)\\bspatial transcriptom\\w*\\b|\\bVisium\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3-frontends",
+    "source_commit": "8756aa465ed898b514ad6e1ff5077d88e799ed19",
+    "date": "2026-09-27",
+    "hit_count": 1025,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/aucell-score/literature/search_log.json"
+   }
+  },
+  {
+   "module": "singler-annotate",
+   "epmc_query": "METHODS:\"SingleR\" AND (METHODS:\"cell type annotation\" OR METHODS:\"cell type identification\" OR METHODS:\"reference-based annotation\" OR METHODS:\"annotated\")",
+   "meta": false,
+   "signal_regex": "\\b(?:annotat\\w*|assign\\w*|label\\w*)\\b[^.!?]{0,140}\\b(?:using|with|by)\\s+(?:the\\s+)?\\bSingleR\\b|\\bSingleR\\b[^.!?]{0,160}\\b(?:was used|were used|used to|prune\\w*|assign\\w*|reference[- ]based|classif\\w*)\\b",
+   "signal_require_regex": "\\bSingleR\\b",
+   "exclude_regex": "(?i)\\b(review|protocol|benchmark|simulation study)\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 450,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/singler-annotate/literature/search_log.json"
+   }
+  },
+  {
+   "module": "muscat-pseudobulk",
+   "epmc_query": "METHODS:\"muscat\" AND (METHODS:\"pseudobulk\" OR METHODS:\"pseudo-bulk\" OR METHODS:\"differential state\" OR METHODS:\"differential expression\" OR METHODS:\"aggregateData\" OR METHODS:\"pbDS\")",
+   "meta": false,
+   "signal_regex": "\\bmuscat\\b[^.!?]{0,180}\\b(pseudo[- ]?bulk|differential (?:gene )?expression|differential state|aggregateData|pbDS)\\b|\\b(pseudo[- ]?bulk|differential (?:gene )?expression|differential state|aggregateData|pbDS)\\b[^.!?]{0,180}\\bmuscat\\b",
+   "signal_require_regex": "\\bmuscat\\b",
+   "exclude_regex": "(?i)\\b(review|benchmark\\w*|simulat\\w*|protocol)\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 56,
+    "screened": 21,
+    "corpus": 21,
+    "target": 30,
+    "search_log": "acceptance/exemplars/muscat-pseudobulk/literature/search_log.json"
+   }
+  },
+  {
+   "module": "speckle-propeller",
+   "epmc_query": "METHODS:\"speckle\" AND (METHODS:\"propeller\" OR METHODS:\"cell type proportion\" OR METHODS:\"differential proportion\" OR METHODS:\"cellular composition\")",
+   "meta": false,
+   "signal_regex": "\\bspeckle\\b[^.!?]{0,180}\\bpropeller\\b|\\bpropeller\\b[^.!?]{0,180}\\bspeckle\\b",
+   "signal_require_regex": "\\bpropeller\\b",
+   "exclude_regex": "(?i)\\b(review|benchmark\\w*|protocol|simulat\\w*)\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 39,
+    "screened": 21,
+    "corpus": 21,
+    "target": 30,
+    "search_log": "acceptance/exemplars/speckle-propeller/literature/search_log.json"
+   }
+  },
+  {
+   "module": "cellchat-communication",
+   "epmc_query": "METHODS:\"CellChat\" AND (METHODS:\"communication\" OR METHODS:\"ligand receptor\" OR METHODS:\"cell-cell interaction\")",
+   "meta": false,
+   "signal_regex": "\\bCellChat\\b[^.!?]{0,180}\\b(?:communicat\\w*|ligand[- ]receptor|interaction\\w*)\\b|\\b(?:communicat\\w*|ligand[- ]receptor|interaction\\w*)\\b[^.!?]{0,180}\\bCellChat\\b",
+   "signal_require_regex": "\\bCellChat\\b",
+   "exclude_regex": "(?i)\\b(review|benchmark\\w*|protocol|simulat\\w*)\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 854,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/cellchat-communication/literature/search_log.json"
+   }
+  },
+  {
+   "module": "monocle3-trajectory",
+   "epmc_query": "(METHODS:\"monocle3\" OR METHODS:\"Monocle 3\") AND (METHODS:\"trajectory\" OR METHODS:\"pseudotime\" OR METHODS:\"learn_graph\" OR METHODS:\"order_cells\")",
+   "meta": false,
+   "signal_regex": "\\bmonocle\\s*3\\b[^.!?]{0,180}\\b(?:trajector\\w*|pseudotime|learn_graph|order_cells)\\b|\\b(?:trajector\\w*|pseudotime|learn_graph|order_cells)\\b[^.!?]{0,180}\\bmonocle\\s*3\\b",
+   "signal_require_regex": "\\bmonocle\\s*3\\b",
+   "exclude_regex": "(?i)\\b(review|benchmark\\w*|protocol|simulat\\w*)\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 795,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/monocle3-trajectory/literature/search_log.json"
+   }
+  },
+  {
+   "module": "slingshot-trajectory",
+   "epmc_query": "METHODS:\"slingshot\" AND (METHODS:\"trajectory\" OR METHODS:\"pseudotime\" OR METHODS:\"lineage\")",
+   "meta": false,
+   "signal_regex": "\\bslingshot\\b[^.!?]{0,180}\\b(?:trajector\\w*|pseudotime|lineage\\w*)\\b|\\b(?:trajector\\w*|pseudotime|lineage\\w*)\\b[^.!?]{0,180}\\bslingshot\\b",
+   "signal_require_regex": "\\bslingshot\\b",
+   "exclude_regex": "(?i)\\b(review|benchmark\\w*|protocol|simulat\\w*)\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 512,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/slingshot-trajectory/literature/search_log.json"
+   }
+  },
+  {
+   "module": "wgcna-network",
+   "epmc_query": "METHODS:\"WGCNA\" AND (METHODS:\"co-expression\" OR METHODS:\"coexpression\" OR METHODS:\"weighted gene\" OR METHODS:\"modules\")",
+   "meta": false,
+   "signal_regex": "\\bWGCNA\\b[^.!?]{0,350}?(?:co[- ]?expression|weighted gene|network|module)|(?:co[- ]?expression|weighted gene|network|module)[^.!?]{0,350}?\\bWGCNA\\b",
+   "signal_require_regex": "WGCNA",
+   "exclude_regex": "(?i)\\breview\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 764,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/wgcna-network/literature/search_log.json"
+   }
+  },
+  {
+   "module": "maftools-landscape",
+   "epmc_query": "METHODS:\"maftools\" AND (METHODS:\"mutation\" OR METHODS:\"MAF\" OR METHODS:\"oncoplot\" OR METHODS:\"tumor mutation burden\")",
+   "meta": false,
+   "signal_regex": "\\bmaftools\\b[^.!?]{0,300}?(?:mutation|mutational|MAF|oncoplot|oncoprint|somatic|tumou?r mutation burden|\\bTMB\\b)|(?:mutation|mutational|MAF|oncoplot|oncoprint|somatic|tumou?r mutation burden|\\bTMB\\b)[^.!?]{0,300}?\\bmaftools\\b",
+   "signal_require_regex": "maftools",
+   "exclude_regex": "(?i)\\breview\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 147,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/maftools-landscape/literature/search_log.json"
+   }
+  },
+  {
+   "module": "immunedeconv-infiltration",
+   "epmc_query": "METHODS:\"immunedeconv\" AND (METHODS:\"immune infiltration\" OR METHODS:\"deconvolution\" OR METHODS:\"cell fraction\" OR METHODS:\"immune cell\")",
+   "meta": false,
+   "signal_regex": "\\bimmunedeconv\\b[^.!?]{0,330}?(?:deconvol|infiltrat|immune cell|cell fraction|cell abundance|tumou?r microenvironment|quantiseq|xCell|EPIC|MCP[- ]?counter|CIBERSORT)|(?:deconvol|infiltrat|immune cell|cell fraction|cell abundance|tumou?r microenvironment|quantiseq|xCell|EPIC|MCP[- ]?counter|CIBERSORT)[^.!?]{0,330}?\\bimmunedeconv\\b",
+   "signal_require_regex": "immunedeconv",
+   "exclude_regex": "(?i)\\breview\\b|\\bprotocol\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3b-m4",
+    "source_commit": "4d17ec1031f2b33c73e703441131b7a757379498",
+    "date": "2026-09-27",
+    "hit_count": 43,
+    "screened": 25,
+    "corpus": 25,
+    "target": 30,
+    "search_log": "acceptance/exemplars/immunedeconv-infiltration/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scanpy-qc",
+   "epmc_query": "METHODS:\"scanpy\" AND (METHODS:\"quality control\" OR METHODS:\"filter_cells\" OR METHODS:\"calculate_qc_metrics\" OR METHODS:\"Scrublet\" OR METHODS:\"mitochondrial\")",
+   "meta": false,
+   "signal_regex": "(?:\\bscanpy\\b[^.;]{0,180}(?:quality control|cell filter|filter_cells|filter_genes|calculate_qc_metrics|mitochondrial|n_genes_by_counts|pct_counts_mt)|(?:quality control|cell filter|filter_cells|filter_genes|calculate_qc_metrics|mitochondrial|n_genes_by_counts|pct_counts_mt)[^.;]{0,180}\\bscanpy\\b)",
+   "signal_require_regex": "\\b(?:scanpy|scVI|scANVI|scvi-tools)\\b",
+   "exclude_regex": "(?i)\\bstudy protocol\\b|\\bbenchmark(?:ing)?\\b|\\breview\\b|\\bsoftware package\\b|\\b16S\\b|\\bmicrobiome\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3c-scverse",
+    "source_commit": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1",
+    "date": "2026-09-27",
+    "hit_count": 1444,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scanpy-qc/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scanpy-cluster",
+   "epmc_query": "METHODS:\"scanpy\" AND (METHODS:\"Leiden\" OR METHODS:\"neighbors\" OR METHODS:\"highly variable genes\" OR METHODS:\"UMAP\")",
+   "meta": false,
+   "signal_regex": "(?:\\bscanpy\\b[^.;]{0,180}(?:Leiden|neighbou?rs|clustering|clustered|highly variable genes)|(?:Leiden|neighbou?rs|clustering|clustered|highly variable genes)[^.;]{0,180}\\bscanpy\\b)",
+   "signal_require_regex": "\\b(?:scanpy|scVI|scANVI|scvi-tools)\\b",
+   "exclude_regex": "(?i)\\bstudy protocol\\b|\\bbenchmark(?:ing)?\\b|\\breview\\b|\\bsoftware package\\b|\\b16S\\b|\\bmicrobiome\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3c-scverse",
+    "source_commit": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1",
+    "date": "2026-09-27",
+    "hit_count": 1683,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scanpy-cluster/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scanpy-markers",
+   "epmc_query": "METHODS:\"scanpy\" AND (METHODS:\"rank_genes_groups\" OR METHODS:\"marker genes\" OR METHODS:\"cluster markers\" OR METHODS:\"Wilcoxon\")",
+   "meta": false,
+   "signal_regex": "(?:\\bscanpy\\b[^.;]{0,180}(?:rank_genes_groups|marker genes?|differentially expressed genes?|Wilcoxon)|(?:rank_genes_groups|marker genes?|differentially expressed genes?|Wilcoxon)[^.;]{0,180}\\bscanpy\\b)",
+   "signal_require_regex": "\\b(?:scanpy|scVI|scANVI|scvi-tools)\\b",
+   "exclude_regex": "(?i)\\bstudy protocol\\b|\\bbenchmark(?:ing)?\\b|\\breview\\b|\\bsoftware package\\b|\\b16S\\b|\\bmicrobiome\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3c-scverse",
+    "source_commit": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1",
+    "date": "2026-09-27",
+    "hit_count": 1235,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scanpy-markers/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scvi-integrate",
+   "epmc_query": "(METHODS:\"scVI\" OR METHODS:\"scvi-tools\") AND (METHODS:\"batch correction\" OR METHODS:\"integration\" OR METHODS:\"latent representation\" OR METHODS:\"batch effects\")",
+   "meta": false,
+   "signal_regex": "(?:\\b(?:scVI|scvi-tools)\\b[^.;]{0,180}(?:batch|integrat|latent|harmoni[sz])|(?:batch|integrat|latent|harmoni[sz])[^.;]{0,180}\\b(?:scVI|scvi-tools)\\b)",
+   "signal_require_regex": "\\b(?:scanpy|scVI|scANVI|scvi-tools)\\b",
+   "exclude_regex": "(?i)\\bstudy protocol\\b|\\bbenchmark(?:ing)?\\b|\\breview\\b|\\bsoftware package\\b|\\b16S\\b|\\bmicrobiome\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3c-scverse",
+    "source_commit": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1",
+    "date": "2026-09-27",
+    "hit_count": 380,
+    "screened": 30,
+    "corpus": 30,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scvi-integrate/literature/search_log.json"
+   }
+  },
+  {
+   "module": "scanvi-annotate",
+   "epmc_query": "(METHODS:\"scANVI\" OR METHODS:\"SCANVI\" OR METHODS:\"scvi-tools\") AND (METHODS:\"annotation\" OR METHODS:\"label transfer\" OR METHODS:\"cell type\")",
+   "meta": false,
+   "signal_regex": "(?:\\b(?:scANVI|SCANVI|scvi-tools)\\b[^.;]{0,180}(?:annotat|label transfer|cell type predict|cell type classif)|(?:annotat|label transfer|cell type predict|cell type classif)[^.;]{0,180}\\b(?:scANVI|SCANVI|scvi-tools)\\b)",
+   "signal_require_regex": "\\b(?:scanpy|scVI|scANVI|scvi-tools)\\b",
+   "exclude_regex": "(?i)\\bstudy protocol\\b|\\bbenchmark(?:ing)?\\b|\\breview\\b|\\bsoftware package\\b|\\b16S\\b|\\bmicrobiome\\b",
+   "profile_status": "ok",
+   "validation_rounds": 1,
+   "s0_validation": {
+    "source_ref": "s0/m3c-scverse",
+    "source_commit": "e006ae1f77c6fc24a77af5cc1b62f9a946fa1ae1",
+    "date": "2026-09-27",
+    "hit_count": 219,
+    "screened": 28,
+    "corpus": 28,
+    "target": 30,
+    "search_log": "acceptance/exemplars/scanvi-annotate/literature/search_log.json"
+   }
+  }
+ ]
+}

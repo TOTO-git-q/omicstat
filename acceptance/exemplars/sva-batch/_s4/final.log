@@ -1,0 +1,121 @@
+PASS: call registry consistent  
+PASS: no default drift  
+PASS: check_defaults.py sva-batch: 15 flag(s) in --help, 15 with defaults in 2+ sources; 0 problem(s) 
+PASS: check_flag_docs.py 15/15 flags documented 
+PASS: engine hygiene lint lint_r: 4 file(s) scanned; 0 problem(s) 
+PASS: A1 bladderbatch ComBat run exits 0 Adjusting the Data |  | 1 of 8 rules triggered; read qc/qc_results.csv first 
+PASS: A1 joint design check: bladderbatch batch x cancer has 8 empty cell(s) (0/11/0; 0/14/4; 0/0/4; 5/0/0; 4/15/0) -> status partial with every cancer coefficient checked estimable (joint design batch + covariates + study variable: rank 7 of 7 columns; all 2 study-variable coefficient(s) estimable) 
+Found5batches
+Adjusting for2covariate(s) or covariate level(s)
+Standardizing Data across genes
+Fitting L/S model and finding priors
+Finding parametric adjustments
+Adjusting the Data
+
+PASS: A1 F4 figures/combat_prior.{pdf,png,figure_spec.json} and tables/combat_prior.csv written on the parametric ComBat path 
+PASS: A1 F4 module gamma.hat / delta.hat (5 batches x 22283 features) equal ComBat's own internals captured by trace() (max |diff| 0.00e+00 / 0.00e+00) 
+PASS: A1 F4 module hyper-parameters equal ComBat's internals: gamma.bar, t2, a.prior (5.2651/7.41455/3.39789/3.10691/8.71633), b.prior (4.6831/6.43578/2.22776/2.61475/9.09342) 
+PASS: A1 F4 ComBat's adjusted matrix is reproduced from the module's gamma.hat/delta.hat/priors via sva:::it.sol (max |diff| vs direct ComBat 0.00e+00) 
+PASS: A1 F4 engine tables/combat_prior.csv carries ComBat's hyper-parameters for every batch 
+PASS: A1 F4 prior curve: the module's log-scale inverse gamma density equals sva:::dinvgamma on the grid (500 finite points) 
+PASS: A1 F4 combat_prior figure(s) (2, split by the journal height limit) cover all 5 batches; captions state method, batches and features: ComBat (par.prior = TRUE, mean.only = FALSE), batches 4, 5 (4-5 of 5) prior diagnostic for 2 batches: kernel density of the per-feature batch-effect estimates (black) against the fitted empirical-Bayes prior (red; normal for the additive effect, inverse gamma for the multiplicative effect); 22283 features. Close agreement supports the parametric prior; marked disagreement suggests par.prior = FALSE. Display only. || ComBat (par.prior = TRUE, mean.only = FALSE), batches 1, 2, 3 (1-3 of 5) prior diagnostic for 3 batches: kernel density of the per-feature batch-effect estimates (black) against the fitted empirical-Bayes prior (red; normal for the additive effect, inverse gamma for the multiplicative effect); 22283 features. Close agreement supports the parametric prior; marked disagreement suggests par.prior = FALSE. Display only. 
+PASS: A1 REPLAY: engine's ComBat output matches a direct ComBat() call with the same protected design (mod = ~cancer; the vignette's own sec 7 example used mod = ~1, an unprotected intercept -- PACK P-2 requires the study variable, so this replay matches what the engine is required to build, not the vignette's simplified example) 
+PASS: A1 no QC blocker on a clean known-batch design 
+PASS: A1 figures/batch_pca. pdf 
+PASS: A1 figures/batch_pca. png 
+PASS: A1 figures/batch_pca. figure_spec.json 
+PASS: A2 bladderbatch sva run exits 0 Number of significant surrogate variables is:  9  | Iteration (out of 5 ):1  2  3  4  5  0 of 8 rules triggered; read draft/methods_results.md first 
+PASS: A2 REPLAY: num.sv(method = "be", B = 20, seed = 20260925) on the full bladderbatch matrix estimates n.sv = 9 (locked to sva 3.60.0 + bladderbatch 1.50.0); got 9 
+PASS: A2 console prints sva's own confirmation message with n.sv = 9 
+PASS: A3 bladderbatch sva --num-sv-method leek exits 0 
+PASS: A3 locked-container value: the engine's num.sv(method = "leek") on the TSV-round-tripped bladderbatch matrix gives n.sv = 2, EQUAL to the vignette sec 4 printed '[1] 2' -- but see A6a: the leek estimate flips on 1e-16 eigenvalue noise, so this equality is not by itself a reproduction of the printed value; got 2 
+KNOWN-FAILING ANCHOR: A6a PRINTED: the vignette's own num.sv(edata,mod,method="leek") in this session gives n.sv = 4; printed 2 (sva.rendered.txt:141). Cause (S4_FIXES.md): leek counts eigenvalues of a projected matrix above a threshold a*(jn)^(-1/3)*57 that starts at a = 0, and 3 of them are exact zeros in theory (rank of mod) that come out as +/-1e-16 rounding noise; 1e-12 input perturbations give 2/4/5 
+Number of significant surrogate variables is:  4 
+Iteration (out of 5 ):1  2  3  4  5  KNOWN-FAILING ANCHOR: A6a PRINTED: the vignette's verbatim sec 4-6 chain with its in-session n.sv = 4 reproduces the printed topTableF (sva.rendered.txt:203-226, 10 rows x 7 columns at printed precision); top row got 207783_x_at C1 = -13.50399 
+Number of significant surrogate variables is:  2 
+Iteration (out of 5 ):1  2  3  4  5  PASS: A6b PRINTED anchor: vignette sva(edata,mod,mod0,n.sv=2) -> modSv/mod0Sv -> lmFit/contrasts.fit/eBayes/topTableF reproduces all 10 printed rows x 7 columns (C1..adj.P.Val) at printed precision, e.g. 207783_x_at C1 = -13.45607117 (printed -13.45607), P = 1.20756e-69 (printed 1.207560e-69) 
+Number of significant surrogate variables is:  2 
+Iteration (out of 5 ):1  2  3  4  5  PASS: A6c REPLAY (a3, n.sv = 2): engine sv_table equals a direct sva(dat, mod = ~cancer, mod0 = ~1, n.sv = 2) on the same matrix (max |diff| = 4.87e-11) 
+PASS: A6c REPLAY (a3): engine SVs in modSv/mod0Sv give the same f.pvalue P-values (all 22283 features) and topTableF as the direct SVs 
+PASS: A6c PRINTED via engine: the engine's leek SVs (n.sv = 2) in the vignette's full/null models reproduce the printed topTableF (10 rows x 7 columns) 
+PASS: A6c engine SVs (TSV input) vs A6b vignette SVs (in-memory edata; the TSV round trip changes cells by <= 5e-14): max |diff| = 4.87e-11 
+Number of significant surrogate variables is:  9 
+Iteration (out of 5 ):1  2  3  4  5  PASS: A6c REPLAY (a2, n.sv = 9): engine sv_table equals a direct sva(dat, mod = ~cancer, mod0 = ~1, n.sv = 9) on the same matrix (max |diff| = 4.99e-11) 
+PASS: A6c REPLAY (a2): engine SVs in modSv/mod0Sv give the same f.pvalue P-values (all 22283 features) and topTableF as the direct SVs 
+PASS: A4 zebrafishRNASeq svaseq run exits 0 Number of significant surrogate variables is:  1  | Iteration (out of 5 ):1  2  3  4  5  0 of 8 rules triggered; read draft/methods_results.md first 
+PASS: A4 num.sv(method = "be") on zfGenes estimates n.sv = 1, matching the vignette sec 13's own (there manually fixed) n.sv = 1; got 1 
+PASS: A4 PRINTED anchor: console reproduces the vignette's own 'Number of significant surrogate variables is: 1' (sec 13) 
+PASS: A4 closing line format: Iteration (out of 5 ):1  2  3  4  5  0 of 8 rules triggered; read draft/methods_results.md first 
+PASS: A5 ComBat_seq simulated run exits 0 Shrinkage off - using GLM estimates for parameters | Adjusting the data | 0 of 8 rules triggered; read draft/methods_results.md first 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Found 2 batches' verbatim 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Using full model in ComBat-seq.' verbatim 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Adjusting for 1 covariate(s) or covariate level(s)' verbatim 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Estimating dispersions' verbatim 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Fitting the GLM model' verbatim 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Shrinkage off - using GLM estimates for parameters' verbatim 
+PASS: A5 REPLAY: console reproduces the vignette sec 8 ComBat_seq message 'Adjusting the data' verbatim 
+Found 2 batches
+Using full model in ComBat-seq.
+Adjusting for 1 covariate(s) or covariate level(s)
+Estimating dispersions
+Fitting the GLM model
+Shrinkage off - using GLM estimates for parameters
+Adjusting the data
+PASS: A5 REPLAY: engine's ComBat_seq output is byte-identical to a direct ComBat_seq() call with the same args 
+PASS: A5 ComBat_seq output preserves the integer nature of the count matrix (vignette sec 8) 
+PASS: D1 --spec replay exits 0 
+PASS: D1 byte-identical on replay: tables/corrected_matrix.csv 
+PASS: D1 byte-identical on replay: tables/batch_report.md 
+PASS: D1 byte-identical on replay: results/sva_batch_results.json 
+PASS: D1 byte-identical on replay: figures/batch_pca.figure_spec.json 
+PASS: D1 byte-identical on replay: figures/batch_pca.png 
+PASS: D1 byte-identical on replay: draft/methods_results.md 
+PASS: D2 --from-run gives the same corrected matrix as --input/--samples 
+PASS: D2 upstream_runs chain recorded 
+PASS: D2 the canonical 'count_matrix' handoff object is deliberately typed batch_corrected_matrix (PACK P-1) 
+PASS: D3 a changed upstream object is refused (OS_HANDOFF_MISMATCH) 
+PASS: D4 deseq2-wald --from-run <sva-batch run> is refused with OS_BATCH_CORRECTED_INPUT (PACK S1 P-1, cross-module) 
+PASS: E1 combat_seq without --batch -> OS_MISSING_PARAMETER 
+PASS: E2 svaseq given --batch -> OS_CONFLICTING_PARAMETERS 
+PASS: E3 combat_seq + continuous --study-var -> OS_UNSUPPORTED_DESIGN 
+PASS: E4 --batch identical to --study-var (full confounding) -> OS_INVALID_DESIGN 
+PASS: E5 sva: --covariates perfectly collinear with --study-var (same grouping, different labels) -> OS_INVALID_DESIGN 
+PASS: E9 combat: --covariates cov1 identical to --batch -> typed OS_INVALID_DESIGN before ComBat runs (no raw package error, no output); got: Error: OS_INVALID_DESIGN: --covariates cov1 confounded with --batch (the joint protected design batch + covariates + study variable has rank 3 of 4 columns, so ComBat/ComBat_seq would stop). Every --study-var coefficient is estimable; drop the confounded covariate(s) -- the batch already absorbs them. | Error: OS_INVALID_DESIGN: --covariates cov1 confounded with --batch (the joint protected design batch + covariates + study variable has rank 3 of 4 columns, so ComBat/ComBat_seq would stop). Every --study-var coefficient is estimable; drop the confounded covariate(s) -- the batch already absorbs them. 
+PASS: E9 combat_seq: --covariates cov1 identical to --batch -> typed OS_INVALID_DESIGN before ComBat runs (no raw package error, no output); got: Error: OS_INVALID_DESIGN: --covariates cov1 confounded with --batch (the joint protected design batch + covariates + study variable has rank 3 of 4 columns, so ComBat/ComBat_seq would stop). Every --study-var coefficient is estimable; drop the confounded covariate(s) -- the batch already absorbs them. | Error: OS_INVALID_DESIGN: --covariates cov1 confounded with --batch (the joint protected design batch + covariates + study variable has rank 3 of 4 columns, so ComBat/ComBat_seq would stop). Every --study-var coefficient is estimable; drop the confounded covariate(s) -- the batch already absorbs them. 
+PASS: E10 partial confounding with a NON-estimable study contrast (level c only in batch b2) -> typed OS_INVALID_DESIGN naming it: Error: OS_INVALID_DESIGN: --batch and --study-var are partially confounded so that the study-variable coefficient(s) c (against the reference level) are NOT estimable jointly with the batch: those levels occur only inside batches that no other level shares. ComBat/ComBat_seq cannot protect them. Redesign, merge levels, or drop the samples of the non-estimable level(s). 
+PASS: E11 partially confounded but estimable design runs: Adjusting the data | 1 of 8 rules triggered; read qc/qc_results.csv first 
+PASS: E11 partial status, SB-05 warning, and the draft/batch report state the actual estimability check result (rank 4 of 4, 2 study coefficients) instead of an unchecked claim 
+PASS: E12 single-level --covariates -> typed OS_INVALID_DESIGN (not a raw model.matrix contrasts error) 
+PASS: E6 non-integer counts -> SB-01 blocker, qc table written, draft withheld 
+PASS: E7 a single --batch level -> SB-03 blocker 
+PASS: E8 misspelled flag -> OS_UNKNOWN_FLAG 
+PASS: F1 --num-sv-method leek reaches the engine (be: n.sv=0, leek: n.sv=0) 
+PASS: F2 --covariates changes the fitted design (n.sv or state differs) 
+PASS: F3 --pca-ntop 50 reaches the PCA figure (figure_spec ntop = 50) 
+PASS: W a1 batch_report.md states the actual models and call parameters (- Protected design: mod = model.matrix(~ cancer) || - Fitted model: ~ -1 + batch + cancer || sva::ComBat(par.prior = TRUE, prior.plots = FALSE, mean.only = FALSE, ref.batch = NULL)) 
+PASS: W a1 Methods draft states the actual models and call parameters (The protected design was mod = model.matrix(~ cancer); ComBat fits, per feature, ~ -1 + batch + cancer. || par.prior = TRUE (parametric empirical Bayes), mean.only = FALSE (location and scale adjusted) and ref.batch = NULL) 
+PASS: W a1 results JSON carries models/calls with the values the calls received 
+PASS: W a2 batch_report.md states the actual models and call parameters (- Null model ~ 1 || sva::num.sv(method = "be", vfilter = NULL, B = 20, seed = 20260925) -> n.sv = 9 || sva::sva(controls = NULL, method = "irw", vfilter = NULL, B = 5, numSVmethod = "be", n.sv = 9) || limma::removeBatchEffect(x = input matrix, batch = NULL, batch2 = NULL, group = NULL, covariates = SV1 + SV2 + SV3 + SV4 + SV5 + SV6 + SV7 + SV8 + SV9, design = full model (mod))) 
+PASS: W a2 Methods draft states the actual models and call parameters (The full model was ~ cancer and the null model ~ 1 || num.sv(method = "be", B = 20, seed = 20260925, vfilter = NULL) || sva was run with method = "irw", B = 5 iterations, vfilter = NULL, controls = NULL || covariates = the 9 surrogate variable(s), design = the full model, batch = NULL) 
+PASS: W a2 results JSON carries models/calls with the values the calls received 
+PASS: W a3 batch_report.md states the actual models and call parameters (method "leek": asymptotic estimate; B and seed are passed but only the "be" branch uses them) 
+PASS: W a3 Methods draft states the actual models and call parameters (num.sv(method = "leek", B = 20, seed = 20260925, vfilter = NULL) (B and seed are used only by the permutation method "be")) 
+PASS: W a3 results JSON carries models/calls with the values the calls received 
+PASS: W a4 batch_report.md states the actual models and call parameters (sva::svaseq(controls = NULL, method = "irw", vfilter = NULL, B = 5, numSVmethod = "be", constant = 1, n.sv = 1)) 
+PASS: W a4 Methods draft states the actual models and call parameters (svaseq was run with method = "irw", B = 5 iterations, vfilter = NULL, controls = NULL and constant = 1 (log(counts + 1))) 
+PASS: W a4 results JSON carries models/calls with the values the calls received 
+PASS: W a5 batch_report.md states the actual models and call parameters (- Protected design: group = group; covar_mod = NULL || sva::ComBat_seq(full_mod = TRUE, shrink = FALSE, shrink.disp = FALSE, gene.subset.n = NULL) || covar_mod columns: none (NULL)) 
+PASS: W a5 Methods draft states the actual models and call parameters (ComBat_seq was run with full_mod = TRUE, shrink = FALSE, shrink.disp = FALSE (GLM estimates without empirical Bayes shrinkage) and gene.subset.n = NULL; covar_mod = NULL.) 
+PASS: W a5 results JSON carries models/calls with the values the calls received 
+PASS: W f2 batch_report.md states the actual models and call parameters (- Protected design: mod = model.matrix(~ cov1 + grp) || - Null model ~ cov1) 
+PASS: W f2 Methods draft states the actual models and call parameters (The full model was ~ cov1 + grp and the null model ~ cov1) 
+PASS: W f2 results JSON carries models/calls with the values the calls received 
+PASS: F4 a2 (no parametric ComBat prior on this path): no combat_prior figure/table, and the batch report says why 
+PASS: F4 a4 (no parametric ComBat prior on this path): no combat_prior figure/table, and the batch report says why 
+PASS: F4 a5 (no parametric ComBat prior on this path): no combat_prior figure/table, and the batch report says why 
+PASS: G golden baseline  
+PASS: no Rplots.pdf device leak 
+KNOWN-FAILING ANCHOR (documented in S4_FIXES.md): A6a PRINTED: the vignette's own num.sv(edata,mod,method="leek") in this session gives n.sv = 4; printed 2 (sva.rendered.txt:141). Cause (S4_FIXES.md): leek counts eigenvalues of a projected matrix above a threshold a*(jn)^(-1/3)*57 that starts at a = 0, and 3 of them are exact zeros in theory (rank of mod) that come out as +/-1e-16 rounding noise; 1e-12 input perturbations give 2/4/5 
+KNOWN-FAILING ANCHOR (documented in S4_FIXES.md): A6a PRINTED: the vignette's verbatim sec 4-6 chain with its in-session n.sv = 4 reproduces the printed topTableF (sva.rendered.txt:203-226, 10 rows x 7 columns at printed precision); top row got 207783_x_at C1 = -13.50399 
+SMOKE PASSED (with 2 documented KNOWN-FAILING anchor(s), listed above)
+EXIT 0

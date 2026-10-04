@@ -1,0 +1,18 @@
+function	argument	default
+aggregateData	x	
+aggregateData	assay	NULL
+aggregateData	by	c("cluster_id", "sample_id")
+aggregateData	fun	c("sum", "mean", "median", "prop.detected", "num.detected")
+aggregateData	scale	FALSE
+aggregateData	verbose	TRUE
+aggregateData	BPPARAM	SerialParam(progressbar = verbose)
+pbDS	pb	
+pbDS	method	c("edgeR", "DESeq2", "limma-trend", "limma-voom", "DD")
+pbDS	design	NULL
+pbDS	coef	NULL
+pbDS	contrast	NULL
+pbDS	min_cells	10
+pbDS	filter	c("both", "genes", "samples", "none")
+pbDS	treat	FALSE
+pbDS	verbose	TRUE
+pbDS	BPPARAM	SerialParam(progressbar = verbose)

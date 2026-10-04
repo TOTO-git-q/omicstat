@@ -1,0 +1,29 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "aucell-score",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/aucell-score/scripts/aucell_score_core.R": "ab066dad726282bc2f6c5b09ef7b02ad420b775240be4b3b3a5364267ee3b259",
+    "skills/aucell-score/scripts/run_aucell_score.R": "0c7bbcb3d98a1f0d3a5c8ec0e7410d215283d653a9b38bef71b10113a2b15371",
+    "skills/aucell-score/scripts/calls_registry.json": "e602d2a7fb8327f47291a772f2eb3aeac574d602c1504c7ced137d9ca60da456",
+    "skills/aucell-score/SKILL.md": "6e8ee5ed12c62c2e1bf548c441463720770a58e6a38ba76d688ef6ab954df2be",
+    "skills/aucell-score/references/options.md": "35ebe3c99122071f8f58cf8426175dbd9d1b6a4d5f9f327e3bf07875f5bee3f2",
+    "skills/aucell-score/tests/fixtures/make_aucell_brain.R": "676486f746b783a1f1f2e27d904508816f57d2a24502ce30e05cbd3256ba4ce1",
+    "skills/aucell-score/tests/run_smoke_test.R": "f0f8d9fcf0bd67f7322d9ace24c439595e5aba4609490db04599d324c8e40e6e",
+    "skills/aucell-score/tests/golden_manifest.csv": "84de7bb805658132e68a324b2edebf20988ce054fbe40e7eb73adb0b3c0feb89",
+    "acceptance/exemplars/aucell-score/PACK.md": "fabc21e9d17361c0dfb3672780b39fb085d0834152f9d47ffece74cd0755324b"
+  },
+  "packages": {
+    "AUCell": "1.34.0",
+    "BiocParallel": "1.46.0",
+    "GSEABase": "1.74.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

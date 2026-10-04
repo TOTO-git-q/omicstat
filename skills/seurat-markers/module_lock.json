@@ -1,0 +1,34 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "seurat-markers",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/seurat-markers/scripts/run_seurat_markers.R": "384a9e52e0b9b7f7a7290e54cd88d338061e916ddcdfe719a5fbbb08d40881e7",
+    "skills/seurat-markers/scripts/seurat_markers_core.R": "4b357d2888f6563ff1dcc5d41f570db1360c7b2ecd7f32b4a55e4e5558619047",
+    "skills/seurat-markers/scripts/seurat_markers_qc.R": "fc63de402de2febce69bcf0ce4bef8eeb48af29615dbae9f16f959417e3396b1",
+    "skills/seurat-markers/scripts/seurat_markers_report.R": "380af383bb707a0abdecb5c4514d53e0facf74bf474b74d15a422b226f330bcb",
+    "skills/seurat-markers/scripts/calls_registry.json": "234fd54801cab419724d1111820f89b5694b39f303d18e364189f11fb903b856",
+    "skills/seurat-markers/SKILL.md": "00cb22945e2ada3a5322d4d35305858f3ba66d960081a3fdfdfacbb5ad6df5f9",
+    "skills/seurat-markers/references/method-basis.md": "c8ecb50104f0d4b3e9d502ee75c3fe6c6e4a66f02a09c89a4886f55d454a7f6d",
+    "skills/seurat-markers/references/options.md": "039a88228b24b3e0a5c4483ec2936d045078e334ded66ff946c32cc267b6a486",
+    "skills/seurat-markers/references/parameters.md": "cdfef4578c71523311a61df8c419bddc1e393ce0facaf1ce0c8311a248254263",
+    "skills/seurat-markers/references/qc-rules.md": "3cf7617cd83ebcc4c523e7ea7519a31873ec3fc7203d7dc76578c965735e0042",
+    "skills/seurat-markers/references/reporting-templates.md": "dc76dd5629e6f9f3a3e382d4dbc5ffe3565925e3de04efc69421c1772b9bf703",
+    "skills/seurat-markers/references/troubleshooting.md": "8d7fb549e8a5fcfcaaa58d815e82b107d56c9d7d3cf65a77d17d28fdbac6ba06",
+    "skills/seurat-markers/tests/run_smoke_test.R": "7f70480981791526805633ee172318e77436fc27f1982baeb2825ea1d16786cf",
+    "skills/seurat-markers/tests/golden_manifest.csv": "970740a71a5d79a312ba8a34e1d5c106da30320c3e163726fc71b78609c106d7",
+    "acceptance/exemplars/seurat-markers/PACK.md": "e363ea8a036246e9a5bba8168b25db728ad0cfe838748eff5b28162f8cf13213"
+  },
+  "packages": {
+    "Seurat": "5.5.1",
+    "SeuratObject": "5.4.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

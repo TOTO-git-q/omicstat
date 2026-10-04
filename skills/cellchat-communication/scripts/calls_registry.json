@@ -1,0 +1,714 @@
+{
+  "module": "cellchat-communication",
+  "package_versions": {
+    "CellChat": "2.2.0.9001"
+  },
+  "calls": [
+    {
+      "fn": "CellChat::createCellChat",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "meta": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "group.by": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "datatype": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"RNA\", \"spatial\")",
+          "flag": "--create-datatype"
+        },
+        "coordinates": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--create-coordinates"
+        },
+        "spatial.factors": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--create-spatial-factors"
+        },
+        "assay": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--create-assay"
+        },
+        "do.sparse": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "T",
+          "flag": "--create-do-sparse"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::subsetDB",
+      "args": {
+        "CellChatDB": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "search": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c()"
+        },
+        "key": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"annotation\""
+        },
+        "non_protein": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--db-non-protein"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::subsetData",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "features": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--subset-features"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::identifyOverExpressedGenes",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "data.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--genes-data-use"
+        },
+        "group.by": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--genes-group-by"
+        },
+        "idents.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--genes-idents-use"
+        },
+        "invert": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--genes-invert"
+        },
+        "group.dataset": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--genes-group-dataset"
+        },
+        "pos.dataset": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--genes-pos-dataset"
+        },
+        "group.DE.combined": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--genes-group-de-combined"
+        },
+        "features.name": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"features\"",
+          "flag": "--genes-features-name"
+        },
+        "only.pos": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--genes-only-pos"
+        },
+        "features": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--genes-features"
+        },
+        "return.object": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--genes-return-object"
+        },
+        "thresh.pc": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0",
+          "flag": "--genes-thresh-pc"
+        },
+        "thresh.fc": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0",
+          "flag": "--genes-thresh-fc"
+        },
+        "thresh.p": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.05",
+          "flag": "--genes-thresh-p"
+        },
+        "do.DE": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--genes-do-de"
+        },
+        "do.fast": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--genes-do-fast"
+        },
+        "min.cells": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "10",
+          "flag": "--genes-min-cells"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::identifyOverExpressedInteractions",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "features.name": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"features\"",
+          "flag": "--interactions-features-name"
+        },
+        "variable.both": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--interactions-variable-both"
+        },
+        "features": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--interactions-features"
+        },
+        "return.object": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--interactions-return-object"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::computeCommunProb",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "type": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "c(\"triMean\", \"truncatedMean\", \"thresholdedMean\", \"median\")",
+          "flag": "--prob-type"
+        },
+        "trim": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.1",
+          "flag": "--prob-trim"
+        },
+        "LR.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--prob-lr-use"
+        },
+        "raw.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--prob-raw-use"
+        },
+        "population.size": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--prob-population-size"
+        },
+        "distance.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--prob-distance-use"
+        },
+        "interaction.range": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "250",
+          "flag": "--prob-interaction-range"
+        },
+        "scale.distance": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.01",
+          "flag": "--prob-scale-distance"
+        },
+        "k.min": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "10",
+          "flag": "--prob-k-min"
+        },
+        "contact.dependent": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--prob-contact-dependent"
+        },
+        "contact.range": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--prob-contact-range"
+        },
+        "contact.knn.k": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--prob-contact-knn-k"
+        },
+        "contact.dependent.forced": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--prob-contact-dependent-forced"
+        },
+        "do.symmetric": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--prob-do-symmetric"
+        },
+        "nboot": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "100",
+          "flag": "--prob-nboot"
+        },
+        "seed.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "1L",
+          "flag": "--prob-seed-use"
+        },
+        "Kh": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.5",
+          "flag": "--prob-kh"
+        },
+        "n": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "1",
+          "flag": "--prob-n"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::filterCommunication",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "min.cells": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "10",
+          "flag": "--filter-min-cells"
+        },
+        "min.samples": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--filter-min-samples"
+        },
+        "rare.keep": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--filter-rare-keep"
+        },
+        "nonFilter.keep": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "FALSE",
+          "flag": "--filter-nonfilter-keep"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::computeCommunProbPathway",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "net": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--pathway-net"
+        },
+        "pairLR.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--pathway-pairlr-use"
+        },
+        "thresh": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.05",
+          "flag": "--pathway-thresh"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::aggregateNet",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": ""
+        },
+        "sources.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--aggregate-sources-use"
+        },
+        "targets.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--aggregate-targets-use"
+        },
+        "signaling": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--aggregate-signaling"
+        },
+        "pairLR.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--aggregate-pairlr-use"
+        },
+        "remove.isolate": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--aggregate-remove-isolate"
+        },
+        "thresh": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.05",
+          "flag": "--aggregate-thresh"
+        },
+        "return.object": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "TRUE",
+          "flag": "--aggregate-return-object"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::subsetCommunication",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "net": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-net"
+        },
+        "slot.name": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"net\"",
+          "flag": "--communication-slot-name"
+        },
+        "sources.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-sources-use"
+        },
+        "targets.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-targets-use"
+        },
+        "signaling": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-signaling"
+        },
+        "pairLR.use": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-pairlr-use"
+        },
+        "thresh": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.05",
+          "flag": "--communication-thresh"
+        },
+        "datasets": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-datasets"
+        },
+        "ligand.pvalues": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-ligand-pvalues"
+        },
+        "ligand.logFC": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-ligand-logfc"
+        },
+        "ligand.pct.1": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-ligand-pct-1"
+        },
+        "ligand.pct.2": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-ligand-pct-2"
+        },
+        "receptor.pvalues": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-receptor-pvalues"
+        },
+        "receptor.logFC": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-receptor-logfc"
+        },
+        "receptor.pct.1": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-receptor-pct-1"
+        },
+        "receptor.pct.2": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--communication-receptor-pct-2"
+        }
+      }
+    },
+    {
+      "fn": "CellChat::netAnalysis_computeCentrality",
+      "args": {
+        "object": {
+          "value": "workflow input",
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL"
+        },
+        "slot.name": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "\"netP\"",
+          "flag": "--centrality-slot-name"
+        },
+        "net": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--centrality-net"
+        },
+        "net.name": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "NULL",
+          "flag": "--centrality-net-name"
+        },
+        "thresh": {
+          "value": null,
+          "source": "locked function formals; official workflow input",
+          "pack": "PACK C/D; local L1",
+          "function_default": "0.05",
+          "flag": "--centrality-thresh"
+        }
+      }
+    }
+  ],
+  "accessors": []
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omicstat.local/schemas/literature_evidence.v1.schema.json",
+  "title": "LiteratureEvidence v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "record_id",
+    "identifiers",
+    "bibliographic",
+    "source_verifications",
+    "full_text",
+    "locators",
+    "adjudication"
+  ],
+  "properties": {
+    "schema_version": {"const": "omicstat.literature-evidence.v1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "identifiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "doi": {"type": ["string", "null"]},
+        "pmid": {"type": ["string", "null"]},
+        "pmcid": {"type": ["string", "null"]}
+      },
+      "anyOf": [
+        {"required": ["doi"], "properties": {"doi": {"type": "string", "minLength": 1}}},
+        {"required": ["pmid"], "properties": {"pmid": {"type": "string", "minLength": 1}}},
+        {"required": ["pmcid"], "properties": {"pmcid": {"type": "string", "minLength": 1}}}
+      ]
+    },
+    "bibliographic": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["title", "journal", "year"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "journal": {"type": "string", "minLength": 1},
+        "year": {"type": "integer", "minimum": 1800, "maximum": 3000}
+      }
+    },
+    "source_verifications": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["source", "verified_at"],
+        "properties": {
+          "source": {"type": "string", "minLength": 1},
+          "verified_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "full_text": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["level", "permission", "retrieved_at"],
+      "properties": {
+        "level": {"enum": ["jats", "html", "pdf_text", "pdf_ocr", "abstract_only", "unavailable"]},
+        "permission": {"enum": ["open_access", "public_domain", "licensed_local_only", "unknown", "denied"]},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"},
+        "retrieved_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "locators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["kind", "value"],
+        "properties": {
+          "kind": {"enum": ["section", "paragraph", "figure", "table", "caption", "page"]},
+          "value": {"type": "string", "minLength": 1},
+          "excerpt": {"type": ["string", "null"], "maxLength": 500}
+        }
+      }
+    },
+    "adjudication": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["not_required", "pending", "accepted", "rejected"]},
+        "note": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

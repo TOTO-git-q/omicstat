@@ -1,0 +1,27 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "maftools-landscape",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/maftools-landscape/scripts/maftools_landscape_core.R": "83c8137a28d7486afd610dd15760830370e4cc0cd77a4c0557517561c3787290",
+    "skills/maftools-landscape/scripts/run_maftools_landscape.R": "98ebb88eb7e14b116ca5f68bb4e192fbcd5db8f82437c56309b17e2b0c42372e",
+    "skills/maftools-landscape/scripts/calls_registry.json": "634c9166788be4d974c65a4e58281edfa5f17f34a948bc335d429a4ece7cd6f3",
+    "skills/maftools-landscape/SKILL.md": "c5048160693519d59e43e918b5cea67a7750cc54f2b77c56cda1e503ef62755e",
+    "skills/maftools-landscape/references/options.md": "6d3f53d5f0e5bc13a972457e7315dc02d6b2bfbea81adf36ef6381c044f1cd67",
+    "skills/maftools-landscape/references/reporting-templates.md": "b68484b5f57378c18d56bb4ffc0792cc032f09a54d58b168098826016f4606ed",
+    "skills/maftools-landscape/tests/run_smoke_test.R": "27e9e02ad0cc69da0cff51a2b0138f173b8c731a42443af4d06036120ce1088d",
+    "skills/maftools-landscape/tests/golden_manifest.csv": "7587aa5b650bdaf7d62a7ce781e460539b1b1cc40ab52f73eafa3b76586b488a",
+    "acceptance/exemplars/maftools-landscape/PACK.md": "cdac7018b300b5aae941740ecb373519b24a077b09ed95ada2eaff304d52681d"
+  },
+  "packages": {
+    "maftools": "2.28.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

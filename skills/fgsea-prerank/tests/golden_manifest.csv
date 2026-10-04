@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/enrichment_table.csv,5da574f0760b382719488fe9a0d1094abd2dc6f1e59d8d714bcba5e3567d19c6,container,
+results/fgsea_prerank_results.json,7f6a1b9a074a9d9cba07a16e377410d6dd441a0386941f46f0c72b8a7cba74eb,container,
+figures/nes_bar.png,6a1e1440604b4f51110a5c172483cba91f9e7ef6df455d4ee5edaec767750057,container,
+figures/nes_bar.figure_spec.json,9f441a15f2df1174e6561bac643e825676c8b32a8a00d7a696b53ec2704b93db,container,
+figures/gsea_curve.png,0f8c6542c0c4917f1043a6121a8d72066541949385fc37cda6d1f0f8341fbd41,container,
+figures/gsea_curve.figure_spec.json,81d489fc58c890bc83030c771cfab4af450c633841fb74a5e2dc07ef8f74f30d,container,

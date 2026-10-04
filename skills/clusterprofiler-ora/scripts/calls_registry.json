@@ -1,0 +1,171 @@
+{
+  "module": "clusterprofiler-ora",
+  "note": "formals read from locked omicstat-r:2026.09.1; simplify is an S4 generic, method arguments are passed through ... and show <absent> on generic formals. enrichit::EXTID2NAME is the ID-to-symbol mapper used by setReadable; it only fills the supplementary symbol tables (S4 F2) and never changes a tested value.",
+  "package_versions": {
+    "clusterProfiler": "4.20.0",
+    "enrichit": "0.2.1"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--alpha": 0.05,
+    "--top-n": 15,
+    "--id-column": "feature_id",
+    "--database": "GO",
+    "--journal": "nature",
+    "--simplify": false
+  },
+  "calls": [
+    {
+      "fn": "clusterProfiler::enrichGO",
+      "args": {
+        "gene": {
+          "value": "selected genes",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": ""
+        },
+        "OrgDb": {
+          "value": "org.Hs.eg.db 3.23.1",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": ""
+        },
+        "keyType": {
+          "value": "ENTREZID",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"ENTREZID\"",
+          "flag": "--key-type"
+        },
+        "ont": {
+          "value": "BP",
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "\"MF\"",
+          "flag": "--ontology"
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note",
+          "pack": "D-O5",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "\"BH\""
+        },
+        "universe": {
+          "value": "selection-eligible genes",
+          "source": "S1-appendix P-2",
+          "pack": "P-2",
+          "function_default": ""
+        },
+        "qvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note",
+          "pack": "D-O5",
+          "function_default": "0.2"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "10",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "500",
+          "flag": "--max-size"
+        },
+        "readable": {
+          "value": false,
+          "source": "locked formals()",
+          "pack": "D-O5",
+          "function_default": "FALSE"
+        },
+        "pool": {
+          "value": false,
+          "source": "S1-appendix P-1",
+          "pack": "P-1",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "clusterProfiler::simplify",
+      "args": {
+        "x": {
+          "value": "enrichGO result",
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": ""
+        },
+        "cutoff": {
+          "value": 0.7,
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "<absent>"
+        },
+        "by": {
+          "value": "p.adjust",
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "<absent>"
+        },
+        "select_fun": {
+          "value": "min",
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "<absent>"
+        },
+        "measure": {
+          "value": "Wang",
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "<absent>"
+        },
+        "semData": {
+          "value": null,
+          "source": "S1-appendix P-3",
+          "pack": "P-3",
+          "function_default": "<absent>"
+        }
+      }
+    },
+    {
+      "fn": "enrichit::EXTID2NAME",
+      "args": {
+        "OrgDb": {
+          "value": "org.Hs.eg.db 3.23.1",
+          "source": "S1-appendix P-1; PACK T setReadable symbols",
+          "pack": "T",
+          "function_default": ""
+        },
+        "geneID": {
+          "value": "selected input IDs",
+          "source": "PACK T setReadable symbols",
+          "pack": "T",
+          "function_default": ""
+        },
+        "keytype": {
+          "value": "ENTREZID",
+          "source": "PACK T setReadable symbols",
+          "pack": "T",
+          "function_default": "",
+          "flag": "--key-type"
+        },
+        "toType": {
+          "value": "SYMBOL",
+          "source": "PACK T setReadable symbols",
+          "pack": "T",
+          "function_default": "\"SYMBOL\""
+        }
+      }
+    }
+  ]
+}

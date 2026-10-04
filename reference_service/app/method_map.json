@@ -1,0 +1,199 @@
+{
+  "schema": "omicstat.method-map.v1",
+  "source_path": "skills/omicstat/SKILL.md section 1; docs/handoff/ENGINEERING_PLAN.md sections 1.2 and 10.2",
+  "source_sha256": "4930db9e7b2b26c4bef4ed6e524b142480dbd714adc48c73d7b9fe8e0113d865",
+  "plan_sha256": "736ade745fe11f68445b43b02797c2f014845c640e7e9cbdc28def58338c989d",
+  "order_rule": "Preserves the overlay's 38-target order for reference-store compatibility. Router section 1 is the execution registry; entry_status explicitly separates available source from unimplemented planned targets.",
+  "modules": [
+    {
+      "module": "deseq2-wald",
+      "entry_script": "scripts/run_deseq2_wald.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "deseq2-qc",
+      "entry_script": "scripts/run_deseq2_qc.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "deseq2-lrt",
+      "entry_script": "scripts/run_deseq2_lrt.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "edger-qlf",
+      "entry_script": "scripts/run_edger_qlf.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "limma-voom",
+      "entry_script": "scripts/run_limma_voom.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "limma-array",
+      "entry_script": "scripts/run_limma_array.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "limma-dupcor",
+      "entry_script": "scripts/run_limma_dupcor.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "sva-batch",
+      "entry_script": "scripts/run_sva_batch.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "clusterprofiler-ora",
+      "entry_script": "scripts/run_clusterprofiler_ora.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "clusterprofiler-gsea",
+      "entry_script": "scripts/run_clusterprofiler_gsea.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "clusterprofiler-compare",
+      "entry_script": "scripts/run_clusterprofiler_compare.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "fgsea-prerank",
+      "entry_script": "scripts/run_fgsea_prerank.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "gsva-score",
+      "entry_script": "scripts/run_gsva_score.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "limma-camera",
+      "entry_script": "scripts/run_limma_camera.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "seurat-qc",
+      "entry_script": "scripts/run_seurat_qc.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "seurat-cluster",
+      "entry_script": "scripts/run_seurat_cluster.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "seurat-integrate",
+      "entry_script": "scripts/run_seurat_integrate.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "seurat-markers",
+      "entry_script": "scripts/run_seurat_markers.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "seurat-modulescore",
+      "entry_script": "scripts/run_seurat_modulescore.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scater-qc",
+      "entry_script": "scripts/run_scater_qc.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scran-cluster",
+      "entry_script": "scripts/run_scran_cluster.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "batchelor-integrate",
+      "entry_script": "scripts/run_batchelor_integrate.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scran-markers",
+      "entry_script": "scripts/run_scran_markers.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "aucell-score",
+      "entry_script": "scripts/run_aucell_score.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "singler-annotate",
+      "entry_script": "scripts/run_singler_annotate.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "muscat-pseudobulk",
+      "entry_script": "scripts/run_muscat_pseudobulk.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "speckle-propeller",
+      "entry_script": "scripts/run_speckle_propeller.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "cellchat-communication",
+      "entry_script": "scripts/run_cellchat_communication.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "monocle3-trajectory",
+      "entry_script": "scripts/run_monocle3_trajectory.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "slingshot-trajectory",
+      "entry_script": "scripts/run_slingshot_trajectory.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "wgcna-network",
+      "entry_script": "scripts/run_wgcna_network.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "maftools-landscape",
+      "entry_script": "scripts/run_maftools_landscape.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "immunedeconv-infiltration",
+      "entry_script": "scripts/run_immunedeconv_infiltration.R",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scanpy-qc",
+      "entry_script": "scripts/run_scanpy_qc.py",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scanpy-cluster",
+      "entry_script": "scripts/run_scanpy_cluster.py",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scanpy-markers",
+      "entry_script": "scripts/run_scanpy_markers.py",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scvi-integrate",
+      "entry_script": "scripts/run_scvi_integrate.py",
+      "entry_status": "implemented_routed"
+    },
+    {
+      "module": "scanvi-annotate",
+      "entry_script": "scripts/run_scanvi_annotate.py",
+      "entry_status": "implemented_routed"
+    }
+  ]
+}

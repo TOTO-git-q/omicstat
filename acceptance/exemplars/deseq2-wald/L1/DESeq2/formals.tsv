@@ -1,0 +1,86 @@
+function	argument	default
+DESeqDataSetFromMatrix	countData	
+DESeqDataSetFromMatrix	colData	
+DESeqDataSetFromMatrix	design	
+DESeqDataSetFromMatrix	tidy	FALSE
+DESeqDataSetFromMatrix	ignoreRank	FALSE
+DESeqDataSetFromMatrix	...	
+DESeq	object	
+DESeq	test	c("Wald", "LRT")
+DESeq	fitType	c("parametric", "local", "mean", "glmGamPoi")
+DESeq	sfType	c("ratio", "poscounts", "iterate")
+DESeq	betaPrior	
+DESeq	full	design(object)
+DESeq	reduced	
+DESeq	quiet	FALSE
+DESeq	minReplicatesForReplace	7
+DESeq	modelMatrixType	
+DESeq	useT	FALSE
+DESeq	minmu	if (fitType == "glmGamPoi") 1e-06 else 0.5
+DESeq	parallel	FALSE
+DESeq	BPPARAM	bpparam()
+results	object	
+results	contrast	
+results	name	
+results	lfcThreshold	0
+results	altHypothesis	c("greaterAbs", "greaterAbsUPSHOT", "lessAbs", "greater", "less",     "greaterAbs2014")
+results	listValues	c(1, -1)
+results	cooksCutoff	
+results	independentFiltering	TRUE
+results	alpha	0.1
+results	filter	
+results	theta	
+results	pAdjustMethod	"BH"
+results	filterFun	
+results	format	c("DataFrame", "GRanges", "GRangesList")
+results	saveCols	NULL
+results	test	c("Wald", "LRT")
+results	addMLE	FALSE
+results	tidy	FALSE
+results	parallel	FALSE
+results	BPPARAM	bpparam()
+results	minmu	0.5
+lfcShrink	dds	
+lfcShrink	coef	
+lfcShrink	contrast	
+lfcShrink	res	
+lfcShrink	type	c("apeglm", "ashr", "normal")
+lfcShrink	lfcThreshold	0
+lfcShrink	svalue	FALSE
+lfcShrink	returnList	FALSE
+lfcShrink	format	c("DataFrame", "GRanges", "GRangesList")
+lfcShrink	saveCols	NULL
+lfcShrink	apeAdapt	TRUE
+lfcShrink	apeMethod	"nbinomCR"
+lfcShrink	parallel	FALSE
+lfcShrink	BPPARAM	bpparam()
+lfcShrink	quiet	FALSE
+lfcShrink	...	
+estimateSizeFactors.DESeqDataSet	object	
+estimateSizeFactors.DESeqDataSet	type	c("ratio", "poscounts", "iterate")
+estimateSizeFactors.DESeqDataSet	locfunc	stats::median
+estimateSizeFactors.DESeqDataSet	geoMeans	
+estimateSizeFactors.DESeqDataSet	controlGenes	
+estimateSizeFactors.DESeqDataSet	normMatrix	
+estimateSizeFactors.DESeqDataSet	quiet	FALSE
+estimateDispersions.DESeqDataSet	object	
+estimateDispersions.DESeqDataSet	fitType	c("parametric", "local", "mean", "glmGamPoi")
+estimateDispersions.DESeqDataSet	maxit	100
+estimateDispersions.DESeqDataSet	useCR	TRUE
+estimateDispersions.DESeqDataSet	weightThreshold	0.01
+estimateDispersions.DESeqDataSet	quiet	FALSE
+estimateDispersions.DESeqDataSet	modelMatrix	NULL
+estimateDispersions.DESeqDataSet	minmu	if (fitType == "glmGamPoi") 1e-06 else 0.5
+nbinomWaldTest	object	
+nbinomWaldTest	betaPrior	FALSE
+nbinomWaldTest	betaPriorVar	
+nbinomWaldTest	modelMatrix	NULL
+nbinomWaldTest	modelMatrixType	
+nbinomWaldTest	betaTol	1e-08
+nbinomWaldTest	maxit	100
+nbinomWaldTest	useOptim	TRUE
+nbinomWaldTest	quiet	FALSE
+nbinomWaldTest	useT	FALSE
+nbinomWaldTest	df	
+nbinomWaldTest	useQR	TRUE
+nbinomWaldTest	minmu	0.5

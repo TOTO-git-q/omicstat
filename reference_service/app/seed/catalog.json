@@ -1,0 +1,12 @@
+{
+ "schema": "omicstat.method-applicability.catalog.v1",
+ "status": "empty_no_curated_evidence",
+ "inputs": [],
+ "papers": [],
+ "usages": [],
+ "decisions": [],
+ "limitations": [
+  "Empty seed: no curated omics evidence yet. Every omicstat module of the method map is still accepted by search and advise, which report no_curated_evidence_yet.",
+  "Replacing this seed later requires a new reference.sqlite (the store refuses a changed seed: seed_mismatch)."
+ ]
+}

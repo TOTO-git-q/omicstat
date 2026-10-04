@@ -1,0 +1,20 @@
+{
+  "module": "clusterprofiler-ora",
+  "date": "2026-09-27T09:35:13Z",
+  "sampled_pmids": ["33239621", "34779829", "36282572", "36537238", "37871969", "39578099"],
+  "records_checked": 54,
+  "records_passed": 54,
+  "pass_rate": 1.0000,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [],
+  "notes": [
+    "Fresh esummary echo (tool=omicstat, email=omicstat-s0@example.invalid) for all 6 sampled PMIDs: title (html-unescaped, tag-stripped) and year matched corpus.jsonl exactly, including PMC7591261-style markup-in-title (n/a here) and PMC7688965/33239621 etc. 6/6 verified.",
+    "All 20 unique non-empty (pmcid, snippet) pairs across the 6 sampled articles re-checked live with collect.py check: FOUND, all <=25 words.",
+    "For every '_applies'=yes line the cited sentence names a real ORA function/language sharing a sentence with clusterProfiler (enrichGO x4, enricher x1, generic 'overrepresentation analyses ... using clusterProfiler' x1) -- no GSEA-only paper misclassified as ORA in the sample.",
+    "All 'not reported' lines (34 of 54) confirmed absent by reading the full Methods region: no case found where a stated value was mis-recorded as not reported.",
+    "enrich_cutoff correctly holds only the enrichment-analysis significance cutoff in both articles that report one (PMC9825192: BH-adjusted P < 0.05 for the enricher() GO analysis); no DE cutoff was found mislabeled as enrich_cutoff in this sample.",
+    "Judgment call reviewed and accepted: PMC9753996 input_genes ('genes with promoters (+/-2 kb of TSS) overlapping FOXO1 ChIP-seq peaks') is a defensible same-paragraph synthesis of the enrichGO sentence and the immediately following promoter-definition sentence (standard ChIP-seq peak-to-gene assignment for a GO-enrichment input list), not an inference from Results/figures or a cross-topic misattribution; kept as pass."
+  ],
+  "verdict": "pass"
+}

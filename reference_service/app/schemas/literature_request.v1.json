@@ -1,0 +1,172 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "omicstat.reference.literature-request.v1",
+ "title": "omicstat reference literature request v1",
+ "description": "Structured on-demand literature request. Free text is data, never an instruction: only sanitized keywords (ASCII letters, digits, spaces, hyphens; at most 6) reach a search, combined with the module's Methods-section gate, the uniform filters, the journal whitelist and the Methods-signal screen. The whole request must serialize to at most 4096 bytes and must not contain e-mail addresses, phone numbers, 6+ digit numeric identifiers or record-identifier keywords. The module enum is filled at load time from method_map.json (the list below is the build-time copy). States: active queued, searching; terminal fulfilled, partially_fulfilled, unavailable, cancelled, expired. Only active requests are deduplicated (same module + normalized required_conditions + parameters_of_interest); resubmitting a terminal request creates a new request. Queue caps: 30 active requests, 5 per requester.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "module",
+  "question",
+  "study_context",
+  "requester"
+ ],
+ "properties": {
+  "module": {
+   "type": "string",
+   "enum": [
+    "deseq2-wald",
+    "deseq2-qc",
+    "deseq2-lrt",
+    "edger-qlf",
+    "limma-voom",
+    "limma-array",
+    "limma-dupcor",
+    "sva-batch",
+    "clusterprofiler-ora",
+    "clusterprofiler-gsea",
+    "clusterprofiler-compare",
+    "fgsea-prerank",
+    "gsva-score",
+    "limma-camera",
+    "seurat-qc",
+    "seurat-cluster",
+    "seurat-integrate",
+    "seurat-markers",
+    "seurat-modulescore",
+    "scater-qc",
+    "scran-cluster",
+    "batchelor-integrate",
+    "scran-markers",
+    "aucell-score",
+    "singler-annotate",
+    "muscat-pseudobulk",
+    "speckle-propeller",
+    "cellchat-communication",
+    "monocle3-trajectory",
+    "slingshot-trajectory",
+    "wgcna-network",
+    "maftools-landscape",
+    "immunedeconv-infiltration",
+    "scanpy-qc",
+    "scanpy-cluster",
+    "scanpy-markers",
+    "scvi-integrate",
+    "scanvi-annotate",
+    "unmapped"
+   ]
+  },
+  "question": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 500
+  },
+  "study_context": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "design",
+    "data_structure",
+    "outcome_type"
+   ],
+   "properties": {
+    "design": {
+     "type": "string",
+     "enum": [
+      "two_group",
+      "multi_group",
+      "paired_or_blocked",
+      "time_course",
+      "factorial_or_interaction",
+      "multi_sample_single_cell",
+      "reference_mapping",
+      "other",
+      "unknown"
+     ]
+    },
+    "data_structure": {
+     "type": "string",
+     "enum": [
+      "bulk_counts",
+      "normalized_expression_matrix",
+      "microarray_intensities",
+      "single_cell_counts",
+      "single_cell_object",
+      "ranked_gene_list",
+      "gene_list",
+      "mutation_maf",
+      "other",
+      "unknown"
+     ]
+    },
+    "outcome_type": {
+     "type": "string",
+     "enum": [
+      "gene_level_differential_expression",
+      "gene_set_or_pathway",
+      "cell_clusters_or_types",
+      "cell_type_proportions",
+      "trajectory_or_pseudotime",
+      "cell_communication",
+      "coexpression_modules",
+      "mutation_landscape",
+      "immune_infiltration",
+      "other",
+      "unknown"
+     ]
+    },
+    "estimand": {
+     "type": "string",
+     "maxLength": 200
+    }
+   }
+  },
+  "required_conditions": {
+   "type": "array",
+   "maxItems": 8,
+   "items": {
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 120
+   },
+   "default": []
+  },
+  "parameters_of_interest": {
+   "type": "array",
+   "maxItems": 8,
+   "items": {
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 120
+   },
+   "default": []
+  },
+  "exclusions": {
+   "type": "array",
+   "maxItems": 8,
+   "items": {
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 120
+   },
+   "default": []
+  },
+  "max_papers": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 5,
+   "default": 3
+  },
+  "expires_days": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 14,
+   "default": 7
+  },
+  "requester": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 80
+  }
+ }
+}

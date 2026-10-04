@@ -1,0 +1,52 @@
+# requires: AUCell GSEABase SingleCellExperiment scuttle data.table jsonlite digest ggplot2
+.this<-normalizePath(sub("^--file=","",grep("^--file=",commandArgs(FALSE),value=TRUE)[1]));.module<-dirname(dirname(.this));suite<-dirname(dirname(.module))
+source(file.path(suite,"skills/_shared/scripts/module_kit.R"));source(file.path(.module,"tests/fixtures/make_aucell_brain.R"))
+work<-file.path(Sys.getenv("OMICSTAT_TEST_TMP",tempdir()),"aucell-score-smoke");dir.create(work,recursive=TRUE,showWarnings=FALSE)
+check<-function(x,label){stopifnot(isTRUE(x));cat("PASS",label,"\n")}
+mat<-make_aucell_brain(suite);set.seed(333);mat<-mat[sample(rownames(mat),5000),]
+check(identical(dim(mat),c(5000L,3005L)),"AUCell vignette printed 5000 x 3005")
+# Preserve official gene sampling; use 120 cells for engine smoke.
+mat<-mat[,1:120];sce<-SingleCellExperiment::SingleCellExperiment(assays=list(counts=mat));sce<-scuttle::logNormCounts(sce)
+sce$cluster<-rep(c("first","second"),each=60)
+source(file.path(suite,"skills/_shared/scripts/handoff.R"));up<-file.path(work,"upstream");dir.create(file.path(up,"objects"),recursive=TRUE,showWarnings=FALSE)
+state<-list(qc_complete=TRUE,normalized=TRUE,front_end_ecosystem="bioconductor");S4Vectors::metadata(sce)$omicstat<-state
+saveRDS(sce,file.path(up,"objects/sce.rds"));write_handoff(up,"anchor","scran-cluster","1.0.0",objects=list(sce=list(path=file.path(up,"objects/sce.rds"),type="SingleCellExperiment")),ecosystem="bioconductor",state=state)
+decl <- c("--sets-file",system.file("examples","geneSignatures.gmt",package="AUCell"),"--sets-source","AUCell GPL-3 bundled example","--sets-licence","GPL-3","--accept-licence","user-permitted")
+out<-file.path(work,"anchor");log<-file.path(work,"anchor.log");entry<-file.path(.module,"scripts/run_aucell_score.R")
+st<-system2("Rscript",c(shQuote(entry),shQuote(c(decl,"--from-run",up,"--cluster-col","cluster","--assay","counts","--outdir",out))),stdout=log,stderr=log)
+if(st!=0)cat(readLines(log),sep="\n");check(st==0,"normalized SCE from-run scoring")
+sets<-GSEABase::getGmt(system.file("examples","geneSignatures.gmt",package="AUCell"))
+set.seed(333);rankings<-AUCell::AUCell_buildRankings(mat,plotStats=FALSE,BPPARAM=BiocParallel::SerialParam(),verbose=FALSE)
+auc<-AUCell::AUCell_calcAUC(sets,rankings,nCores=1,aucMaxRank=250,normAUC=TRUE,verbose=FALSE)
+native<-readRDS(file.path(out,"objects/aucell.rds"));check(identical(AUCell::getAUC(native),AUCell::getAUC(auc)),"official buildRankings/calcAUC replay")
+check(ncol(AUCell::getAUC(native))==120 && all(is.finite(AUCell::getAUC(native))),"finite native AUC shape")
+# Missing/unapproved references refuse with required typed error.
+bad<-file.path(work,"unapproved.gmt");writeLines("KEGG\tblocked\tgene",bad);badlog<-file.path(work,"refused.log")
+st<-system2("Rscript",c(shQuote(entry),shQuote(c("--from-run",up,"--cluster-col","cluster","--assay","counts","--sets-file",bad,"--sets-source","KEGG","--sets-licence","user-declared","--accept-licence","user-permitted","--outdir",file.path(work,"refused")))),stdout=badlog,stderr=badlog)
+check(st!=0 && any(grepl("OS_REFDATA_MISSING",readLines(badlog))),"reference licence gate")
+paths<-c("tables/scores.csv","tables/sets_table.csv")
+if(Sys.getenv("OMICSTAT_WRITE_GOLDEN")=="1")os_golden_write(.module,out,paths)
+check(os_golden_check(.module,out)$status=="PASS","golden")
+
+if(identical(Sys.getenv("OMICSTAT_TEST_H5AD"),"1")) {
+ source(file.path(suite,"skills/_shared/scripts/convert.R"))
+ hp<-file.path(work,"input.h5ad")
+ cv<-os_sc_convert(sce,to="AnnData",consumer="back_end",layers=c(counts="counts",logcounts="logcounts"),cluster_col="cluster",x_role="logcounts",file=hp)
+ ann<-file.path(work,"anndata");alog<-file.path(work,"anndata.log")
+ st<-system2("Rscript",c(shQuote(entry),shQuote(c(decl,"--input",hp,"--cluster-col","cluster","--assay","counts","--counts-layer","counts","--logcounts-layer","X","--outdir",ann))),stdout=alog,stderr=alog)
+ if(st!=0)cat(readLines(alog),sep="\n");check(st==0,"non-root offline h5ad scoring")
+ check(identical(digest::digest(file=file.path(out,"tables/scores.csv"),algo="sha256"),digest::digest(file=file.path(ann,"tables/scores.csv"),algo="sha256")),"AnnData scores equal existing golden result")
+}
+
+# Two permitted custom sets, scored through the real CLI and independently replayed.
+custom <- file.path(work,"custom.gmt")
+writeLines(c(paste(c("user_A","user-derived",rownames(mat)[1:50]),collapse="\t"),paste(c("user_B","user-derived",rownames(mat)[101:160]),collapse="\t")),custom)
+co <- file.path(work,"custom")
+args <- c("--from-run",up,"--cluster-col","cluster","--assay","counts","--sets-file",custom,"--sets-source","user-derived brain subsets","--sets-licence","user permission","--accept-licence","user-permitted","--outdir",co)
+st <- system2("Rscript",c(shQuote(entry),shQuote(args)),stdout=file.path(work,"custom.log"),stderr=file.path(work,"custom.log"));check(st==0,"permitted custom GMT CLI")
+set.seed(333);rn <- AUCell::AUCell_buildRankings(mat,plotStats=FALSE,BPPARAM=BiocParallel::SerialParam(),verbose=FALSE)
+ac <- AUCell::AUCell_calcAUC(GSEABase::getGmt(custom),rn,nCores=1,aucMaxRank=250,normAUC=TRUE,verbose=FALSE)
+check(identical(AUCell::getAUC(readRDS(file.path(co,"objects/aucell.rds"))),AUCell::getAUC(ac)),"two custom sets native AUC parity")
+check(any(grepl("user-derived brain subsets",readLines(file.path(co,"draft/methods_results.md")),fixed=TRUE)),"custom source Methods")
+missing_ack <- args[-c(match("--accept-licence",args),match("--accept-licence",args)+1)]
+st <- system2("Rscript",c(shQuote(entry),shQuote(missing_ack)),stdout=file.path(work,"missing_ack.log"),stderr=file.path(work,"missing_ack.log"));check(st!=0,"required licence acknowledgement")

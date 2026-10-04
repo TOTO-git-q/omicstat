@@ -1,0 +1,39 @@
+function	argument	default
+enrichGO	gene	
+enrichGO	OrgDb	
+enrichGO	keyType	"ENTREZID"
+enrichGO	ont	"MF"
+enrichGO	pvalueCutoff	0.05
+enrichGO	pAdjustMethod	"BH"
+enrichGO	universe	
+enrichGO	qvalueCutoff	0.2
+enrichGO	minGSSize	10
+enrichGO	maxGSSize	500
+enrichGO	readable	FALSE
+enrichGO	pool	FALSE
+enrichKEGG	gene	
+enrichKEGG	organism	"hsa"
+enrichKEGG	keyType	"kegg"
+enrichKEGG	pvalueCutoff	0.05
+enrichKEGG	pAdjustMethod	"BH"
+enrichKEGG	universe	
+enrichKEGG	minGSSize	10
+enrichKEGG	maxGSSize	500
+enrichKEGG	qvalueCutoff	0.2
+enrichKEGG	use_internal_data	FALSE
+enricher	gene	
+enricher	pvalueCutoff	0.05
+enricher	pAdjustMethod	"BH"
+enricher	universe	NULL
+enricher	minGSSize	10
+enricher	maxGSSize	500
+enricher	qvalueCutoff	0.2
+enricher	gson	NULL
+enricher	TERM2GENE	
+enricher	TERM2NAME	NA
+simplify	x	
+simplify	cutoff	0.7
+simplify	by	"p.adjust"
+simplify	select_fun	min
+simplify	measure	"Wang"
+simplify	semData	NULL

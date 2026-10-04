@@ -1,0 +1,36 @@
+{
+  "caption": "GSEA running enrichment score for Inflammatory response. Top, running enrichment score (weighted Kolmogorov–Smirnov statistic, weight 1); dashed line, position of the maximum deviation. Middle, positions of the 140 set members in the ranked list of 4,000 genes. Bottom, ranking metric; dashed line, where it crosses zero. NES = 2.41, adjusted P = 3.2 × 10^−6.",
+  "counts": {
+    "list_size": 4000,
+    "set_in_list": 140
+  },
+  "data": {
+    "es_peak": 0.828126,
+    "peak_rank": 397
+  },
+  "encodings": {
+    "line": "#B2182B"
+  },
+  "figure_type": "gsea_curve",
+  "files": {
+    "pdf": {
+      "content_sha256": "49ea3d40d62341f2f246e93373ffd4ebd81afe42b2a7e7b069b39c4fd88f04b7",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "09_gsea_curve.pdf"
+    },
+    "png": {
+      "path": "09_gsea_curve.png",
+      "sha256": "ad01b625c48d3bb55d46a9dc21b0ac89c37a0fe9439efd6e2bf670b587e336fe"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 62,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

@@ -1,0 +1,46 @@
+function	argument	default
+DESeq	object	
+DESeq	test	c("Wald", "LRT")
+DESeq	fitType	c("parametric", "local", "mean", "glmGamPoi")
+DESeq	sfType	c("ratio", "poscounts", "iterate")
+DESeq	betaPrior	
+DESeq	full	design(object)
+DESeq	reduced	
+DESeq	quiet	FALSE
+DESeq	minReplicatesForReplace	7
+DESeq	modelMatrixType	
+DESeq	useT	FALSE
+DESeq	minmu	if (fitType == "glmGamPoi") 1e-06 else 0.5
+DESeq	parallel	FALSE
+DESeq	BPPARAM	bpparam()
+nbinomLRT	object	
+nbinomLRT	full	design(object)
+nbinomLRT	reduced	
+nbinomLRT	betaTol	1e-08
+nbinomLRT	maxit	100
+nbinomLRT	useOptim	TRUE
+nbinomLRT	quiet	FALSE
+nbinomLRT	useQR	TRUE
+nbinomLRT	minmu	if (type == "glmGamPoi") 1e-06 else 0.5
+nbinomLRT	type	c("DESeq2", "glmGamPoi")
+results	object	
+results	contrast	
+results	name	
+results	lfcThreshold	0
+results	altHypothesis	c("greaterAbs", "greaterAbsUPSHOT", "lessAbs", "greater", "less", "greaterAbs2014")
+results	listValues	c(1, -1)
+results	cooksCutoff	
+results	independentFiltering	TRUE
+results	alpha	0.1
+results	filter	
+results	theta	
+results	pAdjustMethod	"BH"
+results	filterFun	
+results	format	c("DataFrame", "GRanges", "GRangesList")
+results	saveCols	NULL
+results	test	c("Wald", "LRT")
+results	addMLE	FALSE
+results	tidy	FALSE
+results	parallel	FALSE
+results	BPPARAM	bpparam()
+results	minmu	0.5

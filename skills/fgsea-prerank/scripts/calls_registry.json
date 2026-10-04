@@ -1,0 +1,86 @@
+{
+  "module": "fgsea-prerank",
+  "package_versions": {
+    "fgsea": "1.38.0"
+  },
+  "calls": [
+    {
+      "fn": "fgsea::fgseaMultilevel",
+      "args": {
+        "pathways": {
+          "value": "registered offline collection",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1"
+        },
+        "stats": {
+          "value": "ranked_list score",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1"
+        },
+        "sampleSize": {
+          "value": "101",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "101"
+        },
+        "minSize": {
+        "value": "15",
+          "source": "S1-appendix P-3",
+          "pack": "fgsea-prerank P-3",
+          "function_default": "1",
+          "flag": "min-size"
+        },
+        "maxSize": {
+        "value": "500",
+          "source": "S1-appendix P-3",
+          "pack": "fgsea-prerank P-3",
+          "function_default": "length(stats) - 1",
+          "flag": "max-size"
+        },
+        "eps": {
+          "value": "1e-50",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "1e-50"
+        },
+        "scoreType": {
+          "value": "std",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "c(\"std\", \"pos\", \"neg\")"
+        },
+        "nproc": {
+          "value": "1",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "0"
+        },
+        "gseaParam": {
+          "value": "1",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "1"
+        },
+        "BPPARAM": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "NULL"
+        },
+        "nPermSimple": {
+          "value": "1000",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "1000"
+        },
+        "absEps": {
+          "value": "NULL",
+          "source": "S1-appendix P-1",
+          "pack": "fgsea-prerank P-1",
+          "function_default": "NULL"
+        }
+      }
+    }
+  ],
+  "accessors": []
+}

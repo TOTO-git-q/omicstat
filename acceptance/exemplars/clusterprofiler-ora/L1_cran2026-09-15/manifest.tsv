@@ -1,0 +1,8 @@
+file	sha256	package	version	source	source_sha256
+enrichit/DESCRIPTION	eeb3121cdbf2b2ee3a75955772a295ceef91ff05e9a3676c7f20049084ca60d7	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a
+enrichit/NEWS.txt	207454fcffaed6d441688cb027aa03a60ae3f3a1aa2477fa9a842432a8ef06be	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a
+enrichit/Rd/enrichit_params.Rd	23e5b7db8af9142fcc42dfd91f981fbe7aee32b067ca94d40ba6851fd7c451f2	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a
+enrichit/Rd/gsea.Rd	799e67719f4f08087a6a27e0f00833bf0f96725d7447a86e7e731c35632925e1	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a
+enrichit/Rd/gsea_gson.Rd	0a582dea6d92a737c6f1c269f71f3c5a0f5477343c7f46174ac24457ac53a60a	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a
+enrichit/Rd/ora.Rd	f7f5d8ed19a1211e19cbb43caf12fa1fcc78993f286d3462a2a5ffec262037a3	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a
+enrichit/Rd/ora_gson.Rd	58779ac0f6982c5763489db5af6dd2618afb6d60fb78d247e398401c73dceb2b	enrichit	0.2.1	https://p3m.dev/cran/2026-09-15/src/contrib/enrichit_0.2.1.tar.gz	4f926c4306c064e709fa936d41e1cfcf247cd7ba4f14ae284e6ced7dc0cf877a

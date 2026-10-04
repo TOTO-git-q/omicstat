@@ -1,0 +1,28 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "speckle-propeller",
+  "module_version": "1.0.0",
+  "files": {
+    "skills/speckle-propeller/scripts/run_speckle_propeller.R": "43e76909bac9da78a22ccc0d76851ef523da38f551342f2b31bd740f407c7621",
+    "skills/speckle-propeller/scripts/speckle_propeller_core.R": "0c58e02e1ed40c34bdfcc63a4f6902887d5ed0ca9940bd5f724fe8a4487c6947",
+    "skills/speckle-propeller/scripts/calls_registry.json": "f1d1394eccefb196d2d69e47815ceb3cfa360ec30de88a6d2100ec53836649ff",
+    "skills/speckle-propeller/SKILL.md": "3ebe1d15fda74a468b1d30120ebce3e0d0483a4a00c15568622cf21a07922ef1",
+    "skills/speckle-propeller/references/methods-template.md": "e866da22ba644717d68a10ecbe3c6c1275f5fd966d3496274c51bb83f38b889b",
+    "skills/speckle-propeller/references/options.md": "67d7428e3fa89f320d269d9559e681fd0964fa1b596e1905e107f02ed7348dea",
+    "skills/speckle-propeller/tests/fixtures/make_cellbench.R": "4cbbd40171576defb13268d83885628b5a659767b9bd5443d305a549ef22c7f3",
+    "skills/speckle-propeller/tests/run_smoke_test.R": "4137e7a32f37b9121cbb4d21b2205c228a8e28efc5adcce0623719cf4da9ce85",
+    "skills/speckle-propeller/tests/golden_manifest.csv": "cd63204b91a27a3e97d42d204998df343f6e6c1dfbacb698489a16da446c7bfb",
+    "acceptance/exemplars/speckle-propeller/PACK.md": "dd5fba46894cc84cb194d33db49657ef1c70389ddadfd916cb09e5aa7cc794e2"
+  },
+  "packages": {
+    "speckle": "1.12.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
+    "env_version": "2026.10.1"
+  }
+}

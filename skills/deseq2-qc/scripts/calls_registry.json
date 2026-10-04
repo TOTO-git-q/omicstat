@@ -1,0 +1,144 @@
+{
+  "module": "deseq2-qc",
+  "note": "Values: references/parameters.md; locked DESeq2 1.52.0 formals verified in the container. estimateSizeFactors.DESeqDataSet formals were exported from its namespace and checked through the registry method field.",
+  "package_versions": {
+    "DESeq2": "1.52.0"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--min-count": 10,
+    "--min-samples": 0,
+    "--ntop": 500
+  },
+  "accessors": [
+    "DESeq2::sizeFactors",
+    "DESeq2::counts",
+    "SummarizedExperiment::assay"
+  ],
+  "calls": [
+    {
+      "fn": "DESeq2::DESeqDataSetFromMatrix",
+      "args": {
+        "countData": {
+          "value": "pre-filtered integer count matrix",
+          "source": "user_required",
+          "pack": "C",
+          "function_default": ""
+        },
+        "colData": {
+          "value": "sample table: covariates + condition (no releveling: no contrast is fit)",
+          "source": "user_required",
+          "pack": "D-01",
+          "function_default": ""
+        },
+        "design": {
+          "value": "~ <covariates> + <condition>",
+          "source": "vignette",
+          "pack": "D-01",
+          "note": "used only to build a valid DESeqDataSet and, if --blind-false-supplement, the design-aware dispersion trend; blind=TRUE ignores it internally (DESeq2 vst/rlog Rd)",
+          "function_default": ""
+        },
+        "tidy": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        },
+        "ignoreRank": {
+          "value": false,
+          "source": "vignette",
+          "pack": "D-00",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::estimateSizeFactors",
+      "method": "estimateSizeFactors.DESeqDataSet",
+      "args": {
+        "type": {
+          "value": "ratio",
+          "source": "DESeq2::estimateSizeFactors.DESeqDataSet formals; deseq2-wald D-04",
+          "pack": "D-04 cross-module",
+          "flag": "--sf-type",
+          "function_default": "c(\"ratio\", \"poscounts\", \"iterate\")"
+        },
+        "locfunc": {
+          "value": "stats::median",
+          "source": "DESeq2::estimateSizeFactors.DESeqDataSet formals",
+          "pack": "D-04 cross-module",
+          "function_default": "stats::median"
+        },
+        "quiet": {
+          "value": false,
+          "source": "DESeq2::estimateSizeFactors.DESeqDataSet formals",
+          "pack": "D-04 cross-module",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::vst",
+      "note": "one call site (dq_transform); blind is TRUE for the primary QA call and FALSE only in the optional --blind-false-supplement call",
+      "args": {
+        "blind": {
+          "value": "TRUE for the primary QA call, FALSE for the optional supplement",
+          "source": "S1-appendix P-1",
+          "pack": "D-QC1/D-QC2",
+          "function_default": "TRUE"
+        },
+        "nsub": {
+          "value": 1000,
+          "source": "S1-appendix P-1",
+          "pack": "D-QC6",
+          "function_default": "1000"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "S1-appendix P-1",
+          "pack": "D-QC6",
+          "flag": "--fit-type",
+          "function_default": "\"parametric\""
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::varianceStabilizingTransformation",
+      "note": "fallback of vst() when the pre-filtered feature count is below nsub = 1000 (PACK X); registered twice for blind=TRUE (primary) and blind=FALSE (supplement)",
+      "args": {
+        "blind": {
+          "value": "TRUE for the primary QA call, FALSE for the optional supplement",
+          "source": "S1-appendix P-1",
+          "pack": "D-QC1/D-QC2",
+          "function_default": "TRUE"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "S1-appendix P-1",
+          "pack": "D-QC6",
+          "flag": "--fit-type",
+          "function_default": "\"parametric\""
+        }
+      }
+    },
+    {
+      "fn": "DESeq2::rlog",
+      "note": "used only when --transform rlog; registered for blind=TRUE (primary) and blind=FALSE (supplement)",
+      "args": {
+        "blind": {
+          "value": "TRUE for the primary QA call, FALSE for the optional supplement",
+          "source": "S1-appendix P-1",
+          "pack": "D-QC1/D-QC2",
+          "function_default": "TRUE"
+        },
+        "fitType": {
+          "value": "parametric",
+          "source": "S1-appendix P-1",
+          "pack": "D-QC6",
+          "flag": "--fit-type",
+          "function_default": "\"parametric\""
+        }
+      }
+    }
+  ]
+}

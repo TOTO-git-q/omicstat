@@ -1,0 +1,350 @@
+{
+  "module": "seurat-markers",
+  "note": "Formals probed in omicstat-r:2026.09.1; policy 2026-09-29 overrides unfrozen S1 drafts.",
+  "package_versions": {
+    "Seurat": "5.5.1",
+    "SeuratObject": "5.4.0"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--journal": "nature",
+    "--mode": "all",
+    "--min-pct": 0.01,
+    "--logfc-threshold": 0.1,
+    "--only-pos": "true",
+    "--test": "wilcox",
+    "--return-thresh": 0.01,
+    "--display-lfc-filter": 0,
+    "--top-n": 10
+  },
+  "accessors": [
+    "SeuratObject::Layers",
+    "SeuratObject::Idents"
+  ],
+  "calls": [
+    {
+      "fn": "Seurat::FindAllMarkers",
+      "method": "FindAllMarkers",
+      "args": {
+        "assay": {
+          "value": "assay",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "features": {
+          "value": "os_seurat_option(a,\"features\",NULL)",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "group.by": {
+          "value": "os_seurat_option(a,\"group-by\",NULL)",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "logfc.threshold": {
+          "value": "a[[\"logfc-threshold\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.1"
+        },
+        "test.use": {
+          "value": "a$test",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"wilcox\""
+        },
+        "slot": {
+          "value": "os_seurat_option(a,\"slot\",\"data\")",
+          "function_default": "\"data\"",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "min.pct": {
+          "value": "a[[\"min-pct\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.01"
+        },
+        "min.diff.pct": {
+          "value": "os_seurat_option(a,\"markers-min-diff-pct\",-Inf)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "-Inf"
+        },
+        "node": {
+          "value": "os_seurat_option(a,\"node\",NULL)",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "only.pos": {
+          "value": "os_seurat_option(a,\"markers-only-pos\",identical(a[[\"only-pos\"]],\"true\"))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "max.cells.per.ident": {
+          "value": "os_seurat_option(a,\"markers-max-cells-per-ident\",Inf)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "Inf"
+        },
+        "random.seed": {
+          "value": "a$seed",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "latent.vars": {
+          "value": "os_seurat_option(a,\"markers-latent-vars\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "min.cells.feature": {
+          "value": "os_seurat_option(a,\"markers-min-cells-feature\",3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "3"
+        },
+        "min.cells.group": {
+          "value": "os_seurat_option(a,\"markers-min-cells-group\",3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "3"
+        },
+        "mean.fxn": {
+          "value": "seurat_markers_mean(a)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "fc.name": {
+          "value": "os_seurat_option(a,\"fc-name\",NULL)",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "base": {
+          "value": "os_seurat_option(a,\"markers-base\",2)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "2"
+        },
+        "return.thresh": {
+          "value": "a[[\"return-thresh\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.01"
+        },
+        "densify": {
+          "value": "os_seurat_option(a,\"markers-densify\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        },
+        "fc.slot": {
+          "value": "os_seurat_option(a,\"fc-slot\",\"data\")",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "pseudocount.use": {
+          "value": "os_seurat_option(a,\"pseudocount-use\",1)",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "recorrect_umi": {
+          "value": "os_seurat_option(a,\"recorrect-umi\",TRUE)",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        }
+      }
+    },
+    {
+      "fn": "Seurat::FindMarkers",
+      "method": "FindMarkers.Seurat",
+      "args": {
+        "ident.1": {
+          "value": "strsplit(a[[\"ident-1\"]],\",\",fixed=TRUE)[[1]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "ident.2": {
+          "value": "if(is.null(a[[\"ident-2\"]])) NULL else strsplit(a[[\"ident-2\"]],\",\",fixed=TRUE)[[1]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "latent.vars": {
+          "value": "os_seurat_option(a,\"contrast-latent-vars\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "group.by": {
+          "value": "os_seurat_option(a,\"group-by\",NULL)",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "subset.ident": {
+          "value": "os_seurat_option(a,\"subset-ident\",NULL)",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "assay": {
+          "value": "assay",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "reduction": {
+          "value": "NULL",
+          "function_default": "NULL",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        },
+        "test.use": {
+          "value": "a$test",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "logfc.threshold": {
+          "value": "a[[\"logfc-threshold\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "min.pct": {
+          "value": "a[[\"min-pct\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "only.pos": {
+          "value": "os_seurat_option(a,\"contrast-only-pos\",identical(a[[\"only-pos\"]],\"true\"))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "random.seed": {
+          "value": "a$seed",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "min.diff.pct": {
+          "value": "os_seurat_option(a,\"contrast-min-diff-pct\",-Inf)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "max.cells.per.ident": {
+          "value": "os_seurat_option(a,\"contrast-max-cells-per-ident\",Inf)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "min.cells.feature": {
+          "value": "os_seurat_option(a,\"contrast-min-cells-feature\",3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "min.cells.group": {
+          "value": "os_seurat_option(a,\"contrast-min-cells-group\",3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "densify": {
+          "value": "os_seurat_option(a,\"contrast-densify\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        },
+        "features": {
+          "value": "os_seurat_option(a,\"features\",NULL)",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "slot": {
+          "value": "os_seurat_option(a,\"slot\",\"data\")",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "fc.name": {
+          "value": "os_seurat_option(a,\"fc-name\",NULL)",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "fc.slot": {
+          "value": "os_seurat_option(a,\"fc-slot\",\"data\")",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "pseudocount.use": {
+          "value": "os_seurat_option(a,\"pseudocount-use\",1)",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "recorrect_umi": {
+          "value": "os_seurat_option(a,\"recorrect-umi\",TRUE)",
+          "function_default": "<absent>",
+          "source": "locked marker/assay defaults; explicit JSON option",
+          "pack": "D/X"
+        },
+        "base": {
+          "value": "os_seurat_option(a,\"markers-base\",2)",
+          "function_default": "<absent>",
+          "source": "FindMarkers.Assay locked formals; exposed native option",
+          "pack": "C/D/F"
+        },
+        "mean.fxn": {
+          "value": "seurat_markers_mean(a)",
+          "function_default": "<absent>",
+          "source": "FindMarkers.Assay locked formals; exposed native option",
+          "pack": "C/D/F"
+        }
+      }
+    }
+  ]
+}

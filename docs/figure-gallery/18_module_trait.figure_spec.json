@@ -1,0 +1,77 @@
+{
+  "caption": "Correlation between module eigengenes (8 modules, rows) and traits (4, columns). Each cell gives the Pearson correlation coefficient and, in parentheses, its unadjusted P value; colour encodes r from −1 (blue) to 1 (red).",
+  "counts": {
+    "clipped_cells": 0
+  },
+  "data": {
+    "clustering": {
+      "cols": "none",
+      "rows": "none"
+    },
+    "col_order": [
+      "Treatment",
+      "Age",
+      "BMI",
+      "Score"
+    ],
+    "n_cols": 4,
+    "n_rows": 8,
+    "row_order": [
+      "MEturquoise",
+      "MEblue",
+      "MEbrown",
+      "MEyellow",
+      "MEgreen",
+      "MEred",
+      "MEblack",
+      "MEgrey"
+    ],
+    "show_col_labels": true,
+    "show_row_labels": true
+  },
+  "encodings": {
+    "annotation": [],
+    "fill": {
+      "clip": null,
+      "limits": [
+        -1,
+        1
+      ],
+      "palette": [
+        "#2166AC",
+        "#4393C3",
+        "#92C5DE",
+        "#D1E5F0",
+        "#F7F7F7",
+        "#FDDBC7",
+        "#F4A582",
+        "#D6604D",
+        "#B2182B"
+      ],
+      "scale": "diverging",
+      "title": "Pearson r"
+    }
+  },
+  "figure_type": "module_trait",
+  "files": {
+    "pdf": {
+      "content_sha256": "6dce1c90ba0375e5a645cafdb1505ec33029c1047c5685ec563d11d243c03b43",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "18_module_trait.pdf"
+    },
+    "png": {
+      "path": "18_module_trait.png",
+      "sha256": "59f1c0bc48014f0bc859ff16fb78844dbbff97b39e5ca4cda5ca1ca1c8639230"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 81,
+  "journal": "nature",
+  "lint": [],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

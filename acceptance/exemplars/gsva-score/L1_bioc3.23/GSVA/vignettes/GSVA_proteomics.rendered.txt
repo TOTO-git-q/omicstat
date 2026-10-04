@@ -1,0 +1,520 @@
+
+
+GSVA on proteomics data
+
+GSVA on proteomics data
+
+Robert Castelo1*, Axel Klenk1** and Justin Guinney2***
+
+1Dept. of Medicine and Life Sciences, Universitat Pompeu Fabra, Barcelona, Spain
+2Tempus Labs, Inc.
+
+*robert.castelo@upf.edu
+**axel.klenk@gmail.com
+***justin.guinney@tempus.com
+
+4 August 2026
+
+Abstract
+
+Here we illustrate how to use GSVA with proteomics data.
+
+Package
+
+GSVA 2.6.6
+
+License: Artistic-2.0
+
+1 Introduction
+
+Proteomics data, such as the one produced through the Clinical Proteomic Tumor
+Analysis Consortium
+(CPTAC), can have
+a massive amount of missing values, in which imputing can result in regressing
+to the mean, underestimating protein expression variability. In such a setting,
+skipping missing values from the calculations may constitute a suitable
+alternative to imputation. The GSVA package provides a missing data policy for
+the GSVA and ssGSEA methods, which we illustrate here with the proteomics
+data from Costa et al. (2021) and available in the GSVAdata
+experiment data package. We start loading the data as follows.
+
+library(SummarizedExperiment)
+library(GSVA)
+library(GSVAdata)
+
+data(geneprotExpCostaEtAl2021)
+ls()
+[1] "geneExpCostaEtAl2021" "protExpCostaEtAl2021"
+protExpCostaEtAl2021
+class: RangedSummarizedExperiment 
+dim: 245 20 
+metadata(1): annotation
+assays(3): logCPM log2protexp log2protexpimp
+rownames(245): 5715 9973 ... 25793 7094
+rowData names(2): Symbol UniquePeptides
+colnames(20): BS03 BS05 ... BS23 BS24
+colData names(2): FIR Sex
+assayNames(protExpCostaEtAl2021)
+[1] "logCPM"         "log2protexp"    "log2protexpimp"
+
+The data is stored in a SummarizedExperiment object called
+protExpCostaEtAl2021 with three assays:
+
+logCPM with the normalized log-CPM RNA-seq expression values for the
+245 genes encoding the quantified proteins.
+
+log2protexp with the normalized protein units of expression, and
+the missing quantifications specified by NA values.
+
+log2protexpimp with the normalized protein units of expression, but
+where the missing quantifications have been imputed.
+
+Please consult the publication in (Costa et al. 2021) for details on how
+these data have been produced.
+
+2 Load gene sets
+
+We will use the MSigDB C7 collection of immunologic genesets, reading them
+with the readGMT() function of the GSVA package.
+
+library(GSEABase)
+
+URL <- "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2024.1.Hs/c7.immunesigdb.v2024.1.Hs.symbols.gmt"
+c7.genesets <- readGMT(URL)
+
+GeneSetCollection
+  names: GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_DN, GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_UP, ..., KAECH_NAIVE_VS_MEMORY_CD8_TCELL_UP (4872 total)
+  unique identifiers: ABCA2, ABCC5, ..., LINC00841 (20457 total)
+  types in collection:
+    geneIdType: SymbolIdentifier (1 total)
+    collectionType: NullCollection (1 total)
+
+We filter this collection of gene sets to those formed by gene upregulated in
+innate leukocytes and adaptive mature lymphocytes, excluding those reported in
+studies on myeloid cells and the lupus autoimmune disease.
+
+innatepat <- c("NKCELL_VS_.+_UP", "MAST_CELL_VS_.+_UP",
+               "EOSINOPHIL_VS_.+_UP", "BASOPHIL_VS_.+_UP",
+               "MACROPHAGE_VS_.+_UP", "NEUTROPHIL_VS_.+_UP")
+innatepat <- paste(innatepat, collapse="|")
+innategsets <- names(c7.genesets)[grep(innatepat, names(c7.genesets))]
+length(innategsets)
+[1] 53
+
+adaptivepat <- c("CD4_TCELL_VS_.+_UP", "CD8_TCELL_VS_.+_UP", "BCELL_VS_.+_UP")
+adaptivepat <- paste(adaptivepat, collapse="|")
+adaptivegsets <- names(c7.genesets)[grep(adaptivepat, names(c7.genesets))]
+excludepat <- c("NAIVE", "LUPUS", "MYELOID")
+excludepat <- paste(excludepat, collapse="|")
+adaptivegsets <- adaptivegsets[-grep(excludepat, adaptivegsets)]
+length(adaptivegsets)
+[1] 97
+
+c7.genesets.filt <- c7.genesets[c(innategsets, adaptivegsets)]
+length(c7.genesets.filt)
+[1] 150
+
+3 Usage and benchmark with RNA-seq data
+
+Here we show first a quick benchmarking using the logCPM expression
+profiles, which are complete, by introducing NA values with the pattern
+of missing data observed in the corresponding proteins.
+
+logCPMsWithNAs <- assay(protExpCostaEtAl2021, "logCPM")
+logCPMsWithNAs[1:5, 1:5]
+          BS03     BS05     BS06     BS07     BS08
+5715  3.826346 3.785976 3.016652 3.641209 3.547332
+9973  3.028686 2.633021 3.281683 3.382893 2.699961
+5688  5.101717 5.404292 4.314238 4.136742 4.969074
+10627 7.622114 7.779064 6.894152 7.239640 7.899282
+8672  7.077862 7.725863 6.068174 6.156980 6.970647
+logCPMsWithNAs[is.na(assay(protExpCostaEtAl2021, "log2protexp"))] <- NA
+logCPMsWithNAs[1:5, 1:5]
+          BS03     BS05     BS06     BS07     BS08
+5715  3.826346 3.785976       NA 3.641209 3.547332
+9973        NA 2.633021       NA       NA       NA
+5688  5.101717       NA       NA       NA       NA
+10627       NA 7.779064       NA 7.239640       NA
+8672  7.077862 7.725863 6.068174 6.156980 6.970647
+
+We need to add the annotation metadata to this new matrix of expression
+profiles with missing values.
+
+gsvaAnnotation(logCPMsWithNAs) <- EntrezIdentifier("org.Hs.eg.db")
+
+When building the parameter object, GSVA will check automatically for the
+presence of missing values whenever the input expression data container is a
+non-sparse container of expression values, such as a base matrix object or a
+SummarizedExperiment object.
+
+gsvapar <- gsvaParam(logCPMsWithNAs, c7.genesets.filt, minSize=5)
+! Input expression data has NA values, which will be propagated through calculations
+
+We can force the gsvaParam() function to check for missing values irrespective
+of the input expression data container by setting the argument checkNA="yes",
+or disable that check altogether with checkNA="no". By default
+checkNA="auto". Once missing values have been detected when we build the
+parameter object, the gsva() function (or gsvaRanks() and gsvaScores())
+will apply a missing data policy specified through a parameter called use,
+which takes one of the following three possible character string values:
+everything, all.obs or na.rm. The first value (everything) is the
+default value and it propagates the missing NA values through the
+calculations.
+
+es_gsva_everything <- gsva(gsvapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Calculating GSVA ranks
+ℹ kcdf='auto' (default)
+ℹ GSVA dense (classical) algorithm
+ℹ Row-wise ECDF estimation with Gaussian kernels
+ℹ Calculating row ECDFs
+ℹ Calculating column ranks
+ℹ Mapping identifiers
+ℹ GSVA dense (classical) algorithm
+ℹ Calculating GSVA scores for 36 gene sets
+✔ Calculations finished
+es_gsva_everything[1:10, 1:4]
+                                                          BS03 BS05 BS06 BS07
+GSE18804_SPLEEN_MACROPHAGE_VS_BRAIN_TUMORAL_MACROPHAGE_UP   NA   NA   NA   NA
+GSE2585_THYMIC_MACROPHAGE_VS_MTEC_UP                        NA   NA   NA   NA
+GSE27786_NKCELL_VS_NEUTROPHIL_UP                            NA   NA   NA   NA
+GSE27786_NKCELL_VS_NKTCELL_UP                               NA   NA   NA   NA
+GSE27859_MACROPHAGE_VS_DC_UP                                NA   NA   NA   NA
+GSE3982_EOSINOPHIL_VS_BASOPHIL_UP                           NA   NA   NA   NA
+GSE3982_MAST_CELL_VS_BASOPHIL_UP                            NA   NA   NA   NA
+GSE3982_MAST_CELL_VS_BCELL_UP                               NA   NA   NA   NA
+GSE3982_MAST_CELL_VS_CENT_MEMORY_CD4_TCELL_UP               NA   NA   NA   NA
+GSE3982_MAST_CELL_VS_DC_UP                                  NA   NA   NA   NA
+all(is.na(es_gsva_everything))
+[1] TRUE
+
+So, in this case, there are so many missing values that the resulting
+enrichment scores are all NA values. If we try the second option
+use="all.obs" it will immediately produce an error at the parameter
+building step.
+
+gsvapar <- gsvaParam(logCPMsWithNAs, c7.genesets.filt, minSize=5,
+                     use="all.obs")
+Error in `.check_for_na_values()`:
+✖ Input expression data has NA values.
+
+Finally, if we set use="na.rm", missing NA values will be skipped
+during calculations, giving the chance to obtain non-missing enrichment
+scores for those gene sets with enough genes with non-missing expression
+values.
+
+gsvapar <- gsvaParam(logCPMsWithNAs, c7.genesets.filt, minSize=5,
+                     use="na.rm")
+! Input expression data has NA values, which will be discarded from calculations
+es_gsva_narm <- gsva(gsvapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Calculating GSVA ranks
+ℹ kcdf='auto' (default)
+ℹ GSVA dense (classical) algorithm
+ℹ Row-wise ECDF estimation with Gaussian kernels
+ℹ Calculating row ECDFs
+ℹ Calculating column ranks
+ℹ Mapping identifiers
+ℹ GSVA dense (classical) algorithm
+ℹ Calculating GSVA scores for 36 gene sets
+! NA enrichment scores in gene sets with less than 5 genes after removing missing values
+✔ Calculations finished
+round(es_gsva_narm[1:10, 1:4], digits=2)
+                                                           BS03  BS05 BS06 BS07
+GSE18804_SPLEEN_MACROPHAGE_VS_BRAIN_TUMORAL_MACROPHAGE_UP    NA  0.41   NA   NA
+GSE2585_THYMIC_MACROPHAGE_VS_MTEC_UP                         NA    NA   NA   NA
+GSE27786_NKCELL_VS_NEUTROPHIL_UP                             NA -0.30   NA   NA
+GSE27786_NKCELL_VS_NKTCELL_UP                             -0.07  0.06 0.56   NA
+GSE27859_MACROPHAGE_VS_DC_UP                               0.15 -0.08   NA   NA
+GSE3982_EOSINOPHIL_VS_BASOPHIL_UP                          0.62  0.68   NA 0.29
+GSE3982_MAST_CELL_VS_BASOPHIL_UP                           0.30  0.25   NA 0.27
+GSE3982_MAST_CELL_VS_BCELL_UP                              0.12  0.20   NA   NA
+GSE3982_MAST_CELL_VS_CENT_MEMORY_CD4_TCELL_UP              0.57  0.51   NA 0.32
+GSE3982_MAST_CELL_VS_DC_UP                                   NA    NA   NA   NA
+
+These parameters work exactly in the same way with the ssGSEA method.
+
+ssgseapar <- ssgseaParam(logCPMsWithNAs, c7.genesets.filt, minSize=5,
+                         use="na.rm")
+! Input expression data has NA values, which will be discarded from calculations
+es_ssgsea_narm <- gsva(ssgseapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Mapping identifiers
+ℹ Calculating ssGSEA scores for 36 gene sets
+! NA enrichment scores in gene sets with less than 5 genes after removing missing values
+! NA enrichment scores in gene sets with less than 5 genes after removing missing values
+ℹ Normalizing ssGSEA scores
+✔ Calculations finished
+round(es_ssgsea_narm[1:10, 1:4], digits=2)
+                                                          BS03 BS05 BS06 BS07
+GSE18804_SPLEEN_MACROPHAGE_VS_BRAIN_TUMORAL_MACROPHAGE_UP   NA 0.27   NA   NA
+GSE2585_THYMIC_MACROPHAGE_VS_MTEC_UP                        NA   NA   NA   NA
+GSE27786_NKCELL_VS_NEUTROPHIL_UP                            NA 0.13   NA   NA
+GSE27786_NKCELL_VS_NKTCELL_UP                             0.15 0.21 0.12   NA
+GSE27859_MACROPHAGE_VS_DC_UP                              0.15 0.18   NA   NA
+GSE3982_EOSINOPHIL_VS_BASOPHIL_UP                         0.52 0.60   NA 0.30
+GSE3982_MAST_CELL_VS_BASOPHIL_UP                          0.10 0.18   NA 0.18
+GSE3982_MAST_CELL_VS_BCELL_UP                             0.30 0.54   NA   NA
+GSE3982_MAST_CELL_VS_CENT_MEMORY_CD4_TCELL_UP             0.18 0.10   NA 0.09
+GSE3982_MAST_CELL_VS_DC_UP                                  NA   NA   NA   NA
+
+Since we are doing calculations on the RNA-seq data, for which we have the
+complete logCPM values, we can compare how close are the enrichment scores
+obtained by skipping NA values from the ones obtained with the complete
+data, for both GSVA and ssGSEA. First, we calculate the enrichment scores with
+the complete data for each of the two methods.
+
+gsvaAnnotation(protExpCostaEtAl2021) <- EntrezIdentifier("org.Hs.eg.db")
+gsvapar <- gsvaParam(protExpCostaEtAl2021, c7.genesets.filt,
+                     assay="logCPM", minSize=5)
+es_gsva <- gsva(gsvapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Calculating GSVA ranks
+ℹ kcdf='auto' (default)
+ℹ GSVA dense (classical) algorithm
+ℹ Row-wise ECDF estimation with Gaussian kernels
+ℹ Calculating row ECDFs
+ℹ Calculating column ranks
+ℹ Mapping identifiers
+ℹ GSVA dense (classical) algorithm
+ℹ Calculating GSVA scores for 36 gene sets
+✔ Calculations finished
+ssgseapar <- ssgseaParam(protExpCostaEtAl2021, c7.genesets.filt,
+                         assay="logCPM", minSize=5)
+es_ssgsea <- gsva(ssgseapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Mapping identifiers
+ℹ Calculating ssGSEA scores for 36 gene sets
+ℹ Normalizing ssGSEA scores
+✔ Calculations finished
+
+Second, we calculate and plot the correlations between the enrichment scores
+obtained from the data with missing values with the ones obtained from the
+complete data.
+
+r_es_gsva <- r_es_ssgsea <- numeric(nrow(es_gsva))
+for (i in 1:nrow(es_gsva)) {
+  r_es_gsva[i] <- cor(assay(es_gsva)[i, ], es_gsva_narm[i, ],
+              use="complete.obs")
+  r_es_ssgsea[i] <- cor(assay(es_ssgsea)[i, ], es_ssgsea_narm[i, ],
+            use="complete.obs")
+}
+boxplot(list(GSVA=r_es_gsva, ssGSEA=r_es_ssgsea),
+    ylab="Correlation with complete data", las=1)
+
+Figure 1: Correlation between enrichment scores calculated from RNA-seq expression profiles with missing values, and those calculated from the complete version of the same data
+
+As we can see in Figure 1 GSVA scores calculated by skipping
+missing values correlate better with those calculated from the complete data, than
+ssGSEA scores between incomplete and complete data.
+
+4 Usage and benchmark with proteomics data
+
+Here we show the usage of GSVA with the actual proteomics data from
+Costa et al. (2021), comparing the results obtained by skipping missing values
+with the results calculated from the imputed data. The normalized proteomics
+expression values before imputation are stored in the log2protexp assay, and
+after imputation in the log2protexpimp assay.
+
+assays(protExpCostaEtAl2021)$log2protexp[1:5, 1:5]
+          BS03     BS05     BS06     BS07     BS08
+5715  20.22729 20.97647       NA 20.42439 19.83030
+9973        NA 18.31250       NA       NA       NA
+5688  19.90413       NA       NA       NA       NA
+10627       NA 21.41412       NA 20.38215       NA
+8672  21.78837 21.60210 22.53073 22.16052 20.33004
+assays(protExpCostaEtAl2021)$log2protexpimp[1:5, 1:5]
+          BS03     BS05     BS06     BS07     BS08
+5715  20.22729 20.97647 20.07473 20.42439 19.83030
+9973  19.52460 18.31250 19.67240 18.96282 19.57746
+5688  19.90413 20.61876 20.59096 21.51491 19.91715
+10627 20.13780 21.41412 20.53676 20.38215 19.84890
+8672  21.78837 21.60210 22.53073 22.16052 20.33004
+
+We first create the parameter objects for the proteomics data before
+imputation.
+
+gsvapar <- gsvaParam(protExpCostaEtAl2021, c7.genesets.filt,
+             assay="log2protexp", minSize=5, use="na.rm")
+! Input expression data has NA values, which will be discarded from calculations
+ssgseapar <- ssgseaParam(protExpCostaEtAl2021, c7.genesets.filt,
+                 assay="log2protexp", minSize=5, use="na.rm")
+! Input expression data has NA values, which will be discarded from calculations
+
+We can use the method anyNA() on the parameter object to programmatically
+confirm anytime the presence of missing values.
+
+anyNA(gsvapar)
+[1] TRUE
+anyNA(ssgseapar)
+[1] TRUE
+
+Next, we calculate enrichment scores skipping missing values.
+
+es_gsva <- gsva(gsvapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Calculating GSVA ranks
+ℹ kcdf='auto' (default)
+ℹ GSVA dense (classical) algorithm
+ℹ Row-wise ECDF estimation with Gaussian kernels
+ℹ Calculating row ECDFs
+ℹ Calculating column ranks
+ℹ Mapping identifiers
+ℹ GSVA dense (classical) algorithm
+ℹ Calculating GSVA scores for 36 gene sets
+! NA enrichment scores in gene sets with less than 5 genes after removing missing values
+✔ Calculations finished
+es_ssgsea <- gsva(ssgseapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Mapping identifiers
+ℹ Calculating ssGSEA scores for 36 gene sets
+! NA enrichment scores in gene sets with less than 5 genes after removing missing values
+! NA enrichment scores in gene sets with less than 5 genes after removing missing values
+ℹ Normalizing ssGSEA scores
+✔ Calculations finished
+
+Now we do calculations again on the imputed proteomics data stored in the
+log2protexpimp assay.
+
+gsvapar <- gsvaParam(protExpCostaEtAl2021, c7.genesets.filt,
+             assay="log2protexpimp", minSize=5)
+anyNA(gsvapar)
+[1] FALSE
+es_gsva_imp <- gsva(gsvapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Calculating GSVA ranks
+ℹ kcdf='auto' (default)
+ℹ GSVA dense (classical) algorithm
+ℹ Row-wise ECDF estimation with Gaussian kernels
+ℹ Calculating row ECDFs
+ℹ Calculating column ranks
+ℹ Mapping identifiers
+ℹ GSVA dense (classical) algorithm
+ℹ Calculating GSVA scores for 36 gene sets
+✔ Calculations finished
+ssgseapar <- ssgseaParam(protExpCostaEtAl2021, c7.genesets.filt,
+                 assay="log2protexpimp", minSize=5)
+anyNA(ssgseapar)
+[1] FALSE
+es_ssgsea_imp <- gsva(ssgseapar)
+ℹ GSVA version 2.6.6
+ℹ Searching for rows with constant values
+ℹ Mapping identifiers
+ℹ Calculating ssGSEA scores for 36 gene sets
+ℹ Normalizing ssGSEA scores
+✔ Calculations finished
+
+Finally, in a similar way we did in the previous section, we compare the
+enrichment scores calculated before and after imputation. As shown in
+Figure 2 below, GSVA scores calculated by skipping
+missing values correlated better with those calculated from the imputed data,
+than ssGSEA scores calculated by skipping missing values before imputation and
+on the imputed data.
+
+r_es_gsva <- r_es_ssgsea <- numeric(nrow(es_gsva))
+for (i in 1:nrow(es_gsva)) {
+  r_es_gsva[i] <- cor(assay(es_gsva)[i, ], assay(es_gsva_imp)[i, ],
+              use="complete.obs")
+  r_es_ssgsea[i] <- cor(assay(es_ssgsea)[i, ], assay(es_ssgsea_imp)[i, ],
+            use="complete.obs")
+}
+boxplot(list(GSVA=r_es_gsva, ssGSEA=r_es_ssgsea),
+    ylab="Correlation before/after imputation", las=1)
+
+Figure 2: Correlation between enrichment scores calculated from normalized MS proteomics data before and after imputing missing values
+
+Session information
+
+Here is the output of sessionInfo() on the system on which this document was
+compiled running pandoc 2.7.3:
+
+sessionInfo()
+R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
+
+Matrix products: default
+BLAS:   /home/biocbuild/bbs-3.23-bioc/R/lib/libRblas.so 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_GB              LC_COLLATE=C              
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: America/New_York
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] sva_3.60.0                  BiocParallel_1.46.0        
+ [3] genefilter_1.94.0           mgcv_1.9-4                 
+ [5] nlme_3.1-170                RColorBrewer_1.1-3         
+ [7] edgeR_4.10.1                limma_3.68.4               
+ [9] GSVAdata_1.48.1             SummarizedExperiment_1.42.0
+[11] GenomicRanges_1.64.0        Seqinfo_1.2.0              
+[13] MatrixGenerics_1.24.0       matrixStats_1.5.0          
+[15] GSEABase_1.74.0             graph_1.90.0               
+[17] annotate_1.90.0             XML_3.99-0.23              
+[19] org.Hs.eg.db_3.23.1         AnnotationDbi_1.74.0       
+[21] IRanges_2.46.0              S4Vectors_0.50.1           
+[23] Biobase_2.72.0              BiocGenerics_0.58.1        
+[25] generics_0.1.4              GSVA_2.6.6                 
+[27] BiocStyle_2.40.0           
+
+loaded via a namespace (and not attached):
+ [1] blob_1.3.0                  Biostrings_2.80.1          
+ [3] fastmap_1.2.0               SingleCellExperiment_1.34.0
+ [5] digest_0.6.39               rsvd_1.0.5                 
+ [7] lifecycle_1.0.5             survival_3.8-9             
+ [9] statmod_1.5.2               KEGGREST_1.52.2            
+[11] RSQLite_3.53.3              magrittr_2.0.5             
+[13] compiler_4.6.1              rlang_1.3.0                
+[15] sass_0.4.10                 tools_4.6.1                
+[17] yaml_2.3.12                 knitr_1.51                 
+[19] S4Arrays_1.12.0             bit_4.6.0                  
+[21] DelayedArray_0.38.2         abind_1.4-8                
+[23] HDF5Array_1.40.0            memuse_4.2-3               
+[25] grid_4.6.1                  beachmat_2.28.0            
+[27] xtable_1.8-8                Rhdf5lib_2.0.0             
+[29] tinytex_0.60                cli_3.6.6                  
+[31] rmarkdown_2.31              crayon_1.5.3               
+[33] otel_0.2.0                  httr_1.4.8                 
+[35] rjson_0.2.23                DelayedMatrixStats_1.34.0  
+[37] DBI_1.3.0                   cachem_1.1.0               
+[39] rhdf5_2.56.0                splines_4.6.1              
+[41] parallel_4.6.1              BiocManager_1.30.27        
+[43] XVector_0.52.0              vctrs_0.7.3                
+[45] Matrix_1.7-6                jsonlite_2.0.0             
+[47] bookdown_0.47               BiocSingular_1.28.0        
+[49] bit64_4.8.2                 irlba_2.3.7                
+[51] magick_2.9.1                locfit_1.5-9.12            
+[53] h5mread_1.4.0               jquerylib_0.1.4            
+[55] glue_1.8.1                  codetools_0.2-20           
+[57] ScaledMatrix_1.20.0         pillar_1.11.1              
+[59] htmltools_0.5.9             rhdf5filters_1.24.1        
+[61] R6_2.6.1                    sparseMatrixStats_1.24.0   
+[63] evaluate_1.0.5              lattice_0.22-9             
+[65] png_0.1-9                   SpatialExperiment_1.22.0   
+[67] memoise_2.0.1               bslib_0.12.0               
+[69] Rcpp_1.1.2                  SparseArray_1.12.2         
+[71] xfun_0.60                   pkgconfig_2.0.3            
+
+References
+
+Costa, Daniel, Núria Bonet, Amanda Solé, José Manuel González de Aledo-Castillo, Eduard Sabidó, Ferran Casals, Carlota Rovira, et al. 2021. “Genome-Wide Postnatal Changes in Immunity Following Fetal Inflammatory Response.” The FEBS Journal 288 (7): 2311–31. https://doi.org/10.1111/febs.15578.
+

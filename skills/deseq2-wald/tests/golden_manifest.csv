@@ -1,0 +1,9 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/feature_table.csv,2edaf1cc6b52dad334d13538dac23a81067a917c14c254343cb3aec2fd64ac59,container,
+tables/deseq2_results_full.csv,f1fb047e24e127f5fea0a7d420f3f11fd465fe13e5cc1c8ba569976a502d821e,container,
+results/deseq2_wald_results.json,b2d89ae402664eea9580ef3aaa317f1f17918618896a010d2b58f6cb38d8c499,container,
+objects/ranked_list.csv,439fd5fb2f2b117f9c9d8ee3046c2b74cd9cdc7251636a49c84401183e1d0cff,container,
+figures/volcano.figure_spec.json,d12839266b2255e1a544a2b83b55a798cf74022f4a372c7d6647a3c7a235c880,container,
+figures/ma.figure_spec.json,1a5a1b386bacd241b39e1c73bfedd58c30af8d8ebd3b3a95bb1a137d9bde699b,container,
+figures/top_heatmap.figure_spec.json,21da49b269d72af40e4a9ef0aa2b66234377f473459bce1713bc77ccf803e638,container,

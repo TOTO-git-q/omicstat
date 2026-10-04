@@ -1,0 +1,4 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+tables/markers.csv,9e5747192e94bf9e787a765f18394a7b2d11430343944489416727034bf56b10,container,
+tables/marker_plot_data.csv,c20975fd22cf8932520d3e3583b7e222f19fe6579d4a841620200d750d85b5b1,container,

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.tmp
+*.tmp-*
+Rplots.pdf
+.Rhistory
+skills/_shared/tests/_out/
+.venv/
+.omicstat-r/
+
+# Claude Code local settings and agent worktrees
+.claude/
+.omicstat-acceptance/
+# S5 R5: the acceptance layer is a SYMLINK in run checkouts; a trailing-slash
+# pattern matches directories only, so the link itself stays untracked and the
+# MCP provenance identity refuses it. Ignore the root entry of any file type.
+/.omicstat-acceptance

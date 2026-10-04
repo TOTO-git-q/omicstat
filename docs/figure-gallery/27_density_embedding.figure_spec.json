@@ -1,0 +1,58 @@
+{
+  "caption": "Expression-weighted density of LYZ on the UMAP embedding (2,400 cells, 523 with non-zero expression). Two-dimensional Gaussian kernel density (MASS::kde2d formulation, 100 x 100 grid, normal-reference bandwidths 3.82 and 3.32), each cell weighted by its expression; colour, density at each cell relative to the maximum. Cells are drawn in order of increasing density.",
+  "counts": [],
+  "data": {
+    "bandwidth": [
+      3.8242377,
+      3.3176962
+    ],
+    "grid_n": 100,
+    "n_cells": 2400,
+    "weighted": true
+  },
+  "encodings": {
+    "colour": {
+      "limits": [
+        0,
+        1
+      ],
+      "palette": [
+        "#440154",
+        "#482878",
+        "#3E4A89",
+        "#31688E",
+        "#26828E",
+        "#1F9E89",
+        "#35B779",
+        "#6DCD59",
+        "#B4DE2C",
+        "#FDE725"
+      ],
+      "scale": "sequential"
+    }
+  },
+  "figure_type": "density_embedding",
+  "files": {
+    "pdf": {
+      "content_sha256": "e3c9f5b4f0d95d9bae7fd7bc160de2187edb4143615586d3c35dd06e3c839e65",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "27_density_embedding.pdf"
+    },
+    "png": {
+      "path": "27_density_embedding.png",
+      "sha256": "b667236fd19dcda1dfbadec116129561f7283055a511e99e7699a7f4c0aaedb3"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 70,
+  "journal": "nature",
+  "lint": [],
+  "notes": {
+    "rasterised_points": false
+  },
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

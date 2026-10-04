@@ -1,0 +1,887 @@
+{
+  "module": "seurat-cluster",
+  "note": "Formals probed in omicstat-r:2026.09.1; policy 2026-09-29 overrides unfrozen S1 drafts.",
+  "package_versions": {
+    "Seurat": "5.5.1",
+    "SeuratObject": "5.4.0"
+  },
+  "flag_defaults": {
+    "--seed": 20260925,
+    "--journal": "nature",
+    "--scale-factor": 10000,
+    "--algorithm": 1,
+    "--min-dist": 0.3
+  },
+  "accessors": [
+    "SeuratObject::Layers",
+    "SeuratObject::VariableFeatures",
+    "SeuratObject::Embeddings",
+    "SeuratObject::Stdev"
+  ],
+  "calls": [
+    {
+      "fn": "Seurat::NormalizeData",
+      "method": "NormalizeData.Seurat",
+      "args": {
+        "assay": {
+          "value": "\"RNA\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "normalization.method": {
+          "value": "os_seurat_option(a,\"normalize-normalization-method\",\"LogNormalize\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"LogNormalize\""
+        },
+        "scale.factor": {
+          "value": "a[[\"scale-factor\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "10000"
+        },
+        "margin": {
+          "value": "os_seurat_option(a,\"normalize-margin\",1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::FindVariableFeatures",
+      "method": "FindVariableFeatures.Seurat",
+      "args": {
+        "assay": {
+          "value": "\"RNA\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "selection.method": {
+          "value": "os_seurat_option(a,\"hvg-selection-method\",\"vst\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"vst\""
+        },
+        "loess.span": {
+          "value": "os_seurat_option(a,\"hvg-loess-span\",0.3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.3"
+        },
+        "clip.max": {
+          "value": "os_seurat_option(a,\"hvg-clip-max\",\"auto\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"auto\""
+        },
+        "mean.function": {
+          "value": "seurat_cluster_function(a,\"hvg-mean-function\",\"FastExpMean\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FastExpMean"
+        },
+        "dispersion.function": {
+          "value": "seurat_cluster_function(a,\"hvg-dispersion-function\",\"FastLogVMR\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FastLogVMR"
+        },
+        "num.bin": {
+          "value": "os_seurat_option(a,\"hvg-num-bin\",20)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "20"
+        },
+        "binning.method": {
+          "value": "os_seurat_option(a,\"hvg-binning-method\",\"equal_width\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"equal_width\""
+        },
+        "nfeatures": {
+          "value": "a[[\"n-hvg\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "2000"
+        },
+        "mean.cutoff": {
+          "value": "os_seurat_option(a,\"hvg-mean-cutoff\",c(0.1, 8))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "c(0.1, 8)"
+        },
+        "dispersion.cutoff": {
+          "value": "os_seurat_option(a,\"hvg-dispersion-cutoff\",c(1, Inf))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "c(1, Inf)"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::ScaleData",
+      "method": "ScaleData.Seurat",
+      "args": {
+        "features": {
+          "value": "SeuratObject::VariableFeatures(x)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "assay": {
+          "value": "\"RNA\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "vars.to.regress": {
+          "value": "os_seurat_option(a,\"scale-vars-to-regress\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "split.by": {
+          "value": "os_seurat_option(a,\"scale-split-by\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "model.use": {
+          "value": "os_seurat_option(a,\"scale-model-use\",\"linear\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"linear\""
+        },
+        "use.umi": {
+          "value": "os_seurat_option(a,\"scale-use-umi\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "do.scale": {
+          "value": "os_seurat_option(a,\"scale-do-scale\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "do.center": {
+          "value": "os_seurat_option(a,\"scale-do-center\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "scale.max": {
+          "value": "os_seurat_option(a,\"scale-scale-max\",10)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "10"
+        },
+        "block.size": {
+          "value": "os_seurat_option(a,\"scale-block-size\",1000)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1000"
+        },
+        "min.cells.to.block": {
+          "value": "os_seurat_option(a,\"scale-min-cells-to-block\",3000)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "3000"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::SCTransform",
+      "method": "SCTransform.Seurat",
+      "args": {
+        "assay": {
+          "value": "\"RNA\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"RNA\""
+        },
+        "new.assay.name": {
+          "value": "\"SCT\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"SCT\""
+        },
+        "reference.SCT.model": {
+          "value": "if(is.null(a[[\"sct-reference-model\"]])) NULL else readRDS(a[[\"sct-reference-model\"]])",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "do.correct.umi": {
+          "value": "os_seurat_option(a,\"sct-do-correct-umi\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "ncells": {
+          "value": "os_seurat_option(a,\"sct-ncells\",5000)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "5000"
+        },
+        "residual.features": {
+          "value": "os_seurat_option(a,\"sct-residual-features\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "variable.features.n": {
+          "value": "a[[\"n-hvg\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "3000"
+        },
+        "variable.features.rv.th": {
+          "value": "os_seurat_option(a,\"sct-variable-features-rv-th\",1.3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1.3"
+        },
+        "vars.to.regress": {
+          "value": "os_seurat_option(a,\"sct-vars-to-regress\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "do.scale": {
+          "value": "os_seurat_option(a,\"sct-do-scale\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "do.center": {
+          "value": "os_seurat_option(a,\"sct-do-center\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "clip.range": {
+          "value": "os_seurat_option(a,\"sct-clip-range\",c(-sqrt(ncol(x)/30),sqrt(ncol(x)/30)))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "c(-sqrt(x = ncol(x = object[[assay]])/30), sqrt(x = ncol(x = object[[assay]])/30))"
+        },
+        "vst.flavor": {
+          "value": "os_seurat_option(a,\"sct-vst-flavor\",\"v2\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"v2\""
+        },
+        "conserve.memory": {
+          "value": "os_seurat_option(a,\"sct-conserve-memory\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "return.only.var.genes": {
+          "value": "os_seurat_option(a,\"sct-return-only-var-genes\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "seed.use": {
+          "value": "a$seed",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1448145"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::RunPCA",
+      "method": "RunPCA.Seurat",
+      "args": {
+        "assay": {
+          "value": "assay",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "features": {
+          "value": "SeuratObject::VariableFeatures(x)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "npcs": {
+          "value": "a[[\"n-pcs\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "50"
+        },
+        "rev.pca": {
+          "value": "os_seurat_option(a,\"pca-rev-pca\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "weight.by.var": {
+          "value": "os_seurat_option(a,\"pca-weight-by-var\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "ndims.print": {
+          "value": "1:5",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1:5"
+        },
+        "nfeatures.print": {
+          "value": "30",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "30"
+        },
+        "reduction.name": {
+          "value": "\"pca\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"pca\""
+        },
+        "reduction.key": {
+          "value": "\"PC_\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"PC_\""
+        },
+        "seed.use": {
+          "value": "a$seed",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "42"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        },
+        "approx": {
+          "value": "os_seurat_option(a,\"pca-approx\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "<absent>"
+        }
+      }
+    },
+    {
+      "fn": "Seurat::FindNeighbors",
+      "method": "FindNeighbors.Seurat",
+      "args": {
+        "reduction": {
+          "value": "\"pca\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"pca\""
+        },
+        "dims": {
+          "value": "seq_len(a$dims)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1:10"
+        },
+        "assay": {
+          "value": "assay",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "features": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "k.param": {
+          "value": "a$neighbors",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "20"
+        },
+        "return.neighbor": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "compute.SNN": {
+          "value": "TRUE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "!return.neighbor"
+        },
+        "prune.SNN": {
+          "value": "os_seurat_option(a,\"graph-prune-SNN\",1/15)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1/15"
+        },
+        "nn.method": {
+          "value": "os_seurat_option(a,\"graph-nn-method\",\"annoy\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"annoy\""
+        },
+        "n.trees": {
+          "value": "os_seurat_option(a,\"graph-n-trees\",50)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "50"
+        },
+        "annoy.metric": {
+          "value": "os_seurat_option(a,\"graph-annoy-metric\",\"euclidean\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"euclidean\""
+        },
+        "nn.eps": {
+          "value": "os_seurat_option(a,\"graph-nn-eps\",0)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "do.plot": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "graph.name": {
+          "value": "c(\"omic_nn\",\"omic_snn\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "l2.norm": {
+          "value": "os_seurat_option(a,\"graph-l2-norm\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "cache.index": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::FindClusters",
+      "method": "FindClusters.Seurat",
+      "args": {
+        "graph.name": {
+          "value": "\"omic_snn\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "cluster.name": {
+          "value": "\"cluster\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "modularity.fxn": {
+          "value": "os_seurat_option(a,\"cluster-modularity-fxn\",1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "initial.membership": {
+          "value": "os_seurat_option(a,\"cluster-initial-membership\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "node.sizes": {
+          "value": "os_seurat_option(a,\"cluster-node-sizes\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "resolution": {
+          "value": "a$resolution",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.8"
+        },
+        "method": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "algorithm": {
+          "value": "a$algorithm",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "leiden_method": {
+          "value": "os_seurat_option(a,\"cluster-leiden-method\",c(\"leidenbase\", \"igraph\"))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "c(\"leidenbase\", \"igraph\")"
+        },
+        "leiden_objective_function": {
+          "value": "os_seurat_option(a,\"cluster-leiden-objective-function\",c(\"modularity\", \"CPM\"))",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "c(\"modularity\", \"CPM\")"
+        },
+        "n.start": {
+          "value": "os_seurat_option(a,\"cluster-n-start\",10)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "10"
+        },
+        "n.iter": {
+          "value": "os_seurat_option(a,\"cluster-n-iter\",10)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "10"
+        },
+        "random.seed": {
+          "value": "a$seed",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0"
+        },
+        "group.singletons": {
+          "value": "os_seurat_option(a,\"cluster-group-singletons\",TRUE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "temp.file.location": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "edge.file.name": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "Seurat::RunUMAP",
+      "method": "RunUMAP.Seurat",
+      "args": {
+        "dims": {
+          "value": "seq_len(a$dims)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "reduction": {
+          "value": "\"pca\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"pca\""
+        },
+        "features": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "graph": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "assay": {
+          "value": "assay",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "DefaultAssay(object = object)"
+        },
+        "nn.name": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "slot": {
+          "value": "\"data\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"data\""
+        },
+        "umap.method": {
+          "value": "os_seurat_option(a,\"umap-umap-method\",\"uwot\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"uwot\""
+        },
+        "reduction.model": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "return.model": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "n.neighbors": {
+          "value": "a[[\"umap-neighbors\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "30L"
+        },
+        "n.components": {
+          "value": "os_seurat_option(a,\"umap-n-components\",2L)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "2L"
+        },
+        "metric": {
+          "value": "os_seurat_option(a,\"umap-metric\",\"cosine\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"cosine\""
+        },
+        "n.epochs": {
+          "value": "os_seurat_option(a,\"umap-n-epochs\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "learning.rate": {
+          "value": "os_seurat_option(a,\"umap-learning-rate\",1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "min.dist": {
+          "value": "a[[\"min-dist\"]]",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.3"
+        },
+        "spread": {
+          "value": "os_seurat_option(a,\"umap-spread\",1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "set.op.mix.ratio": {
+          "value": "os_seurat_option(a,\"umap-set-op-mix-ratio\",1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "local.connectivity": {
+          "value": "os_seurat_option(a,\"umap-local-connectivity\",1L)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1L"
+        },
+        "repulsion.strength": {
+          "value": "os_seurat_option(a,\"umap-repulsion-strength\",1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "1"
+        },
+        "negative.sample.rate": {
+          "value": "os_seurat_option(a,\"umap-negative-sample-rate\",5L)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "5L"
+        },
+        "a": {
+          "value": "os_seurat_option(a,\"umap-a\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "b": {
+          "value": "os_seurat_option(a,\"umap-b\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "uwot.sgd": {
+          "value": "os_seurat_option(a,\"umap-uwot-sgd\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "uwot.approx_pow": {
+          "value": "os_seurat_option(a,\"umap-uwot-approx-pow\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "uwot.init": {
+          "value": "os_seurat_option(a,\"umap-uwot-init\",\"spectral\")",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"spectral\""
+        },
+        "seed.use": {
+          "value": "a$seed",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "42L"
+        },
+        "metric.kwds": {
+          "value": "os_seurat_option(a,\"umap-metric-kwds\",NULL)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "angular.rp.forest": {
+          "value": "os_seurat_option(a,\"umap-angular-rp-forest\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "densmap": {
+          "value": "os_seurat_option(a,\"umap-densmap\",FALSE)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "FALSE"
+        },
+        "dens.lambda": {
+          "value": "os_seurat_option(a,\"umap-dens-lambda\",2)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "2"
+        },
+        "dens.frac": {
+          "value": "os_seurat_option(a,\"umap-dens-frac\",0.3)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.3"
+        },
+        "dens.var.shift": {
+          "value": "os_seurat_option(a,\"umap-dens-var-shift\",0.1)",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "0.1"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "TRUE"
+        },
+        "reduction.name": {
+          "value": "\"umap\"",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "\"umap\""
+        },
+        "reduction.key": {
+          "value": "NULL",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": "NULL"
+        },
+        "object": {
+          "value": "x",
+          "source": "explicit user input / locked function default; parameter policy 2026-09-29",
+          "pack": "D; C",
+          "function_default": ""
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "module": "deseq2-qc",
+  "date": "2026-09-27T08:19:14Z",
+  "sampled_pmids": ["33203890", "34741808", "36515659", "39708805", "42594877", "42754892"],
+  "records_checked": 34,
+  "records_passed": 33,
+  "pass_rate": 0.9706,
+  "echo_checked": 6,
+  "echo_passed": 6,
+  "failures": [
+    {
+      "pmid": "33203890",
+      "parameter": "outlier_rule",
+      "recorded_value": "Samples retained in the dataset had at least 400,000 estimated counts associated with transcripts of protein-coding genes",
+      "problem": "Value is literally present in the Methods (collect.py check -> FOUND) but does not answer the outlier_rule question ('rule used to call / remove outlier samples'). It is a general minimum-sequencing-depth inclusion criterion applied at the kallisto/tximport quantification stage, before gene-level counts, DESeq2, or the vst-based heatmap even enter the pipeline -- it is not a QC/outlier-detection rule tied to the vst/PCA/sample-distance heatmap analysis this module covers, and the word 'outlier' never appears in the source text. This misattributes a value from an unrelated Methods sentence to this parameter.",
+      "correct_value_if_known": "not reported (no outlier-detection/removal rule is stated for the vst-based heatmap/clustering analysis itself)"
+    }
+  ],
+  "verdict": "pass"
+}

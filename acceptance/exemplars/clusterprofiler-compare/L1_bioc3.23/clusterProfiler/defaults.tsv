@@ -1,0 +1,6 @@
+function	argument	default
+compareCluster	geneClusters	
+compareCluster	fun	"enrichGO"
+compareCluster	data	""
+compareCluster	source_from	NULL
+compareCluster	...	

@@ -1,0 +1,35 @@
+function	argument	default
+GSEA	geneList	
+GSEA	exponent	1
+GSEA	minGSSize	10
+GSEA	maxGSSize	500
+GSEA	pvalueCutoff	0.05
+GSEA	pAdjustMethod	"BH"
+GSEA	gson	NULL
+GSEA	TERM2GENE	
+GSEA	TERM2NAME	NA
+GSEA	verbose	TRUE
+GSEA	nPerm	1000
+GSEA	method	"multilevel"
+GSEA	adaptive	FALSE
+GSEA	minPerm	101
+GSEA	maxPerm	1e+05
+GSEA	pvalThreshold	0.1
+GSEA	...	
+gseGO	geneList	
+gseGO	ont	"BP"
+gseGO	OrgDb	
+gseGO	keyType	"ENTREZID"
+gseGO	exponent	1
+gseGO	minGSSize	10
+gseGO	maxGSSize	500
+gseGO	pvalueCutoff	0.05
+gseGO	pAdjustMethod	"BH"
+gseGO	verbose	TRUE
+gseGO	nPerm	1000
+gseGO	method	"multilevel"
+gseGO	adaptive	FALSE
+gseGO	minPerm	101
+gseGO	maxPerm	1e+05
+gseGO	pvalThreshold	0.1
+gseGO	...	

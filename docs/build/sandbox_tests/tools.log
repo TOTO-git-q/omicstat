@@ -1,0 +1,9 @@
+COMMAND: /opt/pyvenv/bin/python tools/test_tools.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+.......s.............
+----------------------------------------------------------------------
+Ran 21 tests in 3.534s
+
+OK (skipped=1)
+
+EXIT_CODE: 0

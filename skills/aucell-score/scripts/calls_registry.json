@@ -1,0 +1,170 @@
+{
+  "module": "aucell-score",
+  "module_version": "1.0.0",
+  "package_versions": {
+    "AUCell": "1.34.0",
+    "BiocParallel": "1.46.0",
+    "GSEABase": "1.74.0"
+  },
+  "calls": [
+    {
+      "fn": "AUCell::AUCell_buildRankings",
+      "args": {
+        "exprMat": {
+          "value": "mat",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "featureType": {
+          "value": "\"genes\"",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "\"genes\""
+        },
+        "plotStats": {
+          "value": "FALSE",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "TRUE"
+        },
+        "splitByBlocks": {
+          "value": "a[[\"split-by-blocks\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "FALSE"
+        },
+        "keepZeroesAsNA": {
+          "value": "a[[\"keep-zeroes-as-na\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "FALSE"
+        },
+        "BPPARAM": {
+          "value": "BiocParallel::SerialParam()",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "NULL"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "TRUE"
+        }
+      },
+      "locked_defaults": {
+        "exprMat": "",
+        "featureType": "\"genes\"",
+        "plotStats": "TRUE",
+        "splitByBlocks": "FALSE",
+        "BPPARAM": "NULL",
+        "keepZeroesAsNA": "FALSE",
+        "verbose": "TRUE",
+        "nCores": "NULL",
+        "mctype": "NULL",
+        "...": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {},
+      "locked_defaults": {
+        "stop.on.error": "TRUE",
+        "progressbar": "FALSE",
+        "RNGseed": "NULL",
+        "timeout": "WORKER_TIMEOUT",
+        "log": "FALSE",
+        "threshold": "\"INFO\"",
+        "logdir": "NA_character_",
+        "resultdir": "NA_character_",
+        "jobname": "\"BPJOB\"",
+        "force.GC": "FALSE"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "AUCell::AUCell_calcAUC",
+      "args": {
+        "geneSets": {
+          "value": "sets",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "rankings": {
+          "value": "rankings",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": ""
+        },
+        "nCores": {
+          "value": "1",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "1"
+        },
+        "normAUC": {
+          "value": "a[[\"norm-auc\"]]",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "TRUE"
+        },
+        "aucMaxRank": {
+          "value": "maxrank",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "ceiling(0.05 * nrow(rankings))"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "Locked container formals; explicit call; sol61_common parameter policy",
+          "pack": "PACK D",
+          "function_default": "TRUE"
+        }
+      },
+      "locked_defaults": {
+        "geneSets": "",
+        "rankings": "",
+        "nCores": "1",
+        "normAUC": "TRUE",
+        "aucMaxRank": "ceiling(0.05 * nrow(rankings))",
+        "verbose": "TRUE"
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "AUCell::getAUC",
+      "args": {},
+      "locked_defaults": {
+        "object": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    },
+    {
+      "fn": "GSEABase::getGmt",
+      "args": {
+        "con": {
+          "value": "path",
+          "source": "required user offline sets-file; source/licence declaration",
+          "pack": "C/D/F",
+          "function_default": ""
+        }
+      },
+      "dispatch": "do.call; native supplementary CLI JSON",
+      "locked_defaults": {
+        "con": "",
+        "geneIdType": "NullIdentifier()",
+        "collectionType": "NullCollection()",
+        "sep": "\"\\t\"",
+        "...": ""
+      },
+      "option_policy": "Primary CLI flags explicit; named supplementary JSON exposes native and delegated parameters; omitted keys use locked defaults"
+    }
+  ],
+  "accessors": [
+    "GSEABase::geneIds"
+  ],
+  "gene_set_policy": "Required offline sets-file with source/licence and user-permitted acknowledgement; prohibited collections refused; bundled example smoke only"
+}

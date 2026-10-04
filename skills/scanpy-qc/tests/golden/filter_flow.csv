@@ -1,0 +1,5 @@
+stage,n_cells,n_genes
+input,600,32738
+cell_qc,600,32738
+gene_qc,600,13769
+doublet_filter,600,13769

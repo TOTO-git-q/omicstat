@@ -1,0 +1,258 @@
+==== num.sv ====
+function (dat, mod, method = c("be", "leek"), vfilter = NULL, 
+    B = 20, seed = NULL) 
+{
+    if (!is.null(vfilter)) {
+        if (vfilter < 100 | vfilter > dim(dat)[1]) {
+            stop(paste("The number of genes used in the analysis must be between 100 and", 
+                dim(dat)[1], "\n"))
+        }
+        tmpv = rowVars(dat)
+        ind = which(rank(-tmpv) < vfilter)
+        dat = dat[ind, ]
+    }
+    method <- match.arg(method)
+    if (method == "be") {
+        if (!is.null(seed)) {
+            set.seed(seed)
+        }
+        warn <- NULL
+        n <- ncol(dat)
+        m <- nrow(dat)
+        H <- mod %*% solve(t(mod) %*% mod) %*% t(mod)
+        res <- dat - t(H %*% t(dat))
+        uu <- svd(res)
+        ndf <- min(m, n) - ceiling(sum(diag(H)))
+        dstat <- uu$d[1:ndf]^2/sum(uu$d[1:ndf]^2)
+        dstat0 <- matrix(0, nrow = B, ncol = ndf)
+        for (i in 1:B) {
+            res0 <- t(apply(res, 1, sample, replace = FALSE))
+            res0 <- res0 - t(H %*% t(res0))
+            uu0 <- svd(res0)
+            dstat0[i, ] <- uu0$d[1:ndf]^2/sum(uu0$d[1:ndf]^2)
+        }
+        psv <- rep(1, n)
+        for (i in 1:ndf) {
+            psv[i] <- mean(dstat0[, i] >= dstat[i])
+        }
+        for (i in 2:ndf) {
+            psv[i] <- max(psv[(i - 1)], psv[i])
+        }
+        nsv <- sum(psv <= 0.1)
+        return(as.numeric(list(n.sv = nsv)))
+    }
+    else {
+        dat <- as.matrix(dat)
+        dims <- dim(dat)
+        a <- seq(0, 2, length = 100)
+        n <- floor(dims[1]/10)
+        rhat <- matrix(0, nrow = 100, ncol = 10)
+        P <- (diag(dims[2]) - mod %*% solve(t(mod) %*% mod) %*% 
+            t(mod))
+        for (j in 1:10) {
+            dats <- dat[1:(j * n), ]
+            ee <- eigen(t(dats) %*% dats)
+            sigbar <- ee$values[dims[2]]/(j * n)
+            R <- dats %*% P
+            wm <- (1/(j * n)) * t(R) %*% R - P * sigbar
+            ee <- eigen(wm)
+            v <- c(rep(TRUE, 100), rep(FALSE, dims[2]))
+            v <- v[order(c(a * (j * n)^(-1/3) * dims[2], ee$values), 
+                decreasing = TRUE)]
+            u <- 1:length(v)
+            w <- 1:100
+            rhat[, j] <- rev((u[v == TRUE] - w))
+        }
+        ss <- rowVars(rhat)
+        bumpstart <- which.max(ss > (2 * ss[1]))
+        start <- which.max(c(rep(1e+05, bumpstart), ss[(bumpstart + 
+            1):100]) < 0.5 * ss[1])
+        finish <- which.max(ss * c(rep(0, start), rep(1, 100 - 
+            start)) > ss[1])
+        if (finish == 1) {
+            finish <- 100
+        }
+        n.sv <- modefunc(rhat[start:finish, 10])
+        return(n.sv)
+        print(method)
+    }
+}
+==== ComBat_seq head ====
+function (counts, batch, group = NULL, covar_mod = NULL, full_mod = TRUE, 
+    shrink = FALSE, shrink.disp = FALSE, gene.subset.n = NULL) 
+{
+    batch <- as.factor(batch)
+    if (any(table(batch) <= 1)) {
+        stop("ComBat-seq doesn't support 1 sample per batch yet")
+    }
+    keep_lst <- lapply(levels(batch), function(b) {
+        which(apply(counts[, batch == b], 1, function(x) {
+            !all(x == 0)
+        }))
+    })
+    keep <- Reduce(intersect, keep_lst)
+    rm <- setdiff(1:nrow(counts), keep)
+    countsOri <- counts
+    counts <- counts[keep, ]
+    dge_obj <- DGEList(counts = counts)
+    n_batch <- nlevels(batch)
+    batches_ind <- lapply(1:n_batch, function(i) {
+        which(batch == levels(batch)[i])
+    })
+    n_batches <- sapply(batches_ind, length)
+    n_sample <- sum(n_batches)
+    cat("Found", n_batch, "batches\n")
+    batchmod <- model.matrix(~-1 + batch)
+    group <- as.factor(group)
+    if (full_mod & nlevels(group) > 1) {
+        cat("Using full model in ComBat-seq.\n")
+        mod <- model.matrix(~group)
+    }
+    else {
+        cat("Using null model in ComBat-seq.\n")
+        mod <- model.matrix(~1, data = as.data.frame(t(counts)))
+    }
+    if (!is.null(covar_mod)) {
+        if (is.data.frame(covar_mod)) {
+            covar_mod <- do.call(cbind, lapply(1:ncol(covar_mod), 
+                function(i) {
+                  model.matrix(~covar_mod[, i])
+                }))
+        }
+        covar_mod <- covar_mod[, !apply(covar_mod, 2, function(x) {
+            all(x == 1)
+        })]
+    }
+    mod <- cbind(mod, covar_mod)
+    design <- cbind(batchmod, mod)
+    check <- apply(design, 2, function(x) all(x == 1))
+    design <- as.matrix(design[, !check])
+    cat("Adjusting for", ncol(design) - ncol(batchmod), "covariate(s) or covariate level(s)\n")
+    if (qr(design)$rank < ncol(design)) {
+        if (ncol(design) == (n_batch + 1)) {
+            stop("The covariate is confounded with batch! Remove the covariate and rerun ComBat-Seq")
+        }
+        if (ncol(design) > (n_batch + 1)) {
+            if ((qr(design[, -c(1:n_batch)])$rank < ncol(design[, 
+                -c(1:n_batch)]))) {
+                stop("The covariates are confounded! Please remove one or more of the covariates so the design is not confounded")
+            }
+            else {
+                stop("At least one covariate is confounded with batch! Please remove confounded covariates and rerun ComBat-Seq")
+            }
+        }
+    }
+    NAs = any(is.na(counts))
+    if (NAs) {
+        cat(c("Found", sum(is.na(counts)), "Missing Data Values\n"), 
+            sep = " ")
+    }
+    cat("Estimating dispersions\n")
+    disp_common <- sapply(1:n_batch, function(i) {
+        if ((n_batches[i] <= ncol(design) - ncol(batchmod) + 
+            1) | qr(mod[batches_ind[[i]], ])$rank < ncol(mod)) {
+            return(estimateGLMCommonDisp(counts[, batches_ind[[i]]], 
+                design = NULL, subset = nrow(counts)))
+        }
+        else {
+            return(estimateGLMCommonDisp(counts[, batches_ind[[i]]], 
+                design = mod[batches_ind[[i]], ], subset = nrow(counts)))
+        }
+    })
+    genewise_disp_lst <- lapply(1:n_batch, function(j) {
+        if ((n_batches[j] <= ncol(design) - ncol(batchmod) + 
+            1) | qr(mod[batches_ind[[j]], ])$rank < ncol(mod)) {
+            return(rep(disp_common[j], nrow(counts)))
+        }
+        else {
+            return(estimateGLMTagwiseDisp(counts[, batches_ind[[j]]], 
+                design = mod[batches_ind[[j]], ], dispersion = disp_common[j], 
+                prior.df = 0))
+        }
+    })
+    names(genewise_disp_lst) <- paste0("batch", levels(batch))
+    phi_matrix <- matrix(NA, nrow = nrow(counts), ncol = ncol(counts))
+    for (k in 1:n_batch) {
+        phi_matrix[, batches_ind[[k]]] <- vec2mat(genewise_disp_lst[[k]], 
+            n_batches[k])
+    }
+    cat("Fitting the GLM model\n")
+    glm_f <- glmFit(dge_obj, design = design, dispersion = phi_matrix, 
+        prior.count = 1e-04)
+    alpha_g <- glm_f$coefficients[, 1:n_batch] %*% as.matrix(n_batches/n_sample)
+    new_offset <- t(vec2mat(getOffset(dge_obj), nrow(counts))) + 
+        vec2mat(alpha_g, ncol(counts))
+    glm_f2 <- glmFit.default(dge_obj$counts, design = design, 
+        dispersion = phi_matrix, offset = new_offset, prior.count = 1e-04)
+    gamma_hat <- glm_f2$coefficients[, 1:n_batch]
+    mu_hat <- glm_f2$fitted.values
+    phi_hat <- do.call(cbind, genewise_disp_lst)
+    if (shrink) {
+        cat("Apply shrinkage - computing posterior estimates for parameters\n")
+        mcint_fun <- monte_carlo_int_NB
+        monte_carlo_res <- lapply(1:n_batch, function(ii) {
+            if (ii == 1) {
+                mcres <- mcint_fun(dat = counts[, batches_ind[[ii]]], 
+                  mu = mu_hat[, batches_ind[[ii]]], gamma = gamma_hat[, 
+                    ii], phi = phi_hat[, ii], gene.subset.n = gene.subset.n)
+            }
+            else {
+                invisible(capture.output(mcres <- mcint_fun(dat = counts[, 
+rowVars from: genefilter 
+R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] Biobase_2.72.0      BiocGenerics_0.58.1 generics_0.1.4     
+[4] limma_3.68.5        sva_3.60.0          BiocParallel_1.46.0
+[7] genefilter_1.94.0   mgcv_1.9-4          nlme_3.1-170       
+
+loaded via a namespace (and not attached):
+ [1] Matrix_1.7-6          bit_4.6.0             compiler_4.6.1       
+ [4] crayon_1.5.3          blob_1.3.0            Biostrings_2.80.2    
+ [7] parallel_4.6.1        splines_4.6.1         IRanges_2.46.0       
+[10] Seqinfo_1.2.0         png_0.1-9             statmod_1.5.2        
+[13] fastmap_1.2.0         lattice_0.22-9        R6_2.6.1             
+[16] XVector_0.52.0        XML_3.99-0.24         MatrixGenerics_1.24.0
+[19] AnnotationDbi_1.74.0  DBI_1.3.0             rlang_1.3.0          
+[22] KEGGREST_1.52.2       cachem_1.1.0          bit64_4.8.6          
+[25] otel_0.2.0            annotate_1.90.0       RSQLite_3.53.3       
+[28] memoise_2.0.1         cli_3.6.6             locfit_1.5-9.12      
+[31] digest_0.6.39         grid_4.6.1            xtable_1.8-8         
+[34] edgeR_4.10.5          S4Vectors_0.50.3      vctrs_0.7.3          
+[37] codetools_0.2-20      survival_3.8-9        stats4_4.6.1         
+[40] httr_1.4.9            matrixStats_1.5.0     tools_4.6.1          
+La_library: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so  BLAS: /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+storage: double 22283 57 
+leek in-memory: 4 
+identical rownames order: TRUE  colnames: TRUE 
+max abs diff after TSV round trip: 4.973799e-14 
+leek TSV (reordered to vignette order): 2 
+leek TSV engine order: 2 
+leek in-memory rows sorted: 4 
+leek perturbed 1e-12 # 1 : 5 
+leek perturbed 1e-12 # 2 : 4 
+leek perturbed 1e-12 # 3 : 2 
+leek perturbed 1e-12 # 4 : 5 
+leek perturbed 1e-12 # 5 : 5 
+ [1] 67038.691 46501.146 17241.600 13664.847 11417.698  8816.329  7631.453
+ [8]  7080.730  6384.586  5847.947  5183.189  5051.263
+PROBE2 DONE
+EXIT 0

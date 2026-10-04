@@ -1,0 +1,91 @@
+COMMAND: /opt/pyvenv/bin/python env/test_env_config.py
+CWD: /mnt/data/omicstat_work/omic-MCP
+PASS: omicstat-env.json has 'r_version'
+PASS: omicstat-env.json has 'bioconductor'
+PASS: omicstat-env.json has 'base_image'
+PASS: omicstat-env.json has 'base_image_digest'
+PASS: omicstat-env.json has 'cran_snapshot'
+PASS: omicstat-env.json has 'cran_repo_linux'
+PASS: omicstat-env.json has 'cran_repo_other'
+PASS: omicstat-env.json has 'image'
+PASS: omicstat-env.json has 'image_tag'
+PASS: omicstat-env.json has 'layers'
+PASS: omicstat-env.json has 'env_version'
+PASS: base image pinned by full sha256 digest
+PASS: CRAN repos use the dated snapshot
+PASS: no floating 'latest' CRAN repo
+PASS: base image tag matches r_version and bioconductor
+PASS: image_tag equals env_version
+PASS: Dockerfile COPYs every layer file in env order
+PASS: Dockerfile installs every layer in env order
+PASS: Dockerfile base image comes only from build.sh (no default)
+PASS: layer L0_base: file exists, non-empty, no duplicates
+PASS: layer L1_bulk: file exists, non-empty, no duplicates
+PASS: layer L2_enrichment: file exists, non-empty, no duplicates
+PASS: layer L3_sc_seurat: file exists, non-empty, no duplicates
+PASS: layer L4_sc_bioc: file exists, non-empty, no duplicates
+PASS: layer L5_sc_downstream: file exists, non-empty, no duplicates
+PASS: layer L6_network: file exists, non-empty, no duplicates
+PASS: layer L7_figures: file exists, non-empty, no duplicates
+PASS: no package is listed in two layers
+PASS: figure/report/determinism dependency 'ggplot2' is in a layer
+PASS: figure/report/determinism dependency 'ggrepel' is in a layer
+PASS: figure/report/determinism dependency 'patchwork' is in a layer
+PASS: figure/report/determinism dependency 'ragg' is in a layer
+PASS: figure/report/determinism dependency 'svglite' is in a layer
+PASS: figure/report/determinism dependency 'ggrastr' is in a layer
+PASS: figure/report/determinism dependency 'jsonlite' is in a layer
+PASS: figure/report/determinism dependency 'digest' is in a layer
+PASS: figure/report/determinism dependency 'gt' is in a layer
+PASS: figure/report/determinism dependency 'RhpcBLASctl' is in a layer
+PASS: github_pins.txt rows have 4 fields
+PASS: github pins are UNPINNED or 40-hex SHAs
+PASS: github pins belong to L5/L6 or DEP
+PASS: routers never use a floating image tag
+PASS: routers read the image from omicstat-env.json
+PASS: Windows router has no hard-coded R installation
+PASS: env/pin_github.sh has no medstat runtime reference
+PASS: env/image_id.txt has no medstat runtime reference
+PASS: env/refdata_registry.json has no medstat runtime reference
+PASS: env/gt103.sh has no medstat runtime reference
+PASS: env/test.sh has no medstat runtime reference
+PASS: env/omicstat-env.json has no medstat runtime reference
+PASS: env/build.sh has no medstat runtime reference
+PASS: env/py_lock.txt has no medstat runtime reference
+PASS: env/r/install_layer.R has no medstat runtime reference
+PASS: env/r/write_pkg_lock.R has no medstat runtime reference
+PASS: env/r/test_layer_lib.R has no medstat runtime reference
+PASS: env/r/layer_lib.R has no medstat runtime reference
+PASS: env/native/setup_native.R has no medstat runtime reference
+PASS: env/container/Dockerfile has no medstat runtime reference
+PASS: env/conda/omicstat-dev.explicit.txt has no medstat runtime reference
+PASS: env/conda/check_dev.R has no medstat runtime reference
+PASS: env/conda/setup_dev.sh has no medstat runtime reference
+PASS: env/layers/L0_base.txt has no medstat runtime reference
+PASS: env/layers/L7_figures.txt has no medstat runtime reference
+PASS: env/layers/L6_network.txt has no medstat runtime reference
+PASS: env/layers/L4_sc_bioc.txt has no medstat runtime reference
+PASS: env/layers/L5_sc_downstream.txt has no medstat runtime reference
+PASS: env/layers/github_pins.txt has no medstat runtime reference
+PASS: env/layers/L2_enrichment.txt has no medstat runtime reference
+PASS: env/layers/L1_bulk.txt has no medstat runtime reference
+PASS: env/layers/L3_sc_seurat.txt has no medstat runtime reference
+PASS: env/py/Dockerfile has no medstat runtime reference
+PASS: env/py/test_report.txt has no medstat runtime reference
+PASS: env/py/split_lock.py has no medstat runtime reference
+PASS: env/py/e2e_report.txt has no medstat runtime reference
+PASS: env/py/lock.sh has no medstat runtime reference
+PASS: env/py/selftest_image.py has no medstat runtime reference
+PASS: env/py/image_id.txt has no medstat runtime reference
+PASS: env/py/setup_native.sh has no medstat runtime reference
+PASS: env/py/test.sh has no medstat runtime reference
+PASS: env/py/write_py_installed.py has no medstat runtime reference
+PASS: env/py/test_e2e.sh has no medstat runtime reference
+PASS: env/py/build.sh has no medstat runtime reference
+PASS: env/py/test_py_env_config.py has no medstat runtime reference
+PASS: bin/omicstat-r-route.sh has no medstat runtime reference
+PASS: bin/omicstat-r-route.ps1 has no medstat runtime reference
+PASS: mcp/server.py has no medstat runtime reference
+PASS: server.py has no hard-coded R installation
+
+EXIT_CODE: 0

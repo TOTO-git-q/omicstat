@@ -1,0 +1,522 @@
+{
+  "schema": "omicstat.refdata-registry.v1",
+  "note": "Skeleton (M0). Reference data are fixed at image build time in a dedicated layer or mounted read-only; runtime is always offline (IMPLEMENTATION_SPEC section 5). Each entry is downloaded and checked against sha256 at build; a missing entry or a hash mismatch makes the engine refuse to run (OS_REFDATA_MISSING / OS_REFDATA_MISMATCH). Every TO_FILL_AT_BUILD / TO_VERIFY_AT_S0 value must be filled from the source itself (never from memory); redistributable=null means not yet verified. Data whose licence forbids redistribution is user_supplied=true and never baked into the image.",
+  "fields": {
+    "id": "stable identifier referenced by engines and provenance",
+    "version": "release / build of the resource",
+    "url": "exact download URL used at build",
+    "license": "licence as stated by the provider",
+    "sha256": "sha256 of the downloaded file",
+    "redistributable": "true / false / null (unverified)",
+    "user_supplied": "true when the user must provide the file (not in the image)",
+    "used_by": "planned modules (ENGINEERING_PLAN section 1.2)",
+    "tier": "'dev' = verified in the dev tier (env/conda, R 4.5.3 / Bioconductor 3.22); absent = locked-container entry (to fill at build)",
+    "container_entry": "dev entries only: id of the container entry this one stands in for",
+    "retrieved": "date (YYYY-MM-DD) the file was downloaded and hashed",
+    "md5": "md5 published by the source, when it publishes one (checked before sha256 was taken)",
+    "sha256_method": "absent = sha256 of the single downloaded file; 'tree' = sha256 of the text listing '<sha256>  <relative path>\\n' of every payload file, sorted by path (C locale), excluding the '..'-prefixed gypsum bookkeeping files; the sha256 of the server's '..manifest' is recorded as manifest_sha256",
+    "source_date": "release date(s) of the upstream data inside the package, as read from the installed package metadata",
+    "dev_tier_package": "dev entries that are an R package tarball: package name, used by env/conda/setup_dev.sh as the source-tarball fallback",
+    "cache": "where the runtime reads the data from (dev tier)",
+    "manifest_sha256": "sha256_method 'tree' only: sha256 of the server's '..manifest' file (JSON of size + md5 per payload file)",
+    "bytes": "total size of the payload files"
+  },
+  "entries": [
+    {
+      "id": "fgsea_example_pathways",
+      "description": "fgsea 1.38.0 package-embedded examplePathways demonstration collection",
+      "version": "fgsea 1.38.0, Bioconductor 3.23",
+      "species": "Mus musculus",
+      "url": "package:fgsea:examplePathways",
+      "asset": "package:fgsea:examplePathways",
+      "license": "MIT + file LICENCE (fgsea package DESCRIPTION); demonstration data only",
+      "sha256": "c26782589a8d38e92701386418a64101b7a66875702d2d48549f8151d29ee10e",
+      "sha256_method": "SHA-256 of UTF-8 lines ordered by term ID; term, description, unique ordered member IDs tab separated; lines joined by LF",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "fgsea-prerank",
+        "limma-camera",
+        "gsva-score"
+      ],
+      "notes": "Offline package fixture for S2 replay; not a Hallmark production default."
+    },
+    {
+      "id": "gsva_brain_txdb_sets",
+      "description": "GSVAdata brain cell-type signature demonstration collection",
+      "version": "GSVAdata 1.48.1, Bioconductor 3.23",
+      "species": "Homo sapiens",
+      "url": "acceptance:GSVAdata:brainTxDbSets",
+      "asset": "acceptance:GSVAdata:brainTxDbSets",
+      "license": "See acceptance/data/acceptance_lib_lock.csv and GSVAdata DESCRIPTION; acceptance layer only",
+      "sha256": "5d7e7ddf228e7f4ef3aad178e904e8ca99218d339af9e5624c28588609bc124c",
+      "sha256_method": "SHA-256 of UTF-8 lines ordered by term ID; term, description, unique ordered member IDs tab separated; lines joined by LF",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "gsva-score",
+        "limma-camera"
+      ],
+      "notes": "Only in the read-only sha256-locked acceptance data layer; S2 replay fixture."
+    },
+    {
+      "id": "limma_gender_genes",
+      "description": "Y chromosome male-specific and X-escape sets from limma User's Guide 18.1.10",
+      "version": "limma User's Guide 3.68.5 case-study asset",
+      "species": "Homo sapiens",
+      "url": "https://bioinf.wehi.edu.au/software/GenderGenes/GenderGenes.RData",
+      "asset": "acceptance:limma:GenderGenes",
+      "source_sha256": "ad2e78f108281864be9a9fdc2b686068f24b785158bc8782ac03d510938ea493",
+      "license": "WEHI GenderGenes case-study asset; source terms require review before redistribution",
+      "sha256": "3e712f5538b2b79b9d950f38ea9e397802f587747f83ff2f9340aaaf7af59cdd",
+      "sha256_method": "SHA-256 of UTF-8 lines ordered by term ID; term, description, unique ordered member IDs tab separated; lines joined by LF",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "limma-camera"
+      ],
+      "notes": "Offline private acceptance fixture, two sets only; not a production Hallmark default."
+    },
+    {
+      "id": "gencode_human_gtf",
+      "description": "GENCODE human comprehensive gene annotation (GTF); defines unversioned Ensembl gene IDs and symbols",
+      "version": "TO_FILL_AT_BUILD (e.g. GENCODE_v44 as named in the StudyContract)",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "deseq2-qc",
+        "deseq2-wald",
+        "deseq2-lrt",
+        "edger-qlf",
+        "limma-voom"
+      ]
+    },
+    {
+      "id": "gencode_mouse_gtf",
+      "description": "GENCODE mouse comprehensive gene annotation (GTF)",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "deseq2-qc",
+        "deseq2-wald",
+        "deseq2-lrt",
+        "edger-qlf",
+        "limma-voom"
+      ]
+    },
+    {
+      "id": "msigdb_collections",
+      "description": "MSigDB gene-set collections used through msigdbr (and its data package)",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "fgsea-prerank",
+        "gsva-score",
+        "limma-camera",
+        "aucell-score",
+        "seurat-modulescore"
+      ],
+      "notes": "The msigdbr data source and its version are pinned together with the msigdbr package version in pkg_lock.csv; some collections carry their own licence terms."
+    },
+    {
+      "id": "go_annotation",
+      "description": "Gene Ontology annotation as shipped in GO.db / org.*.eg.db for the pinned Bioconductor release",
+      "version": "pinned by BIOC_VERSION (see pkg_lock.csv)",
+      "url": "Bioconductor annotation package",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "notes": "Installed as Bioconductor annotation packages in layer L2; recorded here so provenance can cite the GO release date."
+    },
+    {
+      "id": "reactome_gene_sets",
+      "description": "Reactome pathway gene sets",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "fgsea-prerank"
+      ]
+    },
+    {
+      "id": "kegg_pathways",
+      "description": "KEGG pathway gene sets",
+      "version": "USER_SUPPLIED",
+      "url": "USER_SUPPLIED",
+      "license": "KEGG licence (not redistributable in this image)",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": false,
+      "user_supplied": true,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "notes": "Not bundled. enrichKEGG runs offline only from a user-supplied local KEGG file; a missing file is a typed refusal (OS_REFDATA_MISSING)."
+    },
+    {
+      "id": "celldex_human_primary_cell_atlas",
+      "description": "celldex HumanPrimaryCellAtlasData reference",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Fetched through ExperimentHub at BUILD time into the image cache; runtime never contacts ExperimentHub."
+    },
+    {
+      "id": "celldex_blueprint_encode",
+      "description": "celldex BlueprintEncodeData reference",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ]
+    },
+    {
+      "id": "celldex_monaco_immune",
+      "description": "celldex MonacoImmuneData reference",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ]
+    },
+    {
+      "id": "celldex_mouse_rnaseq",
+      "description": "celldex MouseRNAseqData reference",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ]
+    },
+    {
+      "id": "celldex_immgen",
+      "description": "celldex ImmGenData reference",
+      "version": "TO_FILL_AT_BUILD",
+      "url": "TO_FILL_AT_BUILD",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ]
+    },
+    {
+      "id": "cellchatdb",
+      "description": "CellChatDB ligand-receptor database as shipped inside the pinned CellChat commit",
+      "version": "pinned by CELLCHAT_REF (see pkg_lock.csv)",
+      "url": "bundled in the CellChat package",
+      "license": "TO_VERIFY_AT_S0",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "cellchat-communication"
+      ]
+    },
+    {
+      "id": "cibersort_lm22",
+      "description": "CIBERSORT source and LM22 signature matrix",
+      "version": "USER_SUPPLIED",
+      "url": "USER_SUPPLIED",
+      "license": "CIBERSORT licence (registration required; not redistributable in this image)",
+      "sha256": "TO_FILL_AT_BUILD",
+      "redistributable": false,
+      "user_supplied": true,
+      "used_by": [
+        "immunedeconv-infiltration"
+      ],
+      "notes": "immunedeconv's CIBERSORT method is available only when the user supplies the files; the other immunedeconv methods do not need them."
+    },
+    {
+      "id": "dev_org_hs_eg_db",
+      "tier": "dev",
+      "container_entry": "go_annotation",
+      "description": "org.Hs.eg.db OrgDb (human gene ID maps: ENTREZID, SYMBOL, ENSEMBL, GO, ...)",
+      "version": "3.22.0",
+      "url": "https://bioconductor.org/packages/3.22/data/annotation/src/contrib/org.Hs.eg.db_3.22.0.tar.gz",
+      "license": "Artistic-2.0 (package DESCRIPTION); upstream data licences (NCBI Gene, Ensembl, GO, UniProt) not individually checked -- unknown -- check",
+      "sha256": "d1bddc418d000325874b86937f195399e58c68c029cc3c2ee1577adbef0d2a2e",
+      "md5": "e80cac6ec018a95aea4f7530350e80a2",
+      "retrieved": "2026-09-27",
+      "source_date": "NCBI Gene 2025-Sep24; Ensembl 2025-Sep03; GO 2025-07-22; UniProt 2025-10-04 (org.Hs.eg_dbInfo())",
+      "dev_tier_package": "org.Hs.eg.db",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "notes": "Installed as bioconda bioconductor-org.hs.eg.db 3.22.0 (post-link download from this URL, md5 checked). No container entry exists yet for OrgDb; see pending decisions."
+    },
+    {
+      "id": "dev_org_mm_eg_db",
+      "tier": "dev",
+      "container_entry": "go_annotation",
+      "description": "org.Mm.eg.db OrgDb (mouse gene ID maps)",
+      "version": "3.22.0",
+      "url": "https://bioconductor.org/packages/3.22/data/annotation/src/contrib/org.Mm.eg.db_3.22.0.tar.gz",
+      "license": "Artistic-2.0 (package DESCRIPTION); upstream data licences not individually checked -- unknown -- check",
+      "sha256": "63eb3ea5b0da0a1650007eaf6c27aa7de4738e7b3ff03c94851fbbb9da52919a",
+      "md5": "cc19f63b25a7a8018e46f71e42e2f83f",
+      "retrieved": "2026-09-27",
+      "source_date": "NCBI Gene 2025-Sep24; GO 2025-07-22; UniProt 2025-10-04 (org.Mm.eg_dbInfo())",
+      "dev_tier_package": "org.Mm.eg.db",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "notes": "Installed as bioconda bioconductor-org.mm.eg.db 3.22.0 (post-link download from this URL, md5 checked)."
+    },
+    {
+      "id": "dev_go_db",
+      "tier": "dev",
+      "container_entry": "go_annotation",
+      "description": "GO.db (Gene Ontology term maps); replaces the 2016 dev-tier stand-in",
+      "version": "3.22.0",
+      "url": "https://bioconductor.org/packages/3.22/data/annotation/src/contrib/GO.db_3.22.0.tar.gz",
+      "license": "Artistic-2.0 (package DESCRIPTION); GO data: Creative Commons Attribution 4.0 (geneontology.org/docs/go-citation-policy/, read 2026-09-27)",
+      "sha256": "aec6fae909caaa323fde5cba15aedfc8a63ddfa3b47b0381550834c162a03ed2",
+      "md5": "5ae5557afa56227c4c9c145907b1f585",
+      "retrieved": "2026-09-27",
+      "source_date": "go-basic.obo 2025-07-22 (GO_dbInfo() GOSOURCEDATE)",
+      "dev_tier_package": "GO.db",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "notes": "Installed as bioconda bioconductor-go.db 3.22.0 (post-link download from this URL, md5 checked)."
+    },
+    {
+      "id": "dev_celldex_package",
+      "tier": "dev",
+      "container_entry": "celldex_human_primary_cell_atlas",
+      "description": "celldex R package (fetch functions for the SingleR references; no data inside)",
+      "version": "1.20.0",
+      "url": "https://bioconductor.org/packages/3.22/data/experiment/src/contrib/celldex_1.20.0.tar.gz",
+      "license": "GPL-3 (package DESCRIPTION)",
+      "sha256": "7f192ec5b8a4e4307b03136a3b9fde0e5248a7d538f0918355c6b7fef271fe2e",
+      "md5": "1eadf60bc18c8eb51a86ca0140bb9329",
+      "retrieved": "2026-09-27",
+      "source_date": null,
+      "dev_tier_package": "celldex",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Installed as bioconda bioconductor-celldex 1.20.0. With legacy = FALSE (default) the references come from gypsum, entries dev_celldex_*."
+    },
+    {
+      "id": "dev_msigdbr_data",
+      "tier": "dev",
+      "container_entry": "msigdb_collections",
+      "description": "MSigDB gene sets as packaged for msigdbr (all collections, Hs and Mm, one zip of RDS files)",
+      "version": "MSigDB 2026.1 (db_version 2026.1.Hs / 2026.1.Mm), pinned by msigdbr 26.1.1",
+      "url": "https://zenodo.org/records/18968178/files/msigdb.2026.1.zip?download=1",
+      "license": "MSigDB: Creative Commons Attribution 4.0, except KEGG_MEDICUS_* (CC BY-SA 4.0, Kanehisa Laboratories), KEGG_* legacy (Kanehisa copyright, KEGG licensing policies) and BIOCARTA_* (BioCarta copyright, qualified permission) per gsea-msigdb.org/gsea/msigdb_license_terms.jsp read 2026-09-27; the zenodo record (DOI 10.5281/zenodo.18968178) itself states MIT",
+      "sha256": "84c8ff3270db946ced2a7a4beacf866a3d4ce138af2cbdb1dae76eacb4d4c576",
+      "md5": "512ba99c6827141a9d471972b812d4ac",
+      "retrieved": "2026-09-27",
+      "source_date": "zenodo record published 2026-03-11",
+      "cache": "tools::R_user_dir(\"msigdbr\", \"cache\") (dev host: /root/.cache/R/msigdbr); msigdbr reads only from there",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "fgsea-prerank",
+        "gsva-score",
+        "limma-camera",
+        "aucell-score",
+        "seurat-modulescore"
+      ],
+      "notes": "The URL and md5 are hard-coded in msigdbr 26.1.1 (internal check_cache()); pinning the msigdbr version pins the data. The zip contains the KEGG_LEGACY and KEGG_MEDICUS subcollections (C2:CP:KEGG_*), which the licence gate (no KEGG) must exclude; BioCarta carries its own terms."
+    },
+    {
+      "id": "dev_celldex_hpca",
+      "tier": "dev",
+      "container_entry": "celldex_human_primary_cell_atlas",
+      "description": "HumanPrimaryCellAtlasData: Human Primary Cell Atlas microarray (713 samples, 36 main / 157 fine labels)",
+      "version": "gypsum celldex/hpca/2024-02-26 (default of celldex 1.20.0, legacy = FALSE)",
+      "url": "https://gypsum.artifactdb.com/file/celldex%2Fhpca%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "license": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "sha256": "062d908bbb6a032158e8d5ea436a93ba0da135550078bc61ba0d6bae9029381f",
+      "sha256_method": "tree",
+      "manifest_sha256": "b8bcba08049c81f95838a737da6cf6ce570f560c04e75996d5c99895903dd41e",
+      "bytes": 46114019,
+      "retrieved": "2026-09-27",
+      "cache": "gypsum::cacheDirectory() (env GYPSUM_CACHE_DIR; dev host: /root/.cache/gypsum/bucket/celldex/hpca/2024-02-26)",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+    },
+    {
+      "id": "dev_celldex_blueprint_encode",
+      "tier": "dev",
+      "container_entry": "celldex_blueprint_encode",
+      "description": "BlueprintEncodeData: Blueprint + ENCODE bulk RNA-seq (259 samples, 25 main / 43 fine labels)",
+      "version": "gypsum celldex/blueprint_encode/2024-02-26 (default of celldex 1.20.0, legacy = FALSE)",
+      "url": "https://gypsum.artifactdb.com/file/celldex%2Fblueprint_encode%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "license": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "sha256": "f27f533c2a4face2ad046d81b849e3d002e5710defa2350471fd4b27095e55a1",
+      "sha256_method": "tree",
+      "manifest_sha256": "27ba74addc5790b084d233754c017397403af8731aff914c2c7651df1e5c27a2",
+      "bytes": 14678991,
+      "retrieved": "2026-09-27",
+      "cache": "gypsum::cacheDirectory() (env GYPSUM_CACHE_DIR; dev host: /root/.cache/gypsum/bucket/celldex/blueprint_encode/2024-02-26)",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+    },
+    {
+      "id": "dev_celldex_monaco_immune",
+      "tier": "dev",
+      "container_entry": "celldex_monaco_immune",
+      "description": "MonacoImmuneData: Monaco et al. sorted immune bulk RNA-seq (114 samples, 10 main / 29 fine labels)",
+      "version": "gypsum celldex/monaco_immune/2024-02-26 (default of celldex 1.20.0, legacy = FALSE)",
+      "url": "https://gypsum.artifactdb.com/file/celldex%2Fmonaco_immune%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "license": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "sha256": "d575ff28d2a50535af679112870c17f29c7129a69f860b0e376493fdcbfd5ce8",
+      "sha256_method": "tree",
+      "manifest_sha256": "535cbb0f7e51bf2750588aedc8fbcf53c21f1a765b8157c615169f06d3f17715",
+      "bytes": 24227541,
+      "retrieved": "2026-09-27",
+      "cache": "gypsum::cacheDirectory() (env GYPSUM_CACHE_DIR; dev host: /root/.cache/gypsum/bucket/celldex/monaco_immune/2024-02-26)",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+    },
+    {
+      "id": "dev_celldex_mouse_rnaseq",
+      "tier": "dev",
+      "container_entry": "celldex_mouse_rnaseq",
+      "description": "MouseRNAseqData: sorted mouse cell bulk RNA-seq (358 samples, 18 main / 28 fine labels)",
+      "version": "gypsum celldex/mouse_rnaseq/2024-02-26 (default of celldex 1.20.0, legacy = FALSE)",
+      "url": "https://gypsum.artifactdb.com/file/celldex%2Fmouse_rnaseq%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "license": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "sha256": "043464eb8805c505c8cd1bde690f04551f9c2f69834958a4ddfebbc2c30e0b77",
+      "sha256_method": "tree",
+      "manifest_sha256": "e030140e2c8ef9d25847635bf9fee30fcfc0d64fe3ac4dbc9abca54e7dd59d84",
+      "bytes": 17912060,
+      "retrieved": "2026-09-27",
+      "cache": "gypsum::cacheDirectory() (env GYPSUM_CACHE_DIR; dev host: /root/.cache/gypsum/bucket/celldex/mouse_rnaseq/2024-02-26)",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+    },
+    {
+      "id": "dev_celldex_immgen",
+      "tier": "dev",
+      "container_entry": "celldex_immgen",
+      "description": "ImmGenData: Immunologic Genome Project mouse microarray (830 samples, 20 main / 253 fine labels)",
+      "version": "gypsum celldex/immgen/2024-02-26 (default of celldex 1.20.0, legacy = FALSE)",
+      "url": "https://gypsum.artifactdb.com/file/celldex%2Fimmgen%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "license": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "sha256": "f1a9f4c1366a5d6e39be4fe5315f6773acd2419613446414ad9cc4e9ce5514f7",
+      "sha256_method": "tree",
+      "manifest_sha256": "2add00d296d97575917ba00f055a35151321e37d1528e503fbfb91de2d87325e",
+      "bytes": 62547651,
+      "retrieved": "2026-09-27",
+      "cache": "gypsum::cacheDirectory() (env GYPSUM_CACHE_DIR; dev host: /root/.cache/gypsum/bucket/celldex/immgen/2024-02-26)",
+      "redistributable": null,
+      "user_supplied": false,
+      "used_by": [
+        "singler-annotate"
+      ],
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+    },
+    {
+      "id": "mcp_counter_genes",
+      "version": "b6eac73e91c246fcff0bb1a5c68a816cd588fc48",
+      "url": "https://raw.githubusercontent.com/ebecht/MCPcounter/b6eac73e91c246fcff0bb1a5c68a816cd588fc48/Signatures/genes.txt",
+      "license": "GPL-3; pinned Source/License in the same upstream repository",
+      "sha256": "408f6c5d02c8f9bd2f1599c598367881853520934f8ce398a4886a8b296922bb",
+      "redistributable": true,
+      "user_supplied": false,
+      "used_by": [
+        "immunedeconv-infiltration"
+      ],
+      "retrieved": "2026-10-01",
+      "cache": "/opt/omicstat/refdata/mcp_counter/genes.txt",
+      "build_layer": "L8_addons"
+    },
+    {
+      "id": "mcp_counter_probesets",
+      "version": "b6eac73e91c246fcff0bb1a5c68a816cd588fc48",
+      "url": "https://raw.githubusercontent.com/ebecht/MCPcounter/b6eac73e91c246fcff0bb1a5c68a816cd588fc48/Signatures/probesets.txt",
+      "license": "GPL-3; pinned Source/License in the same upstream repository",
+      "sha256": "68778e6632fefac944127dba8d1ae1e8b8889ba36c71500776f8a7f00098c573",
+      "redistributable": true,
+      "user_supplied": false,
+      "used_by": [
+        "immunedeconv-infiltration"
+      ],
+      "retrieved": "2026-10-01",
+      "cache": "/opt/omicstat/refdata/mcp_counter/probesets.txt",
+      "build_layer": "L8_addons"
+    }
+  ]
+}

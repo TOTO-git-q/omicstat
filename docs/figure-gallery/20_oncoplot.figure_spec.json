@@ -1,0 +1,136 @@
+{
+  "caption": "Somatic variant landscape of the 12 most frequently mutated genes across 60 samples. Each column is a sample (sorted by mutation pattern) and each row a gene; percentages give the fraction of samples mutated. Top, number of variants per sample. Multi hit, more than one variant in the gene.",
+  "counts": [],
+  "data": {
+    "genes": [
+      "TP53",
+      "KRAS",
+      "APC",
+      "PIK3CA",
+      "PTEN",
+      "EGFR",
+      "ARID1A",
+      "KMT2D",
+      "BRAF",
+      "CDKN2A",
+      "SMAD4",
+      "NF1"
+    ],
+    "sample_order": [
+      "T016",
+      "T017",
+      "T049",
+      "T003",
+      "T015",
+      "T019",
+      "T052",
+      "T044",
+      "T055",
+      "T001",
+      "T012",
+      "T002",
+      "T014",
+      "T035",
+      "T020",
+      "T027",
+      "T024",
+      "T004",
+      "T028",
+      "T023",
+      "T033",
+      "T060",
+      "T031",
+      "T045",
+      "T006",
+      "T022",
+      "T025",
+      "T011",
+      "T005",
+      "T007",
+      "T008",
+      "T039",
+      "T046",
+      "T029",
+      "T042",
+      "T041",
+      "T047",
+      "T057",
+      "T010",
+      "T032",
+      "T048",
+      "T053",
+      "T036",
+      "T050",
+      "T054",
+      "T013",
+      "T009",
+      "T058",
+      "T038",
+      "T034",
+      "T051",
+      "T021",
+      "T018",
+      "T059",
+      "T026",
+      "T043",
+      "T030",
+      "T037",
+      "T040",
+      "T056"
+    ]
+  },
+  "encodings": {
+    "fill": {
+      "Frame_Shift_Del": "#7570B3",
+      "Frame_Shift_Ins": "#E7298A",
+      "In_Frame_Del": "#66A61E",
+      "Missense_Mutation": "#1B9E77",
+      "Multi_Hit": "#000000",
+      "Nonsense_Mutation": "#D95F02",
+      "Splice_Site": "#A6761D"
+    }
+  },
+  "figure_type": "oncoplot",
+  "files": {
+    "pdf": {
+      "content_sha256": "d4090f645cb7aa857713cd3ff0eaf0025fe1cfa4d17a86e95795828f816b536b",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "20_oncoplot.pdf"
+    },
+    "png": {
+      "path": "20_oncoplot.png",
+      "sha256": "afc30b251aa6df3008ee90127598548a4763a82560e5b7cf7344a09e6ff46374"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 73.4,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "8 colour pair(s) of different categories closer than CIEDE2000 10 under colour-vision simulation: #A6761D/#D95F02 (protan 2.3), #66A61E/#D95F02 (deutan 3.4), #A6761D/#D95F02 (deutan 4.8), #1B9E77/#E7298A (deutan 4.9), #66A61E/#A6761D (deutan 5.7), ...",
+      "rule": "FIG-03",
+      "severity": "warning"
+    },
+    {
+      "message": "14 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #A6761D/#E7298A (grayscale 0.8), #A6761D/#D95F02 (grayscale 1.9), #7570B3/#E7298A (grayscale 2.0), #1B9E77/#D95F02 (grayscale 2.5), #D95F02/#E7298A (grayscale 2.6), ...",
+      "rule": "FIG-03",
+      "severity": "info"
+    },
+    {
+      "message": "8 colour pair(s) of different categories closer than CIEDE2000 10 under colour-vision simulation: #A6761D/#D95F02 (protan 2.3), #66A61E/#D95F02 (deutan 3.4), #A6761D/#D95F02 (deutan 4.8), #1B9E77/#E7298A (deutan 4.9), #66A61E/#A6761D (deutan 5.7), ...",
+      "rule": "FIG-03",
+      "severity": "warning"
+    },
+    {
+      "message": "14 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #A6761D/#E7298A (grayscale 0.8), #A6761D/#D95F02 (grayscale 1.9), #7570B3/#E7298A (grayscale 2.0), #1B9E77/#D95F02 (grayscale 2.5), #D95F02/#E7298A (grayscale 2.6), ...",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 183
+}

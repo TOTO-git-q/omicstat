@@ -1,0 +1,15 @@
+# parameters -- {{module}}
+
+TODO(S2): one row per flag of `SPEC` in `scripts/run_{{pkg}}_{{part}}.R`. The "Default" column is
+machine-checked against `--help` and `scripts/calls_registry.json` by `tools/check_defaults.py`
+(write `(required)` for required flags, `none` for an optional flag without a default, `off` for a
+bare switch).
+
+| Flag | Default | Allowed | Why |
+|---|---|---|---|
+| `--input` | none | existing file | TODO(S2) |
+| `--outdir` | (required) | writable directory | every module writes into one run directory |
+| `--from-run` | none | existing run directory | `--from-run` chain (`_shared/scripts/handoff.R`) |
+| `--spec` | none | existing file | replay a resolved spec |
+| `--seed` | 20260925 | integer | TODO(S2) |
+| `--journal` | nature | nature, cell, science, generic | figure preset (`_shared/docs/FIGURE_STYLE.md`) |

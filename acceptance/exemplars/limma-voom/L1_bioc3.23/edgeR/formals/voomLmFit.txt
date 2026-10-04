@@ -1,0 +1,52 @@
+edgeR 4.10.5 :: voomLmFit
+$counts
+
+
+$design
+NULL
+
+$block
+NULL
+
+$prior.weights
+NULL
+
+$sample.weights
+[1] FALSE
+
+$var.design
+NULL
+
+$var.group
+NULL
+
+$prior.n
+[1] 10
+
+$lib.size
+NULL
+
+$offset
+NULL
+
+$offset.prior
+NULL
+
+$normalize.method
+[1] "none"
+
+$span
+[1] 0.5
+
+$adaptive.span
+[1] TRUE
+
+$plot
+[1] FALSE
+
+$save.plot
+[1] FALSE
+
+$keep.EList
+[1] TRUE
+

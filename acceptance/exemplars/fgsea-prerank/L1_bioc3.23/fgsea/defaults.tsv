@@ -1,0 +1,38 @@
+function	argument	default
+collapsePathways	fgseaRes	
+collapsePathways	pathways	
+collapsePathways	stats	
+collapsePathways	pval.threshold	0.05
+collapsePathways	nperm	10/pval.threshold
+collapsePathways	gseaParam	1
+fgsea	pathways	
+fgsea	stats	
+fgsea	minSize	1
+fgsea	maxSize	length(stats) - 1
+fgsea	gseaParam	1
+fgsea	...	
+fgseaMultilevel	pathways	
+fgseaMultilevel	stats	
+fgseaMultilevel	sampleSize	101
+fgseaMultilevel	minSize	1
+fgseaMultilevel	maxSize	length(stats) - 1
+fgseaMultilevel	eps	1e-50
+fgseaMultilevel	scoreType	c("std", "pos", "neg")
+fgseaMultilevel	nproc	0
+fgseaMultilevel	gseaParam	1
+fgseaMultilevel	BPPARAM	NULL
+fgseaMultilevel	nPermSimple	1000
+fgseaMultilevel	absEps	NULL
+fgseaSimple	pathways	
+fgseaSimple	stats	
+fgseaSimple	nperm	
+fgseaSimple	minSize	1
+fgseaSimple	maxSize	length(stats) - 1
+fgseaSimple	scoreType	c("std", "pos", "neg")
+fgseaSimple	nproc	0
+fgseaSimple	gseaParam	1
+fgseaSimple	BPPARAM	NULL
+plotEnrichment	pathway	
+plotEnrichment	stats	
+plotEnrichment	gseaParam	1
+plotEnrichment	ticksSize	0.2

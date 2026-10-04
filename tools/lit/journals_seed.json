@@ -1,0 +1,337 @@
+{
+ "schema": "omicstat.lit.journals-seed.v1",
+ "note": "Candidate journals for the S0 literature layer (ENGINEERING_PLAN 2.1). ISSNs here are CANDIDATES ONLY: build_journals.py admits a journal to journals.json only when a live Europe PMC query on the ISSN echoes a journal whose title matches 'match'. Tier A = L3-eligible (exemplar full texts) and L4; tier B = L4 breadth only.",
+ "journals": [
+  {
+   "name": "Nature",
+   "match": "^Nature$",
+   "issn": [
+    "0028-0836",
+    "1476-4687"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Science",
+   "match": "^Science$",
+   "issn": [
+    "0036-8075",
+    "1095-9203"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cell",
+   "match": "^Cell$",
+   "issn": [
+    "0092-8674",
+    "1097-4172"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Communications",
+   "match": "^Nat(ure)? Commun",
+   "issn": [
+    "2041-1723"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Methods",
+   "match": "^Nat(ure)? Methods",
+   "issn": [
+    "1548-7091",
+    "1548-7105"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Biotechnology",
+   "match": "^Nat(ure)? Biotechnol",
+   "issn": [
+    "1087-0156",
+    "1546-1696"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Genetics",
+   "match": "^Nat(ure)? Genet",
+   "issn": [
+    "1061-4036",
+    "1546-1718"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Medicine",
+   "match": "^Nat(ure)? Med",
+   "issn": [
+    "1078-8956",
+    "1546-170X"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Immunology",
+   "match": "^Nat(ure)? Immunol",
+   "issn": [
+    "1529-2908",
+    "1529-2916"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nature Cell Biology",
+   "match": "^Nat(ure)? Cell Biol",
+   "issn": [
+    "1465-7392",
+    "1476-4679"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Genome Biology",
+   "match": "^Genome Biol",
+   "issn": [
+    "1474-760X",
+    "1465-6906"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Genome Research",
+   "match": "^Genome Res",
+   "issn": [
+    "1088-9051",
+    "1549-5469"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Nucleic Acids Research",
+   "match": "^Nucleic Acids Res",
+   "issn": [
+    "0305-1048",
+    "1362-4962"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cancer Cell",
+   "match": "^Cancer Cell",
+   "issn": [
+    "1535-6108",
+    "1878-3686"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Immunity",
+   "match": "^Immunity",
+   "issn": [
+    "1074-7613",
+    "1097-4180"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cell Reports",
+   "match": "^Cell Rep$",
+   "issn": [
+    "2211-1247"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cell Genomics",
+   "match": "^Cell Genom",
+   "issn": [
+    "2666-979X"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cell Systems",
+   "match": "^Cell Syst",
+   "issn": [
+    "2405-4712",
+    "2405-4720"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Molecular Cell",
+   "match": "^Mol Cell$",
+   "issn": [
+    "1097-2765",
+    "1097-4164"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cell Metabolism",
+   "match": "^Cell Metab",
+   "issn": [
+    "1550-4131",
+    "1932-7420"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Cell Stem Cell",
+   "match": "^Cell Stem Cell",
+   "issn": [
+    "1934-5909",
+    "1875-9777"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Science Advances",
+   "match": "^Sci Adv",
+   "issn": [
+    "2375-2548"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "eLife",
+   "match": "^[Ee][Ll]ife",
+   "issn": [
+    "2050-084X"
+   ],
+   "tier": "A"
+  },
+  {
+   "name": "Proceedings of the National Academy of Sciences of the USA",
+   "match": "^Proc Natl Acad Sci",
+   "issn": [
+    "0027-8424",
+    "1091-6490"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Genome Medicine",
+   "match": "^Genome Med",
+   "issn": [
+    "1756-994X"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "The EMBO Journal",
+   "match": "^EMBO J",
+   "issn": [
+    "0261-4189",
+    "1460-2075"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Journal of Clinical Investigation",
+   "match": "^J Clin Invest",
+   "issn": [
+    "0021-9738",
+    "1558-8238"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "JCI Insight",
+   "match": "^JCI Insight",
+   "issn": [
+    "2379-3708"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Nature Metabolism",
+   "match": "^Nat Metab",
+   "issn": [
+    "2522-5812"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Nature Aging",
+   "match": "^Nat Aging",
+   "issn": [
+    "2662-8465"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Nature Cancer",
+   "match": "^Nat Cancer",
+   "issn": [
+    "2662-1347"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Cell Reports Medicine",
+   "match": "^Cell Rep Med",
+   "issn": [
+    "2666-3791"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Journal of Experimental Medicine",
+   "match": "^J Exp Med",
+   "issn": [
+    "0022-1007",
+    "1540-9538"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Blood",
+   "match": "^Blood$",
+   "issn": [
+    "0006-4971",
+    "1528-0020"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Gut",
+   "match": "^Gut$",
+   "issn": [
+    "0017-5749",
+    "1468-3288"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Circulation Research",
+   "match": "^Circ Res",
+   "issn": [
+    "0009-7330",
+    "1524-4571"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Nature Neuroscience",
+   "match": "^Nat Neurosci",
+   "issn": [
+    "1097-6256",
+    "1546-1726"
+   ],
+   "tier": "B"
+  },
+  {
+   "name": "Neuron",
+   "match": "^Neuron",
+   "issn": [
+    "0896-6273",
+    "1097-4199"
+   ],
+   "tier": "B"
+  }
+ ]
+}

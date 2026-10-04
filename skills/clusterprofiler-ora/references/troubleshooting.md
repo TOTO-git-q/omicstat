@@ -1,0 +1,7 @@
+# Troubleshooting — clusterprofiler-ora
+
+- `OS_MISSING_PARAMETER` for direct input -> provide selected IDs, the eligible universe, and its selection rule.
+- `OS_INVALID_UNIVERSE` -> use every gene eligible for the stated selection; ensure selected IDs are within it.
+- `OS_REFDATA_MISSING` -> the requested collection is not registered and installed offline. Use registered GO or have the owner pin the collection.
+- `OS_EMPTY_DATA` -> no GO term had a testable overlap under the supplied IDs and size range; check key type and selection rule.
+- CO-01 -> some IDs failed annotation mapping; review `--key-type` and the pinned OrgDb version.

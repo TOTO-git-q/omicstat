@@ -1,0 +1,15 @@
+"""{{pkg}}_{{part}}_qc.py -- qc layer of module {{module}}. ASCII only.
+
+TODO(S2): implement the {{prefix}}-xx rules from the frozen PACK
+(references/qc-rules.md). One ospy.module_kit.qc_rule() per rule, triggered or
+not; severities blocker / error / warning / info (a triggered blocker withholds
+the draft).
+"""
+from ospy import module_kit as K
+
+
+def qc(res, rend):
+    rows = [
+        K.qc_rule("{{prefix}}-01", "TODO(S2)", False, "warning", "TODO(S2)", action="TODO(S2)"),
+    ]
+    return K.qc_finalize(rows, read_first="draft/methods_results.md")
