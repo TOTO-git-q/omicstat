@@ -81,7 +81,7 @@ All figures go through one layer (`skills/_shared/scripts/fig_*.R`, rules in `sk
 
 The default of an option is the locked function default, or the value the package's official vignette recommends (cited). Literature frequencies are never turned into defaults. Where the documentation does not settle a scientific choice, the option is required.
 
-To help choose, `reference_service/` is a separate MCP companion (`reference_search`, `reference_advise`, `reference_request_literature`) holding what published studies reported for each module's options: 749 open-access papers, 954 module-level usage records, each with a verbatim Methods snippet, the PubMed id and the extraction provenance. Evidence is kept in three separate columns — curated, reviewed supplement, unreviewed discovery — and only reviewed records can appear in advice. Advice is context, never an executable parameter.
+To help choose, `reference_service/` is a separate MCP companion (`reference_search`, `reference_advise`, `reference_request_literature`) holding what published studies reported for each module's options: 749 open-access papers, 954 module-level usage records, each with a verbatim Methods snippet, the PubMed id and the extraction provenance. Evidence is kept in three separate columns — curated, reviewed supplement, unreviewed discovery — and only reviewed records can appear in advice. Advice is context, never an executable parameter. A snapshot of the deployed service's databases is in `reference_service/data/` (see `SNAPSHOT.md`); the same evidence is also shipped as a loadable bundle, `reference_service/app/s0_evidence/catalog.json`.
 
 ## Publication gates
 
@@ -136,7 +136,7 @@ Anchor datasets are public and fetched by `acceptance/data/fetch_anchor_data.sh`
 
 ## Release note
 
-This repository is a clean export of the private development repository at `integrate/final`. The vendored literature-retrieval clients (`vendor/`, used only by `tools/lit` during evidence collection) and the medstat reference snapshots (`reference/`) are not included; nothing at run time depends on them. Host names, user names and session identifiers of the development machines were replaced by placeholders. The architecture of the MCP shell, the publication contracts and the StudyContract follows the author's medstat suite for clinical statistics; omicstat runs independently of it.
+This repository is a clean export of the private development repository at `integrate/final`. The vendored literature-retrieval clients (`vendor/`, used only by `tools/lit` during evidence collection) and the medstat reference snapshots (`reference/`) are not included; nothing at run time depends on them. Host names, user names and session identifiers of the development machines were replaced by placeholders. The reference companion's deployment scripts are included with the same placeholders. The architecture of the MCP shell, the publication contracts and the StudyContract follows the author's medstat suite for clinical statistics; omicstat runs independently of it.
 
 ## Licence
 
