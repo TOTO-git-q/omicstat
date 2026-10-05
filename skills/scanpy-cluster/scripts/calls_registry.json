@@ -212,11 +212,11 @@
         },
         "layer": {
           "expressions": [
-            "None"
+            "\"counts\" if options[\"hvg-flavor\"] in (\"seurat_v3\", \"seurat_v3_paper\") else None"
           ],
           "function_default": "None",
           "reference": "https://scanpy.readthedocs.io/en/1.12.4/tutorials/basics/clustering.html",
-          "source": "explicit engine argument; package API or declared user choice"
+          "source": "Scanpy highly_variable_genes: seurat_v3 flavors require counts; dispersion flavors require log expression"
         },
         "max_disp": {
           "expressions": [

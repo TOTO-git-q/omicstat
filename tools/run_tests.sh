@@ -41,6 +41,7 @@ run_r env/r/test_layer_lib.R jsonlite
 run_r skills/_shared/tests/test_figures.R ggplot2 ggrepel patchwork ragg svglite jsonlite digest
 run_r skills/_shared/tests/test_figures_ext.R ggplot2 ggrepel patchwork ragg svglite jsonlite digest MASS
 run_r skills/_shared/tests/test_omics_shared.R jsonlite digest
+run_r skills/_shared/tests/test_scientific_refusals.R SingleCellExperiment SeuratObject rhdf5 jsonlite digest ggplot2
 run_r skills/_shared/tests/test_convert.R SeuratObject Seurat SingleCellExperiment zellkonverter basilisk rhdf5 jsonlite digest
 run_r skills/_shared/tests/test_effect_table.R
 run_r skills/_shared/tests/test_render.R gt

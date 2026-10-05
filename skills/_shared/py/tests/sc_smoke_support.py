@@ -315,7 +315,7 @@ def negative_chain_tests(module, args, source, work):
     print('PASS: ecosystem, corrected lineage and tampered-hash refusals')
 
 
-def main(module_dir):
+def main(module_dir, regression=None):
     module_dir = Path(module_dir).resolve()
     module = module_dir.name
     assert module in MODULES
@@ -348,6 +348,8 @@ def main(module_dir):
     output = work / 'anchor'
     run(module, args, env={'OMICSTAT_RUN_ID': 'acceptance-' + module})
     data = check_output(module, output)
+    if regression is not None:
+        regression(source, args, output, work)
     assert H.read_handoff(str(output))['run_id'] == 'acceptance-' + module
     independent_replay(module, source, output)
     print('PASS: anchor invariants and independent official-package replay')

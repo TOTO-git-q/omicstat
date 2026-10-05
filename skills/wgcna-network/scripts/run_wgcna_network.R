@@ -81,8 +81,9 @@ st <- os_engine_capture(os_align_samples(inp$mat, os_read_sample_table(a$samples
 traits <- strsplit(a$traits, ",", fixed = TRUE)[[1]]
 if (!all(traits %in% names(st)) || anyDuplicated(traits)) stop("OS_MISSING_COLUMN: unique named traits required.", call. = FALSE)
 for (tr in traits) {
-  st[[tr]] <- suppressWarnings(as.numeric(st[[tr]]))
-  if (any(!is.finite(st[[tr]])) || stats::sd(st[[tr]]) == 0) stop("OS_INVALID_DESIGN: traits must be finite, numeric and nonconstant.", call. = FALSE)
+  raw_trait <- st[[tr]]
+  st[[tr]] <- suppressWarnings(as.numeric(raw_trait))
+  if (any(is.na(st[[tr]]) & !is.na(raw_trait)) || any(is.infinite(st[[tr]])) || sum(!is.na(st[[tr]])) < 3L || !isTRUE(stats::sd(st[[tr]], na.rm = TRUE) > 0)) stop("OS_INVALID_DESIGN: traits must be numeric and nonconstant with at least three observed finite values.", call. = FALSE)
 }
 if (ncol(inp$mat) < 4 || nrow(inp$mat) < 4) stop("OS_INVALID_INPUT: goodSamplesGenes requires at least four samples and genes.", call. = FALSE)
 res <- os_engine_capture(wgcna_network_compute(a, inp$mat, st), "compute", elog)

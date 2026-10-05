@@ -10,6 +10,7 @@ os_bioc_input <- function(a, module, scoring = FALSE) {
   }
   if (is.null(entry)) stop("OS_MISSING_PARAMETER: give --input or --from-run.", call. = FALSE)
   src <- .os_sc_source(entry)
+  embedded <- .os_sc_embedded_state(src)
   if (!scoring && src$type != "SingleCellExperiment") stop("OS_ECOSYSTEM_MIXED: Bioconductor front ends require an SCE.", call. = FALSE)
   step <- NULL
   if (scoring && src$type != "SingleCellExperiment") {
@@ -26,12 +27,13 @@ os_bioc_input <- function(a, module, scoring = FALSE) {
   m <- SummarizedExperiment::assay(sce, "counts")
   if (any(!is.finite(m)) || any(m < 0)) stop("OS_INVALID_INPUT: counts must be finite nonnegative values.", call. = FALSE)
   if (ncol(sce) < 2 || nrow(sce) < 2) stop("OS_INVALID_INPUT: at least two cells and features required.", call. = FALSE)
-  state <- S4Vectors::metadata(sce)$omicstat %||% list()
+  state <- embedded
   if (!is.null(h)) {
     for (k in intersect(names(state), names(h$state))) if (!identical(state[[k]], h$state[[k]]))
       stop(sprintf("OS_HANDOFF_MISMATCH: object and handoff disagree on state %s.", k), call. = FALSE)
     state <- utils::modifyList(state, h$state)
   }
+  if (!scoring && isTRUE(state$batch_corrected_lineage)) stop("OS_BATCH_CORRECTED_INPUT: object descends from batch-corrected expression.", call. = FALSE)
   if (!scoring && !is.null(state$front_end_ecosystem) && state$front_end_ecosystem != "bioconductor")
     stop("OS_ECOSYSTEM_MIXED: object metadata records a different front-end ecosystem.", call. = FALSE)
   if (module != "scater-qc" && !scoring && !isTRUE(state$qc_complete)) stop("OS_HANDOFF_MISMATCH: run scater-qc first (qc_complete missing).", call. = FALSE)
@@ -51,6 +53,8 @@ os_bioc_write <- function(r, input, a, module, version, extra_objects = list()) 
   state <- utils::modifyList(input$state, r$state)
   if (module != "aucell-score") state$front_end_ecosystem <- "bioconductor"
   if (!is.null(input$upstream)) state$front_end_ecosystem <- os_sc_chain_state(input$upstream)$front_end_ecosystem
+  dir.create(file.path(a$outdir,"results"),recursive=TRUE,showWarnings=FALSE)
+  jsonlite::write_json(list(n_cells=ncol(r$sce), n_features=nrow(r$sce), n_input_gene_sets=if(is.null(r$sets_table)) NULL else nrow(r$sets_table), n_gene_sets=if(is.null(r$auc)) NULL else nrow(AUCell::getAUC(r$auc)), state=state, parameters=a[setdiff(names(a),c("help","outdir","spec"))], native_args=os_bioc_resolved_native(a)),file.path(a$outdir,"results","analysis_summary.json"),auto_unbox=TRUE,pretty=TRUE,null="null",digits=NA)
   S4Vectors::metadata(r$sce)$omicstat <- state
   saveRDS(r$sce, file.path(obj, "sce.rds"), version = 3)
   os_colour_registry_write(r$colours %||% input$colours %||% os_colour_registry_new(), file.path(obj, "colour_registry.json"))
@@ -71,7 +75,9 @@ os_bioc_native_args <- function(path) {
 os_bioc_call <- function(fun, path = NULL, ...) {
   primary <- list(...)
   extra <- os_bioc_native_args(path)
-  do.call(fun, c(primary, extra[setdiff(names(extra), names(primary))]))
+  overlap <- intersect(names(primary),names(extra))
+  if (length(overlap)) stop(sprintf("OS_CONFLICTING_PARAMETERS: supplementary native arguments cannot replace protected inputs or explicit controls: %s.",paste(overlap,collapse=", ")),call.=FALSE)
+  do.call(fun, c(primary, extra))
 }
 os_bioc_table <- function(d, outdir, name) {
   dir.create(file.path(outdir, "tables"), recursive = TRUE, showWarnings = FALSE)

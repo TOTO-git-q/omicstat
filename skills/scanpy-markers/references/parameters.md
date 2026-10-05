@@ -22,8 +22,7 @@ Policy: function defaults from the locked version; official tutorial departures 
 | `--expression-layer` | `required` | string | natural-log1p normalized expression layer; use X explicitly for .X |
 | `--purpose` | `required` | cluster-description, condition-inference | must declare descriptive use; condition-inference is refused |
 | `--test` | `"t-test"` | t-test, t-test_overestim_var, wilcoxon | locked API test family; t-test is the package default |
-| `--alpha` | `0.05` | (1e-06, 0.5) | BH reporting threshold; does not filter the full table |
-| `--top-n` | `5` | (1, 100) | genes per cluster in the display; full results retained |
+| `--top-n` | `5` | (1, 100) | genes per cluster in native score order without adjusted-P filtering; full results retained |
 | `--help` | `none` | bool | show this help and exit |
 
 ## Explicit package calls

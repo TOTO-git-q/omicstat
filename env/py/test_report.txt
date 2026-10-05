@@ -27,13 +27,13 @@ scanpy-cluster: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(
 == python tools/check_flag_docs.py skills/scanpy-cluster
 48/48 flags documented
 == python skills/scanpy-cluster/tests/run_smoke_test.py
-PASS: scanpy-cluster pinned numerical smoke; R rendering/visual review must run separately
+PASS: seurat_v3_paper HVGs equal native raw-count replay
 == python tools/check_calls.py skills/scanpy-markers
-97 call sites scanned; 0 registry problems; 0 default-drift problems
+120 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scanpy-markers
-scanpy-markers: 25 flag(s) in --help, 25 with defaults in 2+ sources; 0 problem(s)
+scanpy-markers: 24 flag(s) in --help, 24 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scanpy-markers
-25/25 flags documented
+24/24 flags documented
 == python skills/scanpy-markers/tests/run_smoke_test.py
 PASS: scanpy-markers pinned numerical smoke; R rendering/visual review must run separately
 == python tools/check_calls.py skills/scanpy-qc

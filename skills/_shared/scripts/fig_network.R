@@ -13,14 +13,16 @@ os_module_trait <- function(r, pval, journal = NULL) {
   txt <- matrix(paste0(formatC(r, format = "f", digits = 2), "\n(",
                        ifelse(pval < 0.001, formatC(pval, format = "e", digits = 0), formatC(pval, format = "f", digits = 3)), ")"),
                 nrow(r), dimnames = dimnames(r))
+  txt[is.na(pval)] <- formatC(r[is.na(pval)], format = "f", digits = 2)
   txt <- gsub("-", OS_MINUS, txt, fixed = TRUE)
   txt <- gsub("e\u2212", "e-", txt, fixed = TRUE)   # keep the exponent readable: 3e-04
-  p <- os_heatmap(r, value_title = OS_AXIS$correlation, scale_type = "diverging", limits = c(-1, 1),
+  p <- os_heatmap(r, value_title = if (all(is.na(pval))) "r" else OS_AXIS$correlation, scale_type = "diverging", limits = c(-1, 1),
                   cluster_rows = FALSE, cluster_cols = FALSE, italic_rows = FALSE, cell_text = txt, journal = journal)
   meta <- attr(p, "os_meta")
+  label_note <- if (all(is.na(pval))) "Each cell gives the descriptive correlation coefficient only and no P values are shown; " else "Each cell gives the Pearson correlation coefficient and, in parentheses, its unadjusted P value; "
   os_with_meta(p, figure_type = "module_trait", default_height_mm = min(170, 25 + 7 * nrow(r)),
                caption = sprintf(paste0("Correlation between module eigengenes (%d modules, rows) and traits (%d, columns). ",
-                                        "Each cell gives the Pearson correlation coefficient and, in parentheses, its unadjusted P value; ",
+                                        label_note,
                                         "colour encodes r from %s1 (blue) to 1 (red)."), nrow(r), ncol(r), OS_MINUS))
 }
 

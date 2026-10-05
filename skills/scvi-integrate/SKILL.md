@@ -43,7 +43,7 @@ Warnings preserve numerical outputs and require an interpretation decision.
 
 ## Known limitations
 CPU-only synchronous execution. scVI/scANVI runs are limited to 20000 cells and 400 requested epochs; completion within the MCP timeout is not guaranteed.
-QC/PC/HVG/resolution choices in tutorials are not automatically adopted. Python-to-R backend ecosystem labeling remains owner-pending.
+QC/PC/HVG/resolution choices in tutorials are not automatically adopted. Neutral Python-to-R backends preserve the upstream front-end ecosystem and record OS_ECOSYSTEM_CROSSING.
 Locked-container numerical replay, generated golden baselines and module locks are recorded in acceptance/exemplars/scvi-integrate/S3_REQUEST.md; independent S3 remains pending.
 
 ## Reference files
@@ -52,7 +52,7 @@ reporting-templates.md contains filled text templates; troubleshooting.md maps e
 
 ## 待裁决
 
-科学阈值、分析维数/聚类分辨率、训练充分性与标签可信度由用户显式决定；教程示例不作为普适默认。Python-to-R 后端生态标记、完整 PACK C 教程规模和跨平台等价性留给所有者及独立 S3。
+科学阈值、分析维数/聚类分辨率、训练充分性与标签可信度由用户显式决定；教程示例不作为普适默认。Python-to-R 中性后端保留上游生态并记录 OS_ECOSYSTEM_CROSSING；完整 PACK C 教程规模和跨平台等价性留给所有者及独立 S3。
 
 ## Choosing judgement options
 

@@ -332,6 +332,8 @@ if (r$status == 0) {
 } else check(FALSE, paste("F5 low-mean run exits 0", paste(utils::tail(r$out, 3), collapse = " | ")))
 
 # ---- G: golden baseline (lock 5) --------------------------------------------------
+dq_draft <- paste(readLines(file.path(a2,"draft/methods_results.md")),collapse="\n")
+check(grepl("distance matrix was computed using all",dq_draft,fixed=TRUE), "distance Methods distinguishes all retained features from PCA subset")
 golden <- c("tables/sample_qc_descriptive.csv", "tables/vst_matrix.csv", "tables/size_factors.csv", "tables/sample_distances.csv",
             "results/deseq2_qc_results.json", "figures/pca.figure_spec.json",
             "figures/sample_distance.figure_spec.json", "figures/size_factor.figure_spec.json")

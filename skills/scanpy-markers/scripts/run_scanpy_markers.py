@@ -18,7 +18,6 @@ SPEC = A.os_arg_spec(usage="python run_scanpy_markers.py --input <h5ad>|--from-r
         A.os_flag('expression-layer', 'string', help='natural-log1p normalized expression layer; use X explicitly for .X', required=True),
         A.os_flag('purpose', 'enum', help='must declare descriptive use; condition-inference is refused', required=True, values=['cluster-description', 'condition-inference']),
         A.os_flag('test', 'enum', help='locked API test family; t-test is the package default', default='t-test', values=['t-test', 't-test_overestim_var', 'wilcoxon']),
-        A.os_flag('alpha', 'num', help='adjusted-P reporting threshold; does not filter the full table', default=0.05, range=(1e-06, 0.5)),
         A.os_flag('top-n', 'int', help='genes per cluster in the display; full results retained', default=5, range=(1, 100)),
         A.os_flag('mask-var', 'string', default=None, help='native sc.tl.rank_genes_groups.mask_var; value option'),
         A.os_flag('groups', 'string', default='all', help='native sc.tl.rank_genes_groups.groups; groups option'),

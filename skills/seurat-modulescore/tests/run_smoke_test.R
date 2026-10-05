@@ -37,3 +37,13 @@ check(os_golden_check(mod,out)$status=="PASS","main result table golden")
 source(file.path(root,"skills/_shared/scripts/calls_check.R"))
 check(check_calls(list.files(file.path(mod,"scripts"),pattern="[.]R$",full.names=TRUE),file.path(mod,"scripts/calls_registry.json"))$ok,"registered calls")
 check(check_default_drift(file.path(mod,"scripts/calls_registry.json"))$ok,"locked defaults")
+# Prohibited collection declarations cannot enter via a user-supplied GMT.
+source(file.path(root,'skills/_shared/scripts/sc_seurat_io.R'))
+source(file.path(mod,'scripts/seurat_modulescore_core.R'))
+for(collection in c('KEGG','CADD','PanglaoDB','DepMap')) {
+ blocked <- file.path(scratch,paste0('prohibited-',collection,'.gmt'))
+ writeLines(paste('synthetic_set',collection,'synthetic_gene',sep='\t'),blocked)
+ aa <- list(`gene-sets`=blocked,`set-organism`='Mus_musculus')
+ err <- tryCatch({seurat_modulescore_compute(x,aa);''},error=conditionMessage)
+ check(grepl('OS_REFDATA_MISSING',err),paste('prohibited GMT declaration refused',collection))
+}

@@ -35,6 +35,7 @@ qc <- os_engine_capture(singler_annotate_qc(r, inp, a, elog), "qc", elog)
 os_write_qc_results(qc, a$outdir)
 os_engine_capture(singler_annotate_report(r, a, qc, figs, .module_dir), "report", elog)
 obj <- file.path(a$outdir, "objects", "sce.rds"); dir.create(dirname(obj), recursive = TRUE, showWarnings = FALSE)
+S4Vectors::metadata(r$sce)$omicstat <- utils::modifyList(inp$state, list(annotated = TRUE))
 saveRDS(r$sce, obj, version = 3)
 saveRDS(r$prediction, file.path(a$outdir, "objects", "singler.rds"), version = 3)
 write_handoff(a$outdir, run_id = basename(a$outdir), module = SA_MODULE, module_version = SA_MODULE_VERSION,
@@ -43,5 +44,5 @@ write_handoff(a$outdir, run_id = basename(a$outdir), module = SA_MODULE, module_
 paths <- c("tables/annotations.csv", "tables/scores.csv", "tables/cluster_labels.csv", "qc/qc_results.csv", "draft/methods_results.md", "results/singler_annotate_results.json")
 os_write_provenance(a$outdir, SA_MODULE, SA_MODULE_VERSION, argv, basename(.this), seed,
  inputs = list(input = inp$path, reference = a$reference), outputs = paths, upstream = inp$upstream,
- extra = list(front_end_ecosystem = inp$ecosystem, conversion = inp$conversion, python_to_r_crossing = inp$crossing, resolved_native=r$resolved))
+ extra = list(front_end_ecosystem = inp$ecosystem, backend_ecosystem = "neutral", conversion = inp$conversion, python_to_r_crossing = inp$crossing, resolved_native=r$resolved))
 cat(sprintf("%d of %d rules triggered; read %s first\n", qc$n_triggered, qc$n_rules, qc$read_first))

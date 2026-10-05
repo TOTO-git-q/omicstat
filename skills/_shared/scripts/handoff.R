@@ -154,5 +154,13 @@ os_handoff_assert_uncorrected <- function(upstream, name, purpose = "inference")
                         "batch-corrected matrix; it is for display and scoring only and is not used for %s."),
                  name, upstream$run_id, upstream$module, purpose), call. = FALSE)
   }
+  os_handoff_assert_inference_ready(upstream)
+  invisible(TRUE)
+}
+
+# GSVA scoring is available; its downstream inferential model remains owner-pending.
+os_handoff_assert_inference_ready <- function(upstream) {
+  if (!is.null(upstream) && (identical(upstream$module, "gsva-score") || isTRUE(upstream$state$score_inference_pending)))
+    stop("OS_OWNER_DECISION_PENDING: inference on GSVA scores awaits the owner decision on the limma entry and trend/robust settings; scores are for descriptive use.", call. = FALSE)
   invisible(TRUE)
 }

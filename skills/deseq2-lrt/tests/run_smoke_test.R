@@ -298,6 +298,13 @@ if (r$status == 0) {
   assert_all_columns("A2 REPLAY (pasilla ~ type + condition vs ~ type, 8,148 rows)", full2, res, j2)
 }
 
+# Anchor-derived additive design: --group-col must not hide a singleton tested level.
+singleton <- read.csv(f$samples,check.names=FALSE)
+singleton$tested <- c("singleton",rep("other",nrow(singleton)-1L))
+singleton_file <- file.path(tmp,"singleton_samples.csv");write.csv(singleton,singleton_file,row.names=FALSE)
+r <- run(entry,"--counts",shQuote(f$counts),"--samples",shQuote(singleton_file),"--full",shQuote("~ tested"),"--reduced",shQuote("~ 1"),"--group-col","strain","--min-samples","3","--outdir",shQuote(file.path(tmp,"singleton-hidden")))
+check(r$status != 0 && any(grepl("OS_QC_BLOCKER.*tested level",r$out)),"display group cannot bypass tested-factor replicate guard")
+
 # Typed errors and unavailable optional dependency.
 r <- run(entry, "--pattern-clustering", base, "--outdir", shQuote(file.path(tmp, "bad-pattern")))
 check(r$status != 0 && any(grepl("OS_MISSING_PARAMETER.*pattern-genes", r$out)), "E1 optional patterns require explicit gene selection")

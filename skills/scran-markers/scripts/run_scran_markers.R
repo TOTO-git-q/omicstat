@@ -9,10 +9,11 @@ os_flag("from-run","path", must_exist=TRUE,help="upstream single-cell run"),
 os_flag("outdir","path",required=TRUE,help="output directory"),
 os_flag("spec","path", must_exist=TRUE,help="resolved spec replay"),
 os_flag("cluster-col","string",required=TRUE,help="cluster metadata; example colLabels in locked Rd"),
+os_flag("sample-col","string",default="sample",help="biological sample column; absent permits only the upstream cluster_col"),
 os_flag("route","enum",default="scoreMarkers",values=c("scoreMarkers","findMarkers"),help="scoreMarkers effect summaries or compatibility findMarkers"),
 os_flag("lfc","num",default=0,help="native effect threshold; no display-only filtering"),
 os_flag("block-col","string",help="optional blocking column"),
-os_flag("rank-by","string",required=TRUE,help="native ranking column; example mean.AUC for scoreMarkers, FDR for findMarkers"),
+os_flag("rank-by","string",required=TRUE,help="native ranking column; recommend mean.AUC for scoreMarkers or summary.logFC for findMarkers; FDR ranking is ranking, not significance"),
 os_flag("rank-decreasing","enum",values=c("TRUE","FALSE"),default="TRUE",help="descending effect ranking; set false for P-value/FDR ranking"),
 os_flag("top-n","int",required=TRUE,help="display genes per cluster; S0 examples 10 or 100"),
 os_flag("test-type","enum",default="t",values=c("t","wilcox","binom"),help="compatibility test t/wilcox/binom"),
@@ -37,6 +38,12 @@ os_engine_capture({
  os_finalize_figure(p,file.path(a$outdir,"figures/marker_heatmap"),journal=a$journal,root=a$outdir)
 },"figures",elog)
 os_bioc_methods(a,"scran-markers",c("scran"),c("scoreMarkers","findMarkers"))
+if(a$route=="findMarkers") {
+ caution <- "P values are computed with cells as observations on clusters defined from the same data. They rank genes within this descriptive comparison and are not evidence of differential expression between biological groups."
+ cat(c("", "# Methods",caution,"", "# Results",sprintf("Native descriptive marker table contains %d rows across %d clusters, ranked by %s.",nrow(r$markers),length(r$tables),a[["rank-by"]]),caution),file=file.path(a$outdir,"draft/methods_results.md"),sep="\n",append=TRUE)
+}
+qc <- os_qc_finalize(list(os_qc_rule("XM-01","cell-level P saturation",ncol(r$sce)>=10000 || ("FDR" %in% names(r$markers) && nrow(r$markers)>0 && sum(r$markers$FDR<0.05,na.rm=TRUE)/nrow(r$markers)>=0.9),"warning","cell-level P values are near zero for most genes; read effect sizes.","Read native effect columns; use sample-aware modules for condition effects.","CONVENTIONS marker grouping; PACK W")),read_first="tables/markers.csv")
+os_write_qc_results(qc,a$outdir)
 r$colours<-os_colours_for(sort(unique(r$markers$cluster)),family="cluster",registry=i$colours)$registry
 os_bioc_write(r,i,a,"scran-markers","1.0.0")
 os_write_provenance(a$outdir,"scran-markers","1.0.0",os_canonical_argv(SPEC,a),basename(.this),a$seed,inputs=os_bioc_provenance_inputs(i,a),outputs=c("objects/sce.rds"),upstream=i$upstream,extra=list(state=r$state,conversion=i$conversion,native_args=os_bioc_resolved_native(a)))

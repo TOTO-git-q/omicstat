@@ -26,6 +26,7 @@ os_limma_design <- function(mat, st, a, block_col = NULL, allow_multilevel = FAL
   ns <- table(st[[a$condition]])
   if (any(ns[c(a$reference, a$target)] < 2L)) stop("OS_QC_BLOCKER: fewer than two biological replicates in a compared group.", call. = FALSE)
   block <- NULL
+  biological <- unname(ns[c(a$reference,a$target)])
   if (!is.null(block_col)) {
     if (!block_col %in% names(st)) stop("OS_MISSING_COLUMN: block column is absent.", call. = FALSE)
     block <- st[[block_col]]
@@ -34,9 +35,15 @@ os_limma_design <- function(mat, st, a, block_col = NULL, allow_multilevel = FAL
     bm <- stats::model.matrix(~ 0 + factor(block))
     if (qr(cbind(mm, bm))$rank == qr(mm)$rank)
       stop("OS_INVALID_DESIGN: block is spanned by the fixed-effect design.", call. = FALSE)
+    if (identical(a[["block-role"]] %||% "correlated_unit", "correlated_unit")) {
+      biological <- vapply(c(a$reference, a$target), function(g) length(unique(block[st[[a$condition]] == g])), integer(1))
+      if (any(biological < 2L)) stop("OS_PSEUDOREPLICATION: each compared group needs at least two independent correlated units; repeated observations are not biological replicates.", call. = FALSE)
+    }
   }
   list(design = mm, coef = coef, formula = deparse(f), samples = st, block = block,
-       n_target = unname(ns[a$target]), n_reference = unname(ns[a$reference]),
+       n_target = unname(biological[2]), n_reference = unname(biological[1]),
+       n_target_observations = unname(ns[a$target]), n_reference_observations = unname(ns[a$reference]),
+       biological_reference=biological[1], biological_target=biological[2],
        n_blocks = if (is.null(block)) NULL else length(unique(block)))
 }
 
@@ -71,7 +78,7 @@ os_limma_direction_summary <- function(tt, alpha, coef, lfc = 0) {
 
 os_limma_qc <- function(ft, model, a, prefix, n_input, extra = list()) {
   rows <- list(
-    os_qc_rule(paste0(prefix, "-01"), "replicates per group", min(model$n_target, model$n_reference) < 3L,
+    os_qc_rule(paste0(prefix, "-01"), "replicates per group", min(model$biological_target %||% model$n_target, model$biological_reference %||% model$n_reference) < 3L,
                "warning", "A compared group has only two biological replicates.", "Interpret uncertainty cautiously.", "ENGINEERING_PLAN 4.5"),
     os_qc_rule(paste0(prefix, "-02"), "tested features", nrow(ft) < 100L,
                "warning", "Fewer than 100 features were tested.", "Check input and filtering.", "PACK C; ENGINEERING_PLAN 4.5"),
@@ -126,7 +133,10 @@ os_limma_write <- function(res, mat, model, a, module, version, prefix, outdir, 
   }
   label <- sprintf("%s vs %s", a$target, a$reference)
   figs <- list()
-  figs$volcano <- os_finalize_figure(os_limma_volcano(ft, a$alpha, a[["label-n"]], label, module, a$journal),
+  volcano <- os_limma_volcano(ft, a$alpha, a[["label-n"]], label, module, a$journal)
+  if (min(attr(volcano, "os_meta")$counts$up, attr(volcano, "os_meta")$counts$down) < a[["label-n"]])
+    attr(volcano, "os_meta")$caption <- sub("The ([0-9]+) most significant features per direction", "Up to \\1 most significant features per direction", attr(volcano, "os_meta")$caption)
+  figs$volcano <- os_finalize_figure(volcano,
                                      file.path(outdir, "figures", "volcano"), journal = a$journal, root = outdir)
   figs$md <- os_finalize_figure(os_limma_md(ft, a$alpha, a[["label-n"]], label, module, a$journal),
                                 file.path(outdir, "figures", "md"), journal = a$journal, root = outdir)
@@ -213,17 +223,23 @@ os_limma_write <- function(res, mat, model, a, module, version, prefix, outdir, 
                 condition = a$condition, reference = a$reference, target = a$target,
                 weights = res$weights_note %||% "none", expression = expr_state, ranked_list = rl$meta,
                 block = if (is.null(model$block)) NULL else list(column = a$block %||% NA_character_, n_blocks = model$n_blocks,
+                                                                   role = a[["block-role"]] %||% "correlated_unit",
                                                                    consensus_correlation = res$details$consensus_correlation %||% NA_real_))
   write_handoff(outdir, run_id = basename(outdir), module = module, module_version = version, objects = objects,
                 ecosystem = "neutral", state = state, upstream_runs = upstream$upstream_runs %||% character(0))
-  jsonlite::write_json(list(module = module, contrast = label, design = model$formula, coefficient = model$coef,
-                            n_input = nrow(mat), n_tested = nrow(ft), n_sig = n_sig,
+  jsonlite::write_json(c(list(module = module, contrast = label, design = model$formula, coefficient = model$coef,
+                            n_input = nrow(mat), n_tested = nrow(ft), n_sig = n_sig),
+                         if (model$n_target != model$n_target_observations || model$n_reference != model$n_reference_observations) list(
+                            n_target = model$n_target, n_reference = model$n_reference,
+                            n_target_observations = model$n_target_observations,
+                            n_reference_observations = model$n_reference_observations),
+                         list(
                             direction_summary = as.list(dsum[1, c("Down", "NotSig", "Up")]),
                             null_test = if (zero) "zero_effect" else "minimum_effect",
                             min_effect_lfc_threshold = if (zero) 0 else log2(a[["min-effect-fc"]]),
                             display_lfc_filter = a[["display-lfc-filter"]], alpha = a$alpha,
                             weights = res$weights_note %||% "none",
-                            details = res$details %||% list()), file.path(outdir, "results", "limma_results.json"),
+                            details = res$details %||% list())), file.path(outdir, "results", "limma_results.json"),
                        auto_unbox = TRUE, pretty = TRUE, null = "null", digits = I(10))
   fig_outs <- paste0("figures/", names(figs), ".figure_spec.json")
   outputs <- c("tables/feature_table.csv", "tables/limma_full.csv", "tables/direction_summary.csv", "qc/qc_results.csv",

@@ -61,3 +61,5 @@ JSON values may also use `{ "rds": "local/path.rds" }` to supply a design/contra
 | `--quantile` | 0.8 | no | quantile |
 | `--tune-thresh` | 0.05 | no | tune_thresh |
 | `--nmads` | 3 | no | prune_nmads |
+
+`--prune-get-thresholds true` is refused with `OS_CONFLICTING_PARAMETERS`: that native return mode contains per-label thresholds, not the per-cell pruning mask required by annotation.

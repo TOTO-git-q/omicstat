@@ -69,9 +69,16 @@ os_ranked_list_write <- function(path, feature_id, symbol, score, meta) {
 # Validate ranked_list metadata (producer side or consumer side). Typed errors:
 #   OS_HANDOFF_MISMATCH       metadata missing or malformed
 #   OS_RANKING_UNDIRECTIONAL  not a directional statistic
+os_ranked_list_assert_directional <- function(metric) {
+  if (is.character(metric) && any(grepl("(^|[^A-Za-z])(LRT|F([ ._-]*(stat(istic)?|test))?|likelihood[ -]+ratio)([^A-Za-z]|$)", metric, ignore.case = TRUE)))
+    stop("OS_RANKING_UNDIRECTIONAL: LRT and F statistics have no signed contrast direction; supply a directional statistic.", call. = FALSE)
+  invisible(TRUE)
+}
+
 os_ranked_list_meta_check <- function(meta, where = "consumer") {
   if (is.null(meta) || !is.list(meta))
     stop("OS_HANDOFF_MISMATCH: the ranked_list carries no metadata (metric, statistic, contrast, direction); it cannot be used without guessing.", call. = FALSE)
+  os_ranked_list_assert_directional(meta$metric)
   miss <- setdiff(OS_RANKED_REQUIRED, names(meta))
   if (length(miss)) stop(sprintf("OS_HANDOFF_MISMATCH: ranked_list metadata lacks %s.", paste(miss, collapse = ", ")), call. = FALSE)
   if (!identical(meta$schema, OS_RANKED_LIST_SCHEMA)) stop("OS_HANDOFF_MISMATCH: unknown ranked_list metadata schema.", call. = FALSE)
@@ -99,7 +106,7 @@ os_ranked_list_meta <- function(upstream) {
   side <- sub("[.]csv$", ".meta.json", o$path)
   if (file.exists(side)) {
     sm <- jsonlite::fromJSON(side, simplifyVector = TRUE)
-    if (!is.null(meta) && !identical(as.character(sm$metric), as.character(meta$metric)))
+    if (!is.null(meta) && any(vapply(OS_RANKED_REQUIRED, function(k) !identical(as.character(unlist(sm[k])), as.character(unlist(meta[k]))), logical(1))))
       stop("OS_HANDOFF_MISMATCH: ranked_list sidecar metadata disagrees with the handoff state.", call. = FALSE)
     if (is.null(meta)) meta <- sm
   }

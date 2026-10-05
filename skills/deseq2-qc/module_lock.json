@@ -13,10 +13,10 @@
     "skills/deseq2-qc/references/options.md": "440cf0e4df085d3860922fb5c41ae8c3f96ee574eb07d3ae9acbb7a78d824530",
     "skills/deseq2-qc/references/parameters.md": "1dd6d251a1160e8f7fb881087d78077eedb688c6c609dd486db6f0fc622f066e",
     "skills/deseq2-qc/references/qc-rules.md": "e79129b41b292fbcffc3e9414877c1fca634777da1d0155e31631198f927aadb",
-    "skills/deseq2-qc/references/reporting-templates.md": "0c96e935948d0806c51cfb35aa746e2c03eb7040189ede6bd436f7a94cc77588",
+    "skills/deseq2-qc/references/reporting-templates.md": "143133b261cf0fb7749f286f8f963df3cd2016325c571f271d37579f2000685a",
     "skills/deseq2-qc/references/troubleshooting.md": "86bb4e47266f146ecb4bf7ac4c99205ece29aa5da0b2bd184bc39ba6e50d77d7",
     "skills/deseq2-qc/tests/fixtures/make_pasilla.R": "4f017c1565fb4b49af3bf04fd924e2a388e830434b7ebcef7dc27859a29f0a1c",
-    "skills/deseq2-qc/tests/run_smoke_test.R": "ec164122fe7a105810dbb4a0352a666c862690a5eb72fa858263637660ce3da1",
+    "skills/deseq2-qc/tests/run_smoke_test.R": "9fc3b2fc403e0926384a62fcc7964a6865a4d1c41be558d22578c45901a27dd7",
     "skills/deseq2-qc/tests/golden_manifest.csv": "df84fa9b6fcd5f341f45af407712840140f8102e159dcbde63028c0dda592b98",
     "acceptance/exemplars/deseq2-qc/PACK.md": "7a9c9833d03c7c334a5d91a4691d1c4f2bc6857dd5959fd17698d5146f5dc4b3"
   },

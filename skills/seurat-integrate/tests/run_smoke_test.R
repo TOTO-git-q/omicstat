@@ -32,8 +32,11 @@ check(isTRUE(all.equal(SeuratObject::LayerData(x,assay="RNA",layer="counts"),mat
 cat("OBSERVED communities",length(unique(x$cluster)),"edges",(length(x@graphs$integrated_snn@x)-ncol(x))/2,"\n")
 h <- read_handoff(out,expect=list(seurat="Seurat"),front_end_ecosystem="seurat"); check(isTRUE(h$state$seurat$integrated) && length(h$upstream_runs)==3L,"real QC-cluster-integration handoff chain")
 # The second documented route also must run end to end.
-layer <- file.path(scratch,"integrate_layers"); run("seurat-integrate",c(base[!seq_along(base) %in% c(3,4)],"--method","HarmonyIntegration","--outdir",layer))
+layer_args <- base[!seq_along(base) %in% c(3,4)]; layer_args[match("--dims",layer_args)+1L] <- "10"
+layer <- file.path(scratch,"integrate_layers"); run("seurat-integrate",c(layer_args,"--method","HarmonyIntegration","--outdir",layer))
 z <- readRDS(file.path(layer,"objects/seurat.rds")); check(ncol(z)==2000L && "harmony" %in% names(z@reductions),"HarmonyIntegration layer route")
+layer_draft <- paste(readLines(file.path(layer,"draft/methods_results.md")),collapse="\n")
+check(grepl(sprintf("first %d PCs",ncol(SeuratObject::Embeddings(z[["harmony"]]))),layer_draft,fixed=TRUE) && grepl("first 10 corrected dimensions",layer_draft,fixed=TRUE),"layer integration reports full input PCs separately from graph/UMAP dimensions")
 paths <- c("tables/harmony.csv","tables/batch_clusters.csv")
 if(Sys.getenv("OMICSTAT_WRITE_GOLDEN")=="1") os_golden_write(mod,out,paths)
 check(os_golden_check(mod,out)$status=="PASS","main result tables golden")

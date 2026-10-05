@@ -104,3 +104,11 @@ The pinned package does not export the tutorial optional `projectData`; projecte
 | `--spec` | none; replay resolved_spec.json | no | none |
 | `--seed` | 20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default) | no | none |
 | `--journal` | nature; nature / cell / science / generic | no | none |
+
+Native differential gene selection is limited to the declared cell clusters. Dataset contrasts and alternate grouping columns are refused with `OS_PSEUDOREPLICATION`, including JSON/RDS overrides.
+
+`--sample-col` defaults to `samples` (CellChat metadata convention). When present, grouping must vary within at least one sample and cannot be the sample column itself. Without it, `--cluster-col` must match the cluster column recorded in verified upstream or embedded state. Otherwise `OS_PSEUDOREPLICATION` directs condition comparisons to muscat-pseudobulk or speckle-propeller. CellChat compares communication between cell groups, not conditions.
+
+| option | locked default / vignette value | required? | S0 extraction parameter key |
+|---|---|---|---|
+| `--sample-col` | `samples` | no | none |

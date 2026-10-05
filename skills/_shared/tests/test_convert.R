@@ -163,6 +163,14 @@ if (!ad_ready) {
                                          x_role = "logcounts", file = file.path(tmp, "a.h5ad"))), "OS_ENV_MISSING"),
         "AnnData without the prebuilt environment -> OS_ENV_MISSING (never a download)")
 } else {
+  tagged <- so
+  tagged@misc$omicstat_state <- list(front_end_ecosystem="seurat",batch_corrected_lineage=TRUE)
+  state_file <- file.path(tmp,"lineage.h5ad")
+  os_sc_convert(tagged,to="AnnData",consumer="back_end",layers=LAY_SO,cluster_col=CL,source_assay="RNA",x_role="logcounts",file=state_file)
+  state_back <- os_sc_convert(state_file,to="SingleCellExperiment",consumer="back_end",layers=c(counts="counts",logcounts="X"),cluster_col=CL)$object
+  check(identical(S4Vectors::metadata(state_back)$omicstat,tagged@misc$omicstat_state),"Seurat -> AnnData -> SCE preserves ecosystem and corrected lineage")
+  state_seurat <- os_sc_convert(state_back,to="Seurat",consumer="back_end",layers=c(counts="counts",logcounts="logcounts"),cluster_col=CL,target_assay="RNA")$object
+  check(identical(state_seurat@misc$omicstat_state,tagged@misc$omicstat_state),"SCE -> Seurat preserves embedded scientific state")
   f1 <- file.path(tmp, "from_seurat.h5ad")
   ra <- os_sc_convert(so, to = "AnnData", consumer = "back_end", layers = LAY_SO, cluster_col = CL, source_assay = "RNA", x_role = "logcounts", file = f1)
   check(file.exists(f1) && identical(ra$object, normalizePath(f1, winslash = "/")), "S2A writes the .h5ad and returns its path")

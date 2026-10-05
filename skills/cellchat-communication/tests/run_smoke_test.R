@@ -27,3 +27,57 @@ if(identical(Sys.getenv('OMICSTAT_WRITE_GOLDEN'),'1')) {
 }
 g<-os_golden_check(mdir,direct);stopifnot(identical(g$status,'PASS'))
 cat('PASS: default do.fast=TRUE human skin anchor and explicit Wilcoxon goldens; old golden retained\n')
+
+# Both native routes and an RDS-valued override must respect the inference boundary.
+rds_group <- file.path(root,"group.rds");saveRDS("condition",rds_group)
+for (override in list(c("--genes-group-dataset",'"condition"'),c("--genes-group-by",'"condition"'),c("--genes-group-by",jsonlite::toJSON(list(rds=rds_group),auto_unbox=TRUE)),c("--genes-group-dataset",'"condition"',"--genes-do-de","1"),c("--genes-group-by",'"condition"',"--genes-do-de",'"TRUE"'))) {
+  refused_args <- c(args,override);refused_args[match("--outdir",refused_args)+1L] <- file.path(root,"refuse-condition")
+  log <- file.path(root,"condition-refusal.log")
+  rc <- system2("Rscript",c(shQuote(entry),vapply(refused_args,shQuote,'')),stdout=log,stderr=log)
+  stopifnot(rc != 0L,any(grepl("OS_PSEUDOREPLICATION",readLines(log),fixed=TRUE)))
+}
+cat("PASS: dataset, alternate-group and RDS argument condition comparisons refused\n")
+
+# Grouping guard uses sample information or the verified chain's own label column.
+source(file.path(mdir,"scripts/cellchat_communication_core.R"))
+guard_args <- list(`cluster-col`="labels", `sample-col`="samples")
+probe <- sce; probe$condition <- "LS"; probe$labels_copy <- probe$labels
+refused <- function(x, a, state=list(), message) {
+ e <- tryCatch({cellchat_communication_group_guard(x,a,state); NULL},error=function(e)conditionMessage(e))
+ stopifnot(!is.null(e),grepl("OS_PSEUDOREPLICATION",e,fixed=TRUE),grepl(message,e,fixed=TRUE),grepl("CellChat compares communication between cell groups, not conditions.",e,fixed=TRUE))
+}
+for (column in c("condition","samples")) {
+ a <- guard_args; a[["cluster-col"]] <- column
+ refused(probe,a,message="is sample-level")
+}
+no_sample <- probe; no_sample$samples <- NULL
+refused(no_sample,guard_args,message="needs a sample column to verify that the grouping is cell-level")
+stopifnot(isTRUE(cellchat_communication_group_guard(no_sample,guard_args,list(cluster_col="labels"))))
+S4Vectors::metadata(no_sample)$omicstat <- list(cluster_col="labels")
+stopifnot(isTRUE(cellchat_communication_group_guard(no_sample,guard_args)))
+a <- guard_args; a[["cluster-col"]] <- "labels_copy"
+refused(no_sample,a,list(cluster_col="labels"),message="needs a sample column")
+stopifnot(isTRUE(cellchat_communication_group_guard(probe,a)))
+cat("PASS: sample-level condition, sample identity and unverified grouping refused; verified chain/embedded labels and cell-level alternative allowed\n")
+# Verify the same refusals at the CLI input boundary.
+for (case in c("condition", "samples", "no-samples")) {
+ x <- if (case == "no-samples") no_sample else probe
+ if (case == "no-samples") S4Vectors::metadata(x)$omicstat <- NULL
+ input <- file.path(root,paste0("guard-",case,".rds")); saveRDS(x,input)
+ av <- args; av[match("--input",av)+1L] <- input
+ av[match("--cluster-col",av)+1L] <- if (case == "no-samples") "labels" else case
+ av[match("--outdir",av)+1L] <- file.path(root,paste0("guard-",case))
+ log <- file.path(root,paste0("guard-",case,".log"))
+ rc <- system2("Rscript",c(shQuote(entry),vapply(av,shQuote,'')),stdout=log,stderr=log)
+ stopifnot(rc != 0L,any(grepl("OS_PSEUDOREPLICATION",readLines(log),fixed=TRUE)))
+}
+cat("PASS: three grouping refusals also enforced through CLI\n")
+# Exercise the second cell-level label through the production CLI as well.
+alt_input <- file.path(root,"alternate-label.rds"); saveRDS(probe,alt_input)
+alt_args <- args; alt_args[match("--input",alt_args)+1L] <- alt_input
+alt_args[match("--cluster-col",alt_args)+1L] <- "labels_copy"
+alt_args[match("--outdir",alt_args)+1L] <- file.path(root,"alternate-label")
+alt_log <- file.path(root,"alternate-label.log")
+stopifnot(system2("Rscript",c(shQuote(entry),vapply(alt_args,shQuote,'')),stdout=alt_log,stderr=alt_log)==0L)
+stopifnot(identical(digest::digest(file=file.path(fast,"tables/communication.csv"),algo="sha256"),digest::digest(file=file.path(root,"alternate-label/tables/communication.csv"),algo="sha256")))
+cat("PASS: alternate cell-level label CLI communication byte-identical to default presto anchor\n")

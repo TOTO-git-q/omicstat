@@ -4,7 +4,7 @@
   "module_version": "1.0.0",
   "files": {
     "skills/seurat-integrate/scripts/run_seurat_integrate.R": "f2881ff3624e665427430c017ea537ede41a692e92faa9b239905dc100935fb2",
-    "skills/seurat-integrate/scripts/seurat_integrate_core.R": "7008b247ac03b93e72ba4e6788096565708f8dec3569095c684383924f4a3491",
+    "skills/seurat-integrate/scripts/seurat_integrate_core.R": "0eee6e30001430c83e19d3f1ebe86a74d5e9669003430c3cbdb7c6274be9178a",
     "skills/seurat-integrate/scripts/seurat_integrate_qc.R": "b4df562c615dab8dc79391b40cd254c98a52e8cbaeb30b31620f7e5fda795e3d",
     "skills/seurat-integrate/scripts/seurat_integrate_report.R": "cb68b218fb2e6a4ec33cff82700115d7610c4662711c9a71a9bad0638a24b1c9",
     "skills/seurat-integrate/scripts/calls_registry.json": "df4a8733626d3e13ee1665a266e403002c2fd6ab6b10172291b049780d4accb6",
@@ -15,7 +15,7 @@
     "skills/seurat-integrate/references/qc-rules.md": "1ad96007b9201713b290a89e6606a6089fe2f6637bb2d1ac4be5e92fca9c7e9d",
     "skills/seurat-integrate/references/reporting-templates.md": "d9f542c25de9a01bd0035cb5c92d1fb2d4761cf7ac9fba9a0674a592e05c6ae4",
     "skills/seurat-integrate/references/troubleshooting.md": "8d7fb549e8a5fcfcaaa58d815e82b107d56c9d7d3cf65a77d17d28fdbac6ba06",
-    "skills/seurat-integrate/tests/run_smoke_test.R": "750e170295f15daf4c643554314eb98f12392da0b10111db0b418d116af788b6",
+    "skills/seurat-integrate/tests/run_smoke_test.R": "59154e4f60b5a3bf4c7e9ce5a2c1733bc964b5f1bb6d1eb28c6ace3233ed677e",
     "skills/seurat-integrate/tests/golden_manifest.csv": "551983eb2e64343c8a972f5c331296f3f11c296f24ecee5eeadaa0d1b72ae360",
     "acceptance/exemplars/seurat-integrate/PACK.md": "064c263e82b9f0644f0881848e3c5354c8df7df5e36cced9072b5e8f3d5b49c7"
   },

@@ -9,6 +9,7 @@ os_seurat_read <- function(path, from_run = NULL, stage = NULL) {
     os_seurat_fail("OS_INVALID_INPUT", "Expected a Seurat RDS object.")
   }
   st <- x@misc$omicstat_state
+  if (isTRUE(st$batch_corrected_lineage)) os_seurat_fail("OS_BATCH_CORRECTED_INPUT", "Object descends from batch-corrected expression.")
   if (is.null(st) || !identical(st$front_end_ecosystem, "seurat")) os_seurat_fail("OS_CHAIN_STATE", "Missing Seurat chain state; start with seurat-qc.")
   if (!is.null(h) && !identical(jsonlite::toJSON(st, auto_unbox=TRUE, null="null"), jsonlite::toJSON(h$state$seurat, auto_unbox=TRUE, null="null"))) os_seurat_fail("OS_CHAIN_STATE", "Object and handoff chain states differ.")
   if (!isTRUE(st$qc_done)) os_seurat_fail("OS_CHAIN_STATE", "QC must precede downstream processing.")

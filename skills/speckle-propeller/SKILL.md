@@ -12,6 +12,6 @@ Before choosing **any required or judgement option listed in options.md**, query
 
 Outputs: `objects/native.rds` (package result), `objects/sce.rds` and verified neutral handoff, native-column CSV tables, suite-style PNG/PDF figures and figure specs, QC, provenance and short Methods with actual function options. Samples are replicates for differential analyses. Retain all native p-values; display thresholds do not replace the full tables.
 
-待裁决: Python front end feeding R backend keeps the upstream ecosystem and raises a QC crossing flag; owner label decision pending. See S3_REQUEST for current execution limitations and proposed routing. No S3 acceptance or installation is performed here.
+Python front end feeding a neutral R backend preserves the upstream ecosystem and raises informational `OS_ECOSYSTEM_CROSSING` QC. See S3_REQUEST for current execution limitations and proposed routing. No S3 acceptance or installation is performed here.
 
 `omicstat-r:2026.10.1` prebuilds the AnnData environment at `BASILISK_EXTERNAL_DIR=/opt/omicstat/basilisk`; non-root h5ad input works offline through the shared conversion contract. A custom environment without this prebuilt environment gives `OS_ENV_MISSING`; the runtime never downloads it.

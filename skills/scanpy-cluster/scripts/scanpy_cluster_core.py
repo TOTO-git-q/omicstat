@@ -30,7 +30,7 @@ def compute(adata, a, upstream):
                           max_fraction=options['normalize-max-fraction'], key_added="omicstat_size_factor", layer=None, obsm=None, inplace=True, copy=False)
     sc.pp.log1p(adata, base=options['log1p-base'], copy=False, chunked=None, chunk_size=None, layer=None, obsm=None)
     adata.layers["logcounts"] = adata.X.copy()
-    sc.pp.highly_variable_genes(adata=adata, layer=None, n_top_genes=a["n-hvg"], min_disp=0.5, max_disp=np.inf,
+    sc.pp.highly_variable_genes(adata=adata, layer="counts" if options["hvg-flavor"] in ("seurat_v3", "seurat_v3_paper") else None, n_top_genes=a["n-hvg"], min_disp=0.5, max_disp=np.inf,
                                min_mean=0.0125, max_mean=3.0, span=options['hvg-span'], n_bins=options['hvg-n-bins'], flavor=options['hvg-flavor'],
                                subset=False, inplace=True, batch_key=a["hvg-batch-col"], filter_unexpressed_genes=None, check_values=True)
     if int(adata.var["highly_variable"].sum()) <= a["n-pcs"]:

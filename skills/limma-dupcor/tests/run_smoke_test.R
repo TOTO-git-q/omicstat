@@ -115,6 +115,9 @@ if(is.null(inp))cat("SKIP: Yoruba F10 absent\n")else{
  check(ry$status==0,paste("Yoruba RNA engine run (guide input, suite route)",paste(utils::tail(ry$out,2),collapse=" | ")))
  if(ry$status==0){
   j<-jsonlite::fromJSON(file.path(ay,"results","limma_results.json"))
+  ft <- read.csv(file.path(ay,"tables/feature_table.csv"))
+  biological <- unique(data.frame(cellline=inp$Targets$cellline,gender=inp$Targets$gender))
+  check(all(ft$n_group1==sum(biological$gender=="Male")) && all(ft$n_group2==sum(biological$gender=="Female")) && j$n_target==sum(biological$gender=="Male") && j$n_reference==sum(biological$gender=="Female"),"canonical biological replicate counts use independent cell lines, not sequenced libraries")
   check(j$n_tested==16918L && j$details$n_blocks==74L && j$details$correlation_rounds==2,"Yoruba engine: 16918 genes tested (filterByExpr no-op at --min-count 0), 74 cell-line blocks, two rounds")
   check(same(j$details$first_correlation,gt$cor1,1e-9) && same(j$details$consensus_correlation,gt$cor2,1e-9) &&
         abs(j$details$first_correlation-0.4449716)<5e-8 && abs(j$details$consensus_correlation-0.4454514)<5e-8,
@@ -174,6 +177,10 @@ if(r0$status==0){
  r1<-run(rna,"--min-effect-fc","1.5","--outdir",shQuote(file.path(tmp,"rnatreat")))
  check(r1$status==0&&sha(file.path(tmp,"rna0","tables","feature_table.csv"))!=sha(file.path(tmp,"rnatreat","tables","feature_table.csv")),"treat changes minimum-effect test")
  if(r1$status==0)check(grepl("limma treat (fc = 1.5, lfc = log2(fc) = 0.5850",draft(file.path(tmp,"rnatreat")),fixed=TRUE),"Methods (treat): fc and lfc = log2(fc) reported")
+ if(r1$status==0){
+  vs<-jsonlite::fromJSON(file.path(tmp,"rnatreat","figures","volcano.figure_spec.json"))
+  check(vs$counts$down==0 && length(vs$data$labelled_feature_ids)==2 && grepl("Up to 5 most significant features per direction",vs$caption,fixed=TRUE),"volcano label count is a cap when fewer qualifying genes exist")
+ }
  r2<-run(rna,"--display-lfc-filter","1","--outdir",shQuote(file.path(tmp,"rnadisplay")))
  check(r2$status==0&&sha(file.path(tmp,"rna0","tables","feature_table.csv"))==sha(file.path(tmp,"rnadisplay","tables","feature_table.csv")),"display filter leaves inferential table unchanged")
 }

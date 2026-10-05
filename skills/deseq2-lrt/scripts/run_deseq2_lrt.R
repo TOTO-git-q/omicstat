@@ -71,6 +71,11 @@ if (!is.null(a[["gene-annotation"]])) {
   symbols <- stats::setNames(ga$symbol, ga$feature_id)
 }
 des <- dl_design(st, a$full, a$reduced, a$adjust)
+# A display grouping must never hide an unreplicated factor tested by the LRT.
+for (v in setdiff(des$vars_full, des$vars_reduced)) {
+  if (any(table(des$coldata[[v]]) < DL_REPS_BLOCKER_BELOW))
+    stop(sprintf("OS_QC_BLOCKER: fewer than two biological replicates in a tested level of %s; --group-col changes display only.",v),call.=FALSE)
+}
 cs <- os_count_state(mat)
 # For an interaction, replication is assessed in each interaction cell. For
 # an additive model, the displayed group is the biological replicate group;

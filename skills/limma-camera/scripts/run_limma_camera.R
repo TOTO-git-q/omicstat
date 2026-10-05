@@ -122,6 +122,7 @@ if (is_rank) {
                  universe = "the rows of the supplied ranked list", producer = "a user-supplied file", producer_version = NA_character_,
                  id_type = "feature_id as supplied", n_excluded_nonfinite = 0L)
   }
+  os_ranked_list_assert_directional(meta$metric)
   meta$n_ranked <- nrow(input$rank$table); meta$n_ties <- input$rank$n_tied
   input$rank_meta <- meta
   input$source_sentence <- sprintf("The input was a ranked list of %d features%s.", nrow(input$rank$table),
@@ -151,6 +152,9 @@ if (is_rank) {
   input$weights_label <- if (is.null(lh$weights)) "none" else "observation-level precision weights carried by the upstream EList"
   if (!is.null(lh$block)) {
     bcol <- lh$block$column
+    if (!bcol %in% names(lh$samples)) stop("OS_HANDOFF_MISMATCH: the limma sample table lacks the recorded block column.", call. = FALSE)
+    if (identical(lh$block$role %||% "correlated_unit", "correlated_unit"))
+      limma_camera_assert_blocks(lh$samples[[bcol]], cond, lh$reference, lh$target)
     input$block_info <- list(column = bcol, n_blocks = lh$block$n_blocks, correlation = lh$block$consensus_correlation,
                              source = sprintf("consensus correlation estimated by %s run %s", lh$producer, upstream$run_id))
     if (a$question == "competitive" && !isTRUE(a[["acknowledge-block-ignored"]]))

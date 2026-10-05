@@ -18,3 +18,33 @@ check(!any(c("P.Value","FDR")%in%names(tab)),"effect summaries have no invented 
 paths<-c("tables/markers.csv","tables/marker_plot_data.csv")
 if(Sys.getenv("OMICSTAT_WRITE_GOLDEN")=="1")os_golden_write(.module,out,paths)
 check(os_golden_check(.module,out)$status=="PASS","golden")
+
+source(file.path(suite,"skills/_shared/scripts/sc_bioc_io.R"));source(file.path(.module,"scripts/scran_markers_core.R"))
+x$sample <- "anchor"; x$condition <- "ctrl"; x$cell_label <- x$cluster
+fixture <- file.path(work,"group_fixture.rds");saveRDS(x,fixture)
+cli <- function(column,name,route="scoreMarkers",refused=FALSE,extra=character()) {
+ target <- file.path(work,name); log <- file.path(work,paste0(name,".log"))
+ st <- system2("Rscript",c(shQuote(entry),shQuote(c("--input",fixture,"--cluster-col",column,"--rank-by",if(route=="scoreMarkers")"mean.AUC" else "summary.logFC","--route",route,"--top-n","3","--outdir",target,extra))),stdout=log,stderr=log)
+ text <- paste(readLines(log),collapse="\n")
+ if(refused){check(st!=0 && grepl("OS_PSEUDOREPLICATION",text) && grepl("muscat-pseudobulk",text) && grepl("speckle-propeller",text),paste("sample-level refusal",column));cat(text,"\n")} else {if(st!=0)cat(text,"\n");check(st==0,paste("allowed",column,route))}
+ target
+}
+cli("condition","refused",refused=TRUE)
+cli("sample","refused_sample",refused=TRUE)
+allowed <- cli("cell_label","allowed")
+check(identical(readLines(file.path(out,"tables/markers.csv")),readLines(file.path(allowed,"tables/markers.csv"))),"second cell-level grouping byte-identical tables")
+compat <- cli("cell_label","compatibility",route="findMarkers")
+text <- paste(readLines(file.path(compat,"draft/methods_results.md")),collapse="\n")
+check(grepl("P values are computed with cells as observations on clusters defined from the same data.",text,fixed=TRUE),"findMarkers Methods/Results caution")
+check(!grepl("rows with.*< 0.05",text),"no significance count")
+ct <- read.csv(file.path(compat,"tables/markers.csv"));check("summary.logFC"%in%names(ct),"compatibility native effect sizes retained")
+direct <- scran::findMarkers(x,groups=factor(x$cluster),block=NULL,lfc=0,test.type="t",direction="any",pval.type="any",assay.type="logcounts",BPPARAM=BiocParallel::SerialParam())
+check(identical(readRDS(file.path(compat,"objects/markers.rds")),direct),"compatibility P values unchanged in native replay")
+a <- list(`cluster-col`="cell_label",`sample-col`="sample")
+scran_markers_group_guard(x,a);check(TRUE,"one-sample varying grouping allowed")
+x$sample <- NULL
+scran_markers_group_guard(x,list(`cluster-col`="cluster"));check(TRUE,"no sample upstream cluster allowed")
+check(inherits(tryCatch(scran_markers_group_guard(x,a),error=identity),"error"),"no sample alternate grouping refused")
+# Sample blocking remains allowed; two interleaved samples both contain clusters.
+x$sample <- rep(c("s1","s2"),length.out=ncol(x));saveRDS(x,fixture)
+cli("cell_label","blocked",extra=c("--block-col","sample"))

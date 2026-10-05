@@ -4,8 +4,25 @@ seurat_markers_mean <- function(a) {
  if(length(parts)!=2L) stop("Supply package::function for --markers-mean-fxn")
  getExportedValue(parts[1],parts[2])
 }
+seurat_markers_group_guard <- function(x,a) {
+ column <- os_seurat_option(a,"group-by",NULL)
+ if(is.null(column) || identical(column,"ident")) column <- "cluster"
+ md <- x[[]]
+ if(length(column)!=1L || !column %in% names(md)) os_seurat_fail("OS_MISSING_COLUMN","Marker grouping column is missing.")
+ values <- as.character(md[[column]])
+ if(anyNA(values) || any(!nzchar(values))) os_seurat_fail("OS_INVALID_INPUT","Marker grouping labels must be nonmissing and nonempty.")
+ if(!"sample" %in% names(md)) {
+   if(column!="cluster") os_seurat_fail("OS_PSEUDOREPLICATION",sprintf("Grouping column '%s' needs a sample column to verify that the grouping is cell-level; use muscat-pseudobulk for expression or speckle-propeller for proportions.",column))
+ } else {
+   sample <- as.character(md$sample)
+   if(anyNA(sample) || any(!nzchar(sample))) os_seurat_fail("OS_INVALID_INPUT","Sample labels must be nonmissing and nonempty.")
+   if(column=="sample" || all(vapply(split(values,sample),function(z) length(unique(z))==1L,logical(1)))) os_seurat_fail("OS_PSEUDOREPLICATION",sprintf("Grouping column '%s' is sample-level; use muscat-pseudobulk for expression or speckle-propeller for proportions, where samples are replicates.",column))
+ }
+ column
+}
 SM_MODULE_VERSION <- "1.0.0"
 seurat_markers_compute <- function(x,a) {
+ grouping <- seurat_markers_group_guard(x,a)
  assay <- x@misc$omicstat_state$assay
  if(!is.null(a$assay)) assay <- a$assay
  SeuratObject::Idents(x) <- x$cluster
@@ -21,6 +38,7 @@ seurat_markers_compute <- function(x,a) {
  st <- x@misc$omicstat_state; st$marker_assay <- assay; st$native_controls <- list(base=os_seurat_option(a,"markers-base",2),mean.fxn=a[["markers-mean-fxn"]],test.use=a$test,min.pct=a[["min-pct"]],logfc.threshold=a[["logfc-threshold"]])
  details <- sprintf("n=%d cells; assay=%s; native %s test, mode=%s, logfc.threshold=%g, min.pct=%g, only.pos=%s, return.thresh=%g; separate display |log2FC| filter=%g; descriptive cluster comparison, not condition inference.",ncol(x),assay,a$test,a$mode,a[["logfc-threshold"]],a[["min-pct"]],a[["only-pos"]],a[["return-thresh"]],a[["display-lfc-filter"]])
  details <- paste(details, sprintf("Fold-change base=%s; mean.fxn=%s. p_val_adj is a Bonferroni correction over all features in the dataset. %s",st$native_controls$base,a[["markers-mean-fxn"]] %||% "NULL",if(a$test=="wilcox" && requireNamespace("presto",quietly=TRUE)) "Seurat delegates the Wilcoxon test to presto (installed)." else ""))
+ details <- paste(details,"P values are computed with cells as observations on clusters defined from the same data. They rank genes within this descriptive comparison and are not evidence of differential expression between biological groups.")
  details <- paste(details,"Resolved marker controls:",jsonlite::toJSON(st$native_controls,auto_unbox=TRUE,null="null"))
- list(object=x,state=st,tables=list(markers_full=markers,markers_display=display),details=details)
+ list(object=x,state=st,grouping=grouping,tables=list(markers_full=markers,markers_display=display),details=details)
 }

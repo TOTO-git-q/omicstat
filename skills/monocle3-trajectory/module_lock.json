@@ -6,7 +6,7 @@
     "skills/monocle3-trajectory/scripts/monocle3_trajectory_core.R": "9f26d87d5104f0dd3b464447145d1b98b95b78d30cfb813d80efc8629bb12c24",
     "skills/monocle3-trajectory/scripts/run_monocle3_trajectory.R": "8b5be2351fa9a023511417b04214bcf2a78278f71c98512ed43347a694e44fe2",
     "skills/monocle3-trajectory/scripts/calls_registry.json": "6d4e166b0966aee912574e8c55929c9c17599a58e1d94ffc15dfa820ff8e50d3",
-    "skills/monocle3-trajectory/SKILL.md": "0fa4023c1bbe70e1c6de58076de0f1d6246085741259e1fd59e85c4072446d56",
+    "skills/monocle3-trajectory/SKILL.md": "a598b6b571ccf33cffa2818879ee0cb262807933f9b8566ad447c9d512ad162c",
     "skills/monocle3-trajectory/references/methods-template.md": "d5bbd163133431f085de01630d02707a523e07576615102acb6bbfb0a3e79c7b",
     "skills/monocle3-trajectory/references/options.md": "97f1d9ede649f27411dd5982d74df6d13ddb62051ebf3043b2b6008abe8a277c",
     "skills/monocle3-trajectory/tests/fixtures/make_packer.R": "adea2df9970a2783473181384469ece7521f51edeab6a7821448d39a5f1d19c6",

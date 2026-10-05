@@ -3,13 +3,13 @@
   "module": "immunedeconv-infiltration",
   "module_version": "1.1.0",
   "files": {
-    "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R": "3efa1d73317073096985d7ef6fdf0b8d7f6a8ef5909c765603f4d86a23fa9943",
-    "skills/immunedeconv-infiltration/scripts/run_immunedeconv_infiltration.R": "c784ae447fd745dac5d3cfabde5df89960f72e63cd771b1707137c522c09c999",
+    "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R": "5f11182c97b2adc7388899a90288a0f982a3c051ba0387c2f93af490a537220b",
+    "skills/immunedeconv-infiltration/scripts/run_immunedeconv_infiltration.R": "4a0b8ada19a5309db505847d79e1e6be386358c3e9c0cce3c1e513ccce907af0",
     "skills/immunedeconv-infiltration/scripts/calls_registry.json": "385f9ad144fc7304301d70bf7418045b9821d78359be0e8f7b1b756382714d86",
     "skills/immunedeconv-infiltration/SKILL.md": "ac8e107d24bcb80713d3b427de942af7ede6fa3f479606ec0d119a592a897acd",
-    "skills/immunedeconv-infiltration/references/options.md": "e78173bb3ea0c6b0f531de510cb5adef56ef021e9d2f6bb91a9862cfec73a352",
-    "skills/immunedeconv-infiltration/references/reporting-templates.md": "9fa6e6a1cfdb243676f77a0a3d81ccd5366bb7ae7ed209032759e8b4fd9a49e3",
-    "skills/immunedeconv-infiltration/tests/run_smoke_test.R": "ccee874c9560b5e0fc36fcd5a10930608807f0e7b1a4358b70b4934306e4a26c",
+    "skills/immunedeconv-infiltration/references/options.md": "5cda001a691136e615835663dd4cb988833a1d6ae1cd487e7df2426f2907c71d",
+    "skills/immunedeconv-infiltration/references/reporting-templates.md": "b2f21965323bb98bc67d21c7a1fb21e3e334bbabc4494d4047b7348f2edc6865",
+    "skills/immunedeconv-infiltration/tests/run_smoke_test.R": "5ff74ad66898dc28693e4ee31f94274670d8f89487f05996cb9b4e26bbdd47b2",
     "skills/immunedeconv-infiltration/tests/golden_manifest.csv": "88be12994cac8133c57b91123dc532565cc073e79fdca52b52514da52c994471",
     "acceptance/exemplars/immunedeconv-infiltration/PACK.md": "66f1d361650281515c52fe2139e22bd40a4d53c301597675398ea68914444cb0"
   },

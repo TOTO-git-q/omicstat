@@ -58,7 +58,6 @@ reporting-templates.md contains filled text templates; troubleshooting.md maps e
 
 Before choosing `--cluster-col`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--test`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
-Before choosing `--alpha`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--expression-layer`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--top-n`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--species`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` if interpretation needs scientific judgement. Use declared study metadata for organism, annotation, sample IDs and count-layer roles; if evidence is absent, show the locked L1 example and ask the user.
@@ -68,3 +67,7 @@ Before choosing `--counts-layer`, call `reference_advise(module='scanpy-markers'
 Before choosing `--purpose`, call `reference_advise(module='scanpy-markers', ...)` and `reference_search` if interpretation needs scientific judgement. Use declared study metadata for organism, annotation, sample IDs and count-layer roles; if evidence is absent, show the locked L1 example and ask the user.
 
 Before choosing any exposed native option in `references/options.md`, consult `reference_advise` and `reference_search` for this module and the study context. If no curated evidence settles a scientific choice, explain the locked default or cited tutorial example and ask the user. See `references/options.md` for CLI values, JSON formats, and S0 keys (`none` where no extraction key is claimed).
+
+Marker grouping must vary within at least one biological sample. Sample identity and sample-level condition/donor/batch/time columns are refused with OS_PSEUDOREPLICATION; use muscat-pseudobulk for expression and speckle-propeller for proportions. Without sample information, only the upstream chain cluster column is allowed.
+
+Display/dot-plot genes are the top `--top-n` per cluster in native rank_genes_groups score order, without adjusted-P filtering. The full native CSV and feature table retain all P values.

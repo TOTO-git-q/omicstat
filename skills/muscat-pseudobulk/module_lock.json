@@ -3,14 +3,14 @@
   "module": "muscat-pseudobulk",
   "module_version": "1.0.0",
   "files": {
-    "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_core.R": "a18ba1b1c5129a8c5f3457467505c0307fd673f476e0156ad7acf97f27714d10",
+    "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_core.R": "69bee3123ba74d4d8feb01d10a9a7528131f35b6d359166451dbef56a5845399",
     "skills/muscat-pseudobulk/scripts/run_muscat_pseudobulk.R": "eac810474a658483f6f745f8777a5adbd152ee62ac218b6418c812da70c4def4",
     "skills/muscat-pseudobulk/scripts/calls_registry.json": "6bf0e0d12a3607e861b7dd2ced9495358b1d20713f6d3f4cb4beb4589e2216f1",
-    "skills/muscat-pseudobulk/SKILL.md": "ab6fc87c4367b7d1f657fb6deb677f7e343d0bce3768ed141b84ad8fd861aff1",
+    "skills/muscat-pseudobulk/SKILL.md": "863753f5c87c8c90927c508d8936d0d03e9ff7fbc67e5e848d43209567ff7af2",
     "skills/muscat-pseudobulk/references/methods-template.md": "7611edbc1918e7b4e00ce39fabfbf4d0384ed03e9ea56eb10edabd13a9571d60",
     "skills/muscat-pseudobulk/references/options.md": "737b54e345b17c146ee30d755e023c11995b0e442130b48317afaa7bbb1f3971",
     "skills/muscat-pseudobulk/tests/fixtures/make_kang.R": "836167ffcbd4d252431c46bf5ae40aa1e6379c1168f1f5997b9f925474cded0c",
-    "skills/muscat-pseudobulk/tests/run_smoke_test.R": "2014aedf942b1f5bcff330118d1bc453610d90c893fd6656c017e4dae1b8c35e",
+    "skills/muscat-pseudobulk/tests/run_smoke_test.R": "48e1c4c34c364ec0ec6ab1dafc4c7f9752ac0ed605d656d10fdc2cc4c1ca4886",
     "skills/muscat-pseudobulk/tests/golden_manifest.csv": "ca0fc060bde58a12d75ec6e36a3016825ae76e2cee983c31a87d99f6aca7348b",
     "acceptance/exemplars/muscat-pseudobulk/PACK.md": "761e2ca6c252eeef8601c19e79808bec29f182da80dfe3555fd911da65a473e2"
   },

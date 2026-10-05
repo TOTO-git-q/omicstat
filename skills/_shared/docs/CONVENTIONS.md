@@ -120,3 +120,7 @@ slim back-end/M4 modules may use `references/methods-template.md`. Both are
 accepted without renaming. `check_flag_docs.py` reads SKILL.md and every
 references/*.md file; `check_defaults.py` reads Flag/Default tables and inline
 default markers in those files, not unrestricted template prose.
+
+## Marker grouping and scientific refusals
+
+An exposed native option must never bypass a scientific refusal. Marker modules describe cell-level labels, which must vary within at least one sample; sample identity and variables constant within every sample are refused. Without sample information, only the chain’s own cluster column is allowed. Condition effects belong to muscat-pseudobulk (expression) and speckle-propeller (proportions), where samples are the replicates. Cell-level marker P values rank descriptive comparisons and are not evidence of differential expression between biological groups.

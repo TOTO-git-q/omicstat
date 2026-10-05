@@ -72,3 +72,5 @@ Before choosing `--recorrect-umi`, call `reference_advise(module='seurat-markers
 See references/options.md for every option, locked defaults, tutorial examples and S0 parameter keys. Alternative native routes may need additional locked packages; package errors are captured.
 
 `--markers-base` binds both all and contrast comparisons (locked 2). `--markers-mean-fxn package::function` supplies a native mean callable in both routes (locked NULL). Preserve native effect column names and interpret a custom mean function on its own scale. Before choosing these options, consult `reference_advise` and `reference_search`; if evidence is absent, show the defaults and ask the user.
+
+Marker grouping must vary within at least one biological sample. Sample identity and sample-level condition/donor/batch/time columns are refused with OS_PSEUDOREPLICATION; use muscat-pseudobulk for expression and speckle-propeller for proportions. Without sample information, only the upstream chain cluster column is allowed.

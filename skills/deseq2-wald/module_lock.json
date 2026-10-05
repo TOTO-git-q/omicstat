@@ -5,7 +5,7 @@
   "files": {
     "skills/deseq2-wald/scripts/deseq2_wald_core.R": "4cdb7155c659f1022e61138cab971a906b05430fdc5d98567ff304da5c293497",
     "skills/deseq2-wald/scripts/deseq2_wald_qc.R": "5354bc49307856e27a6115341f2214cf1d18401e38efb5df2b64c94be703840c",
-    "skills/deseq2-wald/scripts/deseq2_wald_report.R": "453b4decfd23d081f149c3275f86ff8d81fbf02dd295a31f6f149a009f8c4ad2",
+    "skills/deseq2-wald/scripts/deseq2_wald_report.R": "25984d816db13cfb9553746275c1bbeb2aa90a456e941e03b4f94cf177dd3eb9",
     "skills/deseq2-wald/scripts/run_deseq2_wald.R": "9738b01c3318b4d99255cd055cf2619266571c37a4f036fc74b957f3da69db7e",
     "skills/deseq2-wald/scripts/calls_registry.json": "371fc45e7c945a2bacb402509e2cda5b11cfb5fefd6d91cc4e669d524f3176a3",
     "skills/deseq2-wald/SKILL.md": "d49c3727ca7bea3beb13121e1e2812d8c32e5245ddfa3e3aafbca0e3bb90857d",

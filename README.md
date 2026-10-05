@@ -37,6 +37,28 @@ Every module ships: `SKILL.md` (what it does, every option, when to choose which
 
 Modules chain with `--from-run <previous run directory>`: the hand-off verifies every file hash, the object type, the StudyContract, the front-end ecosystem (a chain never silently switches between Seurat, Bioconductor and scverse) and the batch-correction lineage (a batch-corrected matrix is for display and scoring only and never enters a differential test).
 
+## Before you start: build one runtime
+
+omicstat does not run against whatever R or Python is installed on your machine. Every module runs inside a locked runtime, and nothing works until one exists. A fresh clone that has neither Docker nor a native library will fail with `OS_ENV_MISSING` (`.omicstat-r/native-env.json` not found); that is expected, and adding a file will not fix it.
+
+Pick one runtime:
+
+| Runtime | What you need | Build once | Notes |
+|---|---|---|---|
+| **Container (recommended)** | Docker (Linux, macOS, or Windows with WSL2), about 20 GB of disk, internet for the build | `bash env/build.sh` (R image `omicstat-r:2026.10.1`, about 1 hour) and `bash env/py/build.sh` (Python image `omicstat-py:2026.09.1`, only for the five scverse modules) | Golden baselines are defined on these images, so the byte-level checks run. |
+| **Native isolated library** | R 4.6.x on the host, internet for the install | `Rscript env/native/setup_native.R` (installs the same package versions into `.omicstat-r/library` and writes `.omicstat-r/native-env.json`; then set `OMICSTAT_ENGINE=native`); `bash env/py/setup_native.sh` for the Python lane | Results match the container's versions, but the byte-level golden checks report SKIP because the environment signature differs. |
+
+Then check the runtime:
+
+```bash
+bash env/test.sh                                            # full R suite in the container
+bin/omicstat-r-route.sh Rscript skills/omicstat-selftest/scripts/run_omicstat_selftest.R --outdir /tmp/selftest --strict
+```
+
+The anchor datasets used by the smoke tests are fetched separately with `bash acceptance/data/fetch_anchor_data.sh` (public sources, sha256-checked). The MCP server needs a Python with `mcp/requirements.txt` installed; see `mcp/README.md` for the registration snippet and the `OMICSTAT_SUITE_ROOT` / `OMICSTAT_RUNS_ROOT` variables.
+
+`mcp/package_identity.py` looks for a release identity file (`research/remediation/package_identity.json`) that only a packaged release carries. In a source checkout it is absent; runs still work and their provenance records "source checkout, not bound to a release".
+
 ## How it is used
 
 **Through MCP** (the intended way). `mcp/server.py` is a stdio FastMCP server with exactly five tools:
@@ -87,14 +109,14 @@ To help choose, `reference_service/` is a separate MCP companion (`reference_sea
 
 `omicstat_validate_publication` and the on-disk `publication/` record apply universal rules (module sealed, run exited cleanly, artefacts present, canonical tables validate against the shared schema, no cross-table value conflicts) and two traceability checks ported from medstat: every number in the drafts and captions must be traceable to a table, result scalar or QC evidence; reported denominators must agree with the inclusion/exclusion ledger (features filtered, cells retained, samples per group). A run is `ready_for_manuscript_integration` only when nothing remains for human review.
 
-## Status (2026-10-04)
+## Status (2026-10-05)
 
 | Check | Result |
 |---|---|
 | Modules installed | 38 analysis modules + 2 self-tests; 39/39 module locks verified |
-| R suite (`env/test.sh`, locked container) | ALL PASSED, 183 commands, 0 skipped for missing packages; the only failing assertions are the two documented sva-batch A6a anchors (a vignette-printed `num.sv` that differs by numerical noise; kept visible on purpose) |
+| R suite (`env/test.sh`, locked container) | ALL PASSED, 189 commands, 0 skipped for missing packages; the only failing assertions are the two documented sva-batch A6a anchors (a vignette-printed `num.sv` that differs by numerical noise; kept visible on purpose) |
 | Python suite | 31 commands ALL PASSED |
-| MCP end to end (host stdio, both containers) | 123/123 assertions |
+| MCP end to end (host stdio, both containers) | 99/99 assertions (3 native-engine checks skipped on a container-only host) |
 | Router blind reading (133 questions, blinded reader) | 92.5 % first choice (gate 90 %), 99.2 % within acceptable (gate 98 %) — `docs/build/ROUTING_BLIND_EVAL.md` |
 | Independent review | every module passed an independent S3 review on the locked image after its build; repair lists and verdicts are under `acceptance/exemplars/<module>/` |
 
@@ -122,11 +144,11 @@ tools/                  scaffolding, static checks (calls, defaults, flag docs, 
 templates/              new-module templates
 ```
 
-## Building the environment and running the tests
+## Running the tests
+
+After building a runtime (see *Before you start*):
 
 ```bash
-bash env/build.sh          # build omicstat-r from env/omicstat-env.json (docker + internet; ~1 h)
-bash env/py/build.sh       # build omicstat-py
 bash env/test.sh           # full R suite inside the locked container
 bash env/py/test.sh        # full Python suite
 bash env/py/test_e2e.sh    # real MCP stdio across both containers

@@ -41,7 +41,7 @@ saveRDS(r$native,file.path(a$outdir,"objects/fastmnn.rds"));saveRDS(r$normalized
 os_engine_capture({
  for(stage in c("before","after")) for(g in intersect(c("batch","label"),names(r$cells))){
   z<-r$cells;if(stage=="before"){z$x<-z$pre_x;z$y<-z$pre_y}
-  p<-os_bioc_embedding(z,g,sprintf("%s fastMNN: %d cells; %d HVGs, d=%d, k=%d; UMAP dimensions=%d, neighbours=%d; seed=%d. No cell filtering or activity threshold.",stage,nrow(z),nrow(r$hvgs),a[["n-pcs"]],a[["mnn-k"]],a[["umap-dims"]],a[["umap-neighbors"]],a$seed),journal=a$journal)
+  p<-os_bioc_embedding(z,g,sprintf("%s fastMNN: %d cells; %d HVGs, d=%d, k=%d; UMAP dimensions=%d, neighbours=%d; seed=%d. No cell filtering or activity threshold.",stage,nrow(z),nrow(r$hvgs),a[["n-pcs"]],a[["mnn-k"]],if(stage=="before") a[["n-pcs"]] else a[["umap-dims"]],a[["umap-neighbors"]],a$seed),journal=a$journal)
   os_finalize_figure(p,file.path(a$outdir,"figures",paste(stage,g,sep="_")),journal=a$journal,root=a$outdir)
  }
 },"figures",elog)

@@ -31,6 +31,8 @@ edger_qlf_render <- function(r, ft, a, outdir, colour_reg, disp = NULL) {
   figs <- list()
   p <- os_volcano(ft, padj_threshold = a$alpha, lfc_threshold = lfc_thr, label_n = a[["label-n"]],
                   contrast_label = contrast, method_label = method, journal = a$journal)
+  if (min(attr(p, "os_meta")$counts$up, attr(p, "os_meta")$counts$down) < a[["label-n"]])
+    attr(p, "os_meta")$caption <- sub("The ([0-9]+) most significant features per direction", "Up to \\1 most significant features per direction", attr(p, "os_meta")$caption)
   figs$volcano <- os_finalize_figure(p, file.path(outdir, "figures", "volcano"), journal = a$journal)
   p <- os_md_edger(ft, padj_threshold = a$alpha, lfc_threshold = lfc_thr, label_n = a[["label-n"]],
                    contrast_label = contrast, method_label = method, journal = a$journal)

@@ -7,10 +7,11 @@
 | --outdir | none; output directory | yes | none |
 | --spec | none; resolved spec replay | no | none |
 | --cluster-col | none; cluster metadata; example colLabels in locked Rd | yes | groups |
+| --sample-col | "sample"; biological sample column; absent allows only upstream cluster_col | no | none |
 | --route | "scoreMarkers"; scoreMarkers effect summaries or compatibility findMarkers | no | none |
 | --lfc | 0; native effect threshold; no display-only filtering | no | lfc |
 | --block-col | none; optional blocking column | no | block |
-| --rank-by | none; native ranking column; example mean.AUC for scoreMarkers, FDR for findMarkers | yes | rank_by |
+| --rank-by | none; native ranking column; recommend mean.AUC for scoreMarkers or summary.logFC for findMarkers; FDR ranking is ranking, not significance | yes | rank_by |
 | --rank-decreasing | "TRUE"; descending effect ranking; set false for P-value/FDR ranking | no | none |
 | --top-n | none; display genes per cluster; S0 examples 10 or 100 | yes | top_n |
 | --test-type | "t"; compatibility test t/wilcox/binom | no | test_type |

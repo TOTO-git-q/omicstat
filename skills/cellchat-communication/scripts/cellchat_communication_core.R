@@ -1,5 +1,27 @@
 CELLCHAT_COMMUNICATION_MODULE_VERSION <- "1.0.0"
-cellchat_communication_compute <- function(sce,a) {
+cellchat_communication_group_guard <- function(sce, a, state = list()) {
+  column <- a[["cluster-col"]]; sample_col <- a[["sample-col"]] %||% "samples"
+  values <- os_backend_column(sce, column)
+  advice <- "use muscat-pseudobulk for expression or speckle-propeller for proportions, where samples are replicates. CellChat compares communication between cell groups, not conditions."
+  if (sample_col %in% colnames(SummarizedExperiment::colData(sce))) {
+    samples <- os_backend_column(sce, sample_col)
+    if (column == sample_col || all(vapply(split(values, samples), function(z) length(unique(z)) == 1L, logical(1))))
+      stop(sprintf("OS_PSEUDOREPLICATION: Grouping column '%s' is sample-level; %s", column, advice), call. = FALSE)
+  } else {
+    own <- state$cluster_col %||% S4Vectors::metadata(sce)$omicstat$cluster_col
+    if (is.null(own) && isTRUE(state$clustered)) {
+      own <- switch(state$front_end_ecosystem %||% "", bioconductor = "clusters", seurat = "cluster", NULL)
+    }
+    if (is.null(own) || !identical(column, own))
+      stop(sprintf("OS_PSEUDOREPLICATION: Grouping column '%s' needs a sample column to verify that the grouping is cell-level; %s", column, advice), call. = FALSE)
+  }
+  invisible(TRUE)
+}
+cellchat_communication_compute <- function(sce,a,state = list()) {
+  cellchat_communication_group_guard(sce, a, state)
+  o_genes <- os_backend_function_options(CellChat::identifyOverExpressedGenes,a,"genes",list(object=NULL))
+  if (!isFALSE(o_genes$do.DE) && (!is.null(o_genes$group.dataset) || (!is.null(o_genes$group.by) && !identical(o_genes$group.by,a[["cluster-col"]]))))
+    stop("OS_PSEUDOREPLICATION: this single-network route supports descriptive gene selection only within the declared cell clusters; native dataset or alternate-group differential comparisons do not model biological replicates.",call.=FALSE)
   meta <- as.data.frame(SummarizedExperiment::colData(sce));os_backend_column(sce,a[["cluster-col"]])
   o_create <- os_backend_function_options(CellChat::createCellChat,a,"create",list(object=SummarizedExperiment::assay(sce,"logcounts"),meta=meta,group.by=a[["cluster-col"]],datatype="RNA"))
   cc <- CellChat::createCellChat(object=o_create[["object"]], meta=o_create[["meta"]], group.by=o_create[["group.by"]], datatype=o_create[["datatype"]], coordinates=o_create[["coordinates"]], spatial.factors=o_create[["spatial.factors"]], assay=o_create[["assay"]], do.sparse=o_create[["do.sparse"]])
@@ -12,7 +34,7 @@ cellchat_communication_compute <- function(sce,a) {
   cc@DB <- db
   o_subset <- os_backend_function_options(CellChat::subsetData,a,"subset",list(object=cc))
   cc <- CellChat::subsetData(object=o_subset[["object"]], features=o_subset[["features"]])
-  o_genes <- os_backend_function_options(CellChat::identifyOverExpressedGenes,a,"genes",list(object=cc))
+  o_genes$object <- cc
   cc <- CellChat::identifyOverExpressedGenes(object=o_genes[["object"]], data.use=o_genes[["data.use"]], group.by=o_genes[["group.by"]], idents.use=o_genes[["idents.use"]], invert=o_genes[["invert"]], group.dataset=o_genes[["group.dataset"]], pos.dataset=o_genes[["pos.dataset"]], group.DE.combined=o_genes[["group.DE.combined"]], features.name=o_genes[["features.name"]], only.pos=o_genes[["only.pos"]], features=o_genes[["features"]], return.object=o_genes[["return.object"]], thresh.pc=o_genes[["thresh.pc"]], thresh.fc=o_genes[["thresh.fc"]], thresh.p=o_genes[["thresh.p"]], do.DE=o_genes[["do.DE"]], do.fast=o_genes[["do.fast"]], min.cells=o_genes[["min.cells"]])
   o_interactions <- os_backend_function_options(CellChat::identifyOverExpressedInteractions,a,"interactions",list(object=cc))
   cc <- CellChat::identifyOverExpressedInteractions(object=o_interactions[["object"]], features.name=o_interactions[["features.name"]], variable.both=o_interactions[["variable.both"]], features=o_interactions[["features"]], return.object=o_interactions[["return.object"]])

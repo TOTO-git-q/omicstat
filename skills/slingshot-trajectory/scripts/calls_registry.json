@@ -328,6 +328,7 @@
     }
   ],
   "accessors": [
+    "slingshot::slingReducedDim",
     "slingshot::slingPseudotime",
     "slingshot::slingCurves"
   ]

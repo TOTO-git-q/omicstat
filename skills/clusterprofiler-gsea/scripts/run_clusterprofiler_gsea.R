@@ -34,8 +34,7 @@ if (is.null(a[["from-run"]]) && (is.null(a$ranked) || is.null(a[["ranking-metric
 if (!is.null(a[["from-run"]]) && (!is.null(a[["ranking-metric"]]) || !is.null(a$direction) || !is.null(a[["lfc-type"]]) || "statistic-kind" %in% (attr(a,"given") %||% character(0))))
   stop("OS_CONFLICTING_PARAMETERS: upstream ranking metric and direction are inherited.",call.=FALSE)
 if (a[["min-size"]] > a[["max-size"]]) stop("OS_INVALID_PARAMETER: min-size exceeds max-size.",call.=FALSE)
-if (!is.null(a[["ranking-metric"]]) && grepl("(^|[^A-Za-z])(LRT|F.stat|F-test)([^A-Za-z]|$)",a[["ranking-metric"]],ignore.case=TRUE))
-  stop("OS_RANKING_UNDIRECTIONAL: give a signed contrast statistic.",call.=FALSE)
+os_ranked_list_assert_directional(a[["ranking-metric"]])
 canon <- os_canonical_argv(SPEC,a)
 a$alpha <- 0.05
 set.seed(a$seed); options(omicstat.journal=a$journal)

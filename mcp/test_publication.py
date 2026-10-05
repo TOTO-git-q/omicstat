@@ -1358,6 +1358,13 @@ class OmicsPublicationGateTests(unittest.TestCase):
                 effect_validation={'ok': True, 'canonical': [], 'invalid_named': [], 'local': [], 'errors': []},
                 qc={'blocking': False, 'triggered': []}, integrity_findings=[], output_records=[], value_map=vm)
 
+    def test_root_results_json_covers_reported_count(self):
+        self.write("results.json", json.dumps({"n_cells": 1718}))
+        self.write("draft/results.md", "Annotated 1718 cells.")
+        coverage = publication._text_coverage(str(self.root), [])
+        self.assertEqual(1, coverage["coverage_share"])
+        self.assertEqual(1, coverage["numbers_checked"])
+
     def test_covered_draft_and_caption_precision_and_exclusions(self):
         self.write('draft/results.md', 'In 2026, DESeq2 version 1.50.0 tested 2 features. Effect 1.235; P = 1.23e-5; share 25%; threshold 0.05.\n')
         self.write('figures/result.png', 'not-a-real-png')

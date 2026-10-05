@@ -93,6 +93,11 @@ o <- run(base, "--outdir", shQuote(a1))
 check(o$status == 0, paste("GBM suite-preset run", paste(utils::tail(o$out, 1), collapse = "")))
 if (o$status == 0) {
   j <- jsonlite::fromJSON(file.path(a1, "results", "gsva_score_results.json"))
+  for (consumer in c("limma-array","limma-dupcor","limma-camera")) {
+    extra <- switch(consumer,"limma-array"=c("--platform","agilent","--reference","Proneural","--target","Classical"),"limma-dupcor"=c("--mode","array","--block","subtype","--block-description","fixture","--reference","Proneural","--target","Classical"),"limma-camera"=c("--question","competitive"))
+    refused <- run_entry(file.path(suite,"skills",consumer,"scripts",paste0("run_",gsub("-","_",consumer),".R")),"--from-run",shQuote(a1),extra,"--outdir",shQuote(file.path(tmp,paste0("inference-",consumer))))
+    check(has_code(refused,"OS_OWNER_DECISION_PENDING"),paste("GSVA from-run inference refused by",consumer))
+  }
   eng <- read_scores(a1)
   sizes <- utils::read.csv(file.path(a1, "tables", "gene_set_sizes.csv"), stringsAsFactors = FALSE)
   check(j$n_features == 11861 && j$n_samples == 173 && j$n_scored == 4 && j$kernel == "Gaussian",

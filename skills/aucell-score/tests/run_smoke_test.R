@@ -20,6 +20,8 @@ set.seed(333);rankings<-AUCell::AUCell_buildRankings(mat,plotStats=FALSE,BPPARAM
 auc<-AUCell::AUCell_calcAUC(sets,rankings,nCores=1,aucMaxRank=250,normAUC=TRUE,verbose=FALSE)
 native<-readRDS(file.path(out,"objects/aucell.rds"));check(identical(AUCell::getAUC(native),AUCell::getAUC(auc)),"official buildRankings/calcAUC replay")
 check(ncol(AUCell::getAUC(native))==120 && all(is.finite(AUCell::getAUC(native))),"finite native AUC shape")
+anchor_summary <- jsonlite::read_json(file.path(out,"results/analysis_summary.json"))
+check(anchor_summary$n_gene_sets==nrow(AUCell::getAUC(native)) && anchor_summary$n_input_gene_sets==length(sets) && anchor_summary$n_gene_sets < anchor_summary$n_input_gene_sets,"summary distinguishes scored sets from loaded sets excluded by AUCell")
 # Missing/unapproved references refuse with required typed error.
 bad<-file.path(work,"unapproved.gmt");writeLines("KEGG\tblocked\tgene",bad);badlog<-file.path(work,"refused.log")
 st<-system2("Rscript",c(shQuote(entry),shQuote(c("--from-run",up,"--cluster-col","cluster","--assay","counts","--sets-file",bad,"--sets-source","KEGG","--sets-licence","user-declared","--accept-licence","user-permitted","--outdir",file.path(work,"refused")))),stdout=badlog,stderr=badlog)
@@ -50,3 +52,6 @@ check(identical(AUCell::getAUC(readRDS(file.path(co,"objects/aucell.rds"))),AUCe
 check(any(grepl("user-derived brain subsets",readLines(file.path(co,"draft/methods_results.md")),fixed=TRUE)),"custom source Methods")
 missing_ack <- args[-c(match("--accept-licence",args),match("--accept-licence",args)+1)]
 st <- system2("Rscript",c(shQuote(entry),shQuote(missing_ack)),stdout=file.path(work,"missing_ack.log"),stderr=file.path(work,"missing_ack.log"));check(st!=0,"required licence acknowledgement")
+
+summary <- jsonlite::read_json(file.path(co,"results/analysis_summary.json"))
+check(summary$n_gene_sets==nrow(AUCell::getAUC(ac)) && summary$n_cells==ncol(AUCell::getAUC(ac)),"machine-readable scored-set and cell counts match native AUC output")

@@ -31,3 +31,12 @@ stopifnot(nrow(read.csv(file.path(out,'tables/association.csv')))==nrow(counts))
 # The main golden is the Slingshot pseudotime table; retain the native association table too.
 if(identical(Sys.getenv('OMICSTAT_WRITE_GOLDEN'),'1')) os_golden_write(mdir,out,c('tables/pseudotime.csv','tables/association.csv'))
 stopifnot(identical(os_golden_check(mdir,out)$status,"PASS"))
+# Reusing a trajectory must not assign its pseudotimes to reordered cells.
+reordered <- file.path(root,'reordered_input.rds')
+saveRDS(sce[,rev(seq_len(ncol(sce)))],reordered)
+bad_av <- av; bad_av[match('--input',bad_av)+1L] <- reordered
+bad_av[match('--outdir',bad_av)+1L] <- file.path(root,'reordered_refused')
+bad_log <- file.path(root,'reordered_refused.log')
+bad_rc <- system2('Rscript',c(shQuote(entry),vapply(c(bad_av,'--fit-gam','false'),shQuote,'')),stdout=bad_log,stderr=bad_log)
+stopifnot(bad_rc!=0L,any(grepl('OS_INVALID_INPUT: reused trajectory embedding',readLines(bad_log),fixed=TRUE)))
+cat('PASS: reused trajectory rejects reordered cells before pseudotime assignment or GAM fitting\n')

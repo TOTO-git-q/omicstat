@@ -56,5 +56,31 @@ check(isTRUE(all.equal(r$tables$markers_full,native)),"all supplied native mean.
 
 for(d in c(out,contrast)) {
  methods <- paste(readLines(file.path(d,"draft/methods_results.md")),collapse="\n")
- check(all(vapply(c("native wilcox test","logfc.threshold=0.1","min.pct=0.01","Fold-change base=2","Bonferroni correction over all features","delegates the Wilcoxon test to presto","Bonferroni-adjusted P (p_val_adj)"),grepl,logical(1),x=methods,fixed=TRUE)),"resolved Methods/test/prefilters/Bonferroni both routes")
+ check(all(vapply(c("native wilcox test","logfc.threshold=0.1","min.pct=0.01","Fold-change base=2","Bonferroni correction over all features","delegates the Wilcoxon test to presto"),grepl,logical(1),x=methods,fixed=TRUE)),"resolved Methods/test/prefilters/Bonferroni both routes")
 }
+
+# Native group.by must not bypass sample-aware refusal, in either mode.
+refuse <- function(args,label) {
+ log <- tempfile(tmpdir=scratch)
+ status <- system2("Rscript",c(file.path(mod,"scripts/run_seurat_markers.R"),shQuote(args)),stdout=log,stderr=log)
+ message <- paste(readLines(log),collapse="\n")
+ check(status!=0 && grepl("OS_PSEUDOREPLICATION",message) && grepl("muscat-pseudobulk",message) && grepl("speckle-propeller",message),label)
+ cat(message,"\n")
+}
+x$condition <- "ctrl"; x$cell_label <- x$cluster
+fixture <- file.path(scratch,"markers_group_fixture.rds");saveRDS(x,fixture)
+for(mode in c("all","contrast")) refuse(c("--input",fixture,"--outdir",file.path(scratch,paste0("markers_refused_",mode)),"--mode",mode,"--group-by",'"condition"',"--ident-1","stim","--ident-2","ctrl"),paste("sample-level native group.by refusal",mode))
+allowed <- file.path(scratch,"markers_allowed")
+run("seurat-markers",c("--input",fixture,"--outdir",allowed,"--group-by",'"cell_label"',"--seed","42"))
+check(identical(readBin(file.path(out,"tables/markers_full.csv"),"raw",file.info(file.path(out,"tables/markers_full.csv"))$size),readBin(file.path(allowed,"tables/markers_full.csv"),"raw",file.info(file.path(allowed,"tables/markers_full.csv"))$size)),"second cell-level grouping keeps native table")
+for(d in c(out,contrast,allowed)) {
+ text <- paste(readLines(file.path(d,"draft/methods_results.md")),collapse="\n")
+ check(grepl("P values are computed with cells as observations on clusters defined from the same data.",text,fixed=TRUE),"cell-level P caution")
+ results <- strsplit(text,"# Results",fixed=TRUE)[[1]][2]
+ check(!grepl("rows with.*< 0.05",results) && all(vapply(c("pct.1=","pct.2=","avg_log2FC="),grepl,logical(1),x=results,fixed=TRUE)),"Results/caption effect sizes without significance counts")
+}
+# One sample and missing-sample fallback guard boundary checks on the real fixture.
+check(identical(seurat_markers_group_guard(x,list(`group-by`='"cell_label"')),"cell_label"),"one-sample varying label allowed")
+x$sample <- NULL
+check(identical(seurat_markers_group_guard(x,list()),"cluster"),"missing sample own cluster allowed")
+check(inherits(tryCatch(seurat_markers_group_guard(x,list(`group-by`='"cell_label"')),error=identity),"error"),"missing sample alternate label refused")

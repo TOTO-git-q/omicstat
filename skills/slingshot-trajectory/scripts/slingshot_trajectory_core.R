@@ -6,7 +6,13 @@ slingshot_trajectory_compute <- function(sce,a) {
   if(is.null(a[["trajectory-rds"]])) {
   o_sling <- os_backend_function_options(os_backend_s4_function("slingshot","slingshot",c("matrix","character")),a,"sling",list(data=rd,clusterLabels=cl,start.clus=if(a[["start-cluster"]]=="auto") NULL else a[["start-cluster"]]))
   sds <- slingshot::slingshot(data=o_sling[["data"]], clusterLabels=o_sling[["clusterLabels"]], reducedDim=o_sling[["reducedDim"]], start.clus=o_sling[["start.clus"]], end.clus=o_sling[["end.clus"]], dist.method=o_sling[["dist.method"]], use.median=o_sling[["use.median"]], omega=o_sling[["omega"]], omega_scale=o_sling[["omega_scale"]], times=o_sling[["times"]], shrink=o_sling[["shrink"]], extend=o_sling[["extend"]], reweight=o_sling[["reweight"]], reassign=o_sling[["reassign"]], thresh=o_sling[["thresh"]], maxit=o_sling[["maxit"]], stretch=o_sling[["stretch"]], approx_points=o_sling[["approx_points"]], smoother=o_sling[["smoother"]], shrink.method=o_sling[["shrink.method"]], allow.breaks=o_sling[["allow.breaks"]])
-  } else { sds <- readRDS(a[["trajectory-rds"]]); o_sling <- list(reused=a[["trajectory-rds"]]) }
+  } else {
+    sds <- readRDS(a[["trajectory-rds"]])
+    trajectory_rd <- slingshot::slingReducedDim(sds)
+    if (!identical(unname(as.matrix(trajectory_rd)), unname(as.matrix(rd))))
+      stop("OS_INVALID_INPUT: reused trajectory embedding must match the input embedding in the same cell order.", call.=FALSE)
+    o_sling <- list(reused=a[["trajectory-rds"]])
+  }
   pt <- slingshot::slingPseudotime(sds,na=TRUE)
   curves <- slingshot::slingCurves(sds)
   tab <- data.frame(cell_id=colnames(sce),cluster=cl,pt,check.names=FALSE)
@@ -18,7 +24,7 @@ slingshot_trajectory_compute <- function(sce,a) {
   assoc <- tradeSeq::associationTest(models=o_association[["models"]], global=o_association[["global"]], lineages=o_association[["lineages"]], l2fc=o_association[["l2fc"]], nPoints=o_association[["nPoints"]], contrastType=o_association[["contrastType"]], inverse=o_association[["inverse"]])
     tables$association <- data.frame(gene=rownames(assoc),assoc,check.names=FALSE)
   }
-  list(sce=sce,native=list(trajectory=sds,gam=gam),tables=tables,embedding=rd,curves=curves,pseudotime=pt,
+  list(note="Pseudotime and tradeSeq associations are exploratory cell-level summaries of an inferred trajectory; they do not establish biological-replicate condition effects or causal regulation.",sce=sce,native=list(trajectory=sds,gam=gam),tables=tables,embedding=rd,curves=curves,pseudotime=pt,
     options=list(slingshot=o_sling[-c(1,2)],fitGAM=if(!is.null(gam)) o_gam[setdiff(names(o_gam),c("counts","sds","pseudotime","cellWeights"))] else NULL,associationTest=if(!is.null(gam))o_association[-1] else NULL),
     functions=c("slingshot",if(!is.null(gam))c("fitGAM","associationTest")),versions=list(slingshot=as.character(utils::packageVersion("slingshot")),tradeSeq=as.character(utils::packageVersion("tradeSeq"))))
 

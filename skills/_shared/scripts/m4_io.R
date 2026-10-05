@@ -2,6 +2,7 @@
 `%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
 os_m4_input <- function(a, allow_missing = FALSE) {
   u <- if (is.null(a[["from-run"]])) NULL else read_handoff(a[["from-run"]])
+  os_handoff_assert_inference_ready(u)
   path <- a$input
   if (!is.null(u)) {
     name <- a[["upstream-object"]] %||% "expression_matrix"

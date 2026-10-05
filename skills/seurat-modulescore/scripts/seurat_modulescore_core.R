@@ -4,6 +4,7 @@ seurat_modulescore_compute <- function(x,a) {
  lines <- readLines(a[["gene-sets"]],warn=FALSE)
  fields <- strsplit(lines,"\t",fixed=TRUE)
  if(!length(fields) || any(lengths(fields)<3L)) os_seurat_fail("OS_INVALID_INPUT","GMT requires name, source and at least one feature per row.")
+ if(any(grepl("KEGG|CADD|PanglaoDB|DepMap",c(a[["gene-sets"]],vapply(fields,function(v) paste(head(v,2),collapse=" "),"")),ignore.case=TRUE))) os_seurat_fail("OS_REFDATA_MISSING","Prohibited gene-set collection; no KEGG, CADD, PanglaoDB or DepMap.")
  nm <- vapply(fields,`[`,"",1L)
  if(anyDuplicated(nm)) os_seurat_fail("OS_INVALID_INPUT","Gene-set names must be unique.")
  sets <- lapply(fields,function(v) unique(v[-c(1,2)])); names(sets) <- nm

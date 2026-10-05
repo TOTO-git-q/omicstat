@@ -21,7 +21,9 @@ seurat_integrate_compute <- function(x,a) {
  coords <- SeuratObject::Embeddings(x[[reduction]])
  md <- data.frame(cell=colnames(x),x[[]],check.names=FALSE)
  tab <- as.data.frame(table(batch=interaction(x[[]][batches],drop=TRUE),cluster=x$cluster)); names(tab)[3] <- "n_cells"
- details <- sprintf("n=%d cells; harmony %s, route=%s, batch=%s, first %d PCs, sigma=%g, max_iter=%d, neighbor k=%d, resolution=%g; only the reduction is corrected; raw RNA is retained.",ncol(x),as.character(utils::packageVersion("harmony")),a$method,a[["batch-col"]],a$dims,a$sigma,a[["max-iter"]],a$neighbors,a$resolution)
+ details <- sprintf("n=%d cells; harmony %s, route=%s, batch=%s, first %d PCs, sigma=%g, max_iter=%d, neighbor k=%d, resolution=%g; only the reduction is corrected; raw RNA is retained.",ncol(x),as.character(utils::packageVersion("harmony")),a$method,a[["batch-col"]],ncol(coords),a$sigma,a[["max-iter"]],a$neighbors,a$resolution)
+ st$integration_pcs <- ncol(coords)
+ if(ncol(coords) != a$dims) details <- paste(details,sprintf("The neighbor graph and UMAP used the first %d corrected dimensions.",a$dims))
  if(a$method=="RunHarmony") details <- paste(details,"Resolved RunHarmony project.dim =",st$project.dim)
  list(object=x,state=st,tables=list(cell_metadata=md,harmony=data.frame(cell=rownames(coords),coords),batch_clusters=tab),embeddings=list(before=before,after=SeuratObject::Embeddings(x[["umap"]])),details=details)
 }

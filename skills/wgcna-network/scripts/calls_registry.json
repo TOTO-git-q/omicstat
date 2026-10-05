@@ -669,8 +669,8 @@
           "function_default": ""
         },
         "nSamples": {
-          "value": "nrow(datExpr)",
-          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "value": "pair_n",
+          "source": "Owner decision 2026-10-05: pairwise complete observations, plain Pearson only",
           "pack": "D-WG",
           "function_default": ""
         }

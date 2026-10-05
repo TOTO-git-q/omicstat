@@ -6,7 +6,7 @@
     "skills/deseq2-lrt/scripts/deseq2_lrt_core.R": "24fe934246e9bba154bf4bc1bd2c5d661ffe8d79f79970dd4b00ce1f15b52b35",
     "skills/deseq2-lrt/scripts/deseq2_lrt_qc.R": "f223bc8a3502b0ee76c1ae4fa07e7acd27cdd25f3a734e74f645a66daefc48d1",
     "skills/deseq2-lrt/scripts/deseq2_lrt_report.R": "756664110298ce6e497a7be1ca582521780c7aeccb6880a30842e70d2c817284",
-    "skills/deseq2-lrt/scripts/run_deseq2_lrt.R": "4dd2c469c3b11f7259e3ddb7121fe90c82c0cf12c02818e32ffbdeedc95a4878",
+    "skills/deseq2-lrt/scripts/run_deseq2_lrt.R": "0f11a18f72dff5e0445863b2b0e9c797bc4d52e0fca6aea429c3c1d3f33e9c0a",
     "skills/deseq2-lrt/scripts/calls_registry.json": "003636c6e18350615cdf181b749089802fa4873d85b088792f8c7bfd294b011a",
     "skills/deseq2-lrt/SKILL.md": "ef5292697e75dc87c4cbf24c5ffa4fee4c07af62b55db960ef8094a0dfc95d03",
     "skills/deseq2-lrt/references/method-basis.md": "1696198ece99a843551efa9005cd87df2918cae69e583736b00733b96d66804b",
@@ -16,7 +16,7 @@
     "skills/deseq2-lrt/references/reporting-templates.md": "1a01c76d35966dfcb7e3836514002423f440c393f1d906e9a20ab35529474106",
     "skills/deseq2-lrt/references/troubleshooting.md": "e1a442fee46695460b2ea99e84ff95ee26b1eab60de795152dfc796dbb74c616",
     "skills/deseq2-lrt/tests/fixtures/make_fission.R": "c44e67f243ea48c984c8de3b8ba535eaf60199a32ad94bde38b4185fb7bf6588",
-    "skills/deseq2-lrt/tests/run_smoke_test.R": "87ae1f32f50a91e822b1e380cbcbf8df105ec18529cf8dacc21dc612b3e0c309",
+    "skills/deseq2-lrt/tests/run_smoke_test.R": "d2f595826ebc69d3ff8b36167fb5c7c13be1f11f0b2636079bdd3c8d162bfe11",
     "skills/deseq2-lrt/tests/golden_manifest.csv": "f043ddb7ec26ffb2a72a4c5f262365ae299f42c6b4eb9ce2c892baaff018c79f",
     "acceptance/exemplars/deseq2-lrt/PACK.md": "2e990894d0aeab3e170c53a26a4a0651ab595030d81d1bcf560212f9e68b423b"
   },

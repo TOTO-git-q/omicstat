@@ -1316,7 +1316,7 @@ def _result_scalars(outdir: str) -> List[Tuple[str, Dict[str, Any], str, Any]]:
         elif _number(value) is not None:
             result.append((source, context, prefix.rstrip(".").split(".")[-1], value))
     for rel, full in _iter_files(outdir):
-        if rel.lower().endswith(".json") and (rel.startswith("results/") or rel.lower().endswith("_results.json")) and not _is_dynamic_relative_path(rel):
+        if rel.lower().endswith(".json") and (rel.startswith("results/") or rel.lower() == "results.json" or rel.lower().endswith("_results.json")) and not _is_dynamic_relative_path(rel):
             try:
                 with open(_native_path(full), encoding="utf-8-sig") as fh:
                     visit(json.load(fh), rel, {})

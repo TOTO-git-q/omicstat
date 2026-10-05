@@ -50,6 +50,7 @@ input_type<-if(a$mode=="array")"expression_matrix" else "count_matrix"
 input_name<-if(a$mode=="array")"expression_matrix" else "count_matrix"
 expect<-list(sample_table="sample_table");expect[[input_name]]<-input_type
 up<-if(is.null(a[["from-run"]]))NULL else read_handoff(a[["from-run"]],expect=expect)
+os_handoff_assert_inference_ready(up)
 mp<-if(is.null(up))if(a$mode=="array")a$matrix else a$counts else up$objects[[input_name]]$path
 sp<-if(is.null(up))a$samples else up$objects$sample_table$path
 mat<-os_read_matrix(mp,if(a$mode=="array")"normalized array expression" else "raw counts")

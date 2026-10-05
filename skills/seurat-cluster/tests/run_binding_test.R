@@ -4,12 +4,21 @@ source('skills/seurat-cluster/scripts/seurat_cluster_core.R')
 x <- readRDS(file.path(Sys.getenv('OMICSTAT_TEST_TMP','/scratch'),'cluster_qc/objects/seurat.rds'))[,1:200]
 a <- list(normalization='LogNormalize',`n-hvg`=100,`n-pcs`=10,dims=5,neighbors=10,`umap-neighbors`=10,resolution=.5,seed=42,algorithm=4,`min-dist`=.3,`scale-factor`=10000,`cluster-initial-membership`=jsonlite::toJSON(rep(1L,ncol(x))),`cluster-node-sizes`=jsonlite::toJSON(rep(1,ncol(x))),`hvg-selection-method`='"mean.var.plot"',`hvg-mean-function`='FastExpMean',`hvg-dispersion-function`='FastLogVMR',`hvg-mean-cutoff`='[0,100]',`hvg-dispersion-cutoff`='[0,100]')
 r <- seurat_cluster_compute(x,a)
+stopifnot(r$state$n_hvg == length(SeuratObject::VariableFeatures(r$object)), grepl(sprintf("LogNormalize normalization, %d HVGs", r$state$n_hvg), r$details, fixed=TRUE))
+cat("PASS actual HVG count in state and report\n")
 y <- Seurat::NormalizeData(x,verbose=FALSE)
 y <- Seurat::FindVariableFeatures(y,selection.method='mean.var.plot',mean.function=get("FastExpMean",asNamespace("Seurat")),dispersion.function=get("FastLogVMR",asNamespace("Seurat")),mean.cutoff=c(0,100),dispersion.cutoff=c(0,100),nfeatures=100,verbose=FALSE)
 stopifnot(identical(SeuratObject::VariableFeatures(r$object),SeuratObject::VariableFeatures(y)))
 z <- Seurat::FindClusters(r$object,graph.name='omic_snn',algorithm=4,initial.membership=rep(1L,ncol(x)),node.sizes=rep(1,ncol(x)),resolution=.5,random.seed=42,verbose=FALSE)
 stopifnot(identical(as.character(r$object$cluster),as.character(SeuratObject::Idents(z))))
 cat('PASS native supplied graph membership/node sizes and alternate HVG functions\n')
+# RC is compatible with the count-based vst route; mean.var.plot expects logs.
+rc_args <- a
+rc_args[["normalize-normalization-method"]] <- '"RC"'
+rc_args[["hvg-selection-method"]] <- '"vst"'
+rc <- seurat_cluster_compute(x,rc_args)
+stopifnot(rc$state$normalization == "RC", grepl("RC normalization", rc$details, fixed=TRUE))
+cat("PASS native normalization override in state and report\n")
 # Native reference model is the fitted sctransform vst result (not an SCTModel S4).
 counts <- SeuratObject::GetAssayData(x,assay='RNA',layer='counts')
 model <- sctransform::vst(counts,method='poisson',n_cells=200,verbosity=0)

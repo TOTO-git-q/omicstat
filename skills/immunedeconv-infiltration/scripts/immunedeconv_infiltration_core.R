@@ -51,6 +51,7 @@ immunedeconv_infiltration_compute <- function(a, mat) {
  supplied <- if(is.null(a[["method-args"]])) list() else jsonlite::fromJSON(a[["method-args"]],simplifyVector=TRUE)
  if(!is.list(supplied) || (length(supplied) && (is.null(names(supplied)) || any(!nzchar(names(supplied)))))) stop("OS_INVALID_PARAMETER: method-args must be a named JSON object.",call.=FALSE)
  reserved <- c("gene_expression","gene_expression_matrix","method","indications","tumor","arrays","column","rmgenes","scale_mrna","expected_cell_types","absolute")
+ if(a$method == "mcp_counter") reserved <- c(reserved,"log_transform","feature_types","featuresType","genes","probesets")
  if(any(names(supplied)%in%reserved)) stop("OS_CONFLICTING_PARAMETERS: use the dedicated CLI flags for top-level method controls.",call.=FALSE)
  if(length(supplied) && a$method %in% c("abis","estimate")) stop("OS_METHOD_UNAVAILABLE: locked top-level method has no supplementary argument forwarding.",call.=FALSE)
  if(a$method %in% c("cibersort","cibersort_abs")) extra$abs_method <- a[["cibersort-abs-method"]] %||% "sig.score"

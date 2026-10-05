@@ -9,10 +9,32 @@ def validate(a):
     if a["purpose"] != "cluster-description":
         raise OmicstatError("OS_PSEUDOREPLICATION", "condition comparisons require muscat-pseudobulk with biological sample replication.")
     if a["cluster-col"] == a["sample-col"]:
-        raise OmicstatError("OS_PSEUDOREPLICATION", "sample identities cannot be used as cell clusters.")
+        raise OmicstatError("OS_PSEUDOREPLICATION", "Grouping column '%s' is sample identity; use muscat-pseudobulk for expression or speckle-propeller for proportions, where samples are replicates." % a["cluster-col"])
+
+
+def group_guard(adata, a, upstream):
+    import json
+    column, sample = a["cluster-col"], a["sample-col"]
+    S.require_columns(adata.obs, [column])
+    group = adata.obs[column]
+    if group.isna().any() or (group.astype(str) == "").any():
+        raise OmicstatError("OS_INVALID_INPUT", "group labels must be nonmissing and nonempty.")
+    advice = "use muscat-pseudobulk for expression or speckle-propeller for proportions, where samples are replicates."
+    if sample not in adata.obs:
+        state = json.loads(str(adata.uns.get(S.STATE_KEY, "{}")))
+        state.update((upstream or {}).get("state", {}))
+        if column != state.get("clusters"):
+            raise OmicstatError("OS_PSEUDOREPLICATION", "Grouping column '%s' needs a sample column to verify that the grouping is cell-level; %s" % (column, advice))
+    else:
+        samples = adata.obs[sample]
+        if samples.isna().any() or (samples.astype(str) == "").any():
+            raise OmicstatError("OS_INVALID_INPUT", "sample labels must be nonmissing and nonempty.")
+        if column == sample or group.groupby(samples, observed=True).nunique().le(1).all():
+            raise OmicstatError("OS_PSEUDOREPLICATION", "Grouping column '%s' is sample-level; %s" % (column, advice))
 
 
 def compute(adata, a, upstream):
+    group_guard(adata, a, upstream)
     options = N.resolve(a, {'mask-var': 'value', 'groups': 'groups', 'reference': 'value', 'n-genes': 'value', 'rankby-abs': 'boolean', 'corr-method': 'value', 'tie-correct': 'boolean'})
     import numpy as np
     import pandas as pd
@@ -50,10 +72,8 @@ def compute(adata, a, upstream):
                          "method": "scanpy-%s-descriptive" % a["test"], "shrinkage": "none",
                          "n_group1": int(counts[cluster]), "n_group2": int(adata.n_obs-counts[cluster]) if a["reference"] == "rest" else int(counts[a["reference"]]),
                          "filtered_reason": "", "cluster": str(cluster), "replicate_unit": "cell (descriptive only)"})
+    display = pd.DataFrame(rows).groupby("cluster", sort=True).head(a["top-n"])
     table = pd.DataFrame(rows).sort_values(["cluster", "padj", "feature_id"], kind="stable", na_position="last").reset_index(drop=True)
-    display = table[table["padj"] <= a["alpha"]].groupby("cluster", sort=True).head(a["top-n"])
-    if display.empty:
-        display = table.groupby("cluster", sort=True).head(a["top-n"])
     genes = list(dict.fromkeys(display["feature_id"]))
     dot = S.marker_dot_data(adata, expression, a["cluster-col"], genes)
     return {"adata": adata, "tables": {"feature_table": table, "marker_details": table, "rank_genes_groups_native": native, "marker_dot_data": dot},
@@ -63,6 +83,6 @@ def compute(adata, a, upstream):
                         "corr_method": options["corr-method"], "tie_correct": options["tie-correct"],
                         "requested_n_genes": options["n-genes"],
                         "mask_var_text": str(options["mask-var"]), "n_genes_text": str(options["n-genes"]),
-                        "n_significant_rows": int((table["padj"] <= a["alpha"]).sum()), "test": a["test"],
-                        "inference": "descriptive_cluster_markers", "p_adjustment_family": "within each cluster contrast", "alpha": a["alpha"]},
+                        "test": a["test"],
+                        "inference": "descriptive_cluster_markers", "p_adjustment_family": "within each cluster contrast"},
             "state": {"marker_purpose": "cluster-description", "clusters": a["cluster-col"]}}

@@ -226,7 +226,6 @@
   },
   "default_capture_status": "captured_locked_container",
   "flag_defaults": {
-    "--alpha": 0.05,
     "--journal": "nature",
     "--seed": 20260925,
     "--test": "t-test",

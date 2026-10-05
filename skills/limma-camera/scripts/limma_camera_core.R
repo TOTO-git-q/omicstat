@@ -1,12 +1,23 @@
 OLC_MODULE <- "limma-camera"
 OLC_MODULE_VERSION <- "1.1.1"
 
+limma_camera_assert_blocks <- function(block, group, reference, target) {
+  if (anyNA(block) || any(!nzchar(as.character(block))))
+    stop("OS_INVALID_DESIGN: repeated-unit IDs must be nonmissing and nonempty.", call. = FALSE)
+  n <- vapply(c(reference, target), function(g) length(unique(block[group == g])), integer(1))
+  if (any(n < 2L))
+    stop("OS_PSEUDOREPLICATION: each group needs at least two independent repeated units; repeated observations are not biological replicates.", call. = FALSE)
+  invisible(n)
+}
+
 # Design built HERE only for a plain expression input (CSV or a non-limma
 # expression hand-off): ~ group + covariates from the sample table. A limma
 # upstream brings its own fitted design and coefficient (S4 contract b); this
 # function is never called for it.
 limma_camera_design <- function(st, a) {
   group <- factor(st[[a[["group-col"]]]], levels = c(a$reference, a$target))
+  if (!is.null(a[["block-col"]]))
+    limma_camera_assert_blocks(st[[a[["block-col"]]]], group, a$reference, a$target)
   covars <- if (is.null(a$covariates)) character(0) else trimws(strsplit(a$covariates, ",", fixed = TRUE)[[1]])
   dat <- data.frame(group = group, row.names = st[[a[["sample-col"]]]])
   if (length(covars)) for (v in covars) dat[[v]] <- factor(st[[v]])

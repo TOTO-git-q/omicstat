@@ -59,4 +59,4 @@ Structured options accept JSON objects/lists, not Python expressions. `--groups`
 |---|---|---|---|
 | `--leiden-flavor` | `igraph` (retained tutorial branch); `leidenalg` for partition-type | no | `leiden_flavor` |
 
-Scaling is disabled on the cited clustering tutorial path. Select `--scale on` to reproduce the previous scaled workflow; `--scale-zero-center` and `--scale-max` apply only on that branch. PCA signs and cluster labels retain the suite canonicalization; native partitions and graphs are verified independently. `seurat_v3` / `seurat_v3_paper` need a counts layer; their native input warning applies if used after log normalization.
+Scaling is disabled on the cited clustering tutorial path. Select `--scale on` to reproduce the previous scaled workflow; `--scale-zero-center` and `--scale-max` apply only on that branch. PCA signs and cluster labels retain the suite canonicalization; native partitions and graphs are verified independently. `seurat_v3` / `seurat_v3_paper` use the preserved raw counts layer; `seurat` / `cell_ranger` use log-normalized expression, as required by the native API.

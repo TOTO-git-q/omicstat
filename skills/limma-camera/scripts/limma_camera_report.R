@@ -22,15 +22,24 @@ limma_camera_render <- function(r, a, input, outdir) {
     outs <- c(outs, 'tables/design.csv')
   }
   figs <- list()
-  figs$gene_set_bar <- os_finalize_figure(os_camera_set_bar(r$table, alpha = a$alpha, method = r$method, journal = a$journal),
+  bar <- os_camera_set_bar(r$table, alpha = a$alpha, method = r$method, journal = a$journal)
+  if (r$method == 'roast') {
+    meta <- attr(bar, 'os_meta')
+    meta$caption <- gsub('BH adjusted P', 'raw UpOrDown P', meta$caption, fixed = TRUE)
+    meta$caption <- gsub('adjusted P', 'raw UpOrDown P', meta$caption, fixed = TRUE)
+    meta$thresholds <- list(pvalue = a$alpha)
+    bar <- bar + ggplot2::labs(x = '-log10 raw UpOrDown P')
+    attr(bar, 'os_meta') <- meta
+  }
+  figs$gene_set_bar <- os_finalize_figure(bar,
                                           file.path(outdir, 'figures', 'gene_set_bar'), width = 'double', journal = a$journal)
   d <- r$display
   pos <- if (!is.null(input$rank)) input$rank_meta$positive_end else sprintf('higher in %s than in %s', r$design$target, r$design$reference)
   for (i in seq_along(r$figure_sets)) {
     s <- names(r$figure_sets)[i]
     row <- r$table[r$table$term_id == s, ]
-    lab <- sprintf('%s: %s, direction %s, BH adjusted P %s; positive %s = %s.', r$method, s, row$direction,
-                   lc_fmt_p(row$padj), d$stat_label, pos)
+    lab <- sprintf('%s: %s, direction %s, %s %s; positive %s = %s.', r$method, s, row$direction,
+                   if (r$method == 'roast') 'raw UpOrDown P' else 'BH adjusted P', lc_fmt_p(row$padj), d$stat_label, pos)
     p <- os_barcode(d$stat, r$figure_sets[[s]], s, worm = r$worms[[s]], stat_label = d$stat_label, test_label = lab, journal = a$journal)
     figs[[lc_fig_name(i)]] <- os_finalize_figure(p, file.path(outdir, 'figures', lc_fig_name(i)), width = 'single', journal = a$journal)
   }
@@ -128,6 +137,10 @@ limma_camera_report <- function(r, a, qc, collection, outdir, templates_path, in
   lines <- c('# limma-camera Methods and Results', '', '## Methods', '',
              gsub('  +', ' ', os_fill_template(tm$methods, vals)), '', '## Results', '',
              os_fill_template(tm$results, vals))
+  if (r$method == 'roast') {
+    lines <- gsub('BH adjusted P', 'raw UpOrDown P', lines, fixed=TRUE)
+    lines <- gsub('adjusted-P reporting threshold', 'raw-P reporting threshold for the single prespecified set', lines, fixed=TRUE)
+  }
   if (r$method %in% c('camera', 'cameraPR')) lines <- c(lines, '',
     'The inter-gene correlation 0.01 was prespecified, not estimated from these sets. This fixes the variance inflation used for competitive testing; estimating a separate correlation per set could change error control and ranking.')
   zero <- r$table$term_id[is.finite(r$table$padj) & r$table$padj == 0]

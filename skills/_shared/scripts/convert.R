@@ -163,6 +163,20 @@ os_sc_anndata_env_path <- function() {
   list(type = got, object = obj, path = normalizePath(entry$path, winslash = "/"), sha256 = sha)
 }
 
+# Scientific chain state is retained even when package-specific metadata is dropped.
+.os_sc_embedded_state <- function(src) {
+  state <- if (src$type == "Seurat") src$object@misc$omicstat_state else if (src$type == "SingleCellExperiment") S4Vectors::metadata(src$object)$omicstat else {
+    .os_sc_require_anndata_env()
+    listing <- rhdf5::h5ls(src$path, recursive = TRUE)
+    key <- "omicstat_chain_state_json"
+    if (any(listing$group == "/uns" & listing$name == key))
+      jsonlite::fromJSON(rhdf5::h5read(src$path, paste0("/uns/", key)), simplifyVector = FALSE) else NULL
+  }
+  if (is.null(state)) return(list())
+  if (!is.list(state)) .os_sc_stop("OS_HANDOFF_MISMATCH", "embedded single-cell chain state must be an object")
+  state
+}
+
 # ---------------------------------------------------------------------------
 # Parts: the canonical content of a single-cell object
 # ---------------------------------------------------------------------------
@@ -520,10 +534,12 @@ os_sc_parts <- function(obj_or_path, type, layers, assay = NULL) {
   keep_factors <- function(specs) Filter(function(s) !isTRUE(s$character), specs)
   mk$obs_single_factors <- keep_factors(obs$specs); mk$var_single_factors <- keep_factors(var$specs)
   SummarizedExperiment::colData(sce) <- obs$df; SummarizedExperiment::rowData(sce) <- var$df
+  chain_state <- S4Vectors::metadata(sce)$omicstat
   S4Vectors::metadata(sce) <- stats::setNames(list(as.character(jsonlite::toJSON(mk, auto_unbox = TRUE))), OS_SC_UNS_KEY)
+  if (length(chain_state)) S4Vectors::metadata(sce)$omicstat_chain_state_json <- as.character(jsonlite::toJSON(chain_state, auto_unbox = TRUE, null = "null"))
   zellkonverter::writeH5AD(sce = sce, file = file, X_name = x_role, skip_assays = FALSE, compression = "none",
                            version = OS_SC_ANNDATA_VERSION, verbose = FALSE, assays = TRUE, colData = TRUE, rowData = TRUE,
-                           varm = FALSE, reducedDims = TRUE, metadata = OS_SC_UNS_KEY, colPairs = FALSE, rowPairs = FALSE)
+                           varm = FALSE, reducedDims = TRUE, metadata = names(S4Vectors::metadata(sce)), colPairs = FALSE, rowPairs = FALSE)
   if (length(obs$specs) || length(var$specs) || original_features == 1L || original_cells == 1L) {
     basilisk::basiliskRun(env = zellkonverter:::zellkonverterAnnDataEnv(),
       fun = function(path, obs_specs, var_specs, n_features, n_cells) {
@@ -578,6 +594,7 @@ os_sc_convert <- function(x, to, consumer, layers, cluster_col, source_assay = N
   if (identical(to, "Seurat") && (is.null(target_assay) || !nzchar(target_assay))) .os_sc_stop("OS_MISSING_PARAMETER", "target_assay must name the Seurat assay to create (e.g. \"RNA\")")
   if (identical(src$type, "AnnData") || identical(to, "AnnData")) .os_sc_require_anndata_env()
 
+  chain_state <- .os_sc_embedded_state(src)
   parts <- os_sc_parts(if (identical(src$type, "AnnData")) src$path else src$object, src$type, layers, assay = source_assay)
   .os_sc_check_parts(parts, cluster_col)
   before <- os_sc_fingerprint(parts, cluster_col)
@@ -586,12 +603,14 @@ os_sc_convert <- function(x, to, consumer, layers, cluster_col, source_assay = N
   if (identical(src$type, "AnnData")) impl <- c(impl, "zellkonverter::readH5AD(reader = \"python\")")
   if (identical(to, "Seurat")) {
     out <- .os_sc_build_seurat(parts, target_assay, cluster_col)
+    if (length(chain_state)) out@misc$omicstat_state <- chain_state
     impl <- c(impl, "SeuratObject::CreateAssay5Object", "SeuratObject::CreateSeuratObject", "SeuratObject::CreateDimReducObject")
     tgt_layers <- OS_SC_SEURAT_LAYER[names(layers)]
     after_parts <- .os_sc_parts_seurat(out, target_assay, tgt_layers)
     target_path <- NA_character_; target_sha <- .os_sc_sha(out)
   } else {
     sce <- .os_sc_build_sce(parts)
+    if (length(chain_state)) S4Vectors::metadata(sce)$omicstat <- chain_state
     impl <- c(impl, "SingleCellExperiment::SingleCellExperiment")
     if (identical(to, "SingleCellExperiment")) {
       out <- sce

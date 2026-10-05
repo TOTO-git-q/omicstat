@@ -20,7 +20,6 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--expression-layer` | no scientific default; consult L1 tutorial example | yes | `none` |
 | `--purpose` | no scientific default; consult L1 tutorial example | yes | `none` |
 | `--test` | 't-test' | no | `method` |
-| `--alpha` | 0.05 | no | `none` |
 | `--top-n` | 5 | no | `none` |
 | `--help` | None | no | `none` |
 | `--mask-var` | `None` (sc.tl.rank_genes_groups.mask_var; value) | no | `mask_var` |

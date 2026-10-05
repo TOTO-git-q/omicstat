@@ -67,6 +67,7 @@ if (!is.null(rank_meta)) {
                     universe = "the rows of the supplied ranked list", producer = "user-supplied file", producer_version = NA_character_,
                     id_type = "feature_id as supplied")
 }
+os_ranked_list_assert_directional(metric)
 rank <- os_rank_read(rank_path)
 rank_meta$n_ranked <- nrow(rank$table); rank_meta$n_ties <- rank$n_tied
 collection <- os_genesets_read(.suite, args$collection, args[["gene-sets"]])

@@ -205,7 +205,8 @@ def read_input(a):
     for key in ("species", "annotation"):
         if key in state and state[key] != a[key]:
             raise OmicstatError("OS_HANDOFF_MISMATCH", "declared %s differs from the upstream chain." % key)
-    require_columns(adata.obs, [a["sample-col"]])
+    if not a.get("purpose") == "cluster-description":
+        require_columns(adata.obs, [a["sample-col"]])
     layer(adata, a["counts-layer"], counts=True)
     return adata, upstream, path, state, contract_hash
 
@@ -228,7 +229,7 @@ def standard_qc(res, a, prefix, module_dir, extra=()):
     rows = [K.qc_rule(prefix + "-01", "locked_versions", bool(mismatches), "blocker",
                       "Analysis package versions differ from the locked environment.",
                       "Rerun in omicstat-py:2026.09.1 before using the draft.", "; ".join(mismatches)),
-            K.qc_rule(prefix + "-02", "sample_replication", res["adata"].obs[a["sample-col"]].nunique() < 2,
+            K.qc_rule(prefix + "-02", "sample_replication", (res["adata"].obs[a["sample-col"]].nunique() if a["sample-col"] in res["adata"].obs else 0) < 2,
                       "warning", "Fewer than two biological samples are present.",
                       "Treat these results as descriptive; no condition-level inference.", "ENGINEERING_PLAN 4.5")]
     rows.extend(extra)
@@ -267,7 +268,7 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
                     "min-cells", "doublet-mode", "n-hvg", "n-pcs", "resolution", "n-neighbors", "alpha", "test",
                     "n-latent", "max-epochs", "min-confidence", "scale") if key in a and a[key] is not None}
         context = ("Analysis: %s; %d retained cells, %d retained genes, %d biological sample(s). Prespecified settings: %s."
-                   % (module, adata.n_obs, adata.n_vars, adata.obs[a["sample-col"]].nunique(),
+                   % (module, adata.n_obs, adata.n_vars, (adata.obs[a["sample-col"]].nunique() if a["sample-col"] in adata.obs else 0),
                       "; ".join("%s=%s" % item for item in selected.items())))
         request.add(fig_id, builder, data=data, args=kwargs, caption_context=context)
     request.write()
@@ -275,7 +276,7 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
     K.write_qc_results(qc, str(outdir))
     values = {**res["summary"], "module": module, "module_version": module_version, "seed": a["seed"],
               "n_cells": int(adata.n_obs), "n_genes": int(adata.n_vars),
-              "n_samples": int(adata.obs[a["sample-col"]].nunique()),
+              "n_samples": int((adata.obs[a["sample-col"]].nunique() if a["sample-col"] in adata.obs else 0)),
               "parameters": {k: v for k, v in a.items() if k not in ("help", "outdir", "input", "from-run", "spec", "study-contract")},
               "state": state, "qc_triggered": [r["id"] for r in qc["table"] if r["triggered"]]}
     values["package_versions"] = {p: metadata.version(p) for p in json.loads((Path(module_dir)/"scripts/calls_registry.json").read_text())["package_versions"]}

@@ -8,3 +8,5 @@ The module uses prefix `YM`.
 Module-specific rules and their mechanical criteria are in scripts/scanpy_markers_qc.py. They retain full results, never silently change a threshold or estimator. Typed input errors stop before computation.
 
 Figures are only requests until the locked R rendering stage succeeds. A successful numerical run alone does not establish publication readiness.
+
+YM-06: warning when at least 90% of tested rows have adjusted P < 0.05 or at least 10,000 cells are present: "cell-level P values are near zero for most genes; read effect sizes." Source: CONVENTIONS marker grouping; PACK W.

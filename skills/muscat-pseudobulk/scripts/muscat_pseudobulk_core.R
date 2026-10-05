@@ -9,6 +9,14 @@ muscat_pseudobulk_compute <- function(sce,a) {
   pb <- muscat::aggregateData(x=o_aggregate[["x"]], assay=o_aggregate[["assay"]], by=o_aggregate[["by"]], fun=o_aggregate[["fun"]], scale=o_aggregate[["scale"]], verbose=o_aggregate[["verbose"]], BPPARAM=o_aggregate[["BPPARAM"]])
   o_ds <- os_backend_function_options(muscat::pbDS,a,"ds",list(pb=pb,verbose=FALSE))
   res <- muscat::pbDS(pb=o_ds[["pb"]], method=o_ds[["method"]], design=o_ds[["design"]], coef=o_ds[["coef"]], contrast=o_ds[["contrast"]], min_cells=o_ds[["min_cells"]], filter=o_ds[["filter"]], treat=o_ds[["treat"]], verbose=o_ds[["verbose"]], BPPARAM=o_ds[["BPPARAM"]])
+  # pbDS can drop zero libraries after its own replicate check; audit fitted data.
+  for (cl in names(res$data)) {
+    fitted_samples <- colnames(res$data[[cl]])
+    ix <- match(fitted_samples,colnames(pb))
+    if (!length(fitted_samples) || anyNA(ix)) stop("OS_INVALID_RESULT: cannot verify biological samples retained by pbDS.",call.=FALSE)
+    effective <- table(factor(as.character(pb$group_id[ix]),levels=c(a$reference,a$target)))
+    if (any(effective < 2L)) stop(sprintf("OS_PSEUDOREPLICATION: pbDS retained fewer than two biological samples per condition in cluster %s after filtering; no inferential output is released.",cl),call.=FALSE)
+  }
   tables <- list()
   for(cmp in names(res$table)) for(cl in names(res$table[[cmp]])) tables[[paste(cmp,cl,sep="__")]] <- res$table[[cmp]][[cl]]
   full <- do.call(rbind,lapply(names(tables),function(nm) data.frame(comparison_cluster=nm,tables[[nm]],check.names=FALSE)))

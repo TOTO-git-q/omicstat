@@ -142,7 +142,7 @@ os_engine_capture({
                 kcdf_requested = a$kcdf, kernel_used = r$kernel, collection = a$collection,
                 collection_species = collection$entry$species, collection_sha256 = collection$sha256,
                 n_scored = r$n_scored, n_excluded = r$n_excluded, n_constant_rows = r$n_constant_rows,
-                inference = FALSE, corrected_input = corrected_input)
+                inference = FALSE, score_inference_pending = TRUE, corrected_input = corrected_input)
   if (corrected_input) state$batch_corrected_lineage <- TRUE
   if (!is.null(source_info$scale)) state$upstream_scale <- source_info$scale
   write_handoff(outdir, run_id = basename(outdir), module = GV_MODULE, module_version = GV_MODULE_VERSION,

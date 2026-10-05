@@ -16,7 +16,8 @@ os_backend_function_flags(CellChat::computeCommunProbPathway,"pathway",c("object
 os_backend_function_flags(CellChat::aggregateNet,"aggregate",c("object")),
 os_backend_function_flags(CellChat::subsetCommunication,"communication",c("object")),
 os_backend_function_flags(CellChat::netAnalysis_computeCentrality,"centrality",c("object")),
-list(os_flag("db-species","enum",required=TRUE,values=c("human","mouse"),help="Scientific input; see options.md"),
+list(os_flag("sample-col","string",default="samples",help="Sample metadata column used to verify cell-level grouping"),
+os_flag("db-species","enum",required=TRUE,values=c("human","mouse"),help="Scientific input; see options.md"),
 os_flag("db-subset","string",required=TRUE,help="Secreted Signaling | ECM-Receptor | Cell-Cell Contact | Non-protein Signaling | all; explicit database choice"))), exclusive=list(c("input","from-run")))
 a <- os_parse_args(SPEC, os_spec_argv(commandArgs(trailingOnly=TRUE)))
 if(isTRUE(a$help)) { os_print_help(SPEC); quit(status=0) }
@@ -25,7 +26,7 @@ set.seed(a$seed); options(omicstat.journal=a$journal)
 dir.create(a$outdir,recursive=TRUE,showWarnings=FALSE)
 elog <- os_engine_log_new(a$outdir)
 inp <- os_engine_capture(os_backend_input(a,need="logcounts"), "input", elog)
-r <- os_engine_capture(cellchat_communication_compute(inp$sce,a), "compute", elog)
+r <- os_engine_capture(cellchat_communication_compute(inp$sce,a,inp$state), "compute", elog)
 os_backend_finish(r,inp,a,"cellchat-communication",.this)
 p <- os_backend_communication_heatmap(r$weight,ncol(r$sce),r$options$aggregateNet$thresh,a$journal)
 os_finalize_figure(p,file.path(a$outdir,"figures","network_weight"),width="double",journal=a$journal)

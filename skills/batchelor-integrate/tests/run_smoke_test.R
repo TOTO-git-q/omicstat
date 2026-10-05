@@ -32,3 +32,8 @@ check(all(is.finite(SingleCellExperiment::reducedDim(x,"corrected"))),"finite co
 paths<-c("tables/cells.csv","tables/hvgs.csv","tables/variance.csv","tables/batch_summary.csv")
 if(Sys.getenv("OMICSTAT_WRITE_GOLDEN")=="1")os_golden_write(.module,out,paths)
 check(os_golden_check(.module,out)$status=="PASS","golden")
+unequal<-file.path(work,"unequal_dims")
+run("batchelor-integrate",c("--from-run",cl,"--batch-col","batch","--label-col","label","--n-hvg","1000","--n-pcs","15","--mnn-k","20","--umap-dims","10","--umap-neighbors","15","--mixing-k","10","--outdir",unequal),"unequal_umap_dimensions")
+before<-jsonlite::read_json(file.path(unequal,"figures/before_batch.figure_spec.json"))$caption
+after<-jsonlite::read_json(file.path(unequal,"figures/after_batch.figure_spec.json"))$caption
+check(grepl("UMAP dimensions=15",before,fixed=TRUE) && grepl("UMAP dimensions=10",after,fixed=TRUE),"before and after captions use their actual unequal PCA dimensions")

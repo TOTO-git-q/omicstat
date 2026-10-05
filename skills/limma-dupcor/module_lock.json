@@ -6,7 +6,7 @@
     "skills/limma-dupcor/scripts/limma_dupcor_core.R": "a6f59f7f1107e62e65fa64a4dfa705db5e164b162f4a2c1dbf490ac40f692c83",
     "skills/limma-dupcor/scripts/limma_dupcor_qc.R": "2ef18574851c41fe43ffe47983b1904913d5395efeeda3b6cad266fa8a1f3d6a",
     "skills/limma-dupcor/scripts/limma_dupcor_report.R": "ea1beb50213becdc81a23314870cb720fd846a2e9f68081074574ec49e951b8c",
-    "skills/limma-dupcor/scripts/run_limma_dupcor.R": "ac6c01539e9bbbbe1fc7e9b7225065a56ef549225a5a7c325c8529b3040e89c1",
+    "skills/limma-dupcor/scripts/run_limma_dupcor.R": "3581143dcc3d2456684498cb13e6481c8e56aeda39f58c7e9de7b9dc2652c204",
     "skills/limma-dupcor/scripts/calls_registry.json": "ef410ba9cdb3329928809d6d0aea6bd3bcec12088b7c62cd360e3fc2710f5018",
     "skills/limma-dupcor/SKILL.md": "3c46f66951bc02c3255dd2bbfc56574d4052b0e92a79e0a83db51dfe261f8b55",
     "skills/limma-dupcor/references/method-basis.md": "5e301f400d22411e5827be8a3c810d54c8787f433d8f7d23b657e55443741492",
@@ -17,7 +17,7 @@
     "skills/limma-dupcor/references/troubleshooting.md": "625b3056273e609bc5f59ffd9d07c949aa8736f919cd80cae26b0a39ae429849",
     "skills/limma-dupcor/tests/fixtures/guide_yoruba.R": "999d929ecaf7ad4533b36491437ee056f5ffcb1df1d969cb5735f7819925bbc2",
     "skills/limma-dupcor/tests/fixtures/make_illumina.R": "faa5479d73d5cfca27c78b4a455c2699f106847bea8b0f2af4e684751e79df80",
-    "skills/limma-dupcor/tests/run_smoke_test.R": "a423e1c59b1227efdb89f527d3d2a4a5b4c1b667e8bbfe2daf85f05ffe85621f",
+    "skills/limma-dupcor/tests/run_smoke_test.R": "202a9487f287d3b4db11cd112a3dfb5a2c24c3aaf37d4c9fada25c8214cd2c80",
     "skills/limma-dupcor/tests/golden_manifest.csv": "8e24435f9f447d1856db456adb7b09bf3b941b50e61ab9dc403cb92ea10418ff",
     "acceptance/exemplars/limma-dupcor/PACK.md": "5f5b8fa45218a04ad3101c8b87110dd285c683276d36ed4ab4c5e525daafbe96"
   },

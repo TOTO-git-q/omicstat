@@ -62,6 +62,16 @@ fixg <- make_yoruba(file.path(tmp, 'fixture_guide_era'), suite, adaptive_span = 
 check(nrow(fix$v$E) == 16918L && ncol(fix$v$E) == 86L && abs(fix$correlation - 0.4454514) < 1e-6,
       'Yoruba suite route preprocessing: 16,918 genes, 86 samples, duplicate correlation 0.4454514 (adaptive.span = TRUE)')
 n_male <- sum(fix$st$gender == 'Male'); n_female <- sum(fix$st$gender == 'Female')
+bad_blocks <- fix$st
+bad_blocks$cellline <- paste0('one_', bad_blocks$gender)
+bad_block_file <- file.path(tmp, 'one_unit_per_group.csv')
+utils::write.csv(bad_blocks, bad_block_file, row.names = FALSE)
+bad_block_run <- run('--input', shQuote(fix$expression), '--samples', shQuote(bad_block_file),
+                     '--input-scale', 'logcpm', '--group-col', 'gender', '--reference', 'Female', '--target', 'Male',
+                     '--block-col', 'cellline', '--correlation', '0.4', '--question', 'self-contained',
+                     '--self-contained-method', 'fry', '--collection', 'limma_gender_genes',
+                     '--outdir', shQuote(file.path(tmp, 'one_unit_refused')))
+check(has_code(bad_block_run, 'OS_PSEUDOREPLICATION'), 'direct expression cannot count repeated libraries as independent units')
 gg <- os_genesets_read(suite, 'limma_gender_genes')$sets
 
 # ---- F1 printed anchor: the User's Guide's own code (usersguide.rendered.txt:7395-7500) with the guide-era voom span ----
@@ -309,6 +319,15 @@ check(!file.exists(file.path(tmp, 'Rplots.pdf')), 'no Rplots.pdf device leak')
 
 # R3 selection ledger: no-overlap, not-selected and tested are distinct states.
 if (r$status == 0) {
+  roast_draft <- draft(file.path(tmp,"roast"))
+  check(grepl("raw UpOrDown P",roast_draft,fixed=TRUE) && !grepl("BH adjusted P",roast_draft,fixed=TRUE), "single-set roast reports raw P without claiming adjustment")
+  for (id in c('gene_set_bar', 'barcode_1')) {
+    fig <- jsonlite::fromJSON(file.path(tmp, 'roast', 'figures', paste0(id, '.figure_spec.json')))
+    check(grepl('raw UpOrDown P', fig$caption, fixed=TRUE) && !grepl('adjusted P', fig$caption, fixed=TRUE),
+          paste('single-set roast saved figure caption reports raw P:', id))
+    if (id == 'gene_set_bar') check(identical(fig$thresholds$pvalue, 0.05) && is.null(fig$thresholds$padj),
+                                   'single-set roast figure threshold is raw P')
+  }
   ledger <- utils::read.csv(file.path(tmp, "roast", "tables", "gene_set_selection.csv"), stringsAsFactors = FALSE)
   check(nrow(ledger) == 2L && sum(ledger$matched) == 2L &&
         sum(ledger$selected) == 1L && sum(ledger$tested) == 1L &&

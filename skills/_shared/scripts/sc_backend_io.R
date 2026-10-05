@@ -34,6 +34,10 @@ os_backend_input <- function(a, need = c("counts", "logcounts")) {
     if (is.null(path) || is.null(a$ecosystem)) stop("OS_MISSING_PARAMETER: give --input and --ecosystem, or --from-run.", call. = FALSE)
     eco <- a$ecosystem
   }
+  embedded <- .os_sc_embedded_state(.os_sc_source(path))
+  if (isTRUE(embedded$batch_corrected_lineage)) stop("OS_BATCH_CORRECTED_INPUT: embedded object state records batch-corrected expression; use uncorrected data for inference.", call. = FALSE)
+  if (!is.null(embedded$front_end_ecosystem) && !identical(embedded$front_end_ecosystem, eco))
+    stop("OS_ECOSYSTEM_MIXED: declared ecosystem differs from embedded front-end chain.", call. = FALSE)
   layers <- character(0)
   if (!is.null(a[["counts-layer"]])) layers[["counts"]] <- a[["counts-layer"]]
   if (!is.null(a[["logcounts-layer"]])) layers[["logcounts"]] <- a[["logcounts-layer"]]
@@ -41,7 +45,7 @@ os_backend_input <- function(a, need = c("counts", "logcounts")) {
   cv <- os_sc_convert(x = path, to = "SingleCellExperiment", consumer = "back_end", layers = layers,
                       cluster_col = a[["cluster-col"]], source_assay = a[["source-assay"]])
   list(sce = cv$object, conversion = cv$step, path = path, upstream = h, ecosystem = eco,
-       crossing = identical(eco, "scverse"), state = utils::modifyList(h$state %||% list(), list(front_end_ecosystem = eco)))
+       crossing = identical(eco, "scverse"), state = utils::modifyList(utils::modifyList(embedded, h$state %||% list()), list(front_end_ecosystem = eco)))
 }
 
 os_backend_csv <- function(tab, path) {
@@ -93,6 +97,7 @@ os_backend_function_options <- function(fn, a, prefix, fixed = list()) {
 os_backend_finish <- function(r, inp, a, module, entry) {
   dir.create(file.path(a$outdir, 'objects'), recursive = TRUE, showWarnings = FALSE)
   saveRDS(r$native, file.path(a$outdir, 'objects', 'native.rds'), version = 3)
+  S4Vectors::metadata(r$sce)$omicstat <- utils::modifyList(inp$state, list(backend = module))
   path <- file.path(a$outdir, 'objects', 'sce.rds'); saveRDS(r$sce, path, version = 3)
   write_handoff(a$outdir, basename(a$outdir), module, '1.0.0',
     list(sce = list(path = path, type = 'SingleCellExperiment')), ecosystem = 'neutral',
@@ -100,8 +105,8 @@ os_backend_finish <- function(r, inp, a, module, entry) {
     upstream_runs = inp$upstream$upstream_runs %||% character())
   for (nm in names(r$tables)) os_backend_csv(r$tables[[nm]], file.path(a$outdir, 'tables', paste0(nm, '.csv')))
   prefix <- c('muscat-pseudobulk'='MP','speckle-propeller'='SP','slingshot-trajectory'='SL','monocle3-trajectory'='MT','cellchat-communication'='CC')[[module]]
-  qc <- os_qc_finalize(list(os_qc_rule(paste0(prefix,'-01'), 'Python to R crossing', inp$crossing, 'warning',
-    'Python front end feeds R backend; owner label decision pending.', 'Preserve upstream ecosystem.', 'build_m3b lane rule'),
+  qc <- os_qc_finalize(list(os_qc_rule(paste0(prefix,'-01'), 'Python to R crossing', inp$crossing, 'info',
+    'OS_ECOSYSTEM_CROSSING: Python front end feeds neutral R backend; upstream ecosystem is preserved.', 'Preserve upstream ecosystem.', 'build_m3b lane rule'),
     os_qc_rule(paste0(prefix,'-02'), 'output shape', ncol(r$sce) == 0, 'blocker', 'No cells.', 'Review inputs.', 'Package workflow sanity')), paste0('tables/',names(r$tables)[1],'.csv'))
   os_write_qc_results(qc, a$outdir)
   os_write_text(c(paste0('# ',module,' Methods'),
@@ -109,6 +114,8 @@ os_backend_finish <- function(r, inp, a, module, entry) {
     paste0('Functions: ',paste(r$functions,collapse=', '),'.'),
     paste0('Actual options: ',jsonlite::toJSON(r$options,auto_unbox=TRUE,null='null',force=TRUE)),
     paste0('Seed: ',a$seed,'.'),r$note %||% ''),file.path(a$outdir,'draft','methods_results.md'))
+  dir.create(file.path(a$outdir,'results'),recursive=TRUE,showWarnings=FALSE)
+  jsonlite::write_json(list(n_cells=ncol(r$sce),n_features=nrow(r$sce),seed=a$seed,native_options=r$options),file.path(a$outdir,'results','analysis_summary.json'),auto_unbox=TRUE,pretty=TRUE,null='null',force=TRUE,digits=NA)
   files <- list(input=inp$path)
   for(nm in c('trajectory-rds','graph-genes-file')) if(!is.null(a[[nm]])) files[[nm]] <- a[[nm]]
   for(nm in names(a)) if(is.character(a[[nm]]) && length(a[[nm]])==1L && startsWith(trimws(a[[nm]]),'{')) {
@@ -117,7 +124,7 @@ os_backend_finish <- function(r, inp, a, module, entry) {
   }
   os_write_provenance(a$outdir,module,'1.0.0',attr(a, "canonical"),basename(entry),a$seed,
     inputs=files,outputs=paste0('tables/',names(r$tables),'.csv'),upstream=inp$upstream,
-    extra=list(front_end_ecosystem=inp$ecosystem,conversion=inp$conversion,python_to_r_crossing=inp$crossing))
+    extra=list(front_end_ecosystem=inp$ecosystem,backend_ecosystem="neutral",conversion=inp$conversion,python_to_r_crossing=inp$crossing))
 }
 os_backend_proportions <- function(sce, cluster_col, sample_col, condition_col) {
   d <- data.frame(sample=os_backend_column(sce,sample_col), condition=os_backend_column(sce,condition_col), celltype=os_backend_column(sce,cluster_col))

@@ -6,7 +6,7 @@
     "skills/gsva-score/scripts/gsva_score_core.R": "c13589ebc2eafc3f67a524b98e1c660a60c6e0b9d92494457684d5addf934c73",
     "skills/gsva-score/scripts/gsva_score_qc.R": "1e919063a38f7e0139cc06cfaff663397d866c67f4577f737793672db8764456",
     "skills/gsva-score/scripts/gsva_score_report.R": "3e25f125bfbeab884856b8290d361bd9b646cddd319b67a6d9a346bb0054695b",
-    "skills/gsva-score/scripts/run_gsva_score.R": "9562d3b824815d58cbe0be0716ea29a703a46fe8053765b2a0d6fa9690cc23d8",
+    "skills/gsva-score/scripts/run_gsva_score.R": "ac44a14c375d884bb0ccece78f77972643d5263ffd98eed544093be521fe33c0",
     "skills/gsva-score/scripts/calls_registry.json": "2dfd5b041f4d0f207ad1516a7a1a13b8e4b2f1e9a65e351e0be5b26c9522a918",
     "skills/gsva-score/SKILL.md": "24ed5b6e76d232c95d0b731fb421b7ce4e80474e3232719c8d9139a4ae248f23",
     "skills/gsva-score/references/method-basis.md": "9cb44cd1cc4d2ced1345d7eff1c22adaaf3f65c30e4329a3680c796ceabab5d1",
@@ -17,7 +17,7 @@
     "skills/gsva-score/references/troubleshooting.md": "20731ce2cdfeff6fc59bce9b49aad46c2993a937220c02abd9e8137a58fc7490",
     "skills/gsva-score/tests/fixtures/make_gbm.R": "b36c4419e809fba0c7518845ec31dc9c7cd83fb6b97ae2558a956b50a8ce3fdb",
     "skills/gsva-score/tests/fixtures/make_yoruba_counts.R": "07a33c435c548dfd0450211fc79af9e8669ba715894ba3113bc1fcc4560b13c5",
-    "skills/gsva-score/tests/run_smoke_test.R": "e5e2ea3c207166ca68b511041a632d5e963050c8842ad00fce93ff589edf8a13",
+    "skills/gsva-score/tests/run_smoke_test.R": "8b29c56884c5fe6fa41be353985f23722d7b4c41bf686fbf98e80ccb83025d6e",
     "skills/gsva-score/tests/golden_manifest.csv": "b295bddacb05f10043b97bc1e72287772252b3556bb0228f3acf6cdb61bc23c5",
     "acceptance/exemplars/gsva-score/PACK.md": "12e2c4242cb160adba3a1d00ed2cf553cc9a3b4d7c295731fac6c8e3d7dd6dd3"
   },

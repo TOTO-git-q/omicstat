@@ -4,12 +4,12 @@
   "module_version": "1.0.0",
   "files": {
     "skills/slingshot-trajectory/scripts/run_slingshot_trajectory.R": "a583ef55af4e2eeb8b9c53073944081a219694181a9822f8b6203a44e5bc4971",
-    "skills/slingshot-trajectory/scripts/slingshot_trajectory_core.R": "79ef7dfbfd11a6445ca3ba838a7c4601b0316562cddf758859c5ab33b9a4a53a",
-    "skills/slingshot-trajectory/scripts/calls_registry.json": "6807ab2602542725b2d27207b1b3cac506fce0fb0e3870a5074cd550532c7157",
-    "skills/slingshot-trajectory/SKILL.md": "d9446056398bdbc1932438a3f0b1494f8072221e71685e6800d6cb71a1411fd4",
+    "skills/slingshot-trajectory/scripts/slingshot_trajectory_core.R": "4ea583660753fdff4b5c4af7826be674999f73a359d6b12e66dd1a17e90e2932",
+    "skills/slingshot-trajectory/scripts/calls_registry.json": "952672cceb6d059dcf85941527c90e4ca40b38ffb4b611fe3cd5c74ba1c8699c",
+    "skills/slingshot-trajectory/SKILL.md": "573a76d46601400d69fda059f3b39795ffbb475c581a7743bf7b6f3867d0f86f",
     "skills/slingshot-trajectory/references/methods-template.md": "6583dcc038fd0b8e06f708453afdf3488009a2e153fdbb6088eec172beeea0f9",
     "skills/slingshot-trajectory/references/options.md": "f673d3985a522db6ebcbd53ce277a6db03210ae58a2d8ac3c82662cd1da307d2",
-    "skills/slingshot-trajectory/tests/run_smoke_test.R": "7aa83996a8355613154e86ad45b7d689ee77d32967afbff4c1d9ad5bffaf5cd3",
+    "skills/slingshot-trajectory/tests/run_smoke_test.R": "13932821c0244555a54a5934a0e5f62d5d0b1e6b083fa48cf78e24d239a49ec4",
     "skills/slingshot-trajectory/tests/golden_manifest.csv": "8d32f9886ac8e9c665488e9db6f5f72c98a84ffc03d2b4fdd3bd9cf3228a4f08",
     "acceptance/exemplars/slingshot-trajectory/PACK.md": "f5ae0e12b791657aca38059ac6ba7a90a2e5b0d28f1649d0d8a2cf3278118627"
   },

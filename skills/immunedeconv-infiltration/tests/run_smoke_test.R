@@ -85,3 +85,21 @@ pv <- jsonlite::read_json(file.path(so,"provenance/provenance.json"));check(pv$r
 cat("PASS: synthetic interface only; no licensed CIBERSORT execution or signature redistribution\n")
 
 check(identical(formals(immunedeconv::deconvolute_cibersort)$abs_method,"sig.score"),"locked CIBERSORT abs_method default")
+# Scale and verified MCP-counter reference bindings cannot be replaced by JSON.
+source(file.path(mod,'scripts/immunedeconv_infiltration_core.R'))
+for(key in c('log_transform','feature_types','featuresType','genes','probesets')) {
+ ja <- file.path(tmp,paste0('reserved-',key,'.json'))
+ jsonlite::write_json(setNames(list(FALSE),key),ja,auto_unbox=TRUE)
+ aa <- list(method='mcp_counter',`input-scale`='TPM',arrays='false',`method-args`=ja)
+ err <- tryCatch({immunedeconv_infiltration_compute(aa,mat);''},error=conditionMessage)
+ check(grepl('OS_CONFLICTING_PARAMETERS',err),paste('MCP-counter reserved native argument',key))
+}
+logp <- file.path(tmp,'log-expression.csv')
+write.csv(data.frame(gene_symbol=rownames(mat),log2(mat+1),check.names=FALSE),logp,row.names=FALSE)
+logo <- file.path(tmp,'log-input')
+z <- run('--method','mcp_counter','--input-scale','log2TPM','--input',shQuote(logp),'--outdir',shQuote(logo))
+check(z$status==0,'declared log2TPM MCP-counter route')
+md <- paste(readLines(file.path(logo,'draft/methods_results.md')),collapse='\n')
+check(grepl('Human log2(TPM+1) expression',md,fixed=TRUE)&&!grepl('Human non-log TPM',md,fixed=TRUE),'Methods reports the actual input scale')
+md <- paste(readLines(file.path(tmp,'estimate/draft/methods_results.md')),collapse='\n')
+check(grepl('score/purity result rows',md,fixed=TRUE)&&!grepl('Estimated 4 cell types',md,fixed=TRUE),'ESTIMATE result rows are not labelled cell types')

@@ -48,6 +48,7 @@ argv<-os_canonical_argv(SPEC,a);set.seed(a$seed);options(omicstat.journal=a$jour
 dir.create(a$outdir,recursive=TRUE,showWarnings=FALSE);outdir<-normalizePath(a$outdir)
 elog<-os_engine_log_new(outdir)
 up<-if(is.null(a[["from-run"]])) NULL else read_handoff(a[["from-run"]],expect=list(expression_matrix="expression_matrix",sample_table="sample_table"))
+os_handoff_assert_inference_ready(up)
 mp<-if(is.null(up))a$matrix else up$objects$expression_matrix$path
 sp<-if(is.null(up))a$samples else up$objects$sample_table$path
 mat<-os_read_matrix(mp,"normalized array expression")

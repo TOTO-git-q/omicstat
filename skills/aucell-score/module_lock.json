@@ -9,7 +9,7 @@
     "skills/aucell-score/SKILL.md": "6e8ee5ed12c62c2e1bf548c441463720770a58e6a38ba76d688ef6ab954df2be",
     "skills/aucell-score/references/options.md": "35ebe3c99122071f8f58cf8426175dbd9d1b6a4d5f9f327e3bf07875f5bee3f2",
     "skills/aucell-score/tests/fixtures/make_aucell_brain.R": "676486f746b783a1f1f2e27d904508816f57d2a24502ce30e05cbd3256ba4ce1",
-    "skills/aucell-score/tests/run_smoke_test.R": "f0f8d9fcf0bd67f7322d9ace24c439595e5aba4609490db04599d324c8e40e6e",
+    "skills/aucell-score/tests/run_smoke_test.R": "f2c38a5bc1741c18e754f695fb8364a829f76ea063774c2c51cf84802c8d8be2",
     "skills/aucell-score/tests/golden_manifest.csv": "84de7bb805658132e68a324b2edebf20988ce054fbe40e7eb73adb0b3c0feb89",
     "acceptance/exemplars/aucell-score/PACK.md": "fabc21e9d17361c0dfb3672780b39fb085d0834152f9d47ffece74cd0755324b"
   },

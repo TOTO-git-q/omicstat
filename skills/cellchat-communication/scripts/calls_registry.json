@@ -710,5 +710,13 @@
       }
     }
   ],
-  "accessors": []
+  "accessors": [],
+  "flag_defaults": {
+    "--sample-col": "samples"
+  },
+  "grouping_guard": {
+    "sample_col": "--sample-col (default samples)",
+    "source": "Owner decision 2026-10-05; marker grouping rule",
+    "without_samples": "verified upstream/embedded cluster column only"
+  }
 }

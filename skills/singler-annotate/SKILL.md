@@ -29,7 +29,7 @@ Keep raw and pruned labels distinct. Unassigned cells are uncertain, not a new i
 SA-01..SA-04 identify pruning, total assignment failure, ecosystem crossing and engine warnings. SA-02 withholds the draft. See qc-rules.md.
 
 ## Known limitations
-The 2026.10.1 image includes scrapper. The official pancreas wilcox anchor reproduces 1718 cells, 59 pruned labels and all printed label counts; its first golden and lock are available for independent S3. No automatic atlas or species inference. Python-to-R ecosystem label remains 待裁决; provenance preserves the upstream ecosystem and QC flags the crossing. Score heatmaps use the shared renderer reproducing relative-score grammar instead of native pheatmap. See build_worklog.md.
+The 2026.10.1 image includes scrapper. The official pancreas wilcox anchor reproduces 1718 cells, 59 pruned labels and all printed label counts; its first golden and lock are available for independent S3. No automatic atlas or species inference. Python-to-R crossing preserves the upstream front-end ecosystem, records a neutral backend, and raises informational OS_ECOSYSTEM_CROSSING QC. Score heatmaps use the shared renderer reproducing relative-score grammar instead of native pheatmap. See build_worklog.md.
 
 ## Reference files
 method-basis.md: evidence; parameters.md: all flags and fixed calls; qc-rules.md: criteria and sources; reporting-templates.md: result-derived wording; troubleshooting.md: typed errors and remedies.
