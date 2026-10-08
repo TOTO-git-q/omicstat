@@ -1,0 +1,318 @@
+{
+  "accessors": [],
+  "calls": [
+    {
+      "args": {
+        "algorithm": {
+          "function_default": "'auto'",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "'auto'"
+          ],
+          "value": "'auto'",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "leaf_size": {
+          "function_default": "30",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "30"
+          ],
+          "value": "30",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "metric": {
+          "function_default": "'minkowski'",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "'euclidean'",
+            "a['metric']"
+          ],
+          "value": [
+            "'euclidean'",
+            "a['metric']"
+          ],
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "metric_params": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "n_jobs": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "1"
+          ],
+          "value": "1",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "n_neighbors": {
+          "function_default": "5",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "a['embedding-neighbors'] + 1",
+            "a['n-neighbors'] + 1"
+          ],
+          "value": [
+            "a['embedding-neighbors'] + 1",
+            "a['n-neighbors'] + 1"
+          ],
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "p": {
+          "function_default": "2",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "2"
+          ],
+          "value": "2",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "radius": {
+          "function_default": "1.0",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "1.0"
+          ],
+          "value": "1.0",
+          "pack": "UMAP-display worked example / locked API replay"
+        }
+      },
+      "fn": "sklearn.neighbors.NearestNeighbors"
+    },
+    {
+      "args": {
+        "X": {
+          "function_default": "<required>",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "adata.obsm[a['use-rep']]",
+            "emb[['x', 'y']].to_numpy()"
+          ],
+          "value": [
+            "adata.obsm[a['use-rep']]",
+            "emb[['x', 'y']].to_numpy()"
+          ],
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "y": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        }
+      },
+      "fn": "sklearn.neighbors.NearestNeighbors.fit"
+    },
+    {
+      "args": {
+        "X": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "adata.obsm[a['use-rep']]",
+            "emb[['x', 'y']].to_numpy()"
+          ],
+          "value": [
+            "adata.obsm[a['use-rep']]",
+            "emb[['x', 'y']].to_numpy()"
+          ],
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "n_neighbors": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "a['embedding-neighbors'] + 1",
+            "a['n-neighbors'] + 1"
+          ],
+          "value": [
+            "a['embedding-neighbors'] + 1",
+            "a['n-neighbors'] + 1"
+          ],
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "return_distance": {
+          "function_default": "True",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "False"
+          ],
+          "value": "False",
+          "pack": "UMAP-display worked example / locked API replay"
+        }
+      },
+      "fn": "sklearn.neighbors.NearestNeighbors.kneighbors"
+    },
+    {
+      "args": {
+        "algorithm": {
+          "function_default": "'auto'",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "'auto'"
+          ],
+          "value": "'auto'",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "eps": {
+          "function_default": "0.5",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "a['island-eps']"
+          ],
+          "value": "a['island-eps']",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "leaf_size": {
+          "function_default": "30",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "30"
+          ],
+          "value": "30",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "metric": {
+          "function_default": "'euclidean'",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "'euclidean'"
+          ],
+          "value": "'euclidean'",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "metric_params": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "min_samples": {
+          "function_default": "5",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "a['island-min-samples']"
+          ],
+          "value": "a['island-min-samples']",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "n_jobs": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "1"
+          ],
+          "value": "1",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "p": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        }
+      },
+      "fn": "sklearn.cluster.DBSCAN"
+    },
+    {
+      "args": {
+        "X": {
+          "function_default": "<required>",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "emb.loc[passing, ['x', 'y']].to_numpy()"
+          ],
+          "value": "emb.loc[passing, ['x', 'y']].to_numpy()",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "sample_weight": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "y": {
+          "function_default": "None",
+          "reference": "https://scikit-learn.org/stable/modules/classes.html",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        }
+      },
+      "fn": "sklearn.cluster.DBSCAN.fit_predict"
+    }
+  ],
+  "captured_signatures": {
+    "sklearn.cluster.DBSCAN": "(self, eps=0.5, *, min_samples=5, metric='euclidean', metric_params=None, algorithm='auto', leaf_size=30, p=None, n_jobs=None)",
+    "sklearn.cluster.DBSCAN.fit_predict": "(self, X, y=None, sample_weight=None)",
+    "sklearn.neighbors.NearestNeighbors": "(self, *, n_neighbors=5, radius=1.0, algorithm='auto', leaf_size=30, metric='minkowski', p=2, metric_params=None, n_jobs=None)",
+    "sklearn.neighbors.NearestNeighbors.fit": "(self, X, y=None)",
+    "sklearn.neighbors.NearestNeighbors.kneighbors": "(self, X=None, n_neighbors=None, return_distance=True)"
+  },
+  "default_capture_environment": {
+    "image_id": null,
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scanpy": "1.12.4",
+      "scvi-tools": "1.5.1",
+      "torch": "2.14.0+cpu"
+    },
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.36",
+    "py_env_version": "2026.09.1",
+    "python": "3.12.13"
+  },
+  "default_capture_status": "captured_locked_container",
+  "language": "python",
+  "module": "scanpy-purity",
+  "note": "Default formals were read from the pinned installed packages. Explicit scientific choices remain those recorded by the source; capturing signatures alone is not numerical acceptance.",
+  "package_versions": {
+    "anndata": "0.13.3.post0",
+    "scanpy": "1.12.4",
+    "scikit-learn": "1.9.1"
+  }
+}

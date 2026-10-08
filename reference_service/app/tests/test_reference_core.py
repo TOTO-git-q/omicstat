@@ -50,10 +50,11 @@ class ReferenceCoreTests(unittest.TestCase):
 
     def test_registry_is_the_method_map_not_the_seed(self) -> None:
         status = self.store.status()
-        self.assertEqual(38, status["registered_modules"])
+        self.assertEqual(41, status["registered_modules"])
         self.assertEqual({"deseq2-wald": 3, "scran-cluster": 1, "seurat-qc": 2}, status["module_counts"])
         self.assertIn("limma-voom", status["modules_without_curated_evidence"])
-        self.assertEqual(35, len(status["modules_without_curated_evidence"]))
+        self.assertEqual(38, len(status["modules_without_curated_evidence"]))
+        self.assertTrue({"scanpy-annotate", "scanpy-purity", "scanpy-ingest"}.issubset(status["modules_without_curated_evidence"]))
         rules = json.loads((ROOT / "decision_rules.json").read_text(encoding="utf-8"))
         self.assertEqual({}, rules["modules"])
         self.assertEqual(4, len(rules["reusable_covariate_goals"]))

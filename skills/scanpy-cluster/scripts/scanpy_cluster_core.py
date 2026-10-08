@@ -2,11 +2,11 @@
 from ospy import sc_module as S, native_options as N
 from ospy.errors import OmicstatError
 
-MODULE_VERSION = "1.0.1"
+MODULE_VERSION = "1.1.0"
 
 
 def validate(a):
-    if a["n-pcs"] >= a["n-hvg"]:
+    if not a.get("use-rep") and a["n-pcs"] >= a["n-hvg"]:
         raise OmicstatError("OS_INVALID_PARAMETER", "--n-pcs must be smaller than --n-hvg.")
 
 
@@ -15,9 +15,9 @@ def compute(adata, a, upstream):
     import numpy as np
     import pandas as pd
     import scanpy as sc
-    if a["n-pcs"] >= min(adata.n_obs, adata.n_vars) or a["n-hvg"] > adata.n_vars or a["n-neighbors"] >= adata.n_obs:
+    if (not a["use-rep"] and a["n-pcs"] >= min(adata.n_obs, adata.n_vars)) or a["n-hvg"] > adata.n_vars or a["n-neighbors"] >= adata.n_obs:
         raise OmicstatError("OS_INVALID_PARAMETER", "PCs, HVGs and neighbors exceed the supplied data dimensions.")
-    if adata.n_obs * a["n-hvg"] > 100_000_000:
+    if not a["use-rep"] and adata.n_obs * a["n-hvg"] > 100_000_000:
         raise OmicstatError("OS_RESOURCE_LIMIT", "centered PCA is limited to 100 million cell-by-HVG values; prespecify fewer HVGs or use a smaller cohort.")
     if a["hvg-batch-col"]:
         S.require_columns(adata.obs, [a["hvg-batch-col"]])
@@ -33,20 +33,28 @@ def compute(adata, a, upstream):
     sc.pp.highly_variable_genes(adata=adata, layer="counts" if options["hvg-flavor"] in ("seurat_v3", "seurat_v3_paper") else None, n_top_genes=a["n-hvg"], min_disp=0.5, max_disp=np.inf,
                                min_mean=0.0125, max_mean=3.0, span=options['hvg-span'], n_bins=options['hvg-n-bins'], flavor=options['hvg-flavor'],
                                subset=False, inplace=True, batch_key=a["hvg-batch-col"], filter_unexpressed_genes=None, check_values=True)
-    if int(adata.var["highly_variable"].sum()) <= a["n-pcs"]:
+    if not a["use-rep"] and int(adata.var["highly_variable"].sum()) <= a["n-pcs"]:
         raise OmicstatError("OS_NUMERICAL_DEGENERACY", "too few variable genes for the requested PCA.")
-    work = adata[:, adata.var["highly_variable"].to_numpy()].copy()
-    if a["scale"] == "on":
-        sc.pp.scale(work, zero_center=options['scale-zero-center'], max_value=a["scale-max"], copy=False, layer=None, obsm=None, mask_obs=None)
-    sc.pp.pca(data=work, n_comps=a["n-pcs"], zero_center=options['pca-zero-center'], svd_solver=options['pca-svd-solver'], random_state=a["seed"],
-              return_info=False, mask_var=None, use_highly_variable=None, dtype=options['pca-dtype'], copy=False,
-              chunked=False, chunk_size=None, layer=None, obsm=None, key_added=None)
-    scores, loadings = S.canonical_pca(work.obsm["X_pca"], work.varm["PCs"])
-    adata.obsm["X_pca"] = scores
-    adata.varm["PCs"] = np.zeros((adata.n_vars, a["n-pcs"]), dtype=loadings.dtype)
-    adata.varm["PCs"][adata.var["highly_variable"].to_numpy()] = loadings
-    adata.uns["pca"] = work.uns["pca"]
-    sc.pp.neighbors(adata=adata, n_neighbors=a["n-neighbors"], n_pcs=a["n-pcs"], distances=None, use_rep="X_pca", knn=True,
+    if a["use-rep"]:
+        if a["use-rep"] not in adata.obsm:
+            raise OmicstatError("OS_MISSING_REDUCTION", "use-rep is absent from obsm.")
+        scores = np.asarray(adata.obsm[a["use-rep"]])
+        if scores.ndim != 2 or not np.isfinite(scores).all():
+            raise OmicstatError("OS_INVALID_INPUT", "use-rep must contain finite cell coordinates.")
+        work = adata[:, adata.var["highly_variable"].to_numpy()]
+    else:
+        work = adata[:, adata.var["highly_variable"].to_numpy()].copy()
+        if a["scale"] == "on":
+            sc.pp.scale(work, zero_center=options['scale-zero-center'], max_value=a["scale-max"], copy=False, layer=None, obsm=None, mask_obs=None)
+        sc.pp.pca(data=work, n_comps=a["n-pcs"], zero_center=options['pca-zero-center'], svd_solver=options['pca-svd-solver'], random_state=a["seed"],
+                  return_info=False, mask_var=None, use_highly_variable=None, dtype=options['pca-dtype'], copy=False,
+                  chunked=False, chunk_size=None, layer=None, obsm=None, key_added=None)
+        scores, loadings = S.canonical_pca(work.obsm["X_pca"], work.varm["PCs"])
+        adata.obsm["X_pca"] = scores
+        adata.varm["PCs"] = np.zeros((adata.n_vars, a["n-pcs"]), dtype=loadings.dtype)
+        adata.varm["PCs"][adata.var["highly_variable"].to_numpy()] = loadings
+        adata.uns["pca"] = work.uns["pca"]
+    sc.pp.neighbors(adata=adata, n_neighbors=a["n-neighbors"], n_pcs=None if a["use-rep"] else a["n-pcs"], distances=None, use_rep=a["use-rep"] or "X_pca", knn=True,
                     method=options['neighbors-method'], transformer=options['neighbors-transformer'], metric=options['neighbors-metric'], metric_kwds=options['neighbors-metric-kwds'], random_state=a["seed"],
                     key_added=None, copy=False)
     sc.tl.leiden(adata=adata, resolution=a["resolution"], restrict_to=None, random_state=a["seed"],
@@ -60,11 +68,12 @@ def compute(adata, a, upstream):
     cells = S.embedding_frame(adata, a["cluster-col"])
     cells[a["sample-col"]] = adata.obs[a["sample-col"]].astype(str).to_numpy()
     hvg = adata.var.reset_index(names="feature_id")
-    pca = pd.DataFrame(scores, columns=["PC%d" % (i+1) for i in range(scores.shape[1])])
+    pca = pd.DataFrame(scores, columns=[("coordinate_%d" if a["use-rep"] else "PC%d") % (i+1) for i in range(scores.shape[1])])
     pca.insert(0, "cell", adata.obs_names.astype(str))
-    variance = pd.DataFrame({"component": range(1, scores.shape[1]+1), "variance_ratio": adata.uns["pca"]["variance_ratio"]})
-    return {"adata": adata, "tables": {"cell_metadata": cells, "variable_genes": hvg, "pca": pca, "pca_variance": variance},
-            "summary": {"native_options": N.serializable(options), "n_hvg": int(work.n_vars), "n_pcs": a["n-pcs"], "n_clusters": len(mapping),
-                        "cluster_mapping": mapping, "normalization": "normalize_total followed by log1p", "scaled": a["scale"] == "on"},
+    variance = pd.DataFrame({"component": range(1, scores.shape[1]+1), "variance_ratio": np.var(scores, axis=0) / np.var(scores, axis=0).sum() if a["use-rep"] else adata.uns["pca"]["variance_ratio"]})
+    coordinate_tables = {"representation_scores": pca, "representation_variance": variance.rename(columns={"variance_ratio": "coordinate_variance_fraction"})} if a["use-rep"] else {"pca": pca, "pca_variance": variance}
+    return {"adata": adata, "tables": {"cell_metadata": cells, "variable_genes": hvg, **coordinate_tables},
+            "summary": {"native_options": N.serializable(options), "n_hvg": int(work.n_vars), "n_pcs": scores.shape[1], "use_rep": a["use-rep"], "n_clusters": len(mapping),
+                        "cluster_mapping": mapping, "normalization": "normalize_total followed by log1p", "scaled": not a["use-rep"] and a["scale"] == "on", "representation_reused": bool(a["use-rep"])},
             "state": {"normalized": "normalize_total_log1p", "normalized_layer": "logcounts", "raw_counts_layer": "counts",
                       "clusters": a["cluster-col"], "reduction": "X_umap", "batch_corrected_lineage": False}}

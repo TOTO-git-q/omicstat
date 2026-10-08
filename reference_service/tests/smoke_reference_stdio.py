@@ -64,7 +64,7 @@ async def run(params: StdioServerParameters, remote: bool) -> dict:
 
             status = await call(session, "reference_status", {})
             assert status["curated"]["counts"] == {"papers": 0, "usages": 0, "decisions": 0}, status["curated"]
-            assert status["curated"]["registered_modules"] == 38, status["curated"]
+            assert status["curated"]["registered_modules"] == 41, status["curated"]
             assert status["interface"]["server"] == "omicstat_reference", status["interface"]
             assert status["discovery"]["quota_basis"] == "screened_only", status["discovery"]
             assert status["interface"]["search_columns"] == ["curated", "reviewed_supplement", "discovery"]

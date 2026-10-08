@@ -122,6 +122,8 @@ read_handoff <- function(from_run, expect = list(), front_end_ecosystem = NULL, 
     if (!identical(.os_sha(p), o$sha256)) stop(sprintf("OS_HANDOFF_MISMATCH: sha256 of '%s' differs from handoff.json (file changed after the upstream run).", nm), call. = FALSE)
     out[[nm]] <- list(path = normalizePath(p, winslash = "/"), type = o$type, sha256 = o$sha256)
   }
+  if (isTRUE(doc$state$display_only) && length(expect))
+    stop("OS_DISPLAY_ONLY_INPUT: display-curated objects cannot enter proportions, pseudobulk, markers or DE.", call. = FALSE)
   lineage <- isTRUE(doc$state$batch_corrected_lineage)
   for (nm in names(expect)) {
     if (!nm %in% names(out)) stop(sprintf("OS_HANDOFF_MISMATCH: upstream run has no object '%s'.", nm), call. = FALSE)
@@ -147,6 +149,8 @@ read_handoff <- function(from_run, expect = list(), front_end_ecosystem = NULL, 
 # batch-corrected object, or any data object of a corrected lineage, before
 # it can enter inference (S1 sva-batch P-1; SUITE rule 7; S4 contract c).
 os_handoff_assert_uncorrected <- function(upstream, name, purpose = "inference") {
+  if (isTRUE(upstream$state$display_only))
+    stop("OS_DISPLAY_ONLY_INPUT: display-curated objects cannot enter proportions, pseudobulk, markers or DE.", call. = FALSE)
   o <- upstream$objects[[name]]
   if (is.null(o)) stop(sprintf("OS_HANDOFF_MISMATCH: upstream run has no object '%s'.", name), call. = FALSE)
   if (identical(o$type, OS_BATCH_CORRECTED_TYPE) || isTRUE(upstream$state$batch_corrected_lineage)) {

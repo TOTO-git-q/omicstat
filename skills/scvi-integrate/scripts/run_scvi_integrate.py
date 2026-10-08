@@ -14,6 +14,9 @@ from scvi_integrate_report import report
 from scvi_integrate_qc import qc
 SPEC = A.os_arg_spec(usage="python run_scvi_integrate.py --input <h5ad>|--from-run <dir> --outdir <dir> [options]",
     description='Integrate multiple batches using a CPU scVI latent model', flags=S.common_flags() + [
+        A.os_flag('latent-from-run', 'path', must_exist=True, help='reuse matched or subset cells from an earlier scvi-integrate run; no training'),
+        A.os_flag('leiden-resolution', 'num', range=(0.0001, 100), help='optional explicit Leiden resolution on scvi_neighbors'),
+        A.os_flag('scvi-cluster-col', 'string', help='new column for optional scVI-graph Leiden; requires leiden-resolution'),
         A.os_flag('batch-col', 'string', help='nuisance batch variable; not an unexamined biological condition', required=True),
         A.os_flag('cluster-col', 'string', help='existing descriptive cluster metadata', required=True),
         A.os_flag('max-epochs', 'int', help='explicit CPU training budget', required=True, range=(1, 400)),

@@ -2,7 +2,7 @@
 
 **Locked, evidence-anchored omics analysis modules behind one MCP server.**
 
-omicstat wraps the official workflow of one R or Python package *analysis part* per module — DESeq2 Wald, limma-voom, clusterProfiler ORA, Seurat clustering, muscat pseudobulk, CellChat, WGCNA, … 38 modules in all — and freezes each one so that the same input and the same choices give the same numbers on any machine, and any drift is caught mechanically. An LLM (or a person) calls the modules through five generic MCP tools; the modules return tables, figures in one journal style, QC findings, a filled Methods/Results draft, and a provenance record that lets every reported number be traced to its source.
+omicstat wraps the official workflow of one R or Python package *analysis part* per module — DESeq2 Wald, limma-voom, clusterProfiler ORA, Seurat clustering, muscat pseudobulk, CellChat, WGCNA, … 38 analysis modules plus 3 display modules — and freezes each one so that the same input and the same choices give the same numbers on any machine, and any drift is caught mechanically. An LLM (or a person) calls the modules through five generic MCP tools; the modules return tables, figures in one journal style, QC findings, a filled Methods/Results draft, and a provenance record that lets every reported number be traced to its source.
 
 omicstat does **not** invent statistics. It runs the package the way its authors' vignette runs it, exposes every result-affecting argument as an explicit option, and refuses to decide scientific judgements on the caller's behalf.
 
@@ -33,6 +33,7 @@ Every module ships: `SKILL.md` (what it does, every option, when to choose which
 | Single cell, scverse lane (5, Python) | `scanpy-qc` `scanpy-cluster` `scanpy-markers` `scvi-integrate` `scanvi-annotate` |
 | Single-cell back ends, ecosystem-neutral (6) | `singler-annotate` `muscat-pseudobulk` `speckle-propeller` `monocle3-trajectory` `slingshot-trajectory` `cellchat-communication` |
 | Network, mutation, infiltration (3) | `wgcna-network` `maftools-landscape` `immunedeconv-infiltration` |
+| Single-cell display, scverse (3, Python) | `scanpy-annotate` (describe clusters with a marker panel and a user label map) `scanpy-purity` (neighbour-purity and island diagnostics for display clean-up) `scanpy-ingest` (project a query onto a fixed reference UMAP) — outputs carry a `display_only` mark that the inference modules refuse |
 | Utilities | `omicstat` (the router: a map, no engine) · `omicstat-selftest` · `omicstat-selftest-py` |
 
 Modules chain with `--from-run <previous run directory>`: the hand-off verifies every file hash, the object type, the StudyContract, the front-end ecosystem (a chain never silently switches between Seurat, Bioconductor and scverse) and the batch-correction lineage (a batch-corrected matrix is for display and scoring only and never enters a differential test).
@@ -97,7 +98,7 @@ bin/omicstat-r-route.sh python skills/scanpy-qc/scripts/run_scanpy_qc.py \
 
 ## Figures
 
-All figures go through one layer (`skills/_shared/scripts/fig_*.R`, rules in `skills/_shared/docs/FIGURE_STYLE.md`): print-size presets for Nature / Cell / Science / generic, fixed fonts and point sizes, a fixed palette (up `#B2182B`, down `#2166AC`, non-significant grey, Okabe–Ito for conditions, viridis for continuous values), colour registries that travel along a chain so the same cell type keeps its colour from UMAP to proportion bar to heatmap, automatic captions from the plotted data, byte-identical re-renders, and a lint that refuses a figure with clipped or sub-5-pt text. Python modules emit figure requests that the same R layer renders. Examples: `docs/figure-gallery/`.
+All figures go through one layer (`skills/_shared/scripts/fig_*.R`, rules in `skills/_shared/docs/FIGURE_STYLE.md`): print-size presets for Nature / Cell / Science / generic, fixed fonts and point sizes, a fixed palette (up `#B2182B`, down `#2166AC`, non-significant grey, Okabe–Ito for conditions, viridis for continuous values), colour registries that travel along a chain so the same cell type keeps its colour from UMAP to proportion bar to heatmap, automatic captions from the plotted data, byte-identical re-renders, and a lint that refuses a figure with clipped or sub-5-pt text. Python modules emit figure requests that the same R layer renders. Single-cell embeddings can label each group on its largest island, take a fixed colour registry, cap points per group for display only, and draw labels with a white halo and collision avoidance (`--label-style halo`; the default output is unchanged). Examples: `docs/figure-gallery/`.
 
 ## Parameter policy and the reference companion
 
@@ -109,16 +110,16 @@ To help choose, `reference_service/` is a separate MCP companion (`reference_sea
 
 `omicstat_validate_publication` and the on-disk `publication/` record apply universal rules (module sealed, run exited cleanly, artefacts present, canonical tables validate against the shared schema, no cross-table value conflicts) and two traceability checks ported from medstat: every number in the drafts and captions must be traceable to a table, result scalar or QC evidence; reported denominators must agree with the inclusion/exclusion ledger (features filtered, cells retained, samples per group). A run is `ready_for_manuscript_integration` only when nothing remains for human review.
 
-## Status (2026-10-05)
+## Status (2026-10-09)
 
 | Check | Result |
 |---|---|
-| Modules installed | 38 analysis modules + 2 self-tests; 39/39 module locks verified |
-| R suite (`env/test.sh`, locked container) | ALL PASSED, 189 commands, 0 skipped for missing packages; the only failing assertions are the two documented sva-batch A6a anchors (a vignette-printed `num.sv` that differs by numerical noise; kept visible on purpose) |
-| Python suite | 31 commands ALL PASSED |
+| Modules installed | 38 analysis modules + 3 display modules + 2 self-tests; 42/42 module locks verified |
+| R suite (`env/test.sh`, locked container) | ALL PASSED, 201 commands, 0 skipped for missing packages; the only failing assertions are the two documented sva-batch A6a anchors (a vignette-printed `num.sv` that differs by numerical noise; kept visible on purpose) |
+| Python suite | 43 commands ALL PASSED |
 | MCP end to end (host stdio, both containers) | 99/99 assertions (3 native-engine checks skipped on a container-only host) |
-| Router blind reading (133 questions, blinded reader) | 92.5 % first choice (gate 90 %), 99.2 % within acceptable (gate 98 %) — `docs/build/ROUTING_BLIND_EVAL.md` |
-| Independent review | every module passed an independent S3 review on the locked image after its build; repair lists and verdicts are under `acceptance/exemplars/<module>/` |
+| Router blind reading (139 questions, blinded reader) | 92.8 % first choice (gate 90 %), 100 % within acceptable (gate 98 %) — `docs/build/ROUTING_BLIND_EVAL.md`, `docs/build/UMAP_DISPLAY_REPORT.md` |
+| Independent review | every analysis module passed an independent S3 review on the locked image after its build; repair lists and verdicts are under `acceptance/exemplars/<module>/`. The three display modules (2026-10-08) are sealed and tested but still await their independent review |
 
 Not yet done: an end-to-end run on a real study from raw data to a complete manuscript draft (planned); a few owner-level scientific choices remain open and are listed in `SUITE.md` (they are handled safely in code — refused or required — never decided silently).
 
@@ -129,7 +130,7 @@ Each module's `acceptance/exemplars/<module>/` holds the evidence pack used to b
 ## Repository layout
 
 ```
-skills/<module>/        38 analysis modules, the router (skills/omicstat) and two self-tests
+skills/<module>/        38 analysis + 3 display modules, the router (skills/omicstat) and two self-tests
 skills/_shared/         figure layer, feature/effect tables, hand-off contract, engine-warning capture,
                         report rendering, conversion between Seurat / SCE / AnnData, Python counterpart (py/ospy),
                         schemas, publication rule catalogues, docs (FIGURE_STYLE, CONVENTIONS)

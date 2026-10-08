@@ -1285,8 +1285,9 @@ def _python_env_probe(engine: str) -> Dict[str, Any]:
             lane = json.load(fh).get("python_lane") or {}
     except (OSError, ValueError):
         lane = {}
+    user_flags = [] if IS_WINDOWS else ["--user", "%s:%s" % (os.getuid(), os.getgid())]
     cmd = (_router_cmd() + ["python", "-c", _PY_PROBE] if engine == "native" else
-           docker + ["run", "--rm", "--network", "none", image, "python", "-c", _PY_PROBE])
+           docker + ["run", "--rm", "--network", "none"] + user_flags + [image, "python", "-c", _PY_PROBE])
     found: Dict[str, Any] = {}
     try:
         result = subprocess.run(cmd, stdin=subprocess.DEVNULL, env=_engine_env(engine), capture_output=True,
@@ -1326,8 +1327,9 @@ def _software_versions(engine: str, module: Optional[str] = None) -> Dict[str, A
         image = _image_name()
     except (OSError, ValueError, KeyError):
         image = "omicstat-r:unknown"
+    user_flags = [] if IS_WINDOWS else ["--user", "%s:%s" % (os.getuid(), os.getgid())]
     probe_cmd = (_router_cmd() + ["Rscript", "-e", r_probe] if engine == "native" else
-                 docker + ["run", "--rm", "--network", "none", image, "Rscript", "-e", r_probe])
+                 docker + ["run", "--rm", "--network", "none"] + user_flags + [image, "Rscript", "-e", r_probe])
     r_version = "unknown"
     r_session_lines: List[str] = []
     r_packages: Dict[str, str] = {}

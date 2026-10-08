@@ -1,0 +1,57 @@
+{
+  "before": {
+    "n": 139,
+    "primary": 124,
+    "acceptable": 133,
+    "misses": [
+      {
+        "id": "U001",
+        "answer": {
+          "out_of_scope": "Manual marker-panel annotation with a supplied cluster label map has no implemented routing target; SingleR requires reference-based annotation."
+        },
+        "expected": "scanpy-annotate"
+      },
+      {
+        "id": "U002",
+        "answer": {
+          "out_of_scope": "Neighbour-purity display curation and isolated-UMAP-cell filtering have no implemented routing target."
+        },
+        "expected": "scanpy-purity"
+      },
+      {
+        "id": "U003",
+        "answer": {
+          "out_of_scope": "Projection onto a fixed reference UMAP with scanpy ingest has no implemented routing target."
+        },
+        "expected": "scanpy-ingest"
+      },
+      {
+        "id": "U004",
+        "answer": {
+          "out_of_scope": "Manual marker-panel annotation with a supplied cluster label map has no implemented routing target; SingleR requires reference-based annotation."
+        },
+        "expected": "scanpy-annotate"
+      },
+      {
+        "id": "U005",
+        "answer": {
+          "out_of_scope": "Neighbour-purity display curation and isolated-UMAP-cell filtering have no implemented routing target."
+        },
+        "expected": "scanpy-purity"
+      },
+      {
+        "id": "U006",
+        "answer": {
+          "out_of_scope": "Projection onto a fixed reference UMAP with scanpy ingest has no implemented routing target."
+        },
+        "expected": "scanpy-ingest"
+      }
+    ]
+  },
+  "after": {
+    "n": 139,
+    "primary": 129,
+    "acceptable": 139,
+    "misses": []
+  }
+}

@@ -43,3 +43,5 @@ Policy: function defaults from the locked version; official tutorial departures 
 | `scanpy.tl.umap` | `a`, `adata`, `alpha`, `b`, `copy`, `gamma`, `init_pos`, `key_added`, `maxiter`, `method`, `min_dist`, `n_components`, `negative_sample_rate`, `neighbors_key`, `random_state`, `spread` |
 
 Every call expression is retained in calls_registry.json. Locked default-formal capture and drift checking remain mandatory; an API-doc URL is not a substitute for execution in the pinned image.
+
+With `--use-rep`, PCA-specific settings are inactive, while normalization/HVG diagnostics remain. Tables `representation_scores.csv` and `representation_variance.csv` describe supplied coordinates and their variance fractions, not PCA explained variance. The default PCA tables and guards are unchanged.

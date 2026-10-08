@@ -343,6 +343,25 @@ for kind, value in [('object', '[]'), ('list', '{}'), ('list', '[1]'), ('groups'
     except OmicstatError as exc:
         check('OS_INVALID_PARAMETER' in str(exc), 'invalid native option raises OS_INVALID_PARAMETER')
 
+# Opt-in embedding label style: shared flag, default "plain" adds nothing to the request.
+from ospy import sc_module as SCM
+style = [f for f in SCM.common_flags() if f.name == "label-style"]
+check(len(style) == 1 and style[0].default == "plain" and style[0].values == ["plain", "halo"],
+      "every Python single-cell module exposes --label-style (default plain)")
+try:
+    import pandas  # noqa: F401
+    from ospy.display import embedding_data
+    frame = {"emb": FR.frame(pandas.DataFrame({"x": [0.0, 1.0], "y": [0.0, 1.0], "type": ["A", "B"]}))}
+    _, kw_plain = embedding_data(frame, {"group_col": "type"}, {"seed": 1, "label-style": "plain"})
+    _, kw_none = embedding_data(frame, {"group_col": "type"}, {"seed": 1})
+    _, kw_halo = embedding_data(frame, {"group_col": "type"}, {"seed": 1, "label-style": "halo"})
+    _, kw_nolab = embedding_data(frame, {"group_col": "type", "label": False}, {"seed": 1, "label-style": "halo"})
+    check(kw_plain == kw_none == {"group_col": "type"}, "default label style leaves the figure request arguments unchanged")
+    check(kw_halo == {"group_col": "type", "label_style": "halo"}, "--label-style halo is passed to os_embedding as label_style")
+    check("label_style" not in kw_nolab, "label style is not requested when labels are off")
+except ImportError:
+    SKIPS.append("label-style figure request plumbing (pandas not installed)")
+
 shutil.rmtree(TMP, ignore_errors=True)
 for s in SKIPS:
     print("SKIP:", s)

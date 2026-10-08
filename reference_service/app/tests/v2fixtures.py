@@ -53,6 +53,8 @@ ALL_SIGNALS = " ".join([
     "scanpy rank_genes_groups found marker genes with the Wilcoxon test.",
     "scVI latent space integration removed batch effects.",
     "scANVI label transfer performed cell type annotation.",
+    "scanpy annotation used marker genes and neighbor purity for descriptive cell type curation.",
+    "scanpy ingest performed fixed-reference label transfer.",
 ])
 
 # A synthetic meta-analysis profile: no omicstat module uses the meta_filter path, but the gate code

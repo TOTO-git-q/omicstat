@@ -9,3 +9,11 @@ Counts were processed with scanpy.pp.normalize_total, log1p and highly_variable_
 ```template results
 {n_cells} cells from {n_samples} samples were assigned to {n_clusters} descriptive clusters. PCA and UMAP are exploratory summaries, not independent evidence of condition-specific effects.
 ```
+
+```template methods_rep
+Counts were normalized and log-transformed with the declared arguments; {n_hvg} variable genes were recorded for expression diagnostics. Existing representation {use_rep} ({n_pcs} dimensions) entered neighbors, Leiden and UMAP without recomputing PCA or scaling. PCA-specific requested settings were inactive. Counts and transformed expression were retained; the partition and embedding are descriptive.
+```
+
+```template results_rep
+{n_cells} cells from {n_samples} samples were assigned to {n_clusters} descriptive clusters using {use_rep}. The supplied representation and UMAP are exploratory summaries, not independent evidence of condition-specific effects.
+```

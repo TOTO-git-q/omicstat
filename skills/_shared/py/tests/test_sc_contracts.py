@@ -196,3 +196,94 @@ def test_layout_and_registry_have_no_fake_seal(module):
     if registry['default_capture_status'] == 'pending_locked_container':
         assert not (folder / 'module_lock.json').exists()
         assert all('function_default' not in arg for call in registry['calls'] for arg in call['args'].values())
+
+
+def test_largest_island_labels_do_not_land_between_islands():
+    from ospy.display import largest_island_medians
+    frame = pd.DataFrame({'x': [0, .1, -.1, .2, 10, 10.1],
+                          'y': [0, .1, -.1, .2, 0, .1], 'type': ['A'] * 6})
+    result = largest_island_medians(frame, 'type', eps=.5, min_samples=2)
+    assert result.loc[0, 'label_island_n'] == 4
+    np.testing.assert_allclose(result.loc[0, ['x', 'y']].astype(float), [.05, .05], atol=1e-12, rtol=1e-12)
+    assert not result.loc[0, 'label_fallback']
+
+
+def test_seeded_python_palette_reads_the_authoritative_r_tokens():
+    from ospy.display import category_palette
+    palette = category_palette()
+    assert len(palette) == 23 and palette[0] == '#0072B2'
+
+
+def test_drawing_cap_does_not_change_the_largest_label_island():
+    from ospy.display import embedding_data
+    frame = pd.DataFrame({'x': [0, .1, -.1, .2, 10, 10.1],
+                          'y': [0, .1, -.1, .2, 0, .1], 'type': ['A'] * 6})
+    data, _ = embedding_data({'emb': F.frame(frame)}, {'group_col': 'type'},
+                             {'seed': 1, 'display-max-per-group': 1,
+                              'label-placement': 'largest-island',
+                              'label-island-eps': .5, 'label-island-min-samples': 2})
+    label = pd.DataFrame(data['label_xy']['data'])
+    assert len(pd.DataFrame(data['emb']['data'])) == 1 and len(frame) == 6
+    assert label.loc[0, 'label_island_n'] == 4
+    assert not label.loc[0, 'label_fallback']
+    np.testing.assert_allclose(label.loc[0, ['x', 'y']].astype(float), [.05, .05], atol=1e-12, rtol=1e-12)
+
+
+def test_latent_reuse_refuses_missing_cells_before_graph_rebuild(tmp_path, monkeypatch):
+    import importlib.util
+    import anndata as ad
+    core_path = ROOT / 'skills/scvi-integrate/scripts/scvi_integrate_core.py'
+    spec = importlib.util.spec_from_file_location('reuse_core', core_path)
+    core = importlib.util.module_from_spec(spec); spec.loader.exec_module(core)
+    current = ad.AnnData(np.ones((3, 2)), obs=pd.DataFrame({'batch': ['a', 'b', 'a'], 'cluster': ['x', 'y', 'x']}, index=['c0', 'c1', 'c2']))
+    current.obsm['X_umap'] = np.zeros((3, 2)); current.obsp['connectivities'] = sparse.eye(3, format='csr')
+    previous = current[:2].copy(); previous.obsm['X_scVI'] = np.zeros((2, 2))
+    from ospy import display
+    monkeypatch.setattr(display, 'read_run', lambda path: (previous, {'module': 'scvi-integrate'}))
+    from ospy import native_options
+    monkeypatch.setattr(native_options, 'resolve', lambda a, definitions: {})
+    a = {'batch-col': 'batch', 'cluster-col': 'cluster', 'n-neighbors': 2, 'counts-layer': 'X',
+         'features-file': None, 'latent-from-run': str(tmp_path)}
+    with pytest.raises(OmicstatError, match='OS_CELL_MISMATCH'):
+        core.compute(current, a, None)
+
+
+def test_cell_list_accepts_quoted_csv_cell_column_without_silent_drops(tmp_path):
+    from ospy.display import read_cells
+    path = tmp_path / 'retained.csv'
+    path.write_text('"cell","note"\n"c1","retained"\n"c2","retained"\n')
+    assert read_cells(path) == ['c1', 'c2']
+    path.write_text('"cell","note"\n"","missing ID"\n')
+    with pytest.raises(OmicstatError, match='OS_INVALID_INPUT'):
+        read_cells(path)
+
+
+def test_ingest_preserves_unseen_query_labels_in_combined_metadata(tmp_path, monkeypatch):
+    import importlib.util
+    import anndata as ad
+    import scanpy as sc
+    core_path = ROOT / 'skills/scanpy-ingest/scripts/scanpy_ingest_core.py'
+    spec = importlib.util.spec_from_file_location('ingest_core', core_path)
+    core = importlib.util.module_from_spec(spec); spec.loader.exec_module(core)
+    reference = ad.AnnData(np.ones((2, 2)),
+                           obs=pd.DataFrame({'celltype': pd.Categorical(['A', 'A'], categories=['A', 'Unused'])}, index=['r0', 'r1']),
+                           var=pd.DataFrame(index=['g0', 'g1']))
+    query = ad.AnnData(np.ones((2, 2)),
+                       obs=pd.DataFrame({'celltype': pd.Categorical(['Novel', 'Novel'])}, index=['q0', 'q1']),
+                       var=pd.DataFrame(index=['g0', 'g1']))
+    reference.obsm['X_known'] = np.array([[0, 0], [1, 0]], dtype=np.float32)
+    reference.obsm['X_umap'] = reference.obsm['X_known'].copy()
+    query.obsm['X_known'] = np.array([[.1, 0], [.9, 0]], dtype=np.float32)
+    reference.uns['neighbors'] = {'params': {'use_rep': 'X_known', 'metric': 'euclidean'}}
+    monkeypatch.setattr(core, 'read_run', lambda path: (reference, {'state': {}}))
+    # Isolate metadata assembly; the module smoke compares real ingest with an independent native replay.
+    def project(adata, **kwargs):
+        adata.obsm['X_umap'] = adata.obsm['X_known'].copy()
+    monkeypatch.setattr(sc.tl, 'ingest', project)
+    result = core.compute(query, {'reference-run': str(tmp_path), 'label-col': 'celltype',
+                                 'species': 'human', 'annotation': 'fixture', 'neighbors-key': 'neighbors',
+                                 'n-neighbors': 2, 'queue-size': 4, 'epsilon': .1, 'seed': 1}, None)
+    combined = result['tables']['cell_metadata']
+    assert combined['celltype'].astype(str).tolist() == ['A', 'A', 'Novel', 'Novel']
+    assert combined['celltype'].cat.categories.tolist() == ['A', 'Novel']
+    np.testing.assert_array_equal(result['tables']['projected_cells']['same_label_reference_fraction'], [0., 0.])

@@ -1,0 +1,69 @@
+{
+  "caption": "UMAP embedding of 6,000 cells coloured by celltype (10 categories). Category names are placed at the median position of their cells. Labels carry a white halo and are spaced apart by deterministic repulsion (fixed seed); a thin leader joins a moved label to its anchor.",
+  "counts": {
+    "B": 798,
+    "CD14 Mono": 1200,
+    "CD4 T": 1429,
+    "CD8 T": 868,
+    "FCGR3A Mono": 419,
+    "NK": 471,
+    "Plasma": 126,
+    "Platelet": 304,
+    "cDC": 254,
+    "pDC": 131
+  },
+  "data": {
+    "n_cells": 6000
+  },
+  "encodings": {
+    "colour": {
+      "B": "#0072B2",
+      "CD14 Mono": "#D55E00",
+      "CD4 T": "#009E73",
+      "CD8 T": "#CC79A7",
+      "FCGR3A Mono": "#E69F00",
+      "NK": "#56B4E9",
+      "Plasma": "#882255",
+      "Platelet": "#44AA99",
+      "cDC": "#332288",
+      "pDC": "#999933"
+    },
+    "point_mm": 0.5
+  },
+  "figure_type": "embedding",
+  "files": {
+    "pdf": {
+      "content_sha256": "235b61d89c865ed83234f4bcda44a87037d84e13bc18348c888e72cec4642269",
+      "exempt": "CreationDate (ENGINEERING_PLAN 3.5)",
+      "path": "33_umap_label_halo.pdf"
+    },
+    "png": {
+      "path": "33_umap_label_halo.png",
+      "sha256": "3ea82e1d3e447a9dc8fc1c87e25b3c03932b0d4f50f81dcb56badaa467110f84"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 80,
+  "journal": "nature",
+  "lint": [
+    {
+      "message": "6 colour pair(s) of different categories closer than CIEDE2000 10 under colour-vision simulation: #44AA99/#CC79A7 (deutan 3.9), #009E73/#44AA99 (tritan 4.9), #999933/#D55E00 (deutan 5.1), #999933/#E69F00 (protan 6.0), #44AA99/#56B4E9 (tritan 7.4), ...",
+      "rule": "FIG-03",
+      "severity": "warning"
+    },
+    {
+      "message": "19 colour pair(s) of different categories closer than CIEDE2000 10 in grayscale: #999933/#CC79A7 (grayscale 0.3), #56B4E9/#E69F00 (grayscale 0.6), #44AA99/#999933 (grayscale 1.9), #44AA99/#CC79A7 (grayscale 2.3), #009E73/#CC79A7 (grayscale 2.7), ...",
+      "rule": "FIG-03",
+      "severity": "info"
+    }
+  ],
+  "notes": {
+    "label_style": "halo",
+    "rasterised_points": false
+  },
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

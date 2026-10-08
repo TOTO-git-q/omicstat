@@ -9,3 +9,7 @@ Raw counts for {n_model_genes} genes were processed with scvi.model.SCVI.setup_a
 ```template results
 {n_cells} cells across {n_batches} batches were represented in {n_latent} latent dimensions. Graph mixing is reported per cell and does not establish preservation of biological signals or removal of all batch effects.
 ```
+
+```template methods_reuse
+Existing X_scVI coordinates were copied by cell ID from the declared latent-from-run source, without training an SCVI model in this run. The selected {n_cells} cells in {n_latent} latent dimensions entered the declared neighbors/UMAP pipeline with seed {seed}. Model architecture, features and training settings in the resolved parameter record were inactive. Counts and carried-over cluster labels were preserved. Display-curated selections are unsuitable for proportions, pseudobulk, markers or differential expression.
+```

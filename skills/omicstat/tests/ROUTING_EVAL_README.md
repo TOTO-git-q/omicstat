@@ -154,14 +154,17 @@ required keys (`id`, `question`, `language`, `expected`, `acceptable`, `family`,
 
 ## Frozen version
 
-- **Date frozen**: 2026-09-29.
+- **Date frozen**: 2026-10-07 (UMAP display lane; original 133 records retained).
 - **Router file hashed**: `skills/omicstat/SKILL.md`.
-- **sha256**: `67bb345a541f7dbd39bfbe05acacb2763516513e7904d8ee69ac4de4545fbbc0`
-- **Router commit at freeze time**: `2ddf174` on `build/m1m2` (the branch point
-  this eval set was written against).
+- **sha256**: `ee9852bc96922cb922ba556ac89bce70ab0a40a1446649cbb7e2b23b9c388c13`
+- **Router revision at freeze time**: `feat/umap-display` working tree, pending the external helper commit; exact before/after hashes are in `docs/build/routing_umap/router_hashes.json`.
 
 If `SKILL.md` changes after this date -- a new module installed, a disambiguation
 tree edited, a pipeline recipe added -- recompute the sha256 (`sha256sum
 skills/omicstat/SKILL.md`) and update the three lines above before treating a
 subsequent G5 run's pass/fail as meaningful. A stale hash here means nobody can
 tell whether a scoring change came from the router or from drift in this file.
+
+## UMAP display lane extension (2026-10-07)
+
+The dataset now contains 139 questions, retaining all 133 existing cases and adding six English/Chinese cases for scanpy-annotate, scanpy-purity and scanpy-ingest. These are three additional display/annotation modules, bringing the method map to 41 targets (plus two utility entries in the router). Blind before/after observations and scoring for the final ASCII router are recorded in docs/build/UMAP_DISPLAY_REPORT.md; the interim after-reading is retained separately.

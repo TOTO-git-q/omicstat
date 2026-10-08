@@ -1,0 +1,123 @@
+{
+  "accessors": [],
+  "calls": [
+    {
+      "args": {
+        "adata": {
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "adata"
+          ],
+          "value": "adata",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "axis": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "'obs'"
+          ],
+          "value": "'obs'",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "by": {
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "a['cluster-col']"
+          ],
+          "value": "a['cluster-col']",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "dof": {
+          "function_default": "1",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "1"
+          ],
+          "value": "1",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "func": {
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "'mean'"
+          ],
+          "value": "'mean'",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "layer": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit user option; see references/options.md",
+          "expressions": [
+            "None if a['expression-layer'] == 'X' else a['expression-layer']"
+          ],
+          "value": "None if a['expression-layer'] == 'X' else a['expression-layer']",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "mask": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "obsm": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        },
+        "varm": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.get.aggregate.html",
+          "source": "explicit descriptive workflow choice or locked default",
+          "expressions": [
+            "None"
+          ],
+          "value": "None",
+          "pack": "UMAP-display worked example / locked API replay"
+        }
+      },
+      "fn": "scanpy.get.aggregate"
+    }
+  ],
+  "captured_signatures": {
+    "scanpy.get.aggregate": "(adata: 'AnnData', by: 'str | Collection[str]', func: 'AggType | Iterable[AggType]', *, axis: \"Literal['obs', 0, 'var', 1] | None\" = None, mask: 'NDArray[np.bool] | str | None' = None, dof: 'int' = 1, layer: 'str | None' = None, obsm: 'str | None' = None, varm: 'str | None' = None) -> 'AnnData'"
+  },
+  "default_capture_environment": {
+    "image_id": null,
+    "packages": {
+      "anndata": "0.13.3.post0",
+      "scanpy": "1.12.4",
+      "scvi-tools": "1.5.1",
+      "torch": "2.14.0+cpu"
+    },
+    "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.36",
+    "py_env_version": "2026.09.1",
+    "python": "3.12.13"
+  },
+  "default_capture_status": "captured_locked_container",
+  "language": "python",
+  "module": "scanpy-annotate",
+  "note": "Default formals were read from the pinned installed packages. Explicit scientific choices remain those recorded by the source; capturing signatures alone is not numerical acceptance.",
+  "package_versions": {
+    "anndata": "0.13.3.post0",
+    "scanpy": "1.12.4"
+  }
+}

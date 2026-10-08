@@ -237,6 +237,7 @@ os_finalize_figure(p, file.path(out_dir, "figures", "volcano"), width = "single"
 ### 8.9 UMAP / t-SNE `os_embedding()`（单栏 × 80 mm）
 - 无坐标轴与刻度，左下角 L 形箭头（长为数据范围 18%）+ “UMAP 1/UMAP 2”（6 pt）。坐标比例固定为数据范围比（不拉伸）。
 - 颜色来自登记表；默认把类别名（6 pt、白色光晕）放在各类细胞坐标的中位点并去掉图例；`label = FALSE` 时图例放右侧（>12 类分两列）。
+- 可选标签样式 `label_style = "halo"`（Python 模块 `--label-style halo`，默认 `plain` 不变）：在文字下叠三层背景色光晕环（`OS_FIG_EXT$label_halo_rings`，ggrepel 单环在大半径会留缝，所以分层），并用同一 ggrepel 层（固定种子、固定迭代数）在标签之间保持 `label_halo_pad_mm` 的间距；标签被推开超过 `label_halo_leader_mm` 时画细引线回锚点。不新增依赖；图注与 `figure_spec.json → notes.label_style` 只在选用时记录。示例：画廊 `33_umap_label_halo`。
 
 ### 8.10 表达 UMAP `os_feature_embedding()`：灰→紫色阶，从 0 到最大值；按表达从低到高绘制；标题为基因名斜体。
 
@@ -560,6 +561,9 @@ os_finalize_figure(p, file.path(out_dir, "figures", "volcano"), width = "single"
 | `layout_sweeps` | 200 | 去重叠的固定扫描次数 |
 | `tree_leaf_mm` | 1.0–3.6 | 术语树叶点直径范围 mm |
 | `gsea_multi_max` | 6 | 多集 GSEA 单面板最多集合数 |
+| `label_halo_rings` | 0.15, 0.30, 0.45 | `os_embedding(label_style = "halo")` 光晕环半径（文字高度的比例；plain 为单环 0.12） |
+| `label_halo_pad_mm` | 1.2 | halo 样式下标签框之间保留的间距 mm |
+| `label_halo_leader_mm` | 2.5 | halo 样式下标签移动超过此距离才画引线 mm |
 
 - 新图型的 `figure_type`：`stacked_violin`、`ridge`、`highlight_embedding`、`alluvial`、`cluster_tree_dotplot`、`density_embedding`、`cnet`、`emap`、`term_tree`、`gsea_multi`（热图扩展仍为 `heatmap` 或调用者的类型）。
 - 新错误码：`OS_FIG_ROW_MISMATCH`（叠加热图行集合或行序不一致）；其余沿用 §12（`OS_INVALID_PARAMETER`、`OS_MISSING_COLUMNS`、`OS_EMPTY_DATA`、`OS_TOO_MANY_CATEGORIES`、`OS_FIG_NON_LATIN_TEXT`）。

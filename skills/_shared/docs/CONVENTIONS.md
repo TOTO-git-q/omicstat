@@ -124,3 +124,11 @@ default markers in those files, not unrestricted template prose.
 ## Marker grouping and scientific refusals
 
 An exposed native option must never bypass a scientific refusal. Marker modules describe cell-level labels, which must vary within at least one sample; sample identity and variables constant within every sample are refused. Without sample information, only the chain’s own cluster column is allowed. Condition effects belong to muscat-pseudobulk (expression) and speckle-propeller (proportions), where samples are the replicates. Cell-level marker P values rank descriptive comparisons and are not evidence of differential expression between biological groups.
+
+## Display versus analysis (UMAP display lane, 2026-10-07)
+
+`scanpy-annotate` records descriptive cluster names and marker-panel evidence; unresolved clusters remain labelled. `scanpy-purity` reports neighbour fractions and isolated-cell flags without subsetting. `scanpy-ingest` projects query cells onto fixed reference coordinates and reports descriptive reference-neighbour agreement.
+
+Purity curation, explicit balanced `--cell-list` selection and ingest set `display_only: true` in both handoff and embedded AnnData state. Python marker input validation and R inference handoff/backend validation refuse these objects with `OS_DISPLAY_ONLY_INPUT` before markers, DE, proportions or pseudobulk. The flag persists through QC and integration reruns. Reuse the original uncurated cohort for inference. A figure-only `--display-max-per-group` cap samples figure data only and cannot alter analysis tables or objects; os_meta/spec/caption record the display cap, denominator and drawn count.
+
+No purity cutoff, density eps/minimum size, display cap or optional scVI Leiden resolution becomes a default. Largest-island label coordinates are supplied from Python; all-cell medians remain the default. Seeded colour registries preserve every supplied colour and may exceed 23 categories when fully specified.

@@ -96,6 +96,8 @@ History: M7 first deployed the base unchanged (vendored, config overlay only; de
 - The fork is ours to edit, but every change must be declared in `FORK_CHANGES.json` with its reason.
   Otherwise `fork_status.py` fails and `stage_build.py` refuses to build.
 - The configuration files (journals, profiles, method map, decision rules, seed, request schema) are
-  written by `build_config.py` from pinned inputs. Do not hand-edit them.
+  written from pinned inputs by `build_config.py`, with the current router and
+  `display_extensions.json` applied by `tools/check_reference_integration.py --write`.
+  New display search profiles are explicitly weak and have no curated evidence. Do not hand-edit generated files.
 - Never port anything from medstat-reference v2.1 (7f0a999 / c1f39aa) until its audit finding is
   fixed and re-audited upstream.

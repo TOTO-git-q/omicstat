@@ -115,3 +115,13 @@ for (sp in specs) {
 writeLines(idx, file.path(out, "README.md"), useBytes = TRUE)
 if (file.exists("Rplots.pdf")) stop("device leak: Rplots.pdf created")
 cat("gallery written to", out, "\n")
+
+# Opt-in explicit largest-island coordinates, preserving default gallery figures.
+mi <- data.frame(x = c(0, .1, -.1, .2, 8, 8.1, 4, 4.1, 3.9, 4.2),
+                 y = c(0, .1, -.1, .2, 0, .1, 4, 4.1, 3.9, 4.2),
+                 celltype = c(rep("A", 6), rep("B", 4)))
+mi_labels <- data.frame(group = c("A", "B"), x = c(.05, 4.05), y = c(.05, 4.05))
+save(os_embedding(mi, "celltype", label_xy = mi_labels), "32_embedding_island_labels")
+
+# Opt-in halo label style (white halo rings + label spacing); default figures unchanged.
+save(os_embedding(emb, "celltype", colour_registry = reg, family = "celltype", label_style = "halo"), "33_umap_label_halo")

@@ -14,6 +14,7 @@ from scanpy_cluster_report import report
 from scanpy_cluster_qc import qc
 SPEC = A.os_arg_spec(usage="python run_scanpy_cluster.py --input <h5ad>|--from-run <dir> --outdir <dir> [options]",
     description='Normalize, find variable genes, cluster and embed AnnData cells', flags=S.common_flags() + [
+        A.os_flag('use-rep', 'string', help='existing obsm representation for neighbors, Leiden and UMAP; skips recomputed PCA'),
         A.os_flag('n-hvg', 'int', help='prespecified highly variable gene count; tutorial examples are not defaults', required=True, range=(3, 100000)),
         A.os_flag('n-pcs', 'int', help='prespecified PCA dimension', required=True, range=(2, 1000)),
         A.os_flag('n-neighbors', 'int', help='prespecified number of neighbors', required=True, range=(2, 1000)),

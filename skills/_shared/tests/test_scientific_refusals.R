@@ -74,3 +74,10 @@ jsonlite::write_json(list(exprMat="replacement",aucMaxRank=1),override_path,auto
 check(grepl("OS_CONFLICTING_PARAMETERS",error(os_bioc_call(function(exprMat,aucMaxRank) exprMat,override_path,exprMat=matrix(1,2,2),aucMaxRank=2))),"supplementary JSON cannot replace or misreport protected native controls")
 if(length(failures)) stop(paste(failures,collapse='; '))
 cat('ALL SCIENTIFIC REFUSAL CHECKS PASSED\n')
+
+# UMAP curation state is rejected before neutral inferential backends.
+display_upstream <- list(module = "scanpy-purity", state = list(display_only = TRUE),
+                         objects = list(adata = list(type = "AnnData")))
+display_message <- tryCatch({ os_handoff_assert_uncorrected(display_upstream, "adata"); "" }, error = conditionMessage)
+stopifnot(grepl("OS_DISPLAY_ONLY_INPUT", display_message, fixed = TRUE))
+cat("PASS: display-only UMAP curation is refused before single-cell inference\n")

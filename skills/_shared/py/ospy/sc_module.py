@@ -33,6 +33,15 @@ def common_flags():
         A.os_flag("sample-col", "string", required=True, help="obs column identifying biological samples"),
         A.os_flag("counts-layer", "string", required=True, help="raw integer count layer; use X explicitly for .X"),
         A.os_flag("seed", "int", default=20260925, range=(0, 2147483647), help="fixed random seed"),
+        A.os_flag("embedding-width", "enum", default="single", values=["single", "onehalf", "double"], help="embedding figure width preset"),
+        A.os_flag("embedding-height-mm", "num", range=(1, 1000), help="explicit embedding figure height in mm"),
+        A.os_flag("colour-registry", "path", must_exist=True, help="seeded figure colour registry JSON"),
+        A.os_flag("cell-list", "path", must_exist=True, help="explicit display-only cell selection; CSV cell column or one ID per line"),
+        A.os_flag("display-max-per-group", "int", range=(1, 2147483647), help="embedding drawing cap only; analysis objects and tables retain all cells"),
+        A.os_flag("label-placement", "enum", default="median", values=["median", "largest-island"], help="embedding label coordinates; largest-island requires explicit DBSCAN parameters"),
+        A.os_flag("label-island-eps", "num", range=(1e-12, 1e12), help="DBSCAN eps in embedding units for largest-island labels"),
+        A.os_flag("label-island-min-samples", "int", range=(1, 2147483647), help="DBSCAN min_samples for largest-island labels"),
+        A.os_flag("label-style", "enum", default="plain", values=["plain", "halo"], help="embedding label rendering; halo adds a white outline and label spacing (display only)"),
         A.os_flag("journal", "enum", default="nature", values=["nature", "cell", "science", "generic"], help="shared R figure preset"),
     ]
 
@@ -152,7 +161,7 @@ def batch_mixing(connectivities, batches):
     return pd.DataFrame({"same_batch_weight_fraction": same, "normalized_batch_entropy": entropy})
 
 
-def read_input(a):
+def read_input(a, module=None):
     if bool(a["input"]) == bool(a["from-run"]):
         raise OmicstatError("OS_MISSING_PARAMETER", "supply exactly one of --input and --from-run.")
     contract_hash = K.sha256_file(a["study-contract"]) if a["study-contract"] else None
@@ -194,7 +203,7 @@ def read_input(a):
             raise OmicstatError("OS_HANDOFF_MISMATCH", "invalid embedded single-cell chain state.") from exc
         if not isinstance(embedded, dict):
             raise OmicstatError("OS_HANDOFF_MISMATCH", "embedded chain state must be an object.")
-        for key in ("front_end_ecosystem", "batch_corrected_lineage", "species", "annotation"):
+        for key in ("front_end_ecosystem", "batch_corrected_lineage", "species", "annotation", "display_only"):
             if key in state and key in embedded and state[key] != embedded[key]:
                 raise OmicstatError("OS_HANDOFF_MISMATCH", "embedded and external chain state disagree on %s." % key)
         state = {**embedded, **state}
@@ -205,6 +214,15 @@ def read_input(a):
     for key in ("species", "annotation"):
         if key in state and state[key] != a[key]:
             raise OmicstatError("OS_HANDOFF_MISMATCH", "declared %s differs from the upstream chain." % key)
+    if module == "scanpy-markers" and (state.get("display_only") is True or a.get("cell-list")):
+        raise OmicstatError("OS_DISPLAY_ONLY_INPUT", "display-curated cells cannot be used for markers or DE; use the uncurated analysis run.")
+    if a.get("cell-list"):
+        from .display import read_cells
+        cells = read_cells(a["cell-list"])
+        if not set(cells).issubset(set(adata.obs_names)):
+            raise OmicstatError("OS_CELL_MISMATCH", "cell-list contains cells absent from the input object.")
+        adata = adata[cells].copy()
+        state = {**state, "display_only": True, "display_selection": "explicit cell-list"}
     if not a.get("purpose") == "cluster-description":
         require_columns(adata.obs, [a["sample-col"]])
     layer(adata, a["counts-layer"], counts=True)
@@ -262,15 +280,44 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
     H.write_handoff(str(outdir), H.os_run_id(str(outdir)), module, module_version, objects,
                     contract_hash=contract_hash, ecosystem="scverse", state=state,
                     upstream_runs=(upstream or {}).get("upstream_runs") or [])
-    request = F.FigureRequest(str(outdir), module, module_version, journal=a["journal"])
+    from . import display as D
+    registry = res.get("colour_registry")
+    if a.get("colour-registry"):
+        registry = D.read_registry(a["colour-registry"])
+    elif registry is None and upstream and "colour_registry" in upstream["objects"]:
+        registry = D.read_registry(upstream["objects"]["colour_registry"]["path"])
+    if registry is not None:
+        registry_path = outdir / "objects/colour_registry.json"
+        K.write_json(registry, str(registry_path))
+        objects["colour_registry"] = {"path": str(registry_path), "type": "colour_registry"}
+        outputs.append("objects/colour_registry.json")
+        H.write_handoff(str(outdir), H.os_run_id(str(outdir)), module, module_version, objects,
+                        contract_hash=contract_hash, ecosystem="scverse", state=state,
+                        upstream_runs=(upstream or {}).get("upstream_runs") or [])
+    request = F.FigureRequest(str(outdir), module, module_version, journal=a["journal"], colour_registry="objects/colour_registry.json" if registry is not None else None)
     for fig_id, builder, data, kwargs in figures:
         selected = {key: a[key] for key in ("min-genes", "max-genes", "min-counts", "max-counts", "max-mito-percent",
                     "min-cells", "doublet-mode", "n-hvg", "n-pcs", "resolution", "n-neighbors", "alpha", "test",
                     "n-latent", "max-epochs", "min-confidence", "scale") if key in a and a[key] is not None}
+        if res["summary"].get("representation_reused"):
+            selected.pop("n-pcs", None)
+        if res["summary"].get("latent_reused"):
+            selected.pop("max-epochs", None)
+            selected.pop("n-latent", None)
         context = ("Analysis: %s; %d retained cells, %d retained genes, %d biological sample(s). Prespecified settings: %s."
                    % (module, adata.n_obs, adata.n_vars, (adata.obs[a["sample-col"]].nunique() if a["sample-col"] in adata.obs else 0),
                       "; ".join("%s=%s" % item for item in selected.items())))
-        request.add(fig_id, builder, data=data, args=kwargs, caption_context=context)
+        if res["summary"].get("latent_reused"):
+            context += " Existing X_scVI coordinates were reused; no model was trained in this run."
+        if res["summary"].get("representation_reused"):
+            context += " The existing representation was used; PCA and scaling were not recomputed."
+        if builder == "os_embedding":
+            data, kwargs = D.embedding_data(data, kwargs, a)
+        if state.get("display_only"):
+            context += " Display only: curated cells must not be used for proportions, pseudobulk, markers or DE."
+        request.add(fig_id, builder, data=data, args=kwargs, caption_context=context,
+                    width=a.get("embedding-width", "single") if builder == "os_embedding" else "single",
+                    height_mm=a.get("embedding-height-mm") if builder == "os_embedding" else None)
     request.write()
     outputs.append(F.REQUEST_REL)
     K.write_qc_results(qc, str(outdir))
@@ -285,8 +332,12 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
     outputs.extend([summary, "qc/qc_results.csv"])
     templates = K.read_templates(str(Path(module_dir)/"references/reporting-templates.md"))
     if not qc["blocking"]:
-        method = K.fill_template(templates["methods"], values)
-        result = K.fill_template(templates["results"], values)
+        methods_template = templates.get("methods_reuse", templates["methods"]) if values.get("latent_reused") else templates["methods"]
+        if values.get("representation_reused"):
+            methods_template = templates.get("methods_rep", methods_template)
+        method = K.fill_template(methods_template, values)
+        results_template = templates.get("results_rep", templates["results"]) if values.get("representation_reused") else templates["results"]
+        result = K.fill_template(results_template, values)
         parameters = json.dumps(values["parameters"], indent=2, sort_keys=True)
         K.write_text(["# %s: Methods and Results" % module, "", "## Methods", method, "Software versions: " + json.dumps(values["package_versions"], sort_keys=True),
                       "", "## Results", result, "", "## Resolved parameters", "```json", parameters, "```",
@@ -307,6 +358,8 @@ def run_module(argv, spec, module, module_dir, compute, report, qc_fn, validate,
         A.os_print_help(spec)
         return 0
     validate(a)
+    if a.get("label-placement") == "largest-island" and (a.get("label-island-eps") is None or a.get("label-island-min-samples") is None):
+        raise OmicstatError("OS_MISSING_PARAMETER", "largest-island labels require --label-island-eps and --label-island-min-samples.")
     outdir = Path(a["outdir"]).resolve()
     for protected in (a["input"], a["from-run"]):
         if protected and (outdir == Path(protected).resolve() or outdir in Path(protected).resolve().parents):
@@ -318,7 +371,7 @@ def run_module(argv, spec, module, module_dir, compute, report, qc_fn, validate,
     for variable in THREAD_VARS:
         os.environ[variable] = "1"
     elog = engine_run.EngineLog(str(outdir))
-    adata, upstream, input_path, state, contract_hash = elog.capture("input", read_input, a)
+    adata, upstream, input_path, state, contract_hash = elog.capture("input", read_input, a, module)
     seeds = set_seed(a["seed"])
     try:
         res = elog.capture("compute", compute, adata, a, upstream)
@@ -328,9 +381,12 @@ def run_module(argv, spec, module, module_dir, compute, report, qc_fn, validate,
     figures = elog.capture("figure_request", report, res, a)
     outputs, summary = elog.capture("report", write_outputs, res, a, module, module_dir, upstream, state, contract_hash, qc, figures, module_version)
     inputs = {"input": input_path}
-    for key in ("study-contract", "features-file"):
+    for key in ("study-contract", "features-file", "cell-list", "colour-registry", "marker-panel", "label-map"):
         if a.get(key):
             inputs[key] = a[key]
+    for key in ("latent-from-run", "reference-run", "query-run"):
+        if a.get(key):
+            inputs[key] = str(Path(a[key]) / "objects/handoff.json")
     K.write_provenance(str(outdir), module, module_version, K.canonical_argv(spec, a),
                        entry_script="run_%s.py" % module.replace("-", "_"), seed=a["seed"],
                        inputs=inputs, outputs=outputs, upstream=upstream, seed_record=seeds,

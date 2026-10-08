@@ -53,6 +53,9 @@
     "scanpy-markers",
     "scvi-integrate",
     "scanvi-annotate",
+    "scanpy-annotate",
+    "scanpy-purity",
+    "scanpy-ingest",
     "unmapped"
    ]
   },

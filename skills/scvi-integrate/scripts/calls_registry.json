@@ -735,10 +735,92 @@
         }
       },
       "fn": "scanpy.tl.umap"
+    },
+    {
+      "args": {
+        "adata": {
+          "function_default": "<required>",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "adjacency": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "copy": {
+          "function_default": "False",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "directed": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "flavor": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "key_added": {
+          "flag": "--scvi-cluster-col",
+          "function_default": "'leiden'",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "s0_extraction_key": "key_added",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "value": null
+        },
+        "n_iterations": {
+          "function_default": "-1",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "neighbors_key": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "obsp": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "partition_type": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "random_state": {
+          "function_default": "0",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "resolution": {
+          "flag": "--leiden-resolution",
+          "function_default": "1",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "s0_extraction_key": "resolution",
+          "source": "explicit workflow argument; locked package default or required user judgement",
+          "value": null
+        },
+        "restrict_to": {
+          "function_default": "None",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        },
+        "use_weights": {
+          "function_default": "True",
+          "reference": "https://scanpy.readthedocs.io/en/stable/api/index.html",
+          "source": "explicit workflow argument; locked package default or required user judgement"
+        }
+      },
+      "fn": "scanpy.tl.leiden"
     }
   ],
   "captured_signatures": {
     "scanpy.pp.neighbors": "(adata: 'AnnData', n_neighbors: 'int' = 15, n_pcs: 'int | None' = None, *, distances: 'np.ndarray | SpBase | None' = None, use_rep: 'str | None' = None, knn: 'bool' = True, method: '_Method' = 'umap', transformer: 'KnnTransformerLike | _KnownTransformer | None' = None, metric: '_Metric | _MetricFn | None' = None, metric_kwds: 'Mapping[str, Any]' = mappingproxy({}), random_state: '_LegacyRandom' = 0, key_added: 'str | None' = None, copy: 'bool' = False) -> 'AnnData | None'",
+    "scanpy.tl.leiden": "(adata: 'AnnData', resolution: 'float' = 1, *, restrict_to: 'tuple[str, Sequence[str]] | None' = None, random_state: '_LegacyRandom' = 0, key_added: 'str' = 'leiden', adjacency: 'CSBase | None' = None, directed: 'bool | None' = None, use_weights: 'bool' = True, n_iterations: 'int' = -1, partition_type: 'type[MutableVertexPartition] | None' = None, neighbors_key: 'str | None' = None, obsp: 'str | None' = None, copy: 'bool' = False, flavor: \"Literal['leidenalg', 'igraph'] | None\" = None, **clustering_args) -> 'AnnData | None'",
     "scanpy.tl.umap": "(adata: 'AnnData', *, min_dist: 'float' = 0.5, spread: 'float' = 1.0, n_components: 'int' = 2, maxiter: 'int | None' = None, alpha: 'float' = 1.0, gamma: 'float' = 1.0, negative_sample_rate: 'int' = 5, init_pos: '_InitPos | np.ndarray | None' = 'spectral', random_state: '_LegacyRandom' = 0, a: 'float | None' = None, b: 'float | None' = None, method: \"Literal['umap', 'rapids']\" = 'umap', key_added: 'str | None' = None, neighbors_key: 'str' = 'neighbors', copy: 'bool' = False) -> 'AnnData | None'",
     "scvi.model.SCVI": "(self, adata: 'AnnData | None' = None, registry: 'dict | None' = None, n_hidden: 'int' = 128, n_latent: 'int' = 10, n_layers: 'int' = 1, dropout_rate: 'float' = 0.1, dispersion: \"Literal['gene', 'gene-batch', 'gene-label', 'gene-cell']\" = 'gene', gene_likelihood: \"Literal['zinb', 'nb', 'poisson', 'normal']\" = 'zinb', use_observed_lib_size: 'bool' = True, latent_distribution: \"Literal['normal', 'ln']\" = 'normal', **kwargs)",
     "scvi.model.SCVI.get_latent_representation": "(self, adata: 'AnnData | None' = None, indices: 'Sequence[int] | None' = None, give_mean: 'bool' = True, mc_samples: 'int' = 5000, batch_size: 'int | None' = None, return_dist: 'bool' = False, dataloader: 'Iterator[dict[str, Tensor | None]]' = None, **data_loader_kwargs) -> 'npt.NDArray | tuple[npt.NDArray, npt.NDArray]'",
@@ -746,7 +828,7 @@
     "scvi.model.SCVI.train": "(self, max_epochs: 'int | None' = None, accelerator: 'str' = 'auto', devices: 'int | list[int] | str' = 'auto', train_size: 'float | None' = None, validation_size: 'float | None' = None, shuffle_set_split: 'bool' = True, load_sparse_tensor: 'bool' = False, batch_size: 'int' = 128, early_stopping: 'bool' = False, datasplitter_kwargs: 'dict | None' = None, plan_config: 'KwargsLike | None' = None, plan_kwargs: 'KwargsLike | None' = None, datamodule: 'LightningDataModule | None' = None, trainer_config: 'KwargsLike | None' = None, **trainer_kwargs)"
   },
   "default_capture_environment": {
-    "image_id": "sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f",
+    "image_id": null,
     "packages": {
       "anndata": "0.13.3.post0",
       "scanpy": "1.12.4",

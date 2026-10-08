@@ -35,6 +35,7 @@ os_backend_input <- function(a, need = c("counts", "logcounts")) {
     eco <- a$ecosystem
   }
   embedded <- .os_sc_embedded_state(.os_sc_source(path))
+  if (isTRUE(embedded$display_only)) stop("OS_DISPLAY_ONLY_INPUT: display-curated cells cannot be used for single-cell inference.", call. = FALSE)
   if (isTRUE(embedded$batch_corrected_lineage)) stop("OS_BATCH_CORRECTED_INPUT: embedded object state records batch-corrected expression; use uncorrected data for inference.", call. = FALSE)
   if (!is.null(embedded$front_end_ecosystem) && !identical(embedded$front_end_ecosystem, eco))
     stop("OS_ECOSYSTEM_MIXED: declared ecosystem differs from embedded front-end chain.", call. = FALSE)

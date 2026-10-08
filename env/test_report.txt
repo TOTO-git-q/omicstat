@@ -9,13 +9,13 @@ ALL EXTENDED FIGURE CHECKS PASSED
 == Rscript skills/_shared/tests/test_omics_shared.R
 ALL OMICS SHARED CHECKS PASSED
 == Rscript skills/_shared/tests/test_scientific_refusals.R
-ALL SCIENTIFIC REFUSAL CHECKS PASSED
+PASS: display-only UMAP curation is refused before single-cell inference
 == Rscript skills/_shared/tests/test_convert.R
 ALL CONVERT CHECKS PASSED
 == Rscript skills/_shared/tests/test_effect_table.R
 All checks passed.
 == Rscript skills/_shared/tests/test_render.R
-All checks passed. Rendered files are in /tmp/RtmpLSPCQs/omicstat_render_test
+All checks passed. Rendered files are in /tmp/RtmpsWwC5w/omicstat_render_test
 == Rscript skills/_shared/tests/test_engine_contract.R
 ALL ENGINE CONTRACT CHECKS PASSED
 == Rscript tools/test_calls_wrapper_sites.R
@@ -37,7 +37,7 @@ OK
 == python3 tools/lint_r.py
 lint_r: 159 file(s) scanned; 0 problem(s)
 == python3 tools/check_skill_frontmatter.py
-41 SKILL.md front matter(s) checked; 0 problem(s)
+44 SKILL.md front matter(s) checked; 0 problem(s)
 == Rscript skills/aucell-score/tests/run_smoke_test.R
 PASS machine-readable scored-set and cell counts match native AUC output 
 == Rscript skills/batchelor-integrate/tests/run_smoke_test.R
@@ -108,10 +108,16 @@ SMOKE PASSED (with 2 documented KNOWN-FAILING anchor(s), listed above)
 SMOKE PASSED: 59 checks
 == python3 skills/omicstat-selftest-py/tests/run_smoke_test.py
 SMOKE PASSED (3 skipped)
+== python3 skills/scanpy-annotate/tests/run_smoke_test.py
+SKIP: numerical display smoke requires pinned Python image
 == python3 skills/scanpy-cluster/tests/run_smoke_test.py
 SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 skills/scanpy-ingest/tests/run_smoke_test.py
+SKIP: numerical display smoke requires pinned Python image
 == python3 skills/scanpy-markers/tests/run_smoke_test.py
 SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
+== python3 skills/scanpy-purity/tests/run_smoke_test.py
+SKIP: numerical display smoke requires pinned Python image
 == python3 skills/scanpy-qc/tests/run_smoke_test.py
 SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
 == python3 skills/scanvi-annotate/tests/run_smoke_test.py
@@ -250,28 +256,46 @@ omicstat-selftest: 4 flag(s) in --help, 4 with defaults in 2+ sources; 0 problem
 4/4 flags documented
 == Rscript tools/check_calls.R skills/omicstat-selftest
 375 call sites scanned; 0 registry problems; 0 default-drift problems
+== python3 tools/check_defaults.py skills/scanpy-annotate
+scanpy-annotate: 26 flag(s) in --help, 26 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-annotate
+26/26 flags documented
+== python3 tools/check_calls_py_static.py skills/scanpy-annotate
+SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-cluster
-scanpy-cluster: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+scanpy-cluster: 57 flag(s) in --help, 57 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-cluster
-48/48 flags documented
+57/57 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-cluster
 SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/scanpy-ingest
+scanpy-ingest: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-ingest
+27/27 flags documented
+== python3 tools/check_calls_py_static.py skills/scanpy-ingest
+SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-markers
-scanpy-markers: 24 flag(s) in --help, 24 with defaults in 2+ sources; 0 problem(s)
+scanpy-markers: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-markers
-24/24 flags documented
+32/32 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-markers
 SKIP: Python signature/default imports delegated to the locked Python image suite
-== python3 tools/check_defaults.py skills/scanpy-qc
-scanpy-qc: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
-== python3 tools/check_flag_docs.py skills/scanpy-qc
+== python3 tools/check_defaults.py skills/scanpy-purity
+scanpy-purity: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-purity
 32/32 flags documented
+== python3 tools/check_calls_py_static.py skills/scanpy-purity
+SKIP: Python signature/default imports delegated to the locked Python image suite
+== python3 tools/check_defaults.py skills/scanpy-qc
+scanpy-qc: 40 flag(s) in --help, 40 with defaults in 2+ sources; 0 problem(s)
+== python3 tools/check_flag_docs.py skills/scanpy-qc
+40/40 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-qc
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanvi-annotate
-scanvi-annotate: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+scanvi-annotate: 35 flag(s) in --help, 35 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanvi-annotate
-27/27 flags documented
+35/35 flags documented
 == python3 tools/check_calls_py_static.py skills/scanvi-annotate
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scater-qc
@@ -293,9 +317,9 @@ scran-markers: 18 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
 == Rscript tools/check_calls.R skills/scran-markers
 178 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/scvi-integrate
-scvi-integrate: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+scvi-integrate: 59 flag(s) in --help, 59 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scvi-integrate
-48/48 flags documented
+59/59 flags documented
 == python3 tools/check_calls_py_static.py skills/scvi-integrate
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/seurat-cluster
@@ -359,7 +383,7 @@ wgcna-network: 65 flag(s) in --help, 24 with defaults in 2+ sources; 0 problem(s
 == Rscript tools/check_calls.R skills/wgcna-network
 489 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 skills/_shared/publication/test_publication_rules.py
-publication rules valid: 40 modules, 47 unique rule IDs
+publication rules valid: 43 modules, 50 unique rule IDs
 == python3 mcp/test_package_identity.py
 OK
 == python3 mcp/test_publication.py

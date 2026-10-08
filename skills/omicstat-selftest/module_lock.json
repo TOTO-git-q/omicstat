@@ -23,7 +23,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:50ba2605ae8e576fac76e63fd6219f6770ad3a44f5d90abcae91cd38ababfd8f",
+    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
     "env_version": "2026.10.1"
   }
 }

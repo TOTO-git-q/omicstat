@@ -71,3 +71,8 @@ Before choosing any exposed native option in `references/options.md`, consult `r
 Marker grouping must vary within at least one biological sample. Sample identity and sample-level condition/donor/batch/time columns are refused with OS_PSEUDOREPLICATION; use muscat-pseudobulk for expression and speckle-propeller for proportions. Without sample information, only the upstream chain cluster column is allowed.
 
 Display/dot-plot genes are the top `--top-n` per cluster in native rank_genes_groups score order, without adjusted-P filtering. The full native CSV and feature table retain all P values.
+
+## Choosing judgement options for display
+Before choosing `--cell-list`, `--display-max-per-group`, `--label-placement`, density parameters, consult `reference_advise(module="scanpy-markers", ...)` first and `reference_search`. No judgement values are invented. See references/display-options.md. Explicit cell-list selection is display only; it cannot feed proportions, pseudobulk, markers or DE.
+
+`--label-style halo` (default `plain`) only changes how embedding labels are drawn: a white halo behind each name and deterministic label spacing with a thin leader when a label moves. It is a rendering choice, not a scientific judgement, and needs no reference consultation.

@@ -1,0 +1,10 @@
+{
+  "atol": 1e-06,
+  "rtol": 1e-06,
+  "tables": {
+    "cell_metadata.csv": [
+      "x",
+      "y"
+    ]
+  }
+}

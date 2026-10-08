@@ -1,0 +1,139 @@
+{"id": "R001", "answer": "deseq2-qc"}
+{"id": "R002", "answer": "deseq2-qc"}
+{"id": "R003", "answer": "deseq2-wald"}
+{"id": "R004", "answer": "deseq2-wald"}
+{"id": "R005", "answer": "deseq2-lrt"}
+{"id": "R006", "answer": "deseq2-lrt"}
+{"id": "R007", "answer": "edger-qlf"}
+{"id": "R008", "answer": "edger-qlf"}
+{"id": "R009", "answer": "limma-voom"}
+{"id": "R010", "answer": "limma-voom"}
+{"id": "R011", "answer": "limma-array"}
+{"id": "R012", "answer": "limma-array"}
+{"id": "R013", "answer": "limma-dupcor"}
+{"id": "R014", "answer": "limma-dupcor"}
+{"id": "R015", "answer": "sva-batch"}
+{"id": "R016", "answer": "sva-batch"}
+{"id": "R017", "answer": "clusterprofiler-ora"}
+{"id": "R018", "answer": "clusterprofiler-ora"}
+{"id": "R019", "answer": "clusterprofiler-gsea"}
+{"id": "R020", "answer": "clusterprofiler-gsea"}
+{"id": "R021", "answer": "clusterprofiler-compare"}
+{"id": "R022", "answer": "clusterprofiler-compare"}
+{"id": "R023", "answer": "fgsea-prerank"}
+{"id": "R024", "answer": "fgsea-prerank"}
+{"id": "R025", "answer": "gsva-score"}
+{"id": "R026", "answer": "gsva-score"}
+{"id": "R027", "answer": "limma-camera"}
+{"id": "R028", "answer": "limma-camera"}
+{"id": "R029", "answer": "seurat-qc"}
+{"id": "R030", "answer": "seurat-qc"}
+{"id": "R031", "answer": "seurat-cluster"}
+{"id": "R032", "answer": "seurat-cluster"}
+{"id": "R033", "answer": "seurat-integrate"}
+{"id": "R034", "answer": "seurat-integrate"}
+{"id": "R035", "answer": "seurat-markers"}
+{"id": "R036", "answer": "seurat-markers"}
+{"id": "R037", "answer": "seurat-modulescore"}
+{"id": "R038", "answer": "seurat-modulescore"}
+{"id": "R039", "answer": "scater-qc"}
+{"id": "R040", "answer": "scater-qc"}
+{"id": "R041", "answer": "scran-cluster"}
+{"id": "R042", "answer": "scran-cluster"}
+{"id": "R043", "answer": "batchelor-integrate"}
+{"id": "R044", "answer": "batchelor-integrate"}
+{"id": "R045", "answer": "scran-markers"}
+{"id": "R046", "answer": "scran-markers"}
+{"id": "R047", "answer": "aucell-score"}
+{"id": "R048", "answer": "aucell-score"}
+{"id": "R049", "answer": "singler-annotate"}
+{"id": "R050", "answer": "singler-annotate"}
+{"id": "R051", "answer": "muscat-pseudobulk"}
+{"id": "R052", "answer": "muscat-pseudobulk"}
+{"id": "R053", "answer": "speckle-propeller"}
+{"id": "R054", "answer": "speckle-propeller"}
+{"id": "R055", "answer": "cellchat-communication"}
+{"id": "R056", "answer": "cellchat-communication"}
+{"id": "R057", "answer": "monocle3-trajectory"}
+{"id": "R058", "answer": "monocle3-trajectory"}
+{"id": "R059", "answer": "slingshot-trajectory"}
+{"id": "R060", "answer": "slingshot-trajectory"}
+{"id": "R061", "answer": "wgcna-network"}
+{"id": "R062", "answer": "wgcna-network"}
+{"id": "R063", "answer": "maftools-landscape"}
+{"id": "R064", "answer": "maftools-landscape"}
+{"id": "R065", "answer": "immunedeconv-infiltration"}
+{"id": "R066", "answer": "immunedeconv-infiltration"}
+{"id": "R067", "answer": "scanpy-qc"}
+{"id": "R068", "answer": "scanpy-qc"}
+{"id": "R069", "answer": "scanpy-cluster"}
+{"id": "R070", "answer": "scanpy-cluster"}
+{"id": "R071", "answer": "scanpy-markers"}
+{"id": "R072", "answer": "scanpy-markers"}
+{"id": "R073", "answer": "scvi-integrate"}
+{"id": "R074", "answer": "scvi-integrate"}
+{"id": "R075", "answer": "scanvi-annotate"}
+{"id": "R076", "answer": "scanvi-annotate"}
+{"id": "R077", "answer": "deseq2-wald"}
+{"id": "R078", "answer": "limma-array"}
+{"id": "R079", "answer": "limma-dupcor"}
+{"id": "R080", "answer": "deseq2-lrt"}
+{"id": "R081", "answer": "muscat-pseudobulk"}
+{"id": "R082", "answer": "limma-voom"}
+{"id": "R083", "answer": "clusterprofiler-ora"}
+{"id": "R084", "answer": "clusterprofiler-gsea"}
+{"id": "R085", "answer": "gsva-score"}
+{"id": "R086", "answer": "limma-camera"}
+{"id": "R087", "answer": "clusterprofiler-compare"}
+{"id": "R088", "answer": "fgsea-prerank"}
+{"id": "R089", "answer": "gsva-score"}
+{"id": "R090", "answer": {"pipeline": ["scanpy-qc", "scanpy-cluster"]}}
+{"id": "R091", "answer": "scater-qc"}
+{"id": "R092", "answer": "seurat-qc"}
+{"id": "R093", "answer": "scanpy-cluster"}
+{"id": "R094", "answer": "seurat-cluster"}
+{"id": "R095", "answer": {"out_of_scope": "An ecosystem must be prespecified before choosing a single-cell front-end route."}}
+{"id": "R096", "answer": "muscat-pseudobulk"}
+{"id": "R097", "answer": "muscat-pseudobulk"}
+{"id": "R098", "answer": "muscat-pseudobulk"}
+{"id": "R099", "answer": "muscat-pseudobulk"}
+{"id": "R100", "answer": "muscat-pseudobulk"}
+{"id": "R101", "answer": "speckle-propeller"}
+{"id": "R102", "answer": "speckle-propeller"}
+{"id": "R103", "answer": "speckle-propeller"}
+{"id": "R104", "answer": "monocle3-trajectory"}
+{"id": "R105", "answer": "slingshot-trajectory"}
+{"id": "R106", "answer": {"out_of_scope": "Specify the upstream chain: Seurat graph-partition workflows select monocle3; Bioconductor existing-embedding workflows select slingshot."}}
+{"id": "R107", "answer": {"pipeline": ["scanpy-qc", "scanpy-cluster", "monocle3-trajectory"]}}
+{"id": "R108", "answer": "sva-batch"}
+{"id": "R109", "answer": "deseq2-wald"}
+{"id": "R110", "answer": "deseq2-wald"}
+{"id": "R111", "answer": {"pipeline": ["deseq2-qc", "deseq2-wald", "clusterprofiler-ora"]}}
+{"id": "R112", "answer": {"pipeline": ["deseq2-qc", "deseq2-lrt", "clusterprofiler-compare"]}}
+{"id": "R113", "answer": {"pipeline": ["seurat-qc", "seurat-cluster", "singler-annotate"]}}
+{"id": "R114", "answer": {"pipeline": ["seurat-qc", "seurat-cluster", "seurat-integrate", "singler-annotate", "seurat-markers"]}}
+{"id": "R115", "answer": {"pipeline": ["scater-qc", "scran-cluster", "batchelor-integrate", "singler-annotate", "scran-markers"]}}
+{"id": "R116", "answer": {"pipeline": ["singler-annotate", "muscat-pseudobulk", "speckle-propeller"]}}
+{"id": "R117", "answer": "gsva-score"}
+{"id": "R118", "answer": {"pipeline": ["scanpy-qc", "scanpy-cluster", "scvi-integrate", "singler-annotate", "muscat-pseudobulk"]}}
+{"id": "R119", "answer": {"pipeline": ["scanpy-qc", "scanpy-cluster", "singler-annotate", "muscat-pseudobulk"]}}
+{"id": "R120", "answer": {"pipeline": ["seurat-qc", "seurat-cluster", "seurat-integrate", "monocle3-trajectory"]}}
+{"id": "R121", "answer": {"out_of_scope": "Clinical survival analysis is exported to a separately specified clinical workflow."}}
+{"id": "R122", "answer": {"out_of_scope": "Clinical prediction modelling and survival analysis are not implemented."}}
+{"id": "R123", "answer": {"out_of_scope": "Clinical covariate-adjusted regression is not implemented; export the infiltration tables."}}
+{"id": "R124", "answer": {"out_of_scope": "FASTQ alignment and quantification to a count matrix are outside the implemented analysis modules."}}
+{"id": "R125", "answer": "immunedeconv-infiltration"}
+{"id": "R126", "answer": "clusterprofiler-ora"}
+{"id": "R127", "answer": {"out_of_scope": "Meta-analysis is not implemented."}}
+{"id": "R128", "answer": {"out_of_scope": "Diagnostic accuracy analysis is not implemented."}}
+{"id": "R129", "answer": {"out_of_scope": "Public-data fetching is outside the offline analysis process."}}
+{"id": "R130", "answer": {"out_of_scope": "Microscopy camera equipment is outside omicstat analysis routing."}}
+{"id": "R131", "answer": {"out_of_scope": "Microscopy camera equipment is outside omicstat analysis routing."}}
+{"id": "R132", "answer": "clusterprofiler-ora"}
+{"id": "R133", "answer": "clusterprofiler-ora"}
+{"id": "U001", "answer": "scanpy-annotate"}
+{"id": "U002", "answer": "scanpy-purity"}
+{"id": "U003", "answer": "scanpy-ingest"}
+{"id": "U004", "answer": "scanpy-annotate"}
+{"id": "U005", "answer": "scanpy-purity"}
+{"id": "U006", "answer": "scanpy-ingest"}

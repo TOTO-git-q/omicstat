@@ -34,12 +34,27 @@ os_cell_point_mm <- function(n) if (n <= 2000) 0.8 else if (n <= 10000) 0.5 else
                       size = os_fs(OS_FIG$size_axis_text), family = fam)
 }
 
+# Opt-in label style "halo" (os_embedding(label_style = "halo")): a wider
+# white halo behind each category name and label-label repulsion with a thin
+# leader back to the anchor when a label has to move. Same ggrepel layer,
+# seed and iteration budget as every other repelled label (os_label_repel);
+# no new dependency. The default "plain" style is untouched.
+OS_FIG_EXT <- utils::modifyList(if (exists("OS_FIG_EXT", inherits = TRUE)) OS_FIG_EXT else list(), list(
+  label_halo_rings     = c(0.15, 0.30, 0.45),  # halo ring radii, fraction of text height (plain: one ring 0.12)
+  label_halo_pad_mm    = 1.2,   # free space kept around each label box, mm
+  label_halo_leader_mm = 2.5    # a leader is drawn only when a label moved further than this, mm
+))
+
 # emb: data.frame(cell, x, y, <group_col>). Categories get registry colours;
 # with label = TRUE category names are written at the group medians (direct
 # labelling) and the legend is dropped.
 os_embedding <- function(emb, group_col, label = TRUE, colour_registry = NULL, family = group_col,
-                         reduction = c("UMAP", "t-SNE"), legend_ncol = NULL, journal = NULL) {
+                         reduction = c("UMAP", "t-SNE"), legend_ncol = NULL, journal = NULL, label_xy = NULL,
+                         display_max_per_group = NULL, display_n_input = NULL,
+                         label_island_eps = NULL, label_island_min_samples = NULL,
+                         label_style = c("plain", "halo")) {
   reduction <- match.arg(reduction)
+  label_style <- match.arg(label_style)
   for (cc in c("x", "y", group_col)) if (!cc %in% names(emb)) stop(sprintf("OS_MISSING_COLUMNS: os_embedding needs '%s'.", cc), call. = FALSE)
   d <- emb[os_draw_order(nrow(emb)), , drop = FALSE]
   g <- as.character(d[[group_col]])
@@ -62,20 +77,70 @@ os_embedding <- function(emb, group_col, label = TRUE, colour_registry = NULL, f
     ggplot2::theme(axis.title = ggplot2::element_blank())
   p <- .os_embedding_axes(p, xr, yr, paste(reduction, "1"), paste(reduction, "2"))
   if (label) {
-    cen <- stats::aggregate(cbind(x, y) ~ .g, data = d, FUN = stats::median)
-    names(cen)[1] <- "lab"
-    p <- p + os_label_repel(cen, ggplot2::aes(x = x, y = y, label = lab), italic = FALSE, journal = journal,
-                            size_pt = OS_FIG$size_annot, inherit.aes = FALSE, segment.size = 0, box.padding = 0.05)
+    if (is.null(label_xy)) {
+      cen <- stats::aggregate(cbind(x, y) ~ .g, data = d, FUN = stats::median)
+      names(cen)[1] <- "lab"
+    } else {
+      if (!all(c("group", "x", "y") %in% names(label_xy)) ||
+          anyDuplicated(label_xy$group) || !setequal(as.character(label_xy$group), unique(g)) ||
+          any(!is.finite(label_xy$x)) || any(!is.finite(label_xy$y)))
+        stop("OS_INVALID_INPUT: label_xy requires one finite group/x/y row per drawn category.", call. = FALSE)
+      cen <- label_xy[, c("group", "x", "y")]; names(cen)[1] <- "lab"
+    }
+    if (identical(label_style, "halo")) {
+      # ggrepel draws a halo as 16 copies on ONE ring, which leaves gaps at a
+      # wide radius; the outer rings are separate white layers with identical
+      # data, padding and seed (so identical placement), the ink text on top.
+      rings <- sort(OS_FIG_EXT$label_halo_rings, decreasing = TRUE)
+      for (i in seq_along(rings)) {
+        top <- i == length(rings)
+        p <- p + os_label_repel(cen, ggplot2::aes(x = x, y = y, label = lab), italic = FALSE, journal = journal,
+                                size_pt = OS_FIG$size_annot, inherit.aes = FALSE,
+                                box.padding = grid::unit(OS_FIG_EXT$label_halo_pad_mm, "mm"), point.padding = 0,
+                                min.segment.length = grid::unit(OS_FIG_EXT$label_halo_leader_mm, "mm"),
+                                bg.r = rings[i], colour = if (top) OS_FIG$col_ink else OS_FIG$col_bg,
+                                segment.size = if (top) os_lw(OS_FIG$lw_segment) else 0)
+      }
+    } else {
+      p <- p + os_label_repel(cen, ggplot2::aes(x = x, y = y, label = lab), italic = FALSE, journal = journal,
+                              size_pt = OS_FIG$size_annot, inherit.aes = FALSE, segment.size = 0, box.padding = 0.05)
+    }
   }
   counts <- as.list(table(factor(g, levels = lv)))
   cap <- sprintf(paste0("%s embedding of %s cells coloured by %s (%d categories). %s%s"),
                  reduction, os_num(nrow(d)), group_col, length(lv),
-                 if (label) "Category names are placed at the median position of their cells." else "",
+                 if (label) if (is.null(label_xy)) "Category names are placed at the median position of their cells." else "Category names use explicitly supplied coordinates (largest-island medians when requested)." else "",
                  if (pts$rasterised) sprintf(" Cells are rendered as a %d dpi bitmap layer; text and axes are vector.", OS_FIG$raster_dpi) else "")
+  if (label && identical(label_style, "halo")) {
+    cap <- paste0(cap, " Labels carry a white halo and are spaced apart by deterministic repulsion (fixed seed); a thin leader joins a moved label to its anchor.")
+  }
+  if (!is.null(label_island_eps)) {
+    cap <- paste0(cap, sprintf(" Labels use largest-island medians from per-category DBSCAN (eps=%s embedding units; min_samples=%d).", os_num(label_island_eps), label_island_min_samples))
+  }
+  if (!is.null(label_xy) && "label_fallback" %in% names(label_xy) && any(label_xy$label_fallback)) {
+    cap <- paste0(cap, sprintf(" %d categories have no density-supported island; labels fall back to their all-cell median.", sum(label_xy$label_fallback)))
+  }
+  if (!is.null(display_max_per_group)) {
+    cap <- paste0(cap, sprintf(" Display only: at most %d cells per group are drawn (%d of %d cells); analysis objects and downstream tables are unchanged.",
+                              display_max_per_group, nrow(d), display_n_input))
+  }
+  meta_data <- list(n_cells = nrow(d))
+  meta_notes <- list(rasterised_points = pts$rasterised)
+  if (!is.null(label_xy)) meta_notes$label_xy <- label_xy
+  if (label && identical(label_style, "halo")) meta_notes$label_style <- label_style
+  if (!is.null(label_island_eps)) {
+    meta_notes$label_island_eps <- label_island_eps
+    meta_notes$label_island_min_samples <- label_island_min_samples
+  }
+  if (!is.null(display_max_per_group)) {
+    meta_data$display_only <- TRUE
+    meta_data$display_max_per_group <- display_max_per_group
+    meta_data$display_n_input <- display_n_input
+  }
   os_with_meta(p, figure_type = "embedding", default_height_mm = 80, caption = cap,
                encodings = list(colour = as.list(cols), point_mm = pt),
-               counts = counts, data = list(n_cells = nrow(d)), colour_registry = cr$registry,
-               notes = list(rasterised_points = pts$rasterised))
+               counts = counts, data = meta_data, colour_registry = cr$registry,
+               notes = meta_notes)
 }
 
 # Expression on the embedding: grey (zero) -> purple (high); cells drawn in

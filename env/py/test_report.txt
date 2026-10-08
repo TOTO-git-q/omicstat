@@ -11,7 +11,7 @@
 == python tools/test_build_contracts.py
 OK
 == python tools/check_skill_frontmatter.py
-41 SKILL.md front matter(s) checked; 0 problem(s)
+44 SKILL.md front matter(s) checked; 0 problem(s)
 == python tools/check_calls.py skills/omicstat-selftest-py
 262 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/omicstat-selftest-py
@@ -20,45 +20,69 @@ omicstat-selftest-py: 6 flag(s) in --help, 6 with defaults in 2+ sources; 0 prob
 6/6 flags documented
 == python skills/omicstat-selftest-py/tests/run_smoke_test.py
 SMOKE PASSED (1 skipped)
+== python tools/check_calls.py skills/scanpy-annotate
+91 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanpy-annotate
+scanpy-annotate: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanpy-annotate
+27/27 flags documented
+== python skills/scanpy-annotate/tests/run_smoke_test.py
+PASS: numerical oracle, display guardrails, deterministic replay and computed golden
 == python tools/check_calls.py skills/scanpy-cluster
-99 call sites scanned; 0 registry problems; 0 default-drift problems
+112 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scanpy-cluster
-scanpy-cluster: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+scanpy-cluster: 58 flag(s) in --help, 58 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scanpy-cluster
-48/48 flags documented
+58/58 flags documented
 == python skills/scanpy-cluster/tests/run_smoke_test.py
 PASS: seurat_v3_paper HVGs equal native raw-count replay
+== python tools/check_calls.py skills/scanpy-ingest
+75 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanpy-ingest
+scanpy-ingest: 28 flag(s) in --help, 28 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanpy-ingest
+28/28 flags documented
+== python skills/scanpy-ingest/tests/run_smoke_test.py
+PASS: numerical oracle, display guardrails, deterministic replay and computed golden
 == python tools/check_calls.py skills/scanpy-markers
 120 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scanpy-markers
-scanpy-markers: 24 flag(s) in --help, 24 with defaults in 2+ sources; 0 problem(s)
+scanpy-markers: 33 flag(s) in --help, 33 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scanpy-markers
-24/24 flags documented
+33/33 flags documented
 == python skills/scanpy-markers/tests/run_smoke_test.py
 PASS: scanpy-markers pinned numerical smoke; R rendering/visual review must run separately
+== python tools/check_calls.py skills/scanpy-purity
+74 call sites scanned; 0 registry problems; 0 default-drift problems
+== python tools/check_defaults.py skills/scanpy-purity
+scanpy-purity: 33 flag(s) in --help, 33 with defaults in 2+ sources; 0 problem(s)
+== python tools/check_flag_docs.py skills/scanpy-purity
+33/33 flags documented
+== python skills/scanpy-purity/tests/run_smoke_test.py
+PASS: numerical oracle, display guardrails, deterministic replay and computed golden
 == python tools/check_calls.py skills/scanpy-qc
 96 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scanpy-qc
-scanpy-qc: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
+scanpy-qc: 41 flag(s) in --help, 41 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scanpy-qc
-32/32 flags documented
+41/41 flags documented
 == python skills/scanpy-qc/tests/run_smoke_test.py
 PASS: scanpy-qc pinned numerical smoke; R rendering/visual review must run separately
 == python tools/check_calls.py skills/scanvi-annotate
 116 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scanvi-annotate
-scanvi-annotate: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+scanvi-annotate: 36 flag(s) in --help, 36 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scanvi-annotate
-27/27 flags documented
+36/36 flags documented
 == python skills/scanvi-annotate/tests/run_smoke_test.py
 PASS: scanvi-annotate pinned numerical smoke; R rendering/visual review must run separately
 == python tools/check_calls.py skills/scvi-integrate
-126 call sites scanned; 0 registry problems; 0 default-drift problems
+150 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scvi-integrate
-scvi-integrate: 48 flag(s) in --help, 48 with defaults in 2+ sources; 0 problem(s)
+scvi-integrate: 60 flag(s) in --help, 60 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scvi-integrate
-48/48 flags documented
+60/60 flags documented
 == python skills/scvi-integrate/tests/run_smoke_test.py
 PASS: scvi-integrate pinned numerical smoke; R rendering/visual review must run separately
-== done: ALL PASSED (31 commands)
+== done: ALL PASSED (43 commands)
 image: omicstat-py:2026.09.1 sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f

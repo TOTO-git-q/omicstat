@@ -68,3 +68,8 @@ Before choosing `--sample-col`, call `reference_advise(module='scvi-integrate', 
 Before choosing `--counts-layer`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` if interpretation needs scientific judgement. Use declared study metadata for organism, annotation, sample IDs and count-layer roles; if evidence is absent, show the locked L1 example and ask the user.
 
 Before choosing any exposed native option in `references/options.md`, consult `reference_advise` and `reference_search` for this module and the study context. If no curated evidence settles a scientific choice, explain the locked default or cited tutorial example and ask the user. See `references/options.md` for CLI values, JSON formats, and S0 keys (`none` where no extraction key is claimed).
+
+## Choosing judgement options for display
+Before choosing `--cell-list`, `--display-max-per-group`, `--label-placement`, density parameters, `--latent-from-run`, `--leiden-resolution`, or `--scvi-cluster-col`, consult `reference_advise(module="scvi-integrate", ...)` first and `reference_search`. No judgement values are invented. See references/display-options.md. Explicit cell-list selection is display only; it cannot feed proportions, pseudobulk, markers or DE.
+
+`--label-style halo` (default `plain`) only changes how embedding labels are drawn: a white halo behind each name and deterministic label spacing with a thin leader when a label moves. It is a rendering choice, not a scientific judgement, and needs no reference consultation.

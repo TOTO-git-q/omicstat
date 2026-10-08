@@ -1,0 +1,6 @@
+{
+  "baseline_commit": "ac38dc8",
+  "after_sha256": "ee9852bc96922cb922ba556ac89bce70ab0a40a1446649cbb7e2b23b9c388c13",
+  "after_reader": "fresh reader-only agent, router plus id/question only; ASCII-final router",
+  "before_sha256": "e39cf803ad0057e9d6836e346fdb6459a49f18f97e21bacd9b928129be91a65d"
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "omicstat.reference.display-extensions.v1",
+  "modules": [
+    {
+      "module": "scanpy-annotate",
+      "entry_script": "scripts/run_scanpy_annotate.py",
+      "discovery_profile": {
+        "module": "scanpy-annotate",
+        "epmc_query": "METHODS:\"scanpy\" AND (METHODS:\"marker genes\" OR METHODS:\"annotation\")",
+        "meta": false,
+        "signal_regex": "\\bscanpy\\b[^.;]{0,180}(?:marker genes|annotation)|(?:marker genes|annotation)[^.;]{0,180}\\bscanpy\\b",
+        "signal_require_regex": "\\bscanpy\\b",
+        "exclude_regex": "\\b(?:review|protocol|benchmark)\\b",
+        "profile_status": "weak",
+        "validation_rounds": 0,
+        "note": "New display/curation module: search profile has no screened corpus or curated evidence yet; do not infer scientific defaults."
+      }
+    },
+    {
+      "module": "scanpy-purity",
+      "entry_script": "scripts/run_scanpy_purity.py",
+      "discovery_profile": {
+        "module": "scanpy-purity",
+        "epmc_query": "METHODS:\"scanpy\" AND (METHODS:\"neighbor purity\" OR METHODS:\"cell type\")",
+        "meta": false,
+        "signal_regex": "\\bscanpy\\b[^.;]{0,180}(?:neighbor purity|cell type)|(?:neighbor purity|cell type)[^.;]{0,180}\\bscanpy\\b",
+        "signal_require_regex": "\\bscanpy\\b",
+        "exclude_regex": "\\b(?:review|protocol|benchmark)\\b",
+        "profile_status": "weak",
+        "validation_rounds": 0,
+        "note": "New display/curation module: search profile has no screened corpus or curated evidence yet; do not infer scientific defaults."
+      }
+    },
+    {
+      "module": "scanpy-ingest",
+      "entry_script": "scripts/run_scanpy_ingest.py",
+      "discovery_profile": {
+        "module": "scanpy-ingest",
+        "epmc_query": "METHODS:\"scanpy\" AND (METHODS:\"ingest\" OR METHODS:\"label transfer\")",
+        "meta": false,
+        "signal_regex": "\\bscanpy\\b[^.;]{0,180}(?:ingest|label transfer)|(?:ingest|label transfer)[^.;]{0,180}\\bscanpy\\b",
+        "signal_require_regex": "\\bscanpy\\b",
+        "exclude_regex": "\\b(?:review|protocol|benchmark)\\b",
+        "profile_status": "weak",
+        "validation_rounds": 0,
+        "note": "New display/curation module: search profile has no screened corpus or curated evidence yet; do not infer scientific defaults."
+      }
+    }
+  ]
+}

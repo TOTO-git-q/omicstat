@@ -1,0 +1,3 @@
+cluster,n,score:A,observed_genes:A,score:B,observed_genes:B,top_markers,assigned_name,status,lineage
+A,40,3.1234729846318565,"g0,g1,g2",0.92459273636341088,"g3,g4,g5","g2,g0,g1,g11,g12,g17,g23,g31,g35,g38,g30,g20,g6,g16,g39",A,user_descriptive,L1
+B,40,0.96823016156752895,"g0,g1,g2",3.1483815809090934,"g3,g4,g5","g5,g4,g3,g26,g36,g10,g16,g2,g11,g37,g38,g12,g13,g39,g23",B,user_descriptive,L2

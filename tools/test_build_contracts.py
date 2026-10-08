@@ -81,17 +81,17 @@ class InventoryTests(unittest.TestCase):
     def test_router_only_lists_real_entries(self):
         text = (ROOT / 'skills/omicstat/SKILL.md').read_text()
         rows = re.findall(r'\|\s*`([a-z0-9-]+)`\s*\|\s*`(scripts/run_[a-z0-9_]+\.(?:R|py))`\s*\|', text)
-        self.assertEqual(len(rows), 40)  # 38 accepted analysis engines and two utilities.
+        self.assertEqual(len(rows), 43)  # 38 analysis engines, three display/annotation modules and two utilities.
         self.assertEqual(len({m for m, _ in rows}), len(rows))
         for module, script in rows:
             self.assertTrue((ROOT / 'skills' / module / script).is_file(), module)
 
-    def test_method_map_and_source_status_cover_all_38(self):
+    def test_method_map_and_source_status_cover_all_41(self):
         methods = json.loads((ROOT / 'reference_service/app/method_map.json').read_text())
         status = json.loads((ROOT / 'docs/build/BUILD_STATUS.json').read_text())
-        self.assertEqual(len([m['module'] for m in methods['modules']]), 38)
+        self.assertEqual(len([m['module'] for m in methods['modules']]), 41)
         self.assertEqual(set([m['module'] for m in methods['modules']]), {m['module'] for m in status['modules']})
-        self.assertEqual(len(status['implemented_new']), 24)
+        self.assertEqual(len(status['implemented_new']), 27)
         self.assertEqual(len(status['unimplemented_new']), 0)
         self.assertFalse(status['complete_request'])  # independent S3 remains pending
         by_name = {m['module']: m for m in methods['modules']}
@@ -117,8 +117,8 @@ class InventoryTests(unittest.TestCase):
     def test_routing_dataset_structure_not_accuracy(self):
         records = [json.loads(line) for line in (ROOT / 'skills/omicstat/tests/routing_eval.jsonl').read_text(encoding='utf-8').splitlines()]
         known = {m['module'] for m in json.loads((ROOT / 'reference_service/app/method_map.json').read_text())['modules']}
-        self.assertEqual(len(records), 133)
-        self.assertEqual(len({r['id'] for r in records}), 133)
+        self.assertEqual(len(records), 139)
+        self.assertEqual(len({r['id'] for r in records}), 139)
         counts = collections.Counter()
         def modules(answer):
             if isinstance(answer, str):

@@ -10,10 +10,10 @@ description: >
 ---
 # omicstat router
 
-**Installed status (S5, 2026-10-04):** all 38 analysis targets are installed:
+**Installed analysis status (S5, 2026-10-04):** all 38 analysis targets are installed:
 14 M1/M2 modules and 24 accepted M3/M4 modules (19 R, five Python).
 The five Python modules passed numerical replay and were re-sealed on the merged
-tree under the coordinator's 2026-10-04 decision. Two self-tests are utilities.
+tree under the coordinator's 2026-10-04 decision. Three additional scverse display/annotation targets are listed below; their acceptance is recorded in docs/build/UMAP_DISPLAY_REPORT.md. Two self-tests are utilities.
 Acceptance scope and remaining owner items are recorded in SUITE.md and
 `docs/build/S5_REPORT_m3m4.md`; seals do not establish manuscript readiness.
 
@@ -51,6 +51,9 @@ availability status; a literature target is not automatically executable.
 | AnnData normalization, HVG, PCA, Leiden and UMAP | `scanpy-cluster` | `scripts/run_scanpy_cluster.py` |
 | Descriptive cluster markers, never cell-wise condition inference | `scanpy-markers` | `scripts/run_scanpy_markers.py` |
 | CPU scVI latent-space batch integration, preserving original counts/clusters | `scvi-integrate` | `scripts/run_scvi_integrate.py` |
+| Marker-panel descriptive cluster naming with an explicit label map | `scanpy-annotate` | `scripts/run_scanpy_annotate.py` |
+| Neighbour purity and isolated-cell flags for UMAP display curation | `scanpy-purity` | `scripts/run_scanpy_purity.py` |
+| Query projection onto a fixed reference UMAP with ingest | `scanpy-ingest` | `scripts/run_scanpy_ingest.py` |
 | CPU scANVI label transfer from a verified local scVI run | `scanvi-annotate` | `scripts/run_scanvi_annotate.py` |
 | Seurat raw-count quality control | `seurat-qc` | `scripts/run_seurat_qc.R` |
 | Seurat normalization and clustering | `seurat-cluster` | `scripts/run_seurat_cluster.R` |
@@ -97,6 +100,10 @@ must be settled before selecting camera/cameraPR versus fry/roast/mroast.
 A single roast tests the one --set-id, not every overlapping set.
 
 ### Single-cell ecosystem and purpose
+
+Marker-panel naming of AnnData clusters routes to scanpy-annotate. This records descriptive user decisions and retains unresolved clusters; SingleR and scANVI remain reference/model label transfer routes. Neighbour-purity or island cleanup for a display routes to scanpy-purity. Adding query cells to a fixed existing UMAP routes to scanpy-ingest, preserving reference positions. Rebuilding UMAP from a larger trained scVI latent uses scvi-integrate --latent-from-run; --leiden-resolution writes a new --scvi-cluster-col and preserves carried clusters. scanpy-cluster --use-rep uses an existing representation.
+
+Cleaning, balanced object selection and ingest are display/curation only. Never route these curated objects into proportions, pseudobulk, markers or DE; use the original analysis cohort. A figure display-max-per-group cap only changes drawing, leaves objects/tables intact, and is stated in the caption. Consult reference_advise before choosing thresholds, resolution, caps or label-island parameters.
 
 Existing Seurat, SingleCellExperiment and AnnData objects select the Seurat,
 Bioconductor and scverse lanes respectively. An explicit user ecosystem or

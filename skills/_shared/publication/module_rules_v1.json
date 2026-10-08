@@ -1851,6 +1851,175 @@
           "the prespecified native workflow and documented sample unit"
         ]
       }
+    },
+    {
+      "module": "scanpy-annotate",
+      "rule_id": "PUB-M-SCANPY_ANNOTATE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Report the full descriptive tables and measured cell/cluster denominators; these diagnostics are not inferential effect estimates"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft",
+        "cluster_annotation.csv",
+        "colour_registry.json"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review",
+        "Retain unresolved clusters; record the user marker panel, label map and expression layer",
+        "Show cluster sizes, panel scores, marker evidence, assigned names and assignment status"
+      ],
+      "narrative_points": [
+        "Marker-panel cluster naming is descriptive; supplied names are user decisions rather than validated cell identities",
+        "Report unresolved cells with their denominator and preserve the complete annotation object",
+        "Inherit any display_only flag; curated inputs must not support proportions, pseudobulk, markers or differential expression",
+        "Report exact user choices, locked package versions, seed and provenance; any figure-only cap must appear in its caption"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "validated cell type",
+          "curated cells establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive annotation or display/curation diagnostics"
+        ]
+      }
+    },
+    {
+      "module": "scanpy-purity",
+      "rule_id": "PUB-M-SCANPY_PURITY-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Report the full descriptive tables and measured cell/cluster denominators; these diagnostics are not inferential effect estimates"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft",
+        "purity.csv",
+        "retained_cells.csv"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review",
+        "Record the selected graph or representation and all explicit purity, neighbour and island parameters",
+        "Check per-cell purity/island flags and retained IDs against the full input cell denominator",
+        "The output object is not silently subset; handoff and embedded state must retain display_only"
+      ],
+      "narrative_points": [
+        "Neighbour purity and island flags are display/curation diagnostics, not a validated cell classifier",
+        "Report n_removed/n_denominator and n_retained; any subset and subsequent rerun must be explicit",
+        "Curated cells must not support proportions, pseudobulk, markers or differential expression; use the original cohort",
+        "Report exact user choices, locked package versions, seed and provenance; any figure-only cap must appear in its caption"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "validated cell type",
+          "curated cells establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive annotation or display/curation diagnostics"
+        ]
+      }
+    },
+    {
+      "module": "scanpy-ingest",
+      "rule_id": "PUB-M-SCANPY_INGEST-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Report the full descriptive tables and measured cell/cluster denominators; these diagnostics are not inferential effect estimates"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft",
+        "projected_cells.csv",
+        "reference_coordinates.csv",
+        "cell_metadata.csv"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review",
+        "Verify disjoint reference/query cells, gene order, compatible annotation and a shared representation basis",
+        "Assert unchanged fixed reference coordinates and report reference_max_abs_diff",
+        "Report projected-cell same-label reference-neighbour fractions and preserve unseen query labels",
+        "Projection outputs must retain display_only in handoff and embedded state"
+      ],
+      "narrative_points": [
+        "Fixed-reference query projection is display/curation only; same-label neighbour fractions are descriptive diagnostics",
+        "Report reference/query cell denominators, representation source and explicit ingest/neighbour choices",
+        "Do not infer cell proportions, marker differences, differential expression or validated cell identity from this projected display",
+        "Report exact user choices, locked package versions, seed and provenance; any figure-only cap must appear in its caption"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "validated cell type",
+          "curated cells establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive annotation or display/curation diagnostics"
+        ]
+      }
     }
   ]
 }

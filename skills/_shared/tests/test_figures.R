@@ -48,6 +48,47 @@ expect_error_code <- function(expr, code, msg) {
 }
 sha <- function(f) digest::digest(file = f, algo = "sha256")
 
+# Explicit labels on the largest island, rather than the median between islands.
+multi <- data.frame(x = c(0, 0.1, -0.1, 0.2, 10, 10.1), y = c(0, 0.1, -0.1, 0.2, 0, 0.1), type = "A")
+label_xy <- data.frame(group = "A", x = 0.05, y = 0.05)
+p_multi <- os_embedding(multi, "type", label_xy = label_xy)
+check(identical(attr(p_multi, "os_meta")$notes$label_xy, label_xy), "multi-island embedding preserves explicit largest-island coordinates")
+built_multi <- ggplot2::ggplot_build(p_multi)
+check(any(vapply(built_multi$data, function(d) "label" %in% names(d) && any(d$label == "A" & d$x == 0.05 & d$y == 0.05), logical(1))), "multi-island label uses explicit island median")
+expect_error_code(os_embedding(multi, "type", label_xy = data.frame(group = "B", x = 0, y = 0)), "OS_INVALID_INPUT", "label groups must match drawn groups")
+p_sampled <- os_embedding(multi[1:3, ], "type", display_max_per_group = 3, display_n_input = 6)
+check(isTRUE(attr(p_sampled, "os_meta")$data$display_only) && grepl("Display only", attr(p_sampled, "os_meta")$caption), "display sampling is recorded in metadata and caption")
+seeded <- os_colour_registry_new(); seeded$families$celltype <- stats::setNames(rep("#0072B2", 24), paste0("T", 1:24))
+check(length(os_colours_for(paste0("T", 1:24), "celltype", seeded)$colours) == 24, "fully seeded registry accepts more than 23 categories")
+
+# Opt-in halo label style: background-coloured halo rings under the ink text,
+# identical placement inputs, recorded only when requested; default untouched.
+halo_emb <- fx_embedding()
+repel_layers <- function(p) Filter(function(l) inherits(l$geom, "GeomTextRepel"), p$layers)
+p_plain <- os_embedding(halo_emb, "celltype")
+p_halo <- os_embedding(halo_emb, "celltype", label_style = "halo")
+lh <- repel_layers(p_halo); lp <- repel_layers(p_plain)
+rings <- sort(OS_FIG_EXT$label_halo_rings, decreasing = TRUE)
+check(length(lp) == 1 && length(lh) == length(rings), "halo style draws one repelled layer per halo ring; plain draws one")
+check(identical(unname(vapply(lh, function(l) l$aes_params$bg.r, numeric(1))), rings), "halo rings run from the widest to the narrowest radius")
+check(identical(unname(vapply(lh, function(l) l$aes_params$colour, character(1))), c(rep(OS_FIG$col_bg, length(rings) - 1), OS_FIG$col_ink)) &&
+      all(vapply(lh, function(l) identical(l$aes_params$bg.colour, OS_FIG$col_bg), logical(1))),
+      "halo rings are background-coloured and the ink text is drawn last")
+same_place <- function(l, ref) identical(l$data, ref$data) && identical(l$geom_params$seed, ref$geom_params$seed) &&
+  identical(l$geom_params$box.padding, ref$geom_params$box.padding) && identical(l$geom_params$point.padding, ref$geom_params$point.padding) &&
+  identical(l$aes_params$size, ref$aes_params$size) && identical(l$geom_params$max.iter, ref$geom_params$max.iter)
+check(all(vapply(lh, same_place, logical(1), ref = lh[[length(lh)]])), "halo layers share data, size, padding, seed and iteration budget (same placement)")
+check(identical(lp[[1]]$aes_params$bg.r, 0.12) && identical(as.numeric(lp[[1]]$geom_params$box.padding), 0.05), "plain label style keeps the original halo and padding")
+check(identical(attr(p_halo, "os_meta")$notes$label_style, "halo") && grepl("white halo", attr(p_halo, "os_meta")$caption, fixed = TRUE) &&
+      is.null(attr(p_plain, "os_meta")$notes$label_style) && !grepl("halo", attr(p_plain, "os_meta")$caption, fixed = TRUE),
+      "halo style is recorded in caption and notes only when requested")
+check(!grepl("halo", attr(os_embedding(halo_emb, "celltype", label = FALSE, label_style = "halo"), "os_meta")$caption, fixed = TRUE),
+      "label_style has no effect without labels")
+check(!is.null(tryCatch(os_embedding(halo_emb, "celltype", label_style = "glow"), error = function(e) e)), "unknown label_style is refused")
+rh1 <- os_save_figure(p_halo, file.path(outdir, "halo1", "umap"), formats = "png")
+rh2 <- os_save_figure(os_embedding(halo_emb, "celltype", label_style = "halo"), file.path(outdir, "halo2", "umap"), formats = "png")
+check(identical(sha(rh1$files$png), sha(rh2$files$png)), "halo label PNG byte-identical across reruns")
+
 # ------------------------------------------------------------- builders ----
 ft <- fx_feature_table(); ex <- fx_expression(ft); et <- fx_enrichment(); emb <- fx_embedding(3000)
 mk <- fx_markers(); mt <- fx_module_trait(); mf <- fx_maf()

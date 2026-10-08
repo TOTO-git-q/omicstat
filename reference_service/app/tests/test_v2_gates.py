@@ -33,10 +33,16 @@ class ConfigTests(unittest.TestCase):
     def test_profiles_cover_the_registry_and_validation_is_recorded(self):
         config = discovery.load_profiles()
         order = [m["module"] for m in json.loads((ROOT / "method_map.json").read_text(encoding="utf-8"))["modules"]]
-        self.assertEqual(len(order), 38)
+        self.assertEqual(len(order), 41)
         self.assertEqual(sorted(config["profiles"]), sorted(order))
         raw = json.loads((ROOT / "discovery_profiles.json").read_text(encoding="utf-8"))["profiles"]
-        for record in raw:
+        self.assertEqual([r["module"] for r in raw[-3:]], ["scanpy-annotate", "scanpy-purity", "scanpy-ingest"])
+        for record in raw[-3:]:
+            self.assertEqual(record["profile_status"], "weak")
+            self.assertEqual(record["validation_rounds"], 0)
+            self.assertNotIn("s0_validation", record)
+            self.assertIn("no screened corpus", record["note"])
+        for record in raw[:-3]:
             self.assertIn(record["profile_status"], ("ok", "weak"))
             self.assertLessEqual(record["validation_rounds"], 3)
             self.assertIsInstance(record["s0_validation"]["hit_count"], int)

@@ -427,3 +427,9 @@ presto、psych、scrapper；原530包记录保持不变。
 
 最终套件数值、逐项skip、全部变更与reference逐模块/列映射详见
 [本次S5报告](docs/build/S5_REPORT_m3m4.md)。参考服务仅更新离线bundle，不部署。
+
+## UMAP display workflow (2026-10-07)
+
+Added scanpy-annotate (descriptive panel naming), scanpy-purity (explicit neighbour/island flags), and scanpy-ingest (fixed-reference query projection). scvi-integrate gains latent reuse and optional Leiden in a new column; scanpy-cluster can use an existing representation. Scientific thresholds are explicit user choices. Purity curation, balanced cell-list selection and ingest are display only and cannot feed proportions, pseudobulk, markers or DE. Figure-only group caps leave numerical outputs unchanged.
+
+ENGINEERING_PLAN 3.7: optional paths leave existing numerical tables and goldens unchanged; default embedding labels and render metadata remain unchanged. New rendering choices record explicit label coordinates, display caps and seeded registries. Final acceptance, seal counts and visual review are recorded in docs/build/UMAP_DISPLAY_REPORT.md.

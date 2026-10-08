@@ -30,7 +30,7 @@ EXPECTED_MODULES = [
     "scater-qc", "scran-cluster", "batchelor-integrate", "scran-markers", "aucell-score", "singler-annotate",
     "muscat-pseudobulk", "speckle-propeller", "cellchat-communication", "monocle3-trajectory",
     "slingshot-trajectory", "wgcna-network", "maftools-landscape", "immunedeconv-infiltration", "scanpy-qc",
-    "scanpy-cluster", "scanpy-markers", "scvi-integrate", "scanvi-annotate"]
+    "scanpy-cluster", "scanpy-markers", "scvi-integrate", "scanvi-annotate", "scanpy-annotate", "scanpy-purity", "scanpy-ingest"]
 
 PROBE = textwrap.dedent(r'''
     import datetime as dt, json, tempfile

@@ -947,7 +947,7 @@
     "scanpy.tl.umap": "(adata: 'AnnData', *, min_dist: 'float' = 0.5, spread: 'float' = 1.0, n_components: 'int' = 2, maxiter: 'int | None' = None, alpha: 'float' = 1.0, gamma: 'float' = 1.0, negative_sample_rate: 'int' = 5, init_pos: '_InitPos | np.ndarray | None' = 'spectral', random_state: '_LegacyRandom' = 0, a: 'float | None' = None, b: 'float | None' = None, method: \"Literal['umap', 'rapids']\" = 'umap', key_added: 'str | None' = None, neighbors_key: 'str' = 'neighbors', copy: 'bool' = False) -> 'AnnData | None'"
   },
   "default_capture_environment": {
-    "image_id": "sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f",
+    "image_id": null,
     "packages": {
       "anndata": "0.13.3.post0",
       "scanpy": "1.12.4",

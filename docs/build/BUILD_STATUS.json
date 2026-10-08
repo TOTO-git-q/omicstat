@@ -25,7 +25,10 @@
     "slingshot-trajectory",
     "wgcna-network",
     "maftools-landscape",
-    "immunedeconv-infiltration"
+    "immunedeconv-infiltration",
+    "scanpy-annotate",
+    "scanpy-purity",
+    "scanpy-ingest"
   ],
   "unimplemented_new": [],
   "modules": [
@@ -256,6 +259,24 @@
       "status": "built",
       "source_available": true,
       "locked_acceptance": "pending_this_build"
+    },
+    {
+      "module": "scanpy-annotate",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "scanpy-purity",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
+    },
+    {
+      "module": "scanpy-ingest",
+      "status": "built",
+      "source_available": true,
+      "locked_acceptance": "pending_independent_s3"
     }
   ]
 }
