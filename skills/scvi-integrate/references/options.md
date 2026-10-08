@@ -13,7 +13,7 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--species` | no scientific default; consult L1 tutorial example | yes | `none` |
 | `--annotation` | no scientific default; consult L1 tutorial example | yes | `none` |
 | `--sample-col` | no scientific default; consult L1 tutorial example | yes | `none` |
-| `--counts-layer` | no scientific default; consult L1 tutorial example | yes | `none` |
+| `--counts-layer` | no scientific default; consult L1 tutorial example | yes | `layer` |
 | `--seed` | 20260925 | no | `seed` |
 | `--journal` | 'nature' | no | `none` |
 | `--batch-col` | no scientific default; consult L1 tutorial example | yes | `batch_key` |
@@ -23,7 +23,7 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--n-latent` | 10 | no | `n_latent` |
 | `--batch-size` | 128 | no | `batch_size` |
 | `--min-dist` | 0.5 | no | `none` |
-| `--features-file` | None | no | `layer` |
+| `--features-file` | None | no | `none` |
 | `--help` | None | no | `none` |
 | `--size-factor-key` | `None` (scvi.model.SCVI.setup_anndata.size_factor_key; value) | no | `size_factor_key` |
 | `--categorical-covariate-keys` | `None` (scvi.model.SCVI.setup_anndata.categorical_covariate_keys; list) | no | `categorical_covariate_keys` |

@@ -1,13 +1,13 @@
-# Reference companion data snapshot (2026-10-04)
+# Reference companion data snapshot (2026-10-09)
 
-A read-only, consistent copy (SQLite backup API, then `VACUUM`) of the live data directory of the deployed reference companion, taken from image `omicstat-reference:20261004-s5-6a88d3f30e38` (source commit `6a88d3f`).
+A read-only, consistent copy (SQLite backup API, then `VACUUM`) of the live data directory of the deployed reference companion, taken from image `omicstat-reference:20261009-keyparam-94d280b28e43` (source commit `d0a0aea`).
 
 | File | sha256 | Content |
 |---|---|---|
-| `reference.sqlite` | `bb9174f9c2ceee2b1e3f0949f8c3c9d659d31dd517469fe4703f7e6479db74c6` | the **reviewed supplement**: 760 usage records from the S0 evidence of 25 modules (M1/M2 verified in S0; lane A and the redone lane-B modules after independent verification), each with the reported parameters, the verbatim Methods snippet and section, the PubMed id and the extraction provenance (branch, commit, file sha256); curation state and metadata. The curated seed table (`records`) is empty by design. |
-| `harvest.sqlite` | `ede0d79b3710fa58c6cbd1f379893beb4731c25d7757eb14cfec2b641342bd5b` | the **unreviewed discovery** column: 218 screened candidates (194 from the S0 bundle of the modules whose evidence was not redone, plus the daily harvester's own finds), 51 screened-out records, the daily run ledger, identity aliases, and the harvester's method-map cursor. |
+| `reference.sqlite` | `61a6d225af3071890d6a732eb9de141db75ac6dc8ae3c0e404b6cf51714b3273` | the **reviewed supplement**: 958 usage records from the S0 evidence of all 38 modules (M1/M2 verified in S0; lane A and lane B redone after independent verification; the five scverse modules, maftools and immunedeconv re-extracted on 2026-10-09 for their key parameters over the full corpus with every snippet verbatim-checked), each with the reported parameters, the verbatim Methods snippet and section, the PubMed id and the extraction provenance (branch, commit, file sha256); curation state and metadata. The curated seed table (`records`) is empty by design. |
+| `harvest.sqlite` | `fd5b621bd79630321e1468a1b80101f908250152b39847eb06ac0cdeffe207d5` | the **unreviewed discovery** column: the daily harvester's own finds (70 screened, 33 metadata-only), 194 superseded S0 candidates kept with status `excluded` (never searched, advised or promotable), 234 screened-out records, the daily run ledger, identity aliases, and the harvester's method-map cursor. |
 
-The same evidence is also shipped as a deterministic bundle, `reference_service/app/s0_evidence/catalog.json` (749 papers, 954 usages), which `app/s0_loader.py` loads into an empty or existing data directory; the importer that builds it is `reference_service/import_s0_evidence.py`. The databases here add what only the running service has: the harvester's state and its discovery candidates.
+The same evidence is also shipped as a deterministic bundle, `reference_service/app/s0_evidence/catalog.json` (753 papers, 958 usages, all reviewed), which `app/s0_loader.py` loads into an empty or existing data directory; the importer that builds it is `reference_service/import_s0_evidence.py`. The databases here add what only the running service has: the harvester's state and its discovery candidates.
 
 ## Using it
 

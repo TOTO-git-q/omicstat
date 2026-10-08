@@ -19,7 +19,7 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--n-hvg` | no scientific default; consult L1 tutorial example; clustering tutorial Cell 27: 2000 | yes | `n_top_genes` |
 | `--n-pcs` | no scientific default; consult L1 tutorial example | yes | `n_pcs` |
 | `--n-neighbors` | no scientific default; consult L1 tutorial example | yes | `n_neighbors` |
-| `--resolution` | no scientific default; consult L1 tutorial example | yes | `none` |
+| `--resolution` | no scientific default; consult L1 tutorial example | yes | `cluster_resolution` |
 | `--cluster-col` | 'cluster' | no | `none` |
 | `--target-sum` | None | no | `target_sum` |
 | `--hvg-batch-col` | None | no | `batch_key` |

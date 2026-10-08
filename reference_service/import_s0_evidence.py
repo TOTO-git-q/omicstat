@@ -20,7 +20,13 @@ LANE_B = set('singler-annotate muscat-pseudobulk speckle-propeller monocle3-traj
 LANE_C = set('scanpy-qc scanpy-cluster scanpy-markers scvi-integrate scanvi-annotate'.split())
 M12_MODULES = set('deseq2-wald deseq2-qc deseq2-lrt edger-qlf limma-voom limma-array limma-dupcor sva-batch clusterprofiler-ora clusterprofiler-gsea clusterprofiler-compare fgsea-prerank gsva-score limma-camera'.split())
 REVIEWED_B = {'singler-annotate', 'muscat-pseudobulk', 'speckle-propeller',
-              'monocle3-trajectory', 'cellchat-communication', 'wgcna-network'}
+              'monocle3-trajectory', 'cellchat-communication', 'wgcna-network',
+              'slingshot-trajectory', 'maftools-landscape', 'immunedeconv-infiltration'}
+# Re-extracted for their key parameters over the full corpus after the M3/M4
+# verification (S0_KEYPARAM_REDO_*.md); every snippet is verbatim-checked.
+REVIEWED_C = set(LANE_C)
+KEYPARAM_REDO = {'maftools-landscape', 'immunedeconv-infiltration'} | LANE_C
+KEYPARAM_REPORTS = {'B': ('S0_KEYPARAM_REDO_b.md',), 'C': ('S0_KEYPARAM_REDO_scanpy.md', 'S0_KEYPARAM_REDO_scvi.md')}
 
 def encoded(obj):
     return json.dumps(obj, ensure_ascii=False, sort_keys=True, indent=2) + '\n'
@@ -68,14 +74,23 @@ def build(repo, sources, verify):
     for source_kind, root in sources:
         if source_kind in {'A', 'B'}:
             record_input(root, root / f'docs/build/S0_REDO_lane_{source_kind.lower()}.md', 'redo_report')
+        for name in KEYPARAM_REPORTS.get(source_kind, ()):
+            record_input(root, root / 'docs/build' / name, 'keyparam_redo_report')
         for extract in sorted(root.glob('acceptance/exemplars/*/literature/extraction.jsonl')):
             module = extract.parents[1].name
             # The merged repo also contains copied M3/M4 extracts; import those
             # only from their original lane, preserving the evidence column.
             if module not in {'M12': M12_MODULES, 'A': LANE_A, 'B': LANE_B, 'C': LANE_C}[source_kind]:
                 continue
-            column = 'reviewed_supplement' if source_kind in {'M12', 'A'} or module in REVIEWED_B else 'discovery'
-            state = 'verified_S0' if source_kind == 'M12' else 'redone_after_verification' if column == 'reviewed_supplement' else 'partially_redone' if module == 'slingshot-trajectory' else 'not_redone'
+            column = 'reviewed_supplement' if source_kind in {'M12', 'A'} or module in REVIEWED_B | REVIEWED_C else 'discovery'
+            if source_kind == 'M12':
+                state = 'verified_S0'
+            elif column == 'discovery':
+                state = 'not_redone'
+            elif module in KEYPARAM_REDO:
+                state = 'redone_key_parameters'
+            else:
+                state = 'redone_after_verification'
             provenance = record_input(root, extract, 'extraction') | {'evidence_state': state}
             corpus_path = extract.with_name('corpus.jsonl')
             record_input(root, corpus_path, 'corpus')

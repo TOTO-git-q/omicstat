@@ -42,10 +42,11 @@ The loader changes only import-owned `S0-*` supplement/candidate rows and curati
 
 ## 3. Verify offline, switch image, verify service
 
-Before restarting the worker, run against the actual loaded volume, using the new image:
+Before restarting the worker, run against the actual loaded volume, using the new image (the tmpfs is required: with a read-only root SQLite has no temp space for the supplement sort and fails with `disk I/O error`):
 
 ```bash
 docker run --rm --network none --user "$(id -u):$(id -g)" --read-only \
+  --tmpfs /tmp:rw,noexec,nosuid,size=33554432,mode=1777 \
   -e OMICSTAT_REFERENCE_DATA=/data -v "$SEED_DATA":/data -w /app "$SEED_TAG" python -c '
 import json, sqlite3
 from pathlib import Path

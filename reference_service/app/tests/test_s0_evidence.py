@@ -38,8 +38,8 @@ class S0EvidenceTests(unittest.TestCase):
             self.assertEqual({stats['column']}, {u['column'] for u in rows})
             self.assertEqual(stats['parameters'], sum(len(u['parameters']) for u in rows))
             self.assertEqual(stats['coverage'], sum(len(u['coverage']) for u in rows))
-        self.assertEqual(30, sum(s['column'] == 'reviewed_supplement' for s in b['counts'].values()))
-        self.assertEqual(8, sum(s['column'] == 'discovery' for s in b['counts'].values()))
+        self.assertEqual(38, sum(s['column'] == 'reviewed_supplement' for s in b['counts'].values()))
+        self.assertEqual(0, sum(s['column'] == 'discovery' for s in b['counts'].values()))
 
     def test_exclusions_coverage_and_eligibility(self):
         gate = ReferenceStore.__new__(ReferenceStore)
