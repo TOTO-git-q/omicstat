@@ -1,6 +1,6 @@
 {
   "module": "clusterprofiler-ora",
-  "note": "formals read from locked omicstat-r:2026.09.1; simplify is an S4 generic, method arguments are passed through ... and show <absent> on generic formals. enrichit::EXTID2NAME is the ID-to-symbol mapper used by setReadable; it only fills the supplementary symbol tables (S4 F2) and never changes a tested value.",
+  "note": "formals read from locked omicstat-r:2026.09.1; simplify is an S4 generic, method arguments are passed through ... and show <absent> on generic formals. enrichit::EXTID2NAME is the ID-to-symbol mapper used by setReadable; it only fills the supplementary symbol tables (S4 F2) and never changes a tested value. clusterProfiler::enricher serves --database custom (user-supplied GMT); its formals were read in the locked omicstat-r:2026.10.1 container.",
   "package_versions": {
     "clusterProfiler": "4.20.0",
     "enrichit": "0.2.1"
@@ -164,6 +164,73 @@
           "source": "PACK T setReadable symbols",
           "pack": "T",
           "function_default": "\"SYMBOL\""
+        }
+      }
+    },
+    {
+      "fn": "clusterProfiler::enricher",
+      "args": {
+        "gene": {
+          "value": "selected genes",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "\"BH\""
+        },
+        "universe": {
+          "value": "selection-eligible genes",
+          "source": "S1-appendix P-2 (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "NULL"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "10",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "500",
+          "flag": "--max-size"
+        },
+        "qvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "0.2"
+        },
+        "gson": {
+          "value": null,
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "NULL"
+        },
+        "TERM2GENE": {
+          "value": "term -> gene table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "TERM2NAME": {
+          "value": "term -> description table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "NA"
         }
       }
     }

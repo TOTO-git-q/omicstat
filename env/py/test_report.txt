@@ -4,6 +4,8 @@
 == python_lane config: ALL PASSED
 == python skills/_shared/py/tests/test_ospy.py
 == ospy: ALL PASSED (0 skipped)
+== python skills/_shared/py/tests/test_user_genesets.py
+OK
 == python tools/test_check_calls.py
 == check_calls.py: ALL PASSED
 == python tools/test_new_module_py.py
@@ -21,11 +23,11 @@ omicstat-selftest-py: 6 flag(s) in --help, 6 with defaults in 2+ sources; 0 prob
 == python skills/omicstat-selftest-py/tests/run_smoke_test.py
 SMOKE PASSED (1 skipped)
 == python tools/check_calls.py skills/scanpy-annotate
-91 call sites scanned; 0 registry problems; 0 default-drift problems
+100 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scanpy-annotate
-scanpy-annotate: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+scanpy-annotate: 35 flag(s) in --help, 35 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scanpy-annotate
-27/27 flags documented
+35/35 flags documented
 == python skills/scanpy-annotate/tests/run_smoke_test.py
 PASS: numerical oracle, display guardrails, deterministic replay and computed golden
 == python tools/check_calls.py skills/scanpy-cluster
@@ -84,5 +86,5 @@ scvi-integrate: 60 flag(s) in --help, 60 with defaults in 2+ sources; 0 problem(
 60/60 flags documented
 == python skills/scvi-integrate/tests/run_smoke_test.py
 PASS: scvi-integrate pinned numerical smoke; R rendering/visual review must run separately
-== done: ALL PASSED (43 commands)
+== done: ALL PASSED (44 commands)
 image: omicstat-py:2026.09.1 sha256:dedf331e03f3832cbd069bd3c75af3ac1a6f4f1daf88eea6f72204a3b114b96f

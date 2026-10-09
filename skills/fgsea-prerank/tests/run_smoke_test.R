@@ -213,5 +213,49 @@ ob <- run("--ranked-list", shQuote(bad), "--direction", "up", "--collection", "f
 check(ob$status != 0 && any(grepl("OS_INVALID_INPUT", ob$out, fixed = TRUE)), "duplicate/nonfinite ranking refused")
 om <- run(base[1:4], "--outdir", shQuote(file.path(tmp, "missing_ref")))
 check(om$status != 0 && any(grepl("OS_REFDATA_MISSING", om$out, fixed = TRUE)), "unresolved Hallmark registry preset refused")
+
+# ---- user-supplied gene sets: --collection user (CONVENTIONS "User-supplied gene-set collections") ----
+# exampleRanks are mouse Entrez IDs; the synthetic KEGG-like sets (mmu) are drawn from them.
+source(file.path(suite, "skills", "_shared", "scripts", "user_genesets.R"))
+source(file.path(suite, "skills", "_shared", "tests", "user_genesets_testkit.R"))
+rz <- function(...) { o <- run(...); structure(o$out, status = o$status) }
+ugs_sets <- ugs_kegg_like_sets(head(names(stats), 300), names(stats)[-(1:300)])
+ugs <- ugs_fixture(file.path(tmp, "user_sets"), ugs_sets, "ENTREZID", species = "mmu", lowfn = function(i) as.character(990000000 + i))
+ubase <- c(base[1:8], "--collection", "user", "--gene-sets", shQuote(ugs$gmt), "--feature-id-type", "ENTREZID")
+cu <- file.path(tmp, "user_anchor")
+o <- run(ubase, "--gene-sets-provenance", shQuote(ugs$prov), "--outdir", shQuote(cu))
+check(o$status == 0, paste("user: user GMT fgsea run", paste(utils::tail(o$out, 2), collapse = " | ")))
+if (o$status == 0) {
+  ut <- utils::read.csv(file.path(cu, "tables", "enrichment_table.csv"), stringsAsFactors = FALSE)
+  set.seed(20260925)
+  ur <- fgsea::fgseaMultilevel(pathways = ugs_sets, stats = os_rank_read(rank_path)$stats, sampleSize = 101, minSize = 15, maxSize = 500,
+                               eps = 1e-50, scoreType = "std", nproc = 1, gseaParam = 1, BPPARAM = NULL, nPermSimple = 1000, absEps = NULL)
+  m <- match(ur$pathway, ut$term_id)
+  check(!anyNA(m) && max(abs(ur$NES - ut$nes[m])) < 1e-12 && max(abs(ur$padj - ut$padj[m])) < 1e-12,
+        sprintf("user: replay equals direct fgseaMultilevel on the user sets (%d sets)", nrow(ur)))
+  check(all(c("hsa04110", "KEGG_APOPTOSIS") %in% ut$term_id) && all(ut$database == "KEGG REST (user-supplied)"),
+        "user: KEGG-style term IDs accepted; database label is the user's source")
+  uj <- jsonlite::fromJSON(file.path(cu, "results", "fgsea_prerank_results.json"))
+  check(identical(uj$user_gene_sets$origin, "user-supplied, not bundled with omicstat") && identical(uj$collection_species, "Mus musculus"),
+        "user: results JSON carries the user collection record")
+  ugs_check_recorded(check, cu, "user fgsea", length(ugs_sets), species = "Mus musculus")
+  ur2 <- file.path(tmp, "user_replay")
+  o <- run("--spec", shQuote(file.path(cu, "provenance", "resolved_spec.json")), "--outdir", shQuote(ur2))
+  check(o$status == 0 && sha(file.path(cu, "tables", "enrichment_table.csv")) == sha(file.path(ur2, "tables", "enrichment_table.csv")),
+        "user: byte-identical --spec replay")
+}
+ugs_refused(check, rz(ubase[-length(ubase)], "SYMBOL", "--gene-sets-provenance", shQuote(ugs$prov), "--outdir", shQuote(file.path(tmp, "user_idtype"))),
+            "OS_GENE_SET_ID_MISMATCH", "user: gene-set ENTREZID vs --feature-id-type SYMBOL")
+ugs_refused(check, rz(ubase, "--gene-sets-provenance", shQuote(ugs$bad_sha), "--outdir", shQuote(file.path(tmp, "user_sha"))),
+            "OS_REFDATA_MISMATCH", "user: sha256 differing from provenance")
+ugs_refused(check, rz(base[1:8], "--collection", "user", "--gene-sets", shQuote(ugs$low), "--gene-sets-provenance", shQuote(ugs$low_prov),
+                      "--feature-id-type", "ENTREZID", "--outdir", shQuote(file.path(tmp, "user_low"))), "OS_GENE_SET_LOW_OVERLAP", "user: under 10% overlap with the ranking")
+ugs_refused(check, rz(ubase[1:12], "--gene-sets-provenance", shQuote(ugs$prov), "--outdir", shQuote(file.path(tmp, "user_noid"))),
+            "OS_MISSING_PARAMETER", "user: no --feature-id-type")
+ugs_refused(check, rz(base, "--gene-sets-provenance", shQuote(ugs$prov), "--outdir", shQuote(file.path(tmp, "reg_with_contract"))),
+            "OS_CONFLICTING_PARAMETERS", "user: contract flags with a registered collection")
+ok <- run(base[1:8], "--collection", "kegg", "--outdir", shQuote(file.path(tmp, "kegg_route")))
+check(ok$status != 0 && any(grepl("OS_REFDATA_MISSING", ok$out)) && any(grepl("--collection user", ok$out, fixed = TRUE)),
+      "unregistered KEGG collection explains the user-supplied route")
 check(!file.exists(file.path(tmp, "Rplots.pdf")), "no Rplots.pdf device leak")
 if (length(failures)) quit(status = 1) else cat("SMOKE PASSED\n")

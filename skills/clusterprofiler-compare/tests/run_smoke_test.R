@@ -163,5 +163,32 @@ invalid<-read.csv(fixture$manifest,stringsAsFactors=FALSE);invalid$universe[1]<-
 invalidfile<-file.path(fxdir,"invalid_manifest.csv");write.csv(invalid,invalidfile,row.names=FALSE)
 z<-run(c("--manifest",invalidfile,"--outdir",file.path(tmp,"invalid")))
 check(status(z)!=0L&&any(grepl("OS_INVALID_UNIVERSE",z)),"selected list cannot be its own universe")
+
+# ---- user-supplied gene sets: --database custom (CONVENTIONS "User-supplied gene-set collections") ----
+source(file.path(suite,"skills","_shared","tests","user_genesets_testkit.R"))
+listed<-unique(unlist(fixture$lists,use.names=FALSE))
+ugs_sets<-ugs_kegg_like_sets(listed,setdiff(fixture$universe,listed))
+ugs<-ugs_fixture(file.path(tmp,"compare_user_sets"),ugs_sets,"ENTREZID",lowfn=function(i) as.character(990000000+i))
+cbase<-c("--manifest",fixture$manifest,"--database","custom","--gene-sets",ugs$gmt)
+cu<-file.path(tmp,"compare_custom_anchor")
+z<-run(c(cbase,"--gene-sets-provenance",ugs$prov,"--min-size","5","--outdir",cu))
+check(status(z)==0L,paste("custom: user GMT compareCluster(fun = enricher) run",paste(tail(z,3),collapse=" | ")))
+if(status(z)==0L){
+ ct<-read.csv(file.path(cu,"tables","enrichment_full.csv"),check.names=FALSE,stringsAsFactors=FALSE)
+ t2g<-data.frame(term=rep(names(ugs_sets),lengths(ugs_sets)),gene=unlist(ugs_sets,use.names=FALSE))
+ t2n<-data.frame(term=names(ugs_sets),name=unname(ugs_descriptions(ugs_sets)))
+ dref<-as.data.frame(clusterProfiler::compareCluster(geneClusters=fixture$lists,fun="enricher",data="",source_from="clusterProfiler",
+   universe=fixture$universe,pvalueCutoff=1,qvalueCutoff=1,pAdjustMethod="BH",minGSSize=5,maxGSSize=500,gson=NULL,TERM2GENE=t2g,TERM2NAME=t2n))
+ check(nrow(ct)==nrow(dref)&&identical(key(ct),key(dref))&&isTRUE(all.equal(ct$p.adjust,dref$p.adjust,tolerance=1e-14)),
+       sprintf("custom: replay equals direct compareCluster(fun = \"enricher\") (%d list-set rows)",nrow(dref)))
+ check(any(ct$ID=="hsa04110")&&all(ct$database=="KEGG REST (user-supplied)")&&all(ct$test_family=="KEGG REST (user-supplied)"),"custom: KEGG-style IDs kept; label is the user's source")
+ cf<-read.csv(file.path(cu,"tables","test_families.csv"),stringsAsFactors=FALSE)
+ check(all(den(ct$GeneRatio)==cf$n_effective_input[match(ct$Cluster,cf$group)]),"custom: one BH family per list with enricher denominators")
+ ugs_check_recorded(check,cu,"custom compare",length(ugs_sets))
+}
+ugs_refused(check,run(c(cbase,"--gene-sets-provenance",ugs$prov,"--key-type","SYMBOL","--outdir",file.path(tmp,"compare_custom_idtype"))),"OS_GENE_SET_ID_MISMATCH","custom: gene-set ENTREZID vs --key-type SYMBOL")
+ugs_refused(check,run(c(cbase,"--gene-sets-provenance",ugs$bad_sha,"--outdir",file.path(tmp,"compare_custom_sha"))),"OS_REFDATA_MISMATCH","custom: sha256 differing from provenance")
+ugs_refused(check,run(c("--manifest",fixture$manifest,"--database","custom","--gene-sets",ugs$low,"--gene-sets-provenance",ugs$low_prov,"--outdir",file.path(tmp,"compare_custom_low"))),"OS_GENE_SET_LOW_OVERLAP","custom: under 10% overlap with the universes")
+check(any(grepl("--database custom",missing_ref,fixed=TRUE)),"KEGG without a local GMT explains the user-supplied route")
 check(!file.exists(file.path(suite,"Rplots.pdf")),"no Rplots.pdf")
 if(length(fail))quit(status=1) else cat("SMOKE PASSED\n")

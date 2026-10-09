@@ -87,10 +87,18 @@ after inspecting significance. A batch-corrected expression matrix cannot enter
 inference; use original counts and put batch in the design.
 
 A thresholded gene list routes to clusterprofiler-ora with an explicit tested-gene
-universe; a request that names GO and KEGG together still routes there: GO runs,
-and the module itself refuses the KEGG collection with OS_REFDATA_MISSING (no
-KEGG content is installed). Routing never rejects a question because KEGG was
-mentioned. A gene symbol that happens to spell a test name (FRY, CAMERA, ROAST)
+universe. KEGG, MSigDB, PanglaoDB and other unbundled gene sets route to the same
+modules when the user supplies a local file (user-supplied collection contract):
+clusterprofiler-ora, -gsea and -compare take --database custom --gene-sets <gmt>;
+fgsea-prerank, gsva-score and limma-camera take --collection user --gene-sets <gmt>
+--feature-id-type; aucell-score, seurat-modulescore and scanpy-annotate take their
+usual file with --gene-sets-provenance and --feature-id-type. Provenance is
+--gene-sets-provenance <json> or explicit --gene-sets-source, --gene-sets-version and
+--gene-sets-id-type; never guess them. Without a local file, GO still runs and the
+module refuses KEGG with OS_REFDATA_MISSING, explaining that KEGG gene sets must be
+supplied as a local file (for example from the web app's public-data tool or the
+KEGG REST API under its academic terms). Routing never rejects a question because
+KEGG was mentioned. A gene symbol that happens to spell a test name (FRY, CAMERA, ROAST)
 is a gene, not a method; a gene or gene list of interest routes like any other
 to clusterprofiler-ora. A full ranking routes to clusterprofiler-gsea or fgsea-prerank. Sample-level pathway
 scores on bulk or pseudobulk matrices route to gsva-score; per-cell gene-set
@@ -197,9 +205,21 @@ these recipes do not authorize changing scientific parameters between steps.
 Survival analysis, clinical prediction, diagnostic accuracy, meta-analysis and
 clinical covariate-adjusted associations are not implemented here. Export
 identified sample-level tables for a separately specified clinical workflow;
-never treat a cell as a biological replicate. No KEGG, CADD, PanglaoDB or DepMap
-content or downloads are authorized. Reference fetching is outside the offline
-analysis process and follows the independent license gate.
+never treat a cell as a biological replicate. omicstat never bundles or
+automatically downloads KEGG, CADD, PanglaoDB or DepMap content. User-supplied
+local files (for example a KEGG GMT or PanglaoDB markers the user downloaded) are
+accepted with recorded provenance and terms; the user is responsible for those
+terms. Reference fetching is outside the offline analysis process and follows the
+independent license gate.
+
+Omics analyses that are not covered: answer "not covered by omicstat" instead of
+routing to a near module. These are ATAC-seq and other chromatin accessibility or
+ChIP-seq peak analysis, spatial transcriptomics (spot or spatial-domain methods),
+proteomics and metabolomics differential analysis, RNA velocity, GWAS, variant
+calling and fine-mapping, copy-number (CNV) inference, and alignment or
+quantification from FASTQ. An expression-level question about data that the user
+has already quantified into a gene-by-sample or gene-by-cell matrix still routes
+by its matrix.
 
 ## 5. Parameters, labels and figures
 
@@ -233,6 +253,6 @@ advise; insufficient evidence yields a literature request, not an invented
 recommendation. Its catalog contains 38 targets even where the analysis engine
 is unavailable. No deployment was performed by this source build.
 
-The merged 133-question dataset is in tests/routing_eval.jsonl. Dataset/schema
+The merged 146-question dataset is in tests/routing_eval.jsonl. Dataset/schema
 checks are not a blinded agent routing score; no first-choice or acceptable-
 alternative accuracy is claimed until independent predictions are supplied.

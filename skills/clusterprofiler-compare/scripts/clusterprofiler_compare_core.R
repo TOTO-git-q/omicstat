@@ -34,8 +34,9 @@ cx_manifest <- function(path) {
        inputs=as.list(stats::setNames(c(path,genes_path,universe_path),c("manifest",paste0("genes_",m$group),paste0("universe_",m$group)))))
 }
 
-cx_compute <- function(x,a) {
-  if (a$database!="GO") stop("OS_REFDATA_MISSING: this gene-set collection is not pinned offline.",call.=FALSE)
+cx_compute <- function(x,a,coll=NULL) {
+  if (identical(a$database,"custom")) return(cx_compute_custom(x,a,coll))
+  if (a$database!="GO") stop(os_user_genesets_not_bundled(a$database,"--database custom"),call.=FALSE)
   pool <- if (a$ontology=="ALL") a$pool else FALSE
   if (x$same_population) {
     res <- clusterProfiler::compareCluster(geneClusters=x$genes,fun="enrichGO",data="",source_from=NULL,
@@ -57,6 +58,34 @@ cx_compute <- function(x,a) {
     })
     raw <- do.call(rbind,Filter(Negate(is.null),parts))
     if (is.null(raw)||!nrow(raw)) stop("OS_EMPTY_DATA: no testable term in any population.",call.=FALSE)
+    rownames(raw) <- NULL
+  }
+  list(raw=raw,mode=if (x$same_population) "shared_universe_compareCluster" else "separate_background_ORA")
+}
+
+# User-supplied collection: compareCluster(fun = "enricher") with TERM2GENE and
+# TERM2NAME for one shared population, otherwise enricher once per list
+# against its own background (clusterProfiler book, user-defined gene sets).
+cx_compute_custom <- function(x,a,coll) {
+  tg <- os_user_genesets_term2gene(coll)
+  if (x$same_population) {
+    res <- clusterProfiler::compareCluster(geneClusters=x$genes,fun="enricher",data="",source_from="clusterProfiler",
+      universe=x$backgrounds[[1]],pvalueCutoff=1,qvalueCutoff=1,pAdjustMethod="BH",
+      minGSSize=a[["min-size"]],maxGSSize=a[["max-size"]],gson=NULL,TERM2GENE=tg$TERM2GENE,TERM2NAME=tg$TERM2NAME)
+    if (is.null(res)) stop("OS_EMPTY_DATA: no testable user gene set in the shared-population comparison.",call.=FALSE)
+    raw <- as.data.frame(res)
+    if (!nrow(raw)) stop("OS_EMPTY_DATA: compareCluster returned no testable user gene sets.",call.=FALSE)
+  } else {
+    parts <- lapply(seq_along(x$genes),function(i) {
+      res <- clusterProfiler::enricher(gene=x$genes[[i]],pvalueCutoff=1,pAdjustMethod="BH",universe=x$backgrounds[[i]],
+        minGSSize=a[["min-size"]],maxGSSize=a[["max-size"]],qvalueCutoff=1,gson=NULL,
+        TERM2GENE=tg$TERM2GENE,TERM2NAME=tg$TERM2NAME)
+      if (is.null(res)) return(NULL)
+      d <- as.data.frame(res); if (!nrow(d)) return(NULL)
+      d$Cluster <- x$metadata$group[i]; d
+    })
+    raw <- do.call(rbind,Filter(Negate(is.null),parts))
+    if (is.null(raw)||!nrow(raw)) stop("OS_EMPTY_DATA: no testable user gene set in any population.",call.=FALSE)
     rownames(raw) <- NULL
   }
   list(raw=raw,mode=if (x$same_population) "shared_universe_compareCluster" else "separate_background_ORA")

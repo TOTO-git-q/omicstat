@@ -4,12 +4,12 @@ options(error = function() { cat(geterrmessage(), file = stderr()); quit(status 
 .module_dir <- dirname(dirname(.this))
 .suite <- normalizePath(file.path(.module_dir, "..", ".."))
 .shared <- file.path(.suite, "skills", "_shared", "scripts")
-for (f in c("args.R", "engine_run.R", "module_kit.R", "handoff.R", "enrich_rank_io.R", "limma_io.R", "fig_all.R")) source(file.path(.shared, f))
+for (f in c("args.R", "engine_run.R", "module_kit.R", "handoff.R", "enrich_rank_io.R", "user_genesets.R", "limma_io.R", "fig_all.R")) source(file.path(.shared, f))
 for (f in c("gsva_score_core.R", "gsva_score_report.R", "gsva_score_qc.R")) source(file.path(dirname(.this), f))
 SPEC <- os_arg_spec(
   usage = "Rscript run_gsva_score.R --input <csv>|--from-run <dir> --input-scale <scale> --outdir <dir> [options]",
   description = "GSVA pathway scores from continuous expression, handed on for later analysis; no group inference.",
-  flags = list(
+  flags = c(list(
     os_flag("input", "path", must_exist = TRUE, help = "feature-by-sample expression CSV"),
     os_flag("from-run", "path", must_exist = TRUE, help = "upstream expression_matrix / batch_corrected_matrix handoff or limma run"),
     os_flag("upstream-object", "string", help = "object name if upstream has several expression matrices"),
@@ -17,8 +17,8 @@ SPEC <- os_arg_spec(
     os_flag("spec", "path", must_exist = TRUE, help = "replay prior resolved spec"),
     os_flag("input-scale", "enum", required = TRUE, values = c("vst", "logcpm", "normalized_array", "counts"), help = "declared expression scale"),
     os_flag("kcdf", "enum", default = "auto", values = c("auto", "Gaussian", "Poisson", "none"), help = "GSVA ECDF kernel choice; counts require explicit Poisson"),
-    os_flag("collection", "string", default = "msigdb_collections", help = "offline registered collection ID"),
-    os_flag("gene-sets", "path", must_exist = TRUE, help = "registered local GMT matching its SHA-256"),
+    os_flag("collection", "string", default = "msigdb_collections", help = "offline registered collection ID, or user for a user-supplied --gene-sets GMT"),
+    os_flag("gene-sets", "path", must_exist = TRUE, help = "local GMT: the registered file matching its SHA-256, or the user-supplied GMT of --collection user"),
     os_flag("min-size", "int", default = 5L, range = c(1, 100000), help = "minimum set size after ID intersection and constant-row removal"),
     os_flag("max-size", "int", default = 500L, range = c(1, 100000), help = "maximum set size after ID intersection and constant-row removal"),
     os_flag("samples", "path", must_exist = TRUE, help = "sample table for group annotation of the figures"),
@@ -29,6 +29,7 @@ SPEC <- os_arg_spec(
     os_flag("covariates", "string", help = "inference request: refused, OS_OWNER_DECISION_PENDING"),
     os_flag("seed", "int", default = 20260925L, help = "recorded RNG seed"),
     os_flag("journal", "enum", default = "nature", values = c("nature", "cell", "science", "generic"), help = "figure preset")),
+    os_user_geneset_flags(gmt = FALSE, feature_id_type = TRUE)),
   exclusive = list(c("input", "from-run")))
 a <- os_parse_args(SPEC, os_spec_argv(commandArgs(trailingOnly = TRUE)))
 if (isTRUE(a$help)) { os_print_help(SPEC); quit(status = 0) }
@@ -43,6 +44,8 @@ if (a[["input-scale"]] == "counts" && (a$kcdf != "Poisson" || !"kcdf" %in% attr(
   stop("OS_INVALID_PARAMETER: integer counts require explicit --kcdf Poisson.", call. = FALSE)
 if (a[["input-scale"]] != "counts" && a$kcdf == "Poisson")
   stop("OS_INVALID_PARAMETER: Poisson kernel requires declared counts input.", call. = FALSE)
+user_coll <- identical(a$collection, "user")
+os_user_geneset_guard(a, user_coll, "--collection user", feature = TRUE)
 canon <- os_canonical_argv(SPEC, a)
 options(omicstat.journal = a$journal)
 set.seed(a$seed)
@@ -114,13 +117,19 @@ if (!is.null(st) && !group_col %in% names(st)) {
   group_col <- NULL
 }
 if (is.null(st)) group_col <- NULL
-collection <- os_genesets_read(.suite, a$collection, a[["gene-sets"]])
+if (user_coll) {
+  # User-supplied local GMT (CONVENTIONS "User-supplied gene-set collections").
+  collection <- os_user_genesets_check(os_user_genesets_resolve(a), a[["feature-id-type"]], rownames(mat),
+                                       "the expression matrix", "--feature-id-type")
+  a$collection <- collection$label
+} else collection <- os_genesets_read(.suite, a$collection, a[["gene-sets"]])
 r <- os_engine_capture(gsva_score_compute(mat, collection, a), "compute", elog)
 rend <- os_engine_capture(gsva_score_render(r, a, st, group_col, outdir), "render", elog)
 qc <- os_engine_capture({ q <- gsva_score_qc(r, a, corrected_input); os_write_qc_results(q, outdir); q }, "qc", elog)
 os_engine_capture({
   gsva_score_report(r, a, qc, collection, outdir, file.path(.module_dir, "references", "reporting-templates.md"),
                     corrected_input, source_info, rend$figures)
+  if (user_coll) os_user_genesets_draft(file.path(outdir, "draft", "methods_results.md"), collection$record)
   obj <- file.path(outdir, "objects")
   dir.create(obj, showWarnings = FALSE)
   saveRDS(r$param, file.path(obj, "gsva_param.rds"), version = 3)
@@ -153,12 +162,15 @@ os_engine_capture({
   inputs <- list(expression = input_path)
   if (!is.null(samples_path) && is.null(st_in)) inputs$samples <- samples_path
   if (!is.null(a[["gene-sets"]])) inputs$gene_sets <- a[["gene-sets"]]
+  if (user_coll) inputs <- c(inputs, os_user_genesets_inputs(a)[-1])
   os_write_provenance(outdir, GV_MODULE, GV_MODULE_VERSION, canon, basename(.this), a$seed,
                       inputs = inputs, outputs = outputs, upstream = upstream,
-                      extra = list(collection = a$collection, collection_sha256 = collection$sha256,
+                      extra = c(list(collection = a$collection, collection_sha256 = collection$sha256,
                                    input_scale = a[["input-scale"]], kernel_used = r$kernel,
                                    input_object = source_info$object, input_source = source_info$sentence,
                                    precision_weights_used = FALSE, inference = FALSE,
-                                   batch_corrected_lineage = corrected_input))
+                                   batch_corrected_lineage = corrected_input),
+                                if (user_coll) list(user_gene_sets = collection$record)))
+  if (user_coll) os_user_genesets_write(outdir, collection$record)
 }, "provenance", elog)
 cat(sprintf("%d of %d rules triggered; read %s first\n", qc$n_triggered, qc$n_rules, qc$read_first))

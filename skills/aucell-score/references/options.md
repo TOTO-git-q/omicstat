@@ -23,7 +23,15 @@
 | --auc-args | none; supplementary native AUC arguments | no | none |
 | --seed | 333; explicit random seed | no | none |
 | --journal | "nature"; figure preset | no | none |
+| --gene-sets-provenance | none | no | none |
+| --gene-sets-source | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| --gene-sets-version | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| --gene-sets-id-type | none | conditional; see SKILL.md "User-supplied gene sets" | none |
+| --gene-sets-species | none | no | none |
+| --gene-sets-name | none | no | none |
+| --gene-sets-terms | none | no | none |
+| --feature-id-type | none | conditional; see SKILL.md "User-supplied gene sets" | none |
 
 Supplementary named JSON files expose every native argument, including delegated arguments. Omitted keys keep locked defaults; primary CLI options take precedence. calls_registry.json records container-read defaults. Every scientific choice must be informed by reference_advise and reference_search; absent curated evidence, show the official example and ask the user.
 
-`--sets-file` is required; the bundled GPL-3 AUCell example is the smoke fixture. User-provided collections require matching identifiers and explicit permitted source/licence declarations. KEGG, CADD, PanglaoDB and DepMap remain prohibited.
+`--sets-file` is required; the bundled GPL-3 AUCell example is the smoke fixture. User-provided collections require matching identifiers and explicit permitted source/licence declarations. KEGG, CADD, PanglaoDB and DepMap are never bundled; an undeclared file naming them is refused, while a file the user obtained is accepted when declared through the user-supplied provenance contract (`--gene-sets-provenance` or `--gene-sets-version` + `--gene-sets-id-type`, with `--feature-id-type`).

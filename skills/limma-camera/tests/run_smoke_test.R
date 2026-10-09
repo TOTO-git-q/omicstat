@@ -315,6 +315,35 @@ if (od$status == 0) {
           'contract b: fry uses the upstream block and consensus correlation (equals a direct fry) and says so')
   }
 }
+
+# ---- user-supplied gene sets: --collection user (CONVENTIONS "User-supplied gene-set collections") ----
+source(file.path(suite, 'skills', '_shared', 'scripts', 'user_genesets.R'))
+source(file.path(suite, 'skills', '_shared', 'tests', 'user_genesets_testkit.R'))
+rz <- function(...) { o <- run(...); structure(o$out, status = o$status) }
+fid <- rownames(fix$v$E)
+idt <- if (all(grepl('^[0-9]+$', fid))) 'ENTREZID' else if (all(grepl('^ENS[A-Z]*G[0-9]+$', fid))) 'ENSEMBL' else 'SYMBOL'
+low_fn <- switch(idt, ENTREZID = function(i) as.character(990000000 + i), ENSEMBL = function(i) sprintf('ENSG99%09d', i), function(i) paste0('ZZFAKE', i))
+ugs_sets <- ugs_kegg_like_sets(fid[1:300], fid[-(1:300)])
+ugs <- ugs_fixture(file.path(tmp, 'user_sets'), ugs_sets, idt, lowfn = low_fn)
+ubase <- c(base[seq_len(length(base) - 2L)], '--question', 'competitive', '--collection', 'user', '--gene-sets', shQuote(ugs$gmt), '--feature-id-type', idt)
+cu <- file.path(tmp, 'user_anchor')
+o <- run(ubase, '--gene-sets-provenance', shQuote(ugs$prov), '--outdir', shQuote(cu))
+check(o$status == 0, paste('user: user GMT camera run', paste(tail(o$out, 2), collapse = ' | ')))
+if (o$status == 0) {
+  ut <- gtab(cu)
+  ud <- limma::camera(y = fix$v$E, index = limma::ids2indices(ugs_sets, rownames(fix$v$E)), design = fix$design,
+    contrast = 2, weights = fix$v$weights, use.ranks = FALSE, allow.neg.cor = FALSE,
+    inter.gene.cor = 0.01, trend.var = FALSE, sort = TRUE, directional = TRUE)
+  check(setequal(ut$term_id, rownames(ud)) && rel_eq(ut$pvalue, ud[ut$term_id, 'PValue']) && all(c('hsa04110', 'KEGG_APOPTOSIS') %in% ut$term_id),
+        sprintf('user: camera P values equal a direct limma::camera call on the user sets (%d sets, KEGG-style IDs)', nrow(ud)))
+  ugs_check_recorded(check, cu, 'user camera', length(ugs_sets))
+}
+ugs_refused(check, rz(ubase[-length(ubase)], if (idt == 'SYMBOL') 'ENTREZID' else 'SYMBOL', '--gene-sets-provenance', shQuote(ugs$prov),
+                      '--outdir', shQuote(file.path(tmp, 'user_idtype'))), 'OS_GENE_SET_ID_MISMATCH', 'user: gene-set ID type vs --feature-id-type')
+ugs_refused(check, rz(ubase, '--gene-sets-provenance', shQuote(ugs$bad_sha), '--outdir', shQuote(file.path(tmp, 'user_sha'))),
+            'OS_REFDATA_MISMATCH', 'user: sha256 differing from provenance')
+ugs_refused(check, rz(ubase[seq_len(length(ubase) - 4L)], '--gene-sets', shQuote(ugs$low), '--gene-sets-provenance', shQuote(ugs$low_prov),
+                      '--feature-id-type', idt, '--outdir', shQuote(file.path(tmp, 'user_low'))), 'OS_GENE_SET_LOW_OVERLAP', 'user: under 10% overlap with the matrix')
 check(!file.exists(file.path(tmp, 'Rplots.pdf')), 'no Rplots.pdf device leak')
 
 # R3 selection ledger: no-overlap, not-selected and tested are distinct states.

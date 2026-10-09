@@ -3,13 +3,13 @@
   "module": "aucell-score",
   "module_version": "1.0.0",
   "files": {
-    "skills/aucell-score/scripts/aucell_score_core.R": "ab066dad726282bc2f6c5b09ef7b02ad420b775240be4b3b3a5364267ee3b259",
-    "skills/aucell-score/scripts/run_aucell_score.R": "0c7bbcb3d98a1f0d3a5c8ec0e7410d215283d653a9b38bef71b10113a2b15371",
+    "skills/aucell-score/scripts/aucell_score_core.R": "c1ccb027d64a488feab79134c964e527b9280cf49bbba8fd754bab8ec3c74270",
+    "skills/aucell-score/scripts/run_aucell_score.R": "09e3ed5d61ec27bb5ac21e4d2fbea6ae4e8199ff0f1f1230075ab63051f8c512",
     "skills/aucell-score/scripts/calls_registry.json": "e602d2a7fb8327f47291a772f2eb3aeac574d602c1504c7ced137d9ca60da456",
-    "skills/aucell-score/SKILL.md": "6e8ee5ed12c62c2e1bf548c441463720770a58e6a38ba76d688ef6ab954df2be",
-    "skills/aucell-score/references/options.md": "35ebe3c99122071f8f58cf8426175dbd9d1b6a4d5f9f327e3bf07875f5bee3f2",
+    "skills/aucell-score/SKILL.md": "3d52db0ef86b469a8a87bcfb009e592da546f1570be9fc6ac4628382c2719fc4",
+    "skills/aucell-score/references/options.md": "90df45f5d5e8f3fc8473143c6ea56663b46ce95d20269ed75c7d1d903b8d9d98",
     "skills/aucell-score/tests/fixtures/make_aucell_brain.R": "676486f746b783a1f1f2e27d904508816f57d2a24502ce30e05cbd3256ba4ce1",
-    "skills/aucell-score/tests/run_smoke_test.R": "f2c38a5bc1741c18e754f695fb8364a829f76ea063774c2c51cf84802c8d8be2",
+    "skills/aucell-score/tests/run_smoke_test.R": "a1dc50a35386f6cb39dcb48dc7ee8ee9347879e6a8be732f73673a7cf9182c4f",
     "skills/aucell-score/tests/golden_manifest.csv": "84de7bb805658132e68a324b2edebf20988ce054fbe40e7eb73adb0b3c0feb89",
     "acceptance/exemplars/aucell-score/PACK.md": "fabc21e9d17361c0dfb3672780b39fb085d0834152f9d47ffece74cd0755324b"
   },

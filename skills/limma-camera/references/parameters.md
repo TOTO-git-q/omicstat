@@ -11,7 +11,7 @@
 | `--question` | required | competitive, self-contained | Set the scientific null before testing. |
 | `--self-contained-method` | none | fry, roast, mroast | Explicit one-method choice. |
 | `--set-id` | none | registered term | roast tests one set. |
-| `--collection` | msigdb_collections | registered ID | Offline SHA-256 checked collection; unresolved default refuses. |
+| `--collection` | msigdb_collections | registered ID or user | Offline SHA-256 checked collection; unresolved default refuses. |
 | `--gene-sets` | none | registered GMT | Required for a file-backed collection. |
 | `--input-scale` | none | logcpm, vst, normalized_array | Required for a CSV or non-limma expression input (reported in Methods); a limma upstream states its own scale. |
 | `--samples` | none | sample CSV | Expression design. |
@@ -31,6 +31,14 @@
 | `--nrot` | 9999 | 1999 or >=9999 | Publication rotations; 1999 is development-only. |
 | `--seed` | 20260925 | integer | Recorded seed for reproducible rotations. |
 | `--journal` | nature | nature, cell, science, generic | Figure preset. |
+| `--gene-sets-provenance` | none | JSON path | provenance written by the download tool (source, name, version_or_release, download_time, urls, sha256, terms, terms_url, id_type, species); its sha256 must equal the run-time hash of the file |
+| `--gene-sets-source` | none | text | source of the user file (e.g. KEGG REST, PanglaoDB, MSigDB); required without a provenance JSON, never guessed |
+| `--gene-sets-version` | none | text | release or version of the user file; required without a provenance JSON, never guessed |
+| `--gene-sets-id-type` | none | ENTREZID, SYMBOL, ENSEMBL | identifier type of the user file; required without a provenance JSON; must equal the analysis key type (no silent conversion) |
+| `--gene-sets-species` | none | text | species of the user file; compared with the analysis species when that is known |
+| `--gene-sets-name` | none | text | display name; otherwise the provenance name or the file name |
+| `--gene-sets-terms` | none | text | terms of use, recorded in provenance and Methods; the user is responsible for them |
+| `--feature-id-type` | none | ENTREZID, SYMBOL, ENSEMBL | identifier type of the analysed features; required with a user file and compared with its ID type |
 
 `camera`/`cameraPR` explicitly set `inter.gene.cor=0.01`, `use.ranks=FALSE`, and `directional=TRUE`. Correlation 0.01 is prespecified, never estimated. `roast` and `mroast` explicitly use `set.statistic="mean"`, `approx.zscore=TRUE`, and `legacy=FALSE`; `mroast` sets `adjust.method="BH"` and `midp=TRUE`. The 1999-rotation development signature is flagged and cannot be cited as a publication result.
 

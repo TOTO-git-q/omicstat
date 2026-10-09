@@ -30,3 +30,11 @@ No curated S0 extraction exists yet for these display choices. Consult reference
 | `--expression-layer` | none | yes | none |
 | `--top-n` | 15 | no | none |
 | `--help` | none | no | none |
+| `--gene-sets-provenance` | none | no | none |
+| `--gene-sets-source` | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| `--gene-sets-version` | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| `--gene-sets-id-type` | none | conditional; see SKILL.md "User-supplied gene sets" | none |
+| `--gene-sets-species` | none | no | none |
+| `--gene-sets-name` | none | no | none |
+| `--gene-sets-terms` | none | no | none |
+| `--feature-id-type` | none | conditional; see SKILL.md "User-supplied gene sets" | none |

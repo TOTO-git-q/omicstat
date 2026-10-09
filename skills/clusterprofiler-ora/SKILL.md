@@ -29,7 +29,15 @@ The full table contains all tested, overlapping terms, with raw P, BH adjusted P
 Read `references/qc-rules.md`; CO-01 warns about mapping loss, CO-02 states that no term passed the threshold, and CO-03 points to package warnings.
 
 ## Known limitations
-Only the registered human GO annotation is enabled offline. KEGG, MSigDB and Reactome are typed refusals until reference data are pinned. The registry does not yet contain a container GO asset hash. The full-table cutoff reconciliation remains under 待裁决.
+Only the registered human GO annotation is bundled. KEGG, MSigDB and Reactome are never bundled; they run only as user-supplied local files with `--database custom` (section "User-supplied gene sets"), otherwise `OS_REFDATA_MISSING` explains that route. The registry does not yet contain a container GO asset hash. The full-table cutoff reconciliation remains under 待裁决.
+
+## User-supplied gene sets
+
+omicstat never bundles or downloads KEGG, PanglaoDB, MSigDB or similar gene sets. A local file that the user obtained (for example with the web app's public-data tool, or KEGG pathways from the KEGG REST API under its academic terms) runs through `--database custom`, using `clusterProfiler::enricher` (TERM2GENE/TERM2NAME from the GMT). Give `--gene-sets-provenance <json>` (written by the download tool), or without it `--gene-sets-source`, `--gene-sets-version` and `--gene-sets-id-type` explicitly: these are never guessed. Optional: `--gene-sets-species`, `--gene-sets-name`, `--gene-sets-terms`. The analysis key type is `--key-type`.
+
+`Rscript scripts/run_clusterprofiler_ora.R --input genes.csv --universe eligible.csv --selection-rule "padj < 0.05" --database custom --gene-sets kegg_hsa.gmt --gene-sets-provenance kegg_hsa.provenance.json --outdir run`
+
+The file's SHA-256 is computed at run time and must equal the provenance `sha256` (`OS_REFDATA_MISMATCH` otherwise). A GMT must be tab-separated with a term ID, a description and at least one gene per line (`OS_INVALID_INPUT`). The gene-set identifier type must equal the analysis key type; identifiers are never converted (`OS_GENE_SET_ID_MISMATCH`). Species is compared with Homo sapiens (the module is bound to org.Hs.eg.db) (`OS_GENE_SET_SPECIES_MISMATCH`). Fewer than 10% of the unique set genes present in the analysed features is refused as a probable identifier error (`OS_GENE_SET_LOW_OVERLAP`). The KEGG term-ID exclusion applies to bundled/registered collections only, never to user files. The record (name, source, release, retrieval time, URLs, terms, ID type, species, SHA-256, overlap, "user-supplied, not bundled with omicstat") is written to `provenance/user_gene_sets.json` and `provenance/provenance.json`, and one Methods sentence states it. The user is responsible for the terms of use of the file.
 
 ## Reference files
 `references/method-basis.md`, `parameters.md`, `qc-rules.md`, `reporting-templates.md`, `troubleshooting.md`.

@@ -306,5 +306,39 @@ jp <- if (op$status == 0) jsonlite::fromJSON(file.path(tmp, "poisson", "results"
 check(op$status == 0 && jp$kernel == "Poisson", "explicit Poisson counts path scores successfully")
 om <- run("--input", shQuote(fix$expression), "--input-scale", "normalized_array", "--outdir", shQuote(file.path(tmp, "missing_ref")))
 check(has_code(om, "OS_REFDATA_MISSING"), "unresolved Hallmark registry preset refused")
+
+# ---- user-supplied gene sets: --collection user (CONVENTIONS "User-supplied gene-set collections") ----
+source(file.path(suite, "skills", "_shared", "scripts", "user_genesets.R"))
+source(file.path(suite, "skills", "_shared", "tests", "user_genesets_testkit.R"))
+rz <- function(...) { o <- run(...); structure(o$out, status = o$status) }
+idt <- if (all(grepl("^[0-9]+$", rownames(fxm)))) "ENTREZID" else "SYMBOL"
+ugs_sets <- ugs_kegg_like_sets(rownames(fxm)[1:300], rownames(fxm)[-(1:300)])
+ugs <- ugs_fixture(file.path(tmp, "user_sets"), ugs_sets, idt, lowfn = if (idt == "ENTREZID") function(i) as.character(990000000 + i) else function(i) paste0("ZZFAKE", i))
+ubase <- c("--input", shQuote(fix$expression), "--input-scale", "normalized_array", "--samples", shQuote(fix$samples), "--group-col", "subtype",
+           "--collection", "user", "--gene-sets", shQuote(ugs$gmt), "--feature-id-type", idt)
+cu <- file.path(tmp, "user_anchor")
+o <- run(ubase, "--gene-sets-provenance", shQuote(ugs$prov), "--outdir", shQuote(cu))
+check(o$status == 0, paste("user: user GMT GSVA run", paste(utils::tail(o$out, 2), collapse = " | ")))
+if (o$status == 0) {
+  set.seed(20260925)
+  up <- GSVA::gsvaParam(exprData = fxm, geneSets = ugs_sets, minSize = 5, maxSize = 500, kcdf = "auto", kcdfNoneMinSampleSize = 200,
+                        tau = 1, maxDiff = TRUE, absRanking = FALSE, sparse = TRUE, checkNA = "auto", use = "everything",
+                        filterRows = TRUE, ondisk = "auto", verbose = FALSE)
+  ue <- GSVA::gsva(param = up, verbose = FALSE, BPPARAM = BiocParallel::SerialParam(progressbar = FALSE, RNGseed = 20260925))
+  us <- read_scores(cu)
+  check(identical(sort(rownames(us)), sort(rownames(ue))) && max(abs(ue[rownames(us), colnames(us)] - us)) < 1e-12 &&
+          all(c("hsa04110", "KEGG_APOPTOSIS") %in% rownames(us)),
+        sprintf("user: scores equal direct GSVA on the user sets (%d sets, KEGG-style IDs)", nrow(us)))
+  ugs_check_recorded(check, cu, "user GSVA", length(ugs_sets))
+  hv <- jsonlite::fromJSON(file.path(cu, "objects", "handoff.json"))
+  check(identical(hv$state$collection, "KEGG REST (user-supplied)") && identical(hv$state$collection_species, "Homo sapiens"),
+        "user: hand-off state names the user collection")
+}
+ugs_refused(check, rz(ubase[-length(ubase)], if (idt == "SYMBOL") "ENTREZID" else "SYMBOL", "--gene-sets-provenance", shQuote(ugs$prov),
+                      "--outdir", shQuote(file.path(tmp, "user_idtype"))), "OS_GENE_SET_ID_MISMATCH", "user: gene-set ID type vs --feature-id-type")
+ugs_refused(check, rz(ubase, "--gene-sets-provenance", shQuote(ugs$bad_sha), "--outdir", shQuote(file.path(tmp, "user_sha"))),
+            "OS_REFDATA_MISMATCH", "user: sha256 differing from provenance")
+ugs_refused(check, rz(ubase[1:10], "--gene-sets", shQuote(ugs$low), "--gene-sets-provenance", shQuote(ugs$low_prov), "--feature-id-type", idt,
+                      "--outdir", shQuote(file.path(tmp, "user_low"))), "OS_GENE_SET_LOW_OVERLAP", "user: under 10% overlap with the matrix")
 check(!file.exists(file.path(tmp, "Rplots.pdf")), "no Rplots.pdf device leak")
 if (length(failures)) quit(status = 1) else cat("SMOKE PASSED\n")

@@ -16,6 +16,11 @@
 #      registered fails (whitelist: allowed_unregistered);
 #   C3 every registered function is called at least once (a stale registry
 #      entry is an error too).
+# Two registry entries may share one function when its call sites take
+# different argument sets (compareCluster with fun = "enrichGO" or
+# "enricher"): an entry with "site_requires": [args] applies only to call
+# sites naming all of those arguments, one with "site_excludes": [args] only
+# to sites naming none of them. C1 and C3 then hold per entry.
 # Pure accessors that cannot change a result (resultsNames, sizeFactors,
 # assay, colData, ...) are listed in the registry's "accessors" array and are
 # exempt from C2; they carry no arguments to register.
@@ -53,6 +58,8 @@ check_calls <- function(scripts, registry, allowed_unregistered = character(0)) 
     parts <- strsplit(cl$fn, "::", fixed = TRUE)[[1]]
     pkg <- parts[1]; fn <- parts[2]
     hits <- Filter(function(s) identical(s$fn, fn) && (is.na(s$pkg) || identical(s$pkg, pkg)), sites)
+    if (length(cl$site_requires)) hits <- Filter(function(s) all(unlist(cl$site_requires) %in% s$args), hits)
+    if (length(cl$site_excludes)) hits <- Filter(function(s) !any(unlist(cl$site_excludes) %in% s$args), hits)
     if (!length(hits)) { problems <- c(problems, sprintf("C3 registered function %s is never called", cl$fn)); next }
     need <- names(cl$args %||% list())
     for (h in hits) {

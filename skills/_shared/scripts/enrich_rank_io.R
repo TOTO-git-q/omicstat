@@ -1,4 +1,7 @@
 # enrich_rank_io.R -- M2b ranked-list and offline gene-set contract.
+# Registered collections only: the KEGG term-ID exclusion below covers bundled
+# or registered content. User-supplied local GMT files go through
+# user_genesets.R, which never applies it.
 
 os_rank_read <- function(path) {
   if (!file.exists(path)) stop("OS_MISSING_INPUT: ranked_list file is missing.", call. = FALSE)
@@ -18,7 +21,11 @@ os_rank_read <- function(path) {
 os_refdata_entry <- function(suite, id) {
   reg <- jsonlite::fromJSON(file.path(suite, "env", "refdata_registry.json"), simplifyVector = FALSE)
   hits <- Filter(function(e) identical(e$id, id) && is.null(e$tier), reg$entries)
-  if (length(hits) != 1L) stop(sprintf("OS_REFDATA_MISSING: collection '%s' is not a locked-container registry entry.", id), call. = FALSE)
+  if (length(hits) != 1L) stop(sprintf(paste0("OS_REFDATA_MISSING: collection '%s' is not a locked-container registry entry. ",
+                                              "omicstat never bundles or downloads KEGG, MSigDB, PanglaoDB or similar gene sets; ",
+                                              "a local GMT you obtained yourself runs with --collection user --gene-sets <file.gmt> ",
+                                              "plus --gene-sets-provenance <json> (or --gene-sets-source, --gene-sets-version and ",
+                                              "--gene-sets-id-type) and --feature-id-type."), id), call. = FALSE)
   e <- hits[[1L]]
   if (is.null(e$version) || startsWith(e$version, "TO_FILL") || is.null(e$sha256) || startsWith(e$sha256, "TO_FILL"))
     stop(sprintf("OS_REFDATA_MISSING: collection '%s' lacks a resolved version or hash in the locked registry.", id), call. = FALSE)

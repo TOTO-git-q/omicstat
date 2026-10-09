@@ -1,6 +1,6 @@
 {
   "module": "clusterprofiler-gsea",
-  "note": "Locked clusterProfiler 4.20.0 gseGO calls enrichit::gsea_gson without forwarding ...; downstream values are enrichit 0.2.1 defaults, sampled seed is controlled by set.seed before gseGO.",
+  "note": "Locked clusterProfiler 4.20.0 gseGO calls enrichit::gsea_gson without forwarding ...; downstream values are enrichit 0.2.1 defaults, sampled seed is controlled by set.seed before gseGO. clusterProfiler::GSEA serves --database custom (user-supplied GMT) with the same multilevel arguments; its formals were read in the locked omicstat-r:2026.10.1 container.",
   "package_versions": {
     "clusterProfiler": "4.20.0",
     "enrichit": "0.2.1"
@@ -116,6 +116,109 @@
           "value": 0.1,
           "source": "S1-appendix P-2",
           "pack": "P-2",
+          "function_default": "0.1"
+        }
+      }
+    },
+    {
+      "fn": "clusterProfiler::GSEA",
+      "args": {
+        "geneList": {
+          "value": "full directional ranking",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "exponent": {
+          "value": 1,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "1"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "10",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "500",
+          "flag": "--max-size"
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "full-table rule; same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "\"BH\""
+        },
+        "gson": {
+          "value": null,
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "NULL"
+        },
+        "TERM2GENE": {
+          "value": "term -> gene table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "TERM2NAME": {
+          "value": "term -> description table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "NA"
+        },
+        "verbose": {
+          "value": false,
+          "source": "quiet run; same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "TRUE"
+        },
+        "nPerm": {
+          "value": 1000,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "1000"
+        },
+        "method": {
+          "value": "multilevel",
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "\"multilevel\""
+        },
+        "adaptive": {
+          "value": false,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "FALSE"
+        },
+        "minPerm": {
+          "value": 101,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "101"
+        },
+        "maxPerm": {
+          "value": 100000,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "1e+05"
+        },
+        "pvalThreshold": {
+          "value": 0.1,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
           "function_default": "0.1"
         }
       }

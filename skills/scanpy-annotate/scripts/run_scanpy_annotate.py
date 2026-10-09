@@ -7,7 +7,7 @@ MODULE_DIR = HERE.parent
 SUITE = MODULE_DIR.parent.parent
 sys.path.insert(0, str(SUITE / 'skills/_shared/py'))
 sys.path.insert(0, str(HERE))
-from ospy import args as A, sc_module as S
+from ospy import args as A, sc_module as S, user_genesets as U
 from ospy.errors import run_entry
 import scanpy_annotate_core as core
 from scanpy_annotate_report import report
@@ -20,7 +20,7 @@ SPEC = A.os_arg_spec(usage='python run_scanpy_annotate.py --from-run <run> --out
         A.os_flag('unresolved-label', 'string', required=True, help='explicit label for unassigned clusters'),
         A.os_flag('expression-layer', 'string', required=True, help='log expression layer for descriptive panel means'),
         A.os_flag('top-n', 'int', default=15, help='number of evidence genes per cluster', range=(1, 1000)),
-    ], exclusive=[('input', 'from-run')])
+    ] + U.flags('marker panel'), exclusive=[('input', 'from-run')])
 def main(argv):
     return S.run_module(argv, SPEC, 'scanpy-annotate', str(MODULE_DIR), core.compute, report, qc, core.validate, module_version=core.MODULE_VERSION)
 if __name__ == '__main__':

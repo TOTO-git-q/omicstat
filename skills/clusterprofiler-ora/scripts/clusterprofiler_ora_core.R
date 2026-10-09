@@ -1,4 +1,5 @@
-# clusterprofiler_ora_core.R -- GO ORA with an explicit selection universe.
+# clusterprofiler_ora_core.R -- GO ORA with an explicit selection universe;
+# --database custom runs clusterProfiler::enricher on a user-supplied GMT.
 CO_MODULE <- "clusterprofiler-ora"
 CO_VERSION <- "1.1.0"
 CO_MODULE_VERSION <- "1.1.0"
@@ -50,8 +51,9 @@ co_validate <- function(x, a) {
   invisible(TRUE)
 }
 
-co_compute <- function(x, a) {
-  if (a$database != "GO") stop("OS_REFDATA_MISSING: this collection is not pinned for offline use in the locked container.", call. = FALSE)
+co_compute <- function(x, a, coll = NULL) {
+  if (identical(a$database, "custom")) return(co_compute_custom(x, a, coll))
+  if (a$database != "GO") stop(os_user_genesets_not_bundled(a$database, "--database custom"), call. = FALSE)
   ans <- clusterProfiler::enrichGO(gene = x$genes, OrgDb = org.Hs.eg.db::org.Hs.eg.db,
     keyType = a[["key-type"]], ont = a$ontology, pvalueCutoff = 1,
     pAdjustMethod = "BH", universe = x$universe, qvalueCutoff = 1,
@@ -83,18 +85,39 @@ co_compute <- function(x, a) {
        n_effective = if (single) fam$table$n_effective_input else NA_integer_)
 }
 
+# User-supplied collection: clusterProfiler's generic enricher with TERM2GENE
+# and TERM2NAME (clusterProfiler book, "Universal enrichment analysis").
+co_compute_custom <- function(x, a, coll) {
+  tg <- os_user_genesets_term2gene(coll)
+  ans <- clusterProfiler::enricher(gene = x$genes, pvalueCutoff = 1, pAdjustMethod = "BH", universe = x$universe,
+    minGSSize = a[["min-size"]], maxGSSize = a[["max-size"]], qvalueCutoff = 1, gson = NULL,
+    TERM2GENE = tg$TERM2GENE, TERM2NAME = tg$TERM2NAME)
+  if (is.null(ans)) stop("OS_EMPTY_DATA: no user gene set had a testable overlap with the supplied genes and universe.", call. = FALSE)
+  raw <- as.data.frame(ans)
+  if (!nrow(raw)) stop("OS_EMPTY_DATA: no user gene set remained after set-size filters.", call. = FALSE)
+  annotated <- unique(unlist(coll$sets, use.names = FALSE))
+  effective_background <- intersect(x$universe, annotated)
+  effective_input <- intersect(x$genes, effective_background)
+  fam <- co_families(raw, a, label = coll$label)
+  list(result = ans, raw = raw, simplified = NULL, relation = NULL, similarity_source = NULL,
+       families = fam$table, family = fam$row_family, symbols = co_symbols(x, a),
+       n_candidate = length(x$universe), n_input = length(x$genes),
+       n_mapped_background = length(effective_background), n_mapped_input = length(effective_input),
+       n_effective_background = fam$table$n_effective_background, n_effective = fam$table$n_effective_input)
+}
+
 # Testing families (cross-module contract d). enrichGO(ont = "ALL",
 # pool = FALSE) calls enrichGO once per ontology (clusterProfiler 4.20.0
 # source), so BP, CC and MF each have their own effective input, background
 # and BH family. pool = TRUE and a single ontology are one family. Each
 # family's denominators must be unique and its p.adjust must equal BH over
 # that family alone; otherwise the result is refused.
-co_families <- function(raw, a) {
-  per_ont <- identical(a$ontology, "ALL") && isFALSE(a$pool)
-  lab <- if (per_ont) paste("GO", as.character(raw$ONTOLOGY)) else
+co_families <- function(raw, a, label = NULL) {
+  per_ont <- is.null(label) && identical(a$ontology, "ALL") && isFALSE(a$pool)
+  lab <- if (!is.null(label)) rep(label, nrow(raw)) else if (per_ont) paste("GO", as.character(raw$ONTOLOGY)) else
     rep(if (identical(a$ontology, "ALL")) "GO ALL pooled" else paste("GO", a$ontology), nrow(raw))
   den <- function(z) as.integer(vapply(strsplit(as.character(z), "/", fixed = TRUE), `[`, "", 2))
-  fams <- intersect(c("GO BP", "GO CC", "GO MF", "GO ALL pooled"), unique(lab))
+  fams <- intersect(c("GO BP", "GO CC", "GO MF", "GO ALL pooled", label), unique(lab))
   rows <- lapply(fams, function(f) {
     i <- lab == f
     gi <- unique(den(raw$GeneRatio[i])); bi <- unique(den(raw$BgRatio[i]))

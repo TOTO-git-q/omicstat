@@ -1,10 +1,16 @@
 co_pkg_version <- function(p) as.character(utils::packageVersion(p))
 
 # Software and annotation releases that determine the result (PACK W, F3).
-co_software <- function(simplify) {
-  gm <- AnnotationDbi::metadata(GO.db::GO.db)
+co_software <- function(simplify, custom = FALSE) {
   om <- AnnotationDbi::metadata(org.Hs.eg.db::org.Hs.eg.db)
   mv <- function(m, k) as.character(m$value[match(k, m$name)])
+  if (isTRUE(custom))
+    return(list(clusterProfiler = co_pkg_version("clusterProfiler"), enrichment_function = "clusterProfiler::enricher",
+                enrichit = co_pkg_version("enrichit"), ora_engine = "enrichit::ora_gson",
+                gene_sets = "user-supplied GMT (provenance/user_gene_sets.json)",
+                org.Hs.eg.db = co_pkg_version("org.Hs.eg.db"), orgdb_use = "symbol display table only",
+                orgdb_entrez_source_date = mv(om, "EGSOURCEDATE"), AnnotationDbi = co_pkg_version("AnnotationDbi")))
+  gm <- AnnotationDbi::metadata(GO.db::GO.db)
   s <- list(clusterProfiler = co_pkg_version("clusterProfiler"), enrichment_function = "clusterProfiler::enrichGO",
             enrichit = co_pkg_version("enrichit"), ora_engine = "enrichit::ora_gson",
             GO.db = co_pkg_version("GO.db"), GO_source_date = mv(gm, "GOSOURCEDATE"), GO_source_url = mv(gm, "GOSOURCEURL"),
@@ -15,7 +21,9 @@ co_software <- function(simplify) {
 }
 
 co_render <- function(r, x, a, ref) {
-  tab <- os_enrich_canonical(r$raw, database = paste("GO", a$ontology))
+  custom <- identical(a$database, "custom")
+  dbl <- if (custom) ref$label else paste("GO", a$ontology)
+  tab <- os_enrich_canonical(r$raw, database = dbl)
   tab$test_family <- r$family
   p <- file.path(a$outdir, "tables", "enrichment_full.csv")
   os_enrich_write_csv(tab, p)
@@ -43,7 +51,9 @@ co_render <- function(r, x, a, ref) {
   if (any(tab$significant_bh05) && any(!is.na(tab$padj) & tab$padj < a$alpha)) {
     ftab <- tab
     if (identical(a$ontology, "ALL")) ftab$term_name <- paste0("[", ftab$ONTOLOGY, "] ", ftab$term_name)
-    plt <- os_cp_ora_dotplot(ftab, a[["top-n"]], a$alpha, a$ontology, a$journal)
+    plt <- if (custom) os_user_dotplot_floor(os_enrich_dotplot(ftab, x = "gene_ratio", top_n = a[["top-n"]], padj_threshold = a$alpha,
+                                                               database_label = dbl, journal = a$journal)) else
+      os_cp_ora_dotplot(ftab, a[["top-n"]], a$alpha, a$ontology, a$journal)
     if (identical(a$ontology, "ALL"))
       plt <- os_with_meta(plt, caption = paste(attr(plt, "os_meta")$caption, co_family_caption(fam, a$pool)))
     fig <- os_finalize_figure(plt, file.path(a$outdir, "figures", "ora_dotplot"), journal = a$journal)
@@ -55,7 +65,8 @@ co_render <- function(r, x, a, ref) {
     n_terms = nrow(r$raw), n_retained = nrow(r$simplified), n_merged = nrow(r$relation),
     similarity_source = r$similarity_source)
   dir.create(file.path(a$outdir, "results"), recursive = TRUE, showWarnings = FALSE)
-  jsonlite::write_json(list(module = CO_MODULE, module_version = CO_VERSION, database = "GO", ontology = a$ontology,
+  jsonlite::write_json(list(module = CO_MODULE, module_version = CO_VERSION, database = if (custom) dbl else "GO",
+                            ontology = if (custom) NULL else a$ontology,
                             pool = a$pool, selection_rule = x$origin, n_candidate_background = r$n_candidate,
                             n_mapped_background = r$n_mapped_background, n_input = r$n_input,
                             n_mapped_input = r$n_mapped_input, n_effective_background = r$n_effective_background,
@@ -65,7 +76,7 @@ co_render <- function(r, x, a, ref) {
                             pvalueCutoff_compute = 1, qvalueCutoff_compute = 1, fdr_alpha = a$alpha,
                             symbol_mapping = list(n_genes = nrow(r$symbols), n_mapped = n_sym, key_type = a[["key-type"]],
                                                   mapper = "enrichit::EXTID2NAME (the setReadable mapping)"),
-                            simplify = simp_info, software = co_software(a$simplify),
+                            simplify = simp_info, software = co_software(a$simplify, custom),
                             refdata = ref), file.path(a$outdir, "results", "clusterprofiler_ora_results.json"),
                        auto_unbox = TRUE, pretty = TRUE, null = "null", na = "null", digits = I(15))
   list(table = p, families = fam_path, symbols = sym_path, readable = readable_path,
@@ -82,6 +93,7 @@ co_family_caption <- function(fam, pool) {
 
 co_draft <- function(r, x, a, qc, render, module_dir) {
   t <- os_read_templates(file.path(module_dir, "references", "reporting-templates.md"))
+  if (identical(a$database, "custom")) return(co_draft_custom(r, x, a, render, t))
   sw <- co_software(a$simplify)
   fam <- r$families
   fams_txt <- paste(sprintf("%s: %d input genes of a %d-gene background", sub("^GO ", "", fam$test_family),
@@ -117,6 +129,24 @@ co_draft <- function(r, x, a, qc, render, module_dir) {
     nrow(r$raw), nrow(r$simplified), nrow(r$relation))
   os_write_text(c("# Methods", "", os_fill_template(t$methods, v), "", simp_text, "", "# Results", "",
                   os_fill_template(t$results, v),
+                  if (is.null(render$figure)) os_enrich_empty_note(os_enrich_canonical(r$raw), a$alpha)),
+                file.path(a$outdir, "draft", "methods_results.md"))
+}
+
+# --database custom: user-supplied gene sets (template methods_custom). The
+# gene-set provenance sentence is inserted by os_user_genesets_draft().
+co_draft_custom <- function(r, x, a, render, t) {
+  sw <- co_software(FALSE, TRUE)
+  fam <- r$families
+  v <- list(label = fam$test_family, key_type = a[["key-type"]], rule = x$origin, candidate = r$n_candidate,
+            annotated = r$n_mapped_background, input = r$n_input, annotated_input = r$n_mapped_input,
+            effective_input = fam$n_effective_input, effective_background = fam$n_effective_background,
+            min_size = a[["min-size"]], max_size = a[["max-size"]], tested = nrow(r$raw), alpha = a$alpha,
+            sig = sum(!is.na(r$raw$p.adjust) & r$raw$p.adjust < a$alpha),
+            cp_version = sw$clusterProfiler, enrichit_version = sw$enrichit, annotation_version = sw$org.Hs.eg.db,
+            n_symbol = render$n_symbol_mapped)
+  os_write_text(c("# Methods", "", os_fill_template(t$methods_custom, v), "", "# Results", "",
+                  os_fill_template(t$results_custom, v),
                   if (is.null(render$figure)) os_enrich_empty_note(os_enrich_canonical(r$raw), a$alpha)),
                 file.path(a$outdir, "draft", "methods_results.md"))
 }

@@ -197,5 +197,52 @@ if (status(z) == 0L && exists("actual")) {
 write("tamper", ft, append = TRUE)
 tampered <- run(c("--from-run", up, "--outdir", file.path(tmp,"tampered")))
 check(status(tampered) != 0L && any(grepl("OS_HANDOFF_MISMATCH", tampered)), "tampered handoff refused")
+
+# ---- user-supplied gene sets: --database custom (CONVENTIONS "User-supplied gene-set collections") ----
+# Synthetic KEGG-like GMT built from DOSE geneList IDs (hsa04110-style and one
+# KEGG_ term ID); replayed against a direct clusterProfiler::enricher call.
+source(file.path(suite, "skills", "_shared", "tests", "user_genesets_testkit.R"))
+ugs_sets <- ugs_kegg_like_sets(selected, setdiff(universe, selected))
+ugs <- ugs_fixture(file.path(tmp, "ora_user_sets"), ugs_sets, "ENTREZID", lowfn = function(i) as.character(990000000 + i))
+cbase <- c(base, "--database", "custom", "--gene-sets", ugs$gmt)
+cu <- file.path(tmp, "ora_custom_anchor")
+z <- run(c(cbase, "--gene-sets-provenance", ugs$prov, "--outdir", cu))
+check(status(z) == 0L, paste("custom: user GMT ORA run", paste(tail(z, 3), collapse = " | ")))
+if (status(z) == 0L) {
+  ct <- read.csv(file.path(cu, "tables", "enrichment_full.csv"), check.names = FALSE, stringsAsFactors = FALSE)
+  t2g <- data.frame(term = rep(names(ugs_sets), lengths(ugs_sets)), gene = unlist(ugs_sets, use.names = FALSE))
+  t2n <- data.frame(term = names(ugs_sets), name = unname(ugs_descriptions(ugs_sets)))
+  dref <- as.data.frame(clusterProfiler::enricher(gene = selected, pvalueCutoff = 1, pAdjustMethod = "BH", universe = universe,
+    minGSSize = 10, maxGSSize = 500, qvalueCutoff = 1, gson = NULL, TERM2GENE = t2g, TERM2NAME = t2n))
+  check(identical(ct$ID, dref$ID) && identical(ct$GeneRatio, dref$GeneRatio) && identical(ct$BgRatio, dref$BgRatio) &&
+          isTRUE(all.equal(ct$p.adjust, dref$p.adjust, tolerance = 1e-14)),
+        sprintf("custom: replay equals direct enricher (%d sets; first %s padj %.6g)", nrow(dref), dref$ID[1], dref$p.adjust[1]))
+  check(all(c("hsa04110", "KEGG_APOPTOSIS") %in% ct$ID) && all(ct$database == "KEGG REST (user-supplied)") &&
+          all(ct$test_family == "KEGG REST (user-supplied)"), "custom: KEGG-style term IDs kept; database label is the user's source")
+  cf <- read.csv(file.path(cu, "tables", "test_families.csv"), stringsAsFactors = FALSE)
+  check(nrow(cf) == 1L && cf$n_tested_terms == nrow(dref) && cf$n_effective_input == den(dref$GeneRatio[1]) &&
+          cf$n_effective_background == den(dref$BgRatio[1]), "custom: one BH family with the enricher denominators")
+  cj <- jsonlite::read_json(file.path(cu, "results", "clusterprofiler_ora_results.json"), simplifyVector = TRUE)
+  check(identical(cj$database, "KEGG REST (user-supplied)") && is.null(cj$ontology) &&
+          identical(cj$software$enrichment_function, "clusterProfiler::enricher") && identical(cj$refdata$id, "user_supplied"),
+        "custom: results JSON names the user collection and enricher")
+  ugs_check_recorded(check, cu, "custom ORA", length(ugs_sets))
+  check(file.exists(file.path(cu, "figures", "ora_dotplot.png")) &&
+          grepl("KEGG REST (user-supplied)", paste(readLines(file.path(cu, "figures", "ora_dotplot.figure_spec.json")), collapse = " "), fixed = TRUE),
+        "custom: dot plot labelled with the user collection")
+  crp <- file.path(tmp, "ora_custom_replay")
+  z <- run(c("--spec", file.path(cu, "provenance", "resolved_spec.json"), "--outdir", crp))
+  check(status(z) == 0L && identical(readBin(file.path(cu, "tables", "enrichment_full.csv"), "raw", n = 1e8),
+                                     readBin(file.path(crp, "tables", "enrichment_full.csv"), "raw", n = 1e8)), "custom: byte-identical --spec replay")
+}
+ugs_refused(check, run(c(cbase, "--gene-sets-provenance", ugs$prov, "--key-type", "SYMBOL", "--outdir", file.path(tmp, "ora_custom_idtype"))),
+            "OS_GENE_SET_ID_MISMATCH", "custom: gene-set ENTREZID vs --key-type SYMBOL")
+ugs_refused(check, run(c(cbase, "--gene-sets-provenance", ugs$bad_sha, "--outdir", file.path(tmp, "ora_custom_sha"))),
+            "OS_REFDATA_MISMATCH", "custom: sha256 differing from provenance")
+ugs_refused(check, run(c(base, "--database", "custom", "--gene-sets", ugs$low, "--gene-sets-provenance", ugs$low_prov, "--outdir", file.path(tmp, "ora_custom_low"))),
+            "OS_GENE_SET_LOW_OVERLAP", "custom: under 10% overlap with the universe")
+ugs_refused(check, run(c(cbase, "--outdir", file.path(tmp, "ora_custom_noprov"))), "OS_MISSING_PARAMETER", "custom: no provenance and no explicit source/version/ID type")
+ugs_refused(check, run(c(base, "--gene-sets", ugs$gmt, "--outdir", file.path(tmp, "ora_go_with_gmt"))), "OS_CONFLICTING_PARAMETERS", "custom: --gene-sets with the GO default")
+check(any(grepl("--database custom", missing_ref, fixed = TRUE)), "KEGG without a local GMT explains the user-supplied route")
 check(!file.exists(file.path(suite, "Rplots.pdf")), "no Rplots.pdf")
 if (length(fail)) quit(status = 1) else cat("SMOKE PASSED\n")

@@ -1,4 +1,4 @@
-/home/<user>/omic-umap-halo/.venv/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+/home/<user>/omic-usersets/.venv/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
   warnings.warn(
 native engine: None (no Rscript on PATH)
 PASS   planted 7-column table is only a module-local summary  -- ('module-local', ['tables/et.csv'])
@@ -12,14 +12,14 @@ PASS   feature degeneracy: all features significant is flagged  -- [{'row': 'tab
 PASS   engine_warnings captures an OS_ typed code  -- ['In coxph(): Ran out of iterations and did not converge', 'OS_ENGINE_OUTPUT: joint frailty convergence code 4']
 PASS   engine_warnings unwraps a bare 'Warning message:' header  -- ['In coxph(): Ran out of iterations and did not converge', 'OS_ENGINE_OUTPUT: joint frailty convergence code 4']
 PASS   engine_warnings ignores ordinary progress lines  -- ['In coxph(): Ran out of iterations and did not converge', 'OS_ENGINE_OUTPUT: joint frailty convergence code 4']
-/home/<user>/omic-umap-halo/.venv/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
+/home/<user>/omic-usersets/.venv/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:47: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.
   warnings.warn(
 PASS   list_tools returns exactly 5 tools  -- ['omicstat_describe', 'omicstat_list_modules', 'omicstat_read', 'omicstat_run', 'omicstat_validate_publication']
 PASS   the 5 tools are the designed ones  -- ['omicstat_describe', 'omicstat_list_modules', 'omicstat_read', 'omicstat_run', 'omicstat_validate_publication']
 PASS   omicstat_run exposes optional study_contract  -- {'properties': {'module': {'title': 'Module', 'type': 'string'}, 'args': {'additionalProperties': True, 'title': 'Args', 'type': 'object'}, 'engine': {'default': 'container', 'title': 'Engine', 'type': 'string'}, 'study_contract': {'anyOf': [{'additionalProperties': True, 'type': 'object'}, {'type':
 PASS   omicstat://router resource is listed  -- ['omicstat://router']
 PASS   skill/help resource templates are listed  -- ['omicstat://skill/{module}', 'omicstat://help/{module}']
-PASS   omicstat://router reads back the routing map  -- 17191
+PASS   omicstat://router reads back the routing map  -- 18642
 PASS   omicstat_list_modules returns every router-table module (43)  -- 43
 PASS   each module row has name, summary and entry script
 PASS   listed entry scripts exactly match the router registry
@@ -28,27 +28,27 @@ PASS   omicstat_read refuses a path outside the allowed roots  -- {
  "error": "path refused",
  "path": "/etc/hostname",
  "allowed_roots": [
-  "/home/<user>/omic-umap-halo",
-  "/home/<user>/omic-umap-halo",
-  "/home/<user>/omic-sol61
-PASS   describe(omicstat-selftest) contains --strict  -- 6979
+  "/home/<user>/omic-usersets",
+  "/home/<user>/omic-usersets",
+  "/home/<user>/omic-sol61/u
+PASS   describe(omicstat-selftest) contains --strict  -- 6978
 PASS   describe includes both SKILL.md and --help sections
 PASS   unknown flag is refused  -- Error executing tool omicstat_run: unknown flag '--totally-made-up-flag' for module 'omicstat-selftest'. Closest known flags: --journal, --help, --strict. The whitelist is parsed from this module's ow
 PASS   refusal echoes the closest known flags  -- Error executing tool omicstat_run: unknown flag '--totally-made-up-flag' for module 'omicstat-selftest'. Closest known flags: --journal, --help, --strict. The whitelist is parsed from this module's ow
-PASS   out-of-root path value is refused  -- Error executing tool omicstat_run: path refused: --journal = '/etc/hostname' resolves outside the allowed roots (/home/<user>/omic-umap-halo; /home/<user>/omic-umap-halo; /home/<user>/omic-sol61/umap_merge/
-PASS   path refusal names the allowed roots  -- Error executing tool omicstat_run: path refused: --journal = '/etc/hostname' resolves outside the allowed roots (/home/<user>/omic-umap-halo; /home/<user>/omic-umap-halo; /home/<user>/omic-sol61/umap_merge/
-PASS   out-of-root --outdir is refused  -- Error executing tool omicstat_run: path refused: --outdir = '/etc/omicstat-escape' resolves outside the allowed roots (/home/<user>/omic-umap-halo; /home/<user>/omic-umap-halo; /home/<user>/omic-sol61/umap_
-PASS   outdir refusal names the allowed roots  -- Error executing tool omicstat_run: path refused: --outdir = '/etc/omicstat-escape' resolves outside the allowed roots (/home/<user>/omic-umap-halo; /home/<user>/omic-umap-halo; /home/<user>/omic-sol61/umap_
+PASS   out-of-root path value is refused  -- Error executing tool omicstat_run: path refused: --journal = '/etc/hostname' resolves outside the allowed roots (/home/<user>/omic-usersets; /home/<user>/omic-usersets; /home/<user>/omic-sol61/user_genesets
+PASS   path refusal names the allowed roots  -- Error executing tool omicstat_run: path refused: --journal = '/etc/hostname' resolves outside the allowed roots (/home/<user>/omic-usersets; /home/<user>/omic-usersets; /home/<user>/omic-sol61/user_genesets
+PASS   out-of-root --outdir is refused  -- Error executing tool omicstat_run: path refused: --outdir = '/etc/omicstat-escape' resolves outside the allowed roots (/home/<user>/omic-usersets; /home/<user>/omic-usersets; /home/<user>/omic-sol61/user_ge
+PASS   outdir refusal names the allowed roots  -- Error executing tool omicstat_run: path refused: --outdir = '/etc/omicstat-escape' resolves outside the allowed roots (/home/<user>/omic-usersets; /home/<user>/omic-usersets; /home/<user>/omic-sol61/user_ge
 SKIP   real run on engine native  -- no Rscript on PATH
-       (omicstat-selftest/container took 14.4s)
+       (omicstat-selftest/container took 14.3s)
 PASS   selftest/container: manifest is JSON  -- {
- "run_id": "df84e82e-f1c2-461e-94a9-5ac71b9b7f21",
+ "run_id": "8b76732f-8f01-4027-833c-53b0e89c0791",
  "module": "omicstat-selftest",
  "engine": "container",
  "exit_code
 PASS   selftest/container: exit_code == 0  -- exit=0 stderr=
 PASS   selftest/container: artifacts non-empty  -- 12
-PASS   selftest/container: manifest under 8k chars  -- 5378
+PASS   selftest/container: manifest under 8k chars  -- 5390
 PASS   selftest/container: qc_triggered field present
 PASS   selftest/container: engine_warnings field present (list)
 PASS   selftest/container: degenerate_estimates field present
@@ -58,15 +58,15 @@ PASS   selftest/container: a healthy fixture has no degenerate estimates
 PASS   selftest/container: on-disk publication manifest validates
 PASS   selftest/container: on-disk publication review validates
 PASS   selftest/container: clean run retains human publication review  -- needs_input
-PASS   selftest/container: UUID leaf directory  -- /home/<user>/omic-sol61/umap_merge/halo_mcp/run_selftest_container/df84e82e-f1c2-461e-94a9-5ac71b9b7f21
-PASS   selftest/container: requested_outdir is parent  -- /home/<user>/omic-sol61/umap_merge/halo_mcp/run_selftest_container
-PASS   selftest/container: upstream_runs ends with this run (handoff.json)  -- ['df84e82e-f1c2-461e-94a9-5ac71b9b7f21']
-PASS   selftest/container: five publication artifacts  -- ['/home/<user>/omic-sol61/umap_merge/halo_mcp/run_selftest_container/df84e82e-f1c2-461e-94a9-5ac71b9b7f21/provenance/publication_manifest.json', '/home/<user>/omic-sol61/umap_merge/halo_mcp/run_selftest_container/df84e82e-f1c2-461e-94a9-5ac71b9b7f21/publication/review.json', '/home/<user>/omic-sol61/umap_
+PASS   selftest/container: UUID leaf directory  -- /home/<user>/omic-sol61/user_genesets/e2e_runs/run_selftest_container/8b76732f-8f01-4027-833c-53b0e89c0791
+PASS   selftest/container: requested_outdir is parent  -- /home/<user>/omic-sol61/user_genesets/e2e_runs/run_selftest_container
+PASS   selftest/container: upstream_runs ends with this run (handoff.json)  -- ['8b76732f-8f01-4027-833c-53b0e89c0791']
+PASS   selftest/container: five publication artifacts  -- ['/home/<user>/omic-sol61/user_genesets/e2e_runs/run_selftest_container/8b76732f-8f01-4027-833c-53b0e89c0791/provenance/publication_manifest.json', '/home/<user>/omic-sol61/user_genesets/e2e_runs/run_selftest_container/8b76732f-8f01-4027-833c-53b0e89c0791/publication/review.json', '/home/<user>/omic-sol61
 PASS   selftest/container: engine/all artifact views are consistent  -- (12, 0)
 PASS   selftest/container: structured Python/R/repository/module provenance  -- {'path': 'skills/omicstat-selftest/scripts/run_omicstat_selftest.R', 'sha256': '58378424a2eac4ede331bf39e3d0f390f9779d6d4dba53ff959d108105c4d5e9'}
 PASS   selftest/container: the engine's R session is the one probed for provenance  -- ['ALL', 'AUCell', 'AnnotationDbi', 'AnnotationHub', 'BH']
 PASS   selftest/container: random_seed is recorded from args  -- 20260925
-PASS   selftest/container: dirty worktree has replayable code identity  -- {'status_sha256': 'b32c094221907356ec03554f0204df9ce8b8d4c5369b0fe1315aba1f8bc0bb8a', 'diff_sha256': '981932512d3cb1e01c8565b7aa1b151c4d98ece3ca4d81e18615076644ad2290', 'untracked_sha256': '8b9d017978e370c428a211d104506c4e36be5aa4dcb8658d1b72335e570c3a5b', 'code_inventory_sha256': '5901d17b0b3fe8608
+PASS   selftest/container: dirty worktree has replayable code identity  -- {'status_sha256': '9c1c826f51fadf7a105914659316b3080e108d7884dae2c9dfd6623b4f47d31c', 'diff_sha256': 'fb2dec0245ca0cff6810c78b77814a64c3639972a4463dd1ed288257dc3f1c4c', 'untracked_sha256': '597523b1b2f3afb0b7588913733bb04839a77f5f17cf2e64b04c8d0e8af11613', 'code_inventory_sha256': '3c449d54aefffcf52
 PASS   selftest/container: no-candidate validator is not_applicable  -- {'effect_table': 'skills/_shared/scripts/validate_effect_table_cli.R', 'path': 'skills/_shared/scripts/validate_effect_table_cli.R', 'sha256': '411271128d43a77de25aab62c8b01091ba8e5c65942949f66879c8d14e053111', 'status': 'not_applicable'}
 PASS   selftest/container: feature table is not mistaken for a canonical effect table  -- {'ok': True, 'canonical': [], 'invalid_named': [], 'errors': []}
 PASS   selftest/container: fixture anchors (1000 features; 195 up, 175 down, 43 padj NA)  -- {'n_features': 1000, 'n_up': 195, 'n_down': 175, 'n_padj_na': 43}
@@ -96,9 +96,9 @@ PASS   selftest/container: draft says it is a self-test  -- # omicstat-selftest:
 
 This run checked the omicstat R environment. Its table and
 PASS   selftest/container: omicstat_read returns no bytes for a figure  -- {
- "path": "/home/<user>/omic-sol61/umap_merge/halo_mcp/run_selftest_container/df84e82e-f1c2-461e-94a9-5ac71b9b7f21/figures/volcano.png",
+ "path": "/home/<user>/omic-sol61/user_genesets/e2e_runs/run_selftest_container/8b76732f-8f01-4027-833c-53b0e89c0791/figures/volcano.png",
  "bytes": 249537,
- "kind
+ "k
 PASS   container manifest records an immutable image ID  -- sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7
 PASS   legacy call without study_contract still runs  -- needs_input
 SKIP   native-only checks (legacy status, --strict, validate_publication, default outdir)  -- native engine unavailable
@@ -114,13 +114,13 @@ PASS   describe(python module): --help comes from the Python entry in the R form
 PASS   python module: unknown flag refused against its own --help  -- Error executing tool omicstat_run: unknown flag '--no-such-flag' for module 'omicstat-selftest-py'. Closest known flags: --journal, --spec, --help. The whitelist is parsed from this module's own --hel
        (omicstat-selftest-py/container took 16.2s)
 PASS   selftest-py/container: manifest is JSON  -- {
- "run_id": "355dee00-d910-47e0-bb42-36f356bb152e",
+ "run_id": "f488036b-7495-460a-8d24-4e16b3729c0c",
  "module": "omicstat-selftest-py",
  "engine": "container",
  "exit_c
 PASS   selftest-py/container: exit_code == 0  -- exit=0 stderr=INFO: Seed set to 20260925
 PASS   selftest-py/container: artifacts non-empty  -- 22
-PASS   selftest-py/container: manifest under 8k chars  -- 6615
+PASS   selftest-py/container: manifest under 8k chars  -- 6630
 PASS   selftest-py/container: qc_triggered field present
 PASS   selftest-py/container: engine_warnings field present (list)
 PASS   selftest-py/container: degenerate_estimates field present
@@ -130,15 +130,15 @@ PASS   selftest-py/container: a healthy fixture has no degenerate estimates
 PASS   selftest-py/container: on-disk publication manifest validates
 PASS   selftest-py/container: on-disk publication review validates
 PASS   selftest-py/container: clean run retains human publication review  -- needs_input
-PASS   selftest-py/container: engine command is python  -- ['python', 'run_omicstat_selftest_py.py', '--seed', '20260925', '--outdir', '/home/<user>/omic-sol61/umap_merge/halo_mcp/run_selftest_py_container/355dee00-d910-47e0-bb42-36f356bb152e']
-PASS   selftest-py/container: R render step ran in omicstat-r and rendered  -- {'script': 'skills/_shared/scripts/render_figure_request.R', 'request': 'figure_data/figure_request.json', 'engine': 'container', 'runs_in': 'omicstat-r', 'status': 'rendered', 'exit_code': 0, 'duration_s': 8.19, 'timed_out': False, 'command_argv': ['Rscript', 'render_figure_request.R', '--run-dir',
+PASS   selftest-py/container: engine command is python  -- ['python', 'run_omicstat_selftest_py.py', '--seed', '20260925', '--outdir', '/home/<user>/omic-sol61/user_genesets/e2e_runs/run_selftest_py_container/f488036b-7495-460a-8d24-4e16b3729c0c']
+PASS   selftest-py/container: R render step ran in omicstat-r and rendered  -- {'script': 'skills/_shared/scripts/render_figure_request.R', 'request': 'figure_data/figure_request.json', 'engine': 'container', 'runs_in': 'omicstat-r', 'status': 'rendered', 'exit_code': 0, 'duration_s': 8.21, 'timed_out': False, 'command_argv': ['Rscript', 'render_figure_request.R', '--run-dir',
 PASS   selftest-py/container: both requested figures exist (volcano, umap_clusters; pdf + png)  -- ['figures/umap_clusters.figure_spec.json', 'figures/umap_clusters.pdf', 'figures/umap_clusters.png', 'figures/volcano.figure_spec.json', 'figures/volcano.pdf', 'figures/volcano.png']
 PASS   selftest-py/container: render step recorded in provenance (figure_render.json + render_step)
 PASS   selftest-py/container: fixture anchors {'n_features': 1000, 'n_up': 144, 'n_down': 116, 'n_padj_na': 26, 'n_cells': 300}  -- {'n_features': 1000, 'n_up': 144, 'n_down': 116, 'n_padj_na': 26, 'n_cells': 300}
 PASS   selftest-py/container: R volcano counts agree with the Python feature table  -- {'capped': 0, 'down': 116, 'ns': 714, 'padj_na': 26, 'up': 144}
 PASS   selftest-py/container: QC rules are the module's PY-xx rules
 PASS   selftest-py/container: managed engine, verdict PASS (no blocker/error rule)  -- ('container', [])
-PASS   selftest-py/container: upstream_runs ends with this run (scverse handoff)  -- ['355dee00-d910-47e0-bb42-36f356bb152e']
+PASS   selftest-py/container: upstream_runs ends with this run (scverse handoff)  -- ['f488036b-7495-460a-8d24-4e16b3729c0c']
 PASS   selftest-py/container: handoff is scverse with AnnData + the colour registry written by the R step  -- [{'name': 'adata', 'type': 'AnnData', 'path': 'objects/adata.h5ad', 'sha256': '2aa2f946ca5e7b79d50891a2f7d8e1f35e4c2b0e98c284b56c708eeb044d1d9f'}, {'name': 'colour_registry', 'type': 'colour_registry', 'path': 'objects/colour_registry.json', 'sha256': '897ef237d5b3efa7198038baac3aa41c5c77b12996f203b
 PASS   selftest-py/container: provenance probe carries the Python environment (interpreter + package versions)  -- {'python': '3.12.13', 'engine': 'container', 'py_env_version': '2026.09.1'}
 PASS   selftest-py/container: provenance entry script is the .py entry  -- {'path': 'skills/omicstat-selftest-py/scripts/run_omicstat_selftest_py.py', 'sha256': 'e8cc6de3960e616d4d320c3c0067950399380661a36beab9ed03961ac00fffa4'}
@@ -150,4 +150,4 @@ PASS   selftest-py/container: container_image_id is the omicstat-py image; rende
   SKIPPED: real run on engine native -- no Rscript on PATH
   SKIPPED: native-only checks (legacy status, --strict, validate_publication, default outdir) -- native engine unavailable
   SKIPPED: python module on engine native -- no native environment file
-sample manifest written to /home/<user>/omic-sol61/umap_merge/halo_mcp/sample_manifest.json (5378 chars)
+sample manifest written to /home/<user>/omic-sol61/user_genesets/e2e_runs/sample_manifest.json (5390 chars)

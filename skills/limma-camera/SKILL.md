@@ -27,3 +27,11 @@ Use `--help` for the complete flag list; all defaults and choices are documented
 ## QC and limits
 
 Read triggered QC rules LC-01 through LC-06 in `references/qc-rules.md`. The printed Yoruba camera P values reproduce with the guide-era `voom(adaptive.span = FALSE)`; the suite route keeps the locked default and has its own replay values (`references/method-basis.md`). No KEGG data are supplied.
+
+## User-supplied gene sets
+
+omicstat never bundles or downloads KEGG, PanglaoDB, MSigDB or similar gene sets. A local file that the user obtained (for example with the web app's public-data tool, or KEGG pathways from the KEGG REST API under its academic terms) runs through `--collection user`, using the same limma calls as a registered collection. Give `--gene-sets-provenance <json>` (written by the download tool), or without it `--gene-sets-source`, `--gene-sets-version` and `--gene-sets-id-type` explicitly: these are never guessed. Optional: `--gene-sets-species`, `--gene-sets-name`, `--gene-sets-terms`. The analysis key type is `--feature-id-type`.
+
+`Rscript scripts/run_limma_camera.R --question competitive --from-run voom_run --collection user --gene-sets sets.gmt --gene-sets-provenance sets.provenance.json --feature-id-type ENTREZID --outdir run`
+
+The file's SHA-256 is computed at run time and must equal the provenance `sha256` (`OS_REFDATA_MISMATCH` otherwise). A GMT must be tab-separated with a term ID, a description and at least one gene per line (`OS_INVALID_INPUT`). The gene-set identifier type must equal the analysis key type; identifiers are never converted (`OS_GENE_SET_ID_MISMATCH`). Species is compared with not declared by this module, so only the record is kept (`OS_GENE_SET_SPECIES_MISMATCH`). Fewer than 10% of the unique set genes present in the analysed features is refused as a probable identifier error (`OS_GENE_SET_LOW_OVERLAP`). The KEGG term-ID exclusion applies to bundled/registered collections only, never to user files. The record (name, source, release, retrieval time, URLs, terms, ID type, species, SHA-256, overlap, "user-supplied, not bundled with omicstat") is written to `provenance/user_gene_sets.json` and `provenance/provenance.json`, and one Methods sentence states it. The user is responsible for the terms of use of the file.

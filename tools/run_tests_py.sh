@@ -24,6 +24,7 @@ run() {
 run python env/py/selftest_image.py --functional
 run python env/py/test_py_env_config.py
 run python skills/_shared/py/tests/test_ospy.py
+run python skills/_shared/py/tests/test_user_genesets.py
 run python tools/test_check_calls.py
 run python tools/test_new_module_py.py
 run python tools/test_build_contracts.py

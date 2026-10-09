@@ -1,9 +1,9 @@
 options(error=function(){cat(geterrmessage(),file=stderr());quit(status=1,save="no")})
 .this <- normalizePath(sub("^--file=","",grep("^--file=",commandArgs(FALSE),value=TRUE)[1]))
 .module_dir <- dirname(dirname(.this)); .suite <- dirname(dirname(.module_dir)); .shared <- file.path(.suite,"skills/_shared/scripts")
-for(f in c("args.R","engine_run.R","module_kit.R","handoff.R","convert.R","fig_all.R","sc_bioc_io.R","fig_mod_sc_bioc.R")) source(file.path(.shared,f))
+for(f in c("args.R","engine_run.R","module_kit.R","handoff.R","convert.R","fig_all.R","sc_bioc_io.R","fig_mod_sc_bioc.R","user_genesets.R")) source(file.path(.shared,f))
 source(file.path(dirname(.this),"aucell_score_core.R"))
-SPEC <- os_arg_spec(usage="aucell-score --help",description="Official community workflow wrapper",flags=list(
+SPEC <- os_arg_spec(usage="aucell-score --help",description="Official community workflow wrapper",flags=c(list(
 os_flag("input","path", must_exist=TRUE,help="local SCE RDS"),
 os_flag("from-run","path", must_exist=TRUE,help="upstream single-cell run"),
 os_flag("outdir","path",required=TRUE,help="output directory"),
@@ -24,7 +24,8 @@ os_flag("source-assay","string",help="Seurat source assay for explicit conversio
 os_flag("ranking-args","path", must_exist=TRUE,help="supplementary native ranking arguments"),
 os_flag("auc-args","path", must_exist=TRUE,help="supplementary native AUC arguments"),
 os_flag("seed","int",default=333,help="explicit random seed"),
-os_flag("journal","enum",default="nature", values=c("nature","cell","science","generic"),help="figure preset")),exclusive=list(c("input","from-run")))
+os_flag("journal","enum",default="nature", values=c("nature","cell","science","generic"),help="figure preset")),
+os_user_geneset_flags(gmt=FALSE,feature_id_type=TRUE)),exclusive=list(c("input","from-run")))
 a <- os_parse_args(SPEC,os_spec_argv(commandArgs(TRUE)))
 if(isTRUE(a$help)){os_print_help(SPEC);quit(status=0)}
 a[["norm-auc"]]<-identical(a[["norm-auc"]],"TRUE");a[["keep-zeroes-as-na"]]<-identical(a[["keep-zeroes-as-na"]],"TRUE");a[["split-by-blocks"]]<-identical(a[["split-by-blocks"]],"TRUE");set.seed(a$seed);options(omicstat.journal=a$journal)
@@ -42,7 +43,9 @@ os_engine_capture({
  os_finalize_figure(p,file.path(a$outdir,"figures/auc_heatmap"),journal=a$journal,root=a$outdir)
 },"figures",elog)
 os_bioc_methods(a,"aucell-score",c("AUCell","GSEABase"),c("getGmt","AUCell_buildRankings","AUCell_calcAUC"))
+if(!is.null(r$user_gene_sets)) os_user_genesets_draft(file.path(a$outdir,"draft","methods_results.md"),r$user_gene_sets)
 r$colours<-os_colours_for(sort(unique(r$long$cluster)),family="cluster",registry=i$colours)$registry
 os_bioc_write(r,i,a,"aucell-score","1.0.0")
-os_write_provenance(a$outdir,"aucell-score","1.0.0",os_canonical_argv(SPEC,a),basename(.this),a$seed,inputs=os_bioc_provenance_inputs(i,a),outputs=c("objects/sce.rds"),upstream=i$upstream,extra=list(state=r$state,conversion=i$conversion,native_args=os_bioc_resolved_native(a),gene_sets=r$state$gene_sets))
+os_write_provenance(a$outdir,"aucell-score","1.0.0",os_canonical_argv(SPEC,a),basename(.this),a$seed,inputs=os_bioc_provenance_inputs(i,a),outputs=c("objects/sce.rds"),upstream=i$upstream,extra=c(list(state=r$state,conversion=i$conversion,native_args=os_bioc_resolved_native(a),gene_sets=r$state$gene_sets),if(!is.null(r$user_gene_sets)) list(user_gene_sets=r$user_gene_sets)))
+if(!is.null(r$user_gene_sets)) os_user_genesets_write(a$outdir,r$user_gene_sets)
 cat("aucell-score complete; inspect tables and qc/engine_warnings.csv.\n")

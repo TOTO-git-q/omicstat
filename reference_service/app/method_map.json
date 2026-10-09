@@ -1,7 +1,7 @@
 {
  "schema": "omicstat.method-map.v1",
  "source_path": "skills/omicstat/SKILL.md section 1; docs/handoff/ENGINEERING_PLAN.md sections 1.2 and 10.2",
- "source_sha256": "ee9852bc96922cb922ba556ac89bce70ab0a40a1446649cbb7e2b23b9c388c13",
+ "source_sha256": "413a0313205c2c600b0b3f1e22c76ab9d628ecf6c202de59d7585811a9026b72",
  "plan_sha256": "736ade745fe11f68445b43b02797c2f014845c640e7e9cbdc28def58338c989d",
  "order_rule": "Preserves the overlay's 38-target order for reference-store compatibility. Router section 1 is the execution registry; entry_status explicitly separates available source from unimplemented planned targets. Display/curation modules are appended after the historical targets.",
  "modules": [

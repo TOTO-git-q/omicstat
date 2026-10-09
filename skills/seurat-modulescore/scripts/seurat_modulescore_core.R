@@ -4,11 +4,24 @@ seurat_modulescore_compute <- function(x,a) {
  lines <- readLines(a[["gene-sets"]],warn=FALSE)
  fields <- strsplit(lines,"\t",fixed=TRUE)
  if(!length(fields) || any(lengths(fields)<3L)) os_seurat_fail("OS_INVALID_INPUT","GMT requires name, source and at least one feature per row.")
- if(any(grepl("KEGG|CADD|PanglaoDB|DepMap",c(a[["gene-sets"]],vapply(fields,function(v) paste(head(v,2),collapse=" "),"")),ignore.case=TRUE))) os_seurat_fail("OS_REFDATA_MISSING","Prohibited gene-set collection; no KEGG, CADD, PanglaoDB or DepMap.")
+ # A GMT declared through the user-supplied provenance contract (CONVENTIONS
+ # "User-supplied gene-set collections") is checked and recorded there; the
+ # name gate stays for an undeclared file.
+ contract <- os_user_geneset_given(a)
+ os_user_geneset_guard(a,contract,"a GMT declared through the user-supplied provenance contract",feature=TRUE)
+ if(!contract && any(grepl("KEGG|CADD|PanglaoDB|DepMap",c(a[["gene-sets"]],vapply(fields,function(v) paste(head(v,2),collapse=" "),"")),ignore.case=TRUE))) os_seurat_fail("OS_REFDATA_MISSING",paste0("Prohibited gene-set collection; no KEGG, CADD, PanglaoDB or DepMap content is bundled or accepted undeclared. ",
+  "A file you obtained yourself is accepted with --gene-sets-provenance <json> (or --gene-sets-source, --gene-sets-version and --gene-sets-id-type) and --feature-id-type; you are responsible for its terms."))
  nm <- vapply(fields,`[`,"",1L)
  if(anyDuplicated(nm)) os_seurat_fail("OS_INVALID_INPUT","Gene-set names must be unique.")
  sets <- lapply(fields,function(v) unique(v[-c(1,2)])); names(sets) <- nm
  assay <- a$assay %||% x@misc$omicstat_state$assay
+ coll <- NULL
+ if(contract) {
+  b <- a
+  if(is.null(b[["gene-sets-species"]])) b[["gene-sets-species"]] <- a[["set-organism"]]
+  coll <- os_user_genesets_check(os_user_genesets_resolve(b),a[["feature-id-type"]],rownames(x[[assay]]),
+                                 sprintf("the %s assay features",assay),"--feature-id-type",analysis_species=x@misc$omicstat_state$organism)
+ }
  pool <- if(is.null(a$pool)) NULL else readLines(a$pool,warn=FALSE)
  if(a$k=="true") {
   if(is.null(a[["kmeans-object"]])) os_seurat_fail("OS_MISSING_PARAMETER","--k true requires --kmeans-object from Seurat DoKMeans.")
@@ -21,6 +34,7 @@ seurat_modulescore_compute <- function(x,a) {
  long <- do.call(rbind,lapply(seq_along(cols),function(i) data.frame(cell=colnames(x),sample=x$sample,cluster=x$cluster,set=if(a$k=="true") cols[i] else nm[i],score=x[[cols[i]]][,1])))
  manifest <- do.call(rbind,lapply(seq_along(sets),function(i) data.frame(set=nm[i],source=fields[[i]][2],organism=a[["set-organism"]],supplied=length(sets[[i]]),matched=sum(sets[[i]] %in% rownames(x[[assay]])),dropped=paste(setdiff(sets[[i]],rownames(x[[assay]])),collapse=";"),score_column=if(a$k=="true") NA_character_ else cols[i])))
  st <- x@misc$omicstat_state; st$module_scores <- list(assay=assay,slot=a$slot,sets=nm,columns=cols,nbin=a$nbin,ctrl=a$ctrl,seed=a$seed)
+ if(!is.null(coll)) st$module_scores$gene_sets <- list(origin=OS_USER_GENESETS_ORIGIN,source=coll$record$source,version_or_release=coll$record$version_or_release,id_type=coll$record$id_type,sha256=coll$sha256)
  details <- sprintf("n=%d cells; Seurat AddModuleScore, assay=%s, slot=%s, nbin=%d, ctrl=%d, k=%s, pool=%s, name=%s, seed=%d, offline search=FALSE; raw scores, no cutoff or standardization. Gene-set sources and matched counts are in gene_sets.csv.",ncol(x),assay,a$slot,a$nbin,a$ctrl,a$k,if(is.null(pool)) "all assay genes" else paste(length(pool),"supplied genes"),a$name,a$seed)
- list(object=x,state=st,tables=list(module_scores=score,scores=long,gene_sets=manifest),details=details)
+ list(object=x,state=st,tables=list(module_scores=score,scores=long,gene_sets=manifest),details=details,user_gene_sets=if(is.null(coll)) NULL else coll$record)
 }

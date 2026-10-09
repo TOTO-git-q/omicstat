@@ -28,5 +28,13 @@ Read triggered rules and their denominator before interpretation; locked version
 ## Handoff
 Stay in the scverse front end. Input hashes and chain state are checked. Retained-cell lists require explicit --cell-list on a rerun.
 
+## User-supplied gene sets
+
+omicstat never bundles or downloads KEGG, PanglaoDB, MSigDB or similar gene sets. A local file that the user obtained (for example with the web app's public-data tool, or KEGG pathways from the KEGG REST API under its academic terms) runs through `--marker-panel` declared with `--gene-sets-provenance` (or `--gene-sets-source`, `--gene-sets-version` and `--gene-sets-id-type`), using the unchanged panel-mean computation. Give `--gene-sets-provenance <json>` (written by the download tool), or without it `--gene-sets-source`, `--gene-sets-version` and `--gene-sets-id-type` explicitly: these are never guessed. Optional: `--gene-sets-species`, `--gene-sets-name`, `--gene-sets-terms`. The analysis key type is `--feature-id-type`.
+
+`python scripts/run_scanpy_annotate.py --from-run cluster_run ... --marker-panel panglao_panel.json --gene-sets-provenance panglao_panel.provenance.json --feature-id-type SYMBOL --outdir run`
+
+The file's SHA-256 is computed at run time and must equal the provenance `sha256` (`OS_REFDATA_MISMATCH` otherwise). A GMT must be tab-separated with a term ID, a description and at least one gene per line (`OS_INVALID_INPUT`). The gene-set identifier type must equal the analysis key type; identifiers are never converted (`OS_GENE_SET_ID_MISMATCH`). Species is compared with `--species` (`OS_GENE_SET_SPECIES_MISMATCH`). Fewer than 10% of the unique set genes present in the analysed features is refused as a probable identifier error (`OS_GENE_SET_LOW_OVERLAP`). The KEGG term-ID exclusion applies to bundled/registered collections only, never to user files. The record (name, source, release, retrieval time, URLs, terms, ID type, species, SHA-256, overlap, "user-supplied, not bundled with omicstat") is written to `provenance/user_gene_sets.json` and `provenance/provenance.json`, and one Methods sentence states it. The user is responsible for the terms of use of the file.
+
 ## References
 See references/options.md, parameters.md, method-basis.md, qc-rules.md, reporting-templates.md and troubleshooting.md.

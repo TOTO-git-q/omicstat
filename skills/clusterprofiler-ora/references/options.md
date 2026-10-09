@@ -27,6 +27,14 @@ observed literature values are context, never automatic defaults.
 | `--top-n` | 15 | no | none |
 | `--seed` | 20260925 | no | none |
 | `--journal` | nature | no | none |
+| `--gene-sets` | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| `--gene-sets-provenance` | none | no | none |
+| `--gene-sets-source` | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| `--gene-sets-version` | none | conditional; see SKILL.md "User-supplied gene sets" | gene_set_db |
+| `--gene-sets-id-type` | none | conditional; see SKILL.md "User-supplied gene sets" | none |
+| `--gene-sets-species` | none | no | none |
+| `--gene-sets-name` | none | no | none |
+| `--gene-sets-terms` | none | no | none |
 
 `none` means no corresponding extraction key for this option. Fixed native
 arguments, package versions and context-only extraction rows have no CLI option;

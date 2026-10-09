@@ -4,13 +4,13 @@ options(error = function() { cat(geterrmessage(), file = stderr()); quit(status 
 .module_dir <- dirname(dirname(.this))
 .suite <- normalizePath(file.path(.module_dir, "..", ".."))
 .shared <- file.path(.suite, "skills", "_shared", "scripts")
-for (f in c("args.R", "engine_run.R", "module_kit.R", "handoff.R", "ranked_list.R", "enrich_rank_io.R", "fig_all.R")) source(file.path(.shared, f))
+for (f in c("args.R", "engine_run.R", "module_kit.R", "handoff.R", "ranked_list.R", "enrich_rank_io.R", "user_genesets.R", "fig_all.R")) source(file.path(.shared, f))
 for (f in c("fgsea_prerank_core.R", "fgsea_prerank_report.R", "fgsea_prerank_qc.R")) source(file.path(dirname(.this), f))
 
 SPEC <- os_arg_spec(
   usage = "Rscript run_fgsea_prerank.R --ranked-list <csv> --direction <text>|--from-run <dir> --outdir <dir> [options]",
-  description = "Preranked fgsea multilevel enrichment on an offline registered gene-set collection.",
-  flags = list(
+  description = "Preranked fgsea multilevel enrichment on an offline registered or a user-supplied local gene-set collection.",
+  flags = c(list(
     os_flag("ranked-list", "path", must_exist = TRUE, help = "CSV with feature_id,symbol,score sorted descending"),
     os_flag("from-run", "path", must_exist = TRUE, help = "upstream run with a ranked_list handoff"),
     os_flag("outdir", "path", required = TRUE, help = "output directory"),
@@ -18,13 +18,14 @@ SPEC <- os_arg_spec(
     os_flag("rank-metric", "enum", default = "wald_stat", values = c("wald_stat", "moderated_t", "other"), help = "named ranking statistic of a --ranked-list file; with --from-run the upstream ranked_list metadata decides and a conflicting explicit value is refused"),
     os_flag("metric-name", "string", help = "name of another ranking statistic when --rank-metric other"),
     os_flag("direction", "string", help = "meaning of a positive score, e.g. higher in treated than control; required with --ranked-list unless the file carries omicstat ranked_list metadata; taken from the metadata with --from-run"),
-    os_flag("collection", "string", default = "msigdb_collections", help = "offline registered collection ID; Hallmark entry awaits M1-3"),
-    os_flag("gene-sets", "path", must_exist = TRUE, help = "local GMT whose SHA-256 matches the registry entry"),
+    os_flag("collection", "string", default = "msigdb_collections", help = "offline registered collection ID (Hallmark entry awaits M1-3), or user for a user-supplied --gene-sets GMT"),
+    os_flag("gene-sets", "path", must_exist = TRUE, help = "local GMT: the registered file matching its registry SHA-256, or the user-supplied GMT of --collection user"),
     os_flag("min-size", "int", default = 15L, range = c(1, 100000), help = "minimum set size after rank intersection"),
     os_flag("max-size", "int", default = 500L, range = c(1, 100000), help = "maximum set size after rank intersection"),
     os_flag("alpha", "num", default = 0.05, range = c(0.000001, 0.5), help = "BH adjusted P reporting threshold"),
     os_flag("seed", "int", default = 20260925L, help = "RNG seed for fgseaMultilevel"),
     os_flag("journal", "enum", default = "nature", values = c("nature", "cell", "science", "generic"), help = "figure preset")),
+    os_user_geneset_flags(gmt = FALSE, feature_id_type = TRUE)),
   exclusive = list(c("ranked-list", "from-run")))
 args <- os_parse_args(SPEC, os_spec_argv(commandArgs(trailingOnly = TRUE)))
 if (isTRUE(args$help)) { os_print_help(SPEC); quit(status = 0) }
@@ -32,6 +33,8 @@ if (is.null(args[["ranked-list"]]) && is.null(args[["from-run"]])) stop("OS_MISS
 if (args[["min-size"]] > args[["max-size"]]) stop("OS_INVALID_PARAMETER: --min-size exceeds --max-size.", call. = FALSE)
 if (args[["rank-metric"]] == "other" && is.null(args[["metric-name"]])) stop("OS_MISSING_PARAMETER: --rank-metric other requires --metric-name.", call. = FALSE)
 if (args[["rank-metric"]] != "other" && !is.null(args[["metric-name"]])) stop("OS_CONFLICTING_PARAMETERS: --metric-name applies only to --rank-metric other.", call. = FALSE)
+user_coll <- identical(args$collection, "user")
+os_user_geneset_guard(args, user_coll, "--collection user", feature = TRUE)
 canon <- os_canonical_argv(SPEC, args)
 options(omicstat.journal = args$journal)
 set.seed(args$seed)
@@ -70,7 +73,12 @@ if (!is.null(rank_meta)) {
 os_ranked_list_assert_directional(metric)
 rank <- os_rank_read(rank_path)
 rank_meta$n_ranked <- nrow(rank$table); rank_meta$n_ties <- rank$n_tied
-collection <- os_genesets_read(.suite, args$collection, args[["gene-sets"]])
+if (user_coll) {
+  # User-supplied local GMT (CONVENTIONS "User-supplied gene-set collections").
+  collection <- os_user_genesets_check(os_user_genesets_resolve(args), args[["feature-id-type"]], names(rank$stats),
+                                       "the ranked list", "--feature-id-type")
+  args$collection <- collection$label
+} else collection <- os_genesets_read(.suite, args$collection, args[["gene-sets"]])
 r <- os_engine_capture(fgsea_prerank_compute(rank, collection, args), "compute", elog)
 rend <- os_engine_capture(fgsea_prerank_render(r, args, outdir, rank_meta), "render", elog)
 qc <- os_engine_capture({
@@ -80,6 +88,7 @@ qc <- os_engine_capture({
 }, "qc", elog)
 os_engine_capture({
   fgsea_prerank_report(r, args, qc, outdir, file.path(.module_dir, "references", "reporting-templates.md"), metric, collection)
+  if (user_coll) os_user_genesets_draft(file.path(outdir, "draft", "methods_results.md"), collection$record)
   obj <- file.path(outdir, "objects")
   dir.create(obj, showWarnings = FALSE)
   file.copy(rank_path, file.path(obj, "ranked_list.csv"), overwrite = TRUE)
@@ -100,9 +109,12 @@ os_engine_capture({
             "results/fgsea_prerank_results.json", rend$figures)
   inputs <- list(ranked_list = rank_path)
   if (!is.null(args[["gene-sets"]])) inputs$gene_sets <- args[["gene-sets"]]
+  if (user_coll) inputs <- c(inputs, os_user_genesets_inputs(args)[-1])
   os_write_provenance(outdir, FG_MODULE, FG_VERSION, canon, basename(.this), args$seed,
                       inputs = inputs, outputs = outs, upstream = upstream,
-                      extra = list(collection = args$collection, collection_sha256 = collection$sha256,
-                                   ranking_metric = metric, ranking_direction = args$direction))
+                      extra = c(list(collection = args$collection, collection_sha256 = collection$sha256,
+                                     ranking_metric = metric, ranking_direction = args$direction),
+                                if (user_coll) list(user_gene_sets = collection$record)))
+  if (user_coll) os_user_genesets_write(outdir, collection$record)
 }, "provenance", elog)
 cat(sprintf("%d of %d rules triggered; read %s first\n", qc$n_triggered, qc$n_rules, qc$read_first))

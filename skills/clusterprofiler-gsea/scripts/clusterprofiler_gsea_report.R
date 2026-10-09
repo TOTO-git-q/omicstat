@@ -1,17 +1,23 @@
 cg_render <- function(r,x,a,ref) {
-  tab <- os_enrich_canonical(r$raw,database=paste("GO",a$ontology))
+  custom <- identical(a$database,"custom")
+  dbl <- if (custom) ref$label else paste("GO",a$ontology)
+  tab <- os_enrich_canonical(r$raw,database=dbl)
   tab$significant_bh05 <- !is.na(tab$padj)&tab$padj<0.05
   if (a[["exploratory-fdr"]]) tab$exploratory_bh25 <- !is.na(tab$padj)&tab$padj<0.25
   path <- file.path(a$outdir,"tables","enrichment_full.csv"); os_enrich_write_csv(tab,path)
   figs <- list()
   if (any(!is.na(tab$padj)&tab$padj<a$alpha)) {
-    dot <- os_cp_gsea_dotplot(tab,a[["top-n"]],a$alpha,a$ontology,a$journal)
+    dot <- if (custom) os_user_dotplot_floor(os_enrich_dotplot(tab,x="nes",top_n=a[["top-n"]],padj_threshold=a$alpha,database_label=dbl,journal=a$journal)) else
+      os_cp_gsea_dotplot(tab,a[["top-n"]],a$alpha,a$ontology,a$journal)
     figs$dotplot <- os_finalize_figure(dot,file.path(a$outdir,"figures","gsea_dotplot"),journal=a$journal)
     sgn <- os_cp_gsea_dotplot_signed(tab,min(a[["top-n"]],10L),a$alpha,a$ontology,x$direction,x$negative_end,a$journal,
                                      score_signs=cg_score_signs(x$scores))
+    # The shared signed builder words its caption for GO; a user collection names its own label.
+    if (custom) sgn <- os_with_meta(sgn,caption=sub(sprintf("(GO %s)",a$ontology),sprintf("(%s)",dbl),attr(sgn,"os_meta")$caption,fixed=TRUE))
     figs$dotplot_signed <- os_finalize_figure(sgn,file.path(a$outdir,"figures","gsea_dotplot_signed"),journal=a$journal)
     core <- stats::setNames(strsplit(as.character(r$raw$core_enrichment),"/",fixed=TRUE),as.character(r$raw$ID))
     rid <- os_cp_gsea_ridge(tab,core,x$scores,a$alpha,min(a[["top-n"]],12L),x$metric,a$journal)
+    if (custom) rid <- os_with_meta(rid,caption=sub("significant GO sets",sprintf("significant %s sets",dbl),attr(rid,"os_meta")$caption,fixed=TRUE))
     figs$ridge <- os_finalize_figure(rid,file.path(a$outdir,"figures","gsea_ridge"),journal=a$journal)
     top <- tab[which.min(ifelse(is.na(tab$padj),Inf,tab$padj)),,drop=FALSE]
     set <- r$result@geneSets[[as.character(top$term_id)]]
@@ -21,7 +27,8 @@ cg_render <- function(r,x,a,ref) {
     }
   }
   dir.create(file.path(a$outdir,"results"),recursive=TRUE,showWarnings=FALSE)
-  jsonlite::write_json(list(module=CG_MODULE,module_version=CG_MODULE_VERSION,database="GO",ontology=a$ontology,
+  jsonlite::write_json(list(module=CG_MODULE,module_version=CG_MODULE_VERSION,database=if (custom) dbl else "GO",
+                            ontology=if (custom) NULL else a$ontology,
                             ranking_metric=x$metric,direction=x$direction,negative_end=x$negative_end,
                             statistic_kind=x$statistic_kind,lfc_type=x$lfc_type,contrast=x$contrast,ranking_source=x$source,
                             n_positive_scores=sum(x$scores>0),n_negative_scores=sum(x$scores<0),n_ranked=length(x$scores),
@@ -32,7 +39,7 @@ cg_render <- function(r,x,a,ref) {
                             enrichit_version=as.character(utils::packageVersion("enrichit")),refdata=ref),
                        file.path(a$outdir,"results","clusterprofiler_gsea_results.json"),auto_unbox=TRUE,
                        pretty=TRUE,null="null",na="null")
-  list(table=path,figures=figs)
+  list(table=path,figures=figs,label=dbl)
 }
 
 # How NES is read (S5 R2). NES is relative enrichment toward the top (NES > 0)
@@ -58,6 +65,7 @@ cg_nes_reading <- function(s,direction,negative_end) {
 
 cg_draft <- function(r,x,a,render,module_dir) {
   t <- os_read_templates(file.path(module_dir,"references","reporting-templates.md"))
+  custom <- identical(a$database,"custom")
   v <- list(metric=x$metric,direction=x$direction,n_ranked=length(x$scores),ontology=a$ontology,
             ranking_detail=paste0(if (identical(x$statistic_kind,"effect_size")) sprintf("The ranking is an effect size (LFC type: %s). ",x$lfc_type)
                                   else "The ranking is a signed test statistic. ",
@@ -69,8 +77,10 @@ cg_draft <- function(r,x,a,render,module_dir) {
             tested=nrow(r$raw),sig=sum(!is.na(r$raw$p.adjust)&r$raw$p.adjust<a$alpha),alpha=a$alpha,
             annotation_version=as.character(utils::packageVersion("org.Hs.eg.db")),
             exploratory=if (a[["exploratory-fdr"]]) "An exploratory BH 0.25 flag was declared before analysis and is separate from the main BH 0.05 inference." else "No exploratory 0.25 flag was requested.")
+  if (custom) v$label <- render$label
   caps <- vapply(names(render$figures),function(n) sprintf("- **%s**: %s",n,render$figures[[n]]$spec_obj$caption %||% ""),"")
-  os_write_text(c("# Methods","",os_fill_template(t$methods,v),"","# Results","",os_fill_template(t$results,v),"",v$exploratory,
+  os_write_text(c("# Methods","",os_fill_template(if (custom) t$methods_custom else t$methods,v),"","# Results","",
+                  os_fill_template(if (custom) t$results_custom else t$results,v),"",v$exploratory,
                   if (length(caps)) c("","# Figure legends","",caps),
                   if (!length(render$figures)) os_enrich_empty_note(os_enrich_canonical(r$raw),a$alpha)),
                 file.path(a$outdir,"draft","methods_results.md"))

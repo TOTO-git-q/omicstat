@@ -168,3 +168,5 @@ tell whether a scoring change came from the router or from drift in this file.
 ## UMAP display lane extension (2026-10-07)
 
 The dataset now contains 139 questions, retaining all 133 existing cases and adding six English/Chinese cases for scanpy-annotate, scanpy-purity and scanpy-ingest. These are three additional display/annotation modules, bringing the method map to 41 targets (plus two utility entries in the router). Blind before/after observations and scoring for the final ASCII router are recorded in docs/build/UMAP_DISPLAY_REPORT.md; the interim after-reading is retained separately.
+
+The dataset now contains 146 questions (2026-10-09, user-supplied gene-set lane): all 139 earlier cases are unchanged; G001-G004 cover KEGG with and without a local GMT and a PanglaoDB-derived user GMT, and O001-O003 cover omics analyses that the router now declares not covered (ATAC-seq, spatial transcriptomics, RNA velocity). No blinded score is claimed for the new items.

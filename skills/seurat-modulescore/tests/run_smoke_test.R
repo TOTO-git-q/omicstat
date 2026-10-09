@@ -39,6 +39,7 @@ check(check_calls(list.files(file.path(mod,"scripts"),pattern="[.]R$",full.names
 check(check_default_drift(file.path(mod,"scripts/calls_registry.json"))$ok,"locked defaults")
 # Prohibited collection declarations cannot enter via a user-supplied GMT.
 source(file.path(root,'skills/_shared/scripts/sc_seurat_io.R'))
+source(file.path(root,'skills/_shared/scripts/user_genesets.R'))
 source(file.path(mod,'scripts/seurat_modulescore_core.R'))
 for(collection in c('KEGG','CADD','PanglaoDB','DepMap')) {
  blocked <- file.path(scratch,paste0('prohibited-',collection,'.gmt'))
@@ -47,3 +48,23 @@ for(collection in c('KEGG','CADD','PanglaoDB','DepMap')) {
  err <- tryCatch({seurat_modulescore_compute(x,aa);''},error=conditionMessage)
  check(grepl('OS_REFDATA_MISSING',err),paste('prohibited GMT declaration refused',collection))
 }
+
+# ---- user-supplied gene sets through the provenance contract (CONVENTIONS "User-supplied gene-set collections") ----
+source(file.path(root,"skills/_shared/scripts/user_genesets.R")); source(file.path(root,"skills/_shared/tests/user_genesets_testkit.R"))
+runz <- function(a) { entry <- file.path(mod,"scripts","run_seurat_modulescore.R"); suppressWarnings(system2("Rscript",c(entry,shQuote(a)),stdout=TRUE,stderr=TRUE)) }
+feat <- rownames(y[["RNA"]])
+ugs_sets <- ugs_kegg_like_sets(feat[1:300],feat[-(1:300)])
+ugs <- ugs_fixture(file.path(scratch,"user_sets"),ugs_sets,"SYMBOL",species="mmu")
+ubase <- c("--from-run",cluster,"--gene-sets",ugs$gmt,"--set-organism","Mus_musculus","--ctrl",as.character(ctrl),"--nbin","24","--seed","1","--feature-id-type","SYMBOL")
+uo <- file.path(scratch,"user_anchor")
+run("seurat-modulescore",c(ubase,"--gene-sets-provenance",ugs$prov,"--outdir",uo))
+ux <- readRDS(file.path(uo,"objects/seurat.rds")); uy <- readRDS(file.path(cluster,"objects/seurat.rds"))
+uy <- Seurat::AddModuleScore(uy,features=ugs_sets,ctrl=ctrl,nbin=24,seed=1,name="Cluster",search=FALSE,assay="RNA",slot="data")
+check(all(vapply(paste0("Cluster",seq_along(ugs_sets)),function(k) identical(ux[[k]][,1],uy[[k]][,1]),logical(1))),"user: AddModuleScore parity on the declared KEGG-like GMT (name gate lifted)")
+ugs_check_recorded(check,uo,"user module score",length(ugs_sets),species="Mus musculus")
+ugs_refused(check,runz(c(ubase[-length(ubase)],"ENTREZID","--gene-sets-provenance",ugs$prov,"--outdir",file.path(scratch,"user_idtype"))),"OS_GENE_SET_ID_MISMATCH","user: gene-set SYMBOL vs --feature-id-type ENTREZID")
+ugs_refused(check,runz(c(ubase,"--gene-sets-provenance",ugs$bad_sha,"--outdir",file.path(scratch,"user_sha"))),"OS_REFDATA_MISMATCH","user: sha256 differing from provenance")
+lowb <- ubase; lowb[match("--gene-sets",lowb)+1] <- ugs$low
+ugs_refused(check,runz(c(lowb,"--gene-sets-provenance",ugs$low_prov,"--outdir",file.path(scratch,"user_low"))),"OS_GENE_SET_LOW_OVERLAP","user: under 10% overlap with the assay features")
+hb <- ugs_write_provenance(file.path(scratch,"user_sets","human.provenance.json"),ugs$gmt,"SYMBOL",species="hsa")
+ugs_refused(check,runz(c(ubase,"--gene-sets-provenance",hb,"--outdir",file.path(scratch,"user_species"))),"OS_CONFLICTING_PARAMETERS","user: provenance species hsa vs --set-organism Mus_musculus")

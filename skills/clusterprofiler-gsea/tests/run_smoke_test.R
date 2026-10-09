@@ -162,5 +162,41 @@ if (dir.exists(tampered)) {
   err <- run(c("--from-run",tampered,"--outdir",file.path(tmp,"tamper")))
   check(status(err)!=0L&&any(grepl("OS_HANDOFF_MISMATCH",err)),"tampered handoff refused")
 }
+
+# ---- user-supplied gene sets: --database custom (CONVENTIONS "User-supplied gene-set collections") ----
+source(file.path(suite,"skills","_shared","tests","user_genesets_testkit.R"))
+gl <- geneList[order(-geneList,names(geneList),method="radix")]
+ugs_sets <- ugs_kegg_like_sets(head(names(gl),300),names(gl)[-(1:300)])
+ugs <- ugs_fixture(file.path(tmp,"gsea_user_sets"),ugs_sets,"ENTREZID",lowfn=function(i) as.character(990000000+i))
+cbase <- c(base,"--database","custom","--gene-sets",ugs$gmt)
+cu <- file.path(tmp,"gsea_custom_anchor")
+z <- run(c(cbase,"--gene-sets-provenance",ugs$prov,"--outdir",cu))
+check(status(z)==0L,paste("custom: user GMT GSEA run",paste(tail(z,3),collapse=" | ")))
+if (status(z)==0L) {
+ ct <- read.csv(file.path(cu,"tables","enrichment_full.csv"),check.names=FALSE,stringsAsFactors=FALSE)
+ t2g <- data.frame(term=rep(names(ugs_sets),lengths(ugs_sets)),gene=unlist(ugs_sets,use.names=FALSE))
+ t2n <- data.frame(term=names(ugs_sets),name=unname(ugs_descriptions(ugs_sets)))
+ set.seed(20260925)
+ dref <- as.data.frame(clusterProfiler::GSEA(geneList=gl,exponent=1,minGSSize=10,maxGSSize=500,pvalueCutoff=1,pAdjustMethod="BH",
+   gson=NULL,TERM2GENE=t2g,TERM2NAME=t2n,verbose=FALSE,nPerm=1000,method="multilevel",adaptive=FALSE,minPerm=101,maxPerm=1e5,pvalThreshold=0.1))
+ check(identical(ct$ID,dref$ID)&&isTRUE(all.equal(ct$NES,dref$NES,tolerance=1e-14))&&isTRUE(all.equal(ct$p.adjust,dref$p.adjust,tolerance=1e-14)),
+       sprintf("custom: replay equals direct clusterProfiler::GSEA (%d sets; first %s NES %.6g)",nrow(dref),dref$ID[1],dref$NES[1]))
+ check(all(c("hsa04110","KEGG_APOPTOSIS") %in% ct$ID)&&all(ct$database=="KEGG REST (user-supplied)"),"custom: KEGG-style term IDs kept; database label is the user's source")
+ cj <- jsonlite::read_json(file.path(cu,"results","clusterprofiler_gsea_results.json"),simplifyVector=TRUE)
+ check(identical(cj$database,"KEGG REST (user-supplied)")&&is.null(cj$ontology)&&identical(cj$refdata$id,"user_supplied"),"custom: results JSON names the user collection")
+ ugs_check_recorded(check,cu,"custom GSEA",length(ugs_sets))
+ if (file.exists(file.path(cu,"figures","gsea_dotplot_signed.figure_spec.json"))) {
+  sc <- jsonlite::fromJSON(file.path(cu,"figures","gsea_dotplot_signed.figure_spec.json"))$caption
+  check(grepl("(KEGG REST (user-supplied))",sc,fixed=TRUE)&&!grepl("(GO ",sc,fixed=TRUE),"custom: signed dot plot caption names the user collection, not GO")
+ }
+ crp <- file.path(tmp,"gsea_custom_replay"); z <- run(c("--spec",file.path(cu,"provenance","resolved_spec.json"),"--outdir",crp))
+ check(status(z)==0L&&identical(readBin(file.path(cu,"tables","enrichment_full.csv"),"raw",n=1e8),readBin(file.path(crp,"tables","enrichment_full.csv"),"raw",n=1e8)),
+       "custom: byte-identical --spec replay")
+}
+ugs_refused(check,run(c(cbase,"--gene-sets-provenance",ugs$prov,"--key-type","SYMBOL","--outdir",file.path(tmp,"gsea_custom_idtype"))),"OS_GENE_SET_ID_MISMATCH","custom: gene-set ENTREZID vs --key-type SYMBOL")
+ugs_refused(check,run(c(cbase,"--gene-sets-provenance",ugs$bad_sha,"--outdir",file.path(tmp,"gsea_custom_sha"))),"OS_REFDATA_MISMATCH","custom: sha256 differing from provenance")
+ugs_refused(check,run(c(base,"--database","custom","--gene-sets",ugs$low,"--gene-sets-provenance",ugs$low_prov,"--outdir",file.path(tmp,"gsea_custom_low"))),"OS_GENE_SET_LOW_OVERLAP","custom: under 10% overlap with the ranking")
+kerr <- run(c(base,"--database","KEGG","--outdir",file.path(tmp,"gsea_kegg_route")))
+check(status(kerr)!=0L&&any(grepl("OS_REFDATA_MISSING",kerr))&&any(grepl("--database custom",kerr,fixed=TRUE)),"KEGG without a local GMT explains the user-supplied route")
 check(!file.exists(file.path(suite,"Rplots.pdf")),"no Rplots.pdf")
 if (length(fail)) quit(status=1) else cat("SMOKE PASSED\n")

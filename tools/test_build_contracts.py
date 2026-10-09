@@ -117,8 +117,8 @@ class InventoryTests(unittest.TestCase):
     def test_routing_dataset_structure_not_accuracy(self):
         records = [json.loads(line) for line in (ROOT / 'skills/omicstat/tests/routing_eval.jsonl').read_text(encoding='utf-8').splitlines()]
         known = {m['module'] for m in json.loads((ROOT / 'reference_service/app/method_map.json').read_text())['modules']}
-        self.assertEqual(len(records), 139)
-        self.assertEqual(len({r['id'] for r in records}), 139)
+        self.assertEqual(len(records), 146)
+        self.assertEqual(len({r['id'] for r in records}), 146)
         counts = collections.Counter()
         def modules(answer):
             if isinstance(answer, str):

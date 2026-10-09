@@ -4,12 +4,12 @@ options(error = function() { cat(geterrmessage(), file = stderr()); quit(status 
 .module_dir <- dirname(dirname(.this))
 .suite <- normalizePath(file.path(.module_dir, "..", ".."))
 .shared <- file.path(.suite, "skills", "_shared", "scripts")
-for (f in c("args.R", "engine_run.R", "module_kit.R", "handoff.R", "ranked_list.R", "enrich_rank_io.R", "limma_io.R", "fig_all.R")) source(file.path(.shared, f))
+for (f in c("args.R", "engine_run.R", "module_kit.R", "handoff.R", "ranked_list.R", "enrich_rank_io.R", "user_genesets.R", "limma_io.R", "fig_all.R")) source(file.path(.shared, f))
 for (f in c("limma_camera_core.R", "limma_camera_report.R", "limma_camera_qc.R")) source(file.path(dirname(.this), f))
 SPEC <- os_arg_spec(
   usage = "Rscript run_limma_camera.R --question competitive|self-contained --input <csv>|--ranked-list <csv>|--from-run <dir> --outdir <dir> [options]",
   description = "limma gene-set test chosen by competitive versus self-contained question; one method per run.",
-  flags = list(
+  flags = c(list(
     os_flag("input", "path", must_exist = TRUE, help = "continuous gene-by-sample expression CSV"),
     os_flag("ranked-list", "path", must_exist = TRUE, help = "feature_id,symbol,score CSV for competitive cameraPR only"),
     os_flag("from-run", "path", must_exist = TRUE, help = "upstream limma run (EList, design, coefficient), expression_matrix or ranked_list handoff"),
@@ -18,9 +18,9 @@ SPEC <- os_arg_spec(
     os_flag("spec", "path", must_exist = TRUE, help = "replay a prior resolved spec"),
     os_flag("question", "enum", required = TRUE, values = c("competitive", "self-contained"), help = "scientific null hypothesis, fixed before computation"),
     os_flag("self-contained-method", "enum", values = c("fry", "roast", "mroast"), help = "explicit method for self-contained question"),
-    os_flag("set-id", "string", help = "one registered term ID for roast"),
-    os_flag("collection", "string", default = "msigdb_collections", help = "offline registered gene-set collection"),
-    os_flag("gene-sets", "path", must_exist = TRUE, help = "local GMT matching registered SHA-256"),
+    os_flag("set-id", "string", help = "one term ID of the collection for roast"),
+    os_flag("collection", "string", default = "msigdb_collections", help = "offline registered gene-set collection, or user for a user-supplied --gene-sets GMT"),
+    os_flag("gene-sets", "path", must_exist = TRUE, help = "local GMT: the registered file matching its SHA-256, or the user-supplied GMT of --collection user"),
     os_flag("input-scale", "enum", values = c("logcpm", "vst", "normalized_array"), help = "scale of a CSV or non-limma expression input; a limma upstream states its own"),
     os_flag("samples", "path", must_exist = TRUE, help = "sample table for expression input"),
     os_flag("sample-col", "string", default = "sample", help = "sample ID column"),
@@ -39,6 +39,7 @@ SPEC <- os_arg_spec(
     os_flag("nrot", "int", default = 9999L, range = c(1999, 100000), help = "rotations for roast/mroast; 1999 development only"),
     os_flag("seed", "int", default = 20260925L, help = "seed for rotation tests"),
     os_flag("journal", "enum", default = "nature", values = c("nature", "cell", "science", "generic"), help = "figure preset")),
+    os_user_geneset_flags(gmt = FALSE, feature_id_type = TRUE)),
   exclusive = list(c("input", "ranked-list", "from-run")))
 is_replay <- "--spec" %in% commandArgs(trailingOnly = TRUE)
 a <- os_parse_args(SPEC, os_spec_argv(commandArgs(trailingOnly = TRUE)))
@@ -56,6 +57,8 @@ if (!is.null(a[["block-col"]]) && a$question == "competitive") stop("OS_UNSUPPOR
 if (xor(is.null(a[["block-col"]]), is.null(a$correlation))) stop("OS_MISSING_PARAMETER: --block-col and --correlation must be supplied together.", call. = FALSE)
 if (a[["rank-metric"]] == "other" && is.null(a[["metric-name"]])) stop("OS_MISSING_PARAMETER: --rank-metric other needs --metric-name.", call. = FALSE)
 if (isTRUE(a[["acknowledge-block-ignored"]]) && a$question != "competitive") stop("OS_CONFLICTING_PARAMETERS: --acknowledge-block-ignored applies only to camera (competitive); self-contained tests model the block.", call. = FALSE)
+user_coll <- identical(a$collection, "user")
+os_user_geneset_guard(a, user_coll, "--collection user", feature = TRUE)
 canon <- os_canonical_argv(SPEC, a)
 options(omicstat.journal = a$journal)
 set.seed(a$seed)
@@ -211,13 +214,20 @@ if (is_rank) {
 }
 if (!is_rank && !is_replay && "nrot" %in% given && (is.null(a[["self-contained-method"]]) || !a[["self-contained-method"]] %in% c("roast", "mroast")))
   stop("OS_CONFLICTING_PARAMETERS: --nrot affects only roast/mroast.", call. = FALSE)
-collection <- os_genesets_read(.suite, a$collection, a[["gene-sets"]])
+if (user_coll) {
+  # User-supplied local GMT (CONVENTIONS "User-supplied gene-set collections").
+  features <- if (is_rank) input$rank$table$feature_id else rownames(input$matrix)
+  collection <- os_user_genesets_check(os_user_genesets_resolve(a), a[["feature-id-type"]], features,
+                                       if (is_rank) "the ranked list" else "the expression matrix", "--feature-id-type")
+  a$collection <- collection$label
+} else collection <- os_genesets_read(.suite, a$collection, a[["gene-sets"]])
 if (!is.null(a[["set-id"]]) && !a[["set-id"]] %in% names(collection$sets)) stop("OS_INVALID_PARAMETER: --set-id is absent from registered collection.", call. = FALSE)
 r <- os_engine_capture(limma_camera_compute(input, collection, a), "compute", elog)
 rend <- os_engine_capture(limma_camera_render(r, a, input, outdir), "render", elog)
 qc <- os_engine_capture({q <- limma_camera_qc(r, a, input); os_write_qc_results(q, outdir); q}, "qc", elog)
 os_engine_capture({
   limma_camera_report(r, a, qc, collection, outdir, file.path(.module_dir, "references", "reporting-templates.md"), input, rend$figures)
+  if (user_coll) os_user_genesets_draft(file.path(outdir, "draft", "methods_results.md"), collection$record)
   obj <- file.path(outdir, "objects")
   dir.create(obj, showWarnings = FALSE)
   set_path <- file.path(obj, "gene_sets.gmt")
@@ -253,12 +263,15 @@ os_engine_capture({
   if (is_rank) inputs$ranked_list <- rank_path else if (!limma_up) { inputs$expression <- input_path; inputs$samples <- samples_path }
   if (!is.null(a$weights)) inputs$weights <- a$weights
   if (!is.null(a[["gene-sets"]])) inputs$gene_sets <- a[["gene-sets"]]
+  if (user_coll) inputs <- c(inputs, os_user_genesets_inputs(a)[-1])
   os_write_provenance(outdir, OLC_MODULE, OLC_MODULE_VERSION, canon, basename(.this), a$seed,
                       inputs = inputs, outputs = outputs, upstream = upstream,
-                      extra = list(question = a$question, method = r$method, input_object = input$source_object,
+                      extra = c(list(question = a$question, method = r$method, input_object = input$source_object,
                                    input_scale = input$scale %||% NULL, weights = input$weights_label %||% "none",
                                    design = r$design$formula %||% NULL, coefficient = r$design$coefficient %||% NULL,
                                    block_modelled = r$block_used,
-                                   collection = a$collection, collection_sha256 = collection$sha256))
+                                   collection = a$collection, collection_sha256 = collection$sha256),
+                                if (user_coll) list(user_gene_sets = collection$record)))
+  if (user_coll) os_user_genesets_write(outdir, collection$record)
 }, "provenance", elog)
 cat(sprintf("%d of %d rules triggered; read %s first\n", qc$n_triggered, qc$n_rules, qc$read_first))

@@ -55,3 +55,23 @@ st <- system2("Rscript",c(shQuote(entry),shQuote(missing_ack)),stdout=file.path(
 
 summary <- jsonlite::read_json(file.path(co,"results/analysis_summary.json"))
 check(summary$n_gene_sets==nrow(AUCell::getAUC(ac)) && summary$n_cells==ncol(AUCell::getAUC(ac)),"machine-readable scored-set and cell counts match native AUC output")
+
+# ---- user-supplied gene sets through the provenance contract (CONVENTIONS "User-supplied gene-set collections") ----
+# A synthetic PanglaoDB/KEGG-like GMT from anchor genes: the undeclared name gate above
+# still refuses KEGG; the same kind of file declared with provenance is accepted and recorded.
+source(file.path(suite,"skills/_shared/scripts/user_genesets.R")); source(file.path(suite,"skills/_shared/tests/user_genesets_testkit.R"))
+runz <- function(a) suppressWarnings(system2("Rscript",c(shQuote(entry),shQuote(a)),stdout=TRUE,stderr=TRUE))
+ugs_sets <- ugs_kegg_like_sets(rownames(mat)[1:300],rownames(mat)[-(1:300)])
+ugs <- ugs_fixture(file.path(work,"user_sets"),ugs_sets,"SYMBOL")
+ubase <- c("--from-run",up,"--cluster-col","cluster","--assay","counts","--sets-file",ugs$gmt,"--sets-source","KEGG REST","--sets-licence","KEGG academic terms",
+           "--accept-licence","user-permitted","--feature-id-type","SYMBOL")
+uo <- file.path(work,"user_anchor")
+z <- runz(c(ubase,"--gene-sets-provenance",ugs$prov,"--outdir",uo)); check(is.null(attr(z,"status")),"user: declared KEGG-like GMT accepted (name gate lifted for declared files)")
+uauc <- AUCell::AUCell_calcAUC(GSEABase::getGmt(ugs$gmt),rn,nCores=1,aucMaxRank=250,normAUC=TRUE,verbose=FALSE)
+check(identical(AUCell::getAUC(readRDS(file.path(uo,"objects/aucell.rds"))),AUCell::getAUC(uauc)),"user: native AUC parity on the user sets")
+ugs_check_recorded(check,uo,"user AUCell",length(ugs_sets))
+ugs_refused(check,runz(c(ubase[-length(ubase)],"ENTREZID","--gene-sets-provenance",ugs$prov,"--outdir",file.path(work,"user_idtype"))),"OS_GENE_SET_ID_MISMATCH","user: gene-set SYMBOL vs --feature-id-type ENTREZID")
+ugs_refused(check,runz(c(ubase,"--gene-sets-provenance",ugs$bad_sha,"--outdir",file.path(work,"user_sha"))),"OS_REFDATA_MISMATCH","user: sha256 differing from provenance")
+lowb <- ubase; lowb[match("--sets-file",lowb)+1] <- ugs$low
+ugs_refused(check,runz(c(lowb,"--gene-sets-provenance",ugs$low_prov,"--outdir",file.path(work,"user_low"))),"OS_GENE_SET_LOW_OVERLAP","user: under 10% overlap with the features")
+ugs_refused(check,runz(c(ubase,"--outdir",file.path(work,"user_feature_only"))),"OS_CONFLICTING_PARAMETERS","user: --feature-id-type without a declared contract")

@@ -115,10 +115,10 @@ To help choose, `reference_service/` is a separate MCP companion (`reference_sea
 | Check | Result |
 |---|---|
 | Modules installed | 38 analysis modules + 3 display modules + 2 self-tests; 42/42 module locks verified |
-| R suite (`env/test.sh`, locked container) | ALL PASSED, 201 commands, 0 skipped for missing packages; the only failing assertions are the two documented sva-batch A6a anchors (a vignette-printed `num.sv` that differs by numerical noise; kept visible on purpose) |
-| Python suite | 43 commands ALL PASSED |
+| R suite (`env/test.sh`, locked container) | ALL PASSED, 198 commands, 0 skipped for missing packages; the only failing assertions are the two documented sva-batch A6a anchors (a vignette-printed `num.sv` that differs by numerical noise; kept visible on purpose) |
+| Python suite | 44 commands ALL PASSED |
 | MCP end to end (host stdio, both containers) | 99/99 assertions (3 native-engine checks skipped on a container-only host) |
-| Router blind reading (139 questions, blinded reader) | 92.8 % first choice (gate 90 %), 100 % within acceptable (gate 98 %) — `docs/build/ROUTING_BLIND_EVAL.md`, `docs/build/UMAP_DISPLAY_REPORT.md` |
+| Router blind reading (139 scored questions; 146 in the set, 7 new items structure-checked only) | 92.8 % first choice (gate 90 %), 100 % within acceptable (gate 98 %) — `docs/build/ROUTING_BLIND_EVAL.md`, `docs/build/UMAP_DISPLAY_REPORT.md` |
 | Independent review | every analysis module passed an independent S3 review on the locked image after its build; repair lists and verdicts are under `acceptance/exemplars/<module>/`. The three display modules (2026-10-08) are sealed and tested but still await their independent review |
 
 Not yet done: an end-to-end run on a real study from raw data to a complete manuscript draft (planned); a few owner-level scientific choices remain open and are listed in `SUITE.md` (they are handled safely in code — refused or required — never decided silently).
@@ -155,7 +155,7 @@ bash env/py/test.sh        # full Python suite
 bash env/py/test_e2e.sh    # real MCP stdio across both containers
 ```
 
-Anchor datasets are public and fetched by `acceptance/data/fetch_anchor_data.sh` (sha256-registered in `ANCHOR_REGISTRY.md`). Nothing from KEGG, CADD, PanglaoDB or DepMap is included or downloaded; CIBERSORT runs only from user-supplied licensed files; EPIC requires an explicit academic-licence acknowledgement flag.
+Anchor datasets are public and fetched by `acceptance/data/fetch_anchor_data.sh` (sha256-registered in `ANCHOR_REGISTRY.md`). Nothing from KEGG, CADD, PanglaoDB or DepMap is included or downloaded by omicstat; enrichment and scoring modules accept a user-supplied local gene-set file (e.g. KEGG pathways the user retrieved under academic terms) through `--database custom` / `--collection user` with recorded provenance, and the user is responsible for those terms; CIBERSORT runs only from user-supplied licensed files; EPIC requires an explicit academic-licence acknowledgement flag.
 
 ## Release note
 

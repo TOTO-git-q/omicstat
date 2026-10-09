@@ -8,6 +8,8 @@ ALL FIGURE CHECKS PASSED
 ALL EXTENDED FIGURE CHECKS PASSED
 == Rscript skills/_shared/tests/test_omics_shared.R
 ALL OMICS SHARED CHECKS PASSED
+== Rscript skills/_shared/tests/test_user_genesets.R
+ALL PASSED (user-supplied gene-set contract)
 == Rscript skills/_shared/tests/test_scientific_refusals.R
 PASS: display-only UMAP curation is refused before single-cell inference
 == Rscript skills/_shared/tests/test_convert.R
@@ -15,7 +17,7 @@ ALL CONVERT CHECKS PASSED
 == Rscript skills/_shared/tests/test_effect_table.R
 All checks passed.
 == Rscript skills/_shared/tests/test_render.R
-All checks passed. Rendered files are in /tmp/RtmpsWwC5w/omicstat_render_test
+All checks passed. Rendered files are in /tmp/Rtmp0cHbgJ/omicstat_render_test
 == Rscript skills/_shared/tests/test_engine_contract.R
 ALL ENGINE CONTRACT CHECKS PASSED
 == Rscript tools/test_calls_wrapper_sites.R
@@ -23,7 +25,9 @@ PASS: wrapper dispatch preserves C1/C2/C3 and rejects unproved dynamic arguments
 == python3 env/py/test_py_env_config.py
 == python_lane config: ALL PASSED
 == python3 skills/_shared/py/tests/test_ospy.py
-== ospy: ALL PASSED (2 skipped)
+== ospy: ALL PASSED (3 skipped)
+== python3 skills/_shared/py/tests/test_user_genesets.py
+OK
 == python3 tools/test_check_calls.py
 == check_calls.py: ALL PASSED
 == python3 tools/test_new_module_py.py
@@ -35,11 +39,11 @@ ALL RENDER-REQUEST CHECKS PASSED
 == python3 tools/test_tools.py
 OK
 == python3 tools/lint_r.py
-lint_r: 159 file(s) scanned; 0 problem(s)
+lint_r: 160 file(s) scanned; 0 problem(s)
 == python3 tools/check_skill_frontmatter.py
 44 SKILL.md front matter(s) checked; 0 problem(s)
 == Rscript skills/aucell-score/tests/run_smoke_test.R
-PASS machine-readable scored-set and cell counts match native AUC output 
+PASS user: --feature-id-type without a declared contract refused with OS_CONFLICTING_PARAMETERS 
 == Rscript skills/batchelor-integrate/tests/run_smoke_test.R
 PASS before and after captions use their actual unequal PCA dimensions 
 == Rscript skills/cellchat-communication/tests/run_smoke_test.R
@@ -93,7 +97,7 @@ PASS no device leak
 == Rscript skills/seurat-markers/tests/run_smoke_test.R
 PASS missing sample alternate label refused 
 == Rscript skills/seurat-modulescore/tests/run_smoke_test.R
-PASS prohibited GMT declaration refused DepMap 
+PASS user: provenance species hsa vs --set-organism Mus_musculus refused with OS_CONFLICTING_PARAMETERS 
 == Rscript skills/seurat-qc/tests/run_smoke_test.R
 19 checks PASS
 == Rscript skills/singler-annotate/tests/run_smoke_test.R
@@ -125,11 +129,11 @@ SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONME
 == python3 skills/scvi-integrate/tests/run_smoke_test.py
 SKIP: numerical anchor / model / golden tests require locked image; OS_ENVIRONMENT_MISMATCH: OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image; Python 3.12.3 != 3.12.13; scanpy None != 1.12.4; anndata None != 0.13.3.post0; scvi-tools None != 1.5.1; torch None != 2.14.0+cpu
 == python3 tools/check_defaults.py skills/aucell-score
-aucell-score: 21 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
+aucell-score: 29 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/aucell-score
-21/21 flags documented
+29/29 flags documented
 == Rscript tools/check_calls.R skills/aucell-score
-166 call sites scanned; 0 registry problems; 0 default-drift problems
+190 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/batchelor-integrate
 batchelor-integrate: 25 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/batchelor-integrate
@@ -143,23 +147,23 @@ cellchat-communication: 95 flag(s) in --help, 81 with defaults in 2+ sources; 0 
 == Rscript tools/check_calls.R skills/cellchat-communication
 182 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/clusterprofiler-compare
-clusterprofiler-compare: 12 flag(s) in --help, 12 with defaults in 2+ sources; 0 problem(s)
+clusterprofiler-compare: 20 flag(s) in --help, 20 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/clusterprofiler-compare
-12/12 flags documented
+20/20 flags documented
 == Rscript tools/check_calls.R skills/clusterprofiler-compare
-333 call sites scanned; 0 registry problems; 0 default-drift problems
+415 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/clusterprofiler-gsea
-clusterprofiler-gsea: 17 flag(s) in --help, 17 with defaults in 2+ sources; 0 problem(s)
+clusterprofiler-gsea: 25 flag(s) in --help, 25 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/clusterprofiler-gsea
-17/17 flags documented
+25/25 flags documented
 == Rscript tools/check_calls.R skills/clusterprofiler-gsea
-286 call sites scanned; 0 registry problems; 0 default-drift problems
+328 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/clusterprofiler-ora
-clusterprofiler-ora: 18 flag(s) in --help, 18 with defaults in 2+ sources; 0 problem(s)
+clusterprofiler-ora: 26 flag(s) in --help, 26 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/clusterprofiler-ora
-18/18 flags documented
+26/26 flags documented
 == Rscript tools/check_calls.R skills/clusterprofiler-ora
-472 call sites scanned; 0 registry problems; 0 default-drift problems
+546 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/deseq2-lrt
 deseq2-lrt: 26 flag(s) in --help, 25 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/deseq2-lrt
@@ -185,17 +189,17 @@ edger-qlf: 23 flag(s) in --help, 23 with defaults in 2+ sources; 0 problem(s)
 == Rscript tools/check_calls.R skills/edger-qlf
 481 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/fgsea-prerank
-fgsea-prerank: 14 flag(s) in --help, 14 with defaults in 2+ sources; 0 problem(s)
+fgsea-prerank: 22 flag(s) in --help, 22 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/fgsea-prerank
-14/14 flags documented
+22/22 flags documented
 == Rscript tools/check_calls.R skills/fgsea-prerank
-208 call sites scanned; 0 registry problems; 0 default-drift problems
+224 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/gsva-score
-gsva-score: 19 flag(s) in --help, 19 with defaults in 2+ sources; 0 problem(s)
+gsva-score: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/gsva-score
-19/19 flags documented
+27/27 flags documented
 == Rscript tools/check_calls.R skills/gsva-score
-343 call sites scanned; 0 registry problems; 0 default-drift problems
+357 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/immunedeconv-infiltration
 immunedeconv-infiltration: 24 flag(s) in --help, 11 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/immunedeconv-infiltration
@@ -209,11 +213,11 @@ limma-array: 28 flag(s) in --help, 28 with defaults in 2+ sources; 0 problem(s)
 == Rscript tools/check_calls.R skills/limma-array
 305 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/limma-camera
-limma-camera: 29 flag(s) in --help, 29 with defaults in 2+ sources; 0 problem(s)
+limma-camera: 37 flag(s) in --help, 37 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/limma-camera
-29/29 flags documented
+37/37 flags documented
 == Rscript tools/check_calls.R skills/limma-camera
-670 call sites scanned; 0 registry problems; 0 default-drift problems
+684 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/limma-dupcor
 limma-dupcor: 26 flag(s) in --help, 26 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/limma-dupcor
@@ -257,45 +261,45 @@ omicstat-selftest: 4 flag(s) in --help, 4 with defaults in 2+ sources; 0 problem
 == Rscript tools/check_calls.R skills/omicstat-selftest
 375 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/scanpy-annotate
-scanpy-annotate: 26 flag(s) in --help, 26 with defaults in 2+ sources; 0 problem(s)
+scanpy-annotate: 35 flag(s) in --help, 35 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-annotate
-26/26 flags documented
+35/35 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-annotate
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-cluster
-scanpy-cluster: 57 flag(s) in --help, 57 with defaults in 2+ sources; 0 problem(s)
+scanpy-cluster: 58 flag(s) in --help, 58 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-cluster
-57/57 flags documented
+58/58 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-cluster
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-ingest
-scanpy-ingest: 27 flag(s) in --help, 27 with defaults in 2+ sources; 0 problem(s)
+scanpy-ingest: 28 flag(s) in --help, 28 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-ingest
-27/27 flags documented
+28/28 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-ingest
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-markers
-scanpy-markers: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
+scanpy-markers: 33 flag(s) in --help, 33 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-markers
-32/32 flags documented
+33/33 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-markers
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-purity
-scanpy-purity: 32 flag(s) in --help, 32 with defaults in 2+ sources; 0 problem(s)
+scanpy-purity: 33 flag(s) in --help, 33 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-purity
-32/32 flags documented
+33/33 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-purity
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanpy-qc
-scanpy-qc: 40 flag(s) in --help, 40 with defaults in 2+ sources; 0 problem(s)
+scanpy-qc: 41 flag(s) in --help, 41 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanpy-qc
-40/40 flags documented
+41/41 flags documented
 == python3 tools/check_calls_py_static.py skills/scanpy-qc
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scanvi-annotate
-scanvi-annotate: 35 flag(s) in --help, 35 with defaults in 2+ sources; 0 problem(s)
+scanvi-annotate: 36 flag(s) in --help, 36 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scanvi-annotate
-35/35 flags documented
+36/36 flags documented
 == python3 tools/check_calls_py_static.py skills/scanvi-annotate
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/scater-qc
@@ -317,9 +321,9 @@ scran-markers: 18 flag(s) in --help, 0 with defaults in 2+ sources; 0 problem(s)
 == Rscript tools/check_calls.R skills/scran-markers
 178 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/scvi-integrate
-scvi-integrate: 59 flag(s) in --help, 59 with defaults in 2+ sources; 0 problem(s)
+scvi-integrate: 60 flag(s) in --help, 60 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/scvi-integrate
-59/59 flags documented
+60/60 flags documented
 == python3 tools/check_calls_py_static.py skills/scvi-integrate
 SKIP: Python signature/default imports delegated to the locked Python image suite
 == python3 tools/check_defaults.py skills/seurat-cluster
@@ -341,11 +345,11 @@ seurat-markers: 43 flag(s) in --help, 42 with defaults in 2+ sources; 0 problem(
 == Rscript tools/check_calls.R skills/seurat-markers
 284 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/seurat-modulescore
-seurat-modulescore: 16 flag(s) in --help, 14 with defaults in 2+ sources; 0 problem(s)
+seurat-modulescore: 24 flag(s) in --help, 22 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/seurat-modulescore
-16/16 flags documented
+24/24 flags documented
 == Rscript tools/check_calls.R skills/seurat-modulescore
-157 call sites scanned; 0 registry problems; 0 default-drift problems
+178 call sites scanned; 0 registry problems; 0 default-drift problems
 == python3 tools/check_defaults.py skills/seurat-qc
 seurat-qc: 22 flag(s) in --help, 21 with defaults in 2+ sources; 0 problem(s)
 == python3 tools/check_flag_docs.py skills/seurat-qc

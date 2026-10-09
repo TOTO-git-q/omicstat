@@ -40,7 +40,8 @@ fgsea_prerank_report <- function(r, a, qc, outdir, templates_path, metric, colle
                   os_fill_template(tm$methods, vals), "", "## Results", "",
                   os_fill_template(tm$results, vals)), file.path(outdir, "draft", "methods_results.md"))
   out <- c(vals, list(n_tested = nrow(r$table), qc_triggered = qc$table$id[qc$table$triggered],
-                      eps = 1e-50, eps_meaning = "P-value computation floor; not a tolerance"))
+                      eps = 1e-50, eps_meaning = "P-value computation floor; not a tolerance"),
+           if (!is.null(collection$record)) list(user_gene_sets = collection$record))
   dir.create(file.path(outdir, "results"), recursive = TRUE, showWarnings = FALSE)
   jsonlite::write_json(out, file.path(outdir, "results", "fgsea_prerank_results.json"),
                        auto_unbox = TRUE, pretty = TRUE, na = "null", null = "null", digits = I(10))

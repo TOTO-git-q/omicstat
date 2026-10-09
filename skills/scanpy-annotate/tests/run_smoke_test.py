@@ -54,6 +54,34 @@ def main():
         assert (output/'tables/cluster_annotation.csv').read_bytes()==(work/'capped/tables/cluster_annotation.csv').read_bytes()
         req=json.loads((work/'capped/figure_data/figure_request.json').read_text());assert req['figures'][0]['data']['emb']['n_rows']==10
         assert 'label_xy' in req['figures'][0]['data']
+        # User-supplied provenance contract (CONVENTIONS "User-supplied gene-set collections"),
+        # e.g. a PanglaoDB-derived panel: same annotation, plus recorded provenance and Methods.
+        import hashlib
+        def provenance(path, sha=None, species='hsa'):
+            target = work/(path.stem+'.provenance.json')
+            target.write_text(json.dumps({'source':'PanglaoDB','name':'synthetic PanglaoDB-like panel','version_or_release':'synthetic-test-1',
+                'download_time':'2026-10-09T00:00:00Z','urls':['https://panglaodb.se/markers.html'],'sha256':sha or hashlib.sha256(path.read_bytes()).hexdigest(),
+                'terms':'PanglaoDB terms of use (synthetic fixture)','terms_url':'https://panglaodb.se','id_type':'SYMBOL','species':species}))
+            return target
+        declared=list(args);declared[declared.index('--outdir')+1]=work/'declared'
+        run(MODULE.name,declared+['--gene-sets-provenance',provenance(panel),'--feature-id-type','SYMBOL'])
+        assert (output/'tables/cluster_annotation.csv').read_bytes()==(work/'declared/tables/cluster_annotation.csv').read_bytes()
+        record=json.loads((work/'declared/provenance/user_gene_sets.json').read_text())
+        assert record['origin']=='user-supplied, not bundled with omicstat' and record['source']=='PanglaoDB' and record['species']=='Homo sapiens'
+        assert record['sha256']==hashlib.sha256(panel.read_bytes()).hexdigest() and record['overlap']['fraction']>=0.1
+        assert json.loads((work/'declared/provenance/provenance.json').read_text())['user_gene_sets']['sha256']==record['sha256']
+        draft=(work/'declared/draft/methods_results.md').read_text()
+        assert 'Gene sets: synthetic PanglaoDB-like panel (Homo sapiens), retrieved from PanglaoDB on 2026-10-09T00:00:00Z, release synthetic-test-1' in draft and 'not bundled with omicstat' in draft
+        assert 'Gene sets:' not in (output/'draft/methods_results.md').read_text()
+        def refused(extra,code,name):
+            a2=list(args);a2[a2.index('--outdir')+1]=work/name;run(MODULE.name,a2+extra,error=code)
+        refused(['--gene-sets-provenance',provenance(panel),'--feature-id-type','ENTREZID'],'OS_GENE_SET_ID_MISMATCH','refused_idtype')
+        refused(['--gene-sets-provenance',provenance(panel,sha='0'*64),'--feature-id-type','SYMBOL'],'OS_REFDATA_MISMATCH','refused_sha')
+        refused(['--gene-sets-provenance',provenance(panel,species='mmu'),'--feature-id-type','SYMBOL'],'OS_GENE_SET_SPECIES_MISMATCH','refused_species')
+        refused(['--feature-id-type','SYMBOL'],'OS_CONFLICTING_PARAMETERS','refused_feature_only')
+        lowpanel=work/'low_panel.json';lowpanel.write_text(json.dumps({'A':{'genes':['g0']+['zz%d'%i for i in range(20)],'lineage':'L1','order':0},'B':{'genes':['g3']+['zy%d'%i for i in range(20)],'lineage':'L2','order':1}}))
+        lowargs=list(args);lowargs[lowargs.index('--marker-panel')+1]=lowpanel;lowargs[lowargs.index('--outdir')+1]=work/'refused_low'
+        run(MODULE.name,lowargs+['--gene-sets-provenance',provenance(lowpanel),'--feature-id-type','SYMBOL'],error='OS_GENE_SET_LOW_OVERLAP')
     else:
         run('scanpy-annotate',annotate);source=work/'annotated';before=load(source)
         if MODULE.name=='scanpy-purity':

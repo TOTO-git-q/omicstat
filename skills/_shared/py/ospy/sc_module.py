@@ -336,6 +336,9 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
         if values.get("representation_reused"):
             methods_template = templates.get("methods_rep", methods_template)
         method = K.fill_template(methods_template, values)
+        if res.get("methods_extra"):
+            # e.g. the user-supplied gene-set provenance sentence (ospy.user_genesets)
+            method = method + "\n\n" + res["methods_extra"]
         results_template = templates.get("results_rep", templates["results"]) if values.get("representation_reused") else templates["results"]
         result = K.fill_template(results_template, values)
         parameters = json.dumps(values["parameters"], indent=2, sort_keys=True)
@@ -381,7 +384,7 @@ def run_module(argv, spec, module, module_dir, compute, report, qc_fn, validate,
     figures = elog.capture("figure_request", report, res, a)
     outputs, summary = elog.capture("report", write_outputs, res, a, module, module_dir, upstream, state, contract_hash, qc, figures, module_version)
     inputs = {"input": input_path}
-    for key in ("study-contract", "features-file", "cell-list", "colour-registry", "marker-panel", "label-map"):
+    for key in ("study-contract", "features-file", "cell-list", "colour-registry", "marker-panel", "label-map", "gene-sets-provenance"):
         if a.get(key):
             inputs[key] = a[key]
     for key in ("latent-from-run", "reference-run", "query-run"):
@@ -390,7 +393,10 @@ def run_module(argv, spec, module, module_dir, compute, report, qc_fn, validate,
     K.write_provenance(str(outdir), module, module_version, K.canonical_argv(spec, a),
                        entry_script="run_%s.py" % module.replace("-", "_"), seed=a["seed"],
                        inputs=inputs, outputs=outputs, upstream=upstream, seed_record=seeds,
-                       packages=list(summary["package_versions"]), extra={"analysis_summary": summary, "contract_hash": contract_hash})
+                       packages=list(summary["package_versions"]), extra={"analysis_summary": summary, "contract_hash": contract_hash,
+                                                                          **({"user_gene_sets": res["user_gene_sets"]} if res.get("user_gene_sets") else {})})
+    if res.get("user_gene_sets"):
+        K.write_json(res["user_gene_sets"], str(outdir / "provenance/user_gene_sets.json"))
     print(K.closing_line(qc), flush=True)
     if qc["blocking"]:
         raise OmicstatError("OS_QC_BLOCKED", "blocking QC: " + ", ".join(qc["blocking_ids"]))

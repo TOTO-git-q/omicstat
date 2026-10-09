@@ -41,6 +41,7 @@ run_r env/r/test_layer_lib.R jsonlite
 run_r skills/_shared/tests/test_figures.R ggplot2 ggrepel patchwork ragg svglite jsonlite digest
 run_r skills/_shared/tests/test_figures_ext.R ggplot2 ggrepel patchwork ragg svglite jsonlite digest MASS
 run_r skills/_shared/tests/test_omics_shared.R jsonlite digest
+run_r skills/_shared/tests/test_user_genesets.R jsonlite digest
 run_r skills/_shared/tests/test_scientific_refusals.R SingleCellExperiment SeuratObject rhdf5 jsonlite digest ggplot2
 run_r skills/_shared/tests/test_convert.R SeuratObject Seurat SingleCellExperiment zellkonverter basilisk rhdf5 jsonlite digest
 run_r skills/_shared/tests/test_effect_table.R
@@ -53,6 +54,7 @@ run_r tools/test_calls_wrapper_sites.R jsonlite
 # run in that image: env/py/test.sh (tools/run_tests_py.sh).
 run python3 env/py/test_py_env_config.py
 run python3 skills/_shared/py/tests/test_ospy.py
+run python3 skills/_shared/py/tests/test_user_genesets.py
 run python3 tools/test_check_calls.py
 run python3 tools/test_new_module_py.py
 run python3 tools/test_build_contracts.py

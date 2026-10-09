@@ -1,6 +1,6 @@
 {
   "module": "clusterprofiler-compare",
-  "note": "formals read in locked container; compareCluster forwards named enrichGO arguments through ..., which appear <absent> in its own formals.",
+  "note": "formals read in locked container; compareCluster forwards named enrichGO arguments through ..., which appear <absent> in its own formals. --database custom: a second compareCluster entry (site_requires TERM2GENE) covers fun = \"enricher\" and the GO entry carries site_excludes TERM2GENE (calls_check.R); enricher runs per list for separate populations.",
   "package_versions": {
     "clusterProfiler": "4.20.0"
   },
@@ -13,6 +13,9 @@
   "calls": [
     {
       "fn": "clusterProfiler::compareCluster",
+      "site_excludes": [
+        "TERM2GENE"
+      ],
       "args": {
         "geneClusters": {
           "value": "named selected gene lists",
@@ -188,6 +191,161 @@
           "source": "S1-appendix P-1",
           "pack": "P-1",
           "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "clusterProfiler::compareCluster",
+      "site_requires": [
+        "TERM2GENE"
+      ],
+      "args": {
+        "geneClusters": {
+          "value": "named selected gene lists",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "fun": {
+          "value": "enricher",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "\"enrichGO\""
+        },
+        "data": {
+          "value": "",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "\"\""
+        },
+        "source_from": {
+          "value": "clusterProfiler",
+          "source": "enricher is not in compareCluster's built-in list; it is fetched from the clusterProfiler namespace",
+          "pack": "USER-GS",
+          "function_default": "NULL"
+        },
+        "universe": {
+          "value": "shared explicit eligible background",
+          "source": "S1-appendix P-2 (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        },
+        "qvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "PACK D-C3 and cross-module full-table rule",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "PACK D-C3 (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "<absent>",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "PACK D-C3 (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "<absent>",
+          "flag": "--max-size"
+        },
+        "gson": {
+          "value": null,
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        },
+        "TERM2GENE": {
+          "value": "term -> gene table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        },
+        "TERM2NAME": {
+          "value": "term -> description table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "<absent>"
+        }
+      }
+    },
+    {
+      "fn": "clusterProfiler::enricher",
+      "args": {
+        "gene": {
+          "value": "selected genes",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "pvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "BH",
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "\"BH\""
+        },
+        "universe": {
+          "value": "selection-eligible genes",
+          "source": "S1-appendix P-2 (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "NULL"
+        },
+        "minGSSize": {
+          "value": 10,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "10",
+          "flag": "--min-size"
+        },
+        "maxGSSize": {
+          "value": 500,
+          "source": "locked formals(); same as the GO route",
+          "pack": "USER-GS",
+          "function_default": "500",
+          "flag": "--max-size"
+        },
+        "qvalueCutoff": {
+          "value": 1,
+          "source": "PACK D-O5 and cross-module full-table note (same as the GO route)",
+          "pack": "USER-GS",
+          "function_default": "0.2"
+        },
+        "gson": {
+          "value": null,
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "NULL"
+        },
+        "TERM2GENE": {
+          "value": "term -> gene table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": ""
+        },
+        "TERM2NAME": {
+          "value": "term -> description table of the user GMT",
+          "source": "user-supplied collection contract (CONVENTIONS.md 'User-supplied gene-set collections'); clusterProfiler book, universal enrichment with user-defined TERM2GENE/TERM2NAME",
+          "pack": "USER-GS",
+          "function_default": "NA"
         }
       }
     }

@@ -37,6 +37,14 @@ GV-01–GV-06 are documented in `references/qc-rules.md`.
 ## Known limitations
 The owner has not frozen which limma module receives GSVA scores or the eBayes trend/robust settings (S1 P-3); until then inference requests are refused (`OS_OWNER_DECISION_PENDING`) and no P values are produced. The Hallmark registry entry still needs locked-container resolution (M1-3). Survival and repeated-measures inference are outside this module.
 
+## User-supplied gene sets
+
+omicstat never bundles or downloads KEGG, PanglaoDB, MSigDB or similar gene sets. A local file that the user obtained (for example with the web app's public-data tool, or KEGG pathways from the KEGG REST API under its academic terms) runs through `--collection user`, using the same `GSVA::gsvaParam`/`gsva` calls as a registered collection. Give `--gene-sets-provenance <json>` (written by the download tool), or without it `--gene-sets-source`, `--gene-sets-version` and `--gene-sets-id-type` explicitly: these are never guessed. Optional: `--gene-sets-species`, `--gene-sets-name`, `--gene-sets-terms`. The analysis key type is `--feature-id-type`.
+
+`Rscript scripts/run_gsva_score.R --input expr.csv --input-scale logcpm --collection user --gene-sets sets.gmt --gene-sets-provenance sets.provenance.json --feature-id-type SYMBOL --outdir run`
+
+The file's SHA-256 is computed at run time and must equal the provenance `sha256` (`OS_REFDATA_MISMATCH` otherwise). A GMT must be tab-separated with a term ID, a description and at least one gene per line (`OS_INVALID_INPUT`). The gene-set identifier type must equal the analysis key type; identifiers are never converted (`OS_GENE_SET_ID_MISMATCH`). Species is compared with not declared by this module, so only the record is kept (`OS_GENE_SET_SPECIES_MISMATCH`). Fewer than 10% of the unique set genes present in the analysed features is refused as a probable identifier error (`OS_GENE_SET_LOW_OVERLAP`). The KEGG term-ID exclusion applies to bundled/registered collections only, never to user files. The record (name, source, release, retrieval time, URLs, terms, ID type, species, SHA-256, overlap, "user-supplied, not bundled with omicstat") is written to `provenance/user_gene_sets.json` and `provenance/provenance.json`, and one Methods sentence states it. The user is responsible for the terms of use of the file.
+
 ## Reference files
 - `references/method-basis.md`
 - `references/parameters.md`

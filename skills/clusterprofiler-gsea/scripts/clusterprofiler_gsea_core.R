@@ -46,8 +46,9 @@ cg_input <- function(a, upstream = NULL) {
        inputs = list(ranked = o$path))
 }
 
-cg_compute <- function(x, a) {
-  if (a$database != "GO") stop("OS_REFDATA_MISSING: the requested gene-set collection is not pinned offline.", call. = FALSE)
+cg_compute <- function(x, a, coll = NULL) {
+  if (identical(a$database, "custom")) return(cg_compute_custom(x, a, coll))
+  if (a$database != "GO") stop(os_user_genesets_not_bundled(a$database, "--database custom"), call. = FALSE)
   ans <- clusterProfiler::gseGO(geneList = x$scores, ont = a$ontology,
     OrgDb = org.Hs.eg.db::org.Hs.eg.db, keyType = a[["key-type"]],
     exponent = 1, minGSSize = a[["min-size"]], maxGSSize = a[["max-size"]],
@@ -57,5 +58,19 @@ cg_compute <- function(x, a) {
   if (is.null(ans)) stop("OS_EMPTY_DATA: no testable GO set overlaps the ranked IDs at these sizes.", call. = FALSE)
   raw <- as.data.frame(ans)
   if (!nrow(raw)) stop("OS_EMPTY_DATA: GSEA returned no testable terms.", call. = FALSE)
+  list(result = ans, raw = raw)
+}
+
+# User-supplied collection: clusterProfiler's generic GSEA with TERM2GENE and
+# TERM2NAME, with the same multilevel arguments as the GO route.
+cg_compute_custom <- function(x, a, coll) {
+  tg <- os_user_genesets_term2gene(coll)
+  ans <- clusterProfiler::GSEA(geneList = x$scores, exponent = 1, minGSSize = a[["min-size"]], maxGSSize = a[["max-size"]],
+    pvalueCutoff = 1, pAdjustMethod = "BH", gson = NULL, TERM2GENE = tg$TERM2GENE, TERM2NAME = tg$TERM2NAME,
+    verbose = FALSE, nPerm = 1000, method = "multilevel", adaptive = FALSE, minPerm = 101, maxPerm = 1e5,
+    pvalThreshold = 0.1)
+  if (is.null(ans)) stop("OS_EMPTY_DATA: no testable user gene set overlaps the ranked IDs at these sizes.", call. = FALSE)
+  raw <- as.data.frame(ans)
+  if (!nrow(raw)) stop("OS_EMPTY_DATA: GSEA returned no testable user gene sets.", call. = FALSE)
   list(result = ans, raw = raw)
 }
