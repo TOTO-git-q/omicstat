@@ -364,7 +364,12 @@ def screen_article(article: ET.Element, profile: Mapping[str, Any]) -> tuple[str
     regions = method_regions(body)
     if not regions:
         return "no_method_section", {"licence": rights["licence"], "license_links": links[:4]}
+    # Coverage upgrade: lexicon tokens (names only, never text) of this countable-licence article's Methods
+    # regions, returned for both outcomes; the caller stores them as method mentions.
+    import lexicon
+    mentions = lexicon.scan(regions)
     hit = signal_hit(regions, profile)
     if hit is None:
-        return "off_topic", {"method_regions": len(regions)}
-    return "screened", {"signal": hit, "licence": rights["licence"], "license_links": links[:4], "method_regions": len(regions)}
+        return "off_topic", {"method_regions": len(regions), "licence": rights["licence"], "method_mentions": mentions}
+    return "screened", {"signal": hit, "licence": rights["licence"], "license_links": links[:4], "method_regions": len(regions),
+                        "method_mentions": mentions}

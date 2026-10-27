@@ -19,7 +19,7 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--cluster-col` | no scientific default; consult L1 tutorial example | yes | `groupby` |
 | `--expression-layer` | no scientific default; consult L1 tutorial example | yes | `none` |
 | `--purpose` | no scientific default; consult L1 tutorial example | yes | `none` |
-| `--test` | 't-test' | no | `method` |
+| `--test` | 't-test' (package default; official clustering tutorial uses wilcoxon; seurat-markers defaults to wilcox; reviewed literature 16 of 21 Wilcoxon; Pullin and McCarthy 2024 PMID 38409056 report Wilcoxon, t-test and logistic regression all strong) | no | `method` |
 | `--top-n` | 5 | no | `none` |
 | `--help` | None | no | `none` |
 | `--mask-var` | `None` (sc.tl.rank_genes_groups.mask_var; value) | no | `mask_var` |

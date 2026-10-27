@@ -1,0 +1,535 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "survival-expr",
+  "lane": "R",
+  "domain": "expr-survival",
+  "entry": "scripts/run_survival_expr.R",
+  "version": "0.1.0",
+  "qc_prefix": "SRV",
+  "engine_packages": [
+    "survival"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "expression_matrix"
+    ],
+    "outputs": [
+      "development_expression_survival"
+    ]
+  },
+  "figure_builders": [
+    "os_km",
+    "os_hr_forest",
+    "os_cif"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 52,
+    "question": "Associate prespecified genes with right-censored survival using expression handoff, continuous Cox and declared KM cutoffs"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--from-run",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Verified upstream expression_matrix handoff",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--clinical",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Clinical CSV one row per biological subject",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Biological subject identity",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--time-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Positive right-censored time",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--event-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit zero censored one event",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--time-unit",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared follow-up units",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--genes",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified comma-separated exact gene IDs",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--covariates",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Numeric covariates comma-separated or none",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--expression-scale",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared normalized expression scale",
+      "type_label": "normalized-log2|normalized-other",
+      "role": "scientific"
+    },
+    {
+      "flag": "--scaling",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Per-gene Cox units",
+      "type_label": "none|zscore",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ties",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox ties method",
+      "type_label": "efron|breslow|exact",
+      "role": "scientific"
+    },
+    {
+      "flag": "--min-events",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified minimum observed events",
+      "type_label": "int in [2, Inf]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-iter",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox iteration limit",
+      "type_label": "int in [1, 10000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--cox-eps",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox convergence tolerance",
+      "type_label": "num in [0.000000000001, 0.01]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ph-transform",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "PH time transform",
+      "type_label": "km|rank|identity|log",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ph-alpha",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Diagnostic threshold never a gene filter",
+      "type_label": "num in [0.000001, 0.5]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--adjust",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox gene-family p adjustment",
+      "type_label": "none|holm|bonferroni|BH|BY",
+      "role": "scientific"
+    },
+    {
+      "flag": "--family-size",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Planned Cox gene-family size",
+      "type_label": "int in [1, Inf]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Marginal Wald and KM CI level",
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--km-gene",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "One prespecified displayed gene",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--cutoff",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "KM split rule",
+      "type_label": "median|prespecified|optimal",
+      "role": "scientific"
+    },
+    {
+      "flag": "--cutpoint",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified supplied-expression threshold",
+      "conditional_required": true,
+      "type_label": "num",
+      "role": "scientific",
+      "required_when": [
+        "--cutoff prespecified is selected."
+      ]
+    },
+    {
+      "flag": "--exploratory",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit optimal-cutoff exploration",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "scientific",
+      "required_when": [
+        "--cutoff optimal is explicitly requested."
+      ]
+    },
+    {
+      "flag": "--min-group-fraction",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Exploratory search minimum fraction each group",
+      "conditional_required": true,
+      "type_label": "num in [0.05, 0.49]",
+      "role": "scientific",
+      "required_when": [
+        "--cutoff optimal is explicitly requested."
+      ]
+    },
+    {
+      "flag": "--risk-times",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Sorted comma-separated risk table times",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Figure style",
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Validated prespecified study declaration",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit candidate execution",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Recorded seed",
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "New empty output directory",
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--survival-extension",
+      "default": "none",
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Opt-in source port; none preserves the original Cox and KM path",
+      "type_label": "none|nonph|competing-risks",
+      "role": "scientific"
+    },
+    {
+      "flag": "--dataset-name",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Source dataset name printed on each extension figure",
+      "type_label": "string",
+      "role": "presentation",
+      "conditional_required": true,
+      "required_when": [
+        "Every nonph or competing-risks extension execution."
+      ]
+    },
+    {
+      "flag": "--nonph-primary",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Prespecified non-PH primary summary; never selected by diagnostics",
+      "type_label": "cox|piecewise",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph is selected."
+      ]
+    },
+    {
+      "flag": "--nonph-transforms",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Unique comma-separated km rank identity log transforms including ph-transform",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph is selected."
+      ]
+    },
+    {
+      "flag": "--nonph-magnitude",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Positive engineering log-HR change threshold; source 0.20 is not a scientific recommendation",
+      "type_label": "num in [0.000001, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph is selected."
+      ]
+    },
+    {
+      "flag": "--piecewise-cuts",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Sorted unique positive cuts strictly inside follow-up; at most ten",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph and --nonph-primary piecewise are selected."
+      ]
+    },
+    {
+      "flag": "--piecewise-gene",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "One prespecified gene for the piecewise HR table",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph and --nonph-primary piecewise are selected."
+      ]
+    },
+    {
+      "flag": "--piecewise-fit",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Acknowledge copied native Cox defaults distinct from continuous-model controls",
+      "type_label": "source-native",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph and --nonph-primary piecewise are selected."
+      ]
+    },
+    {
+      "flag": "--piecewise-adjust",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Explicit period-test multiplicity policy",
+      "type_label": "none|holm|bonferroni|BH|BY",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph and --nonph-primary piecewise are selected."
+      ]
+    },
+    {
+      "flag": "--piecewise-family-size",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Planned family includes every period even when not estimable",
+      "type_label": "int in [2, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension nonph and --nonph-primary piecewise are selected."
+      ]
+    },
+    {
+      "flag": "--competing-status-col",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Distinct column: zero censored and consecutive mutually exclusive event codes",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension competing-risks is selected."
+      ]
+    },
+    {
+      "flag": "--event-of-interest",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Nominated cause; existing binary event column must equal its indicator",
+      "type_label": "int in [1, 2147483647]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension competing-risks is selected."
+      ]
+    },
+    {
+      "flag": "--cif-estimator",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Explicit Aalen-Johansen estimator; one-minus-KM is refused",
+      "type_label": "aalen-johansen",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension competing-risks is selected."
+      ]
+    },
+    {
+      "flag": "--cif-interval",
+      "default": null,
+      "required": false,
+      "source": "P0-13B3 reviewed conditional source-copy contract",
+      "description": "Acknowledge source point estimates only; no CI or Gray test",
+      "type_label": "none",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--survival-extension competing-risks is selected."
+      ]
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Resolved spec replay"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 50,
+    "discovery_profile": {
+      "module": "survival-expr",
+      "epmc_query": "METHODS:\"Cox\" OR METHODS:\"gene expression\"",
+      "meta": false,
+      "signal_regex": "(?:Cox|gene expression)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "limits": {
+    "max_genes": 100,
+    "max_samples": 5000,
+    "max_cutpoint_candidates": 256,
+    "timeout_seconds": 1500,
+    "max_piecewise_cuts": 10,
+    "max_competing_event_types": 20
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

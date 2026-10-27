@@ -1,0 +1,131 @@
+[
+  {
+    "metric": "feedlot EMM High",
+    "expected": 1031.0,
+    "tolerance": 0.5,
+    "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+    "scope": "module",
+    "id": "emmeans-contrast-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "feedlot EMM Low",
+    "expected": 1029.0,
+    "tolerance": 0.5,
+    "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+    "scope": "module",
+    "id": "emmeans-contrast-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "feedlot EMM Medium",
+    "expected": 998.0,
+    "tolerance": 0.5,
+    "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+    "scope": "module",
+    "id": "emmeans-contrast-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "id": "longitudinal-LONG-balanced-cells-visit3-error",
+    "metric": "LONG-balanced-cells visit3 absolute error",
+    "expected": 0,
+    "tolerance": 1e-05,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/tests/verified/REFERENCE.md",
+    "how": "replay",
+    "scope": "synthetic_original_source_numerical_contract",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-kenward-roger-marginal_means-source_error",
+    "metric": "longitudinal kenward-roger marginal_means source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-kenward-roger-contrasts_unadjusted-source_error",
+    "metric": "longitudinal kenward-roger contrasts_unadjusted source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-kenward-roger-contrasts_adjusted-source_error",
+    "metric": "longitudinal kenward-roger contrasts_adjusted source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-kenward-roger-joint_tests_native-source_error",
+    "metric": "longitudinal kenward-roger joint_tests_native source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-satterthwaite-marginal_means-source_error",
+    "metric": "longitudinal satterthwaite marginal_means source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-satterthwaite-contrasts_unadjusted-source_error",
+    "metric": "longitudinal satterthwaite contrasts_unadjusted source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-satterthwaite-contrasts_adjusted-source_error",
+    "metric": "longitudinal satterthwaite contrasts_adjusted source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "longitudinal-satterthwaite-joint_tests_native-source_error",
+    "metric": "longitudinal satterthwaite joint_tests_native source maximum absolute error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/longitudinal-change/scripts/longitudinal_core.R",
+    "how": "replay",
+    "scope": "same_input_native_source_before_after_not_independent_numerical_anchor",
+    "tolerance_kind": "absolute",
+    "native_status": "pending_R4.6.1"
+  }
+]

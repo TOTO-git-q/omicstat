@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Additive candidate environment",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "lane",
+    "base_image",
+    "base_image_id",
+    "image_tag",
+    "target_layer",
+    "target_env_version",
+    "new_packages",
+    "state"
+  ],
+  "properties": {
+    "schema": {
+      "const": "omicstat.env-candidate.v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lane": {
+      "enum": [
+        "R",
+        "py"
+      ]
+    },
+    "base_image": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_image_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "image_tag": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_layer": {
+      "type": "string",
+      "pattern": "^(py-)?L[0-9]+_[a-z_]+$"
+    },
+    "target_env_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "new_packages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "state": {
+      "enum": [
+        "planned",
+        "resolved",
+        "built"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

@@ -2,7 +2,7 @@
 
 A FastMCP stdio server that exposes the omicstat R engines (the modules listed
 in the router `skills/omicstat/SKILL.md` section 1 -- currently the environment
-self-test `omicstat-selftest`) as **five generic tools plus three document
+self-test `omicstat-selftest`) as **six generic tools plus three document
 resources**. Statistical estimators and routing stay in the module SKILL.md/R
 files. The shell also finalizes versioned publication contracts, provenance and
 rule-based review without re-estimating results.
@@ -18,6 +18,7 @@ pinned `omicstat-r` container image, or the isolated native library built by
 |---|---|---|
 | `omicstat_list_modules` | -- | JSON: one row per router-table module of `{module, summary, entry}` |
 | `omicstat_describe` | `module` | SKILL.md (capped at 20k chars) + the module's full `--help` + its `references/` file list |
+| `omicstat_create_study_contract` | explicit design, biological_unit, population, comparison, outcomes, covariates, missing_data, multiplicity, analysis_sets | validated object, path and exact SHA256 |
 | `omicstat_run` | `module`, `args{}`, `engine`, optional `study_contract` | JSON manifest (capped at 8k chars) |
 | `omicstat_validate_publication` | exactly one of `run_id`, `outdir` | Re-run publication validation and return the compact JSON manifest |
 | `omicstat_read` | `path` | verbatim text for `.md .csv .txt .json .yml .yaml .tsv` (capped at 60k chars; oversized JSON becomes a valid shape summary); path + size only for figures and other binaries |
@@ -25,13 +26,18 @@ pinned `omicstat-r` container image, or the isolated native library built by
 Resources: `omicstat://router` (the routing map), `omicstat://skill/{module}`,
 `omicstat://help/{module}`.
 
-There is deliberately **no** background/job mode. Everything runs synchronously
-and is hard-killed at 25 minutes (the stdio idle timeout is 30 minutes).
+Runs are synchronous at this shell; the web host owns background jobs. Engines
+are killed at `OMICSTAT_RUN_TIMEOUT_S` (default unchanged: 1500 seconds; accepted
+range 1–21600). The run tool executes off the protocol loop and emits MCP progress
+every 30 seconds, so a running call remains active. Stdio itself has no idle
+reaper; clients must retain an active call (the web host reaps only idle workers).
 
 ## Environment variables
 
 | Variable | Default | Meaning |
 |---|---|---|
+| `OMICSTAT_RUN_TIMEOUT_S` | `1500` | engine time bound in seconds, integer 1–21600; invalid values refuse startup |
+| `OMICSTAT_RUN_STATE_PATH` | unset | optional host-only JSON allocation receipt (run_id/outdir), atomically replaced; not passed to engine containers |
 | `OMICSTAT_SUITE_ROOT` | the directory above `mcp/` | the installed suite (skills, bin, env) the server executes |
 | `OMICSTAT_WORKSPACE` | `OMICSTAT_SUITE_ROOT` | an extra allowed root for input/output paths |
 | `OMICSTAT_RUNS_ROOT` | `<system temp>/omicstat-runs` | parent of the UUID run directories and of the run registry (`_registry/`) |
@@ -243,6 +249,7 @@ The CLI path is untouched: every module still runs from `Rscript
 ## Tests
 
 ```
+python mcp/test_timeout.py
 python mcp/test_client.py
 python mcp/test_publication.py
 OMICSTAT_TEST_TMP=<writable dir> python mcp/test_package_identity.py
@@ -302,3 +309,13 @@ and `PUB-U-003` gate findings use warning severity, pass/fail check status and h
 review; they never block a run. Existing cross-table conflicts remain blocking.
 DOCX text, caption semantics, unsupported ledger layouts, and absent evidence
 still require human review.
+
+StudyContract byte-binding and common CLI flags: [shared contract guide](../skills/_shared/docs/STUDY_CONTRACT.md). Tools manifest is the six-tool SSOT.
+
+## Per-module image (`lane_image`)
+
+`module.json` may carry an optional `lane_image` (an `omicstat-...:tag` image name).
+`omicstat_run` then uses that image for the module instead of the current lane
+image (`env/r-env.json` / `env/py/py-env.json`); without the field nothing changes.
+An operator-set `OMICSTAT_IMAGE` / `OMICSTAT_PY_IMAGE` always wins. This is how a
+plug-in module whose package lives in its own lane image is routed.

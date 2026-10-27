@@ -2020,6 +2020,198 @@
           "descriptive annotation or display/curation diagnostics"
         ]
       }
+    },
+    {
+      "module": "drc-dose",
+      "rule_id": "PUB-M-DRC-DOSE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "lme4-lmm",
+      "rule_id": "PUB-M-LME4-LMM-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "emmeans-contrast",
+      "rule_id": "PUB-M-EMMEANS-CONTRAST-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "proda-diff",
+      "rule_id": "PUB-M-PRODA-DIFF-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "msstats-diff",
+      "rule_id": "PUB-M-MSSTATS-DIFF-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "drc-calibrate",
+      "rule_id": "PUB-M-DRC-CALIBRATE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "nlme-dose",
+      "rule_id": "PUB-M-NLME-DOSE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "omicstat-groupcompare",
+      "rule_id": "PUB-M-OMICSTAT-GROUPCOMPARE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "omicstat-ddct",
+      "rule_id": "PUB-M-OMICSTAT-DDCT-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "survival-expr",
+      "rule_id": "PUB-M-SURVIVAL-EXPR-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "glmnet-coxsig",
+      "rule_id": "PUB-M-GLMNET-COXSIG-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "reactomepa-ora",
+      "rule_id": "PUB-M-REACTOMEPA-ORA-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "dropletutils-emptydrops",
+      "rule_id": "PUB-M-DROPLETUTILS-EMPTYDROPS-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "omicstat-samplesize",
+      "rule_id": "PUB-M-OMICSTAT-SAMPLESIZE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "omicstat-agreement",
+      "rule_id": "PUB-M-OMICSTAT-AGREEMENT-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
+    },
+    {
+      "module": "proc-roc",
+      "rule_id": "PUB-M-PROC-ROC-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [],
+      "effect_table_policy": {},
+      "artifact_expectations": [],
+      "required_diagnostics": [],
+      "narrative_points": [],
+      "causal_language": {}
     }
   ]
 }

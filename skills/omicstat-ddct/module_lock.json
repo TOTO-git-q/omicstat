@@ -1,0 +1,33 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "omicstat-ddct",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/omicstat-ddct/scripts/omicstat_ddct_core.R": "14795921e42ac073a59770fa59735fd395013b6b6a25165beab42664651f1a2f",
+    "skills/omicstat-ddct/scripts/omicstat_ddct_qc.R": "f68c44c6580f914e65a6d7ebd9662558d8a10e6d0bdda0b05bb5d414f51e7ec9",
+    "skills/omicstat-ddct/scripts/omicstat_ddct_report.R": "b5c1b750a919b6ef97f40ea58cd1aa1ca7973afeda130fa3f271d0a6c2211639",
+    "skills/omicstat-ddct/scripts/run_omicstat_ddct.R": "deaab7e2454ba583dc992175dc6ddf974fe24a040f5b3ea4247aff9da5558839",
+    "skills/omicstat-ddct/scripts/calls_registry.json": "8fc45c83a3086d43e5264fe3957de8d653de562598a5d8cc524f67ab60324369",
+    "skills/omicstat-ddct/SKILL.md": "8e1f3173d770895b1b6649269aad837409fca6f10802f3d105916d625c2588a0",
+    "skills/omicstat-ddct/references/method-basis.md": "032d96478e128242994683d4ddeaad1bf1eb947e615acc66375681be8e86cf9f",
+    "skills/omicstat-ddct/references/parameters.md": "cda699c66eb68984a369f6861d39d1be403f443ab11b2c0d4ea23cd2bc3c8792",
+    "skills/omicstat-ddct/references/qc-rules.md": "2181d27c60bc4d0483bdab74ae3bc246eae70233abd7bc681551770163cbfc6c",
+    "skills/omicstat-ddct/references/reporting-templates.md": "4eb80b9803337a0d7949ee925deab74bbc9f10c965410da2c32250d1903c02a4",
+    "skills/omicstat-ddct/references/troubleshooting.md": "b4616e4f2595047c265c8d1e7c5d6176a72f37ad2166add84b504a2bdf1cc5d0",
+    "skills/omicstat-ddct/tests/anchors.R": "63df03f90a406cc599c30819e82f1e0d755e567c022a2e1fd52be3fe4bbbe642",
+    "skills/omicstat-ddct/tests/run_smoke_test.R": "7bcdfc8f8c4d2efc577aadaa6b71fe5a42919945cb8f50b8efbf507eb4bbc172",
+    "skills/omicstat-ddct/tests/golden_manifest.csv": "69a6c24f69158a321ba1e53bd80eb15f4d26b754c62b772f92487838b6aaddec"
+  },
+  "packages": {
+    "stats": "4.6.1",
+    "jsonlite": "2.0.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

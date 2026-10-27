@@ -1,0 +1,66 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.R",
+      "argv": [
+        "{fixtures}",
+        "{root}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--counts",
+      "{fixtures}/counts.tsv",
+      "--samples",
+      "{fixtures}/samples.csv",
+      "--reference",
+      "untreated",
+      "--target",
+      "treated",
+      "--alpha",
+      "0.1",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{run1}",
+      "{anchor_results}"
+    ]
+  },
+  "chain": {
+    "upstream_module": "deseq2-qc",
+    "upstream_run": "runs/upstream",
+    "upstream": {
+      "script": "scripts/run_deseq2_qc.R",
+      "argv": [
+        "--counts",
+        "{fixtures}/counts.tsv",
+        "--samples",
+        "{fixtures}/samples.csv",
+        "--outdir",
+        "{outdir}"
+      ]
+    },
+    "argv": [
+      "--from-run",
+      "{upstream}",
+      "--reference",
+      "untreated",
+      "--target",
+      "treated",
+      "--outdir",
+      "{outdir}"
+    ],
+    "expected_ecosystem": "neutral"
+  },
+  "figure_policy": "required",
+  "owner_review": {
+    "dataset_id": "pasilla",
+    "receipt": "owner_dataset.json"
+  }
+}

@@ -1,0 +1,696 @@
+{
+  "module": "glmnet-coxsig",
+  "module_version": "0.1.0",
+  "package_versions": {
+    "stats": "4.5.0",
+    "survival": "3.8.3",
+    "glmnet": "5.0",
+    "timeROC": "0.4.1",
+    "digest": "0.6.39"
+  },
+  "calls": [
+    {
+      "fn": "digest::digest",
+      "args": {
+        "algo": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "c(\"md5\", \"sha1\", \"crc32\", \"sha256\", \"sha512\", \"xxhash32\", \"xxhash64\",     \"murmur32\", \"spookyhash\", \"blake3\", \"crc32c\", \"xxh3_64\",     \"xxh3_128\")"
+        },
+        "serialize": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        }
+      },
+      "site_requires": [
+        "serialize"
+      ]
+    },
+    {
+      "fn": "glmnet::cv.glmnet",
+      "args": {
+        "x": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "y": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "family": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "alpha": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "nfolds": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "10"
+        },
+        "foldid": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "type.measure": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "c(\"default\", \"mse\", \"deviance\", \"class\", \"auc\", \"mae\", \"C\")"
+        },
+        "grouped": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "alignment": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "c(\"lambda\", \"fraction\")"
+        },
+        "keep": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "parallel": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "relax": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "standardize": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "nlambda": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "lambda.min.ratio": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "control": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "list()"
+        },
+        "cox.ties": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        }
+      }
+    },
+    {
+      "fn": "survival::Surv",
+      "args": {}
+    },
+    {
+      "fn": "stats::coef",
+      "args": {
+        "s": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        }
+      },
+      "site_requires": [
+        "s"
+      ]
+    },
+    {
+      "fn": "stats::median",
+      "args": {}
+    },
+    {
+      "fn": "timeROC::timeROC",
+      "args": {
+        "T": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "delta": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "marker": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "cause": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "weighting": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "\"marginal\""
+        },
+        "times": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "ROC": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "iid": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "survival::survfit",
+      "args": {
+        "formula": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "data": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "conf.int": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "conf.type": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "se.fit": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        }
+      },
+      "site_requires": [
+        "data"
+      ]
+    },
+    {
+      "fn": "digest::digest",
+      "args": {
+        "algo": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      },
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_excludes": [
+        "serialize"
+      ]
+    },
+    {
+      "fn": "stats::coef",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_excludes": [
+        "s"
+      ]
+    },
+    {
+      "fn": "survival::survfit",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_excludes": [
+        "data"
+      ]
+    },
+    {
+      "fn": "survival::survfit",
+      "args": {
+        "formula": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "newdata": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "se.fit": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.type": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "stype": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "ctype": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      },
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_requires": [
+        "newdata"
+      ]
+    },
+    {
+      "fn": "survival::coxph",
+      "args": {
+        "formula": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "data": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "ties": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "x": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "y": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "model": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "na.action": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      },
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_requires": [
+        "na.action"
+      ]
+    },
+    {
+      "fn": "survival::coxph",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_excludes": [
+        "na.action"
+      ]
+    },
+    {
+      "fn": "pmsampsize::pmsampsize",
+      "args": {
+        "type": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "parameters": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "shrinkage": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "rate": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "timepoint": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "meanfup": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "csrsquared": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      },
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_requires": [
+        "rate"
+      ]
+    },
+    {
+      "fn": "pmsampsize::pmsampsize",
+      "args": {
+        "type": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "parameters": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "shrinkage": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "prevalence": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "cstatistic": {
+          "value": "Explicit selected source/adaptation expression; inspect exact ported source",
+          "source": "P0-13B4 copied source and declared penalized-model adapter; native defaults not captured",
+          "pack": "P0-13B4",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      },
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated",
+      "site_requires": [
+        "prevalence"
+      ]
+    },
+    {
+      "fn": "stats::sd",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "stats::glm",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "stats::binomial",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "stats::setNames",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "stats::quantile",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "stats::qnorm",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "stats::binom.test",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    },
+    {
+      "fn": "Hmisc::rcorr.cens",
+      "args": {},
+      "source": "P0-13B4 new call record; no historical/default evidence fabricated"
+    }
+  ],
+  "accessors": [],
+  "flag_defaults": {
+    "--mode": "required",
+    "--from-run": "required",
+    "--signature-run": null,
+    "--clinical": "required",
+    "--unit-col": "required",
+    "--time-col": "required",
+    "--event-col": "required",
+    "--time-unit": "required",
+    "--genes": "required",
+    "--covariates": "required",
+    "--expression-scale": "required",
+    "--min-events": "required",
+    "--folds": null,
+    "--standardize": null,
+    "--nlambda": null,
+    "--lambda-min-ratio": null,
+    "--selection": null,
+    "--lambda": null,
+    "--cv-measure": null,
+    "--cv-grouped": null,
+    "--max-iter": null,
+    "--thresh": null,
+    "--cox-ties": null,
+    "--cutoff": null,
+    "--cutpoint": null,
+    "--roc-times": "required",
+    "--risk-times": "required",
+    "--ci-level": "required",
+    "--journal": "required",
+    "--study-contract": null,
+    "--development-mode": false,
+    "--seed": "required",
+    "--outdir": "required",
+    "--spec": null,
+    "--prediction-workup": "none",
+    "--dataset-name": null,
+    "--planning-source": null,
+    "--planning-parameters": null,
+    "--planning-cs-r2": null,
+    "--planning-shrinkage": null,
+    "--planning-rate": null,
+    "--planning-horizon": null,
+    "--planning-mean-followup": null,
+    "--bootstrap-B": null,
+    "--bootstrap-seed": null,
+    "--bootstrap-fit-policy": null,
+    "--baseline-estimator": null,
+    "--calibration-horizon": null,
+    "--calibration-min-bin": null,
+    "--calibration-max-bins": null,
+    "--calibration-slope-fit": null
+  },
+  "captured_signatures": {
+    "digest::digest": {
+      "package_version": "0.6.39",
+      "method": null,
+      "formals": {
+        "object": "",
+        "algo": "c(\"md5\", \"sha1\", \"crc32\", \"sha256\", \"sha512\", \"xxhash32\", \"xxhash64\",     \"murmur32\", \"spookyhash\", \"blake3\", \"crc32c\", \"xxh3_64\",     \"xxh3_128\")",
+        "serialize": "TRUE",
+        "file": "FALSE",
+        "length": "Inf",
+        "skip": "\"auto\"",
+        "ascii": "FALSE",
+        "raw": "FALSE",
+        "seed": "0",
+        "errormode": "c(\"stop\", \"warn\", \"silent\")",
+        "serializeVersion": ".getSerializeVersion()"
+      }
+    },
+    "glmnet::cv.glmnet": {
+      "package_version": "5.0",
+      "method": null,
+      "formals": {
+        "x": "",
+        "y": "",
+        "weights": "NULL",
+        "offset": "NULL",
+        "lambda": "NULL",
+        "type.measure": "c(\"default\", \"mse\", \"deviance\", \"class\", \"auc\", \"mae\", \"C\")",
+        "nfolds": "10",
+        "foldid": "NULL",
+        "alignment": "c(\"lambda\", \"fraction\")",
+        "grouped": "TRUE",
+        "keep": "FALSE",
+        "parallel": "FALSE",
+        "gamma": "c(0, 0.25, 0.5, 0.75, 1)",
+        "relax": "FALSE",
+        "trace.it": "0",
+        "control": "list()",
+        "...": ""
+      }
+    },
+    "survival::Surv": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "time": "",
+        "time2": "",
+        "event": "",
+        "type": "c(\"right\", \"left\", \"interval\", \"counting\", \"interval2\", \"mstate\")",
+        "origin": "0"
+      }
+    },
+    "stats::coef": {
+      "package_version": "4.5.0",
+      "method": "coef.default",
+      "formals": {
+        "object": "",
+        "...": "",
+        "complete": "TRUE"
+      }
+    },
+    "stats::median": {
+      "package_version": "4.5.0",
+      "method": "median.default",
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE",
+        "...": ""
+      }
+    },
+    "timeROC::timeROC": {
+      "package_version": "0.4.1",
+      "method": null,
+      "formals": {
+        "T": "",
+        "delta": "",
+        "marker": "",
+        "other_markers": "NULL",
+        "cause": "",
+        "weighting": "\"marginal\"",
+        "times": "",
+        "ROC": "TRUE",
+        "iid": "FALSE"
+      }
+    },
+    "survival::survfit": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "...": ""
+      }
+    }
+  },
+  "status": "candidate_native_api_observed_not_production",
+  "native_defaults_verified": false,
+  "historical_package_versions_retained": true,
+  "new_source_default_capture": "pending exact R4.6.1/survival3.8-9/glmnet5.0 lineage and native pmsampsize1.1.3 capture; its official source archive is verified, but historical R4.5 values do not certify this workup"
+}

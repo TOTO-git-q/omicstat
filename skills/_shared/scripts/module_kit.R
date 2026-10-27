@@ -185,7 +185,7 @@ os_write_provenance <- function(outdir, module, module_version, argv, entry_scri
     packages = stats::setNames(lapply(pk, function(p) as.character(utils::packageVersion(p))), pk),
     outputs = stats::setNames(lapply(outputs, function(f) sha(file.path(outdir, f))), outputs)), extra)
   jsonlite::write_json(prov, file.path(outdir, "provenance", "provenance.json"), auto_unbox = TRUE, pretty = TRUE,
-                       null = "null", na = "null", digits = I(10))
+                       null = "null", na = "null", digits = 17)
   jsonlite::write_json(list(schema = "omicstat.resolved_spec.v1", module = module, argv = argv),
                        file.path(outdir, "provenance", "resolved_spec.json"), auto_unbox = TRUE, pretty = TRUE)
   invisible(file.path(outdir, "provenance", "provenance.json"))
@@ -200,7 +200,9 @@ os_canonical_argv <- function(spec, args, skip = c("help", "spec", "outdir")) {
     v <- args[[f$name]]
     if (identical(f$type, "bool")) { if (isTRUE(v)) out <- c(out, paste0("--", f$name)); next }
     if (is.null(v) || (length(v) == 1 && is.na(v))) next
-    out <- c(out, paste0("--", f$name), format(v, scientific = FALSE, trim = TRUE, digits = 15))
+    value <- format(v, scientific = FALSE, trim = TRUE, digits = 15)
+    if (is.numeric(v) && !identical(as.numeric(value), as.numeric(v))) value <- sprintf("%.17g", v)
+    out <- c(out, paste0("--", f$name), value)
   }
   out
 }
@@ -339,3 +341,36 @@ os_acceptance_data <- function(suite, pkg, name) {
   if (length(bound) == 1) return(get(bound, envir = env, inherits = FALSE))
   NULL
 }
+
+# Standardized model input helpers (P0-4).
+os_input_stop <- function(text) stop(paste0("OS_INVALID_INPUT: ", text), call. = FALSE)
+os_require_pkg <- function(pkg) {
+ if (!requireNamespace(pkg, quietly = TRUE)) stop(paste0("OS_MISSING_PACKAGE: ", pkg), call. = FALSE)
+}
+os_check_columns <- function(d, cols) {
+ if (anyDuplicated(names(d)) || !all(cols %in% names(d))) os_input_stop("duplicate or missing columns")
+ if (!nrow(d)) os_input_stop("input table is empty")
+}
+os_as_finite <- function(x, label) {
+ y <- suppressWarnings(as.numeric(x))
+ if (anyNA(y) || any(!is.finite(y))) os_input_stop(paste(label, "must contain finite non-missing numbers"))
+ y
+}
+os_safe_formula <- function(text, columns) {
+ e <- tryCatch(str2lang(text), error = function(e) os_input_stop("invalid formula"))
+ safe <- function(x) {
+  if (is.name(x)) return(as.character(x) %in% columns)
+  if (is.numeric(x)) return(length(x) == 1L && x %in% c(0, 1))
+  if (!is.call(x) || !as.character(x[[1]]) %in% c("~", "+", "-", "*", ":", "|", "||", "(")) return(FALSE)
+  all(vapply(as.list(x)[-1], safe, logical(1)))
+ }
+ if (!safe(e) || !is.call(e) || as.character(e[[1]]) != "~" || length(e) != 3L) os_input_stop("formula permits only named columns and standard model operators")
+ stats::as.formula(e, env = baseenv())
+}
+
+# Public reader is also available when module_kit is sourced without args.R.
+if (!exists("os_study_contract_read", mode = "function")) local({
+  files <- vapply(sys.frames(), function(f) if (is.null(f$ofile)) "" else f$ofile, "")
+  here <- dirname(normalizePath(tail(files[nzchar(files)], 1), mustWork = TRUE))
+  source(file.path(here, "study_contract.R"), local = .GlobalEnv)
+})

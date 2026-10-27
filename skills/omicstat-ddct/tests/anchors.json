@@ -1,0 +1,112 @@
+[
+  {
+    "id": "brain_target_ct",
+    "metric": "brain target ct",
+    "expected": 30.49,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "brain_reference_ct",
+    "metric": "brain reference ct",
+    "expected": 23.63,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "kidney_target_ct",
+    "metric": "kidney target ct",
+    "expected": 27.03,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "kidney_reference_ct",
+    "metric": "kidney reference ct",
+    "expected": 22.66,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "brain_delta_ct",
+    "metric": "brain delta ct",
+    "expected": 6.86,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "kidney_delta_ct",
+    "metric": "kidney delta ct",
+    "expected": 4.37,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "kidney_delta_delta_ct",
+    "metric": "kidney delta delta ct",
+    "expected": -2.5,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "kidney_fold",
+    "metric": "kidney fold",
+    "expected": 5.6,
+    "tolerance": 0.1,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "brain_technical_sd",
+    "metric": "brain technical sd",
+    "expected": 0.17,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "kidney_technical_sd",
+    "metric": "kidney technical sd",
+    "expected": 0.1,
+    "tolerance": 0.01,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  },
+  {
+    "id": "brain_fold",
+    "metric": "brain fold",
+    "expected": 1.0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://doi.org/10.1006/meth.2001.1262",
+    "scope": "Original Table1 separate technical wells; descriptive normalization only, not biological inference",
+    "how": "printed"
+  }
+]

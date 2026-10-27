@@ -32,6 +32,12 @@ EXPECTED_MODULES = [
     "slingshot-trajectory", "wgcna-network", "maftools-landscape", "immunedeconv-infiltration", "scanpy-qc",
     "scanpy-cluster", "scanpy-markers", "scvi-integrate", "scanvi-annotate", "scanpy-annotate", "scanpy-purity", "scanpy-ingest"]
 
+# The original reference order is preserved; promotion appends accepted targets.
+_legacy = set(EXPECTED_MODULES)
+_registered = [json.loads(p.read_text()) for p in (HERE.parent/'skills').glob('*/module.json')]
+EXPECTED_MODULES += [m['name'] for m in sorted(_registered, key=lambda m:m['reference'].get('order', m['routing']['order']))
+                     if m['name'] not in _legacy and m['status']=='accepted' and m['reference']['enabled']]
+
 PROBE = textwrap.dedent(r'''
     import datetime as dt, json, tempfile
     from pathlib import Path
@@ -135,7 +141,8 @@ class ConfigTests(unittest.TestCase):
         self.assertIn("name: omicstat-reference", text)
         self.assertIn("container_name: omicstat-reference", text)
         self.assertRegex(text, r"image: omicstat-reference:\S+")
-        self.assertNotIn("ports:", text)
+        self.assertNotRegex(text, r"(?m)^\s*ports:")   # no published port (a bind mount named .../reports: is fine)
+        self.assertIn("../runtime/reports:/reports:ro", text)   # digests are visible read-only; the container cannot write them
         self.assertNotIn("MEDSTAT_", text)
         self.assertNotRegex(text, r"container_name:\s*medstat|image:\s*medstat|medstat-reference/data")
         for needle in ("read_only: true", "cap_drop: [ALL]", "no-new-privileges:true", 'user: "1000:1000"',

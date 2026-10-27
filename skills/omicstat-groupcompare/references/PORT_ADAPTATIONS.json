@@ -1,0 +1,141 @@
+{
+  "schema": "omicstat.port-adaptations.v1",
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/descriptive-distribution/,skills/baseline-table/,skills/_shared/scripts/var_typing.R",
+  "source_manifest": "PORT_SOURCE.json",
+  "native_execution_in_this_workspace": false,
+  "numerical_equivalence_demonstrated": false,
+  "changes": [
+    {
+      "scope": "copied_sources",
+      "change": "24 source functions: distribution numerical/guard core, shared type/recommendation functions and baseline classify-once helper. Private environments preserve the two different null-helper semantics. Full source20blob identities and function-level normalized hashes/patches are supplied."
+    },
+    {
+      "scope": "source_namespace",
+      "change": "Map all emitted source exceptions/suppression/finding codes to registered OS codes. Source text uses biological units instead of people; typed QC/finish are OmicStat. Original numerical code/tests retained separately for same-input native checks, not a runtime MedStat dependency."
+    },
+    {
+      "scope": "no_auto_selection",
+      "change": "Prespecified numerical function body remains identical after its function-name change. Optional source-advisory computes the copied heuristic and records recommended test text beside the actual chosen test. No eval/parse/automatic routing or multiplicity change."
+    },
+    {
+      "scope": "declared_continuous_endpoint",
+      "change": "Baseline classify-once helper accepts explicit continuous_vars, mirroring source classify_variable(force_type). Nonconstant two-valued numeric endpoints stay declared continuous instead of source automatic binary typing; constants stay constant. Paired pairwise advice classifies differences; pooled omnibus advice is explicitly not a residual/model validation."
+    },
+    {
+      "scope": "source_heuristic_limitations",
+      "change": "Preserve n<20 conservative non-normal heuristic; otherwise abs(Fisher-Pearson g1)<=1 selects its normal branch. Shapiro/QQ are reference only. Source Shapiro cap5000/seed20250813/caller RNG restoration remain; do not substitute as a scientific proof or silently change actual methods."
+    },
+    {
+      "scope": "exclusive_distribution_branch",
+      "change": "Expose only source distribution_comparison as an explicit independent descriptive mode within the existing module. Require fixed reference/grid/minimum/unit/inference/dataset. Public weighted/joint/direct-standardization and categorical/survey baseline branches are not exposed."
+    },
+    {
+      "scope": "biological_grain_and_missingness",
+      "change": "Existing technical-repeat averaging and disjoint biological units apply before core. Preserve logical/censored/nonfinite source refusals before coercion. OmicStat missing-value refusal is stronger than original complete-case exclusion. Declared empty groups are retained and withheld; do not apply the old hypothesis-test minimum2 gate to descriptive suppression."
+    },
+    {
+      "scope": "different_signs_explicit",
+      "change": "Original prespecified t contrasts stay group1-minus-group2. New distribution effects follow source other-group-minus-fixed-reference. Each table/metadata/figure says the direction; neither path is silently negated to match the other."
+    },
+    {
+      "scope": "small_sample_release",
+      "change": "Keep source minimum10, cell/effective-n/tail/quantile-increment suppression, source average-unbiased-variance SMD and inverse-ECDF ties. New branch returns aggregate metrics/guardrails/spec only, with no unit table/raw ID/extrema/resample draws or small-n metadata bypass. Existing private hypothesis branch unchanged."
+    },
+    {
+      "scope": "intervals",
+      "change": "Keep original iid within-group bootstrap, explicit200..100000 attempts and finite fraction>=.95, fixed pointwise95%type7 percentile endpoints. No hidden truncation, constant-resample zero-width CI, simultaneous band, studentization or alternate estimator. Inactive source defaults under inference=none remain marked inactive."
+    },
+    {
+      "scope": "multiplicity",
+      "change": "Original raw P plus adjusted P, requested omnibus/pairwise membership and full declared family retained. Source baseline BT09 and add_q record policy are documented; no data-driven correction choice. Descriptive branch has no P family and no multiplicity-corrected CI; legacy required family-size1 is an interface placeholder, reported actual test count/family0."
+    },
+    {
+      "scope": "native_calls",
+      "change": "Name previously positional original numerical arguments so OmicStat call registry can audit them. Existing stats4.5.0 formal observations retained as historical; added arguments have null/unverified defaults and require exact R4.6.1 capture. No installed-version or native-equivalence claim."
+    },
+    {
+      "scope": "suite_figures",
+      "change": "Display-only shared effect-interval builder draws precomputed mean/SMD/quantile contrasts with dataset labels, source row/hash binding, explicit missing/suppressed states and pagination14. Percentile CIs need not cover the original estimate; no widening/clipping. Whole-withheld pages have a status table, not fabricated plots. No MedStat theme/clinical journal/report layer."
+    },
+    {
+      "scope": "acceptance_scope",
+      "change": "Original6printed sleep anchors/real receipt and native fixture remain. Add10source numerical definitions,27copied distribution checks,31CLI refusal definitions and actual-entry/replay/aggregate-privacy/native figure tests. Synthetic-only fixture is prepared separately; cannot serve owner distribution review. No native tests executed here."
+    },
+    {
+      "scope": "pending",
+      "change": "Native source equivalence/actual R4.6.1 formals/CLI and replay/typed output/figures/owner contact sheets remain pending; no Rscript/Docker here. New independent real owner dataset is not yet registered with verified source SHA. Preserve source research<20 evidence task and all other package gaps."
+    },
+    {
+      "scope": "binding_revisions",
+      "change": "Preserve original parameter-guidance/restyle/resource source-freeze bytes and earlier revisions. New revisions7/4/2 bind only reviewed current changes. Error registry before bytes retained and reconstructed exactly after removing the explicit mapped B1 additions."
+    },
+    {
+      "scope": "real_dataset_registration",
+      "change": "Existing sleep dataset definition/source SHA/owner receipt and six printed anchor objects unchanged. Only its anchors-file registration digest changes for ten appended synthetic source checks; whole prior registry and original anchors retained for exact reconstruction. No new real dataset registered or owner approval claimed."
+    },
+    {
+      "scope": "test_receipt_repair",
+      "change": "Broad regression exposed a pre-existing incomplete Python renderer dispatch mock (missing Runner receipt fields and Pipeline.out). Fill the synthetic mock receipt, assert its exact log hash/image and keep the real render failure guard; no production renderer logic changed."
+    },
+    {
+      "scope": "copied_test_lint",
+      "change": "27 selected original source check blocks retained separately with exact hashes. OS error mapping plus binding original caller RNG seed19 to a variable for R lint are the only check-body adaptations; native execution remains pending."
+    }
+  ],
+  "adapted_files": [
+    {
+      "path": "skills/omicstat-groupcompare/scripts/gpc_distribution_adapter.R",
+      "bytes": 11643,
+      "sha256": "1f41ea265346ebb43131bbc5a6a95e5dc2fe037e9b35f296c58d85e5cad4f290",
+      "git_blob": "d868c46a9faba9b3dd7a96e423db022d8f4b43cb"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R",
+      "bytes": 847,
+      "sha256": "8db701676c8b33c275e07bd3d7da25bc67e4ca51414f251769e8bf1a2219f12f",
+      "git_blob": "0bbd0a26f81580c2351f5510b2e35d1797e4f206"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+      "bytes": 28885,
+      "sha256": "4333a09665c8da1eaa0d21c382887279a0a48b062e3afec6de985a573a0212bd",
+      "git_blob": "07421b0cdcdd9d24e4b2cd53803228c2937b9d80"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+      "bytes": 18336,
+      "sha256": "425147909cae4e3de660e4e1f500bb68d3f3e66074e7bf9a2534c62ce4c21195",
+      "git_blob": "5b36c61910fa4f4cbcf83ab24bdc4cf40a237339"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/omicstat_groupcompare_core.R",
+      "bytes": 7013,
+      "sha256": "d71951b4cbe02c85799d83c5e6fd7c864a7d408d920ec5400b30bdaed04c84d3",
+      "git_blob": "0c8001ec94763ffcb852347f9b561e30a147f80d"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/omicstat_groupcompare_qc.R",
+      "bytes": 2105,
+      "sha256": "ee4446355210f29b84bc2aa047c9f2375107f417f9b6b523ca8d145213d2277f",
+      "git_blob": "69ffbd85cc0468541b68b44c4330ccc95dd2294e"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/omicstat_groupcompare_report.R",
+      "bytes": 1919,
+      "sha256": "8798ac3c2f907589d3eb6349667953354db605b02aa2d80848d0ed239b65f392",
+      "git_blob": "7d62c93c799da6b1784b489bc1f9e603bf2842ef"
+    },
+    {
+      "path": "skills/omicstat-groupcompare/scripts/run_omicstat_groupcompare.R",
+      "bytes": 5729,
+      "sha256": "4a6d478111a561cfc903ddb6e3672c58a2392350b9c7c0f83701abdd832c5698",
+      "git_blob": "f32a5fd4eccb0b3aa30b6507a40e98ee8f56fe5c"
+    }
+  ],
+  "shared_renderer": {
+    "path": "skills/_shared/scripts/fig_mod_distribution.R",
+    "bytes": 7593,
+    "sha256": "831e7b919f2bc6ea1bf3d36dc733d34ad2f3751e3641b80827ba372b57517a3f",
+    "git_blob": "dc8a87df200c8c1c57fc1e2702a0bc7c4f20af1a"
+  }
+}

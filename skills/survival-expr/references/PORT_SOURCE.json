@@ -1,0 +1,133 @@
+{
+  "schema": "omicstat.source-port.v1",
+  "work_package": "P0-13 B3",
+  "target_module": "survival-expr",
+  "source_repository": "TOTO-git-q/medstat",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_read_only": true,
+  "runtime_dependency_on_MedStat": false,
+  "source_code_executed_in_MedStat": false,
+  "patient_rows_read_or_downloaded": false,
+  "native_R_execution_here": false,
+  "native_defaults_captured_here": false,
+  "files": [
+    {
+      "path": "skills/competing-risks/SKILL.md",
+      "bytes": 28795,
+      "sha256": "027c34f7c6adc29ef03be2f791a80cc54d91e489fb6ccaed474e12c01f6c88b4",
+      "git_blob": "80f2faa0e5e2516afe627ed94d7b5487ff6da60e",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/SKILL.md",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/competing-risks/scripts/cr_core.R",
+      "bytes": 73990,
+      "sha256": "29f117d7708affa4baf359c60222213b0be6be26e96b9e2a2a719c6bcba002bf",
+      "git_blob": "d67d8d5918f86c862fce2c5d51fc7457058bb063",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/scripts/cr_core.R",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/competing-risks/scripts/cr_qc.R",
+      "bytes": 12618,
+      "sha256": "2c6f549426d0202bb67142c94a0647fbff32a373748a085c962ef5b930c03885",
+      "git_blob": "ff2a80037f726a0d0f78dc3da1e5bbcdaa146667",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/scripts/cr_qc.R",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/competing-risks/tests/verified/REFERENCE.md",
+      "bytes": 966,
+      "sha256": "b967203bae1c4193d4de6cf2b63c2a7f7ce741e3dd12c2167a7d5458a4a83662",
+      "git_blob": "c96590d1baea31bad96c1e09327b47d3f828c99b",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/tests/verified/REFERENCE.md",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/competing-risks/tests/verified/run_verified.R",
+      "bytes": 3452,
+      "sha256": "144aeacffc26cf2e132402e75b1e18f46a98f22f9928ced774a5b6c5119c4ea3",
+      "git_blob": "e33e857e952b99d9009724fdda10e6ff7d3662f8",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/tests/verified/run_verified.R",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/survival-nonph/SKILL.md",
+      "bytes": 39651,
+      "sha256": "deb5908f3de63f63be5649d4b8707842000d3465c2ae46fe026eb93a19f2d2e9",
+      "git_blob": "b02677dfb6aca596271b9449efb99522db5a6e13",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/SKILL.md",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/survival-nonph/scripts/nonph_core.R",
+      "bytes": 79904,
+      "sha256": "7b9bc7db2e286f05a9e341712235adc4ea2784cea882d390064bcf52d9c2bc04",
+      "git_blob": "edfe85864745f51d13a5463c0d5c71ef653faa19",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/scripts/nonph_core.R",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/survival-nonph/scripts/nonph_qc.R",
+      "bytes": 16906,
+      "sha256": "71bcc1b0c3a2ad178f0fdd8efe313d7a1b90361872370b3c50c66d3bc2969a3d",
+      "git_blob": "860a9c9fe06436eb832133bff7ceabb083b9773a",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/scripts/nonph_qc.R",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/survival-nonph/tests/verified/REFERENCE.md",
+      "bytes": 908,
+      "sha256": "4f8abbeba22e837912fcb7429329adf1e9cd6347fff503fb9715eebac0e95694",
+      "git_blob": "6ef2c1e13ac76fd152d7a2b6f407da6e75019190",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/tests/verified/REFERENCE.md",
+      "read_scope": "code or documentation only; never a clinical data object"
+    },
+    {
+      "path": "skills/survival-nonph/tests/verified/run_verified.R",
+      "bytes": 3368,
+      "sha256": "f93b0d40e3c3ceb5d26b4529adba46bf62963b089490e3ecc15f0915998e9e86",
+      "git_blob": "52e392b5a8a729346a08ef3e194f7de382c51007",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/tests/verified/run_verified.R",
+      "read_scope": "code or documentation only; never a clinical data object"
+    }
+  ],
+  "copied_function_manifest": "references/COPIED_FUNCTIONS.json",
+  "error_mapping": "references/ERROR_MAPPING.json",
+  "copied_function_count": 17,
+  "source_line_endings": "Whole original raw CRLF/mixed-ending files verified by Git blob; selected function references deliberately normalized to LF with separate digests",
+  "plan": {
+    "repository": "TOTO-git-q/omic-MCP",
+    "commit": "3dc656ae362d6b59e138be6b8e82fc40c8087d9a",
+    "path": "docs/plans/WORK_PACKAGE_P0-13_port_from_medstat.md",
+    "git_blob": "ded3646cb567b29a49e0cc21c5b5a04c644097f7"
+  },
+  "included": [
+    "Schoenfeld diagnostics on the unchanged original fitted Cox objects",
+    "Declared diagnostic classification without automatic model selection",
+    "Prespecified unweighted source-native piecewise HR with full period/event denominators",
+    "Aalen-Johansen descriptive point-estimate CIF with explicit multi-state status",
+    "Source status, estimator, non-estimability and survey-refusal guards"
+  ],
+  "excluded": [
+    "RMST and landmark strategies",
+    "Survey/design-weighted inference",
+    "Fine-Gray and cause-specific regression",
+    "Gray test and CIF confidence intervals",
+    "MedStat journal/report/theme layers",
+    "Clinical-only entry or any MedStat runtime/container dependency"
+  ],
+  "native_lane": {
+    "R": "4.6.1",
+    "survival_version": "3.8-9",
+    "new_package_dependencies": [],
+    "status": "pending_exact_native_execution"
+  },
+  "non_equivalence_disclosures": [
+    "Source factor(status) omitted censor level when there were no censored records; this port explicitly keeps level0. All-event equality is not claimed; an independent product-integral native test is required.",
+    "The source helper retains native Cox defaults for the new piecewise branch; --piecewise-fit source-native explicitly acknowledges that legacy ties/max-iter/cox-eps do not control it.",
+    "Public period labels show actual counting-process (start,stop] intervals while retaining source_period_label; numerical split and coefficients are unchanged.",
+    "Original classification retains fixed P0.05 and may return low with unavailable magnitude; NA/reason/nonfinite counts and a QC warning stay visible.",
+    "No original clinical mgus2 anchor was acquired or reproduced. SN-V1 is a source RMST anchor outside this selected port."
+  ]
+}

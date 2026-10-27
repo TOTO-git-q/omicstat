@@ -3,7 +3,7 @@ from pathlib import Path
 from ospy import sc_module as S, native_options as N
 from ospy.errors import OmicstatError
 
-MODULE_VERSION = "1.1.0"
+MODULE_VERSION = "1.2.0"
 
 
 def validate(a):
@@ -11,6 +11,8 @@ def validate(a):
         raise OmicstatError("OS_MISSING_PARAMETER", "supply --leiden-resolution and --scvi-cluster-col together.")
     if a["scvi-cluster-col"] == a["cluster-col"]:
         raise OmicstatError("OS_INVALID_PARAMETER", "scvi-cluster-col must be a new column; carried clusters cannot change.")
+    if a["n-latent"] is None and not a["latent-from-run"]:
+        raise OmicstatError("OS_MISSING_PARAMETER", "--n-latent is required when training (harmonization tutorial example 30; scvi-tools default 10); it is not needed with --latent-from-run.")
     if a["max-epochs"] > 400:
         raise OmicstatError("OS_RESOURCE_LIMIT", "this synchronous CPU module supports at most 400 requested epochs.")
 

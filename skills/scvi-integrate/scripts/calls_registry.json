@@ -151,8 +151,8 @@
           "function_default": "10",
           "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
           "s0_extraction_key": "n_latent",
-          "source": "user_optional_default",
-          "value": 10
+          "source": "user-required unless latent reuse; owner adjudication 2026-10-11",
+          "value": null
         },
         "n_layers": {
           "expressions": [
@@ -162,7 +162,7 @@
           "function_default": "1",
           "reference": "https://docs.scvi-tools.org/en/1.5.1/api/reference/scvi.model.SCVI.html",
           "s0_extraction_key": "n_layers",
-          "source": "locked API default or retained cited workflow value; explicit user override",
+          "source": "locked API default or retained cited workflow value; explicit user override; harmonization tutorial uses n_layers=2 with n_latent=30, gene_likelihood=nb (named tutorial configuration, not a default); owner adjudication 2026-10-11 (keep 1)",
           "value": 1
         },
         "registry": {
@@ -844,7 +844,6 @@
     "--batch-size": 128,
     "--journal": "nature",
     "--min-dist": 0.5,
-    "--n-latent": 10,
     "--seed": 20260925
   },
   "import_names": {

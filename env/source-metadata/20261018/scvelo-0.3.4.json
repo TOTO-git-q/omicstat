@@ -1,0 +1,83 @@
+{
+  "source_url": "https://pypi.org/pypi/scvelo/0.3.4/json",
+  "retrieved_utc": "2026-10-18T06:24:22.237147+00:00",
+  "response_sha256": "459377e6795dd8da5ff5848b51fdd608be8843bc30099c649e35be76b9a2d5b2",
+  "metadata_only": true,
+  "package": "scvelo",
+  "version": "0.3.4",
+  "requires_python": ">=3.8",
+  "requires_dist": [
+    "anndata>=0.7.5",
+    "scanpy>=1.5",
+    "loompy>=2.0.12",
+    "umap-learn>=0.3.10",
+    "numba>=0.41.0",
+    "numpy>=1.17",
+    "pandas!=1.4.0,>=1.1.1",
+    "scipy>=1.4.1",
+    "scikit-learn>=0.21.2",
+    "matplotlib>=3.3.0",
+    "igraph; extra == \"louvain\"",
+    "louvain; extra == \"louvain\"",
+    "pybind11; extra == \"hnswlib\"",
+    "hnswlib; extra == \"hnswlib\"",
+    "pytest; extra == \"test\"",
+    "pytest-cov; extra == \"test\"",
+    "ruff; extra == \"dev\"",
+    "black; extra == \"dev\"",
+    "isort; extra == \"dev\"",
+    "hnswlib; extra == \"dev\"",
+    "hypothesis; extra == \"dev\"",
+    "louvain; extra == \"dev\"",
+    "pre-commit>=2.9.0; extra == \"dev\"",
+    "pybind11; extra == \"dev\"",
+    "pytest-cov; extra == \"dev\"",
+    "igraph; extra == \"dev\"",
+    "setuptools_scm; extra == \"dev\"",
+    "scanpy; extra == \"docs\"",
+    "setuptools; extra == \"docs\"",
+    "setuptools_scm; extra == \"docs\"",
+    "importlib_metadata; extra == \"docs\"",
+    "sphinx_rtd_theme>=0.3; extra == \"docs\"",
+    "sphinx_autodoc_typehints>=1.10.3; extra == \"docs\"",
+    "sphinxcontrib-bibtex>=2.3.0; extra == \"docs\"",
+    "ipykernel; extra == \"docs\"",
+    "sphinx<8.0,>=1.7; extra == \"docs\"",
+    "nbsphinx<0.8.7,>=0.7; extra == \"docs\""
+  ],
+  "yanked": false,
+  "files": [
+    {
+      "filename": "scvelo-0.3.4-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/95/36/f3f611bcbe4af61ed30c8de86c2ba7e3727567b7c968fd9bebada82e9125/scvelo-0.3.4-py3-none-any.whl",
+      "digests": {
+        "blake2b_256": "9536f3f611bcbe4af61ed30c8de86c2ba7e3727567b7c968fd9bebada82e9125",
+        "md5": "c909c6a492b280bd81a0e983ac716992",
+        "sha256": "e54102b7a34241b8952728af49350c2710bd3873e37686a746f1d1e3e6314b1a"
+      },
+      "packagetype": "bdist_wheel",
+      "requires_python": ">=3.8",
+      "size": 191155,
+      "upload_time_iso_8601": "2026-02-24T20:09:24.164875Z",
+      "yanked": false,
+      "core-metadata": {
+        "sha256": "6883436a16a503dcc7e634f0c887b76551e7ceaa32ac7b3b002ede64a44c8c78"
+      }
+    },
+    {
+      "filename": "scvelo-0.3.4.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/4e/d5/52d0a783a321e506bdf8e65691985c4af509a5b848c923746f94cfe25207/scvelo-0.3.4.tar.gz",
+      "digests": {
+        "blake2b_256": "4ed552d0a783a321e506bdf8e65691985c4af509a5b848c923746f94cfe25207",
+        "md5": "011b45fb2eefe3e448e5a1740959fb8c",
+        "sha256": "9480c111105a33638152ea34d61e9e92aa1abc251bc31158601a8678ee4886b9"
+      },
+      "packagetype": "sdist",
+      "requires_python": ">=3.8",
+      "size": 27316469,
+      "upload_time_iso_8601": "2026-02-24T20:09:26.806371Z",
+      "yanked": false,
+      "core-metadata": false
+    }
+  ]
+}

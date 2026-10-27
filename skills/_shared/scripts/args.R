@@ -61,6 +61,11 @@ os_flag <- function(name, type, required = FALSE, default = NULL, help = "", val
 .os_spec_error <- function(fmt, ...) stop(sprintf(paste0("OS_INVALID_ARG_SPEC: ", fmt), ...), call. = FALSE)
 
 os_arg_spec <- function(usage, flags, description = NULL, exclusive = list()) {
+  for (name in c("study-contract", "study-contract-sha256")) {
+    if (!any(vapply(flags, function(f) identical(f$name, name), logical(1))))
+      flags <- c(flags, list(os_flag(name, if (name == "study-contract") "path" else "string",
+        must_exist = name == "study-contract", help = "shared StudyContract byte binding; see _shared/docs/STUDY_CONTRACT.md")))
+  }
   if (!any(vapply(flags, function(f) identical(f$name, "help"), logical(1)))) {
     flags <- c(flags, list(os_flag("help", "bool", help = "show this help and exit")))
   }
@@ -188,6 +193,7 @@ os_parse_args <- function(spec, argv = commandArgs(trailingOnly = TRUE)) {
     if (length(hit) > 1) stop(sprintf("OS_CONFLICTING_PARAMETERS: %s are mutually exclusive (give at most one)", paste0("--", hit, collapse = ", ")), call. = FALSE)
   }
   attr(out, "given") <- given
+  os_study_contract_bind(out)
   out
 }
 
@@ -239,3 +245,10 @@ os_check_named_values <- function(values, required_levels, what = "mapping") {
            tab, if (length(extra)) sprintf("  (names matching no level: %s)", paste(extra, collapse = ", ")))
   stop(paste(msg, collapse = "\n"), call. = FALSE)
 }
+
+# Resolve the companion relative to this source, independent of current directory.
+local({
+  files <- vapply(sys.frames(), function(f) if (is.null(f$ofile)) "" else f$ofile, "")
+  here <- dirname(normalizePath(tail(files[nzchar(files)], 1), mustWork = TRUE))
+  if (!exists("os_study_contract_read", mode = "function")) source(file.path(here, "study_contract.R"), local = .GlobalEnv)
+})

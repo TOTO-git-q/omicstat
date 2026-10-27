@@ -21,7 +21,7 @@ SPEC = A.os_arg_spec(usage="python run_scvi_integrate.py --input <h5ad>|--from-r
         A.os_flag('cluster-col', 'string', help='existing descriptive cluster metadata', required=True),
         A.os_flag('max-epochs', 'int', help='explicit CPU training budget', required=True, range=(1, 400)),
         A.os_flag('n-neighbors', 'int', help='explicit neighbors for latent-space graph', required=True, range=(2, 1000)),
-        A.os_flag('n-latent', 'int', help='scVI latent dimension', default=10, range=(2, 1000)),
+        A.os_flag('n-latent', 'int', help='scVI latent dimension; required unless --latent-from-run (tutorial example 30; scvi-tools default 10)', range=(2, 1000)),
         A.os_flag('batch-size', 'int', help='training and inference minibatch size', default=128, range=(2, 4096)),
         A.os_flag('min-dist', 'num', help='UMAP minimum distance', default=0.5, range=(0, 1)),
         A.os_flag('features-file', 'path', help='optional prespecified ordered gene subset (one ID per line); otherwise all genes'),

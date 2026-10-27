@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+figures/reactome_ora.figure_spec.json,6c8afb199ad26a50711108452327a2e191a04627cab8b4c7f7cb30bdc6b37bdb,container,
+figures/reactome_ora.png,27107a287defed9a711e91231723edd5f48980c3c4cdfbc6bc0cc3ba1d3cf0fe,container,
+tables/effective_memberships.csv,842136dadef389db822340ff030cb6b48124320e8ee230906d126d1c234e196d,container,
+tables/enrichment_table.csv,c816dfbcd0be656f399da90a4147281a42ddf48904965aed6a2064c41e4b31b8,container,
+tables/input_mapping.csv,e09658b437cf3208916bb46e0372dfdf82447a5e7c4acfbb46475c83f607d7a0,container,
+tables/raw_engine.csv,b1502e76fa1be6da03f139222d09e9d0add5454e7c57fcac15bb5c75cc24f4e1,container,

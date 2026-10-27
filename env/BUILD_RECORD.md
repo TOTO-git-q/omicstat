@@ -1,5 +1,14 @@
 # omicstat-r build record
 
+## Production pointer promotion (2026-10-20)
+
+- Owner-approved image: `omicstat-r:2026.10.4`; id: `sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e`.
+- Existing frozen image selected; no build, retag, deployment or service change.
+- `env/r/write_pkg_lock.R` exported 588 installed packages read-only from this image: all 544 previous versions unchanged, 44 additions, no removals. The current writer also records package dependencies.
+- Python lane remains `omicstat-py:2026.09.1`. The bootstrap `addon_base_image` remains the historical 2026.09.1 build input; it is not a production runtime pointer. Candidate manifests retain their actual 2026.10.1 parent identities.
+
+## Historical build (2026-10-01)
+
 - host: GT103; date: 2026-10-01
 - image: omicstat-r:2026.10.1; id: sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7
 - preserved rollback: omicstat-r:2026.09.1; id: sha256:410f4c27e7080c8a589fb0a14195a03da39cb50de1bec185b40c07c3556192f6

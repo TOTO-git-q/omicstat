@@ -1,0 +1,5 @@
+# Reporting
+
+Report biological n/events, gene preprocessing/list, supplied fold allocation, CV objective and grouping,
+standardization, explicit Breslow ties, path and lambda-selection rule, original-scale coefficients,
+frozen risk cutoff, cohort independence and marginal-IPCW horizons. Label training AUC apparent.

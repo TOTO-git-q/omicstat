@@ -1,0 +1,72 @@
+[
+  {
+    "id": "raw_barcode_count",
+    "metric": "raw_barcode_count",
+    "expected": 250,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  },
+  {
+    "id": "total_umi",
+    "metric": "total_umi",
+    "expected": 30000,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  },
+  {
+    "id": "zero_barcode_count",
+    "metric": "zero_barcode_count",
+    "expected": 10,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  },
+  {
+    "id": "ambient_probability_sum",
+    "metric": "ambient_probability_sum",
+    "expected": 1,
+    "tolerance": 1e-08,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  },
+  {
+    "id": "zero_feature_probability",
+    "metric": "zero_feature_probability",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  },
+  {
+    "id": "independent_bh_error",
+    "metric": "independent_bh_error",
+    "expected": 0,
+    "tolerance": 1e-10,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  },
+  {
+    "id": "raw_counts_preserved",
+    "metric": "raw_counts_preserved",
+    "expected": 1,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "Synthetic fixture construction plus independent arithmetic/BH oracle; https://bioconductor.org/packages/release/bioc/manuals/DropletUtils/man/DropletUtils.pdf pages25-29",
+    "scope": "Software replay/count identities, not an original printed biological example",
+    "how": "replay"
+  }
+]

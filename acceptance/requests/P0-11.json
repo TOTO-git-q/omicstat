@@ -1,0 +1,105 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-11",
+  "modules": [
+    "drc-dose",
+    "lme4-lmm",
+    "emmeans-contrast",
+    "proda-diff",
+    "msstats-diff",
+    "drc-calibrate",
+    "nlme-dose"
+  ],
+  "image_candidate": "env/candidates/20261016-models",
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "full_regression": true,
+  "notes": [
+    "Port seven candidate modules from exact source snapshots; 31 original + 9 scope printed anchors preserve absolute tolerances. Historical obtained/pass values are not current results.",
+    "Use actual L9 candidate sources and immutable image ID. observed_packages.csv is a source image inventory for candidate prefix checking, never production promotion. All golden/seal stages deferred_by_owner.",
+    "Independent evidenceH 24-table SHA256 manifest is external and not available in this cloud checkout. Run tools/check_candidate_canonical.py against that preserved manifest; absence blocks equivalence, never create expected hashes from current outputs.",
+    "Owner must review the original 11 production PNG set (plus scope figures) generated in the actual image. Developer native results cannot substitute for exec.",
+    "MSstats published anchors are the upstream technical-replicate spike-in workflow, outside the adapter biological-inference scope; never claim the six values validate independent biological replication.",
+    "First exec repair: the complete 11-archive model source lock (including drc) is bound by SHA256 in source_locks. Run the declared explicit source preparation only with authorization, retain its report, then build offline. Missing source cache or dependency closure remains blocked; no automatic download, install, promotion or historical-denial override."
+  ],
+  "checks": [
+    [
+      "python3",
+      "tools/test_candidate_reentry.py"
+    ],
+    [
+      "python3",
+      "tools/test_acceptance.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_locked_source_preparation.py"
+    ]
+  ],
+  "source_locks": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "path": "env/candidates/20261016-models/sources.lock.json",
+      "sha256": "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+      "required_packages": [
+        "drc",
+        "emmeans",
+        "proDA",
+        "MSstats",
+        "MSstatsConvert",
+        "multcomp",
+        "plotrix",
+        "TH.data",
+        "estimability",
+        "extraDistr",
+        "marray"
+      ]
+    }
+  ],
+  "source_preparation": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "check": [
+        "python3",
+        "tools/env/prepare_locked_sources.py",
+        "env/candidates/20261016-models",
+        "--lock-sha256",
+        "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+        "--check"
+      ],
+      "authorized_download": [
+        "python3",
+        "tools/env/prepare_locked_sources.py",
+        "env/candidates/20261016-models",
+        "--lock-sha256",
+        "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+        "--download"
+      ],
+      "build": [
+        "python3",
+        "tools/env/build_candidate.py",
+        "env/candidates/20261016-models",
+        "--build"
+      ],
+      "download_is_automatic": false,
+      "archive_cache": "env/candidates/20261016-models/sources",
+      "state": "requires_exec_source_preparation"
+    }
+  ]
+}

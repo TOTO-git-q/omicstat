@@ -1,0 +1,53 @@
+{
+ "profile": "macs",
+ "checked_on": "2026-10-10",
+ "live_hit_count": 3585,
+ "attempted_fulltexts": 12,
+ "outcomes": {
+  "screened": 6,
+  "forget:off_topic": 6
+ },
+ "screened": 6,
+ "licence_clean_share": 1.0,
+ "requests": 13,
+ "feasible": true,
+ "screened_papers": [
+  {
+   "pmid": "42826184",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42821319",
+   "journal": "eLife",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42768223",
+   "journal": "Nature Immunology",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42715313",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42697879",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42685184",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  }
+ ],
+ "criteria": "hits > 0, >= 3 screened of the first 12, licence-clean share >= 0.5"
+}

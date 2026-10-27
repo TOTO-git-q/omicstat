@@ -1,0 +1,17 @@
+#!/usr/bin/env Rscript
+args <- commandArgs(trailingOnly=FALSE)
+p <- sub("^--file=", "", args[grep("^--file=",args)][[1]])
+source(file.path(dirname(p),"..","scripts","calibration_binned.R"))
+set.seed(1); seed <- .Random.seed
+stopifnot(nrow(cpm_calibration_binned(rep(.5,9),rep(0,9)))==0)
+x <- cpm_calibration_binned(seq(0,1,length.out=101),rep(c(0,1),length.out=101))
+stopifnot(nrow(x)==10,all(x$n>=10),sum(x$n)==101,identical(seed,.Random.seed))
+# Tied predictions never cause an undersized bin; no individual values are output.
+y <- cpm_calibration_binned(rep(.3,20),rep(c(0,1),10))
+stopifnot(all(y$n==10),all(y$predicted==.3),all(y$observed==.5))
+# An early censor is not a horizon non-event. KM risk differs from naive 1/10.
+t <- c(1,2,rep(10,8)); e <- c(0,1,rep(0,8))
+z <- cpm_calibration_binned(rep(.2,10),e,time=t,horizon=5,max_bins=1)
+stopifnot(nrow(z)==1,abs(z$observed-1/9)<1e-12,z$n==10,z$n_at_risk==8)
+stopifnot(nrow(cpm_calibration_binned(rep(.2,10),e,time=t,horizon=20))==0)
+cat("PASS: binned calibration floors, deterministic ties, exact binomial and censor-aware KM\n")

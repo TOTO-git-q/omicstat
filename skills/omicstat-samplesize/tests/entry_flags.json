@@ -1,0 +1,408 @@
+[
+  {
+    "name": "design",
+    "kind": "enum",
+    "help": "Prespecified laboratory design",
+    "required": true,
+    "values": [
+      "mean_2sample",
+      "mean_paired",
+      "anova",
+      "prop_2sample",
+      "survival_logrank"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "alpha",
+    "kind": "num",
+    "help": "Prespecified per-test significance level in (0,1)",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "power",
+    "kind": "num",
+    "help": "Prespecified target power in (0,1)",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "ratio",
+    "kind": "num",
+    "help": "Planned group2/group1 allocation ratio; paired and ANOVA require 1",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "dropout",
+    "kind": "num",
+    "help": "Anticipated loss fraction in [0,1); zero is an explicit assumption",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "sided",
+    "kind": "enum",
+    "help": "Prespecified sidedness",
+    "required": true,
+    "values": [
+      "two",
+      "one"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "direction",
+    "kind": "enum",
+    "help": "Signed effect orientation; not inferred from the supplied effect",
+    "required": true,
+    "values": [
+      "two-sided",
+      "group1-higher",
+      "group1-lower",
+      "omnibus"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "groups",
+    "kind": "string",
+    "help": "Complete ordered comma-separated group or paired-condition names",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "power-grid",
+    "kind": "string",
+    "help": "Strictly increasing power values in (0,1), containing --power",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "biological-unit",
+    "kind": "enum",
+    "help": "Independent experimental unit; technical repeats never count as n",
+    "required": true,
+    "values": [
+      "animal",
+      "donor",
+      "biological-sample",
+      "independent-culture"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "unit-description",
+    "kind": "string",
+    "help": "Explain independence, allocation and biological replication",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "technical-replicates",
+    "kind": "int",
+    "help": "Number of planned technical measurements per biological unit and condition",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "technical-policy",
+    "kind": "enum",
+    "help": "Required exclusion of technical repeats from biological n",
+    "required": true,
+    "values": [
+      "excluded-from-n"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "planning-stage",
+    "kind": "enum",
+    "help": "Only a priori planning; no completed-study observed power",
+    "required": true,
+    "values": [
+      "a-priori"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "effect-source",
+    "kind": "enum",
+    "help": "Provenance of the independently chosen planning effect",
+    "required": true,
+    "values": [
+      "minimal-important-difference",
+      "independent-pilot",
+      "external-literature",
+      "standardized-convention"
+    ],
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "effect-rationale",
+    "kind": "string",
+    "help": "Concrete source, assumptions and rationale; no inferred recommendation",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "outcome-unit",
+    "kind": "string",
+    "help": "Raw outcome unit or explicitly dimensionless scale",
+    "required": true,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "mean1",
+    "kind": "num",
+    "help": "Group1 planning mean",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_2sample"
+    ]
+  },
+  {
+    "name": "mean2",
+    "kind": "num",
+    "help": "Group2 planning mean",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_2sample"
+    ]
+  },
+  {
+    "name": "sd",
+    "kind": "num",
+    "help": "Positive common SD",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_2sample and neither sd1 nor sd2 is supplied",
+      "design=anova and f is absent"
+    ]
+  },
+  {
+    "name": "sd1",
+    "kind": "num",
+    "help": "Positive group1 or condition1 SD; pooled Student planning, not Welch",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_2sample and sd is absent",
+      "design=mean_paired and sd-diff is absent"
+    ]
+  },
+  {
+    "name": "sd2",
+    "kind": "num",
+    "help": "Positive group2 or condition2 SD; pooled Student planning, not Welch",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_2sample and sd is absent",
+      "design=mean_paired and sd-diff is absent"
+    ]
+  },
+  {
+    "name": "mean-diff",
+    "kind": "num",
+    "help": "Signed group1-minus-group2 paired difference",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_paired"
+    ]
+  },
+  {
+    "name": "sd-diff",
+    "kind": "num",
+    "help": "Positive SD of paired differences",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_paired and the sd1/sd2/corr triple is absent"
+    ]
+  },
+  {
+    "name": "corr",
+    "kind": "num",
+    "help": "Paired correlation strictly between -1 and 1",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=mean_paired and sd-diff is absent"
+    ]
+  },
+  {
+    "name": "k",
+    "kind": "int",
+    "help": "Number of equal-sized ANOVA groups, integer at least 2",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=anova"
+    ]
+  },
+  {
+    "name": "f",
+    "kind": "num",
+    "help": "Positive omnibus Cohen f; cannot be combined with means/sd",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=anova and means/sd are absent"
+    ]
+  },
+  {
+    "name": "means",
+    "kind": "string",
+    "help": "Comma-separated ANOVA planning means in complete group order",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=anova and f is absent"
+    ]
+  },
+  {
+    "name": "p1",
+    "kind": "num",
+    "help": "Group1 planning probability strictly between 0 and 1",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=prop_2sample"
+    ]
+  },
+  {
+    "name": "p2",
+    "kind": "num",
+    "help": "Group2 planning probability strictly between 0 and 1",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=prop_2sample"
+    ]
+  },
+  {
+    "name": "hr",
+    "kind": "num",
+    "help": "Positive group1/group2 hazard ratio, different from 1",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": [
+      "design=survival_logrank"
+    ]
+  },
+  {
+    "name": "event-prob",
+    "kind": "num",
+    "help": "Optional pooled event probability in (0,1]; absent means events only, biological N unknown",
+    "required": false,
+    "values": null,
+    "role": "scientific",
+    "when": null
+  },
+  {
+    "name": "journal",
+    "kind": "enum",
+    "help": "OmicStat presentation preset; does not change planning values",
+    "required": true,
+    "values": [
+      "nature",
+      "cell",
+      "science",
+      "generic"
+    ],
+    "role": "presentation",
+    "when": null
+  },
+  {
+    "name": "study-contract",
+    "kind": "path",
+    "help": "Validated a priori StudyContract; no participant-level input",
+    "required": true,
+    "values": null,
+    "role": "input",
+    "when": null
+  },
+  {
+    "name": "development-mode",
+    "kind": "bool",
+    "help": "Explicit execution of an unaccepted candidate",
+    "required": false,
+    "values": null,
+    "role": "execution",
+    "when": null
+  },
+  {
+    "name": "seed",
+    "kind": "int",
+    "help": "Recorded reproducibility seed; no stochastic estimator is substituted",
+    "required": true,
+    "values": null,
+    "role": "execution",
+    "when": null
+  },
+  {
+    "name": "outdir",
+    "kind": "path",
+    "help": "New or empty output directory",
+    "required": true,
+    "values": null,
+    "role": "execution",
+    "when": null
+  },
+  {
+    "name": "spec",
+    "kind": "path",
+    "help": "Resolved-spec replay; all scientific assumptions remain explicit",
+    "required": false,
+    "values": null,
+    "role": "execution",
+    "when": null
+  }
+]

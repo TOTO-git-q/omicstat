@@ -1,0 +1,68 @@
+[
+  {
+    "id": "input_genes",
+    "metric": "input_genes",
+    "expected": 20006,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference",
+    "how": "printed"
+  },
+  {
+    "id": "input_cells",
+    "metric": "input_cells",
+    "expected": 3005,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference",
+    "how": "printed"
+  },
+  {
+    "id": "alternative_experiments",
+    "metric": "alternative_experiments",
+    "expected": [
+      "ERCC",
+      "repeat"
+    ],
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference",
+    "how": "printed"
+  },
+  {
+    "id": "library_sizes_exact",
+    "metric": "library_sizes_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference; CSV fields compare after identical CSV serialization at zero tolerance; original in-memory native equality unchanged",
+    "how": "replay"
+  },
+  {
+    "id": "filter_decisions_exact",
+    "metric": "filter_decisions_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference; CSV fields compare after identical CSV serialization at zero tolerance; original in-memory native equality unchanged",
+    "how": "replay"
+  },
+  {
+    "id": "mitochondrial_percent_csv_exact",
+    "metric": "mitochondrial_percent_csv_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference; CSV fields compare after identical CSV serialization at zero tolerance; original in-memory native equality unchanged",
+    "how": "replay"
+  },
+  {
+    "id": "flow_reconciles",
+    "metric": "flow_reconciles",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/scater-qc/tests/run_smoke_test.R",
+    "scope": "Full registered Zeisel input; unchanged offline accessor and existing nmads=3 scuttle guide reference; CSV fields compare after identical CSV serialization at zero tolerance; original in-memory native equality unchanged",
+    "how": "replay"
+  }
+]

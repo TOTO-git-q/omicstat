@@ -1,0 +1,20 @@
+{
+  "schema_version": "omicstat.study-contract.v1",
+  "study_design": "A priori numerical planning contract test; each CLI case explicitly declares its design and group count; no observed samples.",
+  "analysis_population": "Future independent biological units; the fixture contains no real biological observations.",
+  "estimand": "Prespecified group1-minus-group2 planning difference, not an estimated effect.",
+  "exposure_or_intervention": "Explicit condition A design label",
+  "comparator": "Explicit condition B design label",
+  "outcomes": [
+    {
+      "name": "Declared continuous planning outcome",
+      "timepoint": "Prespecified future endpoint"
+    }
+  ],
+  "covariates": [],
+  "missing_data": "Declared dropout fraction is a planning assumption; no missing values are imputed.",
+  "multiplicity": "The supplied alpha is already chosen for the intended test family; no automatic adjustment.",
+  "analysis_sets": [
+    "A priori planning scenarios only; no manuscript inference"
+  ]
+}

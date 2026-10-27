@@ -1,0 +1,4 @@
+glmnet_coxsig_qc <- function(res) list(
+ os_qc_rule("CXS-01","Candidate signature",TRUE,"blocker","Scientific and production acceptance pending.","Do not publish or apply clinically."),
+ os_qc_rule("CXS-02","Training performance",res$metadata$mode=="train","warning","Training ROC is apparent, not independent validation.","Validate the frozen signature in an independent cohort."),
+ os_qc_rule("CXS-03","Uninformative risk split",!res$metadata$km_available,"warning","Frozen cutoff leaves fewer than two subjects in a group; KM omitted.","Report the noninformative split without moving the cutoff."))

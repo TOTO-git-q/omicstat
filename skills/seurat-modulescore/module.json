@@ -1,0 +1,168 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "seurat-modulescore",
+  "lane": "R",
+  "domain": "sc-scoring",
+  "entry": "scripts/run_seurat_modulescore.R",
+  "version": "1.0.0",
+  "qc_prefix": "OSS",
+  "engine_packages": [
+    "Seurat",
+    "SeuratObject"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "Seurat"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Seurat gene-program scores",
+    "order": 28
+  },
+  "publication": {
+    "rule_category": "design_conditional",
+    "legacy_override": {
+      "module": "seurat-modulescore",
+      "rule_id": "SEURAT-MODULESCORE-OSS-SCORE",
+      "category": "design_conditional",
+      "severity": "major",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/seurat-modulescore/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Report gene-set source/membership/matching, assay/slot/pool/nbin/ctrl and seed; preserve raw relative scores without an inferred universal threshold.",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Report gene-set source/membership/matching, assay/slot/pool/nbin/ctrl and seed; preserve raw relative scores without an inferred universal threshold.",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--seed",
+      "default": 20260925,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--journal",
+      "default": "nature",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--nbin",
+      "default": 24,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--ctrl",
+      "default": 100,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--slot",
+      "default": "data",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--name",
+      "default": "Cluster",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--k",
+      "default": "false",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--gene-sets",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--set-organism",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 18,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "seurat-modulescore",
+      "entry_script": "scripts/run_seurat_modulescore.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "cd37ca161202a98816d6b8aab744ac537ddb329bc8bc5c2299c24a9a9d2aab65",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "omicstat.unresolved-owner-anchor.v1",
+  "module": "proc-roc",
+  "dataset": "pROC::aSAH official documented example",
+  "reference": "https://cran.r-project.org/web/packages/pROC/refman/pROC.html#aSAH",
+  "source_sha256": null,
+  "package_version": null,
+  "registered_real_receipt": null,
+  "native_run_performed": false,
+  "data_in_repository": false,
+  "contact_sheet_created": false,
+  "owner_approved": null,
+  "blocker": "Exact independently authorized pROC/data source bytes and version have not been obtained here; global owner registry requires actual SHA256. No synthetic receipt or guessed hash.",
+  "privacy": "Future aSAH source rows and fitted model objects stay in a private executor directory outside repository/shareable evidence; aggregate ROC figures may be reviewed after actual source/argv binding."
+}

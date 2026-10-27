@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+figures/sample_size_power_curve.figure_spec.json,c819dabdb1f7a983692fe5e2a0d7cff054d74d5beab3298f0774ee01be3e97bd,container,
+figures/sample_size_power_curve.png,9574cbc410c67c981d340f289422b3d3469193415f18561a4bb9860e05eee678,container,
+tables/biological_groups.csv,ac54969864b80cfc20293b32e3e08a9fdd24e99026bfb8cecbd88a534b38c1db,container,
+tables/plan.csv,051c331acef7bd074835a433aa9644f3574d22ebe43426bc87176c41822de5f5,container,
+tables/planning_effect.csv,60d7f4b897d34ce3d358cef087c42d00e143ab300a392df0f3822f4b32c30ee2,container,
+tables/scenarios.csv,55a4cee035f05a60e70031ca7ffb305dfde4db6b804107699ae5a7a9d6aaac09,container,

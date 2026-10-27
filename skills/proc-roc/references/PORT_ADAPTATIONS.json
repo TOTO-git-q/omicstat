@@ -1,0 +1,113 @@
+{
+  "schema": "omicstat.port-adaptations.v1",
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/diagnostic-accuracy/",
+  "original_manifest": "PORT_SOURCE.json",
+  "original_manifest_preserved": true,
+  "source_manifest_reverified": true,
+  "native_execution_in_this_workspace": false,
+  "numerical_equivalence_demonstrated": false,
+  "changes": [
+    {
+      "scope": "independent_adapter",
+      "change": "Explicit OmicStat CLI/module/arg spec/StudyContract, typed candidate handoff, OS error namespace, suite finish/provenance, independent shared renderer; no MedStat runtime/filesystem/environment or clinical journal/report layer."
+    },
+    {
+      "scope": "copied_core",
+      "change": "Twenty-one copied numerical/input/flow helpers plus .da_stop and twenty-four QC/assembly helpers. Scientific estimator bodies retained with exception/QC namespace mapping. COPIED_FUNCTIONS lists exact normalized source/target hashes."
+    },
+    {
+      "scope": "input_handoff",
+      "change": "Explicit subject-wide feature_table or selected expression_matrix with separately declared binary sample sheet, ID-key alignment, exact same paired complete-case sets, actual independent-unit declaration. Reject repeated IDs, nonfinite/mislabeled input, corrected/display-only lineage and changed contracts before inference."
+    },
+    {
+      "scope": "multiplicity_required_by_plan",
+      "change": "P0-13 A row3 explicitly requires DeLong and explicit correction for multiple biomarkers. Preserve original primary-versus-rest comparisons and raw P; require caller-selected p.adjust method and complete family size. Difference CIs remain unadjusted pointwise. No default or all-pairs expansion introduced."
+    },
+    {
+      "scope": "original_internal_bootstrap_cap_retained",
+      "change": "Original out-of-bag loop min(boot_n,200) remains literal. Record requested/attempted/successful/failed counts. Preserve per-resample means and percentile intervals; no pooling into pseudo-independent counts or increase in cap."
+    },
+    {
+      "scope": "exploratory_qualification",
+      "change": "Every optimized cutoff and resulting apparent accuracy is labelled exploratory. Keep original first-best point tie and native ci.coords tie failure. Full LOO predictions required. Original internal-validation=none override remains visible as unresolved high QC; missing/failed cutoff CI never silently replaced."
+    },
+    {
+      "scope": "small_class_and_resource_guards",
+      "change": "Finite DeLong variance requires at least two independent observations in each class; LOO requires at least three per class so every training fold retains at least two. LOO above 10000 units refuses with OS_RESOURCE_LIMIT and no automatic subsampling or method switch; this is an explicit implementation bound, not a new scientific estimator."
+    },
+    {
+      "scope": "flow_only_accounting_fix",
+      "change": "Original overlapping missing-index and missing-reference counts could double-count the same row. New disjoint exclusion priority records indeterminate exclusion then missing index then missing reference. Without a cutoff, two confusion-count identities are explicitly not applicable, never fabricated."
+    },
+    {
+      "scope": "explicit_optional_api",
+      "change": "Explicit confidence level, accuracy CI method, class/direction and bootstrap count; no inferred scientific recommendation. Optional projection only runs on a supplied assumed prevalence grid. Multiple thresholds currently require a primary cutoff. Independent JSON labels replace original report YAML/label merge."
+    },
+    {
+      "scope": "qc_text_precision",
+      "change": "Parameterize original hardcoded 95-percent cutoff-instability text. Clarify negative J is mathematically possible while retaining source review warning. Multiplicity guard now enforces the plan-required selected adjustment. Original MedStat prose scanning/report layout is not copied."
+    },
+    {
+      "scope": "privacy_and_figures",
+      "change": "Move original ROC coordinates/ci.se grid 0.02/seeded bootstrap from graphics into compute. Shared display-only primary/comparison/partial-region ROC consumes aggregate source tables with dataset labels and typed intervals/statistics; private input IDs and rows are not figure sources. Original score-distribution/participant-flow diagrams remain pending, checked flow table retained."
+    },
+    {
+      "scope": "release_identity",
+      "change": "Bind all numerical tables to actual native-source estimand SHA256 and immutable table hashes, compare native AUC/counts before finish/render. Undefined native comparison variance stays undefined. No clipping of observed AUC/J, manufactured uncertainty or method substitute."
+    },
+    {
+      "scope": "anchors_and_owner_boundary",
+      "change": "Original synthetic counted-2x2 four anchors plus nine independent/source-adapter checks are definitions awaiting native R4.6.1. Official aSAH package/data version and SHA256 unbound; owner_review absent, no fabricated receipt or uploaded clinical rows."
+    }
+  ],
+  "adapted_files": {
+    "scripts/proc_roc_core.R": {
+      "bytes": 24671,
+      "sha256": "66caa746d7034b8d4aac6cf15b10127cbcd1c41c40a096945386bd11841432b0",
+      "git_blob": "a5062edc35892fd3d7a8d66fc379e4504bdd4808"
+    },
+    "scripts/proc_roc_input.R": {
+      "bytes": 15259,
+      "sha256": "c8e6609dd94c188f146dad626a34b6e3a1d9e4bb840a57c65f72aa5517db8035",
+      "git_blob": "7fe96e66f121e6eed25a598c951ed8c5da2bfd51"
+    },
+    "scripts/proc_roc_qc.R": {
+      "bytes": 1132,
+      "sha256": "7a68bfd029a50c30684bf76da8803e829af15c5610167a7665e09cc573d4d8b6",
+      "git_blob": "e36cd0246917497a0619bfc08c8f83da296a1be5"
+    },
+    "scripts/proc_roc_report.R": {
+      "bytes": 1530,
+      "sha256": "83539ee1d887e137ae78ef1298ff15c3e4df5d83024f0f45e5a3f7a738c89efb",
+      "git_blob": "33cbce703ad9c77924bcac22cf4ec8f9e6e44f57"
+    },
+    "scripts/roc_ported_core.R": {
+      "bytes": 12906,
+      "sha256": "e78541acb9101d38f04820a60125ee0d4aedcd029afb53db5717f1ab87e1b8b9",
+      "git_blob": "876f2575431c5fe4ddd4250eeea98f2fa2e8fb0b"
+    },
+    "scripts/roc_ported_qc.R": {
+      "bytes": 10910,
+      "sha256": "673bace5a5f8e4a6f5c754e8f9e76bcde7486949b5d1c6adc730a889e186dd0b",
+      "git_blob": "231db2f501d4c1059a7a27dd683f413dfd59d51e"
+    },
+    "scripts/run_proc_roc.R": {
+      "bytes": 7992,
+      "sha256": "5a25714dda823814750269cfa075edf68b7d8c9fc3fcf60c526c03bcbea1580e",
+      "git_blob": "2de1fa185637eee2a146c09a92b871488f570d8e"
+    }
+  },
+  "shared_renderer": {
+    "path": "skills/_shared/scripts/fig_mod_roc.R",
+    "bytes": 9886,
+    "sha256": "47f9ef0a719104a2d3970fc77d5bc375bafbc19890ffb4187771e46526e208e4",
+    "git_blob": "a2b4d9a82d1c2eb65717a7e0b4718a35f55cfcbc"
+  },
+  "pending_scope": [
+    "Native numerical equivalence and original smoke/test execution",
+    "Exact independent pROC source/inventory and native defaults",
+    "Score-distribution and participant-flow figure adapters",
+    "Registered genuine aSAH identity/receipt/contact sheet and owner approval",
+    "Per-family 20-record evidence counts"
+  ]
+}

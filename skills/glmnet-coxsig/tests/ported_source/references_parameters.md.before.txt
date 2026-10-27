@@ -1,0 +1,42 @@
+# Parameters
+
+All training scientific choices are conditional required inputs. Validation refuses refit/tuning flags.
+
+<!-- registry:begin -->
+| Flag | Default | Source |
+|---|---|---|
+| --mode | "required" | prespecified candidate entry contract |
+| --from-run | "required" | prespecified candidate entry contract |
+| --signature-run | null | prespecified candidate entry contract |
+| --clinical | "required" | prespecified candidate entry contract |
+| --unit-col | "required" | prespecified candidate entry contract |
+| --time-col | "required" | prespecified candidate entry contract |
+| --event-col | "required" | prespecified candidate entry contract |
+| --time-unit | "required" | prespecified candidate entry contract |
+| --genes | "required" | prespecified candidate entry contract |
+| --covariates | "required" | prespecified candidate entry contract |
+| --expression-scale | "required" | prespecified candidate entry contract |
+| --min-events | "required" | prespecified candidate entry contract |
+| --folds | null | prespecified candidate entry contract |
+| --standardize | null | prespecified candidate entry contract |
+| --nlambda | null | prespecified candidate entry contract |
+| --lambda-min-ratio | null | prespecified candidate entry contract |
+| --selection | null | prespecified candidate entry contract |
+| --lambda | null | prespecified candidate entry contract |
+| --cv-measure | null | prespecified candidate entry contract |
+| --cv-grouped | null | prespecified candidate entry contract |
+| --max-iter | null | prespecified candidate entry contract |
+| --thresh | null | prespecified candidate entry contract |
+| --cox-ties | null | prespecified candidate entry contract |
+| --cutoff | null | prespecified candidate entry contract |
+| --cutpoint | null | prespecified candidate entry contract |
+| --roc-times | "required" | prespecified candidate entry contract |
+| --risk-times | "required" | prespecified candidate entry contract |
+| --ci-level | "required" | prespecified candidate entry contract |
+| --journal | "required" | prespecified candidate entry contract |
+| --study-contract | "required" | prespecified candidate entry contract |
+| --development-mode | false | prespecified candidate entry contract |
+| --seed | "required" | prespecified candidate entry contract |
+| --outdir | "required" | prespecified candidate entry contract |
+| --spec | null | prespecified candidate entry contract |
+<!-- registry:end -->

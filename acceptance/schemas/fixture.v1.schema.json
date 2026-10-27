@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bound canonical/replay/chain commands (argv arrays; no shell)",
+  "type": "object",
+  "required": [
+    "schema",
+    "canonical",
+    "figure_policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "omicstat.acceptance-fixture.v1"
+    },
+    "prepare": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "script",
+          "argv"
+        ],
+        "properties": {
+          "script": {
+            "type": "string",
+            "minLength": 1
+          },
+          "argv": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "canonical": {
+      "type": "object",
+      "required": [
+        "argv"
+      ],
+      "properties": {
+        "argv": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "replay_spec": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "anchor_runner": {
+      "type": "object",
+      "required": [
+        "script",
+        "argv"
+      ],
+      "properties": {
+        "script": {
+          "type": "string",
+          "minLength": 1
+        },
+        "argv": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "chain": {
+      "type": "object",
+      "required": [
+        "upstream",
+        "upstream_module",
+        "upstream_run",
+        "argv",
+        "expected_ecosystem"
+      ],
+      "properties": {
+        "upstream": {
+          "type": "object",
+          "required": [
+            "script",
+            "argv"
+          ],
+          "properties": {
+            "script": {
+              "type": "string",
+              "minLength": 1
+            },
+            "argv": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "upstream_module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "upstream_run": {
+          "type": "string",
+          "minLength": 1
+        },
+        "argv": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "expected_ecosystem": {
+          "enum": [
+            "seurat",
+            "bioconductor",
+            "scverse",
+            "neutral"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "figure_policy": {
+      "enum": [
+        "required",
+        "none"
+      ]
+    },
+    "reason_no_figures": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner_review": {
+      "type": "object",
+      "required": [
+        "dataset_id",
+        "receipt"
+      ],
+      "properties": {
+        "dataset_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]+$"
+        },
+        "receipt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

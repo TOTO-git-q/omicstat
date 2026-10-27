@@ -1,0 +1,45 @@
+--- pinned-source/skills/_shared/scripts/var_typing.R
++++ skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R
+@@ -1,3 +1,6 @@
++# Independent source port from TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa
++# skills/_shared/scripts/var_typing.R; source numerical equivalence awaits native R4.6.1.
++# See PORT_ADAPTATIONS.json. Loaded only into an isolated private environment.
+ # var_typing.R -- variable type classification and the descriptive-stat /
+ # test-selection mapping table, shared across all medstat skills.
+ # ASCII only on purpose: R on Windows with a GBK locale mangles UTF-8 source.
+@@ -74,7 +77,7 @@
+   x <- x[is.finite(x)]
+   n <- length(x)
+   if (n < 3) return(NA_real_)
+-  suppressWarnings(stats::cor(sort(x), stats::qnorm(stats::ppoints(n))))
++  suppressWarnings(stats::cor(x = sort(x), y = stats::qnorm(p = stats::ppoints(n = n))))
+ }
+ 
+ # Shapiro-Wilk, reference output only -- computed and returned so Methods can
+@@ -96,7 +99,7 @@
+     if (has_seed) assign(".Random.seed", old_seed, envir = .GlobalEnv)
+     else if (exists(".Random.seed", envir = .GlobalEnv)) rm(".Random.seed", envir = .GlobalEnv)
+   }
+-  tryCatch(stats::shapiro.test(x)$p.value, error = function(e) NA_real_)
++  tryCatch(stats::shapiro.test(x = x)$p.value, error = function(e) NA_real_)
+ }
+ 
+ # ------------------------------------------------------ type auto-detect ----
+@@ -116,7 +119,7 @@
+     return("continuous")
+   }
+   stop(sprintf(
+-    "MS_UNSUPPORTED_VECTOR_TYPE: class %s is not numeric/integer/logical/character/factor; pass force_type explicitly.",
++    "OS_GPC_UNSUPPORTED_VECTOR_TYPE: class %s is not numeric/integer/logical/character/factor; pass force_type explicitly.",
+     paste(class(xc), collapse = "/")), call. = FALSE)
+ }
+ 
+@@ -168,7 +171,7 @@
+     if (is.factor(xc)) xc <- as.character(xc)
+     xn <- suppressWarnings(as.numeric(xc))
+     if (any(is.na(xn) & !is.na(xc))) {
+-      stop("MS_NON_NUMERIC_CONTINUOUS: force_type='continuous' but the vector does not coerce cleanly to numeric.", call. = FALSE)
++      stop("OS_GPC_NON_NUMERIC_CONTINUOUS: force_type='continuous' but the vector does not coerce cleanly to numeric.", call. = FALSE)
+     }
+     n_eff <- length(xn)
+     sk <- skewness_g1(xn)

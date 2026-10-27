@@ -1,0 +1,140 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "speckle-propeller",
+  "lane": "R",
+  "domain": "sc-proportions",
+  "entry": "scripts/run_speckle_propeller.R",
+  "version": "1.0.0",
+  "qc_prefix": "SP",
+  "engine_packages": [
+    "speckle"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": []
+  },
+  "figure_builders": [
+    "os_proportion_bar"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Cell-type proportion differences across replicated samples",
+    "order": 36
+  },
+  "publication": {
+    "rule_category": "advisory",
+    "legacy_override": {
+      "module": "speckle-propeller",
+      "rule_id": "SPECKLE-PROPELLER-PUB-M-SPECKLE-PROPELLER-001",
+      "category": "advisory",
+      "severity": "info",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/speckle-propeller/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Publication proposal: name transform/trend/robust/version, sample unit and replication; report complete native P.Value/FDR table and descriptive proportions. Consult reference service for judgement choices; Preserve the upstream front_end_ecosystem with backend_ecosystem neutral and informational OS_ECOSYSTEM_CROSSING (reversible coordinator decision 4).",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Publication proposal: name transform/trend/robust/version, sample unit and replication; report complete native P.Value/FDR table and descriptive proportions. Consult reference service for judgement choices; Preserve the upstream front_end_ecosystem with backend_ecosystem neutral and informational OS_ECOSYSTEM_CROSSING (reversible coordinator decision 4).",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--cluster-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--sample-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--condition-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": null,
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 26,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "speckle-propeller",
+      "entry_script": "scripts/run_speckle_propeller.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "f1d1394eccefb196d2d69e47815ceb3cfa360ec30de88a6d2100ec53836649ff",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

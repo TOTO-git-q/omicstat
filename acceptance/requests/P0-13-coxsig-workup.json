@@ -1,0 +1,67 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "coxsig-workup",
+  "modules": [
+    "glmnet-coxsig"
+  ],
+  "actual_remote_parent": "d6b14ed4cf19f3606175811f32490612297d67bf",
+  "image_candidate": null,
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "regression"
+  ],
+  "full_regression": true,
+  "full_item_complete": false,
+  "owner_visual_review": null,
+  "original_real_anchor_status": "no eligible biological source acquired; source logistic case not applicable",
+  "checks": [
+    [
+      "python3",
+      "tools/test_cpm_workup_port.py"
+    ],
+    [
+      "python3",
+      "tools/test_cpm_workup_binding.py"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "--check"
+    ],
+    [
+      "Rscript",
+      "skills/glmnet-coxsig/tests/test_cpm_port.R",
+      "."
+    ],
+    [
+      "Rscript",
+      "skills/glmnet-coxsig/tests/run_smoke_test.R"
+    ]
+  ],
+  "notes": [
+    "Bind the final published exact tested_head and use a fresh evidence directory; actual parent d6b14ed4cf19f3606175811f32490612297d67bf was independently read back.",
+    "Preserve the actual penalized glmnet model, explicit Breslow ties and original eight printed coefficient anchors/tolerance. Copied CPM unpenalized refit is a different model; no numerical equivalence asserted.",
+    "Official pmsampsize1.1.3 source archive15074 bytes is verified at SHA2560801e590432715f06d3ed70dde47fcc2f2fe2ac76f38867c5a9ba6476d3c9069; candidate build/installed version/runtime are still unverified. Do not infer installation authority from this request or use MedStat/production environments. Keep missing dependencies as real failures.",
+    "Native anchor wrapper runs selected source parity, independent fixed-LP/censoring arithmetic, original smoke, real three-branch CLI/replay, all original plus21 new refusals and frozen external object checks. No native success here: actual R attempt exit127.",
+    "Source CPM-one-predictor is a synthetic logistic anchor outside the selected survival port. Official simulated CoxExample and invented validation are software contracts only, not biological owner-review examples.",
+    "Every optional figure carries dataset/n and calibration slope; real approved aggregate owner bindings remain absent and must stay blocked. Do not upload patient rows, individual scores or row-linked fitted objects.",
+    "Historic source freeze/prior revisions, locks, goldens and protected source remain intact. No installation, seal, merge, promotion, deployment, GT103 access or MedStat writes."
+  ]
+}

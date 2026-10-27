@@ -58,8 +58,42 @@ def mappings(path):
                 result[key].update(options)
     return {key: sorted(value) for key, value in sorted(result.items()) if value}
 
-def build(repo, sources, verify):
+def locked_default(cell):
+    """The locked default of an options.md row, or None when the cell states none (required / none / example only)."""
+    text = cell.strip().replace('`', '')
+    match = re.match(r'locked (.+?); effective', text)
+    if match:
+        return match.group(1).strip().strip('"')
+    low = text.lower()
+    if not text or low in {'none', 'required', '(required)', 'n/a', '-'} or low.startswith(('required', 'none ', '(required')):
+        return None
+    return text.strip('"')
+
+def option_table(path):
+    """{option: {'default': locked default or None, 'keys': [extraction keys]}} from an options.md flag table."""
+    result = {}
+    if not path.exists():
+        return result
+    default_index = key_index = None
+    for line in path.read_text().splitlines():
+        if not line.strip().startswith('|'):
+            continue
+        cells = [c.strip().replace('`', '') for c in line.strip().strip('|').split('|')]
+        if any('extraction' in c.lower() and ('key' in c.lower() or 'parameter' in c.lower()) for c in cells):
+            key_index = next(i for i, c in enumerate(cells) if 'extraction' in c.lower())
+            default_index = next((i for i, c in enumerate(cells) if 'default' in c.lower()), None)
+            continue
+        if key_index is None or default_index is None or len(cells) <= max(key_index, default_index):
+            continue
+        options = re.findall(r'--[a-zA-Z0-9][\w.-]*', cells[0])
+        keys = sorted(k for k in re.split(r'[,;/\s]+', cells[key_index]) if k and k.lower() not in {'none', 'n/a', '-', 'pending'} and not set(k) <= {'-', ':'})
+        for option in options:
+            result[option] = {'default': locked_default(cells[default_index]), 'keys': keys}
+    return dict(sorted(result.items()))
+
+def build(repo, sources, verify, methods_used=None, option_defaults=None):
     papers, usages, inputs, excluded, counts = {}, [], [], [], {}
+    methods_used = methods_used or {}
     def record_input(root, path, role):
         relative = path.relative_to(root).as_posix()
         entry = {'source': root.name, 'branch': git(root, 'branch', '--show-current'),
@@ -100,6 +134,8 @@ def build(repo, sources, verify):
             corpus = {str(r['pmid']): r for r in map(json.loads, corpus_path.read_text().splitlines())}
             option_path = repo / f'skills/{module}/references/options.md'
             option_map = mappings(option_path)
+            if option_defaults is not None:
+                option_defaults[module] = option_table(option_path)
             if option_path.exists():
                 record_input(repo, option_path, 'option_mapping')
             failures = set()
@@ -133,8 +169,6 @@ def build(repo, sources, verify):
                     reason = 'verification_section_3_not_applicable'
                 elif source_kind == 'C' and key in {'settings_preset', 'mean_in_log_space'}:
                     reason = 'verification_section_3_alpha_only'
-                elif module == 'immunedeconv-infiltration' and pmid == '32647202' and key == '_applies':
-                    reason = 'verification_section_3_nonverbatim'
                 if reason:
                     stats[reason] += 1
                     excluded.append({'module': module, 'pmid': pmid, 'parameter': key, 'line': line_no, 'reason': reason})
@@ -147,6 +181,9 @@ def build(repo, sources, verify):
                 paper_id = 'PMID-' + pmid
                 paper = {k: article.get(k) for k in ('pmid', 'pmcid', 'title', 'year', 'journal', 'doi', 'licence', 'jats_sha256')}
                 paper['metadata_status'] = 'corpus_metadata' if pmid in corpus else 'pending_missing_corpus_row'
+                if pmid in methods_used:
+                    # lexicon tokens of the Methods text (countable licences only; tokens, never text)
+                    paper['methods_used'] = methods_used[pmid]
                 paper.update(paper_id=paper_id, url=f'https://pubmed.ncbi.nlm.nih.gov/{pmid}/')
                 # Same PMID metadata is selected deterministically from the first source/module.
                 papers.setdefault(paper_id, paper)
@@ -198,9 +235,23 @@ def main():
     ap.add_argument('--lane-c', type=Path, default=Path.home() / 'omic-s0-c')
     ap.add_argument('--verify', type=Path, default=Path.home() / 'omic-verify')
     ap.add_argument('--out', type=Path, default=HERE / 'app/s0_evidence/catalog.json')
+    ap.add_argument('--defaults-out', type=Path, default=HERE / 'app/s0_evidence/option_defaults.json')
+    ap.add_argument('--methods-used', type=Path, default=HERE / 's0_methods_used.json',
+                    help='sidecar written by tools/lit/backfill_methods_used.py compile (optional)')
     ap.add_argument('--data-dir', type=Path, help='Explicit OFFLINE staging directory to load; never the live volume')
     args = ap.parse_args()
-    bundle = build(args.repo, [('M12', args.repo), ('A', args.lane_a), ('B', args.lane_b), ('C', args.lane_c)], args.verify)
+    methods_used = {}
+    if args.methods_used.exists():
+        sidecar = json.loads(args.methods_used.read_text(encoding='utf-8'))
+        methods_used = {pmid: {'lexicon_version': sidecar['lexicon_version'], 'tokens': row['tokens']} for pmid, row in sidecar['papers'].items()}
+    option_defaults = {}
+    bundle = build(args.repo, [('M12', args.repo), ('A', args.lane_a), ('B', args.lane_b), ('C', args.lane_c)], args.verify,
+                   methods_used=methods_used, option_defaults=option_defaults)
+    if methods_used:
+        bundle['methods_used_source'] = {'sidecar_sha256': sha(args.methods_used), 'lexicon_version': sidecar['lexicon_version'],
+                                         'lexicon_sha256': sidecar['lexicon_sha256'], 'papers_with_tokens': len(methods_used),
+                                         'skipped': sidecar['counts']['skipped']}
+    args.defaults_out.write_text(encoded({'schema': 'omicstat.s0-option-defaults.v1', 'modules': dict(sorted(option_defaults.items()))}))
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(encoded(bundle))
     if args.data_dir:

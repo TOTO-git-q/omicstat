@@ -1,0 +1,53 @@
+{
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "current_parent": "066f8cfe829acd2fb19f3a127c1113b024beba8c",
+  "native_equivalence_verified": false,
+  "adaptations": [
+    {
+      "change": "Explicit opt-in post-fit LMM branch inside emmeans-contrast, consuming the existing verified lme4-lmm handoff.",
+      "reason": "B2 requests a code port into these planned modules, not a new MedStat runtime or alternate fitter."
+    },
+    {
+      "change": "Retain the existing 3000-row finite-df limit; remove source global emm_options ceiling increases and pass fixed limits plus exact df-method disable flags per call.",
+      "reason": "P0-14 resource guard and existing OmicStat finite-df refusal are retained; no silent asymptotic fallback or new budget."
+    },
+    {
+      "change": "Require a categorical time column, explicit chronology, one row per biological-unit/time, group constant within biological unit, full group-time cells and an explicit two-way group-time term.",
+      "reason": "No automatic filtering, pooling, binning, model change, factor refit or trial-design assumption."
+    },
+    {
+      "change": "Require same-model joint_tests to succeed and all returned EMM/contrast/joint degrees of freedom to be positive finite.",
+      "reason": "Source NULL-on-joint-error cannot satisfy the work package; existing OmicStat every-row finite-df guard is retained."
+    },
+    {
+      "change": "Pass the explicit existing weights choice to both EMM and joint tests. Preserve source revpairwise direction and by=NULL multiplicity across all timepoints; keep raw and adjusted tables distinct.",
+      "reason": "The old default within-by/pairwise route remains byte-identical; the new opt-in route follows source semantics and explicitly records differences."
+    },
+    {
+      "change": "Use OmicStat tables, handoff, OS codes, metadata and shared figure tokens; omit MedStat report/journal layout.",
+      "reason": "Independent runtime and current OmicStat figure contract."
+    },
+    {
+      "change": "No source automatic model fallback, MMRM, GEE, GLMM, survey, continuous-time fitting, post-result sensitivity refit or missingness filtering is transplanted.",
+      "reason": "This work item requests the Gaussian LMM post-fit tables and relevant guards. Broader source routes remain outside this bounded adapter."
+    },
+    {
+      "change": "Make pointwise mean and raw contrast summaries explicitly unadjusted and cross.adjust=none; inherited global summary options cannot change the requested family.",
+      "reason": "Match the existing OmicStat audit contract. Default source before/after remains a separately pending native comparison."
+    },
+    {
+      "change": "Preserve the source nonpositive-P refusal but state that exact zero can also be numerical underflow, without substituting a tail-probability method.",
+      "reason": "A zero P value alone does not prove a broken model; the inherited refusal itself remains unchanged."
+    },
+    {
+      "change": "Refuse group labels colliding with the copied contrast/key separators and require every raw/adjusted P to be finite in [0,1].",
+      "reason": "Preserve reliable cell counts and keyed joins; no invented group membership or partial non-estimable results."
+    },
+    {
+      "change": "Use biological-unit language in the copied repeated-measures refusal, removing the reference to an unported trend-analysis module.",
+      "reason": "Domain adaptation only; the original all-units-at-most-once condition remains unchanged."
+    }
+  ],
+  "original_methods_unmodified_when_longitudinal_off": true,
+  "original_lme4_fitter_bytes_unchanged": true
+}

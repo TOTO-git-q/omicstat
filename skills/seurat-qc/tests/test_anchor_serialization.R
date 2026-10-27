@@ -1,0 +1,36 @@
+# Actual production CSV writer and anchor JSON call on invented scalar rows.
+# This does not load Seurat, access registered data, or certify a biological run.
+args <- commandArgs(TRUE)
+this <- normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value=TRUE)[1L]))
+module <- dirname(dirname(this)); root <- normalizePath(file.path(module,"..",".."))
+out <- if(length(args)) args[[1L]] else tempfile("qc-anchor-serialization-")
+if(file.exists(out)) stop("serialization evidence directory must be new")
+dir.create(out,recursive=TRUE)
+writer_path <- file.path(root,"skills/_shared/scripts/sc_seurat_io.R")
+writer_expr <- Filter(function(x) is.call(x) && identical(x[[1L]],as.name("<-")) &&
+  identical(x[[2L]],as.name("os_seurat_write_tables")),as.list(parse(writer_path)))
+stopifnot(length(writer_expr)==1L)
+env <- new.env(parent=baseenv()); eval(writer_expr[[1L]],env)
+values <- c(73/2419*100,pi,1/7,1/1000000000000)
+paths <- env$os_seurat_write_tables(list(cell_qc=data.frame(percent.mt=values)),out)
+audit <- utils::read.csv(paths$cell_qc,check.names=FALSE)
+stopifnot(all(abs(audit$percent.mt-values)<=16*.Machine$double.eps*pmax(1,abs(values))))
+expr <- as.list(parse(file.path(module,"tests/anchors.R")))
+json_call <- Filter(function(x) is.call(x) && identical(x[[1L]],quote(jsonlite::write_json)),expr)
+stopifnot(length(json_call)==1L, identical(json_call[[1L]]$digits,17))
+result <- list(first_cell_mito_percent=audit$percent.mt[1L], fractions=audit$percent.mt, exact_flag=TRUE)
+output <- file.path(out,"roundtrip.json")
+eval(json_call[[1L]])
+obtained <- jsonlite::read_json(output,simplifyVector=TRUE)
+stopifnot(identical(obtained$fractions,result$fractions),isTRUE(obtained$exact_flag))
+anchors <- jsonlite::read_json(file.path(module,"tests/anchors.json"),simplifyVector=FALSE)
+anchor <- Filter(function(x) identical(x$id,"first_cell_mito_percent"),anchors)[[1L]]
+stopifnot(identical(anchor$expected,3.0177759),identical(anchor$tolerance,5e-8))
+passes <- function(x) abs(x-anchor$expected)<=anchor$tolerance*max(1,abs(anchor$expected))
+stopifnot(passes(obtained$first_cell_mito_percent))
+# Negative control uses the identical production call with its old default precision.
+old_call <- json_call[[1L]]; old_call$digits <- NULL
+output <- file.path(out,"old-default.json");eval(old_call)
+old <- jsonlite::read_json(output,simplifyVector=TRUE)
+stopifnot(!passes(old$first_cell_mito_percent))
+cat("CSV + exact production anchor JSON call preserved precision; unchanged tolerance rejects old default.\n")

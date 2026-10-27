@@ -22,7 +22,7 @@ Policy: function defaults from the locked version; official tutorial departures 
 | `--cluster-col` | `required` | string | existing descriptive cluster metadata |
 | `--max-epochs` | `required` | (1, 400) | explicit CPU training budget |
 | `--n-neighbors` | `required` | (2, 1000) | explicit neighbors for latent-space graph |
-| `--n-latent` | `10` | (2, 1000) | scVI latent dimension |
+| `--n-latent` | `none` | (2, 1000) | scVI latent dimension; required unless --latent-from-run (reuse trains no model) |
 | `--batch-size` | `128` | (2, 4096) | training and inference minibatch size |
 | `--min-dist` | `0.5` | (0, 1) | UMAP minimum distance |
 | `--features-file` | `none` | path | optional prespecified ordered gene subset (one ID per line); otherwise all genes |

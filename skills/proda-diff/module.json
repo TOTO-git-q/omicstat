@@ -1,0 +1,154 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "proda-diff",
+  "lane": "R",
+  "domain": "expression",
+  "entry": "scripts/run_proda_diff.R",
+  "version": "0.1.0",
+  "qc_prefix": "PD",
+  "engine_packages": [
+    "proDA"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "feature_table",
+      "sample_table"
+    ]
+  },
+  "figure_builders": [
+    "os_volcano",
+    "os_ma"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 46,
+    "question": "Two-group protein abundance with probabilistic dropout"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--study-contract",
+      "required": false,
+      "source": "candidate entry script",
+      "default": "none",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--matrix",
+      "required": true,
+      "source": "candidate entry script",
+      "default": "required",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--samples",
+      "required": true,
+      "source": "candidate entry script",
+      "default": "required",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--bio-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--input-scale",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "linear|log2",
+      "role": "scientific"
+    },
+    {
+      "flag": "--zero-policy",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "observed|missing",
+      "role": "scientific"
+    },
+    {
+      "flag": "--normalization",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "none|median",
+      "role": "scientific"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--reference",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--target",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--feature-id-type",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--development-mode",
+      "default": "off",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 44,
+    "discovery_profile": {
+      "module": "proda-diff",
+      "epmc_query": "METHODS:\"proDA\" OR METHODS:\"protein abundance\"",
+      "meta": false,
+      "signal_regex": "(?:proDA|protein abundance)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

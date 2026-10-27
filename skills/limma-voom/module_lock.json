@@ -17,8 +17,8 @@
     "skills/limma-voom/references/troubleshooting.md": "6259b4e43e5f60b85dd9e5fe89c82895430f6640de9479103f65daa443af301f",
     "skills/limma-voom/tests/fixtures/guide_yoruba.R": "999d929ecaf7ad4533b36491437ee056f5ffcb1df1d969cb5735f7819925bbc2",
     "skills/limma-voom/tests/fixtures/make_gse63310.R": "09524eb6b3a9d4558fcead8a22086550b58046c45831b6caa70d6e833790e429",
-    "skills/limma-voom/tests/run_smoke_test.R": "9c48aa90681057865a7a0e1a09a0770eb57bcdb2b8f468699cf4e35797a2c76c",
-    "skills/limma-voom/tests/golden_manifest.csv": "c23d501235c533d228269fb5cfc8c07a81f01a46fac14887ec32c5bae5e0dfda",
+    "skills/limma-voom/tests/run_smoke_test.R": "148d5712e36912e842ed13132e30be7c7fd829e66d430c044cf2bc19ab8e6f9e",
+    "skills/limma-voom/tests/golden_manifest.csv": "4125663c6acf20939890ca0a452da219b94f924fbe8d35f15316a0b97b47c0d6",
     "acceptance/exemplars/limma-voom/PACK.md": "73f00228cf7f0a5c979071b3eaf05d8c55a5ffcdad1a3699568573f94fba5e4f"
   },
   "packages": {
@@ -30,7 +30,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

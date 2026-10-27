@@ -1,0 +1,181 @@
+{
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_path": "skills/descriptive-distribution/tests/run_tests.R",
+  "source_file_sha256": "4af4dddd684cc3a98330060b25f0b9086b7ee25493a98f2c134099002b727c81",
+  "native_executed_here": false,
+  "distribution_core_checks": [
+    {
+      "name": "inverse empirical quantile preserves ties",
+      "source_line": 25,
+      "original_sha256": "7aaef630e6762afdd31994e37b7b679ab78c61e0e695389da24ac743eb2b87df",
+      "adapted_sha256": "7aaef630e6762afdd31994e37b7b679ab78c61e0e695389da24ac743eb2b87df"
+    },
+    {
+      "name": "weighted inverse is not averaging adjacent values",
+      "source_line": 29,
+      "original_sha256": "e3fb9380f5cac9be0d845554b7fe275bd48ed8426d11086f9e1e72ffa3255dfe",
+      "adapted_sha256": "e3fb9380f5cac9be0d845554b7fe275bd48ed8426d11086f9e1e72ffa3255dfe"
+    },
+    {
+      "name": "global weight rescaling is invariant",
+      "source_line": 33,
+      "original_sha256": "215275edfe082fd99ae332b8567f5a1f1b30278ac147e6916df0b722b5dd936a",
+      "adapted_sha256": "215275edfe082fd99ae332b8567f5a1f1b30278ac147e6916df0b722b5dd936a"
+    },
+    {
+      "name": "zero weights have no contribution",
+      "source_line": 38,
+      "original_sha256": "2a79e8133e2bd7ae64c2bc32073f18fdcf708c97083f82bec14b7842564db840",
+      "adapted_sha256": "4af730bd7f747efc18964ccc656447c91dbb04f616e0e125a768222cc71612d6"
+    },
+    {
+      "name": "shifted distributions recover all fixed contrasts",
+      "source_line": 42,
+      "original_sha256": "1c5b64e2bfdc5dc0879ce2599b1f61e8c77f17f55bd70077d9fa854c05b989a7",
+      "adapted_sha256": "1c5b64e2bfdc5dc0879ce2599b1f61e8c77f17f55bd70077d9fa854c05b989a7"
+    },
+    {
+      "name": "difference sign follows explicit reference",
+      "source_line": 48,
+      "original_sha256": "af97097ddf5ab5858f8a288f65ec88f7f842da013643c016b708e726f42401dc",
+      "adapted_sha256": "af97097ddf5ab5858f8a288f65ec88f7f842da013643c016b708e726f42401dc"
+    },
+    {
+      "name": "row order does not change descriptive results",
+      "source_line": 52,
+      "original_sha256": "7fbb8dcd6588f944eacb0d259bd297cb1171023c39510705075ee61961fb2464",
+      "adapted_sha256": "7fbb8dcd6588f944eacb0d259bd297cb1171023c39510705075ee61961fb2464"
+    },
+    {
+      "name": "no probability endpoint or data-dependent grid",
+      "source_line": 56,
+      "original_sha256": "4c20e9fc4a8e61c1caa9cd40def7633230e1894e898822634ac61b37c0c0faca",
+      "adapted_sha256": "63ff0f04e9e49be8b2ad5fbcaab77df29e7dea62529407278f8d741c92516d81"
+    },
+    {
+      "name": "unknown parameters and invalid scalars fail",
+      "source_line": 61,
+      "original_sha256": "eaecc7b0ef5ac32ebbf196b9140bcc0111679b3aec4cee0c32af8c288559415d",
+      "adapted_sha256": "2400643e34bf432f1cfeb3643aae8f75418ed21a22c0b0c976cb65d76a7904e1"
+    },
+    {
+      "name": "IDs checked before complete case filtering",
+      "source_line": 69,
+      "original_sha256": "56168c1f653d8ce9a0cdf29d9837934eec3954c2465743e8d8db71c015c767f3",
+      "adapted_sha256": "85b4ba3d4ca877dd66e9aa578cf790ff98edf593aab07551954096cfa9e7c931"
+    },
+    {
+      "name": "confirmed internal row_key is the default identifier",
+      "source_line": 73,
+      "original_sha256": "e202957ace349ce39e0588ebb7a8436226345be94161cb7e98baf759880da945",
+      "adapted_sha256": "e202957ace349ce39e0588ebb7a8436226345be94161cb7e98baf759880da945"
+    },
+    {
+      "name": "unknown group is not silently dropped",
+      "source_line": 78,
+      "original_sha256": "16e27f0f1a5c8690fba9ea98a0d8db10a06ac9bdc85cd8f0ef4ecd1b7a83eeef",
+      "adapted_sha256": "f7ff742242108ddeba636e21e14af240d07ea4f276e46b091c33239ed6a1d670"
+    },
+    {
+      "name": "nonfinite or censored numeric values rejected",
+      "source_line": 82,
+      "original_sha256": "f9b39dfdbeded94233ba55c309c109a166119145ef3acfc1ee6a1cb2b916bcbc",
+      "adapted_sha256": "cd1053082a0fd67a6675e720c68d13121981c0d56af72a46bae34e535f89d713"
+    },
+    {
+      "name": "complete cases are explicit",
+      "source_line": 88,
+      "original_sha256": "7cdef723d56014d43f5e866910e53baba508da49ff630d748129c73d092cadd5",
+      "adapted_sha256": "efc7fd332580f3b748fe67d41b785eba7a7bc41144a617112a2a72044df5ca2c"
+    },
+    {
+      "name": "small group suppresses counts and derived contrasts",
+      "source_line": 94,
+      "original_sha256": "6a639a838617b06d99046ec93027f5ea3bf6495cc9a8fccfae782fa487644dc6",
+      "adapted_sha256": "6a639a838617b06d99046ec93027f5ea3bf6495cc9a8fccfae782fa487644dc6"
+    },
+    {
+      "name": "declared empty group is retained as inestimable, not replaced",
+      "source_line": 100,
+      "original_sha256": "f3bd7c91bbd0e6f81b42c38e2292bdf2e99c07ec69336cbdfa0a609091ddaabb",
+      "adapted_sha256": "f3bd7c91bbd0e6f81b42c38e2292bdf2e99c07ec69336cbdfa0a609091ddaabb"
+    },
+    {
+      "name": "a clean run has no findings and no blocking count",
+      "source_line": 105,
+      "original_sha256": "834d73e5b86db19abd05e27ef36b91500b997bfa144d7a51666953e468616b97",
+      "adapted_sha256": "834d73e5b86db19abd05e27ef36b91500b997bfa144d7a51666953e468616b97"
+    },
+    {
+      "name": "every suppression code is explained by a finding naming code, message and group",
+      "source_line": 109,
+      "original_sha256": "76bbc971f73a7f7c47b855cb60b1aa7aac2305c24f64ad40507ba28441fe950d",
+      "adapted_sha256": "be435b9c6ae943699c2baf5e614d788fb73e811090ad7e416c887777a0650fb0"
+    },
+    {
+      "name": "wholly suppressed result carries a blocking finding",
+      "source_line": 127,
+      "original_sha256": "a9480bc4ad277a1b72215f3d36343769eb346d8045a80009c0137f1b0354182a",
+      "adapted_sha256": "3828a687c3c777dd7d1dcd0cd2b973f20483637c1d3c162cd3c5ab3bdc2c7f5e"
+    },
+    {
+      "name": "nonstandard fixed labels retain exact reference and ordering",
+      "source_line": 134,
+      "original_sha256": "af702ee39efcb2a765f2fd3d4a7fd63ce654c56057e111d3d407fd0eb9bed01d",
+      "adapted_sha256": "af702ee39efcb2a765f2fd3d4a7fd63ce654c56057e111d3d407fd0eb9bed01d"
+    },
+    {
+      "name": "quantile tails have additional support guard",
+      "source_line": 140,
+      "original_sha256": "518eddb7bec31e8ef9adc210ea21ceb847b878f6376385aa718e546a014c23be",
+      "adapted_sha256": "518eddb7bec31e8ef9adc210ea21ceb847b878f6376385aa718e546a014c23be"
+    },
+    {
+      "name": "neighboring released quantiles cannot isolate rare positive increments",
+      "source_line": 146,
+      "original_sha256": "7a1bf89e6f6ba12372c0799b9e5daf6898aab48f26666f515363d63c06e96014",
+      "adapted_sha256": "7a1bf89e6f6ba12372c0799b9e5daf6898aab48f26666f515363d63c06e96014"
+    },
+    {
+      "name": "seeded bootstrap is reproducible and preserves caller RNG",
+      "source_line": 254,
+      "original_sha256": "481375e60e38fc8d37a884ea9429d427a74543ea99e2611516e32fedab8c570b",
+      "adapted_sha256": "12c5af328ab8a8b9418991edf8111fb4e00af43e084d35096559cd47232848d9"
+    },
+    {
+      "name": "constant resamples do not claim guaranteed precision",
+      "source_line": 263,
+      "original_sha256": "a5ab5dcf0faaf284caf05dc4e8baea0b21024df9223d3fbf6cbaabb0fe63caf6",
+      "adapted_sha256": "a5ab5dcf0faaf284caf05dc4e8baea0b21024df9223d3fbf6cbaabb0fe63caf6"
+    },
+    {
+      "name": "bootstrap keeps stable metric identity with an empty comparison group",
+      "source_line": 270,
+      "original_sha256": "40c3fc80ba7702feb57da5b47d18480d70e117908c0ce2a199f2b2e051b50101",
+      "adapted_sha256": "40c3fc80ba7702feb57da5b47d18480d70e117908c0ce2a199f2b2e051b50101"
+    },
+    {
+      "name": "core return contains only aggregate result material",
+      "source_line": 274,
+      "original_sha256": "9fd121e544f497dad2483d2c13dba35e7cbf5f9cc0f639b500f1c5645fa50b65",
+      "adapted_sha256": "9fd121e544f497dad2483d2c13dba35e7cbf5f9cc0f639b500f1c5645fa50b65"
+    },
+    {
+      "name": "interval columns are ordered lower then upper",
+      "source_line": 313,
+      "original_sha256": "19263c963098f0b8aa32e32c45132d9f1defb5d095136e8ea95cff4eb3985bf5",
+      "adapted_sha256": "19263c963098f0b8aa32e32c45132d9f1defb5d095136e8ea95cff4eb3985bf5"
+    }
+  ],
+  "not_ported": [
+    "MedStat CLI/report/theme tests",
+    "public weighted_quantiles / direct_standardization / joint_standardization branches"
+  ],
+  "separate_baseline_anchor": "Original BT-welch synthetic A1:20/B3:22; same R formula and independent sum/variance reference in distribution_test_helpers.R",
+  "selected_original_checks_reference": "skills/omicstat-groupcompare/tests/ported_source/distribution_checks_original.R",
+  "selected_original_checks_sha256": "e9d2cd2b75da45a2e8433ca2fc7ef79941e7f7da2662bf9f1b4c12c35c126e2c",
+  "test_only_adaptations": [
+    "Error literals mapped to registered OS codes",
+    "Original literal caller-RNG seed19 bound to rng_seed for the suite R linter; same seed, no numerical-method change"
+  ]
+}

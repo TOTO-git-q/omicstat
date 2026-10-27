@@ -182,7 +182,7 @@ expect_error_code(os_volcano(ft_cjk), "OS_FIG_NON_LATIN_TEXT", "T4 CJK gene labe
 expect_error_code(os_colours_for(sprintf("c%02d", 1:30), family = "x"), "OS_TOO_MANY_CATEGORIES", "T4 30 categories rejected")
 expect_error_code(os_group_colours(sprintf("g%d", 1:9)), "OS_TOO_MANY_CATEGORIES", "T4 9 groups rejected")
 expect_error_code(os_save_figure(builders$volcano(), file.path(outdir, "tall"), height_mm = 400), "OS_FIG_TOO_TALL", "T4 too-tall figure rejected")
-expect_error_code(os_volcano(ft[, c("feature_id", "log2fc")]), "OS_MISSING_COLUMNS", "T4 missing padj column")
+expect_error_code(os_volcano(ft[, c("feature_id", "log2fc")]), "OS_MISSING_COLUMN", "T4 missing padj column")
 expect_error_code(os_journal("lancet_fake"), "OS_INVALID_PARAMETER", "T4 unknown journal preset")
 tiny <- builders$ma() + ggplot2::annotate("text", x = 1, y = 0, label = "tiny", size = os_fs(3))
 lt <- os_fig_lint(tiny)
@@ -420,7 +420,14 @@ check(grepl("^OS_EMPTY_DATA: ", emsg) && grepl(note, emsg, fixed = TRUE), "T10 e
 expect_error_code(os_nes_bar(et_none), "OS_EMPTY_DATA", "T10 NES bar with no significant set")
 sp <- jsonlite::fromJSON(file.path(outdir, "run1", "ora_dotplot.figure_spec.json"))
 check(!is.null(sp$definition$gene_ratio) && identical(sp$style_version, OS_FIG_STYLE_VERSION), "T10 figure_spec carries 'definition' and the current style version")
-check(is.null(jsonlite::fromJSON(file.path(outdir, "run1", "volcano.figure_spec.json"))$definition), "T10 'definition' absent when a builder sets none")
+volcano_spec <- jsonlite::fromJSON(file.path(outdir, "run1", "volcano.figure_spec.json"))
+check(identical(volcano_spec$definition$de_contract$test$hypothesis, "unspecified"),
+      "T10 legacy volcano declares an unspecified DE contract instead of inventing a native hypothesis")
+plain_no_definition <- os_with_meta(
+  ggplot2::ggplot(data.frame(x=0,y=0),ggplot2::aes(x,y)) + ggplot2::geom_point(),
+  figure_type="test_no_definition",caption="Synthetic metadata-absence check.")
+plain_saved <- os_save_figure(plain_no_definition,file.path(outdir,"no_definition"),formats="pdf",root=outdir)
+check(is.null(jsonlite::fromJSON(plain_saved$spec)$definition), "T10 'definition' absent when a builder sets none")
 
 # ------------------------------------------------------ T6 hygiene ----
 rfiles <- list.files(shared, pattern = "\\.R$", recursive = TRUE, full.names = TRUE)

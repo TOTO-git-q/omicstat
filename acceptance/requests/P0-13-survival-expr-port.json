@@ -1,0 +1,67 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "survival-expr-port",
+  "modules": [
+    "survival-expr"
+  ],
+  "actual_remote_parent": "4555ba239e4e03e577558aae6caeb36ed7b49dc0",
+  "image_candidate": "env/candidates/20261020-core-final2",
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "regression"
+  ],
+  "full_regression": true,
+  "full_item_complete": false,
+  "owner_visual_review": null,
+  "original_real_anchor_status": "blocked_no_clinical_rows_acquired",
+  "checks": [
+    [
+      "python3",
+      "tools/test_survival_port.py"
+    ],
+    [
+      "python3",
+      "tools/test_survival_port_binding.py"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "--check"
+    ],
+    [
+      "Rscript",
+      "skills/survival-expr/tests/run_port_smoke.R"
+    ],
+    [
+      "Rscript",
+      "skills/survival-expr/tests/run_smoke_test.R"
+    ]
+  ],
+  "notes": [
+    "Bind tested_head to this exact published revision and use a new evidence directory; no original PR head is implicitly repaired by this cumulative port.",
+    "Existing survival-expr candidate only:17 selected copied source functions, original scientific body/choices preserved, nonph/piecewise/AJ opt-in. MedStat remains source-read-only with no runtime dependency.",
+    "Use the independently verified existing OmicStat R4.6.1 lineage with exact survival3.8-9; do not install/substitute dependencies or update source/package locks. Both new Python contract checks use the locked Python lane; native module checks stay on R.",
+    "Canonical anchor_runner preserves the10 original math anchors and performs genuine source-native parity, inherited smoke/default checks, four branch CLI/replays and45 refusals on project-invented fixtures. Cloud R attempt exited127; no native success is claimed.",
+    "Clinical CR-mgus2-cif rows were not acquired; dataset SHA remains unknown. Source SN-V1 covers excluded RMST. These original evidence limitations remain explicit and may not be replaced by synthetic contracts.",
+    "Figure stage must retain the missing real owner_review binding as a blocker. No eligible real official-anchor input or owner contact sheet exists for this new port. Do not upload patient rows, expression memberships or fitted individual objects.",
+    "Global package inventory still has19 failures; real source/native/owner guards remain mandatory. New CIF restyle and20-record figure evidence remain open. Existing historical evidence is never requalified by a new source digest.",
+    "Root alone publishes and applies exec-requested. No seal, golden/lock write, merge, promotion, deployment or production access."
+  ]
+}

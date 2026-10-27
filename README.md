@@ -2,7 +2,7 @@
 
 **Locked, evidence-anchored omics analysis modules behind one MCP server.**
 
-omicstat wraps the official workflow of one R or Python package *analysis part* per module — DESeq2 Wald, limma-voom, clusterProfiler ORA, Seurat clustering, muscat pseudobulk, CellChat, WGCNA, … 38 analysis modules plus 3 display modules — and freezes each one so that the same input and the same choices give the same numbers on any machine, and any drift is caught mechanically. An LLM (or a person) calls the modules through five generic MCP tools; the modules return tables, figures in one journal style, QC findings, a filled Methods/Results draft, and a provenance record that lets every reported number be traced to its source.
+omicstat wraps the official workflow of one R or Python package *analysis part* per module — DESeq2 Wald, limma-voom, clusterProfiler ORA, Seurat clustering, muscat pseudobulk, CellChat, WGCNA, … 54 analysis modules plus 3 display modules — and freezes each one so that the same input and the same choices give the same numbers on any machine, and any drift is caught mechanically. An LLM (or a person) calls the modules through six generic MCP tools; the modules return tables, figures in one journal style, QC findings, a filled Methods/Results draft, and a provenance record that lets every reported number be traced to its source.
 
 omicstat does **not** invent statistics. It runs the package the way its authors' vignette runs it, exposes every result-affecting argument as an explicit option, and refuses to decide scientific judgements on the caller's behalf.
 
@@ -12,7 +12,7 @@ omicstat does **not** invent statistics. It runs the package the way its authors
 
 | Lock | What it means |
 |---|---|
-| Locked environment | R modules run in `omicstat-r:2026.10.1` (R 4.6.1, Bioconductor 3.23, CRAN snapshot 2026-09-15, 544 packages, `env/pkg_lock.csv`); Python modules in `omicstat-py:2026.09.1` (scanpy 1.12.4, anndata 0.13.3, scvi-tools 1.5.1, torch 2.14 CPU). Image digests go into every run's provenance. Single-threaded BLAS. |
+| Locked environment | R modules run in `omicstat-r:2026.10.4` (R 4.6.1, Bioconductor 3.23, CRAN snapshot 2026-09-15, 588 packages, `env/pkg_lock.csv`; = the `2026.10.1` base plus 44 pinned packages from `env/candidates/20261020-core-final2`, no inherited package changed); Python modules in `omicstat-py:2026.09.1` (scanpy 1.12.4, anndata 0.13.3, scvi-tools 1.5.1, torch 2.14 CPU). Image digests go into every run's provenance. Single-threaded BLAS. |
 | One entry-script skeleton | Flag whitelist, typed `OS_*` errors, input validation, `--spec` replay of a finished run. |
 | Calls registry | `scripts/calls_registry.json` lists every package function the module calls and every result-affecting argument with its source (locked default, vignette value, or user-required). A static check refuses undeclared calls. |
 | Seeds | Every stochastic step has an explicit, recorded seed. |
@@ -33,6 +33,7 @@ Every module ships: `SKILL.md` (what it does, every option, when to choose which
 | Single cell, scverse lane (5, Python) | `scanpy-qc` `scanpy-cluster` `scanpy-markers` `scvi-integrate` `scanvi-annotate` |
 | Single-cell back ends, ecosystem-neutral (6) | `singler-annotate` `muscat-pseudobulk` `speckle-propeller` `monocle3-trajectory` `slingshot-trajectory` `cellchat-communication` |
 | Network, mutation, infiltration (3) | `wgcna-network` `maftools-landscape` `immunedeconv-infiltration` |
+| Laboratory statistics and models (16) | `omicstat-groupcompare` `omicstat-ddct` `drc-calibrate` `drc-dose` `nlme-dose` `lme4-lmm` `emmeans-contrast` `survival-expr` `glmnet-coxsig` `proc-roc` `omicstat-agreement` `omicstat-samplesize` `msstats-diff` `proda-diff` `reactomepa-ora` `dropletutils-emptydrops` |
 | Single-cell display, scverse (3, Python) | `scanpy-annotate` (describe clusters with a marker panel and a user label map) `scanpy-purity` (neighbour-purity and island diagnostics for display clean-up) `scanpy-ingest` (project a query onto a fixed reference UMAP) — outputs carry a `display_only` mark that the inference modules refuse |
 | Utilities | `omicstat` (the router: a map, no engine) · `omicstat-selftest` · `omicstat-selftest-py` |
 
@@ -46,7 +47,7 @@ Pick one runtime:
 
 | Runtime | What you need | Build once | Notes |
 |---|---|---|---|
-| **Container (recommended)** | Docker (Linux, macOS, or Windows with WSL2), about 20 GB of disk, internet for the build | `bash env/build.sh` (R image `omicstat-r:2026.10.1`, about 1 hour) and `bash env/py/build.sh` (Python image `omicstat-py:2026.09.1`, only for the five scverse modules) | Golden baselines are defined on these images, so the byte-level checks run. |
+| **Container (recommended)** | Docker (Linux, macOS, or Windows with WSL2), about 20 GB of disk, internet for the build | `bash env/build.sh` (base R image `omicstat-r:2026.10.1`, about 1 hour), then the guarded candidate build of `env/candidates/20261020-core-final2` tagged `omicstat-r:2026.10.4` and `bash env/py/build.sh` (Python image `omicstat-py:2026.09.1`, only for the five scverse modules) | Golden baselines are defined on these images, so the byte-level checks run. |
 | **Native isolated library** | R 4.6.x on the host, internet for the install | `Rscript env/native/setup_native.R` (installs the same package versions into `.omicstat-r/library` and writes `.omicstat-r/native-env.json`; then set `OMICSTAT_ENGINE=native`); `bash env/py/setup_native.sh` for the Python lane | Results match the container's versions, but the byte-level golden checks report SKIP because the environment signature differs. |
 
 Then check the runtime:
@@ -62,7 +63,7 @@ The anchor datasets used by the smoke tests are fetched separately with `bash ac
 
 ## How it is used
 
-**Through MCP** (the intended way). `mcp/server.py` is a stdio FastMCP server with exactly five tools:
+**Through MCP** (the intended way). `mcp/server.py` is a stdio FastMCP server with exactly six tools:
 
 | Tool | Purpose |
 |---|---|
@@ -71,6 +72,7 @@ The anchor datasets used by the smoke tests are fetched separately with `bash ac
 | `omicstat_run` | run one module in the locked container; returns a compact manifest: exit code, triggered QC rules (blocking first), engine warnings, the primary result rows, degenerate-estimate flags, upstream run chain, artefact listing |
 | `omicstat_read` | read any text artefact of a run |
 | `omicstat_validate_publication` | re-run the publication gates on a finished run |
+| `omicstat_create_study_contract` | optional: record the study design (unit of replication, contrast, covariates) as a StudyContract that runs can bind to |
 
 Register it with a Python that has `mcp/requirements.txt` installed, pointing `OMICSTAT_SUITE_ROOT` at this directory and `OMICSTAT_RUNS_ROOT` at a writable run root (see `mcp/README.md`). The calling LLM reads `skills/omicstat/SKILL.md` to decide which module answers a question; each module's SKILL.md tells it which options are scientific judgements that must come from the user, and to consult the reference companion (below) before choosing.
 

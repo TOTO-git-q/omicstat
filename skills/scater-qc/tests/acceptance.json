@@ -1,0 +1,47 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "figure_policy": "required",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.R",
+      "argv": [
+        "{fixtures}",
+        "{root}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/zeisel.rds",
+      "--mt-genes",
+      "{fixtures}/mt.txt",
+      "--qc-mode",
+      "mad",
+      "--nmads",
+      "3",
+      "--species",
+      "Mus_musculus",
+      "--id-type",
+      "symbol",
+      "--outdir",
+      "{outdir}",
+      "--seed",
+      "20260925",
+      "--journal",
+      "nature"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{fixtures}/zeisel.rds",
+      "{run1}",
+      "{anchor_results}"
+    ]
+  },
+  "owner_review": {
+    "dataset_id": "zeisel",
+    "receipt": "owner_dataset.json"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "omicstat.py-environment.v1",
+  "note": "Authoritative Python-only lineage; independent of R image additions.",
+  "py_env_version": "2026.09.1",
+  "image": "omicstat-py",
+  "image_tag": "2026.09.1",
+  "python_version": "3.12.13",
+  "base_image": "python:3.12.13-slim-bookworm",
+  "base_image_digest": "sha256:4766d8b510c428e595d74b9cc5bbb2fae8e26316fffb4adc89908d79aacd58a2",
+  "pypi_cutoff": "2026-09-15",
+  "exclude_newer": "2026-09-16T00:00:00Z",
+  "release_rule": "newest STABLE release uploaded to PyPI on or before pypi_cutoff (no pre-releases, no yanked files); transitive dependencies resolved with exclude_newer",
+  "pins": {
+    "scanpy": "1.12.4",
+    "anndata": "0.13.3.post0",
+    "scvi-tools": "1.5.1",
+    "torch": "2.14.0+cpu"
+  },
+  "pypi_index": "https://pypi.org/simple",
+  "pytorch_index": "https://download.pytorch.org/whl/cpu",
+  "locker": "uv 0.11.24",
+  "resolver_input": "env/py/pyproject.toml",
+  "lock": "env/py/uv.lock",
+  "py_lock": "env/py_lock.txt",
+  "installed_record": "env/py/py_installed.csv",
+  "image_id_file": "env/py/image_id.txt",
+  "threads": 1
+}

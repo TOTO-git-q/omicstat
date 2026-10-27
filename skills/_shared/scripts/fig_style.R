@@ -284,6 +284,7 @@ os_colour_registry_write <- function(reg, path) {
   fam <- lapply(reg$families, function(f) as.list(f[order(names(f), method = "radix")]))
   fam <- fam[order(names(fam), method = "radix")]
   out <- list(schema = reg$schema, families = fam)
+  if (!is.null(reg$styles)) out$styles <- reg$styles
   writeLines(jsonlite::toJSON(out, auto_unbox = TRUE, pretty = TRUE), path, useBytes = TRUE)
   invisible(path)
 }
@@ -396,7 +397,7 @@ os_wrap <- function(x, width = OS_FIG$label_wrap_chars) {
 # the journal fonts). Latin-1 supplement and a few typographic symbols pass.
 os_assert_latin <- function(x, where = "figure text") {
   x <- enc2utf8(as.character(x[!is.na(x)]))
-  bad <- x[grepl("(*UTF8)[^\\x{0009}-\\x{024F}\\x{2012}-\\x{2015}\\x{2212}\\x{2264}\\x{2265}\\x{00B1}\\x{00D7}\\x{03B1}-\\x{03C9}\\x{0391}-\\x{03A9}]",
+  bad <- x[grepl("(*UTF8)[^\\x{0009}-\\x{024F}\\x{2012}-\\x{2015}\\x{2212}\\x{2264}\\x{2265}\\x{00B1}\\x{00D7}\\x{03B1}-\\x{03C9}\\x{0391}-\\x{03A9}\\x{2070}-\\x{209F}]",
                  x, perl = TRUE)]
   if (length(bad)) {
     stop(sprintf("OS_FIG_NON_LATIN_TEXT: %s contains characters the figure font cannot render: %s. ",
@@ -580,12 +581,63 @@ os_pdf_content_sha256 <- function(path) {
     lapply(x, .os_sort_keys)
   } else x
 }
-os_write_json <- function(x, path) {
-  js <- jsonlite::toJSON(.os_sort_keys(x), auto_unbox = TRUE, pretty = TRUE, digits = I(10),
+os_write_json <- function(x, path, digits = I(10)) {
+  js <- jsonlite::toJSON(.os_sort_keys(x), auto_unbox = TRUE, pretty = TRUE, digits = digits,
                          null = "null", na = "null")
   con <- file(path, open = "wb"); on.exit(close(con))
   writeBin(charToRaw(enc2utf8(paste0(js, "\n"))), con)
   invisible(path)
+}
+
+# A typed definition is a complete validated value, never a recursive patch.
+# modifyList's default NULL deletion would otherwise erase explicit unknowns.
+.os_merge_figure_meta <- function(old, incoming) {
+  old_typed <- !is.null(old$definition$semantic_version)
+  replaces_definition <- "definition" %in% names(incoming)
+  new_typed <- !is.null(incoming$definition$semantic_version)
+  if (old_typed && replaces_definition && !new_typed)
+    stop("OS_INVALID_INPUT: metadata cannot erase or partially replace a typed semantic contract.", call. = FALSE)
+  if (new_typed) {
+    if (!exists("os_validate_figure_definition", mode = "function"))
+      stop("OS_MISSING_DEPENDENCY: load fig_semantics.R for typed figure metadata.", call. = FALSE)
+    os_validate_figure_definition(incoming$definition)
+    definition <- incoming$definition
+    incoming$definition <- NULL
+    result <- utils::modifyList(old, incoming)
+    result["definition"] <- list(definition)
+    return(result)
+  }
+  matrix_contract <- incoming$definition$matrix_contract
+  de_contract <- incoming$definition$de_contract
+  panel_contract <- incoming$notes$panel_contract
+  if (!is.null(old$definition$de_contract) && replaces_definition &&
+      (is.null(incoming$definition) || ("de_contract" %in% names(incoming$definition) && is.null(de_contract))))
+    stop("OS_INVALID_INPUT: metadata cannot erase a DE contract.", call. = FALSE)
+  if (!is.null(de_contract)) {
+    if (!identical(de_contract$version, "omicstat.de-semantics.v1") ||
+        !all(c("source_sha256", "source_ids", "test", "effect", "statistic", "thresholds", "colour_decision", "source_values", "decisions") %in% names(de_contract)))
+      stop("OS_INVALID_INPUT: a DE contract replacement must be complete.", call. = FALSE)
+    if (exists(".os_de_validate_test", mode = "function")) .os_de_validate_test(de_contract$test)
+    incoming$definition$de_contract <- NULL
+  }
+  if (!is.null(old$definition$matrix_contract) && replaces_definition &&
+      (is.null(incoming$definition) || ("matrix_contract" %in% names(incoming$definition) && is.null(matrix_contract))))
+    stop("OS_INVALID_INPUT: metadata cannot erase a matrix contract.", call. = FALSE)
+  if (!is.null(matrix_contract)) {
+    if (!identical(matrix_contract$version, "omicstat.matrix-semantics.v1") ||
+        !all(c("source_sha256", "normalization", "original_row_ids", "original_col_ids", "matrix_kind", "quantity", "unit") %in% names(matrix_contract)))
+      stop("OS_INVALID_INPUT: a matrix contract replacement must be complete.", call. = FALSE)
+    incoming$definition$matrix_contract <- NULL
+  }
+  if (!is.null(panel_contract)) {
+    if (exists(".os_validate_panel_contract", mode = "function")) .os_validate_panel_contract(panel_contract)
+    incoming$notes$panel_contract <- NULL
+  }
+  result <- utils::modifyList(old, incoming)
+  if (!is.null(matrix_contract)) result$definition["matrix_contract"] <- list(matrix_contract)
+  if (!is.null(de_contract)) result$definition["de_contract"] <- list(de_contract)
+  if (!is.null(panel_contract)) result$notes["panel_contract"] <- list(panel_contract)
+  result
 }
 
 # plot: a ggplot / patchwork object carrying attr "os_meta" (set by every
@@ -596,6 +648,13 @@ os_save_figure <- function(plot, out_stem, width = "single", height_mm = NULL, j
   jp <- os_journal(journal)
   w <- os_width_mm(width, jp$name)
   meta <- attr(plot, "os_meta") %||% list()
+  candidate_meta <- if (is.null(extra_meta)) meta else .os_merge_figure_meta(meta, extra_meta)
+  if (!is.null(meta$definition$semantic_version) && is.null(candidate_meta$definition$semantic_version))
+    stop("OS_INVALID_INPUT: extra_meta cannot erase a typed semantic contract.", call. = FALSE)
+  if (!is.null(candidate_meta$definition$semantic_version)) {
+    if (!exists("os_semantic_metadata", mode = "function")) stop("OS_MISSING_DEPENDENCY: load fig_semantics.R for typed figure metadata.", call. = FALSE)
+    meta <- os_semantic_metadata(candidate_meta)
+  }
   h <- height_mm %||% meta$default_height_mm %||% round(w * 0.8)
   if (h > jp$max_height) {
     stop(sprintf("OS_FIG_TOO_TALL: %.0f mm exceeds the %s maximum figure height of %d mm; split the figure.",
@@ -621,6 +680,7 @@ os_save_figure <- function(plot, out_stem, width = "single", height_mm = NULL, j
     }
   }
   dir.create(dirname(out_stem), recursive = TRUE, showWarnings = FALSE)
+  prepared_draw <- if (exists(".os_restyle_export",mode="function")) .os_restyle_export(plot,out_stem,root,candidate_meta) else NULL
   files <- list()
   # Render on an opened device; always close it, and delete the partial file
   # if drawing failed (a half-written PDF must never look like an output).
@@ -680,17 +740,34 @@ os_save_figure <- function(plot, out_stem, width = "single", height_mm = NULL, j
   # Optional: written definitions of what is drawn (selection rule, ordering,
   # gene ratio, mean expression, ...). Present only when a builder sets it.
   if (!is.null(meta$definition)) spec$definition <- meta$definition
-  if (!is.null(extra_meta)) spec <- utils::modifyList(spec, extra_meta)
+  if (!is.null(meta$evidence_refs)) spec$evidence_refs <- meta$evidence_refs
+  if (!is.null(extra_meta)) spec <- .os_merge_figure_meta(spec, extra_meta)
+  if (!is.null(spec$definition$semantic_version)) spec <- os_semantic_metadata(spec)
+  if (!is.null(prepared_draw)) spec$restyle <- prepared_draw
   spec_path <- paste0(out_stem, ".figure_spec.json")
-  os_write_json(spec, spec_path)
+  os_write_json(spec, spec_path, digits = if (.os_figure_lossless(spec)) I(17) else I(10))
   invisible(list(files = files, spec = spec_path, spec_obj = spec))
+}
+
+
+.os_figure_lossless <- function(meta) {
+  if(!is.null(meta$definition$semantic_version) || identical(meta$notes$numeric_precision,"binary64_roundtrip"))return(TRUE)
+  panels<-meta$data$panels
+  is.list(panels) && length(panels)>0L && any(vapply(panels,.os_figure_lossless,logical(1)))
 }
 
 # Attach metadata to a ggplot (used by every builder).
 os_with_meta <- function(p, ...) {
   m <- list(...)
   old <- attr(p, "os_meta") %||% list()
-  attr(p, "os_meta") <- utils::modifyList(old, m)
+  meta <- .os_merge_figure_meta(old, m)
+  if(!is.null(old$definition$semantic_version) && is.null(meta$definition$semantic_version))
+    stop("OS_INVALID_INPUT: metadata cannot erase a typed semantic contract.",call.=FALSE)
+  if (!is.null(meta$definition$semantic_version)) {
+    if (!exists("os_semantic_metadata", mode = "function")) stop("OS_MISSING_DEPENDENCY: load fig_semantics.R for typed figure metadata.", call. = FALSE)
+    meta <- os_semantic_metadata(meta)
+  }
+  attr(p, "os_meta") <- meta
   p
 }
 
@@ -705,7 +782,7 @@ os_table_sha256 <- function(df) {
 # 11. Lint: mechanical checks on a built plot before it is saved
 # ---------------------------------------------------------------------------
 # Returns a data.frame(rule, severity, message); empty when clean.
-os_fig_lint <- function(plot, journal = NULL) {
+os_fig_lint <- function(plot, journal = NULL, width_mm = NULL, height_mm = NULL, text_contrast_min = 4.5) {
   jp <- os_journal(journal)
   out <- list()
   add <- function(rule, sev, msg) out[[length(out) + 1]] <<- data.frame(rule = rule, severity = sev, message = msg)
@@ -713,7 +790,7 @@ os_fig_lint <- function(plot, journal = NULL) {
   for (p in plots) {
     if (!inherits(p, "ggplot")) next
     b <- tryCatch(ggplot2::ggplot_build(p), error = function(e) NULL)
-    if (is.null(b)) next
+    if (is.null(b)) { add("FIG-BUILD", "blocker", "ggplot layer could not be built; no successful visual lint claim is possible"); next }
     # text sizes in layers
     for (ld in b$data) {
       if ("size" %in% names(ld) && any(c("label") %in% names(ld))) {
@@ -722,6 +799,16 @@ os_fig_lint <- function(plot, journal = NULL) {
           add("FIG-01", "blocker", sprintf("in-plot text at %.1f pt < %s minimum %d pt", min(pts, na.rm = TRUE), jp$name, jp$min_pt))
         }
         os_assert_latin(ld$label, "in-plot labels")
+        if (exists("os_figure_glyph_audit",mode="function")) {
+          family <- if("family" %in% names(ld) && length(unique(ld$family))==1 && nzchar(ld$family[1])) ld$family[1] else os_font_family()
+          glyphs <- os_figure_glyph_audit(ld$label,family)
+          if(any(!glyphs$available)) add("FIG-GLYPH","blocker",paste("font lacks glyphs:",paste(glyphs$glyph[!glyphs$available],collapse=" ")))
+        }
+        if(all(c("colour","fill") %in% names(ld)) && exists("os_text_contrast_ratio",mode="function")) {
+          keep<-!is.na(ld$colour)&!is.na(ld$fill)&ld$fill!="transparent"
+          if(any(keep) && any(os_text_contrast_ratio(ld$colour[keep],ld$fill[keep])<text_contrast_min))
+            add("FIG-TEXT-CONTRAST","warning",sprintf("text/background contrast below declared %.1f:1 threshold",text_contrast_min))
+        }
       }
     }
     # semantic colours per panel: only DISCRETE colour/fill scales count
@@ -768,7 +855,15 @@ os_fig_lint <- function(plot, journal = NULL) {
     }
     # titles / labels language
     labs <- unlist(lapply(p$labels, function(l) if (is.character(l)) l else NULL))
-    if (length(labs)) os_assert_latin(labs, "axis/legend titles")
+    if (length(labs)) {
+      os_assert_latin(labs, "axis/legend titles")
+      if(exists("os_figure_glyph_audit",mode="function")) {
+        glyphs<-os_figure_glyph_audit(labs)
+        if(any(!glyphs$available)) add("FIG-GLYPH","blocker",paste("axis/legend font lacks glyphs:",paste(glyphs$glyph[!glyphs$available],collapse=" ")))
+      }
+    }
+    layout <- (attr(p,"os_meta") %||% list())$notes$layout_budget
+    if(!is.null(layout) && isTRUE(layout$crowded)) add("FIG-LAYOUT-BUDGET","warning","declared panel/row budget is below its readable physical size; split or paginate without dropping source IDs")
   }
   if (!length(out)) return(data.frame(rule = character(0), severity = character(0), message = character(0)))
   do.call(rbind, out)
@@ -897,7 +992,7 @@ OS_LABEL_MAX_LEADER_MM <- 12
       }))
       rr <- OS_LABEL_POINT_R_MM[["labelled"]]
       own <- cand[, 1] - rr < px[i] & cand[, 2] + rr > px[i] & cand[, 3] - rr < py[i] & cand[, 4] + rr > py[i]
-      inside <- cand[, 1] >= 0 & cand[, 2] <= W & cand[, 3] >= 0 & cand[, 4] <= ymax & !own
+      inside <- cand[, 1] >= pad & cand[, 2] <= W - pad & cand[, 3] >= pad & cand[, 4] <= ymax - pad & !own
       bx <- cand
       for (k in seq_len(nrow(bx))) {
         if (!inside[k]) next
@@ -1082,6 +1177,7 @@ OS_P_ADJUST_NAMES <- c(holm = "Holm", bonferroni = "Bonferroni", hochberg = "Hoc
 # "= 0.012", "= 3.2 x 10^-6", "< 10^-300", "= NA"
 .os_p_value_text <- function(p) {
   if (is.na(p)) return("= NA")
+  if (p == 0) return("below reported numerical precision (bound unknown)")
   if (p < 1e-300) return(paste0("< 10^", OS_MINUS, "300"))
   paste0("= ", os_p_text(p))
 }
@@ -1096,8 +1192,10 @@ OS_P_ADJUST_NAMES <- c(holm = "Holm", bonferroni = "Bonferroni", hochberg = "Hoc
 # printed whenever given). adjusted = FALSE always prints "unadjusted".
 os_p_label <- function(p, test, adjustment = NULL, family_size = NULL,
                        adjusted = identical(OS_FIG$p_display_default, "adjusted"),
-                       form = c("caption", "short")) {
+                       form = c("caption", "short"), statistic_kind = NULL) {
   form <- match.arg(form)
+  if (!is.null(statistic_kind) && !identical(statistic_kind, if (adjusted) "adjusted_p" else "raw_p"))
+    stop("OS_INVALID_INPUT: os_p_label only labels actual raw or adjusted P; q/local FDR/posterior values need their own typed labels.", call.=FALSE)
   p <- .os_check_p(p, "os_p_label")
   if (missing(test) || is.null(test) || !nzchar(test)) {
     stop("OS_MISSING_PARAMETER: os_p_label needs the name of the test.", call. = FALSE)
@@ -1122,6 +1220,33 @@ os_p_label <- function(p, test, adjustment = NULL, family_size = NULL,
   vapply(p, function(x) {
     if (form == "short") return(paste0(if (adjusted) "adj. P " else "unadjusted P ", .os_p_value_text(x)))
     paste0(test, "; ", if (adjusted) paste0(adj_name, "-adjusted P ") else "unadjusted P ", .os_p_value_text(x), fam)
+  }, character(1), USE.NAMES = FALSE)
+}
+
+# In-plot plotmath version of an os_p_label(form = "short") string: the
+# literal "m x 10^e" becomes a true superscript, "P" is italic. Strings that
+# carry no power of ten are returned as quoted plotmath text. Caption text is
+# never passed through here; it stays plain text.
+os_p_label_plotmath <- function(label) {
+  q <- function(z) paste0("\"", gsub("([\"\\\\])", "\\\\\\1", z), "\"")
+  txt <- function(z) {
+    if (!nzchar(z)) return("")
+    parts <- strsplit(z, "P", fixed = TRUE)[[1]]
+    if (grepl("P$", z)) parts <- c(parts, "")
+    out <- character()
+    for (i in seq_along(parts)) {
+      if (nzchar(parts[i])) out <- c(out, q(parts[i]))
+      if (i < length(parts)) out <- c(out, "italic(P)")
+    }
+    paste(out, collapse = "*")
+  }
+  vapply(as.character(label), function(s) {
+    if (is.na(s)) return(q("NA"))
+    m <- regmatches(s, regexec("^(.*?)([0-9.]+ \u00d7 )?10\\^([\u2212-]?[0-9]+)$", s, perl = TRUE))[[1]]
+    if (!length(m)) return(txt(s))
+    head <- paste0(m[2], m[3])
+    sup <- q(m[4])
+    paste0(if (nzchar(head)) paste0(txt(head), "*") else "", "10^", sup)
   }, character(1), USE.NAMES = FALSE)
 }
 
@@ -1287,4 +1412,11 @@ os_cvd_collisions <- function(cols, threshold = OS_FIG$cvd_delta_e_min,
   }
   out <- out[!is.na(out) & grepl("^#[0-9A-Fa-f]{6}", out)]
   sort(unique(toupper(substr(out, 1, 7))), method = "radix")
+}
+
+# Stable entity keys for scientific joins; positional recycling is never a join.
+.os_require_ids <- function(ids, what = "entity IDs") {
+  if (is.null(ids) || !length(ids) || anyNA(ids) || any(!nzchar(as.character(ids))) || anyDuplicated(as.character(ids)))
+    stop(sprintf("OS_INVALID_INPUT: %s must be nonmissing, nonempty and unique.", what), call. = FALSE)
+  as.character(ids)
 }

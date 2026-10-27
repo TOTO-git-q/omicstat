@@ -1,0 +1,38 @@
+{
+  "source_file": "skills/sample-size/scripts/samplesize_qc.R",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_blob": "7f3f9d179e9ab1c0e52c1c1f78b51842396d5412",
+  "source_sha256": "927b67fbf967b24dc68bfb8f487aacb0d2ac2451d18905b2dc7ef0f1b9c4a02d",
+  "guards": [
+    {
+      "original_id": "SS-01",
+      "omicstat_id": "SSZ-01",
+      "condition": "is.null(ctx$dropout) || is.na(ctx$dropout) || ctx$dropout <= 0"
+    },
+    {
+      "original_id": "SS-02",
+      "omicstat_id": "SSZ-02",
+      "condition": "isTRUE(ctx$effect_from_convention)"
+    },
+    {
+      "original_id": "SS-03",
+      "omicstat_id": "SSZ-03",
+      "condition": "!is.null(ctx$power) && !is.na(ctx$power) && ctx$power < 0.8"
+    },
+    {
+      "original_id": "SS-04",
+      "omicstat_id": "SSZ-04",
+      "condition": "surv_design && (is.null(ctx$event_prob) || is.na(ctx$event_prob))"
+    },
+    {
+      "original_id": "SS-05",
+      "omicstat_id": "SSZ-05",
+      "condition": "!is.null(ctx$ratio) && !is.na(ctx$ratio) && (ctx$ratio > 3 || ctx$ratio < 1 / 3)"
+    },
+    {
+      "original_id": "SS-06",
+      "omicstat_id": "SSZ-06",
+      "condition": "!is.null(ctx$alpha) && !is.na(ctx$alpha) && !(ctx$alpha %in% c(0.05, 0.025, 0.01))"
+    }
+  ]
+}

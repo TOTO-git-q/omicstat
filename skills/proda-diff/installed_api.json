@@ -1,0 +1,57 @@
+{
+  "status": "candidate",
+  "module": "proda-diff",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "calls": {
+    "proDA::median_normalization": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "X": "",
+        "spike_in_rows": "NULL"
+      }
+    },
+    "proDA::proDA": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "data": "",
+        "design": "~1",
+        "col_data": "NULL",
+        "reference_level": "NULL",
+        "data_is_log_transformed": "TRUE",
+        "moderate_location": "TRUE",
+        "moderate_variance": "TRUE",
+        "location_prior_df": "3",
+        "n_subsample": "nrow(data)",
+        "max_iter": "20",
+        "epsilon": "0.001",
+        "verbose": "FALSE",
+        "...": ""
+      }
+    },
+    "proDA::convergence": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "proDA::test_diff": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "fit": "",
+        "contrast": "",
+        "reduced_model": "~1",
+        "alternative": "c(\"two.sided\", \"greater\", \"less\")",
+        "pval_adjust_method": "\"BH\"",
+        "sort_by": "NULL",
+        "decreasing": "FALSE",
+        "n_max": "Inf",
+        "verbose": "FALSE"
+      }
+    }
+  }
+}

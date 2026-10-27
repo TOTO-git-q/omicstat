@@ -1,0 +1,59 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "figure_policy": "required",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}",
+        "{root}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/pbmc3k.h5ad",
+      "--outdir",
+      "{outdir}",
+      "--species",
+      "human",
+      "--annotation",
+      "anchor-provided-identifiers",
+      "--sample-col",
+      "sample",
+      "--counts-layer",
+      "X",
+      "--seed",
+      "20260925",
+      "--mito-prefix",
+      "MT-",
+      "--min-genes",
+      "1",
+      "--max-genes",
+      "1000000",
+      "--min-counts",
+      "1",
+      "--max-counts",
+      "1000000000000",
+      "--max-mito-percent",
+      "100",
+      "--min-cells",
+      "1",
+      "--doublet-mode",
+      "skip"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.py",
+    "argv": [
+      "{fixtures}/pbmc3k.h5ad",
+      "{run1}",
+      "{anchor_results}"
+    ]
+  },
+  "owner_review": {
+    "dataset_id": "pbmc3k",
+    "receipt": "owner_dataset.json"
+  }
+}

@@ -1,0 +1,4 @@
+case,argv,expected_code,stage
+unknown-target,"[""--counts"", ""{fixtures}/counts.tsv"", ""--samples"", ""{fixtures}/samples.csv"", ""--reference"", ""untreated"", ""--target"", ""not_a_condition""]",OS_INVALID_PARAMETER,input
+unknown-flag,"[""--counts"", ""{fixtures}/counts.tsv"", ""--samples"", ""{fixtures}/samples.csv"", ""--reference"", ""untreated"", ""--target"", ""treated"", ""--min-cont"", ""10""]",OS_UNKNOWN_FLAG,cli
+missing-design-min-samples,"[""--counts"", ""{fixtures}/counts.tsv"", ""--samples"", ""{fixtures}/samples.csv"", ""--reference"", ""untreated"", ""--target"", ""treated"", ""--covariates"", ""type""]",OS_MISSING_PARAMETER,design

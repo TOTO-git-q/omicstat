@@ -1,0 +1,20 @@
+{
+  "schema_version": "omicstat.study-contract.v1",
+  "study_design": "Invented 40 independent physical items; pinned original counted diagnostic-accuracy arithmetic example, no patients or real biological data.",
+  "analysis_population": "Invented independent physical test items",
+  "estimand": "Explicit-direction full AUC and prespecified cutoff accuracy; requested multi-marker comparisons form a declared primary-versus-rest family.",
+  "exposure_or_intervention": "Invented numeric marker",
+  "comparator": "Invented independent binary reference classes",
+  "outcomes": [
+    {
+      "name": "Binary reference class",
+      "timepoint": "One independent measurement occasion"
+    }
+  ],
+  "covariates": [],
+  "missing_data": "Explicit fail or complete-case policy only; exact same paired comparison set required.",
+  "multiplicity": "The test deliberately specifies adjustment for every multi-marker primary-versus-rest family; no real study recommendation.",
+  "analysis_sets": [
+    "Synthetic numerical/contract tests only, never real owner review or clinical validation"
+  ]
+}

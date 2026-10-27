@@ -1,0 +1,96 @@
+{
+  "schema": "omicstat.port-adaptations.v1",
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/agreement/",
+  "original_manifest": "PORT_SOURCE.json",
+  "original_manifest_preserved": true,
+  "source_manifest_reverified": true,
+  "native_execution_in_this_workspace": false,
+  "numerical_equivalence_demonstrated": false,
+  "changes": [
+    {
+      "scope": "independent_adapter",
+      "change": "OmicStat CLI/module/schema/arg spec, labels, required scientific choices, StudyContract, typed candidate handoff, SHA256 provenance and shared rendering. No MedStat runtime, journal theme, clinical report templates or automatic installer."
+    },
+    {
+      "scope": "icc_irr_only",
+      "change": "Original automatic psych::ICC estimator fallback removed. Missing irr fails. Explicit model/definition/unit/population/same-rater declarations replace auto selection. One-way requires random raters; fixed agreement rationale cannot be blank. This is a reviewable adaptation, not demonstrated numerical equivalence."
+    },
+    {
+      "scope": "binary_primary_package",
+      "change": "Original formula-only availability fallback removed for binary sensitivity companions. epiR must actually run; native errors do not become a synthetic package result."
+    },
+    {
+      "scope": "native_argument_names",
+      "change": "Named original package arguments for suite registry checks: vcd x, irr ratings/model/type/unit/r0/conf.level, Fleiss exact/detail, epiR dat/method/alternative/conf.level. Current CRAN documentation checked only for names; installed versions/defaults unverified."
+    },
+    {
+      "scope": "input_and_resource_guards",
+      "change": "No subject-row expansion for analytic counted tables. Counts outside exact integer range and bootstrap expansion above one million units refuse OS_RESOURCE_LIMIT without subsampling or CI-method changes. Categories outside declared levels refuse even on zero-count cells."
+    },
+    {
+      "scope": "qc_namespace_and_surfaces",
+      "change": "Map registered MS errors to OS, AG QC to unused OAG. Copy five non-QBA QC helpers; preserve original numeric threshold conditions and five warning overrides. QBA14-16 excluded. Clinical reader-report audit is replaced by suite surfaces and remains separately unvalidated."
+    },
+    {
+      "scope": "release_identity",
+      "change": "Preserve original estimate-inside-CI/count/estimand guard, including bootstrap. Compare table values with canonical native object before finish and again at renderer; point estimates are never clipped or substituted."
+    },
+    {
+      "scope": "privacy_and_anchor_definitions",
+      "change": "Preserve three original published example identities and 30 expected quantity checks using external normalized input hashes and test-only independent formulas. No original PEFR row arrays or paper figures are distributed. Local-only external clinical outputs may not be uploaded."
+    },
+    {
+      "scope": "figures",
+      "change": "Display-only shared Bland-Altman bias/95-percent population limits/pointwise CIs/optional prespecified bounds; shared count contingency heatmap with row denominators. Dataset name required. Native render, original-anchor execution and real owner adapter/contact sheet remain pending."
+    }
+  ],
+  "adapted_files": {
+    "scripts/agreement_ported_core.R": {
+      "bytes": 43954,
+      "sha256": "01c2cd140a11282c2c6642ce8160633bdbb8236e53c9c6592ff46a0f0220ca8c",
+      "git_blob": "c207e9b2d0453dff155e4d7df9e5e0a61d629166"
+    },
+    "scripts/agreement_ported_qc.R": {
+      "bytes": 10214,
+      "sha256": "767bc1a09e7d9c4f39d9600ba5e4600cab03046bf24bcc2eb58ae292e88e94b8",
+      "git_blob": "d3ac114cbc610cc8b91ea610b461a06de0f1804f"
+    },
+    "scripts/omicstat_agreement_core.R": {
+      "bytes": 26853,
+      "sha256": "bca799d077695904a19f2e715e92066287233104e50bf13ebd6b1389fff0713d",
+      "git_blob": "5a53d9223ffdb8762614b0b01d9151f037aff2bc"
+    },
+    "scripts/omicstat_agreement_qc.R": {
+      "bytes": 1132,
+      "sha256": "7d39dcb3cf14472cee189ad93467b9dcab18b7c87d01f608e0f0f8134f9796e1",
+      "git_blob": "e01a14bd4dbacf3e8ebbf4309ffd134901834982"
+    },
+    "scripts/omicstat_agreement_report.R": {
+      "bytes": 3321,
+      "sha256": "fb63d2040180462301f47ff9f312e5c2d4333aa4667ef9497dd61bc79f307ef4",
+      "git_blob": "730b76b27aa087f01dcc6598a1e705e94275faf0"
+    },
+    "scripts/run_omicstat_agreement.R": {
+      "bytes": 8249,
+      "sha256": "a208561196ac29c82c5d31ea470cd7578b22b561788a94bd30ed92198e3fd961",
+      "git_blob": "eef0c12b7b6ddf922a8a7d60006f318d19fbf4b4"
+    }
+  },
+  "shared_renderer": {
+    "path": "skills/_shared/scripts/fig_mod_agreement.R",
+    "bytes": 7009,
+    "sha256": "179d9bc98262595dc4eafeee6e03629dc7f163055c7109ed7f3090b8f93b4d35",
+    "git_blob": "f8d56b25f1daf09b0c23285b80f16b3c5d1ab83f"
+  },
+  "excluded_source_scope": [
+    "QBA misclassification bias analysis",
+    "MedStat journal/clinical report layout and broad reader-prose release scanner"
+  ],
+  "scientific_review_pending": [
+    "irr-only versus original psych fallback",
+    "actual epiR return structure and installed defaults",
+    "native source-to-adapter numerical replay",
+    "Fleiss independent oracle",
+    "owner real-data figure integration"
+  ]
+}

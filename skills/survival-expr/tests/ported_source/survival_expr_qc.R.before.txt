@@ -1,0 +1,5 @@
+survival_expr_qc <- function(res) list(
+ os_qc_rule("SRV-01", "Candidate analysis", TRUE, "blocker", "Scientific and production review pending.", "Do not publish candidate inference."),
+ os_qc_rule("SRV-02", "Exploratory cutpoint", res$metadata$exploratory_cutpoint, "blocker", "Optimized cutoff is exploratory; logrank p withheld.", "Validate a frozen prespecified cutoff in an independent cohort."),
+ os_qc_rule("SRV-03", "PH diagnostics", res$metadata$ph_violations > 0, "warning", "Some PH diagnostics are below the declared threshold; no automatic gene filtering.", "Review model assumptions and a prespecified alternative."),
+ os_qc_rule("SRV-04", "Unadjusted gene family", res$metadata$family_size > 1 && res$metadata$adjustment == "none", "warning", "Multiple gene Cox tests are unadjusted.", "Review the declared multiplicity family."))

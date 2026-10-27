@@ -1,0 +1,120 @@
+[
+  {
+    "source_path": "skills/cpm-pipeline/scripts/cpm_core.R",
+    "reference_path": "skills/glmnet-coxsig/tests/ported_source/cpm_core_selected_before.R.txt",
+    "target_path": "skills/glmnet-coxsig/scripts/cpm_ported_core.R",
+    "original_extracted_normalized_lf_sha256": "041ffd434cefc23aa18b14f1d71b8f982f2c4d27ad5b8a71be8d4f2419bc88b7",
+    "functions": [
+      {
+        "name": "cpm_validate_outcome_support",
+        "original_normalized_lf_sha256": "02eb8dda971eed06c4db50b76a27582a24c98fbd50247a41dc5c701bdceb5b17",
+        "adapted_function_sha256": "8fbe55978e18428b711c959836d51ced14b9ce05b21b9da4c3db12b8697af60e",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": "cpm_sample_size",
+        "original_normalized_lf_sha256": "d628c3a8f4026584d77509690a80ec65f23ba0bb65920018709092d51cfbd441",
+        "adapted_function_sha256": "32dbd367e57aad2002a22db5b24c0d5e2d3942bea1d9765a533f978662b57bd8",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": "cpm_harrell_c",
+        "original_normalized_lf_sha256": "6607cb42ed4cb49922ee0093c1fa7f6e453901fb9c4a7766d30214f7a442c154",
+        "adapted_function_sha256": "6607cb42ed4cb49922ee0093c1fa7f6e453901fb9c4a7766d30214f7a442c154",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": "cpm_citl",
+        "original_normalized_lf_sha256": "75372f9fb0ad19e18978cbc9b97406bfd2444161e62d5cfa1c80225f4b99419e",
+        "adapted_function_sha256": "75372f9fb0ad19e18978cbc9b97406bfd2444161e62d5cfa1c80225f4b99419e",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": "cpm_cal_slope",
+        "original_normalized_lf_sha256": "ae3e66eef075c137bebf5b4594ee060c75a0243bd95ec7f1b3845610b717ac00",
+        "adapted_function_sha256": "ae3e66eef075c137bebf5b4594ee060c75a0243bd95ec7f1b3845610b717ac00",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": ".cpm_validate_custom",
+        "original_normalized_lf_sha256": "7b81cde4c44c2cef2eba525df0e33b0851ad06be3ef1a0f1097f1eb498c79673",
+        "adapted_function_sha256": "f65cbd670fd42f4833d262e53baa295ca2367fdc6e7e7a3f6b16f47dff985898",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry.",
+          "Replace only model fit/evaluation callbacks with the existing penalized glmnet pipeline. Source CPM instead re-fits selected predictors without penalty.",
+          "Use measured apparent/training calibration slopes rather than the source constant1; retain apparent-minus-average-optimism arithmetic and the source percentile construction with explicit limitation.",
+          "Record every attempted replicate, independent original subject count and native failure; refuse nonfinite metrics as well as missing metrics. No hidden retries or replacement resamples."
+        ]
+      },
+      {
+        "name": "cpm_z_ci",
+        "original_normalized_lf_sha256": "c69ada83e77a7ef4b2ff8fde1026b4448dff4112e451918bfe8e6ae52272af93",
+        "adapted_function_sha256": "c69ada83e77a7ef4b2ff8fde1026b4448dff4112e451918bfe8e6ae52272af93",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": "cpm_external_eval",
+        "original_normalized_lf_sha256": "dc4ac351ee0ba2484435a1376d8e426e31c518138cb51ab2e9c59875f60d021c",
+        "adapted_function_sha256": "e9fb0ab5c830953297b01dfea8fc1aec0a9885c85de08559e0d838d53addf79c",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry.",
+          "Pass an internal fixed-coefficient prediction callback and a frozen training-only baseline survival function instead of rms::Survival/cpm_lp; never fit or update the external prediction model."
+        ]
+      }
+    ]
+  },
+  {
+    "source_path": "skills/cpm-pipeline/scripts/calibration_binned.R",
+    "reference_path": "skills/glmnet-coxsig/tests/ported_source/cpm_binned_selected_before.R.txt",
+    "target_path": "skills/glmnet-coxsig/scripts/cpm_ported_binned.R",
+    "original_extracted_normalized_lf_sha256": "b8cd563f0ea7eea1b4da344c641a2d496fd9d921cb35a5448aaa0b306b21ee8b",
+    "functions": [
+      {
+        "name": "cpm_calibration_binned",
+        "original_normalized_lf_sha256": "bbf4f17fd0d596284756835ed6b5c17bc2b6b4e97c876cd0e1a921ca995c2074",
+        "adapted_function_sha256": "129a3bbcb3237f0ac0975738b4723b2c5ed52fab894830da6f8ab0fe689b03cf",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry.",
+          "Numeric source algorithm unchanged. Public adapter rejects invalid rows before this helper, accounts for omitted bins, and uses the OmicStat figure builder rather than copying the source plot theme."
+        ]
+      }
+    ]
+  },
+  {
+    "source_path": "skills/cpm-pipeline/scripts/cpm_qc.R",
+    "reference_path": "skills/glmnet-coxsig/tests/ported_source/cpm_qc_selected_before.R.txt",
+    "target_path": "skills/glmnet-coxsig/scripts/cpm_ported_qc.R",
+    "original_extracted_normalized_lf_sha256": "823f9c4d221206b5d9abf35808a702942c98f6c050dfa842f963812083b503c7",
+    "functions": [
+      {
+        "name": ".cpm_row",
+        "original_normalized_lf_sha256": "59074b6a2437b290b4a18fe45179fb64a2054b25775a64711c83570e19e6ce51",
+        "adapted_function_sha256": "59074b6a2437b290b4a18fe45179fb64a2054b25775a64711c83570e19e6ce51",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry."
+        ]
+      },
+      {
+        "name": "run_qc",
+        "original_normalized_lf_sha256": "b8acdc73bc257140c789c1ba12ac858b2047c2b737f7477748e7ff110cd9487b",
+        "adapted_function_sha256": "ba039380d29d7f9e1931d0ccced15313a4646073be3f131ccae8889e39f44227",
+        "adaptations": [
+          "Map source diagnostics to the existing OS error registry.",
+          "Keep source trigger formulas, but remove worked-example numerical precision claims and identify survival O/E instead of a logistic intercept. The public adapter uses only CPM-01/04/05/06; all other source checks are explicitly outside this selected port, never emitted as passed checks."
+        ]
+      }
+    ]
+  }
+]

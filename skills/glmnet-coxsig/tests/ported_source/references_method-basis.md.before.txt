@@ -1,0 +1,23 @@
+# Method basis
+
+Primary glmnet authors, Regularized Cox Regression, bundled with production-pinned
+CRAN glmnet5.0 as inst/doc/Coxnet.pdf. Page3 independently prints V1..V8 for s=.05;
+PDF SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039.
+https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz
+The official archive was compiled in a separate isolated R library. The developer inspected
+its printed page3 before choosing the production-matching anchor source. Half-last-place
+tolerance is retained. The initial older glmnet4.1-8 printed anchors are preserved separately
+as anchors-glmnet4.1-8.reference.json; its successful trial is not mixed into final5.0 evidence.
+This is explicit version alignment with env/pkg_lock.csv, not fitting tolerances to output.
+CoxExample is a mathematical simulation, not a biological expression study. Limma produces
+the actual typed boundary fixture; extra simulated genes are not in the selected Cox family.
+
+Current author documentation: https://trevorhastie.r-universe.dev/glmnet/doc/Coxnet.html
+Breslow is supplied explicitly because glmnet5.1 changes its default. Validation freezes
+original-scale coefficients and never calls glmnet again. Coefficient p-values are not reported.
+
+https://stat.ethz.ch/CRAN/web/packages/timeROC/index.html
+Blanche et al2013 doi10.1002/sim.5958. timeROC0.4.1 uses marginal Kaplan-Meier IPCW;
+iid uncertainty is explicitly disabled, so no AUC CI is reported. Smoke tests additionally check
+perfect/reversed ranking and tied scores against elementary uncensored AUC identities.
+The survival namespace is explicitly attached because pec's marginal formula resolves Surv by name.

@@ -1,0 +1,8 @@
+a <- commandArgs(FALSE);here <- dirname(normalizePath(sub("^--file=","",a[grepl("^--file=",a)][1])))
+source(file.path(here,"../scripts/readers_io.R"))
+root <- tempfile("readers-");dir.create(root)
+err <- function(expr,code="OS_INVALID_INPUT") stopifnot(grepl(code,tryCatch({force(expr);"NO ERROR"},error=conditionMessage),fixed=TRUE))
+p <- file.path(root,"clinical.csv");writeLines(c("id,time,event","a,10,1","b,20,0"),p)
+stopifnot(os_read_clinical_table(p,"id","time","event","days")$handoff_type=="clinical_table")
+writeLines(c("id,time,event","a,10,2"),p);err(os_read_clinical_table(p,"id","time","event","days"))
+cat("ALL PASSED: clinical-table reader positive/negative cases\n")

@@ -57,7 +57,7 @@
 | --power | required | yes | soft_power |
 | --power-reason | required | yes | none |
 | --powers | "1,2,3,4,5,6,7,8,9,10,12,14,16,18,20" | no | none |
-| --network-type | "unsigned" | no | network_type |
+| --network-type | required (locked function default "unsigned"; package author recommends "signed") | yes | network_type |
 | --tom-type | "signed" | no | none |
 | --min-module-size | none | no | min_module_size |
 | --deep-split | 2L | no | deep_split |

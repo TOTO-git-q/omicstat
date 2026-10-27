@@ -1,0 +1,35 @@
+{
+  "caption": "Coefficient paths from the supplied penalized model. Each line is a feature; selection is performed upstream, never from this plot.",
+  "counts": {
+    "n_features": 2
+  },
+  "data": [],
+  "encodings": [],
+  "evidence_refs": [
+    {
+      "family": "lasso_path",
+      "reason": "Per-family independent visual review is incomplete",
+      "records": [],
+      "required_independent_records": 20,
+      "status": "pending"
+    }
+  ],
+  "figure_type": "lasso_path",
+  "files": {
+    "png": {
+      "path": "lasso.png",
+      "sha256": "0255ae1c77bf81a00869f1358a81e02f0cde2448081586db71a1cc3143ad9148"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 65,
+  "journal": "nature",
+  "notes": [],
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "selected_lambda": 0.1
+  },
+  "width_mm": 89
+}

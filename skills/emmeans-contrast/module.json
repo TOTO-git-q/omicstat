@@ -1,0 +1,193 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "emmeans-contrast",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_emmeans_contrast.R",
+  "version": "0.1.0",
+  "qc_prefix": "EMM",
+  "engine_packages": [
+    "emmeans"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "development_lmerMod",
+      "development_model_metadata"
+    ],
+    "outputs": [
+      "development_emmGrid",
+      "development_model_metadata"
+    ]
+  },
+  "figure_builders": [
+    "os_model_figures"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 45,
+    "question": "Declared marginal contrasts from a verified lme4 candidate model"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--study-contract",
+      "required": false,
+      "source": "candidate entry script",
+      "default": "none",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--from-run",
+      "required": true,
+      "source": "candidate entry script",
+      "default": "required",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--factor",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--weights",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "equal|proportional",
+      "role": "scientific"
+    },
+    {
+      "flag": "--df-method",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "kenward-roger|satterthwaite|asymptotic",
+      "role": "scientific"
+    },
+    {
+      "flag": "--adjust",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "none|tukey|bonferroni|sidak|holm",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--development-mode",
+      "default": "off",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--longitudinal",
+      "required": false,
+      "default": false,
+      "source": "Reviewed source-bound CLI literal and conditional guard; native help capture pending",
+      "type_label": "switch",
+      "role": "scientific"
+    },
+    {
+      "flag": "--by",
+      "required": false,
+      "default": null,
+      "source": "Reviewed source-bound CLI literal and conditional guard; native help capture pending",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "longitudinal = true"
+      ]
+    },
+    {
+      "flag": "--time-levels",
+      "required": false,
+      "default": null,
+      "source": "Reviewed source-bound CLI literal and conditional guard; native help capture pending",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "longitudinal = true"
+      ]
+    },
+    {
+      "flag": "--dataset-name",
+      "required": false,
+      "default": null,
+      "source": "Reviewed source-bound CLI literal and conditional guard; native help capture pending",
+      "type_label": "string",
+      "role": "presentation",
+      "conditional_required": true,
+      "required_when": [
+        "longitudinal = true"
+      ]
+    },
+    {
+      "flag": "--spec",
+      "required": false,
+      "default": null,
+      "source": "Existing run_emmeans_contrast.R replay declaration",
+      "type_label": "path",
+      "role": "input"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 43,
+    "discovery_profile": {
+      "module": "emmeans-contrast",
+      "epmc_query": "METHODS:\"emmeans\" OR METHODS:\"marginal means\"",
+      "meta": false,
+      "signal_regex": "(?:emmeans|marginal means)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/longitudinal-change/scripts/longitudinal_core.R",
+  "lane_image": "omicstat-r:2026.10.4"
+}

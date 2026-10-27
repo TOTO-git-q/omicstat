@@ -1,0 +1,133 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "gsva-score",
+  "lane": "R",
+  "domain": "enrichment",
+  "entry": "scripts/run_gsva_score.R",
+  "version": "1.1.0",
+  "qc_prefix": "GV",
+  "engine_packages": [
+    "GSVA",
+    "BiocParallel"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "gene_set_sizes",
+      "gene_sets",
+      "sample_table"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "One pathway score per sample; not an automatic inference route",
+    "order": 14
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "gsva-score",
+      "rule_id": "PUB-M-GSVA_SCORE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Use the module-specific full output table and identified analysis units; distinguish effect estimation from descriptive QC, embeddings and scores"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review"
+      ],
+      "narrative_points": [
+        "One pathway score per sample; not an automatic inference route",
+        "Report exact user choices, locked package versions, seed and measured sample/cell/gene denominators",
+        "Do not claim numerical acceptance, literature majorities or external predictive accuracy from this source build"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "cell-level P values establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive or design-supported association, matching the declared estimand"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--input-scale",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "vst|logcpm|normalized_array|counts",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 12,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "gsva-score",
+      "entry_script": "scripts/run_gsva_score.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "2dfd5b041f4d0f207ad1516a7a1a13b8e4b2f1e9a65e351e0be5b26c9522a918",
+    "pack_present": true,
+    "implemented_new": false
+  }
+}

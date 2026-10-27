@@ -1,0 +1,62 @@
+[
+  {
+    "metric": "backfit dose 0",
+    "expected": 0.5500692,
+    "tolerance": 1e-06,
+    "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+    "scope": "installed documented-data inverse helper; printed reference",
+    "id": "drc-calibrate-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "backfit dose 0.94",
+    "expected": 0.7743783,
+    "tolerance": 1e-06,
+    "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+    "scope": "installed documented-data inverse helper; printed reference",
+    "id": "drc-calibrate-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "backfit dose 1.88",
+    "expected": 1.8744292,
+    "tolerance": 1e-06,
+    "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+    "scope": "installed documented-data inverse helper; printed reference",
+    "id": "drc-calibrate-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "backfit dose 3.75",
+    "expected": 3.78305,
+    "tolerance": 1e-06,
+    "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+    "scope": "installed documented-data inverse helper; printed reference",
+    "id": "drc-calibrate-04",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "backfit dose 7.5",
+    "expected": 7.0811832,
+    "tolerance": 1e-06,
+    "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+    "scope": "installed documented-data inverse helper; printed reference",
+    "id": "drc-calibrate-05",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "backfit dose 15",
+    "expected": 10.1667582,
+    "tolerance": 1e-06,
+    "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+    "scope": "installed documented-data inverse helper; printed reference",
+    "id": "drc-calibrate-06",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

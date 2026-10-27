@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
-# Build the omicstat-r image from env/omicstat-env.json (the only pin source).
+# Build the omicstat-r image from env/r-env.json (the only pin source).
 # Usage: bash env/build.sh            (from anywhere; needs docker + internet)
 # Writes: env/pkg_lock.csv (package lock copied out of the image)
 #         env/image_id.txt (image digest recorded in every run's provenance)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-cfg() { python3 -c "import json,sys; print(json.load(open('$ROOT/env/omicstat-env.json'))[sys.argv[1]])" "$1"; }
+cfg() { python3 -c "import json,sys; print(json.load(open('$ROOT/env/r-env.json'))[sys.argv[1]])" "$1"; }
+# Bootstrap recipes cannot reconstruct appended candidate layers.
+python3 - "$ROOT/env/r-env.json" <<'PYGUARD'
+import json,sys
+if json.load(open(sys.argv[1])).get('candidate_history'):
+    sys.exit('Active lineage has promoted candidate layers; prepare a new offline candidate from the archived sources, never rebuild a canonical tag with the bootstrap recipe.')
+PYGUARD
 IMAGE="$(cfg image):$(cfg image_tag)"
 base_id="$(docker image inspect "$(cfg addon_base_image)" --format '{{.Id}}')"
 if [ "$base_id" != "$(cfg addon_base_image_id)" ]; then

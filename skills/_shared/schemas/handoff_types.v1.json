@@ -1,0 +1,1056 @@
+{
+  "schema": "omicstat.handoff-types.v1",
+  "types": [
+    {
+      "id": "count_matrix",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "count matrix"
+    },
+    {
+      "id": "expression_matrix",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "expression matrix"
+    },
+    {
+      "id": "batch_corrected_matrix",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "canonical",
+      "description": "batch corrected matrix"
+    },
+    {
+      "id": "sample_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "sample table"
+    },
+    {
+      "id": "feature_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "feature table"
+    },
+    {
+      "id": "ranked_list",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "ranked list"
+    },
+    {
+      "id": "enrichment_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "enrichment table"
+    },
+    {
+      "id": "gene_sets",
+      "carriers": [
+        "gmt",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "gene sets"
+    },
+    {
+      "id": "colour_registry",
+      "carriers": [
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "colour registry"
+    },
+    {
+      "id": "Seurat",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "Seurat",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Seurat"
+    },
+    {
+      "id": "SingleCellExperiment",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "SingleCellExperiment",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "SingleCellExperiment"
+    },
+    {
+      "id": "AnnData",
+      "carriers": [
+        "h5ad"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "AnnData"
+    },
+    {
+      "id": "DESeqDataSet",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "DESeqDataSet",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "DESeqDataSet"
+    },
+    {
+      "id": "DGEList",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "DGEList",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "DGEList"
+    },
+    {
+      "id": "MArrayLM",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "MArrayLM",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "MArrayLM"
+    },
+    {
+      "id": "EList",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "EList",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "EList"
+    },
+    {
+      "id": "MAF",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "MAF",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "MAF"
+    },
+    {
+      "id": "WGCNA_network",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "WGCNA_network",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "WGCNA network"
+    },
+    {
+      "id": "ranked_list_meta",
+      "carriers": [
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "ranked list meta"
+    },
+    {
+      "id": "gene_list",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "gene list"
+    },
+    {
+      "id": "eligible_universe",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "eligible universe"
+    },
+    {
+      "id": "infiltration",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "infiltration"
+    },
+    {
+      "id": "module_eigengenes",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "module eigengenes"
+    },
+    {
+      "id": "sv_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "sv table"
+    },
+    {
+      "id": "cell_metadata",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "cell metadata"
+    },
+    {
+      "id": "gene_set_sizes",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "gene set sizes"
+    },
+    {
+      "id": "rds",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "rds"
+    },
+    {
+      "id": "cell_proportions",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "cell proportions"
+    },
+    {
+      "id": "trajectory",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "trajectory"
+    },
+    {
+      "id": "pseudotime",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "pseudotime"
+    },
+    {
+      "id": "cellchat_network",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "cellchat network"
+    },
+    {
+      "id": "aucell_scores",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "aucell scores"
+    },
+    {
+      "id": "singler_predictions",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "singler predictions"
+    },
+    {
+      "id": "pseudobulk_counts",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "pseudobulk counts"
+    },
+    {
+      "id": "cluster_assignments",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "cluster assignments"
+    },
+    {
+      "id": "embedding",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "embedding"
+    },
+    {
+      "id": "marker_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "marker table"
+    },
+    {
+      "id": "sc_reference",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "sc reference"
+    },
+    {
+      "id": "prediction_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "prediction table"
+    },
+    {
+      "id": "sc_conversion",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "sc conversion"
+    },
+    {
+      "id": "qc_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "qc table"
+    },
+    {
+      "id": "effect_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "effect table"
+    },
+    {
+      "id": "cox_signature",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "cox_signature",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "cox signature"
+    },
+    {
+      "id": "calibration_model",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "calibration_model",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "calibration model"
+    },
+    {
+      "id": "expression_scores",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "expression scores"
+    },
+    {
+      "id": "tximport",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "tximport",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "tximport"
+    },
+    {
+      "id": "methylation_array",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "methylation_array",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "methylation array"
+    },
+    {
+      "id": "peak_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "peak table"
+    },
+    {
+      "id": "fragments",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "fragments"
+    },
+    {
+      "id": "clinical_table",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "clinical table"
+    },
+    {
+      "id": "activity_matrix",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "activity matrix"
+    },
+    {
+      "id": "spatial_coordinates",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "spatial coordinates"
+    },
+    {
+      "id": "spliced_counts",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "spliced counts"
+    },
+    {
+      "id": "unspliced_counts",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "unspliced counts"
+    },
+    {
+      "id": "velocity",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "velocity"
+    },
+    {
+      "id": "fate_probabilities",
+      "carriers": [
+        "csv",
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "fate probabilities"
+    },
+    {
+      "id": "scvi_model_file",
+      "carriers": [
+        "json",
+        "rds"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "module_local",
+      "description": "scvi model checkpoint component; opaque bytes"
+    },
+    {
+      "id": "development_model_metadata",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "module_local",
+      "description": "Candidate model metadata; not independent evidence of acceptance"
+    },
+    {
+      "id": "idat_files",
+      "carriers": [
+        "rds",
+        "json"
+      ],
+      "r_class": null,
+      "columns": [
+        "sample_id",
+        "basename",
+        "green",
+        "red",
+        "green_sha256",
+        "red_sha256"
+      ],
+      "inference_allowed": false,
+      "display_only": false,
+      "status": "module_local",
+      "description": "SHA-bound paired IDAT file inventory; not a decoded methylation object. A minfi module must decode and validate channels before inference."
+    },
+    {
+      "id": "development_drc",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "drc",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Quarantined candidate model; only explicit candidate consumers may use it"
+    },
+    {
+      "id": "development_lmerMod",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "lmerMod",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Quarantined candidate model; only explicit candidate consumers may use it"
+    },
+    {
+      "id": "development_emmGrid",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "emmGrid",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Quarantined candidate model; only explicit candidate consumers may use it"
+    },
+    {
+      "id": "development_drc-calibrate",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Quarantined candidate model; only explicit candidate consumers may use it"
+    },
+    {
+      "id": "development_nlme-dose",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "nlme",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Quarantined candidate model; only explicit candidate consumers may use it"
+    },
+    {
+      "id": "development_group_comparison",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "module_local",
+      "description": "Unsealed suite group-comparison development object; never accepted downstream inference."
+    },
+    {
+      "id": "development_ddct",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "module_local",
+      "description": "Unsealed biological-unit qPCR normalization; no accepted downstream inference."
+    },
+    {
+      "id": "development_expression_survival",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "module_local",
+      "description": "Candidate per-gene continuous expression Cox models, never an accepted frozen signature"
+    },
+    {
+      "id": "ambient_corrected_counts",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": false,
+      "status": "module_local",
+      "description": "Candidate floating-point ambient-corrected matrix; never raw counts. Separate scientific approval and explicit downstream contract required."
+    },
+    {
+      "id": "analysis_table",
+      "carriers": [
+        "csv"
+      ],
+      "r_class": null,
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Generic descriptive or diagnostic analysis table; consumer must explicitly validate scientific role before inference"
+    },
+    {
+      "id": "tximport_bundle",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": false,
+      "status": "module_local",
+      "description": "Candidate tximport counts/abundance/effective-length bundle; estimated fractional counts must not masquerade as raw count_matrix. Offset semantics require explicit compatible consumer."
+    },
+    {
+      "id": "cnv_profile",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": false,
+      "status": "module_local",
+      "description": "Candidate RNA-derived relative CNV profile with coordinates/reference/units; never absolute DNA copies or diagnostic malignancy."
+    },
+    {
+      "id": "minfi_methylset",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "MethylSet",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Native minfi Meth/Unmeth plus namespaced complete beta/M assays; array intensities are never bisulfite sequencing counts"
+    },
+    {
+      "id": "minfi_rgchannelset",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "RGChannelSet",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Unmodified native raw array red/green intensities and control addresses"
+    },
+    {
+      "id": "bisulfite_bsseq",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "BSseq",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Native complete integer methylated and coverage counts on explicit1-based CpG coordinates with genome provenance"
+    },
+    {
+      "id": "diffbind_model",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "DBA",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Native fitted DiffBind design; complete raw consensus supplied separately"
+    },
+    {
+      "id": "peak_annotation",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "csAnno",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Native ChIPseeker descriptive peak annotation, not a causal link or enrichment test"
+    },
+    {
+      "id": "SummarizedExperiment",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "SummarizedExperiment",
+      "columns": [],
+      "inference_allowed": true,
+      "display_only": false,
+      "status": "canonical",
+      "description": "Native complete assays and optional genomic row ranges; assay semantics/species/genome must be bound in handoff state"
+    },
+    {
+      "id": "development_sample_size_plan",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Unsealed a priori biological-unit/event planning object; planning effects are assumptions, never estimated group effects or observed counts."
+    },
+    {
+      "id": "development_agreement_model",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Unsealed design-bound agreement result; model/definition/unit and uncertainty retained. Does not authorize universal interchangeability, validity or diagnostic accuracy."
+    },
+    {
+      "id": "development_roc_model",
+      "carriers": [
+        "rds"
+      ],
+      "r_class": "list",
+      "columns": [],
+      "inference_allowed": false,
+      "display_only": true,
+      "status": "candidate",
+      "description": "Unsealed pROC discrimination result with exact direction, source counts and explicit comparison/cutoff semantics. No clinical utility or external validation claim."
+    }
+  ]
+}

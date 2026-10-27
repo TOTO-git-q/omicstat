@@ -175,7 +175,7 @@ if(is.null(g))cat("SKIP: GSE33005 F5/F6 absent\n")else{
   check(ht$status!=0&&any(grepl("OS_HANDOFF_MISMATCH",ht$out)),"tampered upstream refused")
   for(f in c("volcano","md")){
    sp<-jsonlite::fromJSON(file.path(a0,"figures",paste0(f,".figure_spec.json")))
-   check(file.exists(file.path(a0,"figures",paste0(f,".png")))&&grepl("adjusted P",sp$caption),paste(f,"caption and PNG"))
+   check(file.exists(file.path(a0,"figures",paste0(f,".png")))&&grepl("adjusted_p < 0.05",sp$caption,fixed=TRUE),paste(f,"caption and PNG"))
   }
   golden<-c("tables/feature_table.csv","tables/limma_full.csv","tables/direction_summary.csv","tables/feature_annotation.csv","draft/methods_results.md","results/limma_results.json","figures/volcano.figure_spec.json","figures/md.figure_spec.json")
   if(nzchar(Sys.getenv("OMICSTAT_WRITE_GOLDEN")))os_golden_write(mod,a0,golden)

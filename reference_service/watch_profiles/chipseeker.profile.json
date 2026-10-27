@@ -1,0 +1,10 @@
+{
+ "module": "chipseeker",
+ "epmc_query": "METHODS:\"ChIPseeker\"",
+ "meta": false,
+ "signal_regex": "\\bChIPseeker\\b",
+ "signal_require_regex": "\\bChIPseeker\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile from the 2026-10 coverage ranking: accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

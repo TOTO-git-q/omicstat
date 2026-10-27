@@ -50,7 +50,7 @@ omicstat_selftest_draft <- function(res, qc, counts, outdir, seed, journal, figu
     "## Methods",
     "",
     sprintf(paste("The omicstat environment self-test (module %s %s) compared the running R session with the",
-                  "environment pins in env/omicstat-env.json (env_version %s: R %s, Bioconductor %s) using %d",
+                  "environment pins in env/r-env.json (env_version %s: R %s, Bioconductor %s) using %d",
                   "rules (ST-01 to ST-%02d). A deterministic synthetic feature table (%s features, seed %d) was",
                   "written with the shared feature-table writer and drawn as a volcano plot with the shared",
                   "figure layer (journal preset %s; adjusted P < %s and |log2 fold change| > %s)."),

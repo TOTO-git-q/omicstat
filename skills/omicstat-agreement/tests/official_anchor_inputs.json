@@ -1,0 +1,60 @@
+{
+  "schema": "omicstat.external-anchor-inputs.v1",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_blob": "aa08f783a0d41a4ee37f4dc3c8591a13b4eda89c",
+  "data_in_repository": true,
+  "repository_path": "tests/fixtures/published_anchor_inputs",
+  "native_run_performed": false,
+  "digest_rule": "UTF-8 compact ensure_ascii=true JSON {columns:[...],rows:[...]}; declared columns and exact row order; numeric values must be integers. No newline.",
+  "expected_digest_origin": "Computed from pinned source text; this is an expected input identity, not evidence of an actual download or run.",
+  "datasets": [
+    {
+      "id": "sas_freq_skin",
+      "file": "skin.csv",
+      "columns": [
+        "derm1",
+        "derm2",
+        "n"
+      ],
+      "integer_columns": [
+        "n"
+      ],
+      "rows": 16,
+      "normalized_sha256": "1c1d3a27c513fe49898ed49a2c20d820327f472bd5e0677929bd2b1f7154ebdc"
+    },
+    {
+      "id": "bland_altman_1986_pefr",
+      "file": "pefr.csv",
+      "columns": [
+        "subject",
+        "wright",
+        "mini"
+      ],
+      "integer_columns": [
+        "wright",
+        "mini"
+      ],
+      "rows": 17,
+      "normalized_sha256": "98dbf63f887b1ce081b4fd1037969b913e93dad8a4158248baf3fa678c8c984d"
+    },
+    {
+      "id": "shrout_fleiss_1979",
+      "file": "sf.csv",
+      "columns": [
+        "target",
+        "j1",
+        "j2",
+        "j3",
+        "j4"
+      ],
+      "integer_columns": [
+        "j1",
+        "j2",
+        "j3",
+        "j4"
+      ],
+      "rows": 6,
+      "normalized_sha256": "a5109877ab7ec0901aab8fd886e8a3bc68fccd06f2c04bda53bd48ee76618679"
+    }
+  ]
+}

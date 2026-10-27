@@ -1,0 +1,20 @@
+{
+  "schema_version": "omicstat.study-contract.v1",
+  "study_design": "Invented independent physical item measurement/rater contract test; no people or biological observations.",
+  "analysis_population": "Project-invented independent physical test items",
+  "estimand": "The route explicitly declares signed instrument difference, ICC form or categorical chance agreement.",
+  "exposure_or_intervention": "Measurement or rating method A",
+  "comparator": "Other explicitly named measurements or raters",
+  "outcomes": [
+    {
+      "name": "Synthetic instrument measurement or categorical rating",
+      "timepoint": "One independent paired occasion"
+    }
+  ],
+  "covariates": [],
+  "missing_data": "Missing ratings are deliberately refused, never deleted or imputed.",
+  "multiplicity": "No automatic family adjustment or post-hoc method choice; bootstrap intervals are pointwise.",
+  "analysis_sets": [
+    "Synthetic contract tests only; never real-data owner evidence or manuscript inference"
+  ]
+}

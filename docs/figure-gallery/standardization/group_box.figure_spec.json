@@ -1,0 +1,49 @@
+{
+  "caption": "Points are biological units; deterministic horizontal jitter does not change values. Box: median, quartiles and 1.5-IQR whiskers; all observations remain visible. Control 5 biological units; Treated 5 biological units Welch t; unadjusted P = 0.030",
+  "counts": {
+    "n_units": 10,
+    "per_group": {
+      "Control": 5,
+      "Treated": 5
+    }
+  },
+  "data": [],
+  "encodings": [],
+  "evidence_refs": [
+    {
+      "family": "group_comparison",
+      "reason": "Per-family independent visual review is incomplete",
+      "records": [
+        {
+          "independent_figure_key": "10.1038/s41467-021-27150-6::Figure 3",
+          "path": "docs/figure-evidence/records/0013_buettner_2021_fig3.json",
+          "record_id": "0013",
+          "sha256": "038b9b7501ea10e470f849896f638d0f60c2969b45100fb58705100371b19fe9",
+          "source_ref": "research/figure-evidence-301-20261015",
+          "support": "transferable_visual_design_only"
+        }
+      ],
+      "required_independent_records": 20,
+      "status": "pending"
+    }
+  ],
+  "figure_type": "group_comparison",
+  "files": {
+    "png": {
+      "path": "group_box.png",
+      "sha256": "cdfc3bfc74e28c6e210fae292687847404448574943728bb95e1c1ed9381fa6a"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 75,
+  "journal": "nature",
+  "notes": {
+    "display": "box",
+    "unit_col": "unit"
+  },
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

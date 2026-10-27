@@ -1,0 +1,204 @@
+{
+  "module": "proda-diff",
+  "note": "Candidate installed API inventory in omicstat-r-exp:20261015; not scientific acceptance or a production seal. See installed_api.json for every formal, including omitted defaults.",
+  "package_versions": {
+    "proDA": "1.26.0"
+  },
+  "flag_defaults": {},
+  "accessors": [],
+  "calls": [
+    {
+      "fn": "proDA::median_normalization",
+      "args": {
+        "X": {
+          "value": "mat",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "proDA::proDA",
+      "args": {
+        "data": {
+          "value": "mat",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "design": {
+          "value": "prep$design",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "~1"
+        },
+        "data_is_log_transformed": {
+          "value": "TRUE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "moderate_location": {
+          "value": "TRUE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "moderate_variance": {
+          "value": "TRUE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "location_prior_df": {
+          "value": "3",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "3"
+        },
+        "n_subsample": {
+          "value": "nrow(mat)",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "nrow(data)"
+        },
+        "max_iter": {
+          "value": "20",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "20"
+        },
+        "epsilon": {
+          "value": "0.001",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "0.001"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "FALSE"
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "proDA::convergence",
+      "args": {
+        "object": {
+          "value": "fit",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "proDA::test_diff",
+      "args": {
+        "fit": {
+          "value": "fit",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "contrast": {
+          "value": "\"target - reference\"",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "alternative": {
+          "value": "\"two.sided\"",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "c(\"two.sided\", \"greater\", \"less\")"
+        },
+        "pval_adjust_method": {
+          "value": "\"BH\"",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "\"BH\""
+        },
+        "sort_by": {
+          "value": "NULL",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "n_max": {
+          "value": "Inf",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "Inf"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "FALSE"
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    }
+  ],
+  "status": "development_unsealed",
+  "installed_api_status": "candidate_verified",
+  "module_version": "0.1.0",
+  "captured_signatures": {
+    "proDA::median_normalization": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "X": "",
+        "spike_in_rows": "NULL"
+      }
+    },
+    "proDA::proDA": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "data": "",
+        "design": "~1",
+        "col_data": "NULL",
+        "reference_level": "NULL",
+        "data_is_log_transformed": "TRUE",
+        "moderate_location": "TRUE",
+        "moderate_variance": "TRUE",
+        "location_prior_df": "3",
+        "n_subsample": "nrow(data)",
+        "max_iter": "20",
+        "epsilon": "0.001",
+        "verbose": "FALSE",
+        "...": ""
+      }
+    },
+    "proDA::convergence": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "proDA::test_diff": {
+      "package_version": "1.26.0",
+      "method": null,
+      "formals": {
+        "fit": "",
+        "contrast": "",
+        "reduced_model": "~1",
+        "alternative": "c(\"two.sided\", \"greater\", \"less\")",
+        "pval_adjust_method": "\"BH\"",
+        "sort_by": "NULL",
+        "decreasing": "FALSE",
+        "n_max": "Inf",
+        "verbose": "FALSE"
+      }
+    }
+  }
+}

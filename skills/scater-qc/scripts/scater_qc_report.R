@@ -4,7 +4,7 @@ scater_qc_render <- function(r, a) {
   cap <- sprintf("QC of %d input cells; %d retained. %s. Bounds and per-batch values: tables/thresholds.csv. Counts are raw; no doublet removal.", nrow(r$metrics), ncol(r$sce),
     if (a[["qc-mode"]] == "mad") sprintf("Lower log2 count/feature and higher mitochondrial outliers, nmads=%s", a$nmads) else sprintf("Counts >= %s; features >= %s; mitochondrial percent <= %s", a[["min-counts"]], a[["min-features"]], a[["max-mito"]]))
   for (y in c("detected", "subsets_Mito_percent")) {
-    p <- os_bioc_scatter(r$metrics, "sum", y, "status", cap, registry = r$colours, journal = a$journal, thresholds = r$thresholds)
+    p <- os_bioc_scatter(r$metrics, "sum", y, "status", cap, registry = r$colours, journal = a$journal, thresholds = r$thresholds, qc_status = TRUE)
     os_finalize_figure(p, file.path(a$outdir, "figures", y), journal = a$journal, root = a$outdir)
   }
   p <- os_bioc_qc_violin(r$metrics, r$thresholds, cap, a$journal)

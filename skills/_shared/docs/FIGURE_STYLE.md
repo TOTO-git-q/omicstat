@@ -631,3 +631,122 @@ Added in the S4 concentrated fix (`docs/build/S4_REPORT.md`). Each builder draws
 ## 19.4 M4 lane figures
 
 `fig_mod_m4.R` wraps existing soft-threshold, module-trait, oncoplot and heatmap builders with sample counts, declared scales and selection/adjustment captions. Dendrograms convert hclust merges to segments and use shared line/colour/point tokens. Module colours travel in colour_registry handoffs; crowded gene trees omit leaf labels and preserve full assignment tables. No global tokens are changed.
+
+## 19.x Models
+
+`fig_mod_models.R` owns dose curves, residuals, response profiles and effect
+intervals. It consolidates the three experimental dispatch copies; LMM
+`effect_plot` remains explicit, and dose tick calculation receives the actual
+width. Canonical table calculations are unchanged. Model input/output helpers
+live in `module_kit.R` and `model_io.R`. LR05 prohibits module-local drawing
+primitives, colours and shared-support copies. Adoption of the five candidate
+modules occurs in P0-11; owner visual review and byte replay remain required.
+
+## 19.2 Survival, group comparison and calibration
+
+P0-5 adds `os_km`, `os_hr_forest`, `os_time_roc`, `os_lasso_path`,
+`os_calibration`, `os_group_points` and `os_standard_curve` to the shared
+render allowlist and module schema. All receive precomputed scientific data.
+No renderer chooses cutpoints, fits a model, corrects a P value, infers
+uncertainty, or silently converts technical wells into biological units.
+
+KM risk tables share the curve time scale. HRs use a log axis and null 1.
+Group plots require one row per declared biological unit/group. Brackets
+use `os_p_label`, with adjustment and family size explicit when adjusted.
+Assay shading marks LLOQ/ULOQ, never a confidence band; nonpositive standards
+are refused. Scope dose ticks are reused rather than rounded arbitrarily.
+
+Every new builder carries an `evidence_refs` array into its figure spec.
+The status stays `pending` until each family has 20 independent reviews.
+Published records are linked by branch/path/key/SHA and marked transferable
+visual design, not exact-method numerical validation. No owner sign-off is
+implied by a developer gallery.
+
+Opt-in `OS_FIG_MODEL` tokens: `jitter_width` 0.12 group units,
+`bracket_tip_fraction` 0.025 of the display range, `range_alpha` 0.12,
+`censor_shape` 3, and the retained legacy `km_heights` 3:1 token. The current KM
+builder uses the physical risk-row layout below instead. Colours, line weights and
+sample point sizes reuse the existing house tokens. The canonical PNG
+replay backend is ragg; a developer Cairo fallback showed nondeterministic
+layout and is not used for the P0-5 byte-equality evidence.
+
+## 19.4 Native spatial coordinates
+
+`os_spatial_map` requires coordinate units and y-axis direction, equal Cartesian axis scaling,
+all spots and a prespecified display gene. It does not use embedding axes, histology registration,
+interpolation or image rescaling. Pixels require explicit calibration in analysis provenance.
+The complete multiple-testing family is independent of the displayed gene. Per-family evidence
+coverage is still pending; synthetic fixtures are rendering tests, not biological evidence.
+
+## 20. QC stage, denominators and log-zero display
+
+`os_qc_violin()` describes the supplied QC rows with an explicit `data_stage`:
+`raw_input`, `after_creation`, `after_cell_qc`, `after_doublet_filter`, or the
+backward-compatible default `unspecified`. The default makes no assertion about
+previous filtering. The figure itself and its metadata identify the stage.
+
+Optional `stage_counts` has one row per sample and columns `sample`, `input`,
+`displayed`, and `removed_before_stage`. Counts must be nonnegative integers;
+`input = displayed + removed_before_stage`, and `displayed` must equal the number
+of supplied QC rows for that sample. Samples wholly removed before this stage
+remain as empty sample slots. No unobserved QC distribution is reconstructed.
+Per-metric `counts.metric_display` separately records missing, zero, positive
+subunit, and density-displayed observations, both overall and by sample. The
+stage denominator is not a claim that every metric is observed for every cell.
+
+A `log10_metrics` panel preserves all positive values, including values below
+one. Zero and missing values are excluded from density estimation and separately
+counted in the visible panel label, caption, and figure specification. No value
+is floored to one; missing values never become zero. Negative log-scale values
+are refused. Nonpositive log cutoffs and nonfinite cutoffs are not drawn; all
+requested cutoffs remain in metadata. Valid cutoffs use the same log transform
+as the observations. A panel without positive observations remains explicitly
+empty rather than generating a positive pseudocount.
+
+`metric_definitions` preserves declared units, feature universe, numerator,
+denominator and annotation. Definitions not supplied are recorded as unspecified.
+Seurat QC plots use `after_creation` and the actual `filter_flow`, including
+`creation_removed`, overlapping failure counts, sequential removal counts and
+retained counts as distinct fields. Its mitochondrial definition records the
+regex, matched feature count and declared organism for the post-creation feature
+universe. Scanpy QC audit plots use `raw_input`; their prefix-based mitochondrial
+metric records the input feature universe. These are different scopes and their
+threshold boundary rules are not declared equivalent. The Bioconductor QC
+adapter retains the raw-input stage and the shared log/zero disclosure when it
+adds its own scientific caption.
+
+Tests use only project-invented metrics and a synthetic 8-feature by 9-cell
+Seurat matrix. The actual CLI retains five after-creation QC rows and four final
+cells. These developer tests do not replace named public reference anchors,
+production-image tests or owner visual acceptance. No golden or lock is written.
+
+## 21. Executor follow-up: KM, measured concentrations and mean bars
+
+`os_km()` keeps supplied survival estimates, censor marks, risk counts and test
+results. The legend is above the curve; one time axis below the risk table is
+shared by both aligned panels. Each risk row receives 5.2 mm, avoiding a fixed
+quarter-canvas allocation to a short table. Text is at least 7.5 pt and axis
+titles 8.5 pt. Two groups retain the same 100 mm canvas; extra groups add their
+risk-row height. Subtitles wrap without dropping their analysis text. No model,
+cutpoint, P value or confidence interval is estimated by this layout change.
+
+`os_standard_curve()` labels only actually measured positive concentrations.
+When crowded, a deterministic subset preserves the endpoints and records all
+omitted concentrations. The explicitly requested journal is propagated to the
+tick-width estimator and theme; native and Python-request rendering therefore
+use the same physical budget. Nonpositive standards are refused, not floored.
+The LLOQ/ULOQ shading is still a quantitative range, not uncertainty.
+
+For `os_group_points(display="bar")`, bars remain arithmetic means. Error bars
+are mean +/- sample SD across the declared biological units in each group,
+using `sqrt(sum((value-mean)^2)/(n-1))`. These are descriptive spread, not standard
+errors, confidence intervals, or evidence of a group contrast. One row per unit
+and group remains required. The per-group n, mean, SD, endpoints and estimability
+state are exported in the figure spec. For n=1 the undefined SD/error bar is
+omitted while the actual bar and point remain; genuine zero SD remains zero.
+No endpoint is silently clipped to zero. Points and supplied comparison P values
+are unchanged. Box mode retains its median/quartile/1.5-IQR definition.
+
+The follow-up fixtures are invented project numbers. Their same-input before/
+after figures and real R/Python replays are developer evidence; owner visual
+review, locked candidate execution and production acceptance remain separate.

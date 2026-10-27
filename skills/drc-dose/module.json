@@ -1,0 +1,169 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "drc-dose",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_drc_dose.R",
+  "version": "0.1.0",
+  "qc_prefix": "DRC",
+  "engine_packages": [
+    "drc"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "development_drc",
+      "development_model_metadata"
+    ]
+  },
+  "figure_builders": [
+    "os_model_figures"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 43,
+    "question": "Independent biological-unit dose-response estimation"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--study-contract",
+      "required": false,
+      "source": "candidate entry script",
+      "default": "none",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--input",
+      "required": true,
+      "source": "candidate entry script",
+      "default": "required",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--response",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--dose",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--unit",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--dose-unit",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--model",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "LL3|LL4",
+      "role": "scientific"
+    },
+    {
+      "flag": "--response-levels",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--response-type",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "relative|absolute",
+      "role": "scientific"
+    },
+    {
+      "flag": "--reference",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "control|upper",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--development-mode",
+      "default": "off",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 41,
+    "discovery_profile": {
+      "module": "drc-dose",
+      "epmc_query": "METHODS:\"drc\" OR METHODS:\"dose response\"",
+      "meta": false,
+      "signal_regex": "(?:drc|dose response)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

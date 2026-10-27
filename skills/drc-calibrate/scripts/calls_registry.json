@@ -1,0 +1,69 @@
+{
+  "module": "drc-calibrate",
+  "status": "candidate_installed_api_verified_unsealed",
+  "package_versions": {
+    "stats": "4.6.1"
+  },
+  "calls": [
+    {
+      "fn": "stats::coef",
+      "args": {}
+    },
+    {
+      "fn": "stats::sd",
+      "args": {}
+    }
+  ],
+  "module_version": "0.1.0",
+  "flag_defaults": {
+    "--unit-col": "required",
+    "--mode": "required",
+    "--model": "required",
+    "--blank-policy": "required",
+    "--max-cv": "required",
+    "--lloq": null,
+    "--uloq": null,
+    "--titer-definition": null,
+    "--endpoint-response": null,
+    "--input": "required",
+    "--dose-unit": "required",
+    "--ci-level": "required",
+    "--study-contract": null,
+    "--seed": "required",
+    "--outdir": "required",
+    "--development-mode": false,
+    "--spec": null
+  },
+  "captured_signatures": {
+    "stats::coef": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "coef.drc": {
+          "object": "",
+          "...": ""
+        },
+        "coef.lme": {
+          "object": "",
+          "augFrame": "FALSE",
+          "level": "Q",
+          "data": "",
+          "which": "1:ncol(data)",
+          "FUN": "mean",
+          "omitGroupingFactor": "TRUE",
+          "subset": "NULL",
+          "...": ""
+        }
+      }
+    },
+    "stats::sd": {
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE"
+      },
+      "dispatch_methods": []
+    }
+  }
+}

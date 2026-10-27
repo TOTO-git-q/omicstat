@@ -145,10 +145,14 @@ deseq2_wald_compute <- function(mat, st, a) {
   }
   maxcooks <- SummarizedExperiment::mcols(dds)$maxCooks
   beta_conv <- SummarizedExperiment::mcols(dds)$betaConv
+  native_p_column <- paste0("WaldPvalue_", des$coef)
+  native_p <- if (native_p_column %in% names(SummarizedExperiment::mcols(dds)))
+    SummarizedExperiment::mcols(dds)[[native_p_column]] else NULL
   list(dds = dds, res = res, shr = shr, vst = SummarizedExperiment::assay(vs), norm = norm, design = des, prefilter = pf,
        vst_path = vst_path, n_vst_eligible = n_vst_eligible,
-       n_input = nrow(mat), coef = des$coef, size_factors = DESeq2::sizeFactors(dds),
-       max_cooks = maxcooks, n_beta_nonconv = sum(!beta_conv, na.rm = TRUE),
+       n_input = nrow(mat), sample_metadata = st, coef = des$coef, size_factors = DESeq2::sizeFactors(dds),
+       max_cooks = maxcooks, beta_convergence = beta_conv, native_zero_null_coefficient_p = native_p,
+       n_beta_nonconv = sum(!beta_conv, na.rm = TRUE),
        n_ref = sum(cd[[a$condition]] == a$reference), n_target = sum(cd[[a$condition]] == a$target),
        samples_ref = rownames(cd)[cd[[a$condition]] == a$reference],
        samples_target = rownames(cd)[cd[[a$condition]] == a$target])
@@ -157,13 +161,32 @@ deseq2_wald_compute <- function(mat, st, a) {
 # One row per tested feature (canonical feature table). log2fc is the shrunken
 # estimate unless --shrinkage none (FEATURE_TABLE_SCHEMA); stat, pvalue and
 # padj always come from the unshrunken Wald test.
+# Missingness is attributed only when the native result/diagnostics support it.
+# Unknown failures are not automatically labelled as Cook's outliers.
+# The stored zero-null coefficient P is diagnostic only; the selected-threshold
+# P and adjusted P still come exclusively from the original results() object.
+dw_missing_reason <- function(pvalue, padj, base_mean, native_zero_null_coefficient_p = NULL, beta_convergence = NULL) {
+  n <- length(pvalue)
+  if (length(padj) != n || length(base_mean) != n ||
+      (!is.null(native_zero_null_coefficient_p) && length(native_zero_null_coefficient_p) != n) ||
+      (!is.null(beta_convergence) && length(beta_convergence) != n))
+    stop("OS_INVALID_RESULT: native missing-result diagnostics are misaligned.", call. = FALSE)
+  reason <- rep("", n); reason[is.na(padj)] <- "unknown"
+  reason[is.na(padj) & is.finite(pvalue)] <- "independent_filtering"
+  zero <- is.finite(base_mean) & base_mean == 0
+  reason[is.na(pvalue) & zero] <- "low_count"
+  if (!is.null(native_zero_null_coefficient_p))
+    reason[is.na(pvalue) & !zero & is.finite(native_zero_null_coefficient_p)] <- "outlier"
+  if (!is.null(beta_convergence))
+    reason[is.na(pvalue) & !zero & beta_convergence %in% FALSE] <- "failed_model"
+  reason
+}
+
 dw_feature_table <- function(r, a, symbols = NULL) {
   res <- r$res
   lfc <- if (is.null(r$shr)) res$log2FoldChange else r$shr$log2FoldChange
   se <- if (is.null(r$shr)) res$lfcSE else r$shr$lfcSE
-  reason <- ifelse(!is.na(res$padj), "",
-                   ifelse(is.na(res$pvalue) & res$baseMean > 0, "outlier",
-                          ifelse(res$baseMean == 0, "low_count", "independent_filtering")))
+  reason <- dw_missing_reason(res$pvalue, res$padj, res$baseMean, r$native_zero_null_coefficient_p, r$beta_convergence)
   ids <- rownames(res)
   df <- data.frame(feature_id = ids,
                    symbol = if (is.null(symbols)) "" else unname(ifelse(is.na(symbols[ids]), "", symbols[ids])),

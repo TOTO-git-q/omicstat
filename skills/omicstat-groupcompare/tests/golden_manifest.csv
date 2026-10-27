@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+figures/group_comparison.figure_spec.json,8ce079d26a8210d00bb172a12d651b238885f204d1a921e2c90c34f2bf0f5594,container,
+figures/group_comparison.png,3b493c6d5baed8f4f0d86363ac96f88ad9f34003007b1971d3d1b113d6042adb,container,
+tables/biological_units.csv,2610847ba8d4be9998b70a965c4c69ef25a956cde31fdf56ec0b886854fc276c,container,
+tables/effect_table.csv,002d1e887e01540259254928d37e5ef26648d0e703932818f1e6b3f95ef2872e,container,
+tables/summary.csv,4e809af602af08f806acadbc58f0bc26d29a39fe33f9441b1aa84ac675453626,container,
+tables/tests.csv,4e53ecae754c29b5ae50002990daf1d7a075d30d962a16faf10ff26123c1fb45,container,

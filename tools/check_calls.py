@@ -203,9 +203,14 @@ def check_calls(scripts, registry):
 
 
 def resolve_object(q):
-    """Import the longest importable module prefix of q, then getattr the rest."""
+    """Import a proper module prefix, then resolve the registered callable.
+
+    A public function can have the same qualified name as its implementation
+    submodule (for example celltypist.annotate). Importing the complete name
+    would select that module instead of the package-exported function.
+    """
     parts = q.split(".")
-    for k in range(len(parts), 0, -1):
+    for k in range(len(parts) - 1, 0, -1):
         try:
             obj = importlib.import_module(".".join(parts[:k]))
         except ImportError:

@@ -41,10 +41,12 @@ OS_FIGURE_REQUEST_SCHEMA <- "omicstat.figure-request.v1"
 OS_FIGURE_RENDER_SCHEMA <- "omicstat.figure-render.v1"
 # Builders a request may name: every one takes plain data.frames / vectors /
 # matrices plus scalar options and returns a plot carrying attr "os_meta".
-OS_RENDER_BUILDERS <- c("os_volcano", "os_ma", "os_diag_xy", "os_heatmap", "os_embedding", "os_feature_embedding",
+OS_RENDER_BUILDERS <- c("os_volcano", "os_ma", "os_diag_xy", "os_heatmap", "os_embedding", "os_embedding_page", "os_feature_embedding",
                         "os_marker_dotplot", "os_proportion_bar", "os_qc_violin", "os_score_violin",
                         "os_stacked_violin", "os_ridge", "os_highlight_embedding", "os_alluvial",
-                        "os_cluster_tree_dotplot", "os_density_embedding")
+                        "os_cluster_tree_dotplot", "os_density_embedding", "os_km", "os_hr_forest",
+                        "os_time_roc", "os_lasso_path", "os_calibration", "os_group_points", "os_standard_curve", "os_spatial_map",
+                        "os_sample_distance", "os_top_heatmap", "os_selected_feature_points", "os_pseudobulk_eligibility")
 OS_RENDER_COL_TYPES <- c(character = "character", numeric = "numeric", integer = "integer", logical = "logical",
                          factor = "character")
 
@@ -119,7 +121,15 @@ os_rr_read_data <- function(run_dir, d, what) {
     df[[k]] <- factor(df[[k]], levels = lv)
   }
   switch(d$kind %||% "",
-    data.frame = df,
+    data.frame = {
+      if (!is.null(d$row_id_column)) {
+        key <- d$row_id_column
+        if (!is.character(key) || length(key) != 1L || !key %in% names(df)) .os_rr_stop("OS_FIGURE_REQUEST_INVALID", "%s: absent row ID column", what)
+        rownames(df) <- .os_require_ids(df[[key]], paste(what, "row IDs"))
+        df <- df[, setdiff(names(df), key), drop = FALSE]
+      }
+      df
+    },
     vector = if ("name" %in% names(df)) stats::setNames(df$value, df$name) else df$value,
     matrix = {
       m <- as.matrix(df[, -1, drop = FALSE])
@@ -132,6 +142,95 @@ os_rr_read_data <- function(run_dir, d, what) {
 
 .os_rr_rel_sha <- function(run_dir, p) {
   list(path = .os_rel(p, run_dir), sha256 = digest::digest(file = p, algo = "sha256"))
+}
+
+# Validate the aggregate caption against the exact selection-only record.
+# No expression/clinical row table or analysis method is read/recomputed here.
+.os_rr_sampling_scope <- function(run_dir, scope, caption_context, data_args) {
+  bad <- function(message) .os_rr_stop("OS_FIGURE_REQUEST_INVALID", "sampling scope: %s", message)
+  keys <- c("schema", "observation_unit", "analysis_sampling", "display_only", "observations_before", "observations_after",
+    "biological_units_before", "biological_units_after", "groups_provided", "by_group", "caption", "source",
+    "original_id_sha256", "selected_id_sha256")
+  if (!is.list(scope) || !setequal(names(scope), keys) || anyDuplicated(names(scope)) ||
+      !identical(scope$schema, "omicstat.figure-sampling-scope.v1") || !identical(scope$observation_unit, "cells") ||
+      !is.logical(scope$analysis_sampling) || length(scope$analysis_sampling) != 1L || is.na(scope$analysis_sampling) ||
+      !identical(scope$display_only, FALSE)) bad("unsupported aggregate contract")
+  if (!is.list(scope$source) || !setequal(names(scope$source), c("path", "sha256")) ||
+      !identical(scope$source$path, "provenance/resource_sampling.json") ||
+      anyDuplicated(names(scope$source)) || !is.character(scope$source$sha256) || length(scope$source$sha256) != 1L ||
+      !grepl("^[0-9a-f]{64}$", scope$source$sha256)) bad("source identity is invalid")
+  path <- .os_rr_path(run_dir, scope$source$path, "sampling record")
+  if (nzchar(Sys.readlink(path)) || nzchar(Sys.readlink(dirname(path))) ||
+      !startsWith(normalizePath(path, winslash = "/", mustWork = TRUE), paste0(run_dir, "/"))) bad("source path is unsafe")
+  if (!identical(digest::digest(file = path, algo = "sha256"), scope$source$sha256)) bad("source SHA256 differs")
+  record <- jsonlite::fromJSON(path, simplifyVector = FALSE)
+  if (!identical(record$schema, "omicstat.resource-sampling.v1")) bad("source schema differs")
+  for (key in c("original_id_sha256", "selected_id_sha256"))
+    if (!is.character(scope[[key]]) || length(scope[[key]]) != 1L ||
+        !grepl("^[0-9a-f]{64}$", scope[[key]]) || !identical(scope[[key]], record[[key]])) bad("selection ID digest differs")
+  count <- function(x, minimum = 0) {
+    if (!is.numeric(x) || length(x) != 1L || !is.finite(x) || x != floor(x) || x < minimum || x > 9007199254740991)
+      bad("counts must be exact safe nonnegative integers")
+    x
+  }
+  fields <- c("observations_before", "observations_after", "biological_units_before", "biological_units_after")
+  for (key in fields) if (count(scope[[key]], 1) != count(record[[key]], 1)) bad("source aggregate counts differ")
+  before <- scope$observations_before; after <- scope$observations_after
+  ub <- scope$biological_units_before; ua <- scope$biological_units_after
+  if (after > before || ua != ub) bad("selection increased cells or lost a biological unit")
+  if (!identical(record$applied, after < before) || !identical(scope$analysis_sampling, record$applied))
+    bad("applied selection claim differs from retained counts")
+  units <- record$by_unit
+  if (!is.list(units) || length(units) != ub) bad("by-unit count differs")
+  unit_ids <- vapply(units, function(row) {
+    if (!is.character(row$unit_id) || length(row$unit_id) != 1L || is.na(row$unit_id) || !nzchar(row$unit_id)) bad("unit ID missing")
+    if (count(row$observations_after, 1) > count(row$observations_before, 1)) bad("unit count increased")
+    row$unit_id
+  }, "")
+  if (anyDuplicated(unit_ids) || sum(vapply(units, function(x) count(x$observations_before, 1), 0)) != before ||
+      sum(vapply(units, function(x) count(x$observations_after, 1), 0)) != after) bad("unit totals disagree")
+  declared <- record$groups_provided
+  if (!is.logical(declared) || length(declared) != 1L || is.na(declared) ||
+      !identical(scope$groups_provided, declared) || !is.list(record$by_group) ||
+      (length(record$by_group) > 0L) != declared || length(scope$by_group) != length(record$by_group)) bad("declared grouping differs")
+  groups <- lapply(seq_along(record$by_group), function(i) {
+    row <- record$by_group[[i]]; actual <- scope$by_group[[i]]
+    if (!is.character(row$group) || length(row$group) != 1L || is.na(row$group) || !nzchar(row$group) ||
+        !is.list(actual) || anyDuplicated(names(actual)) || !setequal(names(actual), c("group", fields)) || !identical(actual$group, row$group)) bad("group label differs")
+    for (key in fields) if (count(actual[[key]]) != count(row[[key]])) bad("group counts differ")
+    if (row$observations_before < 1 || row$biological_units_before < 1 || row$observations_after > row$observations_before ||
+        row$biological_units_after > row$biological_units_before || row$biological_units_before > ub ||
+        row$biological_units_after > ua || row$biological_units_before > row$observations_before ||
+        row$biological_units_after > row$observations_after) bad("group counts are inconsistent")
+    actual
+  })
+  if (declared && (anyDuplicated(vapply(groups, `[[`, "", "group")) ||
+      sum(vapply(groups, `[[`, 0, "observations_before")) != before ||
+      sum(vapply(groups, `[[`, 0, "observations_after")) != after)) bad("group cell totals disagree")
+  number <- function(x) formatC(x, format = "f", digits = 0, big.mark = ",")
+  caption <- sprintf("Analysis subsampling: %s of %s input cells and %s of %s biological units retained. ",
+    number(after), number(before), number(ua), number(ub))
+  caption <- paste0(caption, if (scope$analysis_sampling)
+    "This changes the analyzed observations, not only their display; cells are not biological replicates." else
+    "No input cells were removed by this sampling step; cells are not biological replicates.")
+  if (declared) {
+    labels <- vapply(utils::head(groups, 6L), function(row) sprintf("%s: %s of %s biological units, %s of %s cells", row$group,
+      number(row$biological_units_after), number(row$biological_units_before), number(row$observations_after), number(row$observations_before)), "")
+    caption <- paste0(caption, " Declared groups: ", paste(labels, collapse = "; "), ".")
+    if (length(groups) > 6L) caption <- paste0(caption, sprintf(" %d further groups are listed in the source sampling record and figure metadata.", length(groups) - 6L))
+  } else caption <- paste0(caption, " No condition/group column was declared; no per-group replication is inferred.")
+  if (!identical(scope$caption, caption) || !is.character(caption_context) || length(caption_context) != 1L ||
+      !grepl(caption, caption_context, fixed = TRUE)) bad("caption is absent or differs from the source counts")
+  if (!is.null(data_args$emb)) {
+    ids <- .os_require_ids(data_args$emb$cell, "sampling display cell IDs")
+    if (length(ids) > after) bad("display contains more cells than the retained analysis")
+    if (length(ids) == after) {
+      encoded <- paste0(nchar(enc2utf8(ids), type = "bytes"), ":", enc2utf8(ids), collapse = "")
+      if (!identical(digest::digest(enc2utf8(encoded), algo = "sha256", serialize = FALSE), scope$selected_id_sha256))
+        bad("complete display cell order/IDs differ from selected analysis")
+    }
+  }
+  scope
 }
 
 # Render every figure of the request; returns the provenance record (also written).
@@ -153,6 +252,8 @@ os_render_figure_request <- function(run_dir, rel = "figure_data/figure_request.
       data_args <- lapply(names(f$data), function(a) os_rr_read_data(run_dir, f$data[[a]], sprintf("figure '%s' data '%s'", f$id, a)))
       names(data_args) <- names(f$data)
       call_args <- c(data_args, lapply(f$args %||% list(), .os_rr_simplify))
+      sampling_scope <- if (!is.null(f$sampling_scope))
+        .os_rr_sampling_scope(run_dir, f$sampling_scope, f$caption_context, data_args) else NULL
       fmls <- names(formals(fn))
       if ("journal" %in% fmls && is.null(call_args$journal)) call_args$journal <- journal
       if ("colour_registry" %in% fmls && is.null(call_args$colour_registry)) call_args$colour_registry <- reg
@@ -169,6 +270,8 @@ os_render_figure_request <- function(run_dir, rel = "figure_data/figure_request.
         })
         names(call_args$thresholds) <- names(qc_thresholds)
       }
+      semantic_binding <- if(!is.null(f$definition)) os_validate_render_sources(f$definition,call_args) else NULL
+      if(!is.null(f$definition) && "definition" %in% names(formals(fn)))call_args$definition<-f$definition
       p <- do.call(fn, call_args)
       meta <- attr(p, "os_meta")
       if (is.null(meta)) .os_rr_stop("OS_FIGURE_REQUEST_INVALID", "figure '%s': %s returned no os_meta", f$id, f$builder)
@@ -185,6 +288,19 @@ os_render_figure_request <- function(run_dir, rel = "figure_data/figure_request.
           .os_rr_stop("OS_FIGURE_REQUEST_INVALID", "caption_context must be one nonempty string")
         meta$caption <- paste(meta$caption %||% "", f$caption_context)
         attr(p, "os_meta") <- meta
+      }
+      if (!is.null(sampling_scope)) {
+        p <- os_with_meta(p, notes = list(analysis_sampling = sampling_scope))
+        meta <- attr(p, "os_meta")
+      }
+      if (!is.null(f$definition)) {
+        p <- os_with_meta(p, definition = f$definition, notes=list(render_source_binding=semantic_binding))
+        meta <- attr(p, "os_meta")
+      }
+      if (!is.null(f$evidence_refs)) {
+        os_validate_evidence_refs(f$evidence_refs)
+        p <- os_with_meta(p, evidence_refs = f$evidence_refs)
+        meta <- attr(p, "os_meta")
       }
       if (!is.null(meta$colour_registry)) reg <- meta$colour_registry
       width <- f$width %||% "single"

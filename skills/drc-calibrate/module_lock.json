@@ -1,0 +1,31 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "drc-calibrate",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/drc-calibrate/scripts/drc_calibrate_core.R": "a7d4890d382e7050bba1529b2bd41cd97af9501b6edfb0cb141d03445da1989f",
+    "skills/drc-calibrate/scripts/run_drc_calibrate.R": "5201f86a672e705783383093b713f5c64b031526bfec645ee646581fc8727f0c",
+    "skills/drc-calibrate/scripts/calls_registry.json": "60a5f887609a84428672681f0e7525a2b9942f00139afe2d4f18f87b7ba1540a",
+    "skills/drc-calibrate/SKILL.md": "f5fd4ff1dbaea1aa90b90698b130b1369f736245702214c2cf6e79cd8b85eb59",
+    "skills/drc-calibrate/references/input-contract.md": "af1cfc67f4a6657a8b2edbf93cae880b72cbfa7841b4edaf73ecdd1ddaaac3ae",
+    "skills/drc-calibrate/references/parameters.md": "4c8b86323571a51e0d2c809990a5576792767606d34792667326eecb1b20ce3f",
+    "skills/drc-calibrate/references/source-evidence/SKILL.md": "8b5c31d41298d9d817b2e513752db0cbb68968cc9994db8c056780dadce781d7",
+    "skills/drc-calibrate/references/source-evidence/VALIDATION_STATUS.json": "ba7c02b052c9431ea22fec67b9598629ec1bf20d7e3ff6d4f450d4e651884aa8",
+    "skills/drc-calibrate/references/source-evidence/provenance.json": "504a9a33f9a2502be8ff634ec41ff0cb52fb3a566e84bc55bf62845f4b189cce",
+    "skills/drc-calibrate/tests/anchors.R": "066a4cc3bfe3b436bb62d3522fba5f2bd19860bf045e62a2ff046e4870a93b41",
+    "skills/drc-calibrate/tests/run_development_test.R": "8d2d752dc3b9830ae51a9936c6982b1f4476f902934fbfa7c95f6b915f619db1",
+    "skills/drc-calibrate/tests/run_unit_scope_test.R": "d1f7f999b51f38e1fc0a27715cdf529e7b501129afc4f5869619e6d57e87aa2f",
+    "skills/drc-calibrate/tests/golden_manifest.csv": "18a28ed5b2840c8e5cc4d8d06be6c6c3dc3143236033f56090c83fdef5bb1591"
+  },
+  "packages": {
+    "stats": "4.6.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

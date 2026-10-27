@@ -1,0 +1,95 @@
+{
+  "source_repository": "TOTO-git-q/medstat",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_tree": "2515bb0975476fc38ecf96ded4d1bc7948cece67",
+  "source_files_verified": 14,
+  "source_read_only": true,
+  "code_executed_in_MedStat": false,
+  "runtime_dependency_on_MedStat": false,
+  "files": [
+    {
+      "path": "skills/diagnostic-accuracy/SKILL.md",
+      "git_blob": "7ba76c79d62949a17bbac5e1bd182c8e4425cf73",
+      "bytes": 17693,
+      "sha256": "7849c3bd6abfacf6a86b30da1799ed2a15706caaf84422b6298e5cde298c2e61"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/outputs.json",
+      "git_blob": "450150409636ad470bda2e777842351d1342ff75",
+      "bytes": 17797,
+      "sha256": "e154d1300f089f5f650c960e85813d326c857a779a879f346eaf020cff4e20a3"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/references/citations.md",
+      "git_blob": "ab44135cbbb4f005b6c7b762e30163bdab72c231",
+      "bytes": 11408,
+      "sha256": "3ba0361a9e55ac6a6fe5856937a36c54c1d8b540d1e415fd6b4508d42af872a1"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/references/open-issues.md",
+      "git_blob": "4261985dc4cc675a0c170862834e9d386ce5512b",
+      "bytes": 8672,
+      "sha256": "4dbf8b151fb60e185e9582b6e1df1e239d79a26404c020bd3df4d250b970af55"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/references/stard-2015-checklist.md",
+      "git_blob": "86ae123b812997ea8e1b428e0e3d42166afb47bd",
+      "bytes": 6327,
+      "sha256": "256ea2f85d360e2f3b4120a2bac35e1958f5fafd4b3a8281c987bdbccb65c034"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/scripts/diagacc_core.R",
+      "git_blob": "feb21c15a339a5f7317c7c0606d6d9105c446d1f",
+      "bytes": 23373,
+      "sha256": "ccda977966f804f2e0cf9ab0425c0d3e913637d1bb0b4a7afa026b18f046635b"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/scripts/diagacc_plot.R",
+      "git_blob": "f9fb3da01de6b287c587acd166c3fe33d44388f7",
+      "bytes": 14209,
+      "sha256": "e6fb056d250a863eb5f2d613e4d03acab48bc576b7b367c80062208b10c8013c"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/scripts/diagacc_qc.R",
+      "git_blob": "3af3d1c5f2a0834ed22a7b27413867c25c808020",
+      "bytes": 16743,
+      "sha256": "b941517f97cbb1f0bff8246188226e1311e6dd41d1e114b5469e884b18ab1ee5"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/scripts/diagacc_report.R",
+      "git_blob": "185c45f11cb62a1dcc51a9bd63abb1c9af8d769b",
+      "bytes": 33626,
+      "sha256": "d5d94195b23ac1cc7a92da74a8f655bd5982c921402406260e820e8601e9594d"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/scripts/diagacc_spec.R",
+      "git_blob": "1d0bb05c7ebc8d416737d8c5c63c5c1405779109",
+      "bytes": 3443,
+      "sha256": "0f8839bca57e98e8512bf5933cf88cba2583396b4f1b9ca80c9d878d4d918cbd"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/scripts/run_diagacc.R",
+      "git_blob": "df2d2d00a669ae7f170c38685eee25a6f80e7904",
+      "bytes": 80853,
+      "sha256": "08499f95386e71e8c5a6722c97fc4aaa32dd578104f0da9e27ebedd96d032f5d"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/tests/run_smoke_test.R",
+      "git_blob": "e03b5583f7147bd7e17778adef044d8f8509df33",
+      "bytes": 56325,
+      "sha256": "7ab4b5fe9e8fb8c9adfe95743719aa8e198c2491437f814a1b8ab19b2ca86a7f"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/tests/verified/REFERENCE.md",
+      "git_blob": "bb20327d5cbb15e27964ebeca8919861be3839b9",
+      "bytes": 1068,
+      "sha256": "630ba5389ba99816533e269befa564213b5029e556192663fba07a7039681f92"
+    },
+    {
+      "path": "skills/diagnostic-accuracy/tests/verified/run_verified.R",
+      "git_blob": "12fdd10bf37d54a4727ee76d1eac78e3a0c311f5",
+      "bytes": 3718,
+      "sha256": "9ad51192adcbb04418dc531bfbf982572d5e3a14c5ace910f635b229db529e92"
+    }
+  ]
+}

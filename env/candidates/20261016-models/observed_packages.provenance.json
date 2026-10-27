@@ -1,0 +1,12 @@
+{
+  "schema": "omicstat.observed-candidate-packages.v1",
+  "inventory": "observed_packages.csv",
+  "sha256": "a68e58342cc992e4a6c163a81b17b53ebb04284698e29c3abbfe807e122b0b89",
+  "repository": "TOTO-git-q/omic-MCP",
+  "source_commit": "05266a388e5d8d64ee2f403e6dfcfdbbb0730fe3",
+  "source_path": "env/production-r-20261016/packages.csv",
+  "source_blob_sha": "b3a7fc283b6d8b58bca19a0262c2fc6b0ead68e4",
+  "observed_image_id": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "purpose": "candidate_prefix_validation_only",
+  "production_promotion": "deferred_by_owner"
+}

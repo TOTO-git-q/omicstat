@@ -4,7 +4,7 @@
 
 ## 模块注册表
 
-当前已装机38个分析模块（14 M1/M2 + 24 M3/M4），另有2个自检工具。执行入口以 `skills/omicstat/SKILL.md` §1 为准；本次完整状态见文末 M3/M4 S2–S5。
+当前注册 59 个 accepted 模块（50 R / 9 Python），全部进入执行路由；其中 57 个分析/显示模块进入 reference method_map，另有 2 个自检工具。生产 R 镜像为 `omicstat-r:2026.10.4`，Python 仍为 `omicstat-py:2026.09.1`。执行入口以 `skills/omicstat/SKILL.md` §1 为准。
 
 ---
 
@@ -433,3 +433,36 @@ presto、psych、scrapper；原530包记录保持不变。
 Added scanpy-annotate (descriptive panel naming), scanpy-purity (explicit neighbour/island flags), and scanpy-ingest (fixed-reference query projection). scvi-integrate gains latent reuse and optional Leiden in a new column; scanpy-cluster can use an existing representation. Scientific thresholds are explicit user choices. Purity curation, balanced cell-list selection and ingest are display only and cannot feed proportions, pseudobulk, markers or DE. Figure-only group caps leave numerical outputs unchanged.
 
 ENGINEERING_PLAN 3.7: optional paths leave existing numerical tables and goldens unchanged; default embedding labels and render metadata remain unchanged. New rendering choices record explicit label coordinates, display caps and seeded registries. Final acceptance, seal counts and visual review are recorded in docs/build/UMAP_DISPLAY_REPORT.md.
+
+## Defaults adjudication (2026-10-11, lock 7)
+
+Eight locked defaults that the monthly literature comparison flagged were adjudicated by the owner. No item had a reproducible statistical error, so ENGINEERING_PLAN 3.7 lock 7 ("no change of estimator or default without a reproducible error") still holds: nothing was switched to a literature-majority value. Each decision is one of keep-and-document (B), remove the default and make the option required (C) or comparison artifact (D). Evidence counts come from the reviewed S0 supplement; the full reasoning is in docs/build/defaults_adjudication_worklog.md and the module PACK/worklog appendices.
+
+| Module and option | Locked default | Literature | Verdict | Change |
+|---|---|---|---|---|
+| wgcna-network `--network-type` | unsigned | signed 9, not reported 14 of 23 (39% is not a majority); the package author recommends a signed variety and calls the unsigned default historical | C | required since 1.1.0; unsigned remains available; the anchor replay passes it explicitly |
+| scvi-integrate `--n-latent` | 10 | 30 (6 papers), 10 (2), 64 (2), 50, 52, 6: no majority | C | required when training, not with `--latent-from-run`, since 1.2.0; the shared anchor helper already passes `--n-latent 5` |
+| scvi-integrate `--n-layers` | 1 | 2 in 11 of 12, mostly restating the harmonization tutorial (`n_layers=2, n_latent=30, gene_likelihood=nb`, called non-default) | B | default kept; the tutorial triple is documented as a named configuration |
+| scanpy-markers `--test` | t-test | Wilcoxon 16 of 21 (scverse-only 13 of 16); the tutorial uses wilcoxon; Pullin and McCarthy 2024 (PMID 38409056) find Wilcoxon, t-test and logistic regression all effective | B | documentation only (1.0.1); no shared Python file touched |
+| seurat-markers `--logfc-threshold` 0.1, `--min-pct` 0.01 | locked Seurat 5.5.1 defaults | 0.25 and 0.1 are the Seurat 4.4.0 and earlier defaults (reporting papers ran Seurat 2.3.4 to 4.3.0.1); both are pre-test speed-ups | D | module not changed, not resealed |
+| seurat-markers `--display-lfc-filter` | 0 (off) | study-specific post-hoc display thresholds | D | module not changed, not resealed |
+| scran-cluster `--cluster-method` | walktrap | 5 of 11 rows are Seurat-side or scanpy-side values of mixed-ecosystem papers that the pack never pools; Bioconductor-only values are too few | D | module not changed, not resealed |
+
+Golden files and `golden_manifest.csv` of the three changed modules are byte-identical (module smoke prints the golden comparison as PASS, not SKIP; `git diff --stat` on golden paths is empty). Module locks regenerated in the pinned images (wgcna-network 1.1.0 in omicstat-r:2026.10.1; scvi-integrate 1.2.0 and scanpy-markers 1.0.1 in omicstat-py:2026.09.1): module_lock.json sha256 3826474d6f19..., d6c3bbb04a56..., f3768839f577...
+
+Reference service (not redeployed; ships with the next deploy): `defaults.py` no longer pools values noted as another ecosystem ("Seurat-side value (mixed)") into a module comparison (counted as `n_excluded_cross_ecosystem`), reports `n_unparsed`, and attaches an owner verdict from the new `s0_evidence/default_adjudications.json`; an adjudicated flag moves from `flagged` to `adjudicated` in the `reference_advise` `default_context`, and the digest section C has an owner-verdict column. `option_defaults.json` and the S0 bundle were regenerated with `import_s0_evidence.py` so the two C items leave the comparison.
+
+
+## Convergence reseal (2026-10-20, step S5, image omicstat-r:2026.10.4)
+
+One reseal on the frozen core image `omicstat-r:2026.10.4` (id sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e; Python lane `omicstat-py:2026.09.1` unchanged). Owner approvals of 2026-10-20: sealing resumed for this one reseal; the 13 baseline modules whose figures changed (deseq2-lrt, deseq2-qc, deseq2-wald, edger-qlf, gsva-score, limma-array, limma-camera, limma-dupcor, limma-voom, scater-qc, seurat-qc, sva-batch, wgcna-network) have their figure goldens regenerated (figure_spec, PNG, figure-caption lines of draft/methods_results.md); every table and JSON result row of those manifests is byte-identical to the sealed baseline (`git diff` of the 13 manifests shows figure and caption rows only). All other baseline modules keep their goldens unchanged; only `module_lock.json` is rewritten (environment 2026.10.4, image id above). The 16 modules listed as candidates at the time of S5 get a golden (byte hashes of the deterministic outputs of the canonical acceptance run, identical between the run and its `--spec` replay; `tools/canonical_golden.py`) and a `module_lock.json`; their status stays `candidate`. Tolerances and numerical assertions were not changed.
+
+<!-- candidates:begin -->
+## 标准化候选模块（自动生成）
+
+当前没有 candidate 模块。已接受模块及入口见路由表。
+<!-- candidates:end -->
+
+## Production promotion and module acceptance (2026-10-20)
+
+Owner approved the repository production R pointers at `omicstat-r:2026.10.4` (`sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e`) and accepted all 16 S5 candidates. `tools/sync_registry.py` generates 59 accepted routes, registry counts, 57 reference method-map entries, matching literature schema/discovery inventory and the six-tool MCP manifest. New reference search profiles are explicitly weak and have no screened corpus. Historical S5 status statements above describe the pre-promotion snapshot. Existing explicit `--development-mode` acknowledgements in these engines remain part of their sealed CLI contract. No golden, tolerance, image tag, deployment or service was changed. The main session must reconcile the deployed reference cursor at S6.

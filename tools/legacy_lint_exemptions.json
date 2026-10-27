@@ -1,0 +1,7 @@
+{
+  "skills/maftools-landscape/scripts/maftools_landscape_core.R": {
+    "sha256": "83c8137a28d7486afd610dd15760830370e4cc0cd77a4c0557517561c3787290",
+    "rule": "LR05",
+    "reason": "Existing sealed maftools::tmb pointcol native default is sent to a discarded side-effect device, not a delivered plot. Exact-byte compatibility only; new edits must remove the literal."
+  }
+}

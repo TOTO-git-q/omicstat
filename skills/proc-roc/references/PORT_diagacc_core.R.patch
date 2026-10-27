@@ -1,0 +1,306 @@
+--- pinned-medstat/diagacc_core.R
++++ omicstat/roc_ported_core.R
+@@ -1,44 +1,10 @@
+-# diagacc_core.R -- single-study diagnostic-accuracy engine (per-subject score
+-# vs a binary reference standard). ASCII only on purpose: R on Windows with a
+-# non-UTF8 locale mangles UTF-8 source (see skills/_shared/docs/CONVENTIONS.md
+-# section 2).
+-#
+-# This file has no SKILL.md of its own; it is source()'d from
+-# scripts/run_diagacc.R the way skills/dose-response-meta/scripts/run_drmeta.R
+-# sources drmeta_core.R (see that file for the pattern this follows).
+-#
+-# House rules this file exists to enforce mechanically (P2-diagnostic-accuracy.md
+-# section 4, "DA-Mxx" landmines):
+-#   DA-M01  a roc object carries ONE AUC semantic (full XOR partial); the two
+-#           are always built as two separate pROC::roc() calls (fit_full_roc /
+-#           fit_partial_roc below), never read off the same object.
+-#   DA-M02  the Youden index J is ALWAYS computed here as sens+spec-1, never
+-#           read off coords(..., ret="youden") (that return is sens+spec, a
+-#           1-2 scale value pROC happens to also call "youden").
+-#   DA-M03  direction/positive-class have no default; direction="auto" is only
+-#           ever used for the audit comparison in direction_auto_check(), never
+-#           to produce a reported number.
+-#   DA-M04  roc.test() is always called with paired=TRUE explicitly (never
+-#           paired=NULL) once a paired comparison is requested.
+-#   DA-M06  partial-AUC inference always goes through method="bootstrap"; the
+-#           DeLong path is never attempted for a partial-AUC roc object.
+-#   DA-M09  complete-case filtering is done by this file, not left to roc()'s
+-#           silent NA drop; a paired comparison asserts identical complete-case
+-#           row sets before fitting, per assert_paired_sets().
+-
+-`%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
++# Copied/adapted from TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa
++# skills/diagnostic-accuracy/scripts/diagacc_core.R; independent OmicStat code.
++# PORT_ADAPTATIONS.json records changes. Native numerical equivalence is not yet verified.
++`%||%` <- function(a,b) if(is.null(a)||length(a)==0||(length(a)==1&&is.na(a))) b else a
+ 
+ .da_stop <- function(code, fmt, ...) stop(sprintf("%s: %s", code, sprintf(fmt, ...)), call. = FALSE)
+ 
+-Z975 <- stats::qnorm(0.975)
+-
+-# ============================================================================
+-# 1. Exact / score confidence intervals for a single proportion
+-# ============================================================================
+-
+-# cp_ci(): Clopper-Pearson exact interval via base R stats::binom.test() --
+-# the module's DA-R01 default. x/n may be vectors; NA in/NA out for any
+-# non-finite or n<=0 entry rather than erroring the whole batch.
+ cp_ci <- function(x, n, conf_level = 0.95) {
+   n_len <- max(length(x), length(n))
+   x <- rep_len(x, n_len); n <- rep_len(n, n_len)
+@@ -52,10 +18,6 @@
+   list(lo = lo, hi = hi)
+ }
+ 
+-# wilson_ci(): the module's one opt-in alternative to Clopper-Pearson
+-# (--ci-method wilson, DA-R01). Standard Wilson score interval, no third-party
+-# package (Newcombe 1998, PMID 9595616, puts both methods on its recommended
+-# list -- see references/citations.md).
+ wilson_ci <- function(x, n, conf_level = 0.95) {
+   z <- stats::qnorm(1 - (1 - conf_level) / 2)
+   n_len <- max(length(x), length(n))
+@@ -77,14 +39,6 @@
+   if (identical(ci_method, "wilson")) wilson_ci else cp_ci
+ }
+ 
+-# ============================================================================
+-# 2. 2x2-table accuracy metrics (Se/Sp/PPV/NPV/accuracy + Youden J)
+-# ============================================================================
+-
+-# accuracy_from_counts(): the ONE place tp/fn/fp/tn are turned into every
+-# reader-facing accuracy number. Every caller (primary cut-off, multi-cutoff
+-# table, subgroup table, LOO fold aggregate) routes through this function so
+-# a single formula change fixes every output at once (spec MUST #1).
+ accuracy_from_counts <- function(tp, fn, fp, tn, conf_level = 0.95, ci_method = "exact") {
+   n_pos <- tp + fn; n_neg <- fp + tn
+   n_test_pos <- tp + fp; n_test_neg <- fn + tn
+@@ -112,19 +66,6 @@
+   )
+ }
+ 
+-# ============================================================================
+-# 3. Likelihood ratios (Simel 1991 log-normal CI) and diagnostic odds ratio
+-# ============================================================================
+-
+-# simel_lr(): the ONLY LR-CI formula this module implements -- the four-term
+-# reciprocal form Simel 1991 (PMID 1941027) actually specifies, verified
+-# against epiR::epi.tests() in tests/run_smoke_test.R. A superficially
+-# similar but wrong formula understates the CI width by roughly half (spec
+-# section 2.4's own self-caught error); do not "simplify" this function.
+-# CI is undefined (NA) unless all four cells are nonzero -- LR point
+-# estimates are still returned (possibly Inf/0) per the project's
+-# never-refuse-to-compute rule; a 0.5 continuity-corrected companion is
+-# simel_lr_cc() below (DA-11).
+ simel_lr <- function(tp, fn, fp, tn, conf_level = 0.95) {
+   z <- stats::qnorm(1 - (1 - conf_level) / 2)
+   n_pos <- tp + fn; n_neg <- fp + tn
+@@ -158,20 +99,10 @@
+        has_zero_cell = any(c(tp, fn, fp, tn) == 0))
+ }
+ 
+-# simel_lr_cc(): the DA-11 0.5-continuity-corrected sensitivity companion,
+-# always produced (not just offered) whenever a 2x2 cell is zero.
+ simel_lr_cc <- function(tp, fn, fp, tn, conf_level = 0.95) {
+   simel_lr(tp + 0.5, fn + 0.5, fp + 0.5, tn + 0.5, conf_level = conf_level)
+ }
+ 
+-# ============================================================================
+-# 4. Predictive-value projection across a prevalence grid (Bayes' theorem)
+-# ============================================================================
+-
+-# project_pv(): PPV/NPV at an ARBITRARY assumed prevalence, holding the
+-# observed sensitivity/specificity fixed. No CI is attached (DA-R02): the
+-# assumed prevalence is an external input, not an estimated quantity, so a
+-# CI that only propagates Se/Sp sampling error would misrepresent it as one.
+ project_pv <- function(sens, spec, prevalence) {
+   ppv <- (sens * prevalence) / (sens * prevalence + (1 - spec) * (1 - prevalence))
+   npv <- (spec * (1 - prevalence)) / (spec * (1 - prevalence) + (1 - sens) * prevalence)
+@@ -189,23 +120,12 @@
+   )
+ }
+ 
+-# ============================================================================
+-# 5. ROC / AUC (pROC), kept as two structurally separate code paths (DA-M01)
+-# ============================================================================
+-
+-# build_roc(): the one place pROC::roc() is called with a fixed (non-"auto")
+-# direction. levels = c(negative_class, positive_class); direction "<" means
+-# "higher predictor value = more likely positive" (this module's
+-# higher-is-positive), ">" means lower-is-positive.
+ build_roc <- function(response, predictor, levels, direction) {
+-  if (!direction %in% c("<", ">")) .da_stop("MS_INVALID_PARAMETER", "build_roc() direction must be '<' or '>', got '%s'.", direction)
++  if (!direction %in% c("<", ">")) .da_stop("OS_INVALID_PARAMETER", "build_roc() direction must be '<' or '>', got '%s'.", direction)
+   pROC::roc(response = response, predictor = predictor, levels = levels, direction = direction,
+             quiet = TRUE, ci = FALSE)
+ }
+ 
+-# fit_full_roc(): full-AUC path ONLY. Point estimate is always as.numeric(auc(r))
+-# and the CI is always ci.auc(r, method="delong") on the SAME object -- never
+-# swap in a bootstrap CI or a partial-AUC object here (DA-M01/DA-R04).
+ fit_full_roc <- function(response, predictor, levels, direction, conf_level = 0.95) {
+   r <- build_roc(response, predictor, levels, direction)
+   est <- as.numeric(pROC::auc(r))
+@@ -213,15 +133,11 @@
+   list(roc = r, auc = est, ci_low = ci[1], ci_high = ci[3], method = "pROC::ci.auc(method='delong')")
+ }
+ 
+-# fit_partial_roc(): partial-AUC path ONLY, built on its OWN roc() call with
+-# partial.auc set (never reused from a full-AUC object). Point estimate is
+-# always as.numeric(r$auc) (the partial value) and CI is always
+-# method="bootstrap" (DeLong hard-errors on a partial-AUC object, DA-M06).
+ fit_partial_roc <- function(response, predictor, levels, direction, pauc_range, pauc_focus,
+                              boot_n = 2000, seed, conf_level = 0.95) {
+-  if (is.null(seed) || !is.finite(seed)) .da_stop("MS_MISSING_SEED", "a partial-AUC bootstrap requires --seed.")
++  if (is.null(seed) || !is.finite(seed)) .da_stop("OS_MISSING_PARAMETER", "a partial-AUC bootstrap requires --seed.")
+   if (!pauc_focus %in% c("specificity", "sensitivity")) {
+-    .da_stop("MS_INVALID_PARAMETER", "pauc_focus must be 'specificity' or 'sensitivity', got '%s'.", pauc_focus)
++    .da_stop("OS_INVALID_PARAMETER", "pauc_focus must be 'specificity' or 'sensitivity', got '%s'.", pauc_focus)
+   }
+   set.seed(seed)
+   rp <- pROC::roc(response = response, predictor = predictor, levels = levels, direction = direction,
+@@ -233,9 +149,6 @@
+        focus = pauc_focus, range = pauc_range, method = "pROC::ci.auc(method='bootstrap')")
+ }
+ 
+-# direction_auto_check(): fits a THIRD, throwaway roc object with
+-# direction="auto" purely to audit the user's declared direction against it
+-# (DA-M03/DA-R06/DA-06). Its AUC is NEVER used as a reported number.
+ direction_auto_check <- function(response, predictor, levels, declared_direction, declared_auc) {
+   r_auto <- pROC::roc(response = response, predictor = predictor, levels = levels, direction = "auto", quiet = TRUE)
+   auto_direction <- r_auto$direction
+@@ -245,37 +158,16 @@
+        declared_auc = declared_auc)
+ }
+ 
+-# .round_counts(): tp/fn/fp/tn are PARTICIPANT COUNTS -- always exact
+-# integers by definition -- but pROC::coords() can return them with tiny
+-# floating-point noise (observed: 25.99999999999999644729, not exactly 26)
+-# from its internal threshold interpolation. Left uncorrected, that noise
+-# reaches accuracy_from_counts() (harmless there, since sens/spec are still
+-# ~correct to 1e-15) but then a *_fill()/"%d"-formatted reader-facing slot
+-# for the raw count fails outright: R's sprintf("%d", x) requires an exactly
+-# whole-number double, and 25.999999999999996 is not one. Rounding at the
+-# single call site every 2x2 table in this module goes through means the
+-# fix applies everywhere at once (same rationale as roc_counts_at() itself
+-# being the one call site, spec MUST #1).
+ .round_counts <- function(df) {
+   for (cn in c("tp", "fn", "fp", "tn")) if (cn %in% names(df)) df[[cn]] <- round(df[[cn]])
+   df
+ }
+ 
+-# roc_counts_at(): the single call site for turning threshold(s) into
+-# tp/fn/fp/tn on a fitted roc object -- coords(ret=c("tp","fn","fp","tn")) is
+-# how EVERY 2x2 table in this module (primary cut-off, multi-cutoff sweep,
+-# contingency table) is built, so the multi-cutoff table and the primary
+-# cut-off's own row can never silently disagree (spec section 6's own
+-# self-consistency assertions tp+fn==n_positive / tn+fp==n_negative rely on
+-# this being the one code path).
+ roc_counts_at <- function(r, x) {
+   out <- pROC::coords(r, x = x, input = "threshold", ret = c("threshold", "tp", "fn", "fp", "tn"), transpose = FALSE)
+   .round_counts(as.data.frame(out))
+ }
+ 
+-# roc_best_cutoff(): "best" cut-off under a named criterion. Returns the
+-# threshold plus tp/fn/fp/tn at that threshold, via the SAME coords() call
+-# site as roc_counts_at() (never coords(..., ret="youden") -- DA-M02).
+ roc_best_cutoff <- function(r, best_method = c("youden", "closest.topleft")) {
+   best_method <- match.arg(best_method)
+   out <- pROC::coords(r, x = "best", best.method = best_method,
+@@ -285,29 +177,17 @@
+   .round_counts(df)
+ }
+ 
+-# ============================================================================
+-# 6. Paired comparison (DeLong) with the mandatory complete-case identity gate
+-# ============================================================================
+-
+-# assert_paired_sets(): DA-M09/MUST #7 -- the ONE place a paired comparison
+-# is allowed to proceed. idx_a/idx_b are the row indices (into the SAME base
+-# data.frame) each score's own complete-case filter produced; anything less
+-# than exact index-set equality is refused, never silently downgraded to an
+-# unpaired test (spec section 3.4: an unpaired test on paired data changed P
+-# from 0.164 to 0.120 in the module's own worked example).
+ assert_paired_sets <- function(idx_a, idx_b) {
+   if (!identical(sort(idx_a), sort(idx_b))) {
+     n1 <- length(idx_a); n2 <- length(idx_b)
+     n_diff <- length(union(setdiff(idx_a, idx_b), setdiff(idx_b, idx_a)))
+-    .da_stop("MS_INVALID_PAIRED_SET",
++    .da_stop("OS_INVALID_DESIGN",
+              "paired comparison requested but the two index tests have different analysis samples (n = %d vs %d; %d participant(s) differ). A paired DeLong test is not valid here.",
+              n1, n2, n_diff)
+   }
+   invisible(TRUE)
+ }
+ 
+-# paired_delong(): roc.test() is ALWAYS called with paired=TRUE explicit
+-# (DA-M04, never paired=NULL) once assert_paired_sets() has passed.
+ paired_delong <- function(roc_a, roc_b, conf_level = 0.95) {
+   rt <- pROC::roc.test(roc_a, roc_b, method = "delong", paired = TRUE, conf.level = conf_level)
+   auc_a <- as.numeric(pROC::auc(roc_a)); auc_b <- as.numeric(pROC::auc(roc_b))
+@@ -317,18 +197,10 @@
+        test_name = "pROC::roc.test(method='delong', paired=TRUE)")
+ }
+ 
+-# ============================================================================
+-# 7. Data-driven cut-off workflow: bootstrap CI for the cut-off itself + LOO
+-# ============================================================================
+-
+-# cutoff_ci_coords(): ci.coords() bootstrapped over the SAME "reselect the
+-# best cut-off on each resample" step the point estimate went through --
+-# this is what makes the interval honest about cut-off SELECTION uncertainty,
+-# not just about Se/Sp at a fixed cut-off (spec section 5.3 / DA-R09).
+ cutoff_ci_coords <- function(r, best_method = c("youden", "closest.topleft"), boot_n = 2000, seed,
+                               conf_level = 0.95) {
+   best_method <- match.arg(best_method)
+-  if (is.null(seed) || !is.finite(seed)) .da_stop("MS_MISSING_SEED", "a data-driven cut-off's bootstrap interval requires --seed.")
++  if (is.null(seed) || !is.finite(seed)) .da_stop("OS_MISSING_PARAMETER", "a data-driven cut-off's bootstrap interval requires --seed.")
+   set.seed(seed)
+   cc <- pROC::ci.coords(r, x = "best", input = "threshold", best.method = best_method,
+                          ret = c("threshold", "sensitivity", "specificity"),
+@@ -339,13 +211,6 @@
+        boot_n = boot_n, seed = seed)
+ }
+ 
+-# loo_cutoff_validation(): leave-one-out internal validation for a data-driven
+-# cut-off (spec section 5.3(b)/DA-R09 point 2, `--internal-validation loo`,
+-# the default). Each fold reselects the best cut-off on the other n-1
+-# subjects, classifies the held-out subject with THAT fold's own cut-off, and
+-# the resulting per-subject predictions are pooled into one confusion matrix
+-# (the standard pooled-prediction LOOCV construction) which is then routed
+-# through accuracy_from_counts() like every other 2x2 table in this file.
+ loo_cutoff_validation <- function(response, predictor, levels, direction, best_method = c("youden", "closest.topleft")) {
+   best_method <- match.arg(best_method)
+   n <- length(response)
+@@ -371,14 +236,6 @@
+   list(tp = tp, fn = fn, fp = fp, tn = tn, n_folds_ok = sum(ok), n_folds_failed = sum(!ok))
+ }
+ 
+-# ============================================================================
+-# 8. Participant-flow accounting (STARD 19) and the four MUST-balance identities
+-# ============================================================================
+-
+-# participant_flow(): builds the accounting table AND checks the four
+-# identities spec section 7.3 / DA-02 requires. Never silently proceeds past
+-# a failed identity -- the caller is expected to treat check$ok==FALSE as a
+-# hard stop (DA-02 is severity H).
+ participant_flow <- function(n_input, n_excl_missing_index, n_excl_missing_reference,
+                               n_excl_indeterminate_index, n_excl_indeterminate_reference,
+                               n_excl_other, n_analysed, n_positive, n_negative, tp, fn, tn, fp) {
+@@ -402,16 +259,3 @@
+     ok = id1 && id2 && id3 && id4
+   )
+ }
+-
+-# ============================================================================
+-# 9. Small numeric utilities shared by run_diagacc.R
+-# ============================================================================
+-
+-# model_spec_hash(): same convention as every other module (a digest of the
+-# fields that define "this is the same analysis", used to cross-check that a
+-# figure/table/draft came from the same fitted object -- MUST #18).
+-model_spec_hash <- function(...) {
+-  parts <- vapply(list(...), function(x) paste(format(x, trim = TRUE), collapse = ","), character(1))
+-  raw <- paste(parts, collapse = "|")
+-  sprintf("%08x", sum(utf8ToInt(raw) * seq_along(utf8ToInt(raw))) %% 4294967295)
+-}

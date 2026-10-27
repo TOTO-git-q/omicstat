@@ -25,11 +25,20 @@ def main():
         sys.exit(f"OS_INVALID_INPUT: expected exactly one scripts/run_*.R or run_*.py in {mod}")
     tool = sys.executable if entry[0].suffix == ".py" else "Rscript"   # Python lane: same --help convention
     out = subprocess.run([tool, str(entry[0]), "--help"], capture_output=True, text=True, stdin=subprocess.DEVNULL)
+    if out.returncode != 0:
+        print(f"FAIL: --help exited {out.returncode}; documentation coverage was not assessed")
+        print((out.stderr or out.stdout).strip())
+        sys.exit(1)
     flags = sorted(set(FLAG.findall(out.stdout)) - {"--help"})
+    if not flags:
+        print("FAIL: no flags discovered; documentation coverage was not assessed")
+        sys.exit(1)
     docs = (mod / "SKILL.md").read_text(encoding="utf-8")
     for f in sorted((mod / "references").glob("*.md")):
         docs += f.read_text(encoding="utf-8")
-    missing = [f for f in flags if f not in docs]
+    shared = mod.parent / "_shared/docs/STUDY_CONTRACT.md"
+    common = shared.read_text(encoding="utf-8") if shared.exists() else ""
+    missing = [f for f in flags if f not in docs and not (f in {"--study-contract", "--study-contract-sha256"} and f in common)]
     print(f"{len(flags) - len(missing)}/{len(flags)} flags documented")
     for f in missing:
         print(f"UNDOCUMENTED {f}")

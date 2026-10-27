@@ -1,0 +1,71 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "proc-roc",
+  "modules": [
+    "proc-roc"
+  ],
+  "actual_remote_parent": "fddfe978a2bc9c8af97f0611c122ff845f6d10ec",
+  "image_candidate": "env/candidates/20261020-core-final2",
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "full_regression": true,
+  "full_item_complete": false,
+  "owner_visual_review": null,
+  "notes": [
+    "Independent partial source adaptation of pinned diagnostic-accuracy. Original estimators and bootstrap internal-validation cap min(requested,200) retained and exposed.",
+    "P0-13 explicitly requires multiple-marker paired DeLong comparisons with explicit correction; caller selects method, original raw P and family preserved. Difference CIs remain unadjusted.",
+    "Source original synthetic counted-2x2 anchor is retained as a numerical contract; cannot replace registered genuine owner data. No aSAH clinical rows or fitted objects are uploaded.",
+    "Exact pROC inventory/source closure and native formals are missing in this workspace. All native R4.6.1 anchors/replay/refusals/figures and numerical before/after remain pending.",
+    "Full source copies are not claimed byte-equivalent or numerically verified. Scalar API/flow accounting/source guards are explicit adaptations.",
+    "Owner real-anchor contact sheet and two original non-ROC figure adapters remain pending; earlier package gaps retained. Golden/seal are read-only deferred_by_owner.",
+    "Final core image omicstat-r:2026.10.4 (env/candidates/20261020-core-final2, branch conv/image-2026.10.4) adds timeROC, pROC, pwr, vcd; needs that candidate merged."
+  ],
+  "checks": [
+    [
+      "python3",
+      "tools/test_proc_roc_port.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "proc-roc",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "Rscript",
+      "skills/proc-roc/tests/run_smoke_test.R"
+    ],
+    [
+      "python3",
+      "skills/proc-roc/tests/check_native_readiness.py"
+    ]
+  ],
+  "owner_review_policy": {
+    "synthetic_owner_sheets_allowed": false,
+    "dataset_label_required_per_figure": true,
+    "state": "blocked_exact_real_anchor_source_SHA256_and_version",
+    "clinical_rows_upload_allowed": false,
+    "registered_owner_receipt": null
+  }
+}

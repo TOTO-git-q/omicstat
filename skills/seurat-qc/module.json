@@ -1,0 +1,217 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "seurat-qc",
+  "lane": "R",
+  "domain": "sc-qc",
+  "entry": "scripts/run_seurat_qc.R",
+  "version": "1.0.0",
+  "qc_prefix": "SQ",
+  "engine_packages": [
+    "Seurat",
+    "SeuratObject"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "Seurat"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Seurat raw-count quality control",
+    "order": 24
+  },
+  "publication": {
+    "rule_category": "design_conditional",
+    "legacy_override": {
+      "module": "seurat-qc",
+      "rule_id": "SEURAT-QC-SQ-QC",
+      "category": "design_conditional",
+      "severity": "major",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/seurat-qc/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Report explicit QC thresholds, retained cells, species and mitochondrial pattern; review QC warnings.",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Report explicit QC thresholds, retained cells, species and mitochondrial pattern; review QC warnings.",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--seed",
+      "default": 20260925,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--journal",
+      "default": "nature",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--input-format",
+      "default": "10x",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--sample",
+      "default": "sample",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--organism",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--feature-type",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--mito-pattern",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--min-cells",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [0, 1000000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--create-min-features",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [0, 1000000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--min-features",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [0, 1000000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-features",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [0, 1000000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--min-counts",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [0, 1000000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-counts",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [0, 1000000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-mito",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "num in [0, 100]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 14,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "seurat-qc",
+      "entry_script": "scripts/run_seurat_qc.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "b8d37a407ed855fa0e4c481818575ddd4c990549fb0025fcce7cde016734b9ad",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

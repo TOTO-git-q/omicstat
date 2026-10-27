@@ -1,0 +1,99 @@
+---
+name: survival-expr
+description: >
+  Associate prespecified expression genes with right-censored survival using per-gene Cox models,
+  PH diagnostics and declared Kaplan-Meier cutoffs. Requires an expression_matrix handoff and
+  biological subject matching. Candidate only. Triggers: gene survival, expression Cox, KM, PH.
+---
+# survival-expr
+
+## When to use / when not
+Use for continuous prespecified gene expression and one right-censored event per subject.
+Clinical-only models belong to medstat. No competing risks, recurrent events, left truncation,
+interval censoring, repeated biological samples, automatic gene selection or diagnostic cutpoint claims.
+
+## Input requirements
+An integrity-verified --from-run expression_matrix handoff is mandatory. Raw matrix paths cannot
+replace it. Candidate, display-only and batch-corrected inputs are refused. Clinical CSV must match
+all matrix sample IDs exactly; --unit-col preserves string identities and never derives n from rows.
+Time must be positive and event explicitly 0=censored,1=event. No automatic recoding or case deletion.
+Numeric covariates only; categorical contrasts must be explicitly encoded upstream. Gene identifiers
+are exact; use the offline idmap snapshot/report upstream when mapping is needed. No online lookup. Maximum 100 tested genes and 5000 subjects; optimal search allows at most 256 unique thresholds and never silently subsamples.
+Declare normalized expression scale, per-gene scaling, ties, minimum events, iterations/tolerance,
+PH transform/threshold, planned gene family and p adjustment, marginal CI and study contract.
+
+## Run
+Prepare tests/prepare_acceptance.py with a new fixture directory, then use the complete command in
+tests/acceptance.json with --development-mode. All scientific choices are required.
+The numerical fixture uses clinical age as AGE_PROXY solely to reproduce published Cox values.
+It is not evidence for a real gene-survival association. A real limma-array producer tests chaining.
+
+## What gets produced
+Per-gene HR/Wald tables, all coefficient estimates, PH tests, scaling parameters, KM curves,
+aligned risk counts, subject/group memberships, full exploratory cutpoint search if requested,
+two scientific PNG/PDF/spec figures, candidate typed models, QC, methods and provenance.
+
+## Reading the results
+Cox tests continuous expression, not dichotomized groups. Each gene has its own covariate-adjusted
+model. P adjustment covers the declared gene family; CI is marginal, not simultaneous.
+KM is an unadjusted display for one explicitly chosen gene. Low means expression <= cutoff.
+Median is outcome-independent; prespecified needs a numeric cutpoint on the supplied expression
+scale. Optimal requires --exploratory and --min-group-fraction; its logrank p is withheld and
+both result metadata and figure caption label the search exploratory. No corrected search p is invented.
+PH diagnostics never silently remove genes. At-risk counts include subjects observed at the time.
+
+## When a QC rule fires
+SRV-01 blocks candidate publication; SRV-02 blocks confirmatory optimized-cutpoint interpretation;
+SRV-03 requests review of PH assumptions; SRV-04 flags an unadjusted multiple-gene family.
+Undefined endpoint KM intervals stay missing in tables; the figure omits interval bounds if needed.
+
+## Known limitations
+No categorical-covariate parser, interactions, robust clustered SE, competing risks or missing-data
+imputation. No clinical-only pathway. Owner scientific/visual review and production exec pending.
+Cutpoint search is exploratory, cannot justify a clinical biomarker threshold. No accepted registration.
+
+## Reference files
+parameters.md, method-basis.md, qc-rules.md, reporting-templates.md and troubleshooting.md.
+
+<!-- parameter-guidance:begin -->
+## Mandatory parameter questions
+
+Recommendations are proposals, never engine defaults. Ask once for all unresolved choices below; pass every required value explicitly.
+
+| Required flag | Kind / type | Options and meaning | Recommended (not automatic) | Basis | Ask the user when |
+|---|---|---|---|---|---|
+| --from-run | input / path | user value: Verified upstream expression_matrix handoff. | null | none:  | The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork. |
+| --clinical | input / path | user value: Clinical CSV one row per biological subject. | null | none:  | The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork. |
+| --unit-col | scientific / string | user value: Name the independent biological-unit or matched-subject identifier used to prevent pseudoreplication. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous. |
+| --time-col | scientific / string | user value: Positive right-censored time. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous. |
+| --event-col | scientific / string | user value: Explicit zero censored one event. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous. |
+| --time-unit | scientific / string | user value: Declared follow-up units. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --genes | scientific / string | user value: Prespecified comma-separated exact gene IDs. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --covariates | scientific / string | user value: Numeric covariates comma-separated or none. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --expression-scale | scientific / normalized-log2\|normalized-other | normalized-log2: Expression is already normalized on the log2 scale.; normalized-other: Expression uses a different explicitly declared normalized scale. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --scaling | scientific / none\|zscore | none: Keep the declared expression scale when fitting the effect.; zscore: Express the effect per within-cohort standard deviation, with the scaling parameters recorded. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --ties | scientific / efron\|breslow\|exact | efron: Use the Efron approximation for tied event times.; breslow: Use the Breslow approximation for tied event times.; exact: Use the exact partial-likelihood treatment supported by the native model. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --min-events | scientific / int in [2, Inf] | user value: Prespecified minimum observed events. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --max-iter | scientific / int in [1, 10000] | user value: Cox iteration limit. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --cox-eps | scientific / num in [0.000000000001, 0.01] | user value: Cox convergence tolerance. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --ph-transform | scientific / km\|rank\|identity\|log | km: Use the Kaplan-Meier-based time transformation for the PH diagnostic.; rank: Use ranked event times for the PH diagnostic.; identity: Use original event times for the PH diagnostic.; log: Use log event times for the PH diagnostic. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --ph-alpha | scientific / num in [0.000001, 0.5] | user value: Diagnostic threshold never a gene filter. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --adjust | scientific / none\|holm\|bonferroni\|BH\|BY | none: Leave the reported tests unadjusted; this does not control family-wise error or FDR.; holm: Control family-wise error using the step-down Holm correction.; bonferroni: Control family-wise error by multiplying by the declared family size.; BH: Control false discovery rate under the assumptions of the Benjamini-Hochberg procedure.; BY: Use the more conservative Benjamini-Yekutieli FDR correction allowing arbitrary dependence. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --family-size | scientific / int in [1, Inf] | user value: Specify the total prespecified hypothesis-family size, including planned tests not represented by finite P values. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --ci-level | scientific / num in [0.5, 0.9999] | user value: Specify the coverage level for the reported marginal intervals; this is not automatically simultaneous family coverage. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --km-gene | scientific / string | user value: One prespecified displayed gene. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --cutoff | scientific / median\|prespecified\|optimal | median: Split the displayed KM groups at the specified cohort median; this is a display rule.; prespecified: Use the numerical cutoff fixed before inspecting the outcome.; optimal: Use the explicitly requested exploratory outcome-selected cutoff, with its selection limitations. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --risk-times | scientific / string | user value: Sorted comma-separated risk table times. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --journal | presentation / nature\|cell\|science\|generic | nature: Use the existing Nature-oriented size and typography preset.; cell: Use the existing Cell-oriented size and typography preset.; science: Use the existing Science-oriented size and typography preset.; generic: Use the suite generic publication-figure preset. | null | none:  | The target publication style is unknown or differs from the previous figure set. |
+| --study-contract | input / path | user value: Validated prespecified study declaration. | null | none:  | The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork. |
+| --seed | execution / int | user value: Recorded seed. | null | none:  | The output location or reproducibility seed has not been supplied for this run, or needs to change. |
+| --outdir | execution / path | user value: Choose the permitted output directory for a new run; this does not alter the scientific analysis. | null | none:  | The output location or reproducibility seed has not been supplied for this run, or needs to change. |
+| --development-mode | execution / switch; conditional: Every execution of this candidate requires an explicit development-mode acknowledgement. | True: Acknowledge candidate execution and its outstanding acceptance review; this does not seal or promote the module. | null | none:  | This analysis/input branch applies and the value has not been explicitly declared.; Every execution of this candidate requires an explicit development-mode acknowledgement. |
+| --cutpoint | scientific / num; conditional: --cutoff prespecified is selected. | user value: Supply the numerical expression cutpoint fixed before outcome inspection. | null | none:  | This analysis/input branch applies and the value has not been explicitly declared.; --cutoff prespecified is selected. |
+| --exploratory | scientific / switch; conditional: --cutoff optimal is explicitly requested. | True: Acknowledge the exploratory, outcome-selected cutpoint and its selection limitations. | null | none:  | This analysis/input branch applies and the value has not been explicitly declared.; --cutoff optimal is explicitly requested. |
+| --min-group-fraction | scientific / num in [0.05, 0.49]; conditional: --cutoff optimal is explicitly requested. | user value: Prespecify the smallest permitted fraction on either side of the exploratory split. | null | none:  | This analysis/input branch applies and the value has not been explicitly declared.; --cutoff optimal is explicitly requested. |
+
+Optional `--parameter-choices` accepts a JSON object mapping explicitly supplied flag names (without `--`) to `user`, `recommended_accepted_by_user`, or `owner_default`. It never supplies a missing argument. An accepted recommendation must match its cited value; `owner_default` additionally requires a recorded owner-adjudication basis.
+Choice origins are caller declarations recorded in provenance and replay; they are not a verification of human consent. Omitted optional engine defaults remain separately identified.
+Use `python tools/describe_module.py survival-expr --for-question` or MCP `omicstat_describe(module, for_question=True)` for the complete machine-readable question set.
+<!-- parameter-guidance:end -->

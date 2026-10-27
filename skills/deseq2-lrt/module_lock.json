@@ -17,7 +17,7 @@
     "skills/deseq2-lrt/references/troubleshooting.md": "e1a442fee46695460b2ea99e84ff95ee26b1eab60de795152dfc796dbb74c616",
     "skills/deseq2-lrt/tests/fixtures/make_fission.R": "c44e67f243ea48c984c8de3b8ba535eaf60199a32ad94bde38b4185fb7bf6588",
     "skills/deseq2-lrt/tests/run_smoke_test.R": "d2f595826ebc69d3ff8b36167fb5c7c13be1f11f0b2636079bdd3c8d162bfe11",
-    "skills/deseq2-lrt/tests/golden_manifest.csv": "f043ddb7ec26ffb2a72a4c5f262365ae299f42c6b4eb9ce2c892baaff018c79f",
+    "skills/deseq2-lrt/tests/golden_manifest.csv": "1459d0fc24c9309d1699b6b2345106ee0f8377107c43f9f8676509e41eb55db8",
     "acceptance/exemplars/deseq2-lrt/PACK.md": "2e990894d0aeab3e170c53a26a4a0651ab595030d81d1bcf560212f9e68b423b"
   },
   "packages": {
@@ -29,7 +29,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

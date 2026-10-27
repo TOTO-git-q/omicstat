@@ -1,0 +1,10 @@
+{
+ "module": "macs",
+ "epmc_query": "METHODS:\"MACS2\" AND (METHODS:\"peak calling\" OR METHODS:\"ChIP-seq\" OR METHODS:\"ATAC-seq\")",
+ "meta": false,
+ "signal_regex": "\\bMACS[23]?\\b[^.;]{0,160}(?:peaks?|ChIP|ATAC|narrow|broad|q[- ]?value)|(?:peak[- ]call\\w*|called peaks?)[^.;]{0,160}\\bMACS[23]?\\b",
+ "signal_require_regex": "\\bMACS[23]?\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile from the 2026-10 coverage ranking: accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

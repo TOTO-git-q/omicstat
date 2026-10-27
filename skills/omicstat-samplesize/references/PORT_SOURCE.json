@@ -1,0 +1,127 @@
+{
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/sample-size/",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "verified_at_utc": "2026-10-17T00:11:42.626946+00:00",
+  "source_read_only": true,
+  "code_executed_in_MedStat": false,
+  "files": [
+    {
+      "path": "skills/sample-size/SKILL.md",
+      "git_blob": "c747539261b51f5ff1576a32a98ddfa67728831e",
+      "mode": "100644",
+      "bytes": 25113,
+      "sha256": "ff1e5a442da77f08196d90db0779173d9b746caad1851dbceef03b65236cd0da"
+    },
+    {
+      "path": "skills/sample-size/outputs.json",
+      "git_blob": "593d10cdd0bd2b30fec668ff8d60b110d785ee5e",
+      "mode": "100644",
+      "bytes": 13831,
+      "sha256": "b8f3f2419ba015ab75b8ff4f08aa0dc8165a94f908afa41bfe7f2cbc2744402b"
+    },
+    {
+      "path": "skills/sample-size/references/formulas.md",
+      "git_blob": "1ea8dca83826bb8d37d686025a00bd0d532cf3f5",
+      "mode": "100644",
+      "bytes": 29495,
+      "sha256": "62229dcc9c21b5ede2128e0be6edcee823b226fa1739ed758ca33fff13e29f92"
+    },
+    {
+      "path": "skills/sample-size/references/reporting-templates.md",
+      "git_blob": "16df143b897a4811b2d815149d6c2879d3326d9c",
+      "mode": "100644",
+      "bytes": 22197,
+      "sha256": "48cfcef22c0caaf47e988cb59a65778a04e03ad12debdbb2897a376e18794bf4"
+    },
+    {
+      "path": "skills/sample-size/scripts/run_samplesize.R",
+      "git_blob": "5abb3cf0174a52392929015e5d237fc74e1874dc",
+      "mode": "100644",
+      "bytes": 39077,
+      "sha256": "aac569f63f3b5323f7a0f434a179ba5c1bb88dd5869a99a5fff79fbabd1cf99a"
+    },
+    {
+      "path": "skills/sample-size/scripts/samplesize_engines.R",
+      "git_blob": "fb444cad3727918bf3ec9a2adf7675a535786229",
+      "mode": "100644",
+      "bytes": 44283,
+      "sha256": "d4fb09eba35346047ce4f7a10e8f759a3c87e2b308088a3b37b56952cd1c98bc"
+    },
+    {
+      "path": "skills/sample-size/scripts/samplesize_engines_designs.R",
+      "git_blob": "68dc0e21014da8794eab9383706697bc8de250e3",
+      "mode": "100644",
+      "bytes": 26650,
+      "sha256": "0e34f3dc456cc4920b415d950e014fce9c7f79cc418e3b0732706c31aaf66ff5"
+    },
+    {
+      "path": "skills/sample-size/scripts/samplesize_qc.R",
+      "git_blob": "7f3f9d179e9ab1c0e52c1c1f78b51842396d5412",
+      "mode": "100644",
+      "bytes": 10063,
+      "sha256": "927b67fbf967b24dc68bfb8f487aacb0d2ac2451d18905b2dc7ef0f1b9c4a02d"
+    },
+    {
+      "path": "skills/sample-size/scripts/samplesize_report.R",
+      "git_blob": "46fb9cf4508d450f4918d707a757bd87c95ce752",
+      "mode": "100644",
+      "bytes": 28147,
+      "sha256": "a57a06c4ccc0a675dc9e47a9205baf1bbf729f205d4fd31c33af383e935d0903"
+    },
+    {
+      "path": "skills/sample-size/tests/run_smoke_test.R",
+      "git_blob": "54cc1a9b83c357007e47c3b4a2a9f2387f6ac9ad",
+      "mode": "100644",
+      "bytes": 70569,
+      "sha256": "2de0cc96f556d1e44a7ba050a81ed8218da52d0be89d6eca15fc38a31f945aaf"
+    },
+    {
+      "path": "skills/sample-size/tests/verified/REFERENCE.md",
+      "git_blob": "ed2f75d6b674b1b03c51025af1298d7ded047c2b",
+      "mode": "100644",
+      "bytes": 1186,
+      "sha256": "1d25a22e2dc5a96e78887952ec24893c6366a31e1e2001622911fa8c4bac8f58"
+    },
+    {
+      "path": "skills/sample-size/tests/verified/run_verified.R",
+      "git_blob": "86f3725e22e76959b41e4065402559927c398ab1",
+      "mode": "100644",
+      "bytes": 4206,
+      "sha256": "796b5f06fa762745ca7df9eab4c4488ab0e7bc72d6e5b597dbf88f8d37acca4e"
+    }
+  ],
+  "ported_engine_segments": [
+    {
+      "first_line": 40,
+      "last_line": 102
+    },
+    {
+      "first_line": 107,
+      "last_line": 158
+    },
+    {
+      "first_line": 249,
+      "last_line": 277
+    },
+    {
+      "first_line": 372,
+      "last_line": 392
+    },
+    {
+      "first_line": 475,
+      "last_line": 516
+    }
+  ],
+  "error_code_map": {
+    "MS_MISSING_PACKAGE": "OS_MISSING_PACKAGE",
+    "MS_INVALID_PARAMETER": "OS_INVALID_PARAMETER",
+    "MS_COMPUTE_FAILED": "OS_CONVERGENCE"
+  },
+  "removed_designs": "Clinical noninferiority/equivalence, diagnostic precision and prediction-specific branches are not exposed by this laboratory five-design port; original source remains pinned for later explicitly scoped extensions.",
+  "qc_source_lines": [
+    29,
+    67
+  ],
+  "adapted_engine_sha256": "80b84e1ea8c7a6c4103cc2261ffb984b3e388e5bec449eb5fc53634dfbd4c53e",
+  "adapted_qc_sha256": "8bb98f373fba609a867b1ef1acf32a6e10220f4faa9dcbf9de477226ca6e89a9"
+}

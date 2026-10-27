@@ -1,0 +1,525 @@
+[
+  {
+    "name": "analysis",
+    "kind": "enum",
+    "help": "Explicit agreement chance/design model",
+    "required": true,
+    "values": [
+      "kappa",
+      "fleiss",
+      "icc",
+      "bland-altman"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "input",
+    "kind": "path",
+    "help": "Complete input CSV; no silent deletion",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "input"
+  },
+  {
+    "name": "labels",
+    "kind": "path",
+    "help": "Unique nonblank JSON/YAML/CSV reader-facing labels, including population and measurement",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "input"
+  },
+  {
+    "name": "format",
+    "kind": "enum",
+    "help": "Explicit input arrangement; ICC and Bland-Altman currently require wide",
+    "required": true,
+    "values": [
+      "wide",
+      "long",
+      "counts"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "confidence-level",
+    "kind": "num",
+    "help": "Prespecified interval confidence level in (0,1); LoA population coverage stays 95%",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "missing",
+    "kind": "enum",
+    "help": "Missing ratings are fatal; complete-case deletion is never silent",
+    "required": true,
+    "values": [
+      "fail"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "independent-unit",
+    "kind": "enum",
+    "help": "Actual independent unit; counts tables explicitly declare aggregate-unit",
+    "required": true,
+    "values": [
+      "animal",
+      "donor",
+      "biological-sample",
+      "independent-culture",
+      "physical-test-item",
+      "aggregate-unit"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "unit-description",
+    "kind": "string",
+    "help": "Explain independence and any deliberately performed upstream aggregation",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "repeated-measures",
+    "kind": "enum",
+    "help": "Repeated/clustered measurements are unsupported by the copied independent-unit methods",
+    "required": true,
+    "values": [
+      "false"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "outcome-unit",
+    "kind": "string",
+    "help": "Common measurement unit for continuous methods; dimensionless for categorical coefficients",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "dataset-name",
+    "kind": "string",
+    "help": "Dataset label printed on every figure; does not attest real owner data",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "id-col",
+    "kind": "string",
+    "help": "Stable independent-unit ID column",
+    "required": false,
+    "values": null,
+    "when": [
+      "format!=counts"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "rater-cols",
+    "kind": "string",
+    "help": "Distinct comma-separated rater/method column names in deliberate order",
+    "required": false,
+    "values": null,
+    "when": [
+      "analysis in kappa,fleiss,icc"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "rater-col",
+    "kind": "string",
+    "help": "Long-format rater-ID column",
+    "required": false,
+    "values": null,
+    "when": [
+      "format=long"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "rating-col",
+    "kind": "string",
+    "help": "Long-format observed category column",
+    "required": false,
+    "values": null,
+    "when": [
+      "format=long"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "count-col",
+    "kind": "string",
+    "help": "Counts-table non-negative integer frequency column; every cell including zero is explicit",
+    "required": false,
+    "values": null,
+    "when": [
+      "format=counts"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "scale",
+    "kind": "enum",
+    "help": "Category scale; ordinal order must be declared",
+    "required": false,
+    "values": [
+      "nominal",
+      "ordinal"
+    ],
+    "when": [
+      "analysis in kappa,fleiss"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "levels",
+    "kind": "string",
+    "help": "Complete comma-separated ordered categories; never inferred for ordinal data",
+    "required": false,
+    "values": null,
+    "when": [
+      "scale=ordinal"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "weights",
+    "kind": "enum",
+    "help": "Nominal/Fleiss none; ordinal Cohen both retains linear primary and quadratic sensitivity",
+    "required": false,
+    "values": [
+      "none",
+      "both"
+    ],
+    "when": [
+      "analysis in kappa,fleiss"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "ci-method",
+    "kind": "enum",
+    "help": "Cohen analytic or subject bootstrap; Fleiss requires subject bootstrap",
+    "required": false,
+    "values": [
+      "analytic",
+      "bootstrap"
+    ],
+    "when": [
+      "analysis in kappa,fleiss"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "bootstrap-reps",
+    "kind": "int",
+    "help": "At least 100 subject bootstrap draws; recorded even when analytic was explicitly selected",
+    "required": false,
+    "values": null,
+    "when": [
+      "analysis in kappa,fleiss"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "interpretation",
+    "kind": "enum",
+    "help": "Descriptive convention, never a universal adequacy threshold",
+    "required": false,
+    "values": [
+      "none",
+      "landis-koch",
+      "mchugh"
+    ],
+    "when": [
+      "analysis in kappa,fleiss"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "paradox-agreement",
+    "kind": "num",
+    "help": "Optional Cohen-kappa warning threshold in [0,1]; original source convention 0.8 is retained when absent; changes warning only",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "paradox-kappa",
+    "kind": "num",
+    "help": "Optional Cohen-kappa warning threshold in [0,1]; original source convention 0.6 is retained when absent; changes warning only",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "paradox-prevalence-index",
+    "kind": "num",
+    "help": "Optional Cohen-kappa warning threshold in [0,1]; original source convention 0.5 is retained when absent; changes warning only",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "paradox-bias-index",
+    "kind": "num",
+    "help": "Optional Cohen-kappa warning threshold in [0,1]; original source convention 0.2 is retained when absent; changes warning only",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "marginal-divergence",
+    "kind": "num",
+    "help": "Optional Cohen-kappa warning threshold in [0,1]; original source convention 0.2 is retained when absent; changes warning only",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "icc-model",
+    "kind": "enum",
+    "help": "ICC model explicitly chosen from design, never inferred",
+    "required": false,
+    "values": [
+      "oneway",
+      "twoway"
+    ],
+    "when": [
+      "analysis=icc"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "icc-definition",
+    "kind": "enum",
+    "help": "Absolute agreement versus consistency are different estimands",
+    "required": false,
+    "values": [
+      "agreement",
+      "consistency"
+    ],
+    "when": [
+      "analysis=icc"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "icc-unit",
+    "kind": "enum",
+    "help": "Single rater or mean of raters; changes the estimand",
+    "required": false,
+    "values": [
+      "single",
+      "average"
+    ],
+    "when": [
+      "analysis=icc"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "rater-population",
+    "kind": "enum",
+    "help": "Random rater population or the fixed raters studied",
+    "required": false,
+    "values": [
+      "random",
+      "fixed"
+    ],
+    "when": [
+      "analysis=icc"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "same-raters",
+    "kind": "enum",
+    "help": "Whether every independent subject has the same raters",
+    "required": false,
+    "values": [
+      "true",
+      "false"
+    ],
+    "when": [
+      "analysis=icc"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "icc-fixed-agreement-rationale",
+    "kind": "string",
+    "help": "Why the fixed set itself is the target of absolute agreement",
+    "required": false,
+    "values": null,
+    "when": [
+      "icc-definition=agreement and rater-population=fixed"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "adequacy-threshold",
+    "kind": "num",
+    "help": "Optional independently prespecified adequacy threshold in [0,1]",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "adequacy-rationale",
+    "kind": "string",
+    "help": "Source and purpose of an optional prespecified adequacy threshold",
+    "required": false,
+    "values": null,
+    "when": [
+      "adequacy-threshold is supplied"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "method-a-col",
+    "kind": "string",
+    "help": "Numeric method A column, in the same declared unit as B",
+    "required": false,
+    "values": null,
+    "when": [
+      "analysis=bland-altman"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "method-b-col",
+    "kind": "string",
+    "help": "Numeric method B column, distinct from A",
+    "required": false,
+    "values": null,
+    "when": [
+      "analysis=bland-altman"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "difference",
+    "kind": "enum",
+    "help": "Signed difference orientation; has no default",
+    "required": false,
+    "values": [
+      "a-minus-b",
+      "b-minus-a"
+    ],
+    "when": [
+      "analysis=bland-altman"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "acceptability-limit-lower",
+    "kind": "num",
+    "help": "Optional prespecified lower acceptable difference, supplied with upper",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "acceptability-limit-upper",
+    "kind": "num",
+    "help": "Optional prespecified upper acceptable difference, supplied with lower",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "acceptability-rationale",
+    "kind": "string",
+    "help": "Concrete source and purpose of prespecified acceptability limits",
+    "required": false,
+    "values": null,
+    "when": [
+      "acceptability limits are supplied"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "journal",
+    "kind": "enum",
+    "help": "OmicStat display preset only",
+    "required": true,
+    "values": [
+      "nature",
+      "cell",
+      "science",
+      "generic"
+    ],
+    "when": null,
+    "role": "presentation"
+  },
+  {
+    "name": "study-contract",
+    "kind": "path",
+    "help": "Exact validated StudyContract bytes",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "input"
+  },
+  {
+    "name": "development-mode",
+    "kind": "bool",
+    "help": "Explicit candidate-only execution",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "execution"
+  },
+  {
+    "name": "seed",
+    "kind": "int",
+    "help": "Recorded reproducibility seed for native subject bootstrap",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "outdir",
+    "kind": "path",
+    "help": "New or empty output directory",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "execution"
+  },
+  {
+    "name": "spec",
+    "kind": "path",
+    "help": "Exact resolved-spec replay",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "execution"
+  }
+]

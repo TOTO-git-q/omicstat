@@ -1,0 +1,97 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P1-5",
+  "modules": [
+    "survival-expr"
+  ],
+  "image_candidate": "env/candidates/20261016-models",
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "full_regression": true,
+  "notes": [
+    "Pure project-generated synthetic input/output only; no public clinical records or package datasets in this demo.",
+    "Ten independently implemented Efron/KM arithmetic comparisons are replay references, not the former ten printed clinical anchors. Former public-reference evidence remains local only.",
+    "Real limma-array handoff, typed refusals, deterministic replay; no clinical biomarker claim. Golden/seal owner-deferred.",
+    "First exec repair: the complete 11-archive model source lock (including drc) is bound by SHA256 in source_locks. Run the declared explicit source preparation only with authorization, retain its report, then build offline. Missing source cache or dependency closure remains blocked; no automatic download, install, promotion or historical-denial override."
+  ],
+  "checks": [
+    [
+      "Rscript",
+      "skills/survival-expr/tests/run_smoke_test.R"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "skills/survival-expr/tests/test_anchor_math.py"
+    ],
+    [
+      "python3",
+      "tools/test_locked_source_preparation.py"
+    ]
+  ],
+  "source_locks": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "path": "env/candidates/20261016-models/sources.lock.json",
+      "sha256": "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+      "required_packages": [
+        "drc",
+        "emmeans",
+        "proDA",
+        "MSstats",
+        "MSstatsConvert",
+        "multcomp",
+        "plotrix",
+        "TH.data",
+        "estimability",
+        "extraDistr",
+        "marray"
+      ]
+    }
+  ],
+  "source_preparation": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "check": [
+        "python3",
+        "tools/env/prepare_locked_sources.py",
+        "env/candidates/20261016-models",
+        "--lock-sha256",
+        "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+        "--check"
+      ],
+      "authorized_download": [
+        "python3",
+        "tools/env/prepare_locked_sources.py",
+        "env/candidates/20261016-models",
+        "--lock-sha256",
+        "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+        "--download"
+      ],
+      "build": [
+        "python3",
+        "tools/env/build_candidate.py",
+        "env/candidates/20261016-models",
+        "--build"
+      ],
+      "download_is_automatic": false,
+      "archive_cache": "env/candidates/20261016-models/sources",
+      "state": "requires_exec_source_preparation"
+    }
+  ]
+}

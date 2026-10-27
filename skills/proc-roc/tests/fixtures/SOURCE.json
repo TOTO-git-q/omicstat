@@ -1,0 +1,123 @@
+{
+  "schema": "omicstat.synthetic-fixture-source.v1",
+  "data_origin": "Project-invented extra contract rows plus the pinned original deterministic synthetic 40-row counted example; no real people or biological observations.",
+  "real_owner_data": false,
+  "original_counted_example_source": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/diagnostic-accuracy/tests/verified/run_verified.R",
+  "files": [
+    {
+      "path": "blank_ids.csv",
+      "bytes": 1805,
+      "sha256": "7cc808159fe95176287e75396eb8b5a42e0397483ee974b901ce329029887d1e"
+    },
+    {
+      "path": "changed_contract.json",
+      "bytes": 975,
+      "sha256": "a105e63dfe2e9d3b9a313f42b2ebda1a20e5da40d54410bec3798527a051056d"
+    },
+    {
+      "path": "different_missing_sets.csv",
+      "bytes": 1811,
+      "sha256": "c5ab5a2f3e04634c781cb4c9012c26db8b99a1095f706e9f0c283569c4493bdd"
+    },
+    {
+      "path": "duplicate_ids.csv",
+      "bytes": 1818,
+      "sha256": "eb57b7ed398c9815b28d16795e5df614ee37be0ff2675b13e4547be2c4bb2b59"
+    },
+    {
+      "path": "expression.csv",
+      "bytes": 1823,
+      "sha256": "a3ba7e258b0d6420e2b86b807da3e174e801f99d0938b6c6448df9bf5d335124"
+    },
+    {
+      "path": "infinite.csv",
+      "bytes": 1818,
+      "sha256": "a25a35252a222b7ad0fe67faa650289444f81c4b46396434080555c3b97162d4"
+    },
+    {
+      "path": "labels.json",
+      "bytes": 362,
+      "sha256": "ea944ea8d3d091c8a9341179139fce039e946d5c78b64d7876e0b5d4ee7222ca"
+    },
+    {
+      "path": "labels_colliding.json",
+      "bytes": 362,
+      "sha256": "af323ecb10c3c7f76cc5b63f7f6d2bbda2832e35f094c42f4318092ad0a66ec8"
+    },
+    {
+      "path": "labels_missing.json",
+      "bytes": 312,
+      "sha256": "7b8f8ceb8713c5b6d2178b86e58dec9540382429c38b723407b7f596a2ee6d11"
+    },
+    {
+      "path": "labels_nested.json",
+      "bytes": 361,
+      "sha256": "9b823612ce8aa2e11c84b577245c896515969beb874ab99bafb98c94f6b1dd4e"
+    },
+    {
+      "path": "measurements.csv",
+      "bytes": 1818,
+      "sha256": "7e239889a404e988e00193e0e518aee1a3d7f98f45dbed976999f64515b125a9"
+    },
+    {
+      "path": "nonnumeric.csv",
+      "bytes": 1827,
+      "sha256": "96e8b215ae56b350178e0238168b339bac35b23a389367fdde592b9bdc39250e"
+    },
+    {
+      "path": "one_missing_marker.csv",
+      "bytes": 1815,
+      "sha256": "8eb8e908ea39e51f47685bdb448c07897c1305334926721df7299d1e476b8f8b"
+    },
+    {
+      "path": "perfect.csv",
+      "bytes": 1874,
+      "sha256": "6037e94861cfca324100c229ba07b279a9e54c8ade1c7df6d13885ae1bd2a173"
+    },
+    {
+      "path": "same_missing_sets.csv",
+      "bytes": 1811,
+      "sha256": "b48ae2bf04148e2f8a008a49c2ede8cfa82d82bd90d4b21feb64a856d29daf71"
+    },
+    {
+      "path": "sample_sheet.csv",
+      "bytes": 1017,
+      "sha256": "9cec3b59d7d404724c5a56c17639355c0fb9f1d9bf8e97fa833c5936380a7ef7"
+    },
+    {
+      "path": "sheet_duplicate_id.csv",
+      "bytes": 1017,
+      "sha256": "a6fff18154803506a896afc0662d74b3e9e11ad74dcdaeea266b6fe25d0eeef5"
+    },
+    {
+      "path": "sheet_indeterminate.csv",
+      "bytes": 1023,
+      "sha256": "6f4f5402b7916972adc94d8c453dc723c3f3435d92e536e1d2c739dff80ccba3"
+    },
+    {
+      "path": "sheet_missing_id.csv",
+      "bytes": 1009,
+      "sha256": "6037a3cc61c348040be5177f04b168fa8100d0f35bbe2debb97392a305149a36"
+    },
+    {
+      "path": "sheet_missing_reference.csv",
+      "bytes": 1016,
+      "sha256": "620bc7688e846f733dc4b711c7e6b3fc5e277355a2d34c8a003266ec8bc0d5ba"
+    },
+    {
+      "path": "sheet_reordered.csv",
+      "bytes": 1017,
+      "sha256": "bf4ba75b8c0d5ce3352f9d830b8f5738c862e682cb0cce9e95ac42741f4a181e"
+    },
+    {
+      "path": "sheet_third_class.csv",
+      "bytes": 1021,
+      "sha256": "ff912bfc7f3000220780109d5f1a28f7fd752cb83cad620275d64691fa6642c6"
+    },
+    {
+      "path": "study_contract.json",
+      "bytes": 1088,
+      "sha256": "919e14f263b06034cbbf941984a87627ac884d5de55c969134b14e11a0cb75ef"
+    }
+  ]
+}

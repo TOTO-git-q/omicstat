@@ -1,0 +1,2559 @@
+{
+ "modules_without_log": [
+  "scanpy-annotate",
+  "scanpy-purity",
+  "scanpy-ingest"
+ ],
+ "note": "Module-query hit counts per publication year from the S0 search logs (same filter and journal whitelist as the service). The current-year value ends at the log date, not at year end.",
+ "rows": [
+  {
+   "hit_count": 715,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 970,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 1193,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 1243,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 1513,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 1794,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 1406,
+   "query_sha256": "a28d6bead5451d3a8fc7813c43f25652c4ee6254d6ed414911a131961dd850c7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-wald",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 112,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 163,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 195,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 225,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 235,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 281,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 224,
+   "query_sha256": "d8195de18751efeec8936ac0f54fd738d9b3ef8898c34f6d631bb58062df3d16",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-qc",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 45,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 70,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 61,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 63,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 87,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 98,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 74,
+   "query_sha256": "ea87bea75632459d1dbfb16f17f0be0d1b29c4a19bc3734be0cd018228a287c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "deseq2-lrt",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 36,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 68,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 66,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 61,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 80,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 82,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 76,
+   "query_sha256": "81e7e74a6ebf2fb82e3649172a3c070f31df26df5cc94fb26614cf5a7d3d5a18",
+   "source": "s0_search_log:2026-09-27",
+   "term": "edger-qlf",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 104,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 131,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 124,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 152,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 150,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 159,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 121,
+   "query_sha256": "cbb5e9d7b053bebc8fae99632792549600c8bc4f9c0cef705f3afa3b1c9b4c92",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-voom",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 266,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 320,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 319,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 357,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 365,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 440,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 305,
+   "query_sha256": "854c4c37ad4a0e62254015158da026de4674ce16da7e4e72442023a5a8ff97ce",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-array",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 11,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 9,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 5,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 14,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 18,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 14,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 18,
+   "query_sha256": "86a933c60eb9dd97b4168190552bfa29e2b6b524f2881501b4372113175f6bb1",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-dupcor",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 75,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 108,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 122,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 141,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 143,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 203,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 149,
+   "query_sha256": "cb6413c1f6107da89a069a0e2ba59ac1f1a508c7ef8e35c6170a597704503647",
+   "source": "s0_search_log:2026-09-27",
+   "term": "sva-batch",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 88,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 189,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 293,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 425,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 556,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 840,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 737,
+   "query_sha256": "2017c6e02222d9cd844bc7ba2ab3297b6c5c0f0672932f530f192a88340793e8",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-ora",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 44,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 97,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 168,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 245,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 321,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 502,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 427,
+   "query_sha256": "3f3cc5f1e53992551e7996bc03f74bc79325b0b3b76d521d249d48c35b79cf83",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-gsea",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 4,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 10,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 7,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 15,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 19,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 40,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 20,
+   "query_sha256": "6171b53f8168ea4e86385dd2f462dc3bd3729ce09ee32d7d23b5bbea86c50f13",
+   "source": "s0_search_log:2026-09-27",
+   "term": "clusterprofiler-compare",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 58,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 129,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 159,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 212,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 260,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 290,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 271,
+   "query_sha256": "d1b36cb709a244e420d4a4f1a418b8c8273076c0ee449fd4b3d361d5a2124c48",
+   "source": "s0_search_log:2026-09-27",
+   "term": "fgsea-prerank",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 59,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 78,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 117,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 154,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 207,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 218,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 214,
+   "query_sha256": "64d92a23b122afede7b3e589da65140e210a781dfea8b0c5fc4bee4af5363600",
+   "source": "s0_search_log:2026-09-27",
+   "term": "gsva-score",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 80,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 96,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 84,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 104,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 101,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 140,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 104,
+   "query_sha256": "05edc31d6cf75f87a31c947c537c24521420022697867a255d8cd51873b16494",
+   "source": "s0_search_log:2026-09-27",
+   "term": "limma-camera",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 354,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 568,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 816,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 1081,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 1237,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 1635,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 1297,
+   "query_sha256": "d8adde480ae28bd0f8f909494044b7d1a56c6e1c964740b2748a19b00a01a68b",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-qc",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 416,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 631,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 851,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 1112,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 1252,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 1681,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 1267,
+   "query_sha256": "6c95d69e6636ce9ed782d0652c663a463c77a599b444a2d4df39709251e58db4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-cluster",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 21,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 40,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 91,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 157,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 218,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 315,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 309,
+   "query_sha256": "d530cc94ea5b91d4608a2e1ed73a079973f523ce30c15eec40279e0a84b09670",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-integrate",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 344,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 522,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 733,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 981,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 1154,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 1507,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 1142,
+   "query_sha256": "28ba1e473833120c2022e5f6585251e0ac304d317ca7d5ee434dbc13efe84ff7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-markers",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 37,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 82,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 133,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 221,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 252,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 358,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 314,
+   "query_sha256": "58801224322957c1a501d6f090644934ff5c07380c4aa07a111a7a9d5a8ddf4f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "seurat-modulescore",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 28,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 36,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 56,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 50,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 59,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 69,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 34,
+   "query_sha256": "de0c0ef8accf857560fa6fc817c3008ba1c9f406bae816be7ba72a97f82c060a",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scater-qc",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 46,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 72,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 68,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 75,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 83,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 88,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 37,
+   "query_sha256": "71230023d1534b34396c79379c676a871a135a0a1dc6b0e04120060e3e3fb7e4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-cluster",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 9,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 24,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 14,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 34,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 20,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 28,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 13,
+   "query_sha256": "aeb34ffce080acc87d013395b8ce9204acb57baa9ed4979e6a5138cb89900bc7",
+   "source": "s0_search_log:2026-09-27",
+   "term": "batchelor-integrate",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 32,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 55,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 58,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 64,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 68,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 79,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 36,
+   "query_sha256": "a9de7ab41eba127acf5a69498313333f08bd115049e2a090b2487486da8c2f2e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scran-markers",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 42,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 73,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 98,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 162,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 188,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 235,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 227,
+   "query_sha256": "8c9d4b8037e8c97dbe750ad127d534b6d1f69e26f62d1d20a0794d6fac6e9ccd",
+   "source": "s0_search_log:2026-09-27",
+   "term": "aucell-score",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 15,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 37,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 49,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 72,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 82,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 105,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 90,
+   "query_sha256": "9ff7c40373fc177bc01523df6926293b156f6fc8080760ecc4fe260d484e1dc5",
+   "source": "s0_search_log:2026-09-27",
+   "term": "singler-annotate",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 1,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 6,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 9,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 6,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 7,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 15,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 12,
+   "query_sha256": "840b8b59c2f9394e35437006cde0cc43a5ac8067490f8b9ab0091082f0874e6c",
+   "source": "s0_search_log:2026-09-27",
+   "term": "muscat-pseudobulk",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 0,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 0,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 2,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 2,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 5,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 16,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 14,
+   "query_sha256": "66075740d15a521bb8e3a335f022ba2410c457130fdd80998ea4d031202b4bbb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "speckle-propeller",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 0,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 7,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 41,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 114,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 175,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 258,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 259,
+   "query_sha256": "93bec8c0c057591f04af6e9b4110dc47065a98e50462e8dbd8af3095dca77ecb",
+   "source": "s0_search_log:2026-09-27",
+   "term": "cellchat-communication",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 31,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 66,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 107,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 132,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 138,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 180,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 141,
+   "query_sha256": "72697ac1970476a4a36f4c152d43bd8a50d2b792d3a5528bca1c2720ee6c1876",
+   "source": "s0_search_log:2026-09-27",
+   "term": "monocle3-trajectory",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 26,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 52,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 62,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 88,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 88,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 118,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 78,
+   "query_sha256": "aca3a73c43ed6ea41311867aa54de5b829ca19c9b55f0561962321e84e71c872",
+   "source": "s0_search_log:2026-09-27",
+   "term": "slingshot-trajectory",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 84,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 96,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 75,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 104,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 110,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 181,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 114,
+   "query_sha256": "f61bfa2f84d33a834837a33c44255bde7ffffd6e8447c28a4936685f66327783",
+   "source": "s0_search_log:2026-09-27",
+   "term": "wgcna-network",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 7,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 15,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 22,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 22,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 20,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 36,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 25,
+   "query_sha256": "dd0783af31b666b4f0c9e70967d0de245c12a9372eab583241a6fe5122fe6ec9",
+   "source": "s0_search_log:2026-09-27",
+   "term": "maftools-landscape",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 3,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 1,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 6,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 12,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 5,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 12,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 4,
+   "query_sha256": "d37f89d322c1f3ea6c1452b050053d67c1ea513f0ae8ecfcaf17acfe916da54d",
+   "source": "s0_search_log:2026-09-27",
+   "term": "immunedeconv-infiltration",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 55,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 107,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 150,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 180,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 248,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 377,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 327,
+   "query_sha256": "a7b37173b495176d4322865b73447037055bbdd9a7998d9767808427b2c8e3c4",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-qc",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 65,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 130,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 179,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 227,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 294,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 437,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 351,
+   "query_sha256": "92719aaa278597f3093930789857884ae2bd9d3663aba5304da771c7589d0a7f",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-cluster",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 49,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 87,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 128,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 172,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 217,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 312,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 270,
+   "query_sha256": "ab192df406f8d3b328527684bf4aba77c73f04f1e9967cb99c4f388394edcff2",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanpy-markers",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 7,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 16,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 26,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 46,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 71,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 118,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 96,
+   "query_sha256": "97f80e71ddbaff48befb6e79980f7b5a2aae701cf7bb81e6473e162ad108510e",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scvi-integrate",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  },
+  {
+   "hit_count": 1,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2020-12-31",
+   "year": 2020
+  },
+  {
+   "hit_count": 10,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2021-12-31",
+   "year": 2021
+  },
+  {
+   "hit_count": 11,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2022-12-31",
+   "year": 2022
+  },
+  {
+   "hit_count": 23,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2023-12-31",
+   "year": 2023
+  },
+  {
+   "hit_count": 39,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2024-12-31",
+   "year": 2024
+  },
+  {
+   "hit_count": 69,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2025-12-31",
+   "year": 2025
+  },
+  {
+   "hit_count": 66,
+   "query_sha256": "5886b4258894f143c89fe3f254d4bb1fd4dfceacdfab9e00b5812bd7d145b407",
+   "source": "s0_search_log:2026-09-27",
+   "term": "scanvi-annotate",
+   "term_kind": "module",
+   "window_end": "2026-09-27",
+   "year": 2026
+  }
+ ],
+ "schema": "omicstat.reference.probe-baseline.v1",
+ "sources": {
+  "aucell-score": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "86dd908fc07ca273f71a3483a0a99b5ad6eb959a248bf1fd84e14a77b3b7e9d6"
+  },
+  "batchelor-integrate": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "a8b4d2f69d54ea8c31495a4cd156f6c8cb6a2f126970cd095325e5795a431609"
+  },
+  "cellchat-communication": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "54f5183a10b6b472268ffdfd54569f278e535316c6e41e8e467ce3bdf2b85a8f"
+  },
+  "clusterprofiler-compare": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "e7c5528e25a610a02f8d4ca1933f064863950bdf6eac161ff568ba1bdba1a2e1"
+  },
+  "clusterprofiler-gsea": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "5e70584c7453662d1e41393a8c37832f19a0232e2e4862d2a3052e23e0aafa41"
+  },
+  "clusterprofiler-ora": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "656950261761e5be8991c13548336290492d5c7f1cfe8a45ec2f1d0327026e6d"
+  },
+  "deseq2-lrt": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "267c8b76098061519a8547b136127ac0761de410bd2425fc76caa2e01614596c"
+  },
+  "deseq2-qc": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "69b993a3238cde8137590877716312a11eb3cd004203f895f9be1b3a75665e75"
+  },
+  "deseq2-wald": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "31d777c4d9e8d34a34edca94de8ef51dc7066387e9ae03cdcdc080c62205f44c"
+  },
+  "edger-qlf": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "f9bb56c36e342c2c72f0f193c14febcec05a14843a023ae0d25c4e58c5e370bf"
+  },
+  "fgsea-prerank": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "78e77272183d6b0d6214751ade20bd08bbd1cfd16764612e3f1f9811fea74ba7"
+  },
+  "gsva-score": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "a8cb4f1fe8ea275aecb69d5355f8b3ff8e831655c975906aebc075d66356ec9b"
+  },
+  "immunedeconv-infiltration": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "2e4f12889638f5c0fb666986009e3950a39f857ea227e29669b7b98160e044e2"
+  },
+  "limma-array": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "af709f57a657ba417aca7b09523b7ba1b0797ed8d1601cb651ae8d5de43bda7a"
+  },
+  "limma-camera": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "7190851962d479de92d4fa1f60f3daee58c6c510d6bda53b9edde793133a1205"
+  },
+  "limma-dupcor": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "5183c85e26968c0c5f3db144ad04af1b350b749cab9f6661bd07e2dfa2cde4b0"
+  },
+  "limma-voom": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "d4c8c21d38d48064e4169870b142caa621c0fe47e5e8a5f26115e44f7fd1dfde"
+  },
+  "maftools-landscape": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "c2f9af0bfd26a501f1e6b05e1ab24e54e76a8239dcb5a17920e186e5bd34e0fd"
+  },
+  "monocle3-trajectory": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "36873c04598ec1f5edf621cfa32ef53d2928bf0a0a68b183c2e1fb9663eff92a"
+  },
+  "muscat-pseudobulk": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "0129265ff45ebfbacd63e13c7b6bc5eaa5808cc7b82cfdb0da2b4f36f2aac22c"
+  },
+  "scanpy-cluster": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "26f43a8a0e0bb303bc0a9ce205f137772a0e0b97bcebae86aa7b01ad57384006"
+  },
+  "scanpy-markers": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "0caab73322fcfe0e861e86be1474b5ac7ee327069f580fb875b693dec87b7b6a"
+  },
+  "scanpy-qc": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "b2867d20059930e6b72f952df9b755781dde53de019541082aa5aee3ba024d10"
+  },
+  "scanvi-annotate": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "99b90db7238eaaeeb823bc0c1351ac6804da6a4730d355fde9b6f9167bd207e5"
+  },
+  "scater-qc": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "8b45e396eabf0be7a4cc94dba2f63c3691bde78ce00738e07498650b52d02c6f"
+  },
+  "scran-cluster": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "246da1e11b5b7773dd210acb417ca8c4dd23a0fd6bfef09db7602fb88f1325d9"
+  },
+  "scran-markers": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "950d762b4eeafb3076eb03214bbd933229e585b88b12cee5949e9f409dea12dd"
+  },
+  "scvi-integrate": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "e38f8a751494545920244bcb0781c2c327d6534826b44b30c7ec5d8f522ee203"
+  },
+  "seurat-cluster": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "5c9e5e9ec62d1d8727abaf563477b1a3cdbf6d1cdd0d0fee3eb3999ddb6ba45f"
+  },
+  "seurat-integrate": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "d5b97897c89b810ecbafaafb3e13efed7ec68656c1f7b4fb678945eab0638870"
+  },
+  "seurat-markers": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "3ae5d03bc6c1023d8d862aadb7b760db923a757683ab10e60dd308f84902d393"
+  },
+  "seurat-modulescore": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "79564ab32844d61e37e734b109737ee691ae69dcba7f6d4edf9dc619e39c5764"
+  },
+  "seurat-qc": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "62051ac8f67cacca89041b13727b7f7d5ee82db09c0ca0655db0b6ce604fc885"
+  },
+  "singler-annotate": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "295c7043f5e7efac86597108157e065df6fe9812d0017d973fda757efcb1c3b7"
+  },
+  "slingshot-trajectory": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "eaaa948063542905aa177019a678c347d2fd3972b6ea62edca55f2dbc04de228"
+  },
+  "speckle-propeller": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "3a445f8cef48b389f66981d6846f023b873567fd6cb4aed9904ed07ffa801d8a"
+  },
+  "sva-batch": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "d943ffc4ace3ec96ceacffd12e765555e709ff330911186d607c3c612169c2e0"
+  },
+  "wgcna-network": {
+   "log_date": "2026-09-27",
+   "search_log_sha256": "d3e8e075dfa7f9ea7bf7c2838dcf3d277d18eae40c8ce9e28441964aa72c9c44"
+  }
+ }
+}

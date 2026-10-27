@@ -1,0 +1,10 @@
+{
+ "module": "bsseq",
+ "epmc_query": "(METHODS:\"bsseq\" OR METHODS:\"DSS\") AND (METHODS:\"methylation\" OR METHODS:\"DMR\")",
+ "meta": false,
+ "signal_regex": "\\b(?:bsseq|DSS)\\b[^.;]{0,160}(?:methylation|DMRs?|DMLs?|differentially methylated)|(?:differentially methylated|DMRs?)[^.;]{0,160}\\b(?:bsseq|DSS)\\b",
+ "signal_require_regex": "\\b(?:bsseq|DSS)\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile from the 2026-10 coverage ranking: accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

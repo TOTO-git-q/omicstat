@@ -1,0 +1,32 @@
+[
+  {
+    "metric": "feedlot EMM High",
+    "expected": 1031.0,
+    "tolerance": 0.5,
+    "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+    "scope": "module",
+    "id": "emmeans-contrast-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "feedlot EMM Low",
+    "expected": 1029.0,
+    "tolerance": 0.5,
+    "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+    "scope": "module",
+    "id": "emmeans-contrast-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "feedlot EMM Medium",
+    "expected": 998.0,
+    "tolerance": 0.5,
+    "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+    "scope": "module",
+    "id": "emmeans-contrast-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

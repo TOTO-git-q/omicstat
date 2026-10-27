@@ -1,0 +1,191 @@
+`%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
+
+cpm_validate_outcome_support <- function(task, dat, event_var, time_var = NULL) {
+  y <- dat[[event_var]]
+  u <- sort(unique(y[!is.na(y)]))
+  if (!all(u %in% c(0, 1)) || length(u) != 2L) {
+    stop(sprintf(
+      "MS_INVALID_OUTCOME_CODING: %s outcome '%s' must contain both binary classes 0 and 1 on complete-case analysis rows; observed values were %s.",
+      task, event_var, if (length(u)) paste(u, collapse = ",") else "none"), call. = FALSE)
+  }
+  if (identical(task, "prognostic")) {
+    tm <- suppressWarnings(as.numeric(dat[[time_var]]))
+    if (any(!is.finite(tm) | tm <= 0)) {
+      stop("MS_INVALID_TIME: prognostic complete-case follow-up times must be finite and > 0 before model fitting.", call. = FALSE)
+    }
+  }
+  invisible(TRUE)
+}
+
+cpm_sample_size <- function(task, n_predictors, assumed_source,
+                             assumed_cstatistic = NA, prevalence = NA, shrinkage = 0.9,
+                             rate = NA, timepoint = NA, meanfup = NA, csrsquared = NA) {
+  if (!nzchar(assumed_source %||% "")) {
+    stop(paste("MS_MISSING_PARAMETER: --sample-size-source is required (TRIPOD+AI item 10 requires the",
+              "assumed C-statistic/R-squared to be traceable to a source; P2 sec 3)."), call. = FALSE)
+  }
+  if (identical(task, "diagnostic")) {
+    if (is.na(prevalence)) stop("MS_MISSING_PARAMETER: --sample-size-prevalence is required for task=diagnostic.", call. = FALSE)
+    if (is.na(assumed_cstatistic)) stop("MS_MISSING_PARAMETER: --sample-size-cstatistic is required for task=diagnostic.", call. = FALSE)
+    res <- pmsampsize::pmsampsize(type = "b", parameters = n_predictors, shrinkage = shrinkage,
+                                  prevalence = prevalence, cstatistic = assumed_cstatistic)
+  } else if (identical(task, "prognostic")) {
+    if (any(is.na(c(rate, timepoint, meanfup)))) {
+      stop(paste("MS_MISSING_PARAMETER: task=prognostic sample size requires --sample-size-rate,",
+                "--sample-size-timepoint, --sample-size-meanfup (event rate/time unit, prediction",
+                "horizon, mean follow-up, all in the same time unit as --time-unit)."), call. = FALSE)
+    }
+    if (is.na(csrsquared)) {
+      stop("MS_MISSING_PARAMETER: --sample-size-csrsquared (assumed Cox-Snell R-squared) is required for task=prognostic.", call. = FALSE)
+    }
+    res <- pmsampsize::pmsampsize(type = "s", parameters = n_predictors, shrinkage = shrinkage,
+                                  rate = rate, timepoint = timepoint, meanfup = meanfup, csrsquared = csrsquared)
+  } else {
+    stop(sprintf("MS_INVALID_PARAMETER: unknown task '%s'.", task), call. = FALSE)
+  }
+  list(result = res, assumed_source = assumed_source,
+       sample_size = res$sample_size, events = res$events %||% NA_real_,
+       final_shrinkage = res$final_shrinkage, results_table = res$results_table)
+}
+
+cpm_harrell_c <- function(task, score, y_time = NULL, y_event = NULL, y_binary = NULL) {
+  if (identical(task, "prognostic")) {
+    rc <- Hmisc::rcorr.cens(-score, survival::Surv(y_time, y_event))
+  } else {
+    rc <- Hmisc::rcorr.cens(score, y_binary)
+  }
+  list(C = unname(rc["C Index"]), se = unname(rc["S.D."]) / 2, n = unname(rc["n"]))
+}
+
+cpm_citl <- function(task, lp, y_binary = NULL, y_time = NULL, y_event = NULL, horizon = NULL, surv_fn = NULL) {
+  if (identical(task, "diagnostic")) {
+    m <- stats::glm(y_binary ~ offset(lp), family = stats::binomial())
+    list(kind = "citl_logit_intercept", value = unname(stats::coef(m)[1]), se = unname(summary(m)$coefficients[1, 2]))
+  } else {
+    observed <- 1 - summary(survival::survfit(survival::Surv(y_time, y_event) ~ 1), times = horizon)$surv
+    observed <- observed[1] %||% NA_real_
+    expected <- mean(1 - surv_fn(horizon, lp), na.rm = TRUE)
+    list(kind = "oe_ratio", value = observed / expected, observed = observed, expected = expected)
+  }
+}
+
+cpm_cal_slope <- function(task, lp, dat, y_binary_col = NULL, time_var = NULL, event_var = NULL) {
+  if (identical(task, "diagnostic")) {
+    m <- stats::glm(dat[[y_binary_col]] ~ lp, family = stats::binomial())
+    cf <- summary(m)$coefficients
+    list(slope = unname(cf[2, 1]), se = unname(cf[2, 2]))
+  } else {
+    m <- survival::coxph(survival::Surv(dat[[time_var]], dat[[event_var]]) ~ lp)
+    cf <- summary(m)$coefficients
+    list(slope = unname(cf[1, 1]), se = unname(cf[1, "se(coef)"]))
+  }
+}
+
+.cpm_validate_custom <- function(dat, task, time_var, event_var, predictors, method,
+                                  alpha, lasso_lambda, B, seed, force_selection, ci_alpha = 0.05) {
+  set.seed(seed)
+  n <- nrow(dat)
+
+  .fit_and_eval <- function(train, test) {
+    sel <- cpm_select_predictors(train, predictors, method, task, time_var, event_var,
+                                  alpha = alpha, lasso_lambda = lasso_lambda, force = force_selection)
+    fit <- if (identical(task, "prognostic")) {
+      rms::cph(cpm_formula(task, event_var, time_var, sel$selected), data = train, x = TRUE, y = TRUE)
+    } else {
+      rms::lrm(cpm_formula(task, event_var, time_var, sel$selected), data = train, x = TRUE, y = TRUE)
+    }
+    lp_train <- cpm_lp(fit)
+    lp_test <- tryCatch(cpm_lp(fit, newdata = test), error = function(e) rep(NA_real_, nrow(test)))
+    if (identical(task, "prognostic")) {
+      c_train <- cpm_harrell_c(task, lp_train, y_time = train[[time_var]], y_event = train[[event_var]])$C
+      c_test <- if (all(is.na(lp_test))) NA_real_ else cpm_harrell_c(task, lp_test, y_time = test[[time_var]], y_event = test[[event_var]])$C
+      slope_test <- if (all(is.na(lp_test))) NA_real_ else tryCatch(
+        unname(stats::coef(survival::coxph(survival::Surv(test[[time_var]], test[[event_var]]) ~ lp_test))[1]),
+        error = function(e) NA_real_)
+    } else {
+      c_train <- cpm_harrell_c(task, lp_train, y_binary = train[[event_var]])$C
+      c_test <- if (all(is.na(lp_test))) NA_real_ else cpm_harrell_c(task, lp_test, y_binary = test[[event_var]])$C
+      slope_test <- if (all(is.na(lp_test))) NA_real_ else tryCatch(
+        unname(stats::coef(stats::glm(test[[event_var]] ~ lp_test, family = stats::binomial()))[2]),
+        error = function(e) NA_real_)
+    }
+    list(c_apparent = c_train, c_test = c_test, slope_apparent = 1.0, slope_test = slope_test,
+        n_selected = length(sel$selected), selected = sel$selected)
+  }
+
+  app <- .fit_and_eval(dat, dat)
+  apparent_C <- app$c_apparent
+  apparent_slope <- 1.0
+
+  opt_c <- numeric(0); opt_slope <- numeric(0); n_sel <- integer(0); n_fail <- 0L
+  # Per-predictor bootstrap inclusion count (Table 5's "bootstrap inclusion
+  # frequency" column, build spec sec 12 -- previously computed nowhere):
+  # tallied over the SAME successful resamples opt_c/opt_slope use, from the
+  # selection step .fit_and_eval() already re-runs inside the loop.
+  incl_count <- stats::setNames(integer(length(predictors)), predictors)
+  for (b in seq_len(B)) {
+    idx <- sample.int(n, n, replace = TRUE)
+    boot <- dat[idx, , drop = FALSE]
+    res <- tryCatch(.fit_and_eval(boot, dat), error = function(e) NULL)
+    if (is.null(res) || is.na(res$c_test) || is.na(res$slope_test)) { n_fail <- n_fail + 1L; next }
+    opt_c <- c(opt_c, res$c_apparent - res$c_test)
+    opt_slope <- c(opt_slope, res$slope_apparent - res$slope_test)
+    n_sel <- c(n_sel, res$n_selected)
+    incl_count[res$selected] <- incl_count[res$selected] + 1L
+  }
+  if (!length(opt_c)) stop("MS_BOOTSTRAP_FAILED: every bootstrap resample failed to fit/evaluate; check predictor variance and B.", call. = FALSE)
+  # Percentile CI for the corrected estimate: each replicate's own
+  # apparent-minus-that-replicate's-optimism gives one draw from the
+  # corrected-C distribution; a plain bootstrap-percentile interval over
+  # those draws (not Harrell's own analytic CI, which this hand-rolled
+  # engine does not reproduce) -- adequate for reporting, disclosed as such
+  # in tables/performance.md's footnote. The SAME construction gives a
+  # percentile CI for the corrected calibration slope (P2/acceptance
+  # finding: this row had no CI at all before).
+  corrected_c_reps <- apparent_C - opt_c
+  ci <- stats::quantile(corrected_c_reps, c(ci_alpha / 2, 1 - ci_alpha / 2), na.rm = TRUE, names = FALSE)
+  corrected_slope_reps <- apparent_slope - opt_slope
+  slope_ci <- stats::quantile(corrected_slope_reps, c(ci_alpha / 2, 1 - ci_alpha / 2), na.rm = TRUE, names = FALSE)
+  inclusion_freq <- 100 * incl_count / length(opt_c)
+  list(apparent_C = apparent_C, optimism_C = mean(opt_c), corrected_C = apparent_C - mean(opt_c),
+       ci_low = ci[1], ci_high = ci[2],
+       apparent_slope = apparent_slope, optimism_slope = mean(opt_slope),
+       corrected_slope = apparent_slope - mean(opt_slope),
+       slope_ci_low = slope_ci[1], slope_ci_high = slope_ci[2],
+       inclusion_freq = inclusion_freq,
+       B_used = length(opt_c), B_failed = n_fail, mean_n_selected = mean(n_sel),
+       engine = sprintf("custom Harrell bootstrap (selection-in-loop: %s; percentile CI)", method))
+}
+
+cpm_z_ci <- function(estimate, se, alpha = 0.05) {
+  z <- stats::qnorm(1 - alpha / 2)
+  c(low = unname(estimate - z * se), high = unname(estimate + z * se))
+}
+
+cpm_external_eval <- function(fit, task, ext_dat, time_var = NULL, event_var, horizon = NULL, ci_alpha = 0.05) {
+  lp <- cpm_lp(fit, newdata = ext_dat)
+  if (identical(task, "prognostic")) {
+    c_ext <- cpm_harrell_c(task, lp, y_time = ext_dat[[time_var]], y_event = ext_dat[[event_var]])
+    slope_ext <- cpm_cal_slope(task, lp, ext_dat, time_var = time_var, event_var = event_var)
+    sfn <- rms::Survival(fit)
+    p_ext <- 1 - sfn(horizon[1], lp)
+    citl_ext <- cpm_citl(task, lp, y_time = ext_dat[[time_var]], y_event = ext_dat[[event_var]],
+                         horizon = horizon[1], surv_fn = sfn)
+  } else {
+    c_ext <- cpm_harrell_c(task, lp, y_binary = ext_dat[[event_var]])
+    slope_ext <- cpm_cal_slope(task, lp, ext_dat, y_binary_col = event_var)
+    p_ext <- 1 / (1 + exp(-lp))
+    citl_ext <- cpm_citl(task, lp, y_binary = ext_dat[[event_var]])
+  }
+  # Real CI on the external calibration slope, from the SAME refit's own SE
+  # (cpm_cal_slope() now returns list(slope, se) for exactly this) -- P2/
+  # acceptance finding: this row's ci_low/ci_high were NA in
+  # tables/performance.csv even though build spec sec 12 Table 3 requires a
+  # CI on every performance metric, and the SE was already computed and then
+  # discarded by the OLD bare-numeric cpm_cal_slope().
+  slope_ci <- cpm_z_ci(slope_ext$slope, slope_ext$se, alpha = ci_alpha)
+  list(C = c_ext, slope = slope_ext$slope,
+      slope_ci_low = unname(slope_ci["low"]), slope_ci_high = unname(slope_ci["high"]),
+      citl = citl_ext, risk = p_ext, lp = lp,
+      n = nrow(ext_dat), n_events = sum(ext_dat[[event_var]] == 1, na.rm = TRUE))
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "msstats-diff",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/msstats-diff/scripts/msstats_diff_core.R": "d7ff2d67f80d9e9d5d76806431ac55d7195045ad46b1e003f3b631635960fb16",
+    "skills/msstats-diff/scripts/msstats_diff_qc.R": "98bddb7f9246d6792089296ec8d522c7edcd567f0c81f04af28a716b195be7aa",
+    "skills/msstats-diff/scripts/msstats_diff_report.R": "0b583e085513f50622f9ed69160d4086f518495f870dc0b5cd199a930251074c",
+    "skills/msstats-diff/scripts/run_msstats_diff.R": "1378a3ebc0521774354690ad73a2804c4b66273d29ea8305105e0b2af8d38f3c",
+    "skills/msstats-diff/scripts/calls_registry.json": "faa11739896559bd3dbd7ff0e766b02ba7fae9ac957334a9131f2bf149ccb7e5",
+    "skills/msstats-diff/SKILL.md": "0925e85bd02753959646609936175adf902d19b0762e0d2ca69eeed905962501",
+    "skills/msstats-diff/references/method-basis.md": "dc0e6ff5494cf3841bc539b1f7cd891835d6e46cad04c00be13b0dc9017ec9d8",
+    "skills/msstats-diff/references/options.md": "7885c6b727369c829e2b25a1e26bf1276ef3d996bfdf2e42e91a65cd2aa0dec0",
+    "skills/msstats-diff/references/parameters.md": "f8795789daa2adb79f5980937fdcf29ea61df83ff067e88a0292d818a1a84592",
+    "skills/msstats-diff/references/qc-rules.md": "966e24513af9fd113fb78f79747279dd775ecd3a9de13be612f9a94db74ab14e",
+    "skills/msstats-diff/references/reporting-templates.md": "45f752c369772a8b582501af39527d602cfedc66d23d6eab3686cf3913144709",
+    "skills/msstats-diff/references/source-evidence/SKILL.md": "1a582f420ae10f233a6150bcd1af7c388f68b281192d80aec87b43a3d86fb4eb",
+    "skills/msstats-diff/references/source-evidence/VALIDATION_STATUS.json": "4afc65faf42bc6ddc56922009bde8c0741467dc907d94f7544ed658f6a503a59",
+    "skills/msstats-diff/references/source-evidence/acceptance_status.json": "893318ed6aea02642b753e502625ca172a5b0089237440103c3e19b6644d2baa",
+    "skills/msstats-diff/references/source-evidence/provenance.json": "5ab52854de17224bde0dd166a3e09d1368544071d5030c4108cd1e40d42002b9",
+    "skills/msstats-diff/references/troubleshooting.md": "142effd7c9612bdbff9052bae95d9d9a5e0b9d10daed9248ddf83c4cb6158b66",
+    "skills/msstats-diff/tests/anchors.R": "0c252a4d9ca47f45201434265f48f9f8de73a25579c11d2ace4fd39e671690c3",
+    "skills/msstats-diff/tests/run_smoke_test.R": "0baeb1f24d5684147402cae339ed4b967652e9aaa137b1d94c3ec80d741e3e03",
+    "skills/msstats-diff/tests/golden_manifest.csv": "8d25a3c1d46e155f289b549e1ff632d051153c323fff60a8789214574c468582"
+  },
+  "packages": {
+    "MSstats": "4.20.0",
+    "MSstatsConvert": "1.22.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

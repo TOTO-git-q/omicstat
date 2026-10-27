@@ -1,0 +1,13 @@
+{
+  "schema": "omicstat.acceptance-refusal-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_refusals.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "source": "skills/_shared/tests/test_scientific_refusals.R",
+  "preserved_original": true
+}

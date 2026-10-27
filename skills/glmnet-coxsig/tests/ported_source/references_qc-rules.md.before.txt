@@ -1,0 +1,4 @@
+# QC
+
+CXS-01 candidate blocker; CXS-02 apparent training-performance warning; CXS-03 frozen split uninformative.
+The module never refits an external model or adjusts a validation cutoff after seeing outcomes.

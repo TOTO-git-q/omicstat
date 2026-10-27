@@ -1,0 +1,8 @@
+[Unit]
+Description=omicstat reference monthly coverage digest (read-only reports; no network, no service changes)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/omic-infra-reference/release/reference_digest.py
+UMask=0022
+Nice=10

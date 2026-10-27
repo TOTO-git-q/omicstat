@@ -1,0 +1,10 @@
+{
+ "module": "doublet-detection",
+ "epmc_query": "(METHODS:\"DoubletFinder\" OR METHODS:\"scDblFinder\")",
+ "meta": false,
+ "signal_regex": "\\b(?:DoubletFinder|scDblFinder)\\b",
+ "signal_require_regex": "\\b(?:DoubletFinder|scDblFinder)\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile chosen by the owner (2026-10-10): accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

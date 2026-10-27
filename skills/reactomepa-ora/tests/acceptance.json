@@ -1,0 +1,60 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/selected.csv",
+      "--universe",
+      "{fixtures}/universe.csv",
+      "--id-column",
+      "gene_id",
+      "--selection-rule",
+      "Fifteen author example Entrez IDs; background all annotated human genes for software validation only",
+      "--organism",
+      "human",
+      "--universe-policy",
+      "annotated-intersection",
+      "--min-size",
+      "5",
+      "--max-size",
+      "500",
+      "--alpha",
+      ".05",
+      "--top-n",
+      "12",
+      "--refdata-id",
+      "reactome_gene_sets",
+      "--refdata-registry",
+      "{fixtures}/registry.json",
+      "--refdata-input",
+      "{fixtures}/snapshot.json",
+      "--refdata-provenance",
+      "{fixtures}/provenance.json",
+      "--journal",
+      "nature",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261016",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.py",
+    "argv": [
+      "{anchor_results}",
+      "{outdir}"
+    ]
+  },
+  "figure_policy": "required"
+}

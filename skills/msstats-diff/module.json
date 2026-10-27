@@ -1,0 +1,146 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "msstats-diff",
+  "lane": "R",
+  "domain": "expression",
+  "entry": "scripts/run_msstats_diff.R",
+  "version": "0.1.0",
+  "qc_prefix": "MS",
+  "engine_packages": [
+    "MSstats"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "feature_table",
+      "sample_table"
+    ]
+  },
+  "figure_builders": [
+    "os_volcano",
+    "os_ma"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 47,
+    "question": "MSstats protein abundance contrasts with declared biological replication"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--study-contract",
+      "required": false,
+      "source": "candidate entry script",
+      "default": "none",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--input",
+      "required": true,
+      "source": "candidate entry script",
+      "default": "required",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--design",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "independent|paired",
+      "role": "scientific"
+    },
+    {
+      "flag": "--normalization",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "none|equalizeMedians|quantile",
+      "role": "scientific"
+    },
+    {
+      "flag": "--censored-int",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "NA|0|none",
+      "role": "scientific"
+    },
+    {
+      "flag": "--mb-impute",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "true|false",
+      "role": "scientific"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--reference",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--target",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--feature-id-type",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--development-mode",
+      "default": "off",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 45,
+    "discovery_profile": {
+      "module": "msstats-diff",
+      "epmc_query": "METHODS:\"MSstats\" OR METHODS:\"proteomics\"",
+      "meta": false,
+      "signal_regex": "(?:MSstats|proteomics)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

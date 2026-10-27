@@ -1,0 +1,30 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "drc-dose",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/drc-dose/scripts/drc_dose_core.R": "0c00e892244142d47fdbb829e6f8f7438f2de5ffe804fc982c3611491b41e002",
+    "skills/drc-dose/scripts/run_drc_dose.R": "49f5429db776264ef08061282f98a2c14bedeafbf8937beb45cc15a630e34c93",
+    "skills/drc-dose/scripts/calls_registry.json": "567b7dbbbf453d59be8c1c3788e0ecb2242ae03ebfc69ac279115f21982b4333",
+    "skills/drc-dose/SKILL.md": "c72c45b7ba5df3d32ad71b86735eae1063d7d8796e3f6d67dade6f0cf151cfdb",
+    "skills/drc-dose/references/options.md": "626f166ccf6990a71b961adb01006b8856cd7d8c26832c2ef8d55814eefea257",
+    "skills/drc-dose/references/parameters.md": "36ec184d0ad5fa5f61f47ddd73e19871b8a78a210c5838bf5cef7c9426789531",
+    "skills/drc-dose/references/source-evidence/SKILL.md": "e3e7ef9d769f37766bf6715e2f39a5b10acda1261d94fbec2e6dc96e67045ac3",
+    "skills/drc-dose/references/source-evidence/VALIDATION_STATUS.json": "c203dc2c9d90153c2e9dec0bfe5aa53078668d7ae22bc123e1824ca086f2286a",
+    "skills/drc-dose/references/source-evidence/provenance.json": "5ab52854de17224bde0dd166a3e09d1368544071d5030c4108cd1e40d42002b9",
+    "skills/drc-dose/tests/anchors.R": "a1ec05ba3673adc4ce8e78c6bba0784b3e4b1d8bc8189213f4e88e18af7313ee",
+    "skills/drc-dose/tests/run_development_test.R": "1c91039e57bcfea88d0572db6bec5f3397a98f754308de30a7562faa1d3a7d03",
+    "skills/drc-dose/tests/golden_manifest.csv": "fa4e5d0abb9c985648627748497151bfc286566c3d55ea29304156fd4b3f65bf"
+  },
+  "packages": {
+    "drc": "3.0.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

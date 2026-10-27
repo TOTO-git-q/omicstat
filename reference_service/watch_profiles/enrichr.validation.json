@@ -1,0 +1,60 @@
+{
+ "profile": "enrichr",
+ "checked_on": "2026-10-10",
+ "live_hit_count": 1493,
+ "attempted_fulltexts": 12,
+ "outcomes": {
+  "screened": 7,
+  "metadata_only:rights_restricted": 4,
+  "forget:pubtype_excluded": 1
+ },
+ "screened": 7,
+ "licence_clean_share": 0.64,
+ "requests": 12,
+ "feasible": true,
+ "screened_papers": [
+  {
+   "pmid": "42789729",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42784692",
+   "journal": "Science",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42736301",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42720115",
+   "journal": "eLife",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42715302",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42741841",
+   "journal": "Nucleic Acids Research",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42663329",
+   "journal": "eLife",
+   "licence": "cc-by",
+   "year": "2026"
+  }
+ ],
+ "criteria": "hits > 0, >= 3 screened of the first 12, licence-clean share >= 0.5"
+}

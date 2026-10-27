@@ -1,0 +1,13 @@
+# requires: jsonlite digest
+for (f in c('args.R','module_kit.R','handoff.R','model_io.R')) source(file.path('skills/_shared/scripts',f))
+out <- tempfile('model-io-');inp <- tempfile(fileext='.csv');writeLines('x,y\n1,2\n2,4',inp)
+spec <- os_arg_spec('test',list(os_flag('input','string'),os_flag('outdir','string'),os_flag('seed','int',default=1L)))
+a <- list(input=inp,outdir=out,seed=1L)
+res <- list(tables=list(residuals=data.frame(fitted=c(2,4),residual=c(0,0))),object=list(coefficients=c(0,2)),metadata=list(design='fixture'),method='Synthetic output-contract test only.',ready=TRUE,state=list(qc_complete=FALSE,unfiltered_raw_counts=TRUE,candidate=FALSE))
+os_module_finish(res,a,'omicstat-test','unit',spec)
+h <- read_handoff(out);stopifnot(h$state$candidate,h$state$acceptance_pending,!h$state$qc_complete,h$state$unfiltered_raw_counts,file.exists(file.path(out,'provenance/provenance.json')))
+stopifnot(isTRUE(all.equal(read.csv(file.path(out,'tables/residuals.csv')),res$tables$residuals)))
+stopifnot(!file.exists(file.path(out,'module_lock.json')))
+bad<-res;bad$tables<-setNames(bad$tables,'../escape');e<-tryCatch(os_module_finish(bad,a,'omicstat-test','unit',spec),error=identity);stopifnot(inherits(e,'error'))
+unlink(c(out,inp),recursive=TRUE)
+cat('PASS: model output round-trip, candidate state, provenance, path refusal\n')

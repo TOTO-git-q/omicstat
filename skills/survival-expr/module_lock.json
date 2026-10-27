@@ -1,0 +1,45 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "survival-expr",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/survival-expr/scripts/run_survival_expr.R": "78d2662fbcf1d7abb0932247e914a3f0b2a40ad7fc2c663caad775092d2b4da3",
+    "skills/survival-expr/scripts/survival_expr_core.R": "7b99a2ff06ea3189f7f97d305a40811d25a9741ed536daf65b5fbac2e29f6c36",
+    "skills/survival-expr/scripts/survival_expr_qc.R": "3af9adb194c711da9d2b400da3716e183c8b45347651305c0be3a1a88319c449",
+    "skills/survival-expr/scripts/survival_expr_report.R": "45ce0ec6182fe890e8dd8799e61614167d2fa82e8150dc741599e7157bee9905",
+    "skills/survival-expr/scripts/survival_port_adapter.R": "cdb806385e9fb67e9d28c8597ecfa497a44ab0498af1f4473675626a2362c76a",
+    "skills/survival-expr/scripts/survival_ported_cr.R": "bf6ea14cf2cd3778c85fba81eedaec205cbc1170873e42fe1854bbc6cce90155",
+    "skills/survival-expr/scripts/survival_ported_nonph.R": "c1339d0561abee9af6cd121658e42d5642e81bef7f478be46d030cfbaae8d44d",
+    "skills/survival-expr/scripts/calls_registry.json": "f2eff471947f8c61e2de5d56b014c36d9b3f88074ea48fe1fac4ace3ed3003ec",
+    "skills/survival-expr/SKILL.md": "f4353ed87bccabbff843fa31a48436b2b5ba90f5109ef2bf0ee04f01e0533138",
+    "skills/survival-expr/references/COPIED_FUNCTIONS.json": "35f881a253ebae778fe0849cc09980a97b60c3ac6a59e417a3d3421b9102a0c4",
+    "skills/survival-expr/references/ERROR_MAPPING.json": "cf0131d7946c66f4df4415b371b560069f2a042839c6655d25e45af906c70ff5",
+    "skills/survival-expr/references/GAPS.md": "23299eba76e97030024fd0e14f38ec09090ff14667c2a069d576069820819cfd",
+    "skills/survival-expr/references/ORIGINAL_ANCHOR_STATUS.json": "5f059cd5bc9f4d5576e0774a6a8c1e6ed5c5787e08aeae6dff8b325cf2d9ba08",
+    "skills/survival-expr/references/PACK.md": "586430eaefb42e219aa8100d98cf3d7cb3cfce601df311ebc422469b4abd7bbe",
+    "skills/survival-expr/references/PORT_SOURCE.json": "134617e8a4af2d93d5dfeaa982249dd46f0a1ec71f7af392a409b0a1d2783169",
+    "skills/survival-expr/references/VALIDATION.md": "d9be69c5d262bec891d224145cf757c29e565c5b6327f443894472f159aa4e13",
+    "skills/survival-expr/references/method-basis.md": "5be203ef9c19ffce768da9329fd57f7a7b87a69e44c2dc95b3bc990f5006a8b4",
+    "skills/survival-expr/references/parameters.md": "75b3a2df6392b9ed2b5639c175c31ced33d560188176e88a86ec6d5d798c7a7b",
+    "skills/survival-expr/references/qc-rules.md": "6331861d41c90c8821612e633486560b2d18497db949306d4dde0fda57c6a546",
+    "skills/survival-expr/references/reporting-templates.md": "e553d6f9b44de5e24b594ba0a138c059ddfa1f5c2b0865e516e37972172d76d1",
+    "skills/survival-expr/references/troubleshooting.md": "f8397f13bd8e1d17d01beef56e68e29367c10f2065820a354ee226b4e5d51e68",
+    "skills/survival-expr/tests/make_inputs.R": "b4ee38df246b2cb1a45e4c0b343941b644233f6a4b9734be92e6dd4cdbcfecd7",
+    "skills/survival-expr/tests/run_port_smoke.R": "fdb80382b9c1c72fb624717db85fe13a21dfdef5a558b8f32d7b61afc1e86550",
+    "skills/survival-expr/tests/run_smoke_test.R": "54e5d315ac8806fa7f847a21d2145d5fb7cd7e118d32750114b5a2b5daf54500",
+    "skills/survival-expr/tests/golden_manifest.csv": "91f5748d920327e33ce3b73abc9034361c8bc0a504a376251aac47d565d25b96",
+    "acceptance/exemplars/survival-expr/PACK.md": "4a8c042aa2a2a6500546f52aa906089d3f8df1ebb485e5894cb0059aa4a70307"
+  },
+  "packages": {
+    "stats": "4.6.1",
+    "survival": "3.8.9"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

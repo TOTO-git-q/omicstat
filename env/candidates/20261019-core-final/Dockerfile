@@ -1,0 +1,7 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+COPY env/candidates/20261019-core-final/sources /candidate/sources
+COPY env/candidates/20261019-core-final/manifest.json env/candidates/20261019-core-final/sources.lock.json /candidate/
+COPY tools/env/install_candidate.R /candidate/install_candidate.R
+COPY env/r/write_pkg_lock.R /candidate/write_pkg_lock.R
+RUN Rscript /candidate/install_candidate.R

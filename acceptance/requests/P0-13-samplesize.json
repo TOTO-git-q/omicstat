@@ -1,0 +1,69 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "samplesize",
+  "modules": [
+    "omicstat-samplesize"
+  ],
+  "image_candidate": "env/candidates/20261020-core-final2",
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "full_regression": true,
+  "full_item_complete": false,
+  "actual_remote_parent": "f5ec7329a1eaf99f950f4c135678f50d4c5b8241",
+  "owner_visual_review": null,
+  "owner_review_policy": {
+    "synthetic_owner_sheets_allowed": false,
+    "dataset_label_required_per_figure": true,
+    "state": "blocked: current numerical planning examples are contract tests, not a registered real-data owner adapter"
+  },
+  "dependency_state": "blocked: pwr and gsDesign are not in the retained production inventory; exact OmicStat source/platform/version/hash closure has not been acquired",
+  "notes": [
+    "Partial source port of five MedStat sample-size designs into an independent OmicStat candidate. No MedStat runtime or environment is used.",
+    "Native anchors, replay, refusal execution and figures must actually run in the OmicStat R4.6.1 lineage after an independently authorized exact dependency closure. Missing packages remain failure, never SKIP or a replacement estimator.",
+    "The base image is selected only to expose the real missing dependencies. No candidate image, package SHA, installed version, native formals or owner receipt is fabricated.",
+    "The numerical assumption fixture can produce contract figures only. A registered real-data/official-example owner adapter and contact sheet remain pending; do not re-label the synthetic fixture as owner evidence.",
+    "Original sample-size SS-V1/SS-V2 independent oracles are preserved. SS-V3 noninferiority is explicitly excluded from this five-design port. Integer lower-endpoint correction is separately documented.",
+    "Golden and seal are read-only deferred_by_owner. All other P0-13 ports and remaining P0-12/P0-14 work retain their prior open status."
+  ],
+  "checks": [
+    [
+      "python3",
+      "tools/test_samplesize_port.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "omicstat-samplesize",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "Rscript",
+      "skills/omicstat-samplesize/tests/run_smoke_test.R"
+    ],
+    [
+      "python3",
+      "skills/omicstat-samplesize/tests/check_native_readiness.py"
+    ]
+  ]
+}

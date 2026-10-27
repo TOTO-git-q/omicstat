@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OmicStat module v1; installed package prefix or omicstat (owner decision)",
+  "type": "object",
+  "required": [
+    "schema",
+    "name",
+    "lane",
+    "domain",
+    "entry",
+    "version",
+    "qc_prefix",
+    "engine_packages",
+    "refdata",
+    "handoff",
+    "figure_builders",
+    "anchors",
+    "refusals",
+    "routing",
+    "publication",
+    "status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "omicstat.module.v1"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+-[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "lane": {
+      "enum": [
+        "R",
+        "py"
+      ]
+    },
+    "domain": {
+      "enum": [
+        "bulk-de",
+        "enrichment",
+        "sc-qc",
+        "sc-cluster",
+        "sc-integration",
+        "sc-markers",
+        "sc-scoring",
+        "sc-trajectory",
+        "sc-annotation",
+        "sc-communication",
+        "sc-pseudobulk",
+        "sc-proportions",
+        "network",
+        "mutation",
+        "infiltration",
+        "environment",
+        "basic-stats",
+        "expr-survival",
+        "annotation",
+        "sc-activity",
+        "epigenomics",
+        "spatial",
+        "expression",
+        "single-cell"
+      ]
+    },
+    "entry": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "qc_prefix": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]+$"
+    },
+    "engine_packages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "refdata": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "handoff": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Handoff roles",
+      "type": "object",
+      "required": [
+        "inputs",
+        "outputs"
+      ],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "figure_builders": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "enum": [
+          "os_alluvial",
+          "os_calibration",
+          "os_cluster_tree_dotplot",
+          "os_cnet",
+          "os_density_embedding",
+          "os_diag_xy",
+          "os_emap",
+          "os_embedding",
+          "os_enrich_compare",
+          "os_enrich_dotplot",
+          "os_experiment_curve",
+          "os_experiment_intervals",
+          "os_experiment_residual",
+          "os_experiment_subject_profile",
+          "os_experiment_zero_dose",
+          "os_feature_embedding",
+          "os_group_points",
+          "os_gsea_curve",
+          "os_gsea_multi",
+          "os_heatmap",
+          "os_highlight_embedding",
+          "os_hr_forest",
+          "os_km",
+          "os_lasso_path",
+          "os_ma",
+          "os_marker_dotplot",
+          "os_model_figures",
+          "os_module_trait",
+          "os_nes_bar",
+          "os_oncoplot",
+          "os_pca_plot",
+          "os_pca_scores",
+          "os_proportion_bar",
+          "os_qc_violin",
+          "os_ridge",
+          "os_sample_distance",
+          "os_scope_curve",
+          "os_scope_figures",
+          "os_scope_population",
+          "os_scope_response",
+          "os_scope_subjects",
+          "os_score_violin",
+          "os_singler_crosstab",
+          "os_singler_score_heatmap",
+          "os_soft_threshold",
+          "os_stacked_violin",
+          "os_standard_curve",
+          "os_term_tree",
+          "os_time_roc",
+          "os_volcano",
+          "os_ambient_candidate_figures",
+          "os_cnv_candidate_figures",
+          "os_ligand_activity_figures",
+          "os_spatial_map",
+          "os_seurat_spatial_figures",
+          "os_minfi_figures",
+          "os_dss_figures",
+          "os_diffbind_figures",
+          "os_chipseeker_figures",
+          "os_signac_figures",
+          "os_selected_feature_points",
+          "os_pseudobulk_eligibility",
+          "os_bland_altman",
+          "os_roc_curve",
+          "os_distribution_effects",
+          "os_cif"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "anchors": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+"
+    },
+    "refusals": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+"
+    },
+    "routing": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Routing",
+      "type": "object",
+      "required": [
+        "question",
+        "order"
+      ],
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "publication": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Publication rule",
+      "type": "object",
+      "required": [
+        "rule_category"
+      ],
+      "properties": {
+        "rule_category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "legacy_override": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "status": {
+      "enum": [
+        "candidate",
+        "accepted"
+      ]
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "flag"
+        ],
+        "properties": {
+          "flag": {
+            "type": "string",
+            "pattern": "^--[A-Za-z0-9][A-Za-z0-9-]*$"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "type_label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "scientific",
+              "input",
+              "execution",
+              "presentation"
+            ]
+          },
+          "conditional_required": {
+            "type": "boolean"
+          },
+          "required_when": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "limits": {
+      "type": "object"
+    },
+    "status_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "refdata_contracts": {
+      "type": "object",
+      "additionalProperties": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "title": "Supplied reference flags",
+        "type": "object",
+        "required": [
+          "input_flag",
+          "provenance_flag"
+        ],
+        "properties": {
+          "input_flag": {
+            "type": "string",
+            "pattern": "^--[a-z0-9-]+$"
+          },
+          "provenance_flag": {
+            "type": "string",
+            "pattern": "^--[a-z0-9-]+-provenance$"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "lane_image": {
+      "type": "string",
+      "pattern": "^omicstat-[a-z0-9._-]+:[A-Za-z0-9._-]+$",
+      "description": "Optional image tag this module runs in (plug-in lane image); default is the current lane image."
+    }
+  },
+  "additionalProperties": true
+}

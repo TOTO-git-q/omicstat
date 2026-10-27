@@ -4,7 +4,7 @@
 name: omicstat-reference
 services:
   omicstat-reference:
-    image: omicstat-reference:20260929-fork1
+    image: omicstat-reference:20261010-coverage-4fbef843a4e1
     build:
       context: ../context
       dockerfile: Dockerfile
@@ -22,11 +22,14 @@ services:
       TZ: Asia/Shanghai
       OMICSTAT_REFERENCE_DATA: /data
       OMICSTAT_REFERENCE_LOGS: /logs
+      OMICSTAT_REFERENCE_REPORTS: /reports
+      OMICSTAT_REFERENCE_REPORTS_HOST: /home/<user>/omic-infra-reference/runtime/reports
       OMICSTAT_REFERENCE_DEPLOYMENT: gt103-docker
       OMICSTAT_REFERENCE_SCHEDULER: "omicstat_reference on GT103: resident Docker worker; every three hours; literature requests first; daily ten screened (omics journal whitelist + Methods signal) in Asia/Shanghai."
     volumes:
       - ../runtime/data:/data
       - ../runtime/logs:/logs
+      - ../runtime/reports:/reports:ro
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=33554432,mode=1777
     healthcheck:

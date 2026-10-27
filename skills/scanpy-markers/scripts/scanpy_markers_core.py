@@ -2,7 +2,7 @@
 from ospy import sc_module as S, native_options as N
 from ospy.errors import OmicstatError
 
-MODULE_VERSION = "1.0.0"
+MODULE_VERSION = "1.0.1"
 
 
 def validate(a):

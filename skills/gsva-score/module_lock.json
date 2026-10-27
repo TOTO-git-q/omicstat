@@ -18,7 +18,7 @@
     "skills/gsva-score/tests/fixtures/make_gbm.R": "b36c4419e809fba0c7518845ec31dc9c7cd83fb6b97ae2558a956b50a8ce3fdb",
     "skills/gsva-score/tests/fixtures/make_yoruba_counts.R": "07a33c435c548dfd0450211fc79af9e8669ba715894ba3113bc1fcc4560b13c5",
     "skills/gsva-score/tests/run_smoke_test.R": "332dcc78ea44396a67328b6ea4feea466571599ae42b081a9dadf5dc6c2fa277",
-    "skills/gsva-score/tests/golden_manifest.csv": "b295bddacb05f10043b97bc1e72287772252b3556bb0228f3acf6cdb61bc23c5",
+    "skills/gsva-score/tests/golden_manifest.csv": "dfa393fca3d86bdff7fb4f49f7776125211a9c467412ceb7d8e6c17e1649ec31",
     "acceptance/exemplars/gsva-score/PACK.md": "12e2c4242cb160adba3a1d00ed2cf553cc9a3b4d7c295731fac6c8e3d7dd6dd3"
   },
   "packages": {
@@ -30,7 +30,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

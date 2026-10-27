@@ -1,0 +1,4 @@
+case,argv,expected_code,stage
+resource-141000-nuclei,"[""--input"", ""{fixtures}/synthetic_141000.h5ad"", ""--outdir"", ""{outdir}"", ""--sample-col"", ""donor"", ""--counts-layer"", ""counts"", ""--species"", ""synthetic"", ""--annotation"", ""invented-v1"", ""--n-hvg"", ""2000"", ""--n-pcs"", ""30"", ""--n-neighbors"", ""15"", ""--resolution"", ""0.5"", ""--seed"", ""7""]",OS_RESOURCE_LIMIT,input
+unknown-flag,"[""--bogus""]",OS_UNKNOWN_FLAG,input
+required-scientific-parameter,"[""--outdir"", ""{outdir}""]",OS_MISSING_PARAMETER,input

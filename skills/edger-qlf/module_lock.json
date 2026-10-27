@@ -17,7 +17,7 @@
     "skills/edger-qlf/references/troubleshooting.md": "fb799cd0c321c22f48b9bc3718f4f394ec0707f267f89b995d090360e86f2a97",
     "skills/edger-qlf/tests/fixtures/make_gse60450.R": "93f69264e667e43770e9a36413116b8349c3d2c76ec58a5948c433dc82671e29",
     "skills/edger-qlf/tests/run_smoke_test.R": "afa46cd00b2db4593dd0c58419ee82218e122cac1262644789ea13ea10c733a8",
-    "skills/edger-qlf/tests/golden_manifest.csv": "48cf335ebc2f75138de8442f72affb6bf8cb62c84b0cb70c1fb939abf09c0050",
+    "skills/edger-qlf/tests/golden_manifest.csv": "c6894f422a6993205c9f41d8ae448f544e54a2b9459a0ee8c67b2b27517c9b49",
     "acceptance/exemplars/edger-qlf/PACK.md": "a9c7c75522c4529c10dabcf86dc9aa1275ab21ec6cea257f0662a4493c66e7f7"
   },
   "packages": {
@@ -29,7 +29,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

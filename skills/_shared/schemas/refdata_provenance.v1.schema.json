@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User supplied data provenance",
+  "type": "object",
+  "required": [
+    "refdata_id",
+    "source_url",
+    "version",
+    "licence",
+    "sha256",
+    "permitted_use"
+  ],
+  "properties": {
+    "refdata_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_url": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "licence": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "permitted_use": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,10282 @@
+{
+ "counts": {
+  "papers": 753,
+  "skipped": {},
+  "with_tokens": 753
+ },
+ "lexicon_sha256": "e48858f150f10596fa4675970ceea60b709297343163a97bf9efe09899572ca2",
+ "lexicon_version": "lexicon-v1",
+ "note": "Lexicon tokens found in the Methods regions of countable-licence S0 corpus papers (tokens only, no text). Backfilled once from Europe PMC full text; papers whose licence is not countable or whose full text was unavailable carry no tokens.",
+ "papers": {
+  "31937773": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enrichr",
+    "fastqc",
+    "gsea",
+    "gseapy",
+    "leiden",
+    "limma",
+    "msigdb",
+    "pheatmap",
+    "ruvseq",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "tsne",
+    "umap",
+    "voom"
+   ]
+  },
+  "31988290": {
+   "licence": "cc-by",
+   "tokens": [
+    "dnacopy",
+    "gistic",
+    "gsea",
+    "kegg",
+    "limma",
+    "msigdb",
+    "ssgsea",
+    "xcell"
+   ]
+  },
+  "32111252": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cibersort",
+    "epic-deconv",
+    "gsva",
+    "immunedeconv",
+    "quantiseq",
+    "seurat",
+    "ssgsea"
+   ]
+  },
+  "32133402": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deconstructsigs",
+    "deseq2",
+    "gistic",
+    "gsea",
+    "kallisto",
+    "maftools",
+    "msigdb"
+   ]
+  },
+  "32151270": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "cibersort",
+    "edger",
+    "gprofiler",
+    "gsea",
+    "limma",
+    "ruvseq",
+    "star-aligner"
+   ]
+  },
+  "32206711": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "kegg",
+    "pheatmap",
+    "wgcna"
+   ]
+  },
+  "32332851": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "gsva",
+    "maftools",
+    "ssgsea",
+    "star-aligner"
+   ]
+  },
+  "32459996": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "edger",
+    "ggplot2",
+    "kegg",
+    "leiden",
+    "scran",
+    "tsne"
+   ]
+  },
+  "32647202": {
+   "licence": "cc-by",
+   "tokens": [
+    "fgsea",
+    "gsva",
+    "limma",
+    "msigdb",
+    "ssgsea"
+   ]
+  },
+  "32687059": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2"
+   ]
+  },
+  "32729827": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "hisat2",
+    "scran",
+    "soupx",
+    "tsne"
+   ]
+  },
+  "32773035": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "featurecounts",
+    "monocle2",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "32792541": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "cytotrace",
+    "deseq2",
+    "enrichr",
+    "gsea",
+    "monocle2",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "32796835": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "dexseq",
+    "featurecounts",
+    "ggplot2"
+   ]
+  },
+  "32832599": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "paga",
+    "scanpy",
+    "scenic",
+    "scvi",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "32840210": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastmnn",
+    "gsea",
+    "monocle3",
+    "scran",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "topgo",
+    "tsne"
+   ]
+  },
+  "32867824": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "chipseeker",
+    "harmony",
+    "leiden",
+    "liger",
+    "nmf",
+    "scanorama",
+    "seurat",
+    "umap"
+   ]
+  },
+  "32868763": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "dropletutils",
+    "gsea",
+    "monocle3",
+    "scater",
+    "scran",
+    "seurat",
+    "star-aligner",
+    "topgo",
+    "tsne",
+    "umap"
+   ]
+  },
+  "32937591": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "fastqc",
+    "kallisto",
+    "leiden",
+    "limma",
+    "scanpy",
+    "scater",
+    "scran",
+    "scrublet",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "32968047": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "scrublet",
+    "scvi",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "32989152": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "limma",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "33015651": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "edger",
+    "limma",
+    "msigdb",
+    "voom"
+   ]
+  },
+  "33020472": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "harmony",
+    "maxquant",
+    "perseus",
+    "pheatmap",
+    "scanpy",
+    "seurat",
+    "seurat-cca",
+    "ssgsea",
+    "star-aligner"
+   ]
+  },
+  "33020483": {
+   "licence": "cc-by",
+   "tokens": [
+    "fastmnn",
+    "fastqc",
+    "featurecounts",
+    "limma",
+    "removebatcheffect",
+    "scater",
+    "star-aligner",
+    "tsne"
+   ]
+  },
+  "33092630": {
+   "licence": "cc-by",
+   "tokens": [
+    "cuffdiff",
+    "deseq2",
+    "fastqc",
+    "gprofiler",
+    "mageck"
+   ]
+  },
+  "33108271": {
+   "licence": "cc0",
+   "tokens": [
+    "clusterprofiler",
+    "deeptools",
+    "edger",
+    "fastqc",
+    "gsea",
+    "hisat2",
+    "limma"
+   ]
+  },
+  "33110069": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "enrichr",
+    "gsea",
+    "kegg",
+    "mast",
+    "msigdb",
+    "umap",
+    "vegan"
+   ]
+  },
+  "33119742": {
+   "licence": "cc-by",
+   "tokens": [
+    "scanpy"
+   ]
+  },
+  "33144576": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "ggplot2",
+    "gsea",
+    "limma",
+    "maxquant",
+    "removebatcheffect",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "33158872": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "fastqc",
+    "ggplot2",
+    "leiden",
+    "monocle3",
+    "seurat",
+    "tsne",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "33159074": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "monocle3",
+    "scenic",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "33159086": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "limma",
+    "voom"
+   ]
+  },
+  "33159858": {
+   "licence": "cc-by",
+   "tokens": [
+    "harmony",
+    "leiden",
+    "mast",
+    "nmf",
+    "scanpy",
+    "scrublet",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "33169669": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "kallisto",
+    "limma",
+    "pheatmap",
+    "star-aligner",
+    "sva",
+    "voom",
+    "wgcna"
+   ]
+  },
+  "33180747": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gprofiler",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "33186096": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "hisat2",
+    "macs",
+    "pheatmap"
+   ]
+  },
+  "33188013": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "chipseeker",
+    "deeptools",
+    "dorothea",
+    "edger",
+    "enrichr",
+    "fgsea",
+    "kallisto",
+    "limma",
+    "roast"
+   ]
+  },
+  "33203765": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "limma",
+    "voom"
+   ]
+  },
+  "33203890": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "deseq2",
+    "gsea",
+    "limma",
+    "voom"
+   ]
+  },
+  "33206048": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "enrichr",
+    "leiden",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "33208372": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "metascape"
+   ]
+  },
+  "33208554": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "aucell",
+    "cellranger",
+    "genie3",
+    "gsea",
+    "macs",
+    "scanpy",
+    "scvelo",
+    "umap"
+   ]
+  },
+  "33214549": {
+   "licence": "cc-by",
+   "tokens": [
+    "gsea",
+    "msigdb",
+    "seurat",
+    "star-aligner",
+    "tsne"
+   ]
+  },
+  "33225996": {
+   "licence": "cc-by",
+   "tokens": [
+    "enrichr",
+    "kegg",
+    "limma",
+    "voom"
+   ]
+  },
+  "33239294": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "limma",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "33239621": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "enrichr",
+    "kegg",
+    "maxquant"
+   ]
+  },
+  "33245762": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "gsea",
+    "kegg",
+    "limma",
+    "msigdb"
+   ]
+  },
+  "33256812": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "hisat2"
+   ]
+  },
+  "33257685": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "dream",
+    "edger",
+    "limma",
+    "muscat",
+    "scran",
+    "sctransform",
+    "seurat",
+    "voom"
+   ]
+  },
+  "33257699": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "combat",
+    "deconstructsigs",
+    "gistic",
+    "gsea",
+    "gsva",
+    "hisat2",
+    "immunedeconv",
+    "mutsigcv",
+    "sva"
+   ]
+  },
+  "33261667": {
+   "licence": "cc-by",
+   "tokens": [
+    "wgcna"
+   ]
+  },
+  "33287869": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "doubletfinder",
+    "genie3",
+    "gsea",
+    "gsva",
+    "metascape",
+    "monocle2",
+    "monocle3",
+    "msigdb",
+    "scenic",
+    "seurat",
+    "seurat-cca",
+    "tsne"
+   ]
+  },
+  "33288744": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "chromvar",
+    "clusterprofiler",
+    "fastqc",
+    "homer",
+    "leiden",
+    "limma",
+    "monocle3",
+    "sce",
+    "seurat",
+    "slingshot",
+    "umap",
+    "voom"
+   ]
+  },
+  "33290280": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "hisat2",
+    "sctransform",
+    "seurat",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "33293583": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "genie3",
+    "gsea",
+    "monocle2",
+    "msigdb",
+    "scenic",
+    "seurat",
+    "slingshot",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "33298436": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "star-aligner"
+   ]
+  },
+  "33298926": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "gprofiler",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "33299191": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "msigdb",
+    "ssgsea",
+    "voom"
+   ]
+  },
+  "33300615": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "kegg"
+   ]
+  },
+  "33303760": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "cellranger",
+    "clusterprofiler",
+    "doubletfinder",
+    "fastp",
+    "featurecounts",
+    "gsea",
+    "gsva",
+    "harmony",
+    "infercnv",
+    "leiden",
+    "monocle2",
+    "msigdb",
+    "seurat",
+    "slingshot",
+    "tsne",
+    "umap"
+   ]
+  },
+  "33305733": {
+   "licence": "cc-by",
+   "tokens": [
+    "dream",
+    "limma",
+    "mixomics",
+    "sva",
+    "wgcna"
+   ]
+  },
+  "33311457": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "enrichr",
+    "leiden",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "33311484": {
+   "licence": "cc-by",
+   "tokens": [
+    "fgsea",
+    "gsea",
+    "kegg"
+   ]
+  },
+  "33317623": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat",
+    "cuffdiff",
+    "deseq2",
+    "dnacopy",
+    "fastqc",
+    "star-aligner",
+    "sva"
+   ]
+  },
+  "33319779": {
+   "licence": "cc-by",
+   "tokens": [
+    "scater",
+    "sce",
+    "sctransform",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "33328221": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "monocle2",
+    "monocle3",
+    "seurat",
+    "seurat-cca",
+    "tsne",
+    "umap"
+   ]
+  },
+  "33335088": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cibersort",
+    "complexheatmap",
+    "deseq2",
+    "fastqc",
+    "ggplot2",
+    "gsva",
+    "msigdb",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "tsne"
+   ]
+  },
+  "33340372": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2"
+   ]
+  },
+  "33350385": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat",
+    "edger",
+    "featurecounts",
+    "ggplot2",
+    "macs",
+    "star-aligner"
+   ]
+  },
+  "33353943": {
+   "licence": "cc-by",
+   "tokens": [
+    "consensusclusterplus",
+    "edger",
+    "featurecounts",
+    "gsea",
+    "gsva",
+    "kegg",
+    "limma",
+    "msigdb",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "33355091": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "fastmnn",
+    "hisat2",
+    "kallisto",
+    "tsne"
+   ]
+  },
+  "33355230": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "featurecounts",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "33355311": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "star-aligner"
+   ]
+  },
+  "33357438": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "deeptools",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "macs",
+    "pheatmap",
+    "star-aligner"
+   ]
+  },
+  "33377124": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "dnacopy",
+    "ggplot2",
+    "kegg",
+    "leiden"
+   ]
+  },
+  "33377867": {
+   "licence": "cc0",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "scanpy"
+   ]
+  },
+  "33674584": {
+   "licence": "cc-by",
+   "tokens": [
+    "gsea",
+    "limma"
+   ]
+  },
+  "33811066": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cibersort",
+    "deseq2",
+    "gsea",
+    "immunedeconv",
+    "quantiseq"
+   ]
+  },
+  "33971952": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "ggplot2",
+    "seurat"
+   ]
+  },
+  "33988505": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "hisat2",
+    "kegg",
+    "voom"
+   ]
+  },
+  "34145235": {
+   "licence": "cc-by",
+   "tokens": [
+    "cuffdiff",
+    "deseq2",
+    "diffbind",
+    "featurecounts",
+    "hisat2",
+    "macs"
+   ]
+  },
+  "34320181": {
+   "licence": "cc-by",
+   "tokens": [
+    "bsseq",
+    "dmrcate",
+    "edger",
+    "limma",
+    "msigdb",
+    "voom"
+   ]
+  },
+  "34331449": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellchat",
+    "clusterprofiler",
+    "gsea",
+    "kegg",
+    "scenic"
+   ]
+  },
+  "34465782": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "maftools",
+    "msigdb",
+    "salmon"
+   ]
+  },
+  "34470666": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "combat",
+    "gsea",
+    "gsva",
+    "limma",
+    "nmf",
+    "sva"
+   ]
+  },
+  "34516770": {
+   "licence": "cc-by",
+   "tokens": [
+    "gsea",
+    "hisat2",
+    "limma",
+    "voom"
+   ]
+  },
+  "34533985": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "gsea",
+    "kallisto",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "34534350": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "combat",
+    "deseq2",
+    "gsea",
+    "kegg",
+    "msigdb",
+    "quantiseq",
+    "ssgsea",
+    "star-aligner",
+    "xcell"
+   ]
+  },
+  "34545812": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "gsea",
+    "msigdb",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "34548076": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "edger",
+    "fastqc",
+    "hisat2"
+   ]
+  },
+  "34553686": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "topgo"
+   ]
+  },
+  "34554929": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "deseq2",
+    "enhancedvolcano",
+    "msigdb",
+    "seurat",
+    "singler",
+    "topgo",
+    "wgcna"
+   ]
+  },
+  "34581807": {
+   "licence": "cc-by",
+   "tokens": [
+    "gsea",
+    "harmony",
+    "leiden",
+    "liger",
+    "nmf",
+    "scran",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "topgo"
+   ]
+  },
+  "34591794": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "enrichr",
+    "gsea",
+    "limma",
+    "mixomics",
+    "topgo"
+   ]
+  },
+  "34606617": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "edger",
+    "ggplot2",
+    "star-aligner"
+   ]
+  },
+  "34609965": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "combat",
+    "fastqc",
+    "seurat",
+    "tsne",
+    "wgcna"
+   ]
+  },
+  "34620214": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "enrichr",
+    "leiden",
+    "macs",
+    "scanpy",
+    "sctransform",
+    "seurat",
+    "signac",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "34625548": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "deseq2",
+    "fastmnn",
+    "fastqc",
+    "limma",
+    "mast",
+    "metascape",
+    "monocle3",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "34665782": {
+   "licence": "cc-by",
+   "tokens": [
+    "fgsea",
+    "kegg",
+    "limma",
+    "pheatmap",
+    "voom"
+   ]
+  },
+  "34686194": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "limma",
+    "salmon",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "34686664": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "edger",
+    "fastp",
+    "gsea",
+    "kegg",
+    "msigdb"
+   ]
+  },
+  "34715028": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deconstructsigs",
+    "deseq2",
+    "featurecounts",
+    "harmony",
+    "hisat2",
+    "mast",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "34725325": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "complexheatmap",
+    "deeptools",
+    "depmap",
+    "featurecounts",
+    "ggplot2",
+    "gistic",
+    "gsea",
+    "gsva",
+    "kegg",
+    "limma",
+    "macs",
+    "maftools",
+    "ssgsea",
+    "sva",
+    "umap",
+    "voom",
+    "xcell"
+   ]
+  },
+  "34728633": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea"
+   ]
+  },
+  "34730997": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "complexheatmap",
+    "consensusclusterplus",
+    "deseq2",
+    "fastqc",
+    "gprofiler",
+    "hisat2",
+    "seurat",
+    "slingshot",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "34731091": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "ggplot2",
+    "kegg",
+    "macs",
+    "pheatmap",
+    "salmon"
+   ]
+  },
+  "34732713": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "combat",
+    "deseq2",
+    "gsea",
+    "msigdb",
+    "star-aligner"
+   ]
+  },
+  "34732728": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "gsea",
+    "infercnv",
+    "msigdb",
+    "nmf",
+    "seurat",
+    "singler"
+   ]
+  },
+  "34741808": {
+   "licence": "cc-by",
+   "tokens": [
+    "cuffdiff",
+    "dep",
+    "deseq2",
+    "fastqc",
+    "hisat2",
+    "kallisto",
+    "metascape",
+    "pheatmap"
+   ]
+  },
+  "34755601": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "msigdb",
+    "wgcna"
+   ]
+  },
+  "34758847": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat",
+    "gprofiler",
+    "kegg",
+    "limma",
+    "sva",
+    "tsne"
+   ]
+  },
+  "34762601": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastqc",
+    "metascape",
+    "monocle3",
+    "salmon",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34764255": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "fastmnn",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34764264": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "maftools",
+    "maxquant",
+    "pheatmap"
+   ]
+  },
+  "34764281": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "34776004": {
+   "licence": "cc-by",
+   "tokens": [
+    "cuffdiff",
+    "fastqc",
+    "hisat2",
+    "meme-suite",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "34779829": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "pheatmap"
+   ]
+  },
+  "34782790": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "aucell",
+    "azimuth",
+    "cellchat",
+    "cellranger",
+    "enrichr",
+    "ggplot2",
+    "gprofiler",
+    "leiden",
+    "scenic",
+    "sctransform",
+    "scvelo",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34783649": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "deeptools",
+    "deseq2",
+    "edger",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "kegg",
+    "meme-suite",
+    "msigdb",
+    "pheatmap"
+   ]
+  },
+  "34784301": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "gsea",
+    "limma",
+    "msigdb",
+    "voom"
+   ]
+  },
+  "34795257": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea"
+   ]
+  },
+  "34795282": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "cibersort",
+    "doubletfinder",
+    "kegg",
+    "monocle3",
+    "seurat"
+   ]
+  },
+  "34799566": {
+   "licence": "cc-by",
+   "tokens": [
+    "csaw",
+    "edger",
+    "ggplot2",
+    "msigdb"
+   ]
+  },
+  "34811546": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "dream",
+    "ggplot2",
+    "leiden",
+    "mofa",
+    "scater",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34824198": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "gsea",
+    "kegg",
+    "meme-suite",
+    "metascape"
+   ]
+  },
+  "34824203": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "bbknn",
+    "cellranger",
+    "clusterprofiler",
+    "enrichr",
+    "genie3",
+    "gsea",
+    "gsva",
+    "harmony",
+    "infercnv",
+    "limma",
+    "macs",
+    "meme-suite",
+    "msigdb",
+    "paga",
+    "scanpy",
+    "signac",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "34824217": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastp",
+    "leiden",
+    "nmf",
+    "scanpy",
+    "scanpy-ingest-method"
+   ]
+  },
+  "34824268": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "doubletfinder",
+    "gsea",
+    "leiden",
+    "monocle3",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34826233": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "cuffdiff",
+    "deseq2",
+    "kallisto",
+    "leiden",
+    "paga",
+    "scanpy",
+    "topgo",
+    "umap"
+   ]
+  },
+  "34836963": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2"
+   ]
+  },
+  "34836966": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "monocle2",
+    "pheatmap",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34845188": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "complexheatmap",
+    "deseq2",
+    "gsea",
+    "harmony",
+    "leiden",
+    "msigdb",
+    "scrublet",
+    "sctransform",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "34845204": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "limma"
+   ]
+  },
+  "34851663": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "leiden",
+    "monocle3",
+    "paga",
+    "scanpy",
+    "scvelo",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "34851821": {
+   "licence": "cc-by",
+   "tokens": [
+    "scanpy",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "34856602": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastmnn",
+    "featurecounts",
+    "hisat2",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34857732": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "combat",
+    "deseq2",
+    "doubletfinder",
+    "fastqc",
+    "gsea",
+    "limma",
+    "mast",
+    "msigdb",
+    "scater",
+    "seurat",
+    "singler",
+    "slingshot",
+    "ssgsea",
+    "sva"
+   ]
+  },
+  "34865122": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "kegg",
+    "limma",
+    "macs",
+    "star-aligner"
+   ]
+  },
+  "34873156": {
+   "licence": "cc-by",
+   "tokens": [
+    "fgsea",
+    "gsea",
+    "limma"
+   ]
+  },
+  "34875673": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fgsea",
+    "gsea",
+    "msigdb",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34875674": {
+   "licence": "cc-by",
+   "tokens": [
+    "dnacopy",
+    "edger",
+    "fastqc",
+    "gsea",
+    "gsva",
+    "msigdb",
+    "pheatmap",
+    "reactomepa",
+    "ssgsea",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "34876496": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "genie3",
+    "maftools"
+   ]
+  },
+  "34876592": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "cellranger",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "leiden",
+    "limma",
+    "maxquant",
+    "scrublet",
+    "seurat",
+    "umap"
+   ]
+  },
+  "34880220": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "gprofiler",
+    "monocle3",
+    "seurat",
+    "umap",
+    "voom"
+   ]
+  },
+  "34882453": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastmnn",
+    "seurat"
+   ]
+  },
+  "34887406": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "edger",
+    "featurecounts",
+    "limma"
+   ]
+  },
+  "34887423": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "hisat2",
+    "seurat",
+    "singler"
+   ]
+  },
+  "34887515": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "gsea",
+    "limma",
+    "msigdb"
+   ]
+  },
+  "34893606": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "edger",
+    "homer",
+    "limma",
+    "macs",
+    "meme-suite",
+    "voom"
+   ]
+  },
+  "34895465": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "leiden",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "34903266": {
+   "licence": "cc-by",
+   "tokens": [
+    "doubletfinder",
+    "edger",
+    "fastmnn",
+    "harmony",
+    "leiden",
+    "liger",
+    "limma",
+    "mast",
+    "monocle3",
+    "nmf",
+    "scanorama",
+    "sce",
+    "scran",
+    "seurat",
+    "seurat-cca",
+    "sva",
+    "tsne",
+    "voom"
+   ]
+  },
+  "34903527": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "combat",
+    "dnacopy",
+    "featurecounts",
+    "salmon",
+    "star-aligner",
+    "sva"
+   ]
+  },
+  "34905486": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "clusterprofiler",
+    "doubletdecon",
+    "doubletfinder",
+    "genie3",
+    "monocle2",
+    "scenic",
+    "sctransform",
+    "scvelo",
+    "seurat",
+    "star-aligner",
+    "tsne",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "34906205": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "dropletutils",
+    "edger",
+    "ggplot2",
+    "kallisto",
+    "leiden",
+    "pheatmap",
+    "ruvseq",
+    "scater",
+    "scdblfinder",
+    "scran",
+    "sctransform",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "34911537": {
+   "licence": "cc-by",
+   "tokens": [
+    "mast",
+    "scater",
+    "scran",
+    "singler",
+    "tsne"
+   ]
+  },
+  "34911939": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "harmony",
+    "leiden",
+    "msigdb",
+    "seurat",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "34912118": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "monocle3",
+    "sctransform",
+    "seurat",
+    "spatial-seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "34916498": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "clusterprofiler",
+    "enrichr",
+    "fastqc",
+    "ggplot2",
+    "kallisto",
+    "leiden",
+    "nichenet",
+    "pheatmap",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "34916513": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "edger",
+    "featurecounts",
+    "gsea",
+    "limma",
+    "metascape",
+    "seurat",
+    "singler",
+    "voom"
+   ]
+  },
+  "34919432": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellphonedb",
+    "gsva",
+    "harmony",
+    "msigdb",
+    "seurat",
+    "star-aligner",
+    "umap",
+    "xcell"
+   ]
+  },
+  "34921143": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cibersort",
+    "gsea",
+    "gsva",
+    "leiden",
+    "msigdb",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "34921160": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "doubletfinder",
+    "gsea",
+    "leiden",
+    "mast",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "34930412": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "dpt",
+    "leiden",
+    "liger",
+    "macs",
+    "scanpy",
+    "scrublet",
+    "seurat",
+    "snapatac2",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "34931711": {
+   "licence": "cc-by",
+   "tokens": [
+    "maftools"
+   ]
+  },
+  "34933938": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts"
+   ]
+  },
+  "34935643": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "harmony",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "34936449": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "gsva",
+    "infercnv",
+    "limma",
+    "maxquant",
+    "metaboanalyst",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "34936864": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "edger",
+    "ggplot2",
+    "monocle3",
+    "paga",
+    "scanpy",
+    "scran",
+    "scvelo",
+    "seurat",
+    "star-aligner",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "34936871": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellphonedb",
+    "cellranger",
+    "clusterprofiler",
+    "fgsea",
+    "ggplot2",
+    "gseapy",
+    "kegg",
+    "leiden",
+    "pheatmap",
+    "scanpy",
+    "sctransform",
+    "seurat",
+    "soupx",
+    "stlearn",
+    "tsne",
+    "umap"
+   ]
+  },
+  "34937944": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "deeptools",
+    "edger",
+    "fgsea",
+    "gsea"
+   ]
+  },
+  "34939924": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "dexseq",
+    "featurecounts",
+    "fgsea",
+    "goseq",
+    "gsea"
+   ]
+  },
+  "34963480": {
+   "licence": "cc-by",
+   "tokens": [
+    "cistopic",
+    "doubletfinder",
+    "leiden",
+    "liger",
+    "mofa",
+    "sctransform",
+    "seurat",
+    "signac",
+    "umap"
+   ]
+  },
+  "35028607": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "deseq2",
+    "enhancedvolcano",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "ssgsea"
+   ]
+  },
+  "35140405": {
+   "licence": "cc-by",
+   "tokens": [
+    "fastqc",
+    "gprofiler",
+    "kegg",
+    "limma",
+    "removebatcheffect",
+    "voom"
+   ]
+  },
+  "35228570": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "dep",
+    "deseq2",
+    "gsea",
+    "leiden",
+    "limma",
+    "monocle3",
+    "muscat",
+    "scater",
+    "sce",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "velocyto"
+   ]
+  },
+  "35383160": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "edger",
+    "goseq",
+    "leiden",
+    "limma",
+    "muscat",
+    "scater",
+    "scdblfinder",
+    "sctransform",
+    "seurat",
+    "soupx",
+    "sva"
+   ]
+  },
+  "35451481": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "fastmnn",
+    "limma",
+    "scater",
+    "sce",
+    "tsne",
+    "umap"
+   ]
+  },
+  "35472220": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastqc",
+    "leiden",
+    "paga",
+    "scanpy",
+    "seurat",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "35589854": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "deseq2",
+    "edger",
+    "kegg",
+    "leiden",
+    "limma",
+    "seurat",
+    "voom",
+    "wgcna"
+   ]
+  },
+  "35618845": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "limma",
+    "monocle3",
+    "scanpy",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "35637184": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "limma",
+    "seurat",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "35637228": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "ggplot2",
+    "hisat2",
+    "kegg"
+   ]
+  },
+  "35637409": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deeptools",
+    "deseq2",
+    "fastmnn",
+    "fastqc",
+    "ggplot2",
+    "mast",
+    "monocle2",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "35697781": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "combat",
+    "deseq2",
+    "leiden",
+    "scanorama",
+    "scanpy",
+    "star-aligner",
+    "sva",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "35760976": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "limma",
+    "sva",
+    "voom"
+   ]
+  },
+  "35810190": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "epic-deconv",
+    "gistic",
+    "gsea",
+    "immunedeconv",
+    "kegg",
+    "mcpcounter",
+    "quantiseq",
+    "star-aligner",
+    "timer"
+   ]
+  },
+  "35819852": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cuffdiff",
+    "sctransform",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "35861713": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "fastmnn",
+    "featurecounts",
+    "ggplot2",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "35879286": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "deseq2",
+    "edger",
+    "fgsea",
+    "ggplot2",
+    "homer",
+    "kegg",
+    "limma",
+    "msigdb",
+    "removebatcheffect",
+    "roast",
+    "star-aligner"
+   ]
+  },
+  "35917184": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "monocle2",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "star-aligner"
+   ]
+  },
+  "35922411": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fastmnn",
+    "fastqc",
+    "featurecounts",
+    "gsea",
+    "limma",
+    "msigdb",
+    "paga",
+    "removebatcheffect",
+    "scran",
+    "seurat"
+   ]
+  },
+  "36047494": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "clusterprofiler",
+    "kegg",
+    "scvi",
+    "seurat",
+    "singler",
+    "slingshot",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "36097216": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "seurat",
+    "xcell"
+   ]
+  },
+  "36099044": {
+   "licence": "cc-by",
+   "tokens": [
+    "fgsea",
+    "gsea"
+   ]
+  },
+  "36099047": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enrichr",
+    "leiden",
+    "monocle3",
+    "propeller",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "36153630": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "seurat"
+   ]
+  },
+  "36175792": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "dndscv",
+    "featurecounts",
+    "gprofiler",
+    "hisat2",
+    "scater",
+    "seurat",
+    "tsne",
+    "xcell"
+   ]
+  },
+  "36192798": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "chromvar",
+    "clusterprofiler",
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "hisat2",
+    "limma",
+    "pheatmap"
+   ]
+  },
+  "36195583": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "combat",
+    "monocle2",
+    "scanpy",
+    "scran",
+    "umap"
+   ]
+  },
+  "36195611": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "edger",
+    "enhancedvolcano",
+    "ggplot2",
+    "gsea",
+    "leiden",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "slingshot",
+    "star-aligner",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "36197969": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "immunedeconv",
+    "star-aligner"
+   ]
+  },
+  "36198307": {
+   "licence": "cc-by",
+   "tokens": [
+    "fgsea",
+    "kegg",
+    "limma",
+    "maxquant",
+    "msigdb"
+   ]
+  },
+  "36202854": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "doubletfinder",
+    "fastqc",
+    "featurecounts",
+    "leiden",
+    "scater",
+    "scran",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "star-aligner",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "36202974": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deeptools",
+    "deseq2",
+    "diffbind",
+    "gsea",
+    "macs",
+    "salmon",
+    "scvi",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "36227687": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "ggplot2",
+    "pheatmap",
+    "scanpy",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "36250636": {
+   "licence": "cc-by",
+   "tokens": [
+    "bayesspace",
+    "clusterprofiler",
+    "deepst",
+    "harmony",
+    "leiden",
+    "limma",
+    "scanorama",
+    "scanpy",
+    "seurat",
+    "spagcn",
+    "stlearn",
+    "umap"
+   ]
+  },
+  "36264636": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "cellrank",
+    "clusterprofiler",
+    "complexheatmap",
+    "genie3",
+    "paga",
+    "scenic",
+    "sctransform",
+    "scvelo",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "tsne",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "36266471": {
+   "licence": "cc-by",
+   "tokens": [
+    "limma",
+    "msigdb",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "36266547": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "doubletfinder",
+    "kegg",
+    "leiden",
+    "scanpy",
+    "scvi",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "36282174": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deconstructsigs",
+    "deseq2",
+    "gistic",
+    "gsea",
+    "kegg",
+    "maftools",
+    "ssgsea"
+   ]
+  },
+  "36282572": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deeptools",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "msigdb"
+   ]
+  },
+  "36289336": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "clusterprofiler",
+    "deseq2",
+    "enhancedvolcano",
+    "gsea",
+    "gsva",
+    "kegg",
+    "msigdb",
+    "seurat"
+   ]
+  },
+  "36306352": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "dropletutils",
+    "gsea",
+    "msigdb",
+    "scater",
+    "scran",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "36309495": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "mast",
+    "scater",
+    "sce",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "36316305": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "deseq2",
+    "harmony",
+    "maxquant",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36323788": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "harmony",
+    "leiden",
+    "limma",
+    "umap"
+   ]
+  },
+  "36332016": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "featurecounts",
+    "ggplot2",
+    "salmon",
+    "seurat",
+    "seurat-cca",
+    "star-aligner"
+   ]
+  },
+  "36344764": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "limma",
+    "macs",
+    "voom"
+   ]
+  },
+  "36345939": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellphonedb",
+    "cellranger",
+    "leiden",
+    "msigdb",
+    "pheatmap",
+    "scanpy",
+    "sctransform",
+    "seurat",
+    "slingshot",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "36368318": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellphonedb",
+    "cellranger",
+    "deseq2",
+    "immunedeconv",
+    "leiden",
+    "paga",
+    "progeny",
+    "scanpy",
+    "scanvi",
+    "sccoda",
+    "scvi",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "36369193": {
+   "licence": "cc-by",
+   "tokens": [
+    "scater",
+    "scran"
+   ]
+  },
+  "36376298": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2",
+    "kegg"
+   ]
+  },
+  "36399508": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "enhancedvolcano"
+   ]
+  },
+  "36411286": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "msigdb",
+    "umap"
+   ]
+  },
+  "36412091": {
+   "licence": "cc-by",
+   "tokens": [
+    "champ",
+    "dmrcate",
+    "edger",
+    "enhancedvolcano",
+    "fastqc",
+    "ggplot2",
+    "gsva",
+    "leiden",
+    "limma",
+    "seurat",
+    "ssgsea",
+    "star-aligner",
+    "umap",
+    "xcell"
+   ]
+  },
+  "36414642": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "gsea"
+   ]
+  },
+  "36417539": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "diffbind",
+    "edger",
+    "gprofiler",
+    "limma",
+    "macs",
+    "meme-suite",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "36418059": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "depmap",
+    "gsea"
+   ]
+  },
+  "36423636": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "cellranger",
+    "celltypist",
+    "gsea",
+    "gsva",
+    "harmony",
+    "infercnv",
+    "kegg",
+    "limma",
+    "monocle3",
+    "msigdb",
+    "nichenet",
+    "scanpy",
+    "sctransform",
+    "scvelo",
+    "seurat",
+    "seurat-cca",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "36424441": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "hisat2",
+    "leiden",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36427304": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "chipseeker",
+    "cibersort",
+    "deseq2",
+    "edger",
+    "gprofiler",
+    "gsea",
+    "hisat2",
+    "leiden",
+    "macs",
+    "meme-suite",
+    "metascape",
+    "scanpy",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36433984": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "edger",
+    "gsea",
+    "gsva",
+    "infercnv",
+    "kegg",
+    "leiden",
+    "limma",
+    "monocle2",
+    "nmf",
+    "pheatmap",
+    "seurat",
+    "ssgsea",
+    "tsne"
+   ]
+  },
+  "36440766": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "chromvar",
+    "clusterprofiler",
+    "gsea",
+    "gsva",
+    "kegg",
+    "seurat"
+   ]
+  },
+  "36443296": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "fastqc",
+    "scvelo",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "36443313": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "gistic",
+    "gsea",
+    "gsva",
+    "kegg",
+    "limma",
+    "msigdb",
+    "ssgsea",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "36443325": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "gsea",
+    "hisat2",
+    "kegg",
+    "metascape",
+    "monocle3",
+    "nichenet",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "36443794": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "complexheatmap",
+    "dorothea",
+    "enrichr",
+    "ggplot2",
+    "leiden",
+    "limma",
+    "minfi",
+    "scanpy",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36443871": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2",
+    "diffbind",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "macs",
+    "star-aligner"
+   ]
+  },
+  "36449607": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "hisat2",
+    "kegg",
+    "limma"
+   ]
+  },
+  "36449618": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "pheatmap",
+    "star-aligner"
+   ]
+  },
+  "36456835": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "complexheatmap",
+    "gsea",
+    "limma",
+    "voom"
+   ]
+  },
+  "36458691": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "edger",
+    "fgsea",
+    "genie3",
+    "gprofiler",
+    "gsea",
+    "kegg",
+    "leiden",
+    "limma",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "umap",
+    "voom"
+   ]
+  },
+  "36459481": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "cuffdiff",
+    "deseq2",
+    "kegg"
+   ]
+  },
+  "36470859": {
+   "licence": "cc-by",
+   "tokens": [
+    "consensusclusterplus",
+    "fastqc",
+    "gistic",
+    "gsea",
+    "kegg",
+    "maftools",
+    "msigdb",
+    "nmf",
+    "ssgsea",
+    "star-aligner"
+   ]
+  },
+  "36471067": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "harmony",
+    "hisat2",
+    "leiden",
+    "nmf",
+    "sccoda",
+    "scenic",
+    "seurat",
+    "signac",
+    "squidpy",
+    "umap"
+   ]
+  },
+  "36473863": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "doubletfinder",
+    "ggplot2",
+    "gsea",
+    "mast",
+    "monocle2",
+    "msigdb",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "36474250": {
+   "licence": "cc-by",
+   "tokens": [
+    "depmap",
+    "gistic",
+    "gsea",
+    "gsva",
+    "kallisto",
+    "limma",
+    "metascape",
+    "msigdb",
+    "ssgsea",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "36476645": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellphonedb",
+    "cellranger",
+    "complexheatmap",
+    "ggplot2",
+    "gsea",
+    "leiden",
+    "seurat",
+    "tsne",
+    "umap"
+   ]
+  },
+  "36476730": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cibersort",
+    "deseq2",
+    "gsea",
+    "kegg",
+    "monocle3",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "36477367": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "gsea",
+    "kegg"
+   ]
+  },
+  "36477538": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "hisat2",
+    "maxquant",
+    "scater",
+    "scdblfinder",
+    "seurat",
+    "slingshot"
+   ]
+  },
+  "36480166": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastmnn",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "36482101": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "dream",
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "goseq",
+    "star-aligner",
+    "topgo",
+    "wgcna"
+   ]
+  },
+  "36493756": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "aucell",
+    "cell2location",
+    "cellphonedb",
+    "cellranger",
+    "clusterprofiler",
+    "genie3",
+    "kegg",
+    "monocle3",
+    "msigdb",
+    "paga",
+    "scanpy",
+    "scenic",
+    "scrublet",
+    "sctransform",
+    "seurat",
+    "soupx",
+    "velocyto"
+   ]
+  },
+  "36493780": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enrichr",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "kegg",
+    "leiden",
+    "macs"
+   ]
+  },
+  "36494364": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "deseq2",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36494864": {
+   "licence": "cc-by",
+   "tokens": [
+    "gsea",
+    "limma",
+    "macs",
+    "meme-suite"
+   ]
+  },
+  "36496458": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "leiden",
+    "liana",
+    "mast",
+    "mixomics",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "umap"
+   ]
+  },
+  "36508663": {
+   "licence": "cc-by",
+   "tokens": [
+    "enrichr",
+    "gsea",
+    "seurat",
+    "wgcna"
+   ]
+  },
+  "36509106": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "complexheatmap",
+    "edger",
+    "fastqc",
+    "fgsea",
+    "genie3",
+    "ggplot2",
+    "gsea",
+    "mageck",
+    "monocle2",
+    "msigdb",
+    "paga",
+    "pheatmap",
+    "progeny",
+    "scenic",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36509746": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "ggplot2",
+    "leiden",
+    "monocle2",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36510111": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat-seq",
+    "deseq2",
+    "featurecounts"
+   ]
+  },
+  "36513650": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "monocle3",
+    "scater",
+    "scran",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36515659": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "doubletfinder",
+    "enhancedvolcano",
+    "leiden",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36516757": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "gseapy",
+    "leiden",
+    "limma",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "36517593": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "scran",
+    "scrublet",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36517595": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellphonedb",
+    "cellranger",
+    "clusterprofiler",
+    "monocle3",
+    "msigdb",
+    "paga",
+    "pheatmap",
+    "scanpy",
+    "scenic",
+    "scrublet",
+    "scvelo",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "36517604": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastmnn",
+    "ggplot2",
+    "scater",
+    "sce",
+    "scran",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "36524724": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "monocle3",
+    "msigdb",
+    "scrublet",
+    "scvelo",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "36525288": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "gsva",
+    "msigdb",
+    "sctransform",
+    "seurat"
+   ]
+  },
+  "36536148": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deeptools",
+    "seurat",
+    "signac",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "36536241": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "edger",
+    "ggplot2",
+    "mageck",
+    "pheatmap",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36537238": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "diffbind",
+    "ggplot2",
+    "kallisto",
+    "macs",
+    "star-aligner"
+   ]
+  },
+  "36539501": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "chromvar",
+    "deeptools",
+    "doubletfinder",
+    "leiden",
+    "mast",
+    "pheatmap",
+    "scvelo",
+    "seurat",
+    "snapatac2",
+    "tsne"
+   ]
+  },
+  "36539836": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "deeptools",
+    "deseq2",
+    "diffbind",
+    "macs",
+    "wgcna"
+   ]
+  },
+  "36543117": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat",
+    "deseq2"
+   ]
+  },
+  "36543778": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "ggplot2",
+    "gprofiler",
+    "harmony",
+    "kegg",
+    "leiden",
+    "limma",
+    "macs",
+    "meme-suite",
+    "monocle3",
+    "scater",
+    "scran",
+    "sctransform",
+    "seurat",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "36543915": {
+   "licence": "cc-by",
+   "tokens": [
+    "bbknn",
+    "cell2location",
+    "cellchat",
+    "cellranger",
+    "celltypist",
+    "gprofiler",
+    "gsea",
+    "harmony",
+    "monocle3",
+    "msigdb",
+    "nmf",
+    "scanpy",
+    "scvelo",
+    "scvi",
+    "soupx",
+    "umap"
+   ]
+  },
+  "36543959": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "macs",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "36544019": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "fastp",
+    "gsea"
+   ]
+  },
+  "36544022": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "cuffdiff",
+    "ggplot2",
+    "leiden",
+    "liger",
+    "limma",
+    "pheatmap",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "36548025": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "doubletfinder",
+    "gsva",
+    "msigdb",
+    "scanpy",
+    "scenic",
+    "seurat",
+    "singler",
+    "soupx"
+   ]
+  },
+  "36550535": {
+   "licence": "cc-by",
+   "tokens": [
+    "bbknn",
+    "cellranger",
+    "cibersort",
+    "deseq2",
+    "kallisto",
+    "leiden",
+    "msigdb",
+    "paga",
+    "scanpy",
+    "sctransform"
+   ]
+  },
+  "36575170": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellphonedb",
+    "cellranger",
+    "harmony",
+    "leiden",
+    "monocle3",
+    "seurat",
+    "umap"
+   ]
+  },
+  "36575517": {
+   "licence": "cc-by",
+   "tokens": [
+    "leiden",
+    "seurat",
+    "singler"
+   ]
+  },
+  "36575523": {
+   "licence": "cc-by",
+   "tokens": [
+    "celltypist",
+    "dropletutils",
+    "ggplot2",
+    "leiden",
+    "panglaodb",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "36576247": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "leiden",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "36577520": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "star-aligner"
+   ]
+  },
+  "36579892": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat-seq",
+    "deeptools",
+    "deseq2",
+    "metascape",
+    "star-aligner"
+   ]
+  },
+  "36587187": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "leiden",
+    "nmf",
+    "scanpy",
+    "seurat",
+    "squidpy",
+    "topgo"
+   ]
+  },
+  "36977556": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "deseq2",
+    "ggplot2",
+    "gsva",
+    "maxquant",
+    "msigdb",
+    "salmon",
+    "singscore"
+   ]
+  },
+  "37075114": {
+   "licence": "cc-by",
+   "tokens": [
+    "leiden",
+    "scanpy",
+    "scanvi",
+    "scvi"
+   ]
+  },
+  "37078698": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cellrank",
+    "decoupler",
+    "dorothea",
+    "doubletfinder",
+    "muscat",
+    "nichenet",
+    "scdblfinder",
+    "scvelo",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37115691": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "featurecounts",
+    "fgsea",
+    "gsea",
+    "kegg",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "37166992": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "ggplot2",
+    "goseq",
+    "immunedeconv"
+   ]
+  },
+  "37284822": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat",
+    "edger",
+    "fgsea",
+    "gsea",
+    "kallisto",
+    "limma",
+    "seurat",
+    "star-aligner",
+    "sva",
+    "umap",
+    "voom",
+    "wgcna"
+   ]
+  },
+  "37341394": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "fastmnn",
+    "gsea",
+    "leiden",
+    "scater",
+    "scran"
+   ]
+  },
+  "37348497": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "featurecounts",
+    "ggplot2",
+    "kegg",
+    "leiden",
+    "scanpy",
+    "scrublet",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "37429879": {
+   "licence": "cc-by",
+   "tokens": [
+    "celldex",
+    "dropletutils",
+    "edger",
+    "fastmnn",
+    "scater",
+    "scdblfinder",
+    "scran",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "37438528": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "aucell",
+    "cell2location",
+    "cellbender",
+    "cellphonedb",
+    "cellranger",
+    "genie3",
+    "leiden",
+    "scanpy",
+    "scenic",
+    "scvi",
+    "seurat"
+   ]
+  },
+  "37449412": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "limma",
+    "maxquant"
+   ]
+  },
+  "37452040": {
+   "licence": "cc-by",
+   "tokens": [
+    "featurecounts",
+    "homer",
+    "kegg",
+    "leiden",
+    "limma",
+    "star-aligner",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "37460463": {
+   "licence": "cc-by",
+   "tokens": [
+    "consensusclusterplus",
+    "estimate-score",
+    "gistic",
+    "gsea",
+    "kegg",
+    "maftools",
+    "msigdb",
+    "nmf",
+    "sigprofiler",
+    "ssgsea",
+    "xcell"
+   ]
+  },
+  "37468470": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "kallisto"
+   ]
+  },
+  "37468900": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "ggplot2",
+    "limma",
+    "maxquant",
+    "star-aligner"
+   ]
+  },
+  "37471165": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "harmony",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37555828": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "ggplot2",
+    "leiden",
+    "limma",
+    "scran",
+    "tsne",
+    "umap",
+    "voom"
+   ]
+  },
+  "37562402": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellphonedb",
+    "cellranger",
+    "deseq2",
+    "diann",
+    "enrichr",
+    "fastqc",
+    "gprofiler",
+    "leiden",
+    "paga",
+    "scanpy",
+    "scran",
+    "scvelo",
+    "umap",
+    "velocyto",
+    "wgcna"
+   ]
+  },
+  "37581929": {
+   "licence": "cc-by",
+   "tokens": [
+    "celldex",
+    "cellranger",
+    "clusterprofiler",
+    "edger",
+    "fastmnn",
+    "scran",
+    "singler"
+   ]
+  },
+  "37581939": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "harmony",
+    "scran",
+    "scrublet",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37596273": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellchat",
+    "cellranger",
+    "complexheatmap",
+    "epic-deconv",
+    "ggplot2",
+    "gsea",
+    "harmony",
+    "immunedeconv",
+    "leiden",
+    "limma",
+    "scenic",
+    "sctransform",
+    "scvelo",
+    "seurat",
+    "singscore",
+    "velocyto"
+   ]
+  },
+  "37607912": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "genie3",
+    "gsea",
+    "macs",
+    "paga",
+    "scanpy",
+    "scenic",
+    "scrublet",
+    "signac",
+    "umap"
+   ]
+  },
+  "37607916": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "gsea",
+    "gsva",
+    "kegg",
+    "maftools",
+    "msigdb"
+   ]
+  },
+  "37624890": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "hisat2",
+    "immunedeconv",
+    "msigdb",
+    "quantiseq"
+   ]
+  },
+  "37626055": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "fastqc",
+    "ggplot2",
+    "hisat2",
+    "limma",
+    "voom"
+   ]
+  },
+  "37673861": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "maftools",
+    "mutationalpatterns"
+   ]
+  },
+  "37689753": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastmnn",
+    "nichenet",
+    "palantir",
+    "pheatmap",
+    "scater",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37697438": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "seurat"
+   ]
+  },
+  "37698546": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "leiden",
+    "reactomepa",
+    "scran",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "topgo",
+    "umap"
+   ]
+  },
+  "37703359": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "fastmnn",
+    "fastqc",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "37709492": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "limma",
+    "minfi",
+    "rnbeads",
+    "umap"
+   ]
+  },
+  "37749256": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "edger",
+    "ggplot2",
+    "leiden",
+    "nichenet",
+    "pheatmap",
+    "scanpy",
+    "sctransform",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "37751296": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "hisat2",
+    "seurat"
+   ]
+  },
+  "37777536": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "ggplot2",
+    "ruvseq",
+    "umap"
+   ]
+  },
+  "37798411": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "chromvar",
+    "gsea",
+    "kegg",
+    "leiden",
+    "macs",
+    "seurat",
+    "seurat-cca",
+    "signac",
+    "umap"
+   ]
+  },
+  "37805579": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "enrichr",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "hisat2",
+    "kallisto",
+    "kegg",
+    "msigdb",
+    "pheatmap"
+   ]
+  },
+  "37811874": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cibersort",
+    "gsea",
+    "immunedeconv",
+    "kegg",
+    "mcpcounter",
+    "msigdb",
+    "progeny",
+    "ssgsea"
+   ]
+  },
+  "37813836": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "enrichr",
+    "ggplot2",
+    "msstats",
+    "scran"
+   ]
+  },
+  "37824206": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "enrichr",
+    "gprofiler",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "37824211": {
+   "licence": "cc-by",
+   "tokens": [
+    "depmap",
+    "deseq2",
+    "featurecounts",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "limma",
+    "msigdb"
+   ]
+  },
+  "37828140": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "enrichr",
+    "gsea",
+    "leiden",
+    "milo",
+    "scanpy",
+    "scanvi",
+    "scran",
+    "scvi"
+   ]
+  },
+  "37830426": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "kegg",
+    "pheatmap",
+    "scanpy",
+    "scanvi",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37845689": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "harmony",
+    "msigdb",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "37845779": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "ggplot2",
+    "kegg",
+    "limma",
+    "voom"
+   ]
+  },
+  "37846891": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "macs",
+    "scater",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37847744": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "kallisto",
+    "limma",
+    "topgo",
+    "voom"
+   ]
+  },
+  "37864274": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "celltypist",
+    "deseq2",
+    "immunedeconv",
+    "salmon",
+    "scran",
+    "star-aligner"
+   ]
+  },
+  "37871969": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "featurecounts",
+    "kegg",
+    "macs"
+   ]
+  },
+  "37872166": {
+   "licence": "cc-by",
+   "tokens": [
+    "ancombc",
+    "cellranger",
+    "dada2",
+    "deseq2",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "ssgsea",
+    "umap"
+   ]
+  },
+  "37880211": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cibersort",
+    "estimate-score",
+    "fastqc",
+    "gistic",
+    "gsea",
+    "gsva",
+    "leiden",
+    "maftools",
+    "mcpcounter",
+    "msigdb",
+    "scanpy",
+    "sigprofiler",
+    "ssgsea",
+    "umap",
+    "xcell"
+   ]
+  },
+  "37888959": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "leiden",
+    "scanpy",
+    "sce",
+    "scvi",
+    "slingshot",
+    "star-aligner",
+    "topgo",
+    "umap"
+   ]
+  },
+  "37902626": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "ggplot2",
+    "limma",
+    "voom"
+   ]
+  },
+  "37903863": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "ggplot2",
+    "limma",
+    "voom"
+   ]
+  },
+  "37910019": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "hisat2"
+   ]
+  },
+  "37914685": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "hisat2",
+    "msigdb",
+    "pheatmap"
+   ]
+  },
+  "37919520": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enhancedvolcano",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37923721": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "gsea",
+    "harmony",
+    "kallisto",
+    "limma",
+    "propeller",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap",
+    "voom",
+    "wgcna"
+   ]
+  },
+  "37925420": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "leiden",
+    "scanpy",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37934560": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "enhancedvolcano",
+    "fastqc",
+    "hisat2",
+    "limma"
+   ]
+  },
+  "37939194": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "genie3",
+    "ggplot2",
+    "leiden",
+    "monocle3",
+    "scdblfinder",
+    "seurat",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "37943605": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "monocle3",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37946040": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "seurat"
+   ]
+  },
+  "37950327": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellphonedb",
+    "cellranger",
+    "deseq2",
+    "gsea",
+    "harmony",
+    "monocle3",
+    "msigdb",
+    "scrublet",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "37950867": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastmnn",
+    "harmony",
+    "hisat2",
+    "leiden",
+    "scater",
+    "sce",
+    "scenic",
+    "scran",
+    "seurat",
+    "tsne",
+    "umap"
+   ]
+  },
+  "37953308": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "harmony",
+    "monocle3",
+    "paga",
+    "scanpy",
+    "scanvi",
+    "scenic",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37953377": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "combat-seq",
+    "deseq2",
+    "ggplot2",
+    "hisat2",
+    "meme-suite",
+    "sva"
+   ]
+  },
+  "37956308": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2",
+    "fastqc",
+    "pheatmap",
+    "salmon"
+   ]
+  },
+  "37957382": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "edger",
+    "fgsea",
+    "gsea"
+   ]
+  },
+  "37963865": {
+   "licence": "cc-by",
+   "tokens": [
+    "gprofiler",
+    "gsea",
+    "gsva",
+    "seurat",
+    "ssgsea",
+    "wgcna"
+   ]
+  },
+  "37963889": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "dropletutils",
+    "gsea",
+    "monocle2",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "37966117": {
+   "licence": "cc-by",
+   "tokens": [
+    "gsva",
+    "umap"
+   ]
+  },
+  "37973194": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "featurecounts",
+    "hisat2"
+   ]
+  },
+  "37974010": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "monocle3",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "37978175": {
+   "licence": "cc-by",
+   "tokens": [
+    "enrichr",
+    "wgcna"
+   ]
+  },
+  "37988404": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "scanpy",
+    "scran",
+    "umap"
+   ]
+  },
+  "37990021": {
+   "licence": "cc-by",
+   "tokens": [
+    "dada2",
+    "deseq2",
+    "kegg",
+    "pheatmap",
+    "qiime2",
+    "salmon"
+   ]
+  },
+  "37991018": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "enrichr",
+    "harmony",
+    "kegg",
+    "scdblfinder",
+    "seurat"
+   ]
+  },
+  "37996443": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "edger",
+    "gprofiler",
+    "gsea",
+    "monocle3",
+    "muscat",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "38001067": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "diann",
+    "maxquant",
+    "msigdb",
+    "umap"
+   ]
+  },
+  "38001542": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "kallisto",
+    "star-aligner"
+   ]
+  },
+  "38008725": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "doubletfinder",
+    "ggplot2",
+    "harmony",
+    "mast",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "singler"
+   ]
+  },
+  "38012149": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "cellranger",
+    "edger",
+    "fastmnn",
+    "sce",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "38012187": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "mast",
+    "paga",
+    "scanpy",
+    "scran",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "38019906": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "cellrank",
+    "edger",
+    "leiden",
+    "maxquant",
+    "perseus",
+    "salmon",
+    "scanpy",
+    "topgo",
+    "umap"
+   ]
+  },
+  "38019916": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "diann",
+    "gsea",
+    "limma",
+    "removebatcheffect"
+   ]
+  },
+  "38032734": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "deseq2",
+    "limma",
+    "msigdb",
+    "sva"
+   ]
+  },
+  "38036539": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "clusterprofiler",
+    "combat",
+    "edger",
+    "gistic",
+    "gsea",
+    "gsva",
+    "mcpcounter",
+    "msigdb",
+    "ssgsea",
+    "sva"
+   ]
+  },
+  "38036788": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat",
+    "deseq2",
+    "edger",
+    "salmon",
+    "sva",
+    "wgcna"
+   ]
+  },
+  "38039370": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "metascape",
+    "pheatmap",
+    "scanpy",
+    "scran",
+    "scrublet",
+    "umap"
+   ]
+  },
+  "38042900": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "harmony",
+    "leiden",
+    "limma",
+    "scrublet",
+    "seurat",
+    "umap"
+   ]
+  },
+  "38049604": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "fastp",
+    "fastqc",
+    "gsea",
+    "homer",
+    "kegg",
+    "leiden",
+    "limma",
+    "seurat",
+    "seurat-cca",
+    "star-aligner"
+   ]
+  },
+  "38052989": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "38055614": {
+   "licence": "cc0",
+   "tokens": [
+    "deseq2",
+    "star-aligner"
+   ]
+  },
+  "38057666": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cell2location",
+    "cellphonedb",
+    "cellranger",
+    "leiden",
+    "nmf",
+    "paga",
+    "scanpy",
+    "scenic",
+    "scrublet",
+    "scvelo",
+    "umap"
+   ]
+  },
+  "38063198": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "doubletfinder",
+    "fastmnn",
+    "genie3",
+    "gsea",
+    "kegg",
+    "monocle2",
+    "msigdb",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "38063199": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enhancedvolcano",
+    "ggplot2",
+    "harmony",
+    "leiden",
+    "mast",
+    "seurat",
+    "umap"
+   ]
+  },
+  "38065624": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "maxquant"
+   ]
+  },
+  "38065970": {
+   "licence": "cc-by",
+   "tokens": [
+    "leiden",
+    "meringue",
+    "scanpy",
+    "stdeconvolve"
+   ]
+  },
+  "38065972": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellchat",
+    "cellranger",
+    "doubletfinder",
+    "genie3",
+    "gsva",
+    "infercnv",
+    "limma",
+    "monocle2",
+    "scenic",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "38070135": {
+   "licence": "cc-by",
+   "tokens": [
+    "ancombc",
+    "deseq2",
+    "enrichr",
+    "fastqc",
+    "maaslin2",
+    "pheatmap",
+    "qiime2",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "38079220": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "harmony",
+    "sce",
+    "seurat",
+    "slingshot",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "38081826": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "dropletutils",
+    "maxquant",
+    "scater",
+    "sce",
+    "scran",
+    "soupx",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "38085578": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enrichr",
+    "harmony",
+    "seurat",
+    "singler",
+    "soupx",
+    "umap"
+   ]
+  },
+  "38091397": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "metascape",
+    "sctransform",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "38092730": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "enhancedvolcano",
+    "kegg",
+    "qiime2",
+    "salmon",
+    "topgo"
+   ]
+  },
+  "38092914": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "ggplot2",
+    "leiden",
+    "mast",
+    "pheatmap",
+    "scenic",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "38092915": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "cellranger",
+    "complexheatmap",
+    "fgsea",
+    "gsea",
+    "leiden",
+    "rctd",
+    "scanpy",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "38093010": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "cellranger",
+    "chromvar",
+    "clusterprofiler",
+    "enrichr",
+    "gsea",
+    "infercnv",
+    "leiden",
+    "macs",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "seurat-wnn",
+    "signac",
+    "umap"
+   ]
+  },
+  "38099574": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "chipseeker",
+    "chromvar",
+    "clusterprofiler",
+    "infercnv",
+    "kegg",
+    "metascape",
+    "nmf",
+    "seurat",
+    "signac",
+    "umap"
+   ]
+  },
+  "38108810": {
+   "licence": "cc0",
+   "tokens": [
+    "complexheatmap",
+    "dropletutils",
+    "fastmnn",
+    "kallisto",
+    "leiden",
+    "monocle3",
+    "nmf",
+    "scater",
+    "sce",
+    "scran",
+    "umap"
+   ]
+  },
+  "38110959": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "cell2location",
+    "leiden",
+    "nmf",
+    "scanpy",
+    "scvi",
+    "seurat"
+   ]
+  },
+  "38111007": {
+   "licence": "cc-by",
+   "tokens": [
+    "monocle3",
+    "scanpy",
+    "slingshot",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "38113115": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "deseq2",
+    "featurecounts",
+    "gsea",
+    "msigdb",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "38116120": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cellrank",
+    "deseq2",
+    "dpt",
+    "edger",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "paga",
+    "scanpy",
+    "scrublet",
+    "seurat",
+    "seurat-cca",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "38116123": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "cellranger",
+    "deseq2",
+    "doubletfinder",
+    "harmony",
+    "leiden",
+    "macs",
+    "scanpy",
+    "sctransform",
+    "seurat",
+    "signac",
+    "umap"
+   ]
+  },
+  "38117255": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "leiden",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "umap"
+   ]
+  },
+  "38123561": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "cellranger",
+    "chromvar",
+    "clusterprofiler",
+    "genie3",
+    "gsea",
+    "kegg",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "signac",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "38123840": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "enhancedvolcano",
+    "harmony",
+    "mofa",
+    "scanpy",
+    "scdblfinder",
+    "sce",
+    "sctransform",
+    "seurat",
+    "seurat-wnn",
+    "squidpy",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "38127424": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "gprofiler",
+    "scanorama",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "38127790": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "cellchat",
+    "celldex",
+    "deseq2",
+    "dropletutils",
+    "edger",
+    "fastqc",
+    "gsea",
+    "leiden",
+    "limma",
+    "milo",
+    "msigdb",
+    "salmon",
+    "scater",
+    "scdblfinder",
+    "scran",
+    "seurat",
+    "singler",
+    "tsne",
+    "voom"
+   ]
+  },
+  "38129377": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "dropletutils",
+    "scater",
+    "scran",
+    "seurat",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "38129670": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellphonedb",
+    "clusterprofiler",
+    "deseq2",
+    "fastp",
+    "gsea",
+    "harmony",
+    "hisat2",
+    "kegg",
+    "pheatmap",
+    "scenic",
+    "seurat"
+   ]
+  },
+  "38129866": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "leiden",
+    "meringue",
+    "seurat",
+    "tangram"
+   ]
+  },
+  "38134280": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "complexheatmap",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "msigdb",
+    "salmon"
+   ]
+  },
+  "38150302": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat-seq",
+    "deseq2",
+    "fastqc",
+    "gprofiler",
+    "kegg",
+    "metaboanalyst"
+   ]
+  },
+  "38150309": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "salmon",
+    "wgcna"
+   ]
+  },
+  "38159572": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "mast",
+    "milo",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "38212464": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "edger",
+    "leiden",
+    "muscat",
+    "pheatmap",
+    "sce",
+    "seurat",
+    "tsne"
+   ]
+  },
+  "38263460": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "fastp",
+    "gprofiler",
+    "leiden",
+    "scanpy",
+    "scanvi",
+    "scenic",
+    "scvi",
+    "tsne",
+    "umap"
+   ]
+  },
+  "38349740": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "immunedeconv",
+    "leiden",
+    "umap"
+   ]
+  },
+  "38561380": {
+   "licence": "cc-by",
+   "tokens": [
+    "bayesprism",
+    "cell2location",
+    "cellchat",
+    "cellranger",
+    "cuffdiff",
+    "deseq2",
+    "dorothea",
+    "fastmnn",
+    "fastqc",
+    "giotto",
+    "gsea",
+    "leiden",
+    "monocle3",
+    "muscat",
+    "paga",
+    "pheatmap",
+    "rctd",
+    "scanpy",
+    "scanvi",
+    "scvelo",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "umap",
+    "vegan",
+    "velocyto"
+   ]
+  },
+  "38622133": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "cellranger",
+    "edger",
+    "ggplot2",
+    "kallisto",
+    "kegg",
+    "limma",
+    "metascape",
+    "msigdb",
+    "pheatmap",
+    "roast",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "38627362": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "doubletfinder",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "gsva",
+    "maftools",
+    "propeller",
+    "sctransform",
+    "seurat",
+    "singscore",
+    "soupx",
+    "star-aligner"
+   ]
+  },
+  "38632311": {
+   "licence": "cc-by",
+   "tokens": [
+    "azimuth",
+    "cellranger",
+    "propeller",
+    "sctransform",
+    "seurat"
+   ]
+  },
+  "38719473": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "csaw",
+    "deeptools",
+    "dnacopy",
+    "edger",
+    "featurecounts",
+    "homer",
+    "limma",
+    "pheatmap",
+    "roast",
+    "voom"
+   ]
+  },
+  "38760585": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "clusterprofiler",
+    "epic-deconv",
+    "ggplot2",
+    "minfi",
+    "panglaodb",
+    "scanpy",
+    "sce",
+    "seurat",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "38769152": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "bsseq",
+    "clusterprofiler",
+    "complexheatmap",
+    "edger",
+    "fastmnn",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "limma",
+    "propeller",
+    "scater",
+    "sce",
+    "scvi",
+    "seurat",
+    "sva",
+    "voom",
+    "wgcna"
+   ]
+  },
+  "38787940": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "complexheatmap",
+    "kegg",
+    "reactomepa"
+   ]
+  },
+  "38905342": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "decoupler",
+    "deseq2",
+    "dorothea",
+    "harmony",
+    "mast",
+    "monocle3",
+    "paga",
+    "pheatmap",
+    "propeller",
+    "ruvseq",
+    "scanpy",
+    "scrublet",
+    "seurat",
+    "seurat-cca",
+    "topgo",
+    "umap"
+   ]
+  },
+  "38926387": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "cellranger",
+    "dream",
+    "featurecounts",
+    "gsva",
+    "limma",
+    "seurat",
+    "umap",
+    "voom"
+   ]
+  },
+  "38942023": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "dream",
+    "edger",
+    "gprofiler",
+    "gsea",
+    "homer",
+    "kallisto",
+    "kegg",
+    "limma",
+    "removebatcheffect",
+    "star-aligner",
+    "topgo",
+    "tsne",
+    "umap",
+    "voom"
+   ]
+  },
+  "38951692": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "deseq2",
+    "gsea",
+    "limma",
+    "removebatcheffect"
+   ]
+  },
+  "38956379": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "bayesprism",
+    "cellchat",
+    "cellranger",
+    "celltypist",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "scanpy",
+    "scanvi",
+    "scenic",
+    "scvelo",
+    "scvi",
+    "umap"
+   ]
+  },
+  "38959321": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastp",
+    "gsea",
+    "scran",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "38972873": {
+   "licence": "cc-by",
+   "tokens": [
+    "bayesprism",
+    "bbknn",
+    "clusterprofiler",
+    "decontx",
+    "fastmnn",
+    "ggplot2",
+    "leiden",
+    "monocle3",
+    "nichenet",
+    "scanorama",
+    "scanpy",
+    "scanvi",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "38978088": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "bbknn",
+    "cell2location",
+    "harmony",
+    "leiden",
+    "mofa",
+    "multivi",
+    "scanorama",
+    "scanpy",
+    "scanvi",
+    "scrublet",
+    "scvi",
+    "totalvi",
+    "umap"
+   ]
+  },
+  "39020404": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "maftools",
+    "nmf"
+   ]
+  },
+  "39026254": {
+   "licence": "cc-by",
+   "tokens": [
+    "azimuth",
+    "edger",
+    "enrichr",
+    "fastmnn",
+    "leiden",
+    "milo",
+    "scanvi",
+    "sce",
+    "scran",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "wgcna"
+   ]
+  },
+  "39028813": {
+   "licence": "cc-by",
+   "tokens": [
+    "fastmnn",
+    "leiden",
+    "scdblfinder",
+    "scenic",
+    "scran",
+    "seurat",
+    "slingshot",
+    "tsne",
+    "umap"
+   ]
+  },
+  "39042477": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "edger",
+    "propeller",
+    "seurat",
+    "seurat-wnn",
+    "umap"
+   ]
+  },
+  "39048816": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "doubletfinder",
+    "edger",
+    "ggplot2",
+    "gprofiler",
+    "kegg",
+    "leiden",
+    "liana",
+    "mast",
+    "muscat",
+    "scenic",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "39095595": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "dpt",
+    "edger",
+    "enhancedvolcano",
+    "enrichr",
+    "gsea",
+    "kegg",
+    "leiden",
+    "msigdb",
+    "scanpy",
+    "scanvi",
+    "scrublet",
+    "scvelo",
+    "scvi",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "39118163": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "bbknn",
+    "cellranger",
+    "chipseeker",
+    "complexheatmap",
+    "deeptools",
+    "deseq2",
+    "diffbind",
+    "gsea",
+    "leiden",
+    "limma",
+    "macs",
+    "pheatmap",
+    "removebatcheffect",
+    "salmon",
+    "scanpy",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39119906": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "hisat2",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "39155292": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "cellchat",
+    "cellphonedb",
+    "commot",
+    "giotto",
+    "nichenet",
+    "rctd",
+    "scanpy",
+    "spotlight",
+    "stlearn",
+    "umap"
+   ]
+  },
+  "39217176": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "gprofiler",
+    "mast",
+    "propeller",
+    "scater",
+    "scran",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39228367": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deeptools",
+    "edger",
+    "fastqc",
+    "gsea",
+    "limma",
+    "macs",
+    "voom"
+   ]
+  },
+  "39232561": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastmnn",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "scran",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39242518": {
+   "licence": "cc-by",
+   "tokens": [
+    "champ",
+    "combat",
+    "ggplot2",
+    "limma",
+    "minfi",
+    "msigdb",
+    "sva"
+   ]
+  },
+  "39264731": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "limma",
+    "pheatmap",
+    "roast"
+   ]
+  },
+  "39284687": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cibersort",
+    "clusterprofiler",
+    "deseq2",
+    "dexseq",
+    "enhancedvolcano",
+    "fastqc",
+    "featurecounts",
+    "gsea",
+    "hisat2",
+    "salmon",
+    "xcell"
+   ]
+  },
+  "39303028": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "maftools"
+   ]
+  },
+  "39321293": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "edger",
+    "kallisto",
+    "muscat",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39332412": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "dep",
+    "fastmnn",
+    "ggplot2",
+    "gsea",
+    "maxquant",
+    "scdblfinder",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39349459": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "leiden",
+    "scater",
+    "scran",
+    "tsne"
+   ]
+  },
+  "39361025": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastp",
+    "fastqc",
+    "ggplot2",
+    "scran",
+    "seurat"
+   ]
+  },
+  "39361432": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "dorothea",
+    "enhancedvolcano",
+    "gsea",
+    "harmony",
+    "kegg",
+    "mast",
+    "monocle2",
+    "seurat",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "39362841": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "cellrank",
+    "gsea",
+    "leiden",
+    "liana",
+    "multivi",
+    "scanpy",
+    "scanvi",
+    "sce",
+    "scenic",
+    "scvi",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39367016": {
+   "licence": "cc-by",
+   "tokens": [
+    "fastmnn",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "pheatmap",
+    "scran",
+    "seurat",
+    "slingshot",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39375536": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "celldex",
+    "genie3",
+    "scenic",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "39379702": {
+   "licence": "cc-by",
+   "tokens": [
+    "celldex",
+    "cellphonedb",
+    "cellranger",
+    "ggplot2",
+    "leiden",
+    "liana",
+    "sce",
+    "seurat",
+    "singler",
+    "soupx",
+    "umap"
+   ]
+  },
+  "39380041": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "fastmnn",
+    "harmony",
+    "leiden",
+    "mofa",
+    "monocle3",
+    "muscat",
+    "scanpy",
+    "scater",
+    "sce",
+    "scran",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39384784": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "scran",
+    "seurat"
+   ]
+  },
+  "39405117": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "monocle3",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39428388": {
+   "licence": "cc-by",
+   "tokens": [
+    "dnacopy",
+    "maftools"
+   ]
+  },
+  "39453996": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "limma",
+    "maxquant",
+    "pheatmap",
+    "seurat"
+   ]
+  },
+  "39470726": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "edger",
+    "enrichr",
+    "fastqc",
+    "featurecounts",
+    "gsea",
+    "kegg",
+    "pheatmap",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "39475467": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "kegg",
+    "limma",
+    "ssgsea",
+    "star-aligner",
+    "sva",
+    "wgcna"
+   ]
+  },
+  "39478111": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "bbknn",
+    "cellranger",
+    "combat",
+    "dream",
+    "enrichr",
+    "gsea",
+    "harmony",
+    "infercnv",
+    "leiden",
+    "liger",
+    "msigdb",
+    "rctd",
+    "scanpy",
+    "seurat",
+    "singler",
+    "sva",
+    "umap"
+   ]
+  },
+  "39488830": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "edger",
+    "ggplot2",
+    "gsea",
+    "leiden",
+    "limma",
+    "roast",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39496592": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "hisat2",
+    "leiden",
+    "mast",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "ssgsea",
+    "tsne",
+    "umap"
+   ]
+  },
+  "39499645": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "pheatmap"
+   ]
+  },
+  "39504368": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "singscore",
+    "star-aligner"
+   ]
+  },
+  "39510069": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat"
+   ]
+  },
+  "39529142": {
+   "licence": "cc-by",
+   "tokens": [
+    "enrichr",
+    "gseapy",
+    "scanpy"
+   ]
+  },
+  "39531335": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "gsea",
+    "limma",
+    "maftools",
+    "mcpcounter"
+   ]
+  },
+  "39535033": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "chipseeker",
+    "deseq2",
+    "dpt",
+    "ggplot2",
+    "homer",
+    "kegg",
+    "macs",
+    "metascape",
+    "pheatmap",
+    "seurat",
+    "star-aligner",
+    "tsne",
+    "umap"
+   ]
+  },
+  "39536108": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cibersort",
+    "combat-seq",
+    "deseq2",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "hisat2",
+    "star-aligner"
+   ]
+  },
+  "39543172": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "gsea",
+    "limma",
+    "msigdb"
+   ]
+  },
+  "39543283": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "fastmnn",
+    "genie3",
+    "gsea",
+    "leiden",
+    "milo",
+    "scran",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "slingshot",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39543396": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastmnn",
+    "featurecounts",
+    "fgsea",
+    "gprofiler",
+    "gsea",
+    "kegg",
+    "limma",
+    "mageck",
+    "slingshot",
+    "voom"
+   ]
+  },
+  "39558094": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "bayesprism",
+    "cell2location",
+    "cellphonedb",
+    "cellranger",
+    "celltypist",
+    "edger",
+    "infercnv",
+    "leiden",
+    "scanpy",
+    "scvi",
+    "seurat"
+   ]
+  },
+  "39561007": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enhancedvolcano",
+    "enrichr",
+    "gsea",
+    "milo",
+    "nichenet",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "singler",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "39566559": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "aucell",
+    "cell2location",
+    "cellbender",
+    "cellphonedb",
+    "cellranger",
+    "leiden",
+    "nmf",
+    "scanpy",
+    "scenic",
+    "scrublet",
+    "scvi",
+    "umap"
+   ]
+  },
+  "39567718": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "dropletutils",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "leiden",
+    "mast",
+    "milo",
+    "msigdb",
+    "scanpy",
+    "scanvi",
+    "sccoda",
+    "sctransform",
+    "scvi",
+    "seurat",
+    "singler",
+    "soupx",
+    "squidpy",
+    "umap"
+   ]
+  },
+  "39567783": {
+   "licence": "cc-by",
+   "tokens": [
+    "bayesprism",
+    "cellbender",
+    "cellchat",
+    "cellphonedb",
+    "cellranger",
+    "cellrank",
+    "celltypist",
+    "decoupler",
+    "deseq2",
+    "enrichr",
+    "gseapy",
+    "kegg",
+    "leiden",
+    "liana",
+    "monocle3",
+    "msigdb",
+    "palantir",
+    "scanpy",
+    "scanvi",
+    "scvi",
+    "star-aligner",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "39567784": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cell2location",
+    "cellphonedb",
+    "cellranger",
+    "fastmnn",
+    "ggplot2",
+    "leiden",
+    "scanpy",
+    "sce",
+    "scvi",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "39567793": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "archr",
+    "aucell",
+    "cell2location",
+    "cellphonedb",
+    "cellranger",
+    "celltypist",
+    "complexheatmap",
+    "genie3",
+    "leiden",
+    "macs",
+    "monocle3",
+    "nichenet",
+    "scanpy",
+    "scenic",
+    "scenicplus",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "soupx",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "39567827": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "chromvar",
+    "clusterprofiler",
+    "deseq2",
+    "doubletfinder",
+    "enrichr",
+    "gsea",
+    "harmony",
+    "leiden",
+    "macs",
+    "msigdb",
+    "scdblfinder",
+    "seurat",
+    "signac",
+    "soupx",
+    "umap"
+   ]
+  },
+  "39575480": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "star-aligner"
+   ]
+  },
+  "39578099": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "kegg",
+    "msigdb",
+    "reactomepa"
+   ]
+  },
+  "39578645": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "bayesspace",
+    "cellchat",
+    "enrichr",
+    "harmony",
+    "hdwgcna",
+    "kallisto",
+    "leiden",
+    "liana",
+    "scanpy",
+    "scanvi",
+    "sce",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39589811": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "scanpy",
+    "star-aligner"
+   ]
+  },
+  "39613747": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "infercnv",
+    "leiden",
+    "mast",
+    "scanorama",
+    "scvelo",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "39616178": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "dep",
+    "dexseq",
+    "diann",
+    "edger",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "kegg",
+    "pheatmap",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "39621585": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enrichr",
+    "gsea",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39622635": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "fastp"
+   ]
+  },
+  "39623485": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "fgsea",
+    "gsea",
+    "rctd",
+    "stdeconvolve"
+   ]
+  },
+  "39626675": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "anndata",
+    "azimuth",
+    "cellranger",
+    "cellrank",
+    "harmony",
+    "leiden",
+    "milo",
+    "paga",
+    "scanpy",
+    "scenic",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "39632980": {
+   "licence": "cc-by",
+   "tokens": [
+    "seurat"
+   ]
+  },
+  "39638999": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "limma",
+    "macs",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "39639049": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2",
+    "star-aligner"
+   ]
+  },
+  "39639179": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "featurecounts",
+    "macs",
+    "ruvseq",
+    "star-aligner"
+   ]
+  },
+  "39641768": {
+   "licence": "cc-by",
+   "tokens": [
+    "azimuth",
+    "cellphonedb",
+    "cellranger",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "hdwgcna",
+    "leiden",
+    "msigdb",
+    "scenic",
+    "sctransform",
+    "seurat",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "39642053": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellchat",
+    "cellranger",
+    "enrichr",
+    "genie3",
+    "monocle3",
+    "scenic",
+    "seurat",
+    "tsne",
+    "umap"
+   ]
+  },
+  "39656086": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "edger",
+    "gsva",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39656528": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellchat",
+    "clusterprofiler",
+    "cytotrace",
+    "decoupler",
+    "scvelo",
+    "seurat"
+   ]
+  },
+  "39656539": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "limma",
+    "voom"
+   ]
+  },
+  "39656606": {
+   "licence": "cc-by",
+   "tokens": [
+    "dropletutils",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "kallisto",
+    "msigdb",
+    "scrublet",
+    "sctransform",
+    "seurat",
+    "slingshot",
+    "soupx",
+    "tradeseq",
+    "umap",
+    "vegan"
+   ]
+  },
+  "39660606": {
+   "licence": "cc-by",
+   "tokens": [
+    "doubletfinder",
+    "nichenet",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39670989": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enhancedvolcano",
+    "salmon",
+    "seurat",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "39688922": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "chipseeker",
+    "deseq2",
+    "gsva",
+    "kallisto",
+    "macs",
+    "seurat-wnn",
+    "signac"
+   ]
+  },
+  "39689710": {
+   "licence": "cc-by",
+   "tokens": [
+    "bismark",
+    "cibersort",
+    "deeptools",
+    "deseq2",
+    "edger",
+    "fastqc",
+    "gsea",
+    "harmony",
+    "msigdb",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "39696535": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "numbat",
+    "scanpy",
+    "scdblfinder",
+    "soupx",
+    "umap"
+   ]
+  },
+  "39699959": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "doubletfinder",
+    "gsea",
+    "harmony",
+    "kegg",
+    "leiden",
+    "seurat",
+    "soupx",
+    "umap"
+   ]
+  },
+  "39708805": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2",
+    "diann",
+    "gprofiler",
+    "gsea",
+    "macs",
+    "msigdb",
+    "star-aligner"
+   ]
+  },
+  "39708811": {
+   "licence": "cc-by",
+   "tokens": [
+    "celldex",
+    "cellranger",
+    "celltypist",
+    "doubletfinder",
+    "edger",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "singler",
+    "soupx"
+   ]
+  },
+  "39729352": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellphonedb",
+    "gsva",
+    "infercnv",
+    "monocle2",
+    "msigdb",
+    "nmf",
+    "seurat",
+    "singler"
+   ]
+  },
+  "39730825": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "immunedeconv",
+    "mcpcounter",
+    "msigdb",
+    "ssgsea"
+   ]
+  },
+  "39731918": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "azimuth",
+    "cellranger",
+    "cibersort",
+    "clusterprofiler",
+    "decoupler",
+    "fgsea",
+    "gsea",
+    "kallisto",
+    "limma",
+    "mixomics",
+    "msigdb",
+    "sccoda",
+    "seurat",
+    "ssgsea",
+    "umap",
+    "voom"
+   ]
+  },
+  "39736632": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "gprofiler",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39737973": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "enrichr",
+    "gsea",
+    "harmony",
+    "hisat2",
+    "leiden",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "singler",
+    "umap"
+   ]
+  },
+  "39747179": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "enrichr",
+    "fastp",
+    "genie3",
+    "harmony",
+    "monocle3",
+    "pheatmap",
+    "propeller",
+    "scenic",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "39789181": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "gsva",
+    "immunedeconv",
+    "kallisto",
+    "leiden",
+    "msigdb",
+    "pheatmap",
+    "scanpy",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "umap",
+    "viper"
+   ]
+  },
+  "39793081": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "sctransform",
+    "seurat",
+    "soupx",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "40050124": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "scanvi",
+    "sctransform",
+    "seurat",
+    "soupx",
+    "umap"
+   ]
+  },
+  "40097403": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "cadd",
+    "cellranger",
+    "dmrcate",
+    "dndscv",
+    "edger",
+    "gistic",
+    "limma",
+    "minfi",
+    "mutationalpatterns",
+    "removebatcheffect",
+    "seurat",
+    "signac",
+    "star-aligner",
+    "umap",
+    "voom"
+   ]
+  },
+  "40307555": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "edger",
+    "ggplot2",
+    "gprofiler",
+    "hisat2",
+    "monocle3",
+    "muscat",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "40500437": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "cellranger",
+    "cellrank",
+    "dpt",
+    "featurecounts",
+    "hisat2",
+    "limma",
+    "scran",
+    "umap"
+   ]
+  },
+  "40506428": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cibersort",
+    "deseq2",
+    "gsva",
+    "harmony",
+    "immunedeconv",
+    "infercnv",
+    "limma",
+    "maftools",
+    "msigdb",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "40532697": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellchat",
+    "cellranger",
+    "dropletutils",
+    "enhancedvolcano",
+    "ggplot2",
+    "leiden",
+    "scater",
+    "scdblfinder",
+    "sce",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "40588764": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "deseq2",
+    "ggplot2",
+    "gseapy",
+    "harmony",
+    "limma",
+    "propeller",
+    "sctransform",
+    "seurat",
+    "soupx",
+    "spatial-seurat",
+    "umap"
+   ]
+  },
+  "40615675": {
+   "licence": "cc-by",
+   "tokens": [
+    "copykat",
+    "depmap",
+    "doubletfinder",
+    "fastqc",
+    "gistic",
+    "gsea",
+    "kallisto",
+    "leiden",
+    "limma",
+    "mageck",
+    "scanvi",
+    "star-aligner",
+    "umap",
+    "voom"
+   ]
+  },
+  "40632859": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "kegg",
+    "limma",
+    "voom"
+   ]
+  },
+  "40659911": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "chipseeker",
+    "deseq2",
+    "fastqc",
+    "gsea",
+    "kallisto",
+    "limma",
+    "methylkit",
+    "star-aligner"
+   ]
+  },
+  "40662355": {
+   "licence": "cc-by",
+   "tokens": [
+    "limma"
+   ]
+  },
+  "40769972": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "fastmnn",
+    "kegg",
+    "leiden",
+    "mast",
+    "pheatmap",
+    "progeny",
+    "scater",
+    "scdblfinder",
+    "scran",
+    "umap"
+   ]
+  },
+  "40829595": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "ggplot2",
+    "pheatmap",
+    "propeller",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "40866353": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc"
+   ]
+  },
+  "40890098": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "dropletutils",
+    "fastmnn",
+    "gsea",
+    "scran",
+    "seurat"
+   ]
+  },
+  "40926076": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "dropletutils",
+    "edger",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "kegg",
+    "leiden",
+    "limma",
+    "roast",
+    "scater",
+    "scran",
+    "seurat",
+    "singscore",
+    "umap",
+    "voom"
+   ]
+  },
+  "40993240": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cell2location",
+    "cellbender",
+    "cellphonedb",
+    "decoupler",
+    "gsea",
+    "leiden",
+    "monocle3",
+    "paga",
+    "scanpy",
+    "scanvi",
+    "scvelo",
+    "scvi",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "40993242": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "limma",
+    "voom"
+   ]
+  },
+  "41066197": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "doubletfinder",
+    "enrichr",
+    "ggplot2",
+    "kegg",
+    "limma",
+    "msigdb",
+    "propeller",
+    "seurat",
+    "umap",
+    "voom"
+   ]
+  },
+  "41067889": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "scanpy"
+   ]
+  },
+  "41075790": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "edger",
+    "featurecounts",
+    "kegg",
+    "limma",
+    "sva",
+    "voom",
+    "wgcna"
+   ]
+  },
+  "41086810": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "doubletfinder",
+    "estimate-score",
+    "ggplot2",
+    "gsva",
+    "harmony",
+    "immunedeconv",
+    "milo",
+    "msigdb",
+    "pheatmap",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41094201": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "doubletfinder",
+    "ggplot2",
+    "harmony",
+    "leiden",
+    "pheatmap",
+    "scenic",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41125444": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "anndata",
+    "combat",
+    "decoupler",
+    "leiden",
+    "liger",
+    "scanorama",
+    "scanpy",
+    "scvi",
+    "seurat"
+   ]
+  },
+  "41125888": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "deseq2",
+    "leiden",
+    "monocle3",
+    "scanpy",
+    "scrublet",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "41145490": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "edger",
+    "ggplot2",
+    "nichenet",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41162376": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "ggplot2",
+    "hisat2"
+   ]
+  },
+  "41172998": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellbender",
+    "cellranger",
+    "fastmnn",
+    "leiden",
+    "mast",
+    "paga",
+    "scanpy",
+    "scrublet",
+    "tsne",
+    "umap"
+   ]
+  },
+  "41175874": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "dnacopy",
+    "maftools",
+    "mutsigcv",
+    "sigprofiler",
+    "umap"
+   ]
+  },
+  "41193429": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "scanpy",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41193807": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "dropletutils",
+    "fastmnn",
+    "gprofiler",
+    "gsea",
+    "leiden",
+    "maxquant",
+    "msqrob2",
+    "nichenet",
+    "propeller",
+    "scanpy",
+    "scater",
+    "scran",
+    "umap"
+   ]
+  },
+  "41194133": {
+   "licence": "cc-by",
+   "tokens": [
+    "deepst",
+    "graphst",
+    "paga",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "41212055": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "limma",
+    "voom"
+   ]
+  },
+  "41218603": {
+   "licence": "cc-by",
+   "tokens": [
+    "bayesprism",
+    "cibersort",
+    "consensustme",
+    "immunedeconv",
+    "quantiseq",
+    "xcell"
+   ]
+  },
+  "41224801": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "featurecounts",
+    "leiden",
+    "propeller",
+    "scanpy",
+    "scrublet",
+    "singscore",
+    "soupx",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41231542": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fastmnn",
+    "ggplot2",
+    "gsea",
+    "msigdb",
+    "pheatmap",
+    "salmon",
+    "scdblfinder",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41242525": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "fastmnn",
+    "ggplot2",
+    "harmony",
+    "scanorama",
+    "scater",
+    "scran",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "tsne",
+    "umap"
+   ]
+  },
+  "41249169": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "featurecounts",
+    "hisat2"
+   ]
+  },
+  "41253754": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellbender",
+    "cellranger",
+    "doubletfinder",
+    "edger",
+    "genie3",
+    "limma",
+    "milo",
+    "pheatmap",
+    "propeller",
+    "sce",
+    "scenic",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41261115": {
+   "licence": "cc-by",
+   "tokens": [
+    "fastp",
+    "ggplot2",
+    "maftools"
+   ]
+  },
+  "41265443": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cibersort",
+    "gsea",
+    "gsva",
+    "immunedeconv",
+    "msigdb",
+    "ssgsea",
+    "timer"
+   ]
+  },
+  "41275493": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "edger",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "msigdb",
+    "pheatmap"
+   ]
+  },
+  "41285788": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "roast",
+    "star-aligner"
+   ]
+  },
+  "41286450": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "dream",
+    "edger",
+    "gsea",
+    "limma",
+    "voom"
+   ]
+  },
+  "41289399": {
+   "licence": "cc-by",
+   "tokens": [
+    "featurecounts",
+    "hisat2",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "41296858": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "featurecounts",
+    "macs",
+    "pheatmap",
+    "star-aligner"
+   ]
+  },
+  "41324988": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "edger",
+    "fastmnn",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "harmony",
+    "kegg",
+    "leiden",
+    "milo",
+    "monocle3",
+    "msigdb",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41329526": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "edger",
+    "featurecounts",
+    "macs",
+    "mageck",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "41329729": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fgsea",
+    "kallisto"
+   ]
+  },
+  "41331142": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "cellbender",
+    "cellranger",
+    "cistopic",
+    "ggplot2",
+    "gprofiler",
+    "gsea",
+    "pheatmap",
+    "scdblfinder",
+    "scenic",
+    "scenicplus",
+    "seurat",
+    "signac",
+    "umap"
+   ]
+  },
+  "41335223": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "leiden",
+    "scater",
+    "scdblfinder",
+    "sctransform",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "41337598": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "kegg",
+    "leiden",
+    "scanpy",
+    "scvi",
+    "umap"
+   ]
+  },
+  "41348109": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "maftools",
+    "monocle3",
+    "seurat"
+   ]
+  },
+  "41353448": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "kegg"
+   ]
+  },
+  "41364532": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "limma",
+    "msigdb",
+    "star-aligner"
+   ]
+  },
+  "41365295": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "decoupler",
+    "deseq2",
+    "enhancedvolcano",
+    "leiden",
+    "metaphlan",
+    "scanpy",
+    "scvi",
+    "seurat",
+    "star-aligner",
+    "umap",
+    "vegan"
+   ]
+  },
+  "41372142": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "ggplot2",
+    "scdblfinder",
+    "sce",
+    "scran",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41372949": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "edger",
+    "macs"
+   ]
+  },
+  "41379085": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "harmony",
+    "leiden",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41381478": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "decoupler",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "pheatmap",
+    "seurat",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "41381884": {
+   "licence": "cc-by",
+   "tokens": [
+    "combat-seq",
+    "complexheatmap",
+    "deseq2",
+    "enhancedvolcano",
+    "ggplot2",
+    "limma",
+    "minfi",
+    "umap"
+   ]
+  },
+  "41384492": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "commot",
+    "leiden",
+    "liger",
+    "paga",
+    "rctd",
+    "scanpy",
+    "scrublet",
+    "singler",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "41385642": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "diann",
+    "ggplot2",
+    "gsea",
+    "macs"
+   ]
+  },
+  "41385645": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "archr",
+    "cellranger",
+    "deeptools",
+    "harmony",
+    "sctransform",
+    "seurat",
+    "seurat-wnn",
+    "signac"
+   ]
+  },
+  "41388153": {
+   "licence": "cc-by",
+   "tokens": [
+    "complexheatmap",
+    "deseq2",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "limma",
+    "msigdb",
+    "ssgsea",
+    "star-aligner"
+   ]
+  },
+  "41390669": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "mageck",
+    "scater",
+    "sce",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41391149": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "harmony",
+    "monocle3",
+    "seurat",
+    "tsne",
+    "umap"
+   ]
+  },
+  "41392980": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "monocle3",
+    "seurat",
+    "slingshot"
+   ]
+  },
+  "41392984": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "deseq2",
+    "gsea",
+    "kegg",
+    "metaboanalyst",
+    "monocle2",
+    "msigdb",
+    "scrublet",
+    "seurat",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "41398052": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "deseq2",
+    "diffbind",
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "macs",
+    "scran",
+    "star-aligner"
+   ]
+  },
+  "41398501": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "genie3",
+    "ggplot2",
+    "scanpy",
+    "scanvi",
+    "scenic",
+    "sctransform",
+    "seurat",
+    "tsne",
+    "umap"
+   ]
+  },
+  "41400463": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "clusterprofiler",
+    "dpt",
+    "ggplot2",
+    "kegg",
+    "maftools",
+    "monocle2",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap",
+    "wgcna",
+    "xcell"
+   ]
+  },
+  "41401033": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "complexheatmap",
+    "deeptools",
+    "deseq2",
+    "enrichr",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "macs",
+    "seurat",
+    "slingshot",
+    "umap"
+   ]
+  },
+  "41401071": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "harmony",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "slingshot",
+    "ssgsea",
+    "umap"
+   ]
+  },
+  "41402467": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "complexheatmap",
+    "doubletfinder",
+    "monocle3",
+    "moransi",
+    "scanpy",
+    "scvelo",
+    "seurat",
+    "seurat-cca",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "41404730": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "depmap",
+    "gsea",
+    "gsva",
+    "immunedeconv",
+    "maftools",
+    "quantiseq"
+   ]
+  },
+  "41405578": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "msigdb",
+    "sctransform",
+    "seurat"
+   ]
+  },
+  "41405994": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "kallisto",
+    "leiden",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41405996": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "diffbind",
+    "fastqc",
+    "macs",
+    "sctransform",
+    "seurat",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "41406948": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "gsea",
+    "maxquant",
+    "perseus"
+   ]
+  },
+  "41406961": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "sctransform",
+    "seurat"
+   ]
+  },
+  "41407851": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "ggplot2",
+    "harmony",
+    "scanpy",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41407857": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "clusterprofiler",
+    "decoupler",
+    "deseq2",
+    "enrichr",
+    "fastqc",
+    "gsea",
+    "gseapy",
+    "harmony",
+    "kegg",
+    "leiden",
+    "limma",
+    "removebatcheffect",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "41411065": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellchat",
+    "cellranger",
+    "chromvar",
+    "clusterprofiler",
+    "deseq2",
+    "gprofiler",
+    "gsva",
+    "limma",
+    "macs",
+    "monocle3",
+    "propeller",
+    "scdblfinder",
+    "sctransform",
+    "seurat",
+    "seurat-wnn",
+    "signac",
+    "singler",
+    "umap"
+   ]
+  },
+  "41413386": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "deseq2",
+    "harmony",
+    "leiden",
+    "paga",
+    "scanpy",
+    "scanvi",
+    "scdblfinder",
+    "scvelo",
+    "scvi",
+    "star-aligner",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "41413654": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "gistic",
+    "gsea",
+    "gsva",
+    "hisat2",
+    "maxquant",
+    "perseus",
+    "reactomepa",
+    "ssgsea"
+   ]
+  },
+  "41417727": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "featurecounts",
+    "muscat",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41419571": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "harmony",
+    "monocle3",
+    "perseus",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41421361": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "dropletutils",
+    "fastmnn",
+    "genie3",
+    "harmony",
+    "leiden",
+    "moransi",
+    "scenic",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "soupx",
+    "tsne"
+   ]
+  },
+  "41422243": {
+   "licence": "cc-by",
+   "tokens": [
+    "bsseq",
+    "clusterprofiler",
+    "deeptools",
+    "featurecounts"
+   ]
+  },
+  "41424381": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "gsva",
+    "msigdb"
+   ]
+  },
+  "41424388": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "decontx",
+    "deseq2",
+    "doubletfinder",
+    "enrichr",
+    "gsea",
+    "harmony",
+    "hisat2",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41424389": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "singscore",
+    "star-aligner"
+   ]
+  },
+  "41432067": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "featurecounts"
+   ]
+  },
+  "41433066": {
+   "licence": "cc-by",
+   "tokens": [
+    "limma",
+    "seurat"
+   ]
+  },
+  "41433105": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "hisat2",
+    "homer",
+    "limma",
+    "macs",
+    "metascape",
+    "pheatmap",
+    "singler",
+    "sva",
+    "tsne"
+   ]
+  },
+  "41433107": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "doubletfinder",
+    "harmony",
+    "seurat",
+    "slingshot",
+    "star-aligner"
+   ]
+  },
+  "41433200": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "deeptools",
+    "doubletfinder",
+    "gsea",
+    "harmony",
+    "seurat",
+    "seurat-cca"
+   ]
+  },
+  "41443981": {
+   "licence": "cc-by",
+   "tokens": [
+    "maftools"
+   ]
+  },
+  "41461987": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "ggplot2",
+    "limma",
+    "pheatmap",
+    "sctransform",
+    "seurat",
+    "seurat-wnn",
+    "umap"
+   ]
+  },
+  "41462339": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "gsea",
+    "leiden",
+    "muscat",
+    "scenic",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41469724": {
+   "licence": "cc-by",
+   "tokens": [
+    "dropletutils",
+    "edger",
+    "fastp",
+    "featurecounts",
+    "harmony",
+    "leiden",
+    "nmf",
+    "scater",
+    "scdblfinder",
+    "scran",
+    "seurat",
+    "singler",
+    "slingshot",
+    "star-aligner",
+    "topgo",
+    "tradeseq"
+   ]
+  },
+  "41474970": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "harmony",
+    "leiden",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41474973": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "salmon"
+   ]
+  },
+  "41476114": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "decoupler",
+    "depmap",
+    "edger",
+    "gsea",
+    "milo",
+    "nichenet",
+    "scanpy",
+    "sccoda",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41543935": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "doubletfinder",
+    "dream",
+    "enrichr",
+    "infercnv",
+    "kegg",
+    "propeller",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41565468": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "archr",
+    "chromvar",
+    "clusterprofiler",
+    "gsea",
+    "leiden",
+    "macs",
+    "muscat",
+    "scanpy",
+    "scrublet",
+    "seurat",
+    "topgo",
+    "umap"
+   ]
+  },
+  "41565813": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cistopic",
+    "deseq2",
+    "macs",
+    "milo",
+    "monocle3",
+    "msigdb",
+    "scanpy",
+    "scanvi",
+    "scenic",
+    "scenicplus",
+    "scvi"
+   ]
+  },
+  "41610429": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastmnn",
+    "gsea",
+    "leiden",
+    "milo",
+    "sce",
+    "scran",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "41644562": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "doubletfinder",
+    "gsea",
+    "kegg",
+    "muscat",
+    "seurat",
+    "seurat-cca",
+    "soupx",
+    "umap"
+   ]
+  },
+  "41807806": {
+   "licence": "cc-by",
+   "tokens": [
+    "gseapy",
+    "leiden",
+    "scanpy",
+    "scanvi",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "41876491": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "gsea",
+    "scanpy",
+    "scanvi",
+    "soupx",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "41919500": {
+   "licence": "cc-by",
+   "tokens": [
+    "limma",
+    "maxquant",
+    "roast",
+    "salmon"
+   ]
+  },
+  "42034059": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "gsea",
+    "kegg",
+    "pheatmap",
+    "salmon",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42048163": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "complexheatmap",
+    "edger",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42069698": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "consensusclusterplus",
+    "dropletutils",
+    "enrichr",
+    "fastqc",
+    "harmony",
+    "kegg",
+    "limma",
+    "mast",
+    "mixomics",
+    "removebatcheffect",
+    "sctransform",
+    "seurat",
+    "sva",
+    "umap"
+   ]
+  },
+  "42096288": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "edger",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "pheatmap",
+    "propeller",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42138078": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "leiden",
+    "paga",
+    "scanpy",
+    "scran",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42167233": {
+   "licence": "cc-by",
+   "tokens": [
+    "diann",
+    "ggplot2",
+    "gsea",
+    "kegg",
+    "limma",
+    "pheatmap",
+    "ssgsea"
+   ]
+  },
+  "42209519": {
+   "licence": "cc-by",
+   "tokens": [
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "kegg",
+    "limma",
+    "msigdb",
+    "roast",
+    "umap",
+    "voom"
+   ]
+  },
+  "42228572": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellchat",
+    "cellphonedb",
+    "cellranger",
+    "decoupler",
+    "dream",
+    "kallisto",
+    "liana",
+    "limma",
+    "macs",
+    "scanpy",
+    "scanvi",
+    "scrublet",
+    "scvi",
+    "signac",
+    "snapatac2",
+    "umap",
+    "voom"
+   ]
+  },
+  "42236949": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "cellranger",
+    "celltypist",
+    "clusterprofiler",
+    "leiden",
+    "scanpy",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42243549": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "cellranger",
+    "clusterprofiler",
+    "edger",
+    "ggplot2",
+    "gsea",
+    "harmony",
+    "leiden",
+    "scanpy",
+    "scanvi",
+    "scrublet",
+    "sctransform",
+    "scvi",
+    "seurat",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "42258354": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "limma",
+    "mixomics",
+    "msigdb"
+   ]
+  },
+  "42258753": {
+   "licence": "cc-by",
+   "tokens": [
+    "camera",
+    "clusterprofiler",
+    "cuffdiff",
+    "enrichr",
+    "gsea",
+    "kegg",
+    "limma",
+    "roast",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42259293": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "edger",
+    "fastmnn",
+    "scanpy",
+    "scdblfinder",
+    "scvelo",
+    "seurat",
+    "seurat-cca",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42262879": {
+   "licence": "cc-by",
+   "tokens": [
+    "ggplot2",
+    "maftools"
+   ]
+  },
+  "42268975": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "cibersort",
+    "clusterprofiler",
+    "deseq2",
+    "edger",
+    "propeller",
+    "scdblfinder",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "42296961": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "cellranger",
+    "dorothea",
+    "edger",
+    "fgsea",
+    "gprofiler",
+    "gsea",
+    "harmony",
+    "leiden",
+    "liana",
+    "limma",
+    "msigdb",
+    "muscat",
+    "scanpy",
+    "sccoda",
+    "scrublet",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42304499": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "ggplot2",
+    "gsea",
+    "scater",
+    "sctransform",
+    "seurat",
+    "seurat-cca",
+    "spatial-seurat"
+   ]
+  },
+  "42310454": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "enrichr",
+    "gsea",
+    "harmony",
+    "macs",
+    "ruvseq",
+    "sccoda",
+    "scdblfinder",
+    "seurat",
+    "seurat-cca",
+    "seurat-wnn",
+    "signac",
+    "snapatac2",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42319930": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "deeptools",
+    "deseq2",
+    "enhancedvolcano",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "leiden",
+    "limma",
+    "propeller",
+    "salmon",
+    "scater",
+    "seurat",
+    "wgcna"
+   ]
+  },
+  "42321191": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "celldex",
+    "cellranger",
+    "clusterprofiler",
+    "fastqc",
+    "gsea",
+    "kegg",
+    "leiden",
+    "limma",
+    "mast",
+    "msigdb",
+    "scdblfinder",
+    "scran",
+    "seurat",
+    "signac",
+    "singler",
+    "umap"
+   ]
+  },
+  "42329236": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "aucell",
+    "cellranger",
+    "deeptools",
+    "edger",
+    "enhancedvolcano",
+    "fastmnn",
+    "fgsea",
+    "genie3",
+    "ggplot2",
+    "gsea",
+    "leiden",
+    "macs",
+    "msigdb",
+    "pheatmap",
+    "scenic",
+    "seurat",
+    "signac",
+    "umap"
+   ]
+  },
+  "42335888": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "archr",
+    "bbknn",
+    "cellchat",
+    "cellranger",
+    "deseq2",
+    "enrichr",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "leiden",
+    "macs",
+    "scanpy",
+    "scdblfinder",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "soupx",
+    "umap"
+   ]
+  },
+  "42341108": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "limma",
+    "msigdb",
+    "nichenet",
+    "pheatmap",
+    "seurat",
+    "singler",
+    "tsne"
+   ]
+  },
+  "42341749": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "celldex",
+    "cellranger",
+    "deseq2",
+    "dropletutils",
+    "fastmnn",
+    "fastp",
+    "infercnv",
+    "msigdb",
+    "panglaodb",
+    "scanvi",
+    "scater",
+    "scdblfinder",
+    "sce",
+    "scran",
+    "scvi",
+    "seurat",
+    "singler",
+    "umap"
+   ]
+  },
+  "42351220": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deseq2",
+    "diffbind",
+    "fastqc",
+    "macs",
+    "pheatmap",
+    "star-aligner"
+   ]
+  },
+  "42379166": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "limma",
+    "salmon",
+    "scater",
+    "sce",
+    "scran",
+    "seurat",
+    "signac",
+    "tsne",
+    "umap"
+   ]
+  },
+  "42386760": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "ssgsea"
+   ]
+  },
+  "42386974": {
+   "licence": "cc-by",
+   "tokens": [
+    "fastp",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "limma",
+    "ssgsea",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42393054": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "deseq2",
+    "fastqc",
+    "featurecounts",
+    "gsea",
+    "harmony",
+    "kegg",
+    "msigdb",
+    "seurat",
+    "singler",
+    "star-aligner",
+    "tsne"
+   ]
+  },
+  "42393360": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fastqc",
+    "harmony",
+    "leiden",
+    "scanpy",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42409827": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "leiden",
+    "paga",
+    "scanpy",
+    "scrublet",
+    "umap"
+   ]
+  },
+  "42414284": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "gsva",
+    "immunedeconv",
+    "limma",
+    "msigdb",
+    "removebatcheffect",
+    "seurat"
+   ]
+  },
+  "42426000": {
+   "licence": "cc-by",
+   "tokens": [
+    "leiden",
+    "scanvi",
+    "scdblfinder",
+    "scvi",
+    "seurat",
+    "signac",
+    "umap"
+   ]
+  },
+  "42431911": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42444609": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellchat",
+    "celldex",
+    "kegg",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "singler",
+    "star-aligner"
+   ]
+  },
+  "42458527": {
+   "licence": "cc-by",
+   "tokens": [
+    "genie3",
+    "scran",
+    "singler"
+   ]
+  },
+  "42469015": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "featurecounts",
+    "hisat2",
+    "mageck"
+   ]
+  },
+  "42490144": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "kallisto",
+    "sva"
+   ]
+  },
+  "42493507": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "aucell",
+    "chromvar",
+    "deseq2",
+    "infercnv",
+    "kegg",
+    "leiden",
+    "progeny",
+    "scanpy",
+    "scenic",
+    "scenicplus",
+    "scrublet",
+    "slingshot",
+    "snapatac2",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42497261": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "cellbender",
+    "cellranger",
+    "edger",
+    "leiden",
+    "propeller",
+    "scrublet",
+    "seurat",
+    "slingshot"
+   ]
+  },
+  "42509242": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "kegg",
+    "limma",
+    "msigdb",
+    "scater",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "42518287": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "deseq2",
+    "doubletfinder",
+    "fastqc",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "harmony",
+    "limma",
+    "monocle2",
+    "msigdb",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42546697": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellranger",
+    "harmony",
+    "monocle2",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42552384": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "complexheatmap",
+    "diann",
+    "enrichr",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "hdwgcna",
+    "mast",
+    "monocle3",
+    "msigdb",
+    "propeller",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "42555706": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "complexheatmap",
+    "edger",
+    "fastqc",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "harmony",
+    "kallisto",
+    "sctransform",
+    "seurat",
+    "ssgsea",
+    "umap"
+   ]
+  },
+  "42557328": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "diann",
+    "edger",
+    "enrichr",
+    "limma",
+    "ruvseq",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42557442": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deseq2",
+    "fastp",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "hisat2",
+    "kegg",
+    "macs",
+    "monocle3",
+    "msigdb",
+    "seurat",
+    "seurat-cca",
+    "umap"
+   ]
+  },
+  "42559809": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "seurat",
+    "slingshot"
+   ]
+  },
+  "42559948": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "enrichr",
+    "ggplot2",
+    "gsea",
+    "macs",
+    "meme-suite",
+    "msigdb"
+   ]
+  },
+  "42560775": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "enrichr",
+    "ggplot2",
+    "kallisto",
+    "limma",
+    "pheatmap",
+    "seurat",
+    "wgcna"
+   ]
+  },
+  "42562827": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "diann",
+    "fgsea",
+    "gsea",
+    "kallisto",
+    "kegg",
+    "leiden",
+    "sce",
+    "seurat",
+    "slingshot",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "42566510": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellchat",
+    "cellranger",
+    "cibersort",
+    "cistopic",
+    "clusterprofiler",
+    "decoupler",
+    "gsea",
+    "kegg",
+    "leiden",
+    "limma",
+    "macs",
+    "nmf",
+    "scenic",
+    "scenicplus",
+    "scran",
+    "seurat",
+    "seurat-wnn",
+    "signac",
+    "tsne"
+   ]
+  },
+  "42566531": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "complexheatmap",
+    "deeptools",
+    "deseq2",
+    "edger",
+    "featurecounts",
+    "limma",
+    "macs",
+    "removebatcheffect"
+   ]
+  },
+  "42566532": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deeptools",
+    "depmap",
+    "limma",
+    "mageck",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42566536": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "complexheatmap",
+    "dropletutils",
+    "edger",
+    "enrichr",
+    "fastmnn",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "nmf",
+    "scran",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42567163": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cibersort",
+    "deseq2",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "monocle3",
+    "msigdb",
+    "seurat",
+    "ssgsea",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42567166": {
+   "licence": "cc-by",
+   "tokens": [
+    "bbknn",
+    "enrichr",
+    "gseapy",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "42575986": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "cellranger",
+    "clusterprofiler",
+    "harmony",
+    "pheatmap",
+    "reactomepa",
+    "scdblfinder",
+    "sce",
+    "scenic",
+    "seurat",
+    "tsne",
+    "umap"
+   ]
+  },
+  "42576234": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "enrichr",
+    "fastp",
+    "fgsea",
+    "gsea",
+    "gseapy",
+    "limma",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42579798": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "deseq2",
+    "edger",
+    "harmony",
+    "monocle2",
+    "presto",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "42581185": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "cellranger",
+    "harmony",
+    "kallisto",
+    "leiden",
+    "scanpy"
+   ]
+  },
+  "42581186": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "diffbind",
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "limma",
+    "meme-suite",
+    "star-aligner",
+    "voom"
+   ]
+  },
+  "42585334": {
+   "licence": "cc-by",
+   "tokens": [
+    "banksy",
+    "cell2cell",
+    "cellranger",
+    "celltypist",
+    "edger",
+    "fgsea",
+    "gsea",
+    "liana",
+    "milo",
+    "msigdb",
+    "scanpy",
+    "scdblfinder",
+    "scvelo",
+    "scvi",
+    "seurat",
+    "soupx",
+    "squidpy",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "42585338": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellchat",
+    "consensusclusterplus",
+    "diann",
+    "doubletfinder",
+    "estimate-score",
+    "gistic",
+    "gsea",
+    "gsva",
+    "kegg",
+    "maftools",
+    "maxquant",
+    "msigdb",
+    "mutsigcv",
+    "nmf",
+    "salmon",
+    "seurat",
+    "ssgsea",
+    "star-aligner",
+    "sva",
+    "umap",
+    "xcell"
+   ]
+  },
+  "42586968": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "hdwgcna",
+    "msigdb",
+    "seurat",
+    "wgcna"
+   ]
+  },
+  "42587037": {
+   "licence": "cc-by",
+   "tokens": [
+    "archr",
+    "aucell",
+    "bbknn",
+    "cellranger",
+    "celltypist",
+    "chipseeker",
+    "csaw",
+    "deseq2",
+    "edger",
+    "fastqc",
+    "genie3",
+    "gsea",
+    "harmony",
+    "kallisto",
+    "leiden",
+    "macs",
+    "nmf",
+    "scanpy",
+    "scenic",
+    "scenicplus",
+    "scrublet",
+    "scvi",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42587147": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "complexheatmap",
+    "deeptools",
+    "deseq2",
+    "diffbind",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "leiden",
+    "limma",
+    "macs",
+    "msigdb",
+    "ssgsea",
+    "star-aligner"
+   ]
+  },
+  "42593403": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "leiden",
+    "msigdb",
+    "scanpy",
+    "sctransform",
+    "seurat",
+    "ssgsea",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "42594877": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "dep",
+    "deseq2",
+    "gsea",
+    "limma",
+    "maxquant",
+    "msigdb",
+    "pheatmap",
+    "removebatcheffect",
+    "salmon"
+   ]
+  },
+  "42595445": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2",
+    "star-aligner"
+   ]
+  },
+  "42599802": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "gsea",
+    "harmony",
+    "kegg",
+    "leiden",
+    "liana",
+    "msigdb",
+    "nmf",
+    "scanpy",
+    "sccoda",
+    "scvi",
+    "squidpy",
+    "umap"
+   ]
+  },
+  "42600005": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "aucell",
+    "cell2cell",
+    "cellphonedb",
+    "cellranger",
+    "cellrank",
+    "dpt",
+    "harmony",
+    "leiden",
+    "liana",
+    "paga",
+    "scanpy",
+    "umap"
+   ]
+  },
+  "42601474": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "doubletfinder",
+    "gsea",
+    "leiden",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42611752": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellbender",
+    "deseq2",
+    "fgsea",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "limma",
+    "msigdb",
+    "pheatmap",
+    "sctransform",
+    "scvi",
+    "seurat",
+    "ssgsea",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42612638": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "ggplot2",
+    "harmony",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42613631": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "gsea",
+    "limma",
+    "rctd",
+    "sctransform",
+    "seurat",
+    "umap",
+    "voom"
+   ]
+  },
+  "42616872": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "edger",
+    "gsea",
+    "gsva",
+    "hisat2",
+    "limma"
+   ]
+  },
+  "42616886": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "kegg",
+    "limma",
+    "wgcna"
+   ]
+  },
+  "42616893": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "msigdb",
+    "salmon",
+    "ssgsea"
+   ]
+  },
+  "42617601": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "edger",
+    "fgsea",
+    "gsea",
+    "msigdb",
+    "star-aligner"
+   ]
+  },
+  "42623273": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "fastqc"
+   ]
+  },
+  "42627896": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "ggplot2",
+    "gprofiler",
+    "perseus",
+    "star-aligner"
+   ]
+  },
+  "42627899": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "harmony",
+    "seurat",
+    "singler",
+    "tsne"
+   ]
+  },
+  "42627902": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "chromvar",
+    "clusterprofiler",
+    "csaw",
+    "cuffdiff",
+    "deeptools",
+    "deseq2",
+    "edger",
+    "featurecounts",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "homer",
+    "macs",
+    "msigdb",
+    "sctransform",
+    "seurat",
+    "star-aligner",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "42629550": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "celldex",
+    "cellranger",
+    "cibersort",
+    "epic-deconv",
+    "ggplot2",
+    "mcpcounter",
+    "nmf",
+    "quantiseq",
+    "rctd",
+    "sce",
+    "scran",
+    "singler",
+    "spotlight"
+   ]
+  },
+  "42635042": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "clusterprofiler",
+    "deseq2",
+    "edger",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "hisat2",
+    "leiden",
+    "limma",
+    "msigdb",
+    "propeller",
+    "scdblfinder",
+    "sctransform",
+    "seurat"
+   ]
+  },
+  "42641597": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "gsea",
+    "msigdb",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42647619": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "combat-seq",
+    "dada2",
+    "deseq2",
+    "pheatmap",
+    "phyloseq",
+    "topgo",
+    "vegan",
+    "wgcna"
+   ]
+  },
+  "42647623": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "cellchat",
+    "cellranger",
+    "deseq2",
+    "ggplot2",
+    "harmony",
+    "leiden",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  },
+  "42649219": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "edger",
+    "fgsea",
+    "msigdb",
+    "scater",
+    "scdblfinder",
+    "scran",
+    "seurat",
+    "seurat-cca",
+    "slingshot",
+    "tradeseq",
+    "umap",
+    "wgcna"
+   ]
+  },
+  "42658766": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "gsea",
+    "star-aligner",
+    "wgcna"
+   ]
+  },
+  "42663329": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "enrichr",
+    "fastqc",
+    "kegg",
+    "sva"
+   ]
+  },
+  "42673946": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "clusterprofiler",
+    "deseq2",
+    "dnacopy",
+    "fgsea",
+    "kegg",
+    "leiden",
+    "limma",
+    "msigdb",
+    "salmon",
+    "seurat",
+    "star-aligner",
+    "umap"
+   ]
+  },
+  "42678060": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "deseq2",
+    "dpt",
+    "fgsea",
+    "gsea",
+    "harmony",
+    "leiden",
+    "monocle3",
+    "sctransform",
+    "seurat",
+    "tradeseq",
+    "umap"
+   ]
+  },
+  "42680560": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "combat",
+    "deseq2",
+    "fastqc",
+    "msigdb",
+    "msnbase",
+    "star-aligner",
+    "sva"
+   ]
+  },
+  "42680562": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "fastqc",
+    "star-aligner",
+    "sva",
+    "wgcna"
+   ]
+  },
+  "42680952": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "edger",
+    "fastqc",
+    "gsea",
+    "msigdb",
+    "salmon"
+   ]
+  },
+  "42685224": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "dream",
+    "featurecounts",
+    "gsea",
+    "harmony",
+    "limma",
+    "paga",
+    "pheatmap",
+    "scanpy",
+    "star-aligner",
+    "umap",
+    "voom"
+   ]
+  },
+  "42686906": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "gseapy",
+    "hisat2"
+   ]
+  },
+  "42695984": {
+   "licence": "cc-by",
+   "tokens": [
+    "edger",
+    "kegg",
+    "limma",
+    "maxquant",
+    "voom"
+   ]
+  },
+  "42697881": {
+   "licence": "cc-by",
+   "tokens": [
+    "chipseeker",
+    "clusterprofiler",
+    "deeptools",
+    "deseq2",
+    "featurecounts",
+    "gsea",
+    "kegg",
+    "msigdb",
+    "reactomepa",
+    "seurat",
+    "star-aligner"
+   ]
+  },
+  "42697995": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "rctd"
+   ]
+  },
+  "42702610": {
+   "licence": "cc-by",
+   "tokens": [
+    "cibersort",
+    "deeptools",
+    "gsea",
+    "gseapy",
+    "gsva",
+    "kegg",
+    "leiden",
+    "macs",
+    "scanpy",
+    "scvi",
+    "seurat",
+    "seurat-cca",
+    "umap",
+    "wgcna",
+    "xcell"
+   ]
+  },
+  "42704368": {
+   "licence": "cc-by",
+   "tokens": [
+    "cell2location",
+    "clusterprofiler",
+    "edger",
+    "fastqc",
+    "featurecounts",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "limma",
+    "msigdb",
+    "salmon",
+    "scanpy",
+    "scater",
+    "scdblfinder",
+    "sce",
+    "singler",
+    "star-aligner"
+   ]
+  },
+  "42711427": {
+   "licence": "cc-by",
+   "tokens": [
+    "aucell",
+    "banksy",
+    "clusterprofiler",
+    "giotto",
+    "gsea",
+    "harmony",
+    "monocle3",
+    "numbat",
+    "paga",
+    "rctd",
+    "sctransform",
+    "scvelo",
+    "seurat",
+    "spatial-seurat",
+    "ssgsea",
+    "umap",
+    "velocyto"
+   ]
+  },
+  "42725433": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "deseq2"
+   ]
+  },
+  "42726846": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "doubletfinder",
+    "enhancedvolcano",
+    "ggplot2",
+    "gsea",
+    "gsva",
+    "leiden",
+    "panglaodb",
+    "pheatmap",
+    "seurat",
+    "singler"
+   ]
+  },
+  "42728798": {
+   "licence": "cc-by",
+   "tokens": [
+    "deeptools",
+    "edger",
+    "fastp",
+    "fastqc",
+    "featurecounts",
+    "ggplot2"
+   ]
+  },
+  "42736301": {
+   "licence": "cc-by",
+   "tokens": [
+    "anndata",
+    "cellranger",
+    "celltypist",
+    "enrichr",
+    "ggplot2",
+    "gistic",
+    "harmony",
+    "leiden",
+    "liana",
+    "limma",
+    "monocle3",
+    "nmf",
+    "pheatmap",
+    "scanpy",
+    "scdblfinder",
+    "seurat",
+    "signac",
+    "squidpy",
+    "umap"
+   ]
+  },
+  "42736449": {
+   "licence": "cc-by",
+   "tokens": [
+    "clusterprofiler",
+    "deseq2",
+    "diann",
+    "fastp",
+    "featurecounts",
+    "ggplot2",
+    "homer",
+    "limma",
+    "meme-suite",
+    "msstats",
+    "pheatmap",
+    "star-aligner"
+   ]
+  },
+  "42749737": {
+   "licence": "cc-by",
+   "tokens": [
+    "deseq2",
+    "diann",
+    "fastqc",
+    "fgsea",
+    "gsea",
+    "leiden",
+    "limma",
+    "maxquant"
+   ]
+  },
+  "42758809": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "archr",
+    "aucell",
+    "cellchat",
+    "chipseeker",
+    "chromvar",
+    "genie3",
+    "harmony",
+    "leiden",
+    "limma",
+    "macs",
+    "metaboanalyst",
+    "msigdb",
+    "scanpy",
+    "scenic",
+    "scrublet",
+    "umap",
+    "voom"
+   ]
+  },
+  "42758820": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "gsea",
+    "limma",
+    "mageck",
+    "msigdb",
+    "roast",
+    "voom"
+   ]
+  },
+  "42758832": {
+   "licence": "cc-by-nc",
+   "tokens": [
+    "decoupler",
+    "fgsea",
+    "gsea",
+    "progeny",
+    "seurat"
+   ]
+  },
+  "42764300": {
+   "licence": "cc-by",
+   "tokens": [
+    "cellranger",
+    "fgsea",
+    "gsea",
+    "gsva",
+    "leiden",
+    "scdblfinder",
+    "sctransform",
+    "seurat",
+    "umap"
+   ]
+  }
+ },
+ "schema": "omicstat.s0-methods-used.v1",
+ "skipped": {}
+}

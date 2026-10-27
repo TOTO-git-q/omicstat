@@ -1,0 +1,62 @@
+[
+  {
+    "metric": "P0A8F4 Condition1 vs Condition2",
+    "expected": -0.36836494,
+    "tolerance": 1e-05,
+    "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+    "scope": "official engine spike-in example; adapter refuses insufficient biology",
+    "id": "msstats-diff-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "P0A8F4 Condition1 vs Condition3",
+    "expected": -0.433896,
+    "tolerance": 1e-05,
+    "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+    "scope": "official engine spike-in example; adapter refuses insufficient biology",
+    "id": "msstats-diff-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "P0A8F4 Condition1 vs Condition4",
+    "expected": -1.12564427,
+    "tolerance": 1e-05,
+    "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+    "scope": "official engine spike-in example; adapter refuses insufficient biology",
+    "id": "msstats-diff-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "P0A8F4 Condition1 vs Condition5",
+    "expected": -1.15790197,
+    "tolerance": 1e-05,
+    "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+    "scope": "official engine spike-in example; adapter refuses insufficient biology",
+    "id": "msstats-diff-04",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "P0A8F4 Condition2 vs Condition3",
+    "expected": -0.06553106,
+    "tolerance": 1e-05,
+    "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+    "scope": "official engine spike-in example; adapter refuses insufficient biology",
+    "id": "msstats-diff-05",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "P0A8F4 Condition2 vs Condition4",
+    "expected": -0.75727933,
+    "tolerance": 1e-05,
+    "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+    "scope": "official engine spike-in example; adapter refuses insufficient biology",
+    "id": "msstats-diff-06",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

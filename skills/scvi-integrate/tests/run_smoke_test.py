@@ -28,6 +28,17 @@ def regression(source, args, output, work):
     import json
     result = json.loads((work / 'latent_reuse/results/scvi_integrate_results.json').read_text())
     assert result['latent_reused'] and result['n_model_genes'] is None
+    reuse_no_n = list(reused)
+    reuse_no_n[reuse_no_n.index('--outdir') + 1] = work / 'latent_reuse_without_n_latent'
+    i = reuse_no_n.index('--n-latent')
+    del reuse_no_n[i:i + 2]
+    run('scvi-integrate', reuse_no_n)
+    np.testing.assert_array_equal(load(work / 'latent_reuse_without_n_latent').obsm['X_scVI'], baseline.obsm['X_scVI'][:64])
+    missing = list(args)
+    missing[missing.index('--outdir') + 1] = work / 'refused_missing_n_latent'
+    i = missing.index('--n-latent')
+    del missing[i:i + 2]
+    run('scvi-integrate', missing, error='OS_MISSING_PARAMETER')
     collision = list(args)
     collision[collision.index('--outdir') + 1] = work / 'refused_column'
     collision += ['--leiden-resolution', 0.5, '--scvi-cluster-col', 'cluster']

@@ -1,0 +1,10 @@
+[Unit]
+Description=Monthly omicstat reference digest (3rd of the month, after the first probe cycles)
+
+[Timer]
+OnCalendar=*-*-03 04:00:00
+Persistent=true
+RandomizedDelaySec=600
+
+[Install]
+WantedBy=timers.target

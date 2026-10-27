@@ -60,6 +60,13 @@ def main() -> int:
     ack.add_argument("--note")
     backup = sub.add_parser("backup", help="write a timestamped tar of the data directory to <data>/backups")
     backup.add_argument("--label", default="manual")
+    reconcile = sub.add_parser("map-reconcile", help="curator: rebind the stored method-map state to the current method_map.json after a non-extending change")
+    reconcile.add_argument("--to-module", required=True, help="module at which the rotation continues")
+    reconcile.add_argument("--confirm", action="store_true", help="apply; without it only the plan is printed")
+    probe = sub.add_parser("probe", help="coverage probe (Europe PMC hitCounts only, <= 400 requests/month); the worker runs it automatically")
+    probe.add_argument("--dry-run", action="store_true", help="show the plan; no request is sent")
+    probe.add_argument("--until-done", action="store_true", help="repeat chunks until the month's plan or budget is finished")
+    probe.add_argument("--max-requests", type=int, default=60, choices=range(1, 401), metavar="1..400")
     requests = sub.add_parser("request-status", help="show one literature request")
     requests.add_argument("request_id")
     args = parser.parse_args()
@@ -103,6 +110,24 @@ def main() -> int:
             result = _curation_call(curation.domain_accept, data, service.harvest_store(), proposal_id=args.id, curator=args.curator, profile=profile)
         else:
             result = _curation_call(curation.domain_ack, data, proposal_id=args.id, curator=args.curator, note=args.note)
+    elif args.command == "map-reconcile":
+        import discovery
+        from harvest import HarvestError, _load_method_map
+
+        def _map_reconcile() -> dict:
+            method_map = _load_method_map()
+            if set(discovery.load_profiles()["profiles"]) != set(method_map["order"]):
+                raise HarvestError("method_map_profile_mismatch", "Method map and discovery profiles must name the same modules")
+            return service.harvest_store().reconcile_method_map(method_map, args.to_module, confirm=args.confirm)
+        result = service.invoke(_map_reconcile)
+    elif args.command == "probe":
+        import probe as probe_module
+
+        def _probe() -> dict:
+            if args.until_done and not args.dry_run:
+                return probe_module.run_to_completion(service.harvest_store(), max_requests=args.max_requests)
+            return probe_module.run_probe(service.harvest_store(), max_requests=args.max_requests, dry_run=args.dry_run)
+        result = service.invoke(_probe)
     elif args.command == "backup":
         from backup import backup_data_dir
         result = service.invoke(lambda: {"backup": str(backup_data_dir(service.data_dir(), args.label))})

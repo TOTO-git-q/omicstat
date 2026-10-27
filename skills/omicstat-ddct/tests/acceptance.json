@@ -1,0 +1,70 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/livak.csv",
+      "--ct-col",
+      "ct",
+      "--gene-col",
+      "gene",
+      "--group-col",
+      "group",
+      "--unit-col",
+      "unit",
+      "--well-col",
+      "well",
+      "--well-layout",
+      "separate",
+      "--target-genes",
+      "c-myc",
+      "--reference-gene",
+      "GAPDH",
+      "--reference-group",
+      "Brain",
+      "--group-order",
+      "Brain,Kidney",
+      "--design",
+      "independent",
+      "--inference",
+      "descriptive",
+      "--ct-max",
+      "40",
+      "--assay-validation",
+      "{fixtures}/assay.json",
+      "--adjust",
+      "none",
+      "--family-size",
+      "1",
+      "--ci-level",
+      ".95",
+      "--display",
+      "bar",
+      "--journal",
+      "nature",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261016",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{outdir}"
+    ]
+  },
+  "figure_policy": "required"
+}

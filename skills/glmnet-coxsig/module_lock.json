@@ -1,0 +1,51 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "glmnet-coxsig",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/glmnet-coxsig/scripts/cpm_port_adapter.R": "1081309b2d847c5a694599666f9ce5d73e08a8776c96a52dd23c1ffc28780585",
+    "skills/glmnet-coxsig/scripts/cpm_ported_binned.R": "c306f5615140408dc68b619201492394e026c1fb3ca706a53493d545176faf39",
+    "skills/glmnet-coxsig/scripts/cpm_ported_core.R": "85c1fe97bc54d5bc902cd0b5c75667088a07313b26b760222ec0df02b75d91ff",
+    "skills/glmnet-coxsig/scripts/cpm_ported_qc.R": "92a74f76b85db36134d9f7a2153bc0d009f89e998f9c2edba91c5037d74f79b6",
+    "skills/glmnet-coxsig/scripts/glmnet_coxsig_core.R": "e9fe13c264c521f0ba526e3b4bdad82d00ca81317ac8d75b8cfc6f04443a7413",
+    "skills/glmnet-coxsig/scripts/glmnet_coxsig_qc.R": "542727b6c5c58c04c8cddacbb6a4720002eb40b10621c41f23be120f204fc4c7",
+    "skills/glmnet-coxsig/scripts/glmnet_coxsig_report.R": "500f27a5b74d2371d20734c75a19d1ee7c7259f7c1ca7c64909775f08cf77c67",
+    "skills/glmnet-coxsig/scripts/run_glmnet_coxsig.R": "5f4c92381d40ad9834267f7250c993d4344578ad3124be56ce26393dcbf43e9c",
+    "skills/glmnet-coxsig/scripts/calls_registry.json": "cd39d198180764f3c5cfce2e99d14629d0771b8822a05dc410352d136972ac5b",
+    "skills/glmnet-coxsig/SKILL.md": "41caf606c1cb1cbb41c3fc778a4323dca32b5f2a11b5e085be5c6ba909c3aae5",
+    "skills/glmnet-coxsig/references/COPIED_FUNCTIONS.json": "2401d733b4ab7d17f93ae742e9ecb9b79aca3082a4e682eb86e097cf94cbc527",
+    "skills/glmnet-coxsig/references/ENVIRONMENT_REQUIREMENTS.json": "709399b09ece556992ab034355410d1e6f170d77cc72ffbfa952b06072bd4f33",
+    "skills/glmnet-coxsig/references/ERROR_MAPPING.json": "424b8cf1bcf9839975594b642d34082f47b893eb99265dd60714831a7744d6e5",
+    "skills/glmnet-coxsig/references/GAPS.md": "ca5668f7dbb0088a656ca9b04f2a3de2bc56933a170ac65c6d2e13e81f904c9b",
+    "skills/glmnet-coxsig/references/ORIGINAL_ANCHOR_STATUS.json": "a502a35d6f57b1312e954cce0ee90bbf41eb10980e020919289a8fd027cfe57c",
+    "skills/glmnet-coxsig/references/PACK.md": "3e339150fda15421a7ce3daa669fb7a3b33c2eadb98006a6633df4b98dab0cc7",
+    "skills/glmnet-coxsig/references/PORT_SOURCE.json": "f8e224365e5fcaf9f14cf5ef617ea22b3d911560405d27f4b9082f3829f38135",
+    "skills/glmnet-coxsig/references/VALIDATION.md": "b1752be9680e7fd9fff1341f659b9507eb1bd5397f0d874119503f3381d85ba0",
+    "skills/glmnet-coxsig/references/method-basis.md": "79ec6872d59c3bcbd088040f4a37d70f9b56409a3698d0aa31107efb26d22901",
+    "skills/glmnet-coxsig/references/parameters.md": "34a8e090e601f3d2a750ae81778332d531c6e12494f5ab255278b6781a6ba07d",
+    "skills/glmnet-coxsig/references/qc-rules.md": "b1099ad33f7725e14983407dc8b46b5155c8bd900e89b5f36df608fe1fabb142",
+    "skills/glmnet-coxsig/references/reporting-templates.md": "37fec79595f23fae13589fb73312b9126237ae307dbd758024eebecc2a6bc61b",
+    "skills/glmnet-coxsig/references/troubleshooting.md": "327880b1103f7ec45757b0edadc151fefe109b62b645be697f6544ad63af333e",
+    "skills/glmnet-coxsig/tests/anchors.R": "dad7774a45108c74326963f8c31fb415e92b253ea2e9ad89385e03b724c1da5d",
+    "skills/glmnet-coxsig/tests/make_inputs.R": "027e3b9ac948cb05f7a4bd73ccd2778d4fb4070d2a9ea4f9acfc62b16adc15e1",
+    "skills/glmnet-coxsig/tests/make_workup_external.R": "c129d8162b681fe42f645df9e6e75fcca12e312a92597003bf2afbd919510dbb",
+    "skills/glmnet-coxsig/tests/run_smoke_test.R": "244e41398eba90b5b9da15cf53293e7e4629f051e2073a20b9bce7f63a47cc37",
+    "skills/glmnet-coxsig/tests/test_cpm_port.R": "531609a46af5faf4d71e1cc0e8f97d0b806d14c80d9f9377a0cd3ba71638744b",
+    "skills/glmnet-coxsig/tests/golden_manifest.csv": "ba954e1d71e4345cf78cef81e3bfa8864909667eeee80880563227eb3025dd1e"
+  },
+  "packages": {
+    "stats": "4.6.1",
+    "survival": "3.8.9",
+    "glmnet": "5.0",
+    "timeROC": "0.4.1",
+    "digest": "0.6.39"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

@@ -1,24 +1,24 @@
 {
   "schema": "omicstat.module_lock.v1",
   "module": "wgcna-network",
-  "module_version": "1.0.0",
+  "module_version": "1.1.0",
   "files": {
-    "skills/wgcna-network/scripts/run_wgcna_network.R": "69edb88bae2b32e14a91fac5003a08e4a04a5f1bbf4edf4fcb2917f9bded907a",
-    "skills/wgcna-network/scripts/wgcna_network_core.R": "161e5a5d46a021edc38d58e1e5679cbbdd9de783ed01d66c7220d04a041ffd9c",
+    "skills/wgcna-network/scripts/run_wgcna_network.R": "85a6871e407831cdbab48ca212fc82854cc6873ecb47a9410be5866cd7eac8fc",
+    "skills/wgcna-network/scripts/wgcna_network_core.R": "3f1a94cf953d023bfc35984848801de87432743090e8568c6da1fd4ec766e749",
     "skills/wgcna-network/scripts/wgcna_network_qc.R": "d7a81d26214257102d1ee0f9fc85d4ee796f2c9dcfab7142678b0164eb4cdf6b",
     "skills/wgcna-network/scripts/wgcna_network_report.R": "b52c8ebe98e9fd878bf89004aab49394999fb3357d9d3cf137d347be30c17118",
-    "skills/wgcna-network/scripts/calls_registry.json": "9de5c4c1586f52dee89bafdcb0f66bed5355d8fbba2fe968fe1d10d36bf31901",
-    "skills/wgcna-network/SKILL.md": "3494f6690b22df0d4b3c476b30bcc65fa4f45ce71e4cad16e85095107918efba",
-    "skills/wgcna-network/references/method-basis.md": "9148dc0b5003f0db6590c6b241528cf799640935f16bdc570144b080d60e8a7f",
-    "skills/wgcna-network/references/options.md": "7bfb2f5782beab39b96c1bcd9d20134889289ac2446716d6915a47ee3486fd31",
-    "skills/wgcna-network/references/parameters.md": "0672f595d7f40578d3dfd182e3507a5cf0ff8c9e1daf730ba23397f5f4b10c02",
+    "skills/wgcna-network/scripts/calls_registry.json": "b923c4c0866c492c9f90893fe4d70b218e433577c388a4f077ea64f6ce0bd904",
+    "skills/wgcna-network/SKILL.md": "f2ef4e891f779de6bc8fa6f4a4f73c2c61c713857d60a10b851b9901c7fa8e1a",
+    "skills/wgcna-network/references/method-basis.md": "7b56eb309e68934d8f54458373b6180338c643f02ac3506a8e708626538666ef",
+    "skills/wgcna-network/references/options.md": "4646cf429a79b2198ffa66c700fc5167e3ccb680d8195f3ac37f8f721ff28b10",
+    "skills/wgcna-network/references/parameters.md": "19e1ccab5a144fac6a120434abae1bcd3d9c71ff0c1a3fdccf4e383add053fc8",
     "skills/wgcna-network/references/qc-rules.md": "cc8beacedc132d2781ad8b26f98f12878a124692743ef46e4b3f1564aeb88f3c",
     "skills/wgcna-network/references/reporting-templates.md": "4917f143ce5566d779122e002fce73b1458605defec268d539f679209f5b37fd",
     "skills/wgcna-network/references/troubleshooting.md": "eb97b3f822cd1147cab2bb7afac4ea191e6fb6ef25c2a60262c5acf8298254a8",
     "skills/wgcna-network/tests/fixtures/make_female_liver.R": "b67f77fb35a11068e64bfb16d554733bf0df42069cd88f79964bbbb709399240",
-    "skills/wgcna-network/tests/run_smoke_test.R": "6e91f7930e9c0f4ac1a8b76e80566ffcef1a508f6681e7d3173745431d5bfc4a",
-    "skills/wgcna-network/tests/golden_manifest.csv": "3b43c5f9926a32e4636e1ae0dd687436849a5b6e2ba0b0c82c483152b5e0dd31",
-    "acceptance/exemplars/wgcna-network/PACK.md": "1a0097690138657b79912ed49062d52804a46c6a92572a71974480f515959800"
+    "skills/wgcna-network/tests/run_smoke_test.R": "1e883021557c2c2bba72fc3321740a13937c86e11f8268ca04b556b3c07bfe1a",
+    "skills/wgcna-network/tests/golden_manifest.csv": "80f405bf97bbe30a4f4c5fa9dc08eae58a5f05f2da25a72e957a86eb4eeff4c6",
+    "acceptance/exemplars/wgcna-network/PACK.md": "9e8de9e2880526c7b45ff67ebd8109543e6c4b08a7e76cddc24e0fd07796d282"
   },
   "packages": {
     "WGCNA": "1.74"
@@ -28,7 +28,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

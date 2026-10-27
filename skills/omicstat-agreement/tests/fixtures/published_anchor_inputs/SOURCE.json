@@ -1,0 +1,25 @@
+{
+ "original_source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+ "sources": {
+  "sas_freq_skin": {
+   "source_reference": "SAS/STAT PROC FREQ documentation, Agreement Study SkinCondition 4x4 table (as transcribed in medstat 12292d02 skills/agreement/tests/verified)",
+   "checked_by": "S3-B executor (omicstat-exec); values compared with the pinned normalized hash by verify_official_inputs.py",
+   "checked_at": "2026-10-20",
+   "file_sha256": "e6509dc63539cd21c56e5f4e016904b961dea647df707449115d86d2ea8c699e"
+  },
+  "bland_altman_1986_pefr": {
+   "source_reference": "Bland JM, Altman DG. Lancet 1986;1:307-310, Table 1 first readings, 17 subjects (as transcribed in medstat 12292d02 verified/run_verified.R)",
+   "checked_by": "S3-B executor (omicstat-exec); values compared with the pinned normalized hash by verify_official_inputs.py",
+   "checked_at": "2026-10-20",
+   "file_sha256": "ca904eeffe4fc0d27c4631a6124866c0de5d64cd784d7581e650febed6d54a88"
+  },
+  "shrout_fleiss_1979": {
+   "source_reference": "Shrout PE, Fleiss JL. Psychol Bull 1979;86:420-428, Table 2, 6 targets x 4 judges (as transcribed in medstat 12292d02 verified/run_verified.R)",
+   "checked_by": "S3-B executor (omicstat-exec); values compared with the pinned normalized hash by verify_official_inputs.py",
+   "checked_at": "2026-10-20",
+   "file_sha256": "9e634a15c482f4b32d89f9cc43f6ea7f60d8918f0fbe8e772058900559dbd509"
+  }
+ },
+ "data_origin": "Public published textbook/journal example tables (SAS/STAT documentation, Bland and Altman 1986, Shrout and Fleiss 1979). Small aggregate or 17-/6-subject worked-example tables printed in the papers; no patient-level clinical records and no owner data.",
+ "note": "Committed in the repository on 2026-10-20 (owner decision): these are public published numbers used only as numerical anchors. tests/run_anchors.R reads this folder by default; verify_official_inputs.py re-checks the byte hash and the normalized values against official_anchor_inputs.json."
+}

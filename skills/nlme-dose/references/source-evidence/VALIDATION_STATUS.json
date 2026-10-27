@@ -1,0 +1,57 @@
+{
+  "schema": "omicstat.validation-status.candidate.v1",
+  "module": "nlme-dose",
+  "status": "development_unsealed",
+  "publication_ready": false,
+  "runtime": {
+    "image": "omicstat-r-exp:20261015",
+    "image_id": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+    "R": "4.6.1",
+    "drc": "3.0.1",
+    "nlme": "3.1.170"
+  },
+  "anchors": [
+    {
+      "metric": "Orange AIC",
+      "obtained": 273.169110774898,
+      "expected": 273.0,
+      "tolerance": 0.5,
+      "pass": true,
+      "source": "https://svn.r-project.org/R-packages/trunk/nlme/tests/extras/scripts.Rout.save (fm2Oran.nlme)",
+      "scope": "upstream published package regression output"
+    },
+    {
+      "metric": "Orange BIC",
+      "obtained": 280.945851082345,
+      "expected": 281.0,
+      "tolerance": 0.5,
+      "pass": true,
+      "source": "https://svn.r-project.org/R-packages/trunk/nlme/tests/extras/scripts.Rout.save (fm2Oran.nlme)",
+      "scope": "upstream published package regression output"
+    },
+    {
+      "metric": "Orange logLik",
+      "obtained": -131.584555387449,
+      "expected": -132.0,
+      "tolerance": 0.5,
+      "pass": true,
+      "source": "https://svn.r-project.org/R-packages/trunk/nlme/tests/extras/scripts.Rout.save (fm2Oran.nlme)",
+      "scope": "upstream published package regression output"
+    }
+  ],
+  "golden": "not_generated",
+  "seal": "not_generated",
+  "production_registered": false,
+  "figure_evidence": "acceptance/exemplars/nlme-dose/CANDIDATE_FIGURES.json",
+  "evidence_root": "/home/<user>/omic-sol61/scope",
+  "remaining_gates": [
+    "owner scientific acceptance",
+    "independent statistical review",
+    "complete manuscript value map/denominator ledger",
+    "production environment/default/seal acceptance"
+  ],
+  "source_hash_manifest": "/home/<user>/omic-sol61/scope/evidence/final-source-hashes.json",
+  "source_hash_manifest_sha256": "fd1e29a9206260cad76cb8f45499d88a9719fda2ea20d82738561a116ed70faa",
+  "runtime_tests": "passed candidate CLI/options/replay/anchors/refusals/semantic/smoke",
+  "figure_status": "visually_reviewed_candidate"
+}

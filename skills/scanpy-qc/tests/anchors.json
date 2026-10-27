@@ -1,0 +1,29 @@
+[
+  {
+    "id": "library_counts_exact",
+    "metric": "library_counts_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/_shared/py/tests/sc_smoke_support.py",
+    "scope": "Full registered PBMC3k; unchanged qc_args exploratory no-removal recipe; counts/genes/cell IDs exact; no invented printed values",
+    "how": "replay"
+  },
+  {
+    "id": "detected_genes_exact",
+    "metric": "detected_genes_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/_shared/py/tests/sc_smoke_support.py",
+    "scope": "Full registered PBMC3k; unchanged qc_args exploratory no-removal recipe; counts/genes/cell IDs exact; no invented printed values",
+    "how": "replay"
+  },
+  {
+    "id": "retained_cell_ids_exact",
+    "metric": "retained_cell_ids_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/_shared/py/tests/sc_smoke_support.py",
+    "scope": "Full registered PBMC3k; unchanged qc_args exploratory no-removal recipe; counts/genes/cell IDs exact; no invented printed values",
+    "how": "replay"
+  }
+]

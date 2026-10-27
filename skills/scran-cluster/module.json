@@ -1,0 +1,152 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "scran-cluster",
+  "lane": "R",
+  "domain": "sc-cluster",
+  "entry": "scripts/run_scran_cluster.R",
+  "version": "1.0.0",
+  "qc_prefix": "XC",
+  "engine_packages": [
+    "scran",
+    "BiocParallel",
+    "scuttle",
+    "scater",
+    "bluster"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "SingleCellExperiment"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "SCE pooling, HVG, PCA, graph clustering and UMAP",
+    "order": 30
+  },
+  "publication": {
+    "rule_category": "advisory",
+    "legacy_override": {
+      "module": "scran-cluster",
+      "rule_id": "SCRAN-CLUSTER-XC-CHOICES",
+      "category": "advisory",
+      "severity": "info",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/scran-cluster/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Proposed publication rule: advisory `XC-CHOICES`, declare dimensions/neighbours/clustering algorithm, resolution where applicable, variance blocking, seed. Descriptive cell clusters do not establish condition effects.",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Proposed publication rule: advisory `XC-CHOICES`, declare dimensions/neighbours/clustering algorithm, resolution where applicable, variance blocking, seed. Descriptive cell clusters do not establish condition effects.",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--n-hvg",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [2, 1000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--n-pcs",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [2, 1000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--graph-k",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [2, 100000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--umap-neighbors",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [2, 100000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 20,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "scran-cluster",
+      "entry_script": "scripts/run_scran_cluster.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "c2f3ee42b54fb2d487016f5e364882b55f9159776b184db06099855a8d4ec6ab",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

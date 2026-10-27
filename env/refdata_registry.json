@@ -1,26 +1,6 @@
 {
-  "schema": "omicstat.refdata-registry.v1",
-  "note": "Skeleton (M0). Reference data are fixed at image build time in a dedicated layer or mounted read-only; runtime is always offline (IMPLEMENTATION_SPEC section 5). Each entry is downloaded and checked against sha256 at build; a missing entry or a hash mismatch makes the engine refuse to run (OS_REFDATA_MISSING / OS_REFDATA_MISMATCH). Every TO_FILL_AT_BUILD / TO_VERIFY_AT_S0 value must be filled from the source itself (never from memory); redistributable=null means not yet verified. Data whose licence forbids redistribution is user_supplied=true and never baked into the image.",
-  "fields": {
-    "id": "stable identifier referenced by engines and provenance",
-    "version": "release / build of the resource",
-    "url": "exact download URL used at build",
-    "license": "licence as stated by the provider",
-    "sha256": "sha256 of the downloaded file",
-    "redistributable": "true / false / null (unverified)",
-    "user_supplied": "true when the user must provide the file (not in the image)",
-    "used_by": "planned modules (ENGINEERING_PLAN section 1.2)",
-    "tier": "'dev' = verified in the dev tier (env/conda, R 4.5.3 / Bioconductor 3.22); absent = locked-container entry (to fill at build)",
-    "container_entry": "dev entries only: id of the container entry this one stands in for",
-    "retrieved": "date (YYYY-MM-DD) the file was downloaded and hashed",
-    "md5": "md5 published by the source, when it publishes one (checked before sha256 was taken)",
-    "sha256_method": "absent = sha256 of the single downloaded file; 'tree' = sha256 of the text listing '<sha256>  <relative path>\\n' of every payload file, sorted by path (C locale), excluding the '..'-prefixed gypsum bookkeeping files; the sha256 of the server's '..manifest' is recorded as manifest_sha256",
-    "source_date": "release date(s) of the upstream data inside the package, as read from the installed package metadata",
-    "dev_tier_package": "dev entries that are an R package tarball: package name, used by env/conda/setup_dev.sh as the source-tarball fallback",
-    "cache": "where the runtime reads the data from (dev tier)",
-    "manifest_sha256": "sha256_method 'tree' only: sha256 of the server's '..manifest' file (JSON of size + md5 per payload file)",
-    "bytes": "total size of the payload files"
-  },
+  "schema": "omicstat.refdata.v2",
+  "note": "Strict metadata and offline payload gates. Null version/hash/licence are explicit unresolved state, never accepted payloads. Legacy fields retained only for compatibility. No automatic downloads.",
   "entries": [
     {
       "id": "fgsea_example_pathways",
@@ -39,7 +19,26 @@
         "limma-camera",
         "gsva-score"
       ],
-      "notes": "Offline package fixture for S2 replay; not a Hallmark production default."
+      "notes": "Offline package fixture for S2 replay; not a Hallmark production default.",
+      "kind": "geneset",
+      "source_url": "package:fgsea:examplePathways",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "consumers": [
+        "fgsea-prerank",
+        "limma-camera",
+        "gsva-score"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "MIT + file LICENCE (fgsea package DESCRIPTION); demonstration data only",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "gsva_brain_txdb_sets",
@@ -57,7 +56,25 @@
         "gsva-score",
         "limma-camera"
       ],
-      "notes": "Only in the read-only sha256-locked acceptance data layer; S2 replay fixture."
+      "notes": "Only in the read-only sha256-locked acceptance data layer; S2 replay fixture.",
+      "kind": "geneset",
+      "source_url": "acceptance:GSVAdata:brainTxDbSets",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "consumers": [
+        "gsva-score",
+        "limma-camera"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "See acceptance/data/acceptance_lib_lock.csv and GSVAdata DESCRIPTION; acceptance layer only",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "limma_gender_genes",
@@ -75,15 +92,32 @@
       "used_by": [
         "limma-camera"
       ],
-      "notes": "Offline private acceptance fixture, two sets only; not a production Hallmark default."
+      "notes": "Offline private acceptance fixture, two sets only; not a production Hallmark default.",
+      "kind": "geneset",
+      "source_url": "https://bioinf.wehi.edu.au/software/GenderGenes/GenderGenes.RData",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "consumers": [
+        "limma-camera"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "WEHI GenderGenes case-study asset; source terms require review before redistribution",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "gencode_human_gtf",
       "description": "GENCODE human comprehensive gene annotation (GTF); defines unversioned Ensembl gene IDs and symbols",
-      "version": "TO_FILL_AT_BUILD (e.g. GENCODE_v44 as named in the StudyContract)",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
@@ -92,15 +126,37 @@
         "deseq2-lrt",
         "edger-qlf",
         "limma-voom"
-      ]
+      ],
+      "kind": "coordinates",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "deseq2-qc",
+        "deseq2-wald",
+        "deseq2-lrt",
+        "edger-qlf",
+        "limma-voom"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "gencode_mouse_gtf",
       "description": "GENCODE mouse comprehensive gene annotation (GTF)",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
@@ -109,15 +165,37 @@
         "deseq2-lrt",
         "edger-qlf",
         "limma-voom"
-      ]
+      ],
+      "kind": "coordinates",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "deseq2-qc",
+        "deseq2-wald",
+        "deseq2-lrt",
+        "edger-qlf",
+        "limma-voom"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "msigdb_collections",
       "description": "MSigDB gene-set collections used through msigdbr (and its data package)",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
@@ -129,7 +207,31 @@
         "aucell-score",
         "seurat-modulescore"
       ],
-      "notes": "The msigdbr data source and its version are pinned together with the msigdbr package version in pkg_lock.csv; some collections carry their own licence terms."
+      "notes": "The msigdbr data source and its version are pinned together with the msigdbr package version in pkg_lock.csv; some collections carry their own licence terms.",
+      "kind": "geneset",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "fgsea-prerank",
+        "gsva-score",
+        "limma-camera",
+        "aucell-score",
+        "seurat-modulescore"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "go_annotation",
@@ -137,7 +239,7 @@
       "version": "pinned by BIOC_VERSION (see pkg_lock.csv)",
       "url": "Bioconductor annotation package",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
@@ -145,22 +247,63 @@
         "clusterprofiler-gsea",
         "clusterprofiler-compare"
       ],
-      "notes": "Installed as Bioconductor annotation packages in layer L2; recorded here so provenance can cite the GO release date."
+      "notes": "Installed as Bioconductor annotation packages in layer L2; recorded here so provenance can cite the GO release date.",
+      "kind": "annotation",
+      "source_url": "Bioconductor annotation package",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "reactome_gene_sets",
       "description": "Reactome pathway gene sets",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "clusterprofiler-ora",
         "clusterprofiler-gsea",
         "fgsea-prerank"
-      ]
+      ],
+      "kind": "geneset",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "fgsea-prerank",
+        "reactomepa-ora"
+      ],
+      "fetch": {
+        "script": "tools/export_reactome_snapshot.R",
+        "args": [],
+        "status": "offline_installed_resource_export_only_explicit_licence_and_use_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "kegg_pathways",
@@ -168,7 +311,7 @@
       "version": "USER_SUPPLIED",
       "url": "USER_SUPPLIED",
       "license": "KEGG licence (not redistributable in this image)",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": false,
       "user_supplied": true,
       "used_by": [
@@ -176,73 +319,183 @@
         "clusterprofiler-gsea",
         "clusterprofiler-compare"
       ],
-      "notes": "Not bundled. enrichKEGG runs offline only from a user-supplied local KEGG file; a missing file is a typed refusal (OS_REFDATA_MISSING)."
+      "notes": "Not bundled. enrichKEGG runs offline only from a user-supplied local KEGG file; a missing file is a typed refusal (OS_REFDATA_MISSING).",
+      "kind": "geneset",
+      "source_url": "USER_SUPPLIED",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "KEGG licence (not redistributable in this image)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "celldex_human_primary_cell_atlas",
       "description": "celldex HumanPrimaryCellAtlasData reference",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Fetched through ExperimentHub at BUILD time into the image cache; runtime never contacts ExperimentHub."
+      "notes": "Fetched through ExperimentHub at BUILD time into the image cache; runtime never contacts ExperimentHub.",
+      "kind": "reference_profiles",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "celldex_blueprint_encode",
       "description": "celldex BlueprintEncodeData reference",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "singler-annotate"
-      ]
+      ],
+      "kind": "reference_profiles",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "celldex_monaco_immune",
       "description": "celldex MonacoImmuneData reference",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "singler-annotate"
-      ]
+      ],
+      "kind": "reference_profiles",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "celldex_mouse_rnaseq",
       "description": "celldex MouseRNAseqData reference",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "singler-annotate"
-      ]
+      ],
+      "kind": "reference_profiles",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "celldex_immgen",
       "description": "celldex ImmGenData reference",
-      "version": "TO_FILL_AT_BUILD",
+      "version": null,
       "url": "TO_FILL_AT_BUILD",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "singler-annotate"
-      ]
+      ],
+      "kind": "reference_profiles",
+      "source_url": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "cellchatdb",
@@ -250,12 +503,30 @@
       "version": "pinned by CELLCHAT_REF (see pkg_lock.csv)",
       "url": "bundled in the CellChat package",
       "license": "TO_VERIFY_AT_S0",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": null,
       "user_supplied": false,
       "used_by": [
         "cellchat-communication"
-      ]
+      ],
+      "kind": "cellchat_db",
+      "source_url": "bundled in the CellChat package",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "cellchat-communication"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "TO_VERIFY_AT_S0",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "cibersort_lm22",
@@ -263,13 +534,31 @@
       "version": "USER_SUPPLIED",
       "url": "USER_SUPPLIED",
       "license": "CIBERSORT licence (registration required; not redistributable in this image)",
-      "sha256": "TO_FILL_AT_BUILD",
+      "sha256": null,
       "redistributable": false,
       "user_supplied": true,
       "used_by": [
         "immunedeconv-infiltration"
       ],
-      "notes": "immunedeconv's CIBERSORT method is available only when the user supplies the files; the other immunedeconv methods do not need them."
+      "notes": "immunedeconv's CIBERSORT method is available only when the user supplies the files; the other immunedeconv methods do not need them.",
+      "kind": "reference_profiles",
+      "source_url": "USER_SUPPLIED",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "immunedeconv-infiltration"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "pending",
+      "legacy_licence_text": "CIBERSORT licence (registration required; not redistributable in this image)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_org_hs_eg_db",
@@ -291,7 +580,26 @@
         "clusterprofiler-gsea",
         "clusterprofiler-compare"
       ],
-      "notes": "Installed as bioconda bioconductor-org.hs.eg.db 3.22.0 (post-link download from this URL, md5 checked). No container entry exists yet for OrgDb; see pending decisions."
+      "notes": "Installed as bioconda bioconductor-org.hs.eg.db 3.22.0 (post-link download from this URL, md5 checked). No container entry exists yet for OrgDb; see pending decisions.",
+      "kind": "annotation",
+      "source_url": "https://bioconductor.org/packages/3.22/data/annotation/src/contrib/org.Hs.eg.db_3.22.0.tar.gz",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "Artistic-2.0 (package DESCRIPTION); upstream data licences (NCBI Gene, Ensembl, GO, UniProt) not individually checked -- unknown -- check",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_org_mm_eg_db",
@@ -313,7 +621,26 @@
         "clusterprofiler-gsea",
         "clusterprofiler-compare"
       ],
-      "notes": "Installed as bioconda bioconductor-org.mm.eg.db 3.22.0 (post-link download from this URL, md5 checked)."
+      "notes": "Installed as bioconda bioconductor-org.mm.eg.db 3.22.0 (post-link download from this URL, md5 checked).",
+      "kind": "annotation",
+      "source_url": "https://bioconductor.org/packages/3.22/data/annotation/src/contrib/org.Mm.eg.db_3.22.0.tar.gz",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "Artistic-2.0 (package DESCRIPTION); upstream data licences not individually checked -- unknown -- check",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_go_db",
@@ -335,7 +662,26 @@
         "clusterprofiler-gsea",
         "clusterprofiler-compare"
       ],
-      "notes": "Installed as bioconda bioconductor-go.db 3.22.0 (post-link download from this URL, md5 checked)."
+      "notes": "Installed as bioconda bioconductor-go.db 3.22.0 (post-link download from this URL, md5 checked).",
+      "kind": "annotation",
+      "source_url": "https://bioconductor.org/packages/3.22/data/annotation/src/contrib/GO.db_3.22.0.tar.gz",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "clusterprofiler-compare"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "Artistic-2.0 (package DESCRIPTION); GO data: Creative Commons Attribution 4.0 (geneontology.org/docs/go-citation-policy/, read 2026-09-27)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_celldex_package",
@@ -355,7 +701,24 @@
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Installed as bioconda bioconductor-celldex 1.20.0. With legacy = FALSE (default) the references come from gypsum, entries dev_celldex_*."
+      "notes": "Installed as bioconda bioconductor-celldex 1.20.0. With legacy = FALSE (default) the references come from gypsum, entries dev_celldex_*.",
+      "kind": "reference_profiles",
+      "source_url": "https://bioconductor.org/packages/3.22/data/experiment/src/contrib/celldex_1.20.0.tar.gz",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "GPL-3 (package DESCRIPTION)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_msigdbr_data",
@@ -381,7 +744,30 @@
         "aucell-score",
         "seurat-modulescore"
       ],
-      "notes": "The URL and md5 are hard-coded in msigdbr 26.1.1 (internal check_cache()); pinning the msigdbr version pins the data. The zip contains the KEGG_LEGACY and KEGG_MEDICUS subcollections (C2:CP:KEGG_*), which the licence gate (no KEGG) must exclude; BioCarta carries its own terms."
+      "notes": "The URL and md5 are hard-coded in msigdbr 26.1.1 (internal check_cache()); pinning the msigdbr version pins the data. The zip contains the KEGG_LEGACY and KEGG_MEDICUS subcollections (C2:CP:KEGG_*), which the licence gate (no KEGG) must exclude; BioCarta carries its own terms.",
+      "kind": "geneset",
+      "source_url": "https://zenodo.org/records/18968178/files/msigdb.2026.1.zip?download=1",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "clusterprofiler-ora",
+        "clusterprofiler-gsea",
+        "fgsea-prerank",
+        "gsva-score",
+        "limma-camera",
+        "aucell-score",
+        "seurat-modulescore"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "MSigDB: Creative Commons Attribution 4.0, except KEGG_MEDICUS_* (CC BY-SA 4.0, Kanehisa Laboratories), KEGG_* legacy (Kanehisa copyright, KEGG licensing policies) and BIOCARTA_* (BioCarta copyright, qualified permission) per gsea-msigdb.org/gsea/msigdb_license_terms.jsp read 2026-09-27; the zenodo record (DOI 10.5281/zenodo.18968178) itself states MIT",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_celldex_hpca",
@@ -402,7 +788,24 @@
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here.",
+      "kind": "reference_profiles",
+      "source_url": "https://gypsum.artifactdb.com/file/celldex%2Fhpca%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_celldex_blueprint_encode",
@@ -423,7 +826,24 @@
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here.",
+      "kind": "reference_profiles",
+      "source_url": "https://gypsum.artifactdb.com/file/celldex%2Fblueprint_encode%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_celldex_monaco_immune",
@@ -444,7 +864,24 @@
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here.",
+      "kind": "reference_profiles",
+      "source_url": "https://gypsum.artifactdb.com/file/celldex%2Fmonaco_immune%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_celldex_mouse_rnaseq",
@@ -465,7 +902,24 @@
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here.",
+      "kind": "reference_profiles",
+      "source_url": "https://gypsum.artifactdb.com/file/celldex%2Fmouse_rnaseq%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "dev_celldex_immgen",
@@ -486,7 +940,24 @@
       "used_by": [
         "singler-annotate"
       ],
-      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here."
+      "notes": "Every payload file matched the md5 in the gypsum ..manifest; manifest_sha256 matched a fresh server copy. ensembl = TRUE conversion needs an AnnotationHub EnsDb, which is not registered here.",
+      "kind": "reference_profiles",
+      "source_url": "https://gypsum.artifactdb.com/file/celldex%2Fimmgen%2F2024-02-26%2F<path> (file list: ..manifest)",
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "singler-annotate"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "status": "pending",
+      "legacy_licence_text": "unknown -- check (celldex code is GPL-3; the gypsum metadata carries no licence field)",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate."
     },
     {
       "id": "mcp_counter_genes",
@@ -501,7 +972,30 @@
       ],
       "retrieved": "2026-10-01",
       "cache": "/opt/omicstat/refdata/mcp_counter/genes.txt",
-      "build_layer": "L8_addons"
+      "build_layer": "L8_addons",
+      "kind": "geneset",
+      "source_url": "https://raw.githubusercontent.com/ebecht/MCPcounter/b6eac73e91c246fcff0bb1a5c68a816cd588fc48/Signatures/genes.txt",
+      "licence": "GPL-3.0-only",
+      "licence_status": "verified",
+      "redistribution": "bundled_in_image",
+      "species": null,
+      "consumers": [
+        "immunedeconv-infiltration"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "ready",
+      "legacy_licence_text": "GPL-3; pinned Source/License in the same upstream repository",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate.",
+      "payload": {
+        "path": "mcp_counter/genes.txt",
+        "sha256": "408f6c5d02c8f9bd2f1599c598367881853520934f8ce398a4886a8b296922bb",
+        "hash_kind": "file"
+      }
     },
     {
       "id": "mcp_counter_probesets",
@@ -516,7 +1010,96 @@
       ],
       "retrieved": "2026-10-01",
       "cache": "/opt/omicstat/refdata/mcp_counter/probesets.txt",
-      "build_layer": "L8_addons"
+      "build_layer": "L8_addons",
+      "kind": "geneset",
+      "source_url": "https://raw.githubusercontent.com/ebecht/MCPcounter/b6eac73e91c246fcff0bb1a5c68a816cd588fc48/Signatures/probesets.txt",
+      "licence": "GPL-3.0-only",
+      "licence_status": "verified",
+      "redistribution": "bundled_in_image",
+      "species": null,
+      "consumers": [
+        "immunedeconv-infiltration"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "manual_resolution_required"
+      },
+      "tier": "container",
+      "status": "ready",
+      "legacy_licence_text": "GPL-3; pinned Source/License in the same upstream repository",
+      "legacy_compatibility": "Legacy url/license/user_supplied fields retained for existing sealed readers; new modules use the v2 gate.",
+      "payload": {
+        "path": "mcp_counter/probesets.txt",
+        "sha256": "68778e6632fefac944127dba8d1ae1e8b8889ba36c71500776f8a7f00098c573",
+        "hash_kind": "file"
+      }
+    },
+    {
+      "id": "org_hs_eg_db",
+      "kind": "annotation",
+      "source_url": "https://bioconductor.org/packages/org.Hs.eg.db/",
+      "version": null,
+      "sha256": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": "Homo sapiens",
+      "consumers": [
+        "reactomepa-ora",
+        "survival-expr",
+        "glmnet-coxsig"
+      ],
+      "fetch": {
+        "script": "tools/export_idmap_snapshot.R",
+        "args": [],
+        "status": "fixed_source_snapshot_and_columns_required"
+      },
+      "tier": "container",
+      "status": "pending"
+    },
+    {
+      "id": "org_mm_eg_db",
+      "kind": "annotation",
+      "source_url": "https://bioconductor.org/packages/org.Mm.eg.db/",
+      "version": null,
+      "sha256": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": "Mus musculus",
+      "consumers": [
+        "reactomepa-ora"
+      ],
+      "fetch": {
+        "script": "tools/export_idmap_snapshot.R",
+        "args": [],
+        "status": "fixed_source_snapshot_and_columns_required"
+      },
+      "tier": "container",
+      "status": "pending"
+    },
+    {
+      "id": "emptydrops_unfiltered_input",
+      "description": "User raw unfiltered droplet matrix used to estimate the ambient reference; not an external cell atlas",
+      "kind": "annotation",
+      "source_url": null,
+      "version": null,
+      "sha256": null,
+      "licence": null,
+      "licence_status": "pending_review",
+      "redistribution": "user_supplied",
+      "species": null,
+      "consumers": [
+        "dropletutils-emptydrops"
+      ],
+      "fetch": {
+        "script": null,
+        "args": [],
+        "status": "user_unfiltered_matrix_and_provenance_required"
+      },
+      "tier": "container",
+      "status": "pending"
     }
   ]
 }

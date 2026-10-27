@@ -1,0 +1,9 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+figures/volcano.figure_spec.json,f85a60b6694b5fa78910f2906978f87757fa0926394d876309e455b449769f58,container,
+figures/volcano.png,2cbdf32ef5a3303ba181e53a31e9c30459aadbfc0370524beee953f122909c4f,container,
+results/results.json,ce4e5e53cdbcb5f823e97b77a0a953e158dd6e4433b711089344eb88d907dc9e,container,
+tables/engine_full.csv,2c9274b89125da4b4f7cfec0ff4f43aefb6a8fe5f5093eab827805be2946ba25,container,
+tables/feature_level.csv,b8d20b1835243b0652ceb0651dc042104984d07e2789d7ba154653344df74aa4,container,
+tables/feature_table.csv,bc6ca33a74fb2e8bc8d5537281827e11d98d4749eae80537809ce67dc6948093,container,
+tables/protein_level.csv,739cfe61e2044ee766841a265fce0eb17a6070b7698c68dab1062bfe1271c962,container,

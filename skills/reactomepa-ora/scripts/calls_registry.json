@@ -1,0 +1,171 @@
+{
+  "module": "reactomepa-ora",
+  "module_version": "0.1.0",
+  "package_versions": {
+    "ReactomePA": "1.56.0",
+    "stats": "4.5.0"
+  },
+  "calls": [
+    {
+      "fn": "ReactomePA::enrichPathway",
+      "args": {
+        "gene": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": ""
+        },
+        "pvalueCutoff": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "0.05"
+        },
+        "pAdjustMethod": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "\"BH\""
+        },
+        "universe": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "minGSSize": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "10"
+        },
+        "maxGSSize": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "500"
+        },
+        "qvalueCutoff": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "0.2"
+        },
+        "organism": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "\"human\""
+        },
+        "readable": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Official ReactomePA1.56.0 source R/enrichPathway.R; native engine currently unavailable, not a runtime capture",
+          "pack": "D",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "stats::phyper",
+      "args": {
+        "q": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": ""
+        },
+        "m": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": ""
+        },
+        "n": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": ""
+        },
+        "k": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": ""
+        },
+        "lower.tail": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "log.p": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "stats::p.adjust",
+      "args": {
+        "p": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": ""
+        },
+        "method": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": "p.adjust.methods"
+        },
+        "n": {
+          "value": "Explicit expression in module core, with all scientific scope declared",
+          "source": "Actual R4.5 stats formals",
+          "pack": "D",
+          "function_default": "length(p)"
+        }
+      }
+    }
+  ],
+  "accessors": [],
+  "flag_defaults": {},
+  "captured_signatures": {
+    "ReactomePA::enrichPathway": {
+      "source_kind": "official_source_only_not_native_observed",
+      "formals": {
+        "gene": "",
+        "pvalueCutoff": "0.05",
+        "pAdjustMethod": "\"BH\"",
+        "universe": "NULL",
+        "minGSSize": "10",
+        "maxGSSize": "500",
+        "qvalueCutoff": "0.2",
+        "organism": "\"human\"",
+        "readable": "FALSE"
+      }
+    },
+    "stats::phyper": {
+      "source_kind": "native_formals",
+      "formals": {
+        "q": "",
+        "m": "",
+        "n": "",
+        "k": "",
+        "lower.tail": "TRUE",
+        "log.p": "FALSE"
+      }
+    },
+    "stats::p.adjust": {
+      "source_kind": "native_formals",
+      "formals": {
+        "p": "",
+        "method": "p.adjust.methods",
+        "n": "length(p)"
+      }
+    }
+  },
+  "status": "candidate_engine_install_blocked_source_formals_only"
+}

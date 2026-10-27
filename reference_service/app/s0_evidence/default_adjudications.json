@@ -1,0 +1,59 @@
+{
+  "schema": "omicstat.default-adjudications.v1",
+  "decided": "2026-10-11",
+  "note": "Owner verdicts on locked defaults that the literature comparison (defaults.py) flagged. A verdict only applies while the locked default named here is unchanged. It never changes a parameter. Not listed because they no longer have a comparable default: wgcna-network --network-type and scvi-integrate --n-latent (verdict C: the default was removed and the option is required, module versions 1.1.0 and 1.2.0).",
+  "verdicts": {
+    "keep_documented": "The locked default stays; the documentation names the literature or tutorial alternative (verdict B).",
+    "comparison_artifact": "The flag comes from how the values were compared (software-version legacy defaults, display-only thresholds, cross-ecosystem values), not from a scientific disagreement with the locked default (verdict D)."
+  },
+  "adjudications": [
+    {
+      "module": "seurat-markers",
+      "option": "--logfc-threshold",
+      "locked_default": "0.1",
+      "verdict": "comparison_artifact",
+      "decided": "2026-10-11",
+      "note": "0.1 is the locked Seurat 5.5.1 FindMarkers default. The papers reporting 0.25 ran Seurat 2.3.4 to 4.3.0.1, and the Seurat 4.4.0 default was 0.25: a software-version legacy default. The threshold is a pre-test speed-up, not a significance threshold."
+    },
+    {
+      "module": "seurat-markers",
+      "option": "--min-pct",
+      "locked_default": "0.01",
+      "verdict": "comparison_artifact",
+      "decided": "2026-10-11",
+      "note": "0.01 is the locked Seurat 5.5.1 FindMarkers default; Seurat 4.4.0 and earlier defaulted to 0.1 and tutorial-era code wrote 0.25. The documentation calls it a speed-up. Reported values are mostly legacy defaults or per-paper choices."
+    },
+    {
+      "module": "seurat-markers",
+      "option": "--display-lfc-filter",
+      "locked_default": "0",
+      "verdict": "comparison_artifact",
+      "decided": "2026-10-11",
+      "note": "0 means the display filter is off. The reported values are study-specific post-hoc display thresholds (Enrichr input filters, condition contrasts, model-specific markers) and cannot be compared with an off switch. The option only changes the separate display table."
+    },
+    {
+      "module": "scran-cluster",
+      "option": "--cluster-method",
+      "locked_default": "walktrap",
+      "verdict": "comparison_artifact",
+      "decided": "2026-10-11",
+      "note": "walktrap is the bluster NNGraphParam default. Several of the Louvain/Leiden values are Seurat-side or scanpy-side values of mixed-ecosystem papers, which the pack never pools with Bioconductor values; the Bioconductor-only values are too few and split between walktrap and Louvain. Changing the default to Louvain/Leiden would add a required --resolution."
+    },
+    {
+      "module": "scanpy-markers",
+      "option": "--test",
+      "locked_default": "t-test",
+      "verdict": "keep_documented",
+      "decided": "2026-10-11",
+      "note": "t-test is the scanpy 1.12.4 documented default. The official clustering tutorial and 16 of 21 reviewed papers use wilcoxon, but Pullin and McCarthy 2024 (PMID 38409056) find Wilcoxon, t-test and logistic regression all effective, and the module output is descriptive. The documentation names the tutorial value and the seurat-markers difference."
+    },
+    {
+      "module": "scvi-integrate",
+      "option": "--n-layers",
+      "locked_default": "1",
+      "verdict": "keep_documented",
+      "decided": "2026-10-11",
+      "note": "1 is the locked scvi-tools 1.5.1 default. The reported value 2 mostly restates the harmonization tutorial (n_layers=2, n_latent=30, gene_likelihood=nb), which is documented as a named optional configuration."
+    }
+  ]
+}

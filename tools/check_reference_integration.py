@@ -3,7 +3,7 @@
 
 The original builder is the immutable overlay baseline. The integration adds
 current router hashes, availability labels and explicit display-module extensions.
-All 38 historical targets and their discovery profiles remain exact. No config
+All 38 historical targets and their discovery profiles remain exact; accepted module metadata appends reference targets. No config
 is written unless --write is requested; no reference store or service is opened.
 """
 from __future__ import annotations
@@ -28,24 +28,22 @@ def integrated_config():
     schema = json.loads(built['schemas/literature_request.v1.json'])
     schema['properties']['module']['enum'][-1:-1] = [e['module'] for e in extensions]
     built['schemas/literature_request.v1.json'] = build_config.dump(schema)
-    router = (ROOT / 'skills/omicstat/SKILL.md').read_bytes()
-    routed = set(re.findall(r'\|\s*`([a-z0-9-]+)`\s*\|\s*`scripts/run_[A-Za-z0-9_]+\.(?:R|py)`\s*\|', router.decode()))
-    expected = json.loads(built['method_map.json'])
-    expected['modules'].extend({k: e[k] for k in ('module', 'entry_script')} for e in extensions)
-    expected['source_path'] = 'skills/omicstat/SKILL.md section 1; docs/handoff/ENGINEERING_PLAN.md sections 1.2 and 10.2'
-    expected['source_sha256'] = build_config.sha(router)
-    expected['plan_sha256'] = build_config.sha((ROOT / 'docs/handoff/ENGINEERING_PLAN.md').read_bytes())
-    expected['order_rule'] = ("Preserves the overlay's 38-target order for reference-store compatibility. "
-                              'Router section 1 is the execution registry; entry_status explicitly separates '
-                              'available source from unimplemented planned targets. Display/curation modules are appended after the historical targets.')
-    for entry in expected['modules']:
-        module = entry['module']
-        exists = (ROOT / 'skills' / module / entry['entry_script']).is_file()
-        if module in routed and not exists:
-            raise RuntimeError('reference/execution registry disagree: ' + module)
-        entry['entry_status'] = ('source_built_pending_locked_acceptance' if exists and module not in routed
-                                 else 'implemented_routed' if exists else 'planned_unimplemented')
-    built['method_map.json'] = build_config.dump(expected)
+    # Execution acceptance now promotes local registry configuration before S6.
+    # Keep the pinned historical profiles exact; append only module-declared profiles.
+    import sync_registry
+    generated, _ = sync_registry.generated(ROOT)
+    method_path = 'reference_service/app/method_map.json'
+    methods = json.loads(generated[method_path])
+    profiles_by_name = {p['module']: p for p in profiles['profiles']}
+    for p in (ROOT/'skills').glob('*/module.json'):
+        m = json.loads(p.read_text())
+        if m['status'] == 'accepted' and m.get('reference', {}).get('discovery_profile'):
+            profiles_by_name[m['name']] = m['reference']['discovery_profile']
+    profiles['profiles'] = [profiles_by_name[m['module']] for m in methods['modules']]
+    built['discovery_profiles.json'] = sync_registry.dump_reference(profiles).encode()
+    schema['properties']['module']['enum'] = [m['module'] for m in methods['modules']] + ['unmapped']
+    built['schemas/literature_request.v1.json'] = sync_registry.dump_reference(schema).encode()
+    built['method_map.json'] = generated[method_path].encode()
     return built
 
 

@@ -1,0 +1,5 @@
+a<-commandArgs(TRUE);stopifnot(length(a)==2L);x<-readRDS(a[1]);out<-a[2];h<-jsonlite::fromJSON(file.path(out,'objects/handoff.json'),simplifyVector=FALSE)
+hit<-Filter(function(z)identical(z$type,'SingleCellExperiment'),h$objects);stopifnot(length(hit)==1L);p<-file.path(out,hit[[1]]$path);stopifnot(identical(digest::digest(file=p,algo='sha256'),hit[[1]]$sha256));sce<-readRDS(p)
+raw<-SummarizedExperiment::assay(sce,'counts');stopifnot(methods::is(sce,'SingleCellExperiment'),identical(dimnames(raw),dimnames(x)),identical(as.numeric(as.matrix(raw)),as.numeric(x)))
+tab<-utils::read.csv(file.path(out,'tables/barcodes.csv'),stringsAsFactors=FALSE);stopifnot(identical(colnames(sce),tab$barcode),identical(as.character(SummarizedExperiment::colData(sce)$barcode),tab$barcode),isTRUE(h$state$unfiltered_raw_counts),isTRUE(h$state$emptydrops_annotated),!isTRUE(h$state$qc_complete))
+cat('PASS native SCE retains all51features250barcodes30000UMIs and exact identities; annotation-only candidate handoff\n')

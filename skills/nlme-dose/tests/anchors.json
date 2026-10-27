@@ -1,0 +1,32 @@
+[
+  {
+    "metric": "Orange AIC",
+    "expected": 273.0,
+    "tolerance": 0.5,
+    "source": "https://svn.r-project.org/R-packages/trunk/nlme/tests/extras/scripts.Rout.save (fm2Oran.nlme)",
+    "scope": "upstream published package regression output",
+    "id": "nlme-dose-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "Orange BIC",
+    "expected": 281.0,
+    "tolerance": 0.5,
+    "source": "https://svn.r-project.org/R-packages/trunk/nlme/tests/extras/scripts.Rout.save (fm2Oran.nlme)",
+    "scope": "upstream published package regression output",
+    "id": "nlme-dose-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "Orange logLik",
+    "expected": -132.0,
+    "tolerance": 0.5,
+    "source": "https://svn.r-project.org/R-packages/trunk/nlme/tests/extras/scripts.Rout.save (fm2Oran.nlme)",
+    "scope": "upstream published package regression output",
+    "id": "nlme-dose-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

@@ -79,7 +79,7 @@ scanvi-annotate: 36 flag(s) in --help, 36 with defaults in 2+ sources; 0 problem
 == python skills/scanvi-annotate/tests/run_smoke_test.py
 PASS: scanvi-annotate pinned numerical smoke; R rendering/visual review must run separately
 == python tools/check_calls.py skills/scvi-integrate
-150 call sites scanned; 0 registry problems; 0 default-drift problems
+151 call sites scanned; 0 registry problems; 0 default-drift problems
 == python tools/check_defaults.py skills/scvi-integrate
 scvi-integrate: 60 flag(s) in --help, 60 with defaults in 2+ sources; 0 problem(s)
 == python tools/check_flag_docs.py skills/scvi-integrate

@@ -1,0 +1,313 @@
+{
+  "module": "omicstat-groupcompare",
+  "module_version": "0.1.0",
+  "package_versions": {
+    "stats": "4.5.0"
+  },
+  "calls": [
+    {
+      "fn": "stats::wilcox.test",
+      "args": {
+        "x": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "y": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "alternative": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "c(\"two.sided\", \"less\", \"greater\")"
+        },
+        "mu": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "0"
+        },
+        "paired": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "exact": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "correct": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "conf.int": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "conf.level": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "0.95"
+        }
+      }
+    },
+    {
+      "fn": "stats::t.test",
+      "args": {
+        "x": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "y": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "alternative": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "c(\"two.sided\", \"less\", \"greater\")"
+        },
+        "mu": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "0"
+        },
+        "paired": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "var.equal": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "conf.level": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "0.95"
+        }
+      }
+    },
+    {
+      "fn": "stats::oneway.test",
+      "args": {
+        "formula": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "data": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "var.equal": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "na.action": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "stats::kruskal.test",
+      "args": {
+        "x": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "stats::friedman.test",
+      "args": {
+        "y": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "stats::p.adjust",
+      "args": {
+        "p": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "method": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "p.adjust.methods"
+        },
+        "n": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "length(p)"
+        }
+      }
+    },
+    {
+      "fn": "stats::sd",
+      "args": {}
+    },
+    {
+      "fn": "stats::median",
+      "args": {}
+    }
+  ],
+  "accessors": [],
+  "flag_defaults": {
+    "--input": "required",
+    "--response-col": "required",
+    "--group-col": "required",
+    "--unit-col": "required",
+    "--group-order": "required",
+    "--design": "required",
+    "--technical-policy": "required",
+    "--technical-col": null,
+    "--comparisons": null,
+    "--pairwise-test": "required",
+    "--omnibus": "required",
+    "--rank-method": "required",
+    "--adjust": "required",
+    "--family-size": "required",
+    "--ci-level": "required",
+    "--display": "required",
+    "--journal": "required",
+    "--study-contract": "required",
+    "--development-mode": false,
+    "--seed": "required",
+    "--outdir": "required",
+    "--spec": null
+  },
+  "captured_signatures": {
+    "stats::wilcox.test": {
+      "package_version": "4.5.0",
+      "method": "wilcox.test.default",
+      "formals": {
+        "x": "",
+        "...": "",
+        "y": "NULL",
+        "alternative": "c(\"two.sided\", \"less\", \"greater\")",
+        "mu": "0",
+        "paired": "FALSE",
+        "exact": "NULL",
+        "correct": "TRUE",
+        "conf.int": "FALSE",
+        "conf.level": "0.95",
+        "tol.root": "1e-04",
+        "digits.rank": "Inf"
+      }
+    },
+    "stats::t.test": {
+      "package_version": "4.5.0",
+      "method": "t.test.default",
+      "formals": {
+        "x": "",
+        "...": "",
+        "y": "NULL",
+        "alternative": "c(\"two.sided\", \"less\", \"greater\")",
+        "mu": "0",
+        "paired": "FALSE",
+        "var.equal": "FALSE",
+        "conf.level": "0.95"
+      }
+    },
+    "stats::oneway.test": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "data": "",
+        "subset": "",
+        "na.action": "",
+        "var.equal": "FALSE"
+      }
+    },
+    "stats::kruskal.test": {
+      "package_version": "4.5.0",
+      "method": "kruskal.test.default",
+      "formals": {
+        "x": "",
+        "...": "",
+        "g": ""
+      }
+    },
+    "stats::friedman.test": {
+      "package_version": "4.5.0",
+      "method": "friedman.test.default",
+      "formals": {
+        "y": "",
+        "...": "",
+        "groups": "",
+        "blocks": ""
+      }
+    },
+    "stats::p.adjust": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "p": "",
+        "method": "p.adjust.methods",
+        "n": "length(p)"
+      }
+    },
+    "stats::sd": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE"
+      }
+    },
+    "stats::median": {
+      "package_version": "4.5.0",
+      "method": "median.default",
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE",
+        "...": ""
+      }
+    }
+  },
+  "status": "candidate_native_api_observed_not_production"
+}

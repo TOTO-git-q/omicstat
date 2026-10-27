@@ -1,0 +1,47 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P1-9",
+  "modules": [
+    "dropletutils-emptydrops"
+  ],
+  "image_candidate": null,
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "full_regression": true,
+  "notes": [
+    "Annotation only, all raw counts retained. Mandatory explicit lower,FDR and provenance.",
+    "23 CLI refusals and seven independent count/BH replay anchors; engine dependency missing is a blocked scientific result.",
+    "Production must verify retain equality and globally-zero feature mapping against locked1.32.0.",
+    "Baseline packages only (ReactomePA, celldex/SingleR, DropletUtils, org.*): run in the baseline lane image or omicstat-r:2026.10.4; no annotation candidate exists."
+  ],
+  "checks": [
+    [
+      "Rscript",
+      "skills/dropletutils-emptydrops/tests/test_contracts.R"
+    ],
+    [
+      "Rscript",
+      "skills/dropletutils-emptydrops/tests/run_smoke_test.R"
+    ],
+    [
+      "Rscript",
+      "skills/_shared/tests/test_model_io.R"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ]
+  ]
+}

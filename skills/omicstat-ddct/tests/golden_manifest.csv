@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+figures/target_01_delta_ct.figure_spec.json,91925ed8a6d83897f196d9ab6d5a9ca8c4b57c13bf4ced952c3ce049af84a051,container,
+figures/target_01_delta_ct.png,cf2ac1c0b857537b8ba728a0753063aec570b0ab4ed70c576c3d3f7d67c74c58,container,
+figures/target_01_fold_change.figure_spec.json,804112ea094c16b0d87f9450e04b12527773aaa6d2759b3022b6a9d8aec23f18,container,
+figures/target_01_fold_change.png,e209bdaccff76e4e2cc70802952b8a91103b1996ef08fff382214b66059c1b4c,container,
+tables/biological_units.csv,f8d3a10cfa82b8a6f9c01ba5128dbd9f9cdcfc6c939e046e7e0eb1ddf6ad99e5,container,
+tables/summary.csv,476adb356cb7863f670c4029e92ca13d90a7b1a5b1f3e67870b26be971a8615a,container,

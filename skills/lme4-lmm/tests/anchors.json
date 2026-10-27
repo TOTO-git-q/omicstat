@@ -1,0 +1,52 @@
+[
+  {
+    "metric": "sleepstudy intercept",
+    "expected": 251.405,
+    "tolerance": 0.001,
+    "source": "https://lme4.github.io/lme4/reference/lmer.html",
+    "scope": "module",
+    "id": "lme4-lmm-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "sleepstudy Days",
+    "expected": 10.467,
+    "tolerance": 0.001,
+    "source": "https://lme4.github.io/lme4/reference/lmer.html",
+    "scope": "module",
+    "id": "lme4-lmm-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "intercept variance",
+    "expected": 612.1,
+    "tolerance": 0.02,
+    "source": "https://lme4.github.io/lme4/reference/lmer.html",
+    "scope": "module",
+    "id": "lme4-lmm-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "slope variance",
+    "expected": 35.07,
+    "tolerance": 0.02,
+    "source": "https://lme4.github.io/lme4/reference/lmer.html",
+    "scope": "module",
+    "id": "lme4-lmm-04",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "residual variance",
+    "expected": 654.94,
+    "tolerance": 0.02,
+    "source": "https://lme4.github.io/lme4/reference/lmer.html",
+    "scope": "module",
+    "id": "lme4-lmm-05",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

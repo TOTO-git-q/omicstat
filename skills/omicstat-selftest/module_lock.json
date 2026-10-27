@@ -3,9 +3,9 @@
   "module": "omicstat-selftest",
   "module_version": "0.1.0",
   "files": {
-    "skills/omicstat-selftest/scripts/omicstat_selftest_core.R": "180d2e92d3030c002ee829c7364db1e90cff8c6bb8539883d89b9416af48ff81",
-    "skills/omicstat-selftest/scripts/omicstat_selftest_qc.R": "e28030b88d2ae05c6d44d63086b9cf617a17d2fd0db3d0a86653d914e539be1e",
-    "skills/omicstat-selftest/scripts/omicstat_selftest_report.R": "9ad772e95245c9e4de25977211e44d6629064f3adbe58fb8da7a833e8a99ccbc",
+    "skills/omicstat-selftest/scripts/omicstat_selftest_core.R": "977fa5046198a316b3fb137667707c02026c80bb3468dc889af78f49a3711237",
+    "skills/omicstat-selftest/scripts/omicstat_selftest_qc.R": "1717568f833d156dc36cfb097d6a12f099f7046d6eebc2db19f239c480a1589a",
+    "skills/omicstat-selftest/scripts/omicstat_selftest_report.R": "b6c4e0b622a83f49b8e3116a03938553972fea0c4f58fecbc169dc49f4768787",
     "skills/omicstat-selftest/scripts/run_omicstat_selftest.R": "58378424a2eac4ede331bf39e3d0f390f9779d6d4dba53ff959d108105c4d5e9",
     "skills/omicstat-selftest/scripts/calls_registry.json": "834d07a731f797c0595716a7a48ea9c24920c3edcd9523e80802f3d44fe61593",
     "skills/omicstat-selftest/SKILL.md": "d63c048a9952fb01798964236563e64b36384a06a81d7a09bb508c114ded4833",
@@ -14,7 +14,7 @@
     "skills/omicstat-selftest/references/qc-rules.md": "3f3663aed61a99d20d75beeb0536e8b249890e55bdb0678d5791882492f926bc",
     "skills/omicstat-selftest/references/reporting-templates.md": "2c05f5c7d4a6597640c91221965f7dfcc9c53a767741f2c6f02b2d695a980545",
     "skills/omicstat-selftest/references/troubleshooting.md": "1ebacd9b6da0a620ac3510682282eaf1772ae154a5a16ae730d77ecefa781f7c",
-    "skills/omicstat-selftest/tests/run_smoke_test.R": "7bb451e4683749742a35cf25a52bc77a39588df7cd3af1d3935c4260fa2e9d85",
+    "skills/omicstat-selftest/tests/run_smoke_test.R": "ed00a30fd1ab3552f4628d1fa2ce1200c7ec5378e29780e77ceecbe9d2e8d245",
     "skills/omicstat-selftest/tests/golden_manifest.csv": "9e1a708bf4b63a6a3944b9c242f2648b3754d081a5b92a901e5c1af5ef93f336"
   },
   "packages": {},
@@ -23,7 +23,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

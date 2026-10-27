@@ -48,6 +48,10 @@ SPEC <- os_arg_spec(
     os_flag("gene-annotation", "path", must_exist = TRUE, help = "csv/tsv with columns feature_id and symbol (display symbols)"),
     os_flag("top-n", "int", default = 50L, range = c(2, 500), help = "features in the top heatmap"),
     os_flag("label-n", "int", default = 10L, range = c(0, 50), help = "labelled features per direction in volcano and MA plots"),
+    os_flag("selected-features", "string", help = "Optional comma-separated predeclared feature IDs for actual normalized sample points"),
+    os_flag("selection-reason", "string", requires = "selected-features", help = "Required rationale for the optional selected-feature display; no genome-wide performance claim"),
+    os_flag("subject-col", "string", requires = "selected-features", help = "Optional actual biological-subject metadata for deduplicated descriptive n; does not change the model design"),
+    os_flag("pair-col", "string", requires = "selected-features", help = "Optional actual pair IDs; no connecting lines without explicit pairing"),
     os_flag("seed", "int", default = DW_DEFAULT_SEED, help = "random seed (recorded; the Wald pipeline itself is deterministic)"),
     os_flag("journal", "enum", default = "nature", values = DW_JOURNALS, help = "figure preset")),
   exclusive = list(c("counts", "from-run")))
@@ -59,6 +63,8 @@ if (isTRUE(args$help)) {
 }
 if (is.null(args$counts) && is.null(args[["from-run"]])) stop("OS_MISSING_PARAMETER: give --counts with --samples, or --from-run.", call. = FALSE)
 if (!is.null(args$counts) && is.null(args$samples)) stop("OS_MISSING_PARAMETER: --counts needs --samples.", call. = FALSE)
+if (!is.null(args[["selected-features"]]) && (is.null(args[["selection-reason"]]) || !nzchar(trimws(args[["selection-reason"]]))))
+  stop("OS_MISSING_PARAMETER: --selected-features needs --selection-reason.", call. = FALSE)
 canon_argv <- os_canonical_argv(SPEC, args)   # before any flag is post-processed
 args$covariates <- if (!is.null(args$covariates)) trimws(strsplit(args$covariates, ",", fixed = TRUE)[[1]]) else character(0)
 if (args$condition %in% args$covariates) stop("OS_CONFLICTING_PARAMETERS: the condition column cannot also be a covariate.", call. = FALSE)
@@ -121,6 +127,7 @@ n_symbol_missing <- if (is.null(symbols)) 0L else sum(!nzchar(ft$symbol))
 lv <- sort(unique(as.character(st[[args$condition]])), method = "radix")
 cr <- os_colours_for(lv, family = "group", registry = colour_reg, reference = args$reference)
 rend <- os_engine_capture(deseq2_wald_render(r, ft, args, outdir, cr$registry, disp), "render", elog)
+if (!is.null(rend$colour_registry)) cr$registry <- rend$colour_registry
 
 # ---- 8. QC ------------------------------------------------------------------
 qc <- os_engine_capture({

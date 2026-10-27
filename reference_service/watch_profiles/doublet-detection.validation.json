@@ -1,0 +1,77 @@
+{
+ "profile": "doublet-detection",
+ "checked_on": "2026-10-10",
+ "live_hit_count": 1202,
+ "attempted_fulltexts": 12,
+ "outcomes": {
+  "forget:excluded_by_regex": 2,
+  "screened": 10
+ },
+ "screened": 10,
+ "licence_clean_share": 1.0,
+ "requests": 11,
+ "feasible": true,
+ "screened_papers": [
+  {
+   "pmid": "42789715",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42781866",
+   "journal": "eLife",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42768223",
+   "journal": "Nature Immunology",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42736301",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42726846",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42715308",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42830327",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42686758",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42685214",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42685196",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  }
+ ],
+ "criteria": "hits > 0, >= 3 screened of the first 12, licence-clean share >= 0.5"
+}

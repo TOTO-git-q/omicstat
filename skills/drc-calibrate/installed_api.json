@@ -1,0 +1,39 @@
+{
+  "status": "candidate_not_production_lock",
+  "image": "omicstat-r-exp:20261015",
+  "packages": {
+    "stats": "4.6.1"
+  },
+  "calls": {
+    "stats::coef": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "coef.drc": {
+          "object": "",
+          "...": ""
+        },
+        "coef.lme": {
+          "object": "",
+          "augFrame": "FALSE",
+          "level": "Q",
+          "data": "",
+          "which": "1:ncol(data)",
+          "FUN": "mean",
+          "omitGroupingFactor": "TRUE",
+          "subset": "NULL",
+          "...": ""
+        }
+      }
+    },
+    "stats::sd": {
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE"
+      },
+      "dispatch_methods": []
+    }
+  }
+}

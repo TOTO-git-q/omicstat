@@ -1,0 +1,68 @@
+{
+  "schema": "omicstat.port-adaptations.v1",
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/sample-size/",
+  "original_manifest": "PORT_SOURCE.json",
+  "original_manifest_preserved": true,
+  "archive_commit": "01af8fc93318a79364071c4a245b45b0ccb69b4e",
+  "source_manifest_reverified": true,
+  "native_execution_in_this_workspace": false,
+  "changes": [
+    {
+      "scope": "adapter",
+      "change": "Explicit laboratory biological-unit, technical-repeat, direction, a-priori and effect-source declarations; original formulas remain package calls."
+    },
+    {
+      "scope": "reporting",
+      "change": "Independent OmicStat CLI, typed candidate handoff, module finish, QC prefix SSZ, shared planning-grid figure; no MedStat runtime or clinical report theme."
+    },
+    {
+      "scope": "search_boundary",
+      "change": "Original bisection returns 3 when power_at(2) already reaches the target. Check the valid lower endpoint first and set it to max(2,floor(1/ratio)+1) so each arm has at least two units under the existing n2=ceiling(n1*ratio) rule without excluding valid rounded allocations. At ratio 0.25 the lower n1 is 5, not 8. Preserve the native power function, 200000 upper bound and rounding. Native boundary and ordinary oracle tests remain required."
+    },
+    {
+      "scope": "metadata",
+      "change": "Unequal-mean engine identifies actual pwr.t2n.test; laboratory wording replaces IRB-specific prose; the six scientific guard conditions are unchanged."
+    },
+    {
+      "scope": "typed_native_errors",
+      "change": "Preserve existing OS codes; propagate a non-OS native numerical exception with its original message as OS_CONVERGENCE. No fallback is run."
+    },
+    {
+      "scope": "argument_names",
+      "change": "Name the copied ES.h arguments p1 and p2 explicitly for the existing OmicStat call-site guard; values and native function are unchanged."
+    },
+    {
+      "scope": "historical_provenance",
+      "change": "Label the copied MedStat historical audit text as original-source provenance; it is not evidence of a newly executed OmicStat validation."
+    }
+  ],
+  "excluded_original_verified_cases": [
+    "SS-V3_prop_ni: noninferiority is outside the five authorized laboratory designs"
+  ],
+  "adapted_files": {
+    "scripts/omicstat_samplesize_core.R": {
+      "sha256": "efbcc6e2a2bcde0510d5dee6e5185a0b09aa1fad4d9ff3f81dcfe1b30025b751",
+      "bytes": 15757
+    },
+    "scripts/omicstat_samplesize_qc.R": {
+      "sha256": "3f49ce5169873198f9d4695e6a0907d6b72918bfb3fb773a077c2fe3d0a27bc5",
+      "bytes": 922
+    },
+    "scripts/omicstat_samplesize_report.R": {
+      "sha256": "3ff534e27632a45d735c7f58f49338d09e7516cda8173bf6bb8f53e6215ab818",
+      "bytes": 2457
+    },
+    "scripts/run_omicstat_samplesize.R": {
+      "sha256": "8ddc271bdd831215d05a16f70671f0a20d9f03beec86f8727b08c6678f2f4563",
+      "bytes": 6287
+    },
+    "scripts/samplesize_ported_engines.R": {
+      "sha256": "820feff3630fa7783f9b03001c167993ab70e12a31767be08d9dc3dd15787592",
+      "bytes": 14718
+    },
+    "scripts/samplesize_ported_qc.R": {
+      "sha256": "1b8e879bc3f74fc398e28f23d61641c42c8703d7e80452c15e42a267689cd7dd",
+      "bytes": 4239
+    }
+  }
+}

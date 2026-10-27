@@ -87,7 +87,7 @@
           "function_default": "None",
           "reference": "https://scanpy.readthedocs.io/en/1.12.4/generated/scanpy.tl.rank_genes_groups.html",
           "s0_extraction_key": "method",
-          "source": "user_optional_default",
+          "source": "user_optional_default (scanpy 1.12.4 documented default t-test); owner adjudication 2026-10-11 keep; official clustering tutorial uses wilcoxon",
           "value": "t-test"
         },
         "n_genes": {

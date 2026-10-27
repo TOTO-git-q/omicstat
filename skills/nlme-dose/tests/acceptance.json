@@ -1,0 +1,58 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--unit-col",
+      "subject",
+      "--technical-policy",
+      "reject",
+      "--input",
+      "{fixtures}/repeated.csv",
+      "--response",
+      "response",
+      "--dose",
+      "dose",
+      "--subject",
+      "subject",
+      "--random-parameter",
+      "logED50",
+      "--direction",
+      "increasing",
+      "--method",
+      "ML",
+      "--residual",
+      "independent",
+      "--singular-tol",
+      ".0001",
+      "--max-iter",
+      "100",
+      "--dose-unit",
+      "ng/mL",
+      "--ci-level",
+      ".95",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{root}"
+    ]
+  },
+  "figure_policy": "required"
+}

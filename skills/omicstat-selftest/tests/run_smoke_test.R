@@ -38,8 +38,13 @@ check(h$status == 0 && all(c("--outdir", "--strict", "--seed", "--journal", "--h
 docs <- paste(c(readLines(file.path(module_dir, "SKILL.md"), warn = FALSE),
                 unlist(lapply(list.files(file.path(module_dir, "references"), full.names = TRUE), readLines, warn = FALSE))),
               collapse = "\n")
-undoc <- Filter(function(f) !grepl(f, docs, fixed = TRUE), setdiff(flags, "--help"))
+common_docs <- paste(readLines(file.path(module_dir, "..", "_shared", "docs", "STUDY_CONTRACT.md"), warn = FALSE), collapse = "\n")
+undocumented <- function(fs) Filter(function(f) !grepl(f, docs, fixed = TRUE) &&
+  !(f %in% c("--study-contract", "--study-contract-sha256") && grepl(f, common_docs, fixed = TRUE)), setdiff(fs, "--help"))
+undoc <- undocumented(flags)
 check(!length(undoc), paste("every flag documented", paste(undoc, collapse = " ")))
+check(identical(undocumented(c("--study-contract", "--study-contract-sha256", "--undocumented-audit-probe")),
+                "--undocumented-audit-probe"), "shared documentation covers only the two declared common flags")
 # Default consistency (--help vs calls_registry.json vs SKILL.md/references):
 # tools/check_defaults.py. Needs python3; reported as SKIP without it.
 py <- Sys.which("python3")

@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Offline reference registry v2",
+  "type": "object",
+  "required": [
+    "schema",
+    "entries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "omicstat.refdata.v2"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "title": "Reference payload",
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "source_url",
+          "version",
+          "sha256",
+          "licence",
+          "licence_status",
+          "redistribution",
+          "species",
+          "consumers",
+          "fetch",
+          "tier",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "annotation",
+              "geneset",
+              "reference_profiles",
+              "model",
+              "coordinates",
+              "ortholog",
+              "cellchat_db"
+            ]
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "licence": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "licence_status": {
+            "enum": [
+              "verified",
+              "pending_review"
+            ]
+          },
+          "redistribution": {
+            "enum": [
+              "bundled_in_image",
+              "build_cached",
+              "user_supplied"
+            ]
+          },
+          "species": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "consumers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "fetch": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "Explicit fetch recipe",
+            "type": "object",
+            "required": [
+              "script",
+              "args"
+            ],
+            "properties": {
+              "script": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "args": {
+                "type": "array"
+              }
+            },
+            "additionalProperties": true
+          },
+          "tier": {
+            "enum": [
+              "container",
+              "dev"
+            ]
+          },
+          "status": {
+            "enum": [
+              "ready",
+              "pending"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

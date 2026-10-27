@@ -1,0 +1,94 @@
+{
+  "schema": "omicstat.dedicated-candidate-index.v1",
+  "source_parent": "d2f81474905626eb78c7f7bad23b13252b25aa92",
+  "authority": {
+    "plan_commit": "3dc656ae362d6b59e138be6b8e82fc40c8087d9a",
+    "decision_path": "docs/plans/DECISION_2026-10-17_round3.md",
+    "decision_git_blob": "4d183c6927534fe818f1e9d16b780b22844f55cf",
+    "section": 4
+  },
+  "families": [
+    "annotation",
+    "epigenomics",
+    "py-activity",
+    "py-velocity",
+    "sc-activity",
+    "sc-qc",
+    "spatial"
+  ],
+  "candidates": [
+    {
+      "family": "annotation",
+      "lane": "R",
+      "path": "env/candidates/20261016-annotation",
+      "metadata": {
+        "path": "env/candidates/20261016-annotation/source-metadata.json",
+        "sha256": "2e616937479c66f8b22d75b23c81722c5a9656984992ee8bdbef3e2fd8a2efbe"
+      }
+    },
+    {
+      "family": "sc-qc",
+      "lane": "R",
+      "path": "env/candidates/20261016-sc-qc",
+      "metadata": {
+        "path": "env/candidates/20261016-sc-qc/source-metadata.json",
+        "sha256": "cc3466da2c6064146593c69c9d93b0a89879fcf0e982fb78d0f1be1a83adec01"
+      }
+    },
+    {
+      "family": "py-activity",
+      "lane": "py",
+      "path": "env/py/candidates/20261016-py-activity",
+      "metadata": {
+        "path": "env/py/candidates/20261016-py-activity/source-metadata.json",
+        "sha256": "3c941266ae6fcbc035ded0bdb2b28a5becfb9a2fc63e63520f7e9287a076275b"
+      }
+    },
+    {
+      "family": "py-velocity",
+      "lane": "py",
+      "path": "env/py/candidates/20261016-py-velocity",
+      "metadata": {
+        "path": "env/py/candidates/20261016-py-velocity/source-metadata.json",
+        "sha256": "a5bdf93e2fe5d8d47c6c04a56e6d7be4ea70a6b4aeaa17a4b3165ba381fbca4f"
+      }
+    },
+    {
+      "family": "sc-activity",
+      "lane": "R",
+      "path": "env/candidates/20261016-sc-activity",
+      "metadata": {
+        "path": "env/candidates/20261016-sc-activity/source-metadata.json",
+        "sha256": "baa0332ab310a3e3954e0e8fe8244c4f1b96ddfafd07c958f882821293eae9be"
+      }
+    },
+    {
+      "family": "spatial",
+      "lane": "R",
+      "path": "env/candidates/20261016-spatial",
+      "metadata": {
+        "path": "env/candidates/20261016-spatial/source-metadata.json",
+        "sha256": "8e829fa30c4c4a6b7e31dc220d61950cd3e75511e078b050b8cee902686ea70d"
+      }
+    },
+    {
+      "family": "spatial",
+      "lane": "py",
+      "path": "env/py/candidates/20261016-py-spatial",
+      "metadata": {
+        "path": "env/py/candidates/20261016-py-spatial/source-metadata.json",
+        "sha256": "028363cebad6fbf9f6e0a031297af47579cfc2dbdb960728dd0e2ad52d5bfbe8"
+      }
+    },
+    {
+      "family": "epigenomics",
+      "lane": "R",
+      "path": "env/candidates/20261016-epigenomics",
+      "metadata": {
+        "path": "env/candidates/20261016-epigenomics/source-metadata.json",
+        "sha256": "69f55e2a3219804b713c41438929a3b6cb14a76b0f2676ad58ff5be09dddd320"
+      }
+    }
+  ],
+  "scope": "Metadata and compatibility only. Does not authorize or attest installation, archive cache, image build or native acceptance."
+}

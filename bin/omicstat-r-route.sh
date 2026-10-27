@@ -2,7 +2,7 @@
 # omicstat R router for Linux/macOS (the Windows counterpart is omicstat-r-route.ps1).
 #   omicstat-r-route.sh <Tool> [args...]      e.g.  omicstat-r-route.sh Rscript run_x.R --help
 #   Tool "python" (Python/scverse lane, ENGINEERING_PLAN 10.6) selects the omicstat-py
-#   image (OMICSTAT_PY_IMAGE, else python_lane image:image_tag of env/omicstat-env.json)
+#   image (OMICSTAT_PY_IMAGE, else python_lane image:image_tag of env/r-env.json)
 #   or, natively, the "python" interpreter named in native-env.json; every other Tool
 #   is an R tool and uses omicstat-r exactly as before.
 #   - OMICSTAT_R_NATIVE=1  -> the isolated native environment created by
@@ -11,7 +11,7 @@
 #     it names, env/native/Rprofile.omicstat, so no other library is visible);
 #     OMICSTAT_CONTAINER / OMICSTAT_IMAGE_ID are unset for the run
 #   - otherwise            -> docker run --rm --network none <image> <Tool> [args...], where <image> is
-#     OMICSTAT_IMAGE or image:image_tag from env/omicstat-env.json (never a floating tag)
+#     OMICSTAT_IMAGE or image:image_tag from env/r-env.json (never a floating tag)
 #   - the package is mounted at /omicstat, the working directory at /ws, TMPDIR at its
 #     own path; path arguments under those roots are translated
 #   - every OMICSTAT_* variable except OMICSTAT_R_* and OMICSTAT_NATIVE_ENV (host-only)
@@ -59,9 +59,9 @@ if [ "${OMICSTAT_R_NATIVE:-}" = "1" ]; then
 fi
 
 if [ "$is_py" = "1" ]; then
-    image="${OMICSTAT_PY_IMAGE:-$(python3 -c "import json,sys; c=json.load(open(sys.argv[1]))['python_lane']; print(c['image']+':'+c['image_tag'])" "$suite/env/omicstat-env.json")}"
+    image="${OMICSTAT_PY_IMAGE:-$(python3 -c "import json,sys; c=json.load(open(sys.argv[1])); print(c['image']+':'+c['image_tag'])" "$suite/env/py/py-env.json")}"
 else
-    image="${OMICSTAT_IMAGE:-$(python3 -c "import json,sys; c=json.load(open(sys.argv[1])); print(c['image']+':'+c['image_tag'])" "$suite/env/omicstat-env.json")}"
+    image="${OMICSTAT_IMAGE:-$(python3 -c "import json,sys; c=json.load(open(sys.argv[1])); print(c['image']+':'+c['image_tag'])" "$suite/env/r-env.json")}"
 fi
 
 cwd="$(pwd -P)"

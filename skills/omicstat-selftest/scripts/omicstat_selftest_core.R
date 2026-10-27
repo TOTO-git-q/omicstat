@@ -1,7 +1,7 @@
 # omicstat_selftest_core.R -- core layer of module omicstat-selftest. ASCII only on purpose.
 #
 # This module is an ENVIRONMENT SELF-TEST, not an analysis. The core layer
-# (1) reads the environment pins (env/omicstat-env.json), (2) probes the
+# (1) reads the environment pins (env/r-env.json), (2) probes the
 # running R session with base R only, so the probe works even when the figure
 # packages are missing, and (3) builds the deterministic synthetic feature
 # table that the report layer pushes through the shared table/figure/handoff
@@ -25,9 +25,9 @@ ST_FONT <- "Liberation Sans"
 # Locate and read the environment pins. The checkout copy is authoritative;
 # inside the container OMICSTAT_ENV_DIR points at the copy baked into the image.
 st_read_env_config <- function(suite_root) {
-  cands <- c(file.path(suite_root, "env", "omicstat-env.json"))
+  cands <- c(file.path(suite_root, "env", "r-env.json"))
   env_dir <- Sys.getenv("OMICSTAT_ENV_DIR")
-  if (nzchar(env_dir)) cands <- c(cands, file.path(env_dir, "omicstat-env.json"))
+  if (nzchar(env_dir)) cands <- c(cands, file.path(env_dir, "r-env.json"))
   for (p in cands) {
     if (file.exists(p) && requireNamespace("jsonlite", quietly = TRUE)) {
       cfg <- tryCatch(jsonlite::fromJSON(p, simplifyVector = TRUE), error = function(e) NULL)

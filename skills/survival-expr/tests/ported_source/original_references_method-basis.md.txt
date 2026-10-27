@@ -1,0 +1,17 @@
+# Method basis
+
+Primary upstream: Terry Therneau, A package for survival analysis in R, January12 2026.
+https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf
+Printed page44 cfit1 coefficients/HR intervals/n/events and page47 PH statistics are the
+independent anchors; half-last-printed-place absolute tolerance, exact integer counts.
+The original 228-row lung dataset has 14 incomplete cfit1 rows. The fixture explicitly
+logs those exclusions before constructing the input; the analysis itself refuses missing data.
+AGE_PROXY is age and is not RNA expression. Its purpose is to validate the numerical engine
+through the mandatory typed expression boundary, not provide biological gene evidence.
+
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/coxph.html
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/cox.zph.html
+https://stat.ethz.ch/R-manual/R-devel/library/survival/html/survfit.formula.html
+All Cox covariates and scientific choices are explicit. Continuous Cox and unadjusted KM answer
+different questions. No data-optimized cutoff p-value is reported as confirmatory inference.
+Actual installed API capture uses survival3.8.3 in isolated R4.5.0; locked exec remains pending.

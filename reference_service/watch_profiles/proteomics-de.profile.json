@@ -1,0 +1,10 @@
+{
+ "module": "proteomics-de",
+ "epmc_query": "(METHODS:\"MSstats\" OR METHODS:\"proDA\" OR METHODS:\"DEqMS\" OR METHODS:\"msqrob2\" OR METHODS:\"DEP package\") AND (METHODS:\"proteomics\" OR METHODS:\"mass spectrometry\")",
+ "meta": false,
+ "signal_regex": "\\b(?:MSstats(?:TMT)?|proDA|DEqMS|msqrob2?)\\b|\\bDEP\\b[^.;]{0,80}(?:package|proteom|differential|enrichment)|(?:proteom\\w*|differential enrichment)[^.;]{0,80}\\bDEP\\b",
+ "signal_require_regex": "\\b(?:MSstats|proDA|DEqMS|msqrob2?|DEP)\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile chosen by the owner (2026-10-10): accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

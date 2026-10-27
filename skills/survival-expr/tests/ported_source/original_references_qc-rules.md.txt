@@ -1,0 +1,4 @@
+# QC
+
+SRV-01 candidate blocker; SRV-02 exploratory cutoff blocker; SRV-03 PH diagnostic warning; SRV-04 unadjusted family warning.
+Input violations use registered OS codes and never silently drop rows, genes or events.

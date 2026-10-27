@@ -50,7 +50,7 @@ reg <- attr(e, "os_meta")$colour_registry
 save(e, "11_umap_celltype")
 save(os_embedding(emb, "celltype", label = FALSE, colour_registry = reg, family = "celltype"), "12_umap_legend")
 set.seed(11); vals <- ifelse(emb$celltype %in% c("CD14 Mono", "FCGR3A Mono"), rgamma(nrow(emb), 3, 1.2), rbinom(nrow(emb), 1, 0.05) * runif(nrow(emb), 0, 1.5))
-save(os_feature_embedding(emb, vals, "LYZ"), "13_feature_umap")
+save(os_feature_embedding(emb, stats::setNames(vals, emb$cell), "LYZ"), "13_feature_umap")
 save(os_marker_dotplot(mk$md, mk$gene_order, mk$cluster_order, mean_definition = "log_mean"), "14_marker_dotplot", width = "onehalf")
 pr <- os_proportion_bar(fx_proportions(emb), colour_registry = reg)
 save(pr, "15_proportion_bar")
@@ -125,3 +125,7 @@ save(os_embedding(mi, "celltype", label_xy = mi_labels), "32_embedding_island_la
 
 # Opt-in halo label style (white halo rings + label spacing); default figures unchanged.
 save(os_embedding(emb, "celltype", colour_registry = reg, family = "celltype", label_style = "halo"), "33_umap_label_halo")
+
+# P0-5: eight opt-in builders; pending evidence is retained in every spec.
+source(file.path(shared,"tests","fixtures","fig_fixtures_standardization.R"))
+for (nm in names(fx_standardization_builders())) save(fx_standardization_builders()[[nm]](), paste0("P05_",nm))

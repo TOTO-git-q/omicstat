@@ -6,7 +6,7 @@
     "skills/scater-qc/scripts/run_scater_qc.R": "ff0a9dafd1e0f74b8f275d3e628631e13058539c0cd0c2132959b3cb2b408a23",
     "skills/scater-qc/scripts/scater_qc_core.R": "9eb11d8adfd03e6a5fee0a4528f6539a2c5163c0170a913f7e05ad491c5eb601",
     "skills/scater-qc/scripts/scater_qc_qc.R": "ab6509fe7a60ee6db1c33e4edf18bf3f7d114a06757f103f45bced75c9764927",
-    "skills/scater-qc/scripts/scater_qc_report.R": "7af31dc70ed3b6c83a43b5bc0c142fd39ab3c8ef38914a4fddec7f254898af5c",
+    "skills/scater-qc/scripts/scater_qc_report.R": "e36b0576afeb905ea7ee96ce3262ec573b99d32fccbb8822e38981cbe18da475",
     "skills/scater-qc/scripts/calls_registry.json": "4286290a138654bf3d312f0198dedc95c208f6603463f836de0c6bb893b369e7",
     "skills/scater-qc/SKILL.md": "e3e76ec5e5429186d6163149a2ebaab3a3a15b5dc12bf2857b98d289d294a6bb",
     "skills/scater-qc/references/method-basis.md": "0a755b954acf4550f3c5083ebd437b2d9c464031452a82fe7a970fac6573cf41",
@@ -15,9 +15,11 @@
     "skills/scater-qc/references/qc-rules.md": "14da0b3b6f91b05a7390940bacc5cf78ff1e2d522ff0967155565869d5402f12",
     "skills/scater-qc/references/reporting-templates.md": "a27f02cbc367371712f888426d2d6b4cc6a794787afd762f17288bf5add61970",
     "skills/scater-qc/references/troubleshooting.md": "66dd51f74a6fdaa6c815deefc902353af3a8e6f62f797376b4824df0658a9df2",
+    "skills/scater-qc/tests/anchors.R": "98eb68b9e6f970ed66e51313cdf7a6084232ceb55b0fc806c999b953c99adc50",
     "skills/scater-qc/tests/fixtures/make_zeisel.R": "80f5409825de4dcbe44afd776456ec0a45114199538821ce2c5577b132c3aa5d",
+    "skills/scater-qc/tests/prepare_acceptance.R": "8134d7579bc79de0497f754f7ca3404b88fc215fe9caa20472ce63248b31d489",
     "skills/scater-qc/tests/run_smoke_test.R": "fd1a44e4f07ddfe94e752f0fd5d101e65a16faf3e6b2be0695d46d4b41052c66",
-    "skills/scater-qc/tests/golden_manifest.csv": "13eea3d00f6921ffc49e1d9483fca147123f358879defb3a6156ce2f08531ac9",
+    "skills/scater-qc/tests/golden_manifest.csv": "c3bb394633fc58e0a0449895ed52065c3bfa7805887de1cf52073a0517b43821",
     "acceptance/exemplars/scater-qc/PACK.md": "afc960576b1f083e0f56ae4b1ff3a92e24fef87b9f6ce1dc3ea2e92ac8de14d8"
   },
   "packages": {
@@ -29,7 +31,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

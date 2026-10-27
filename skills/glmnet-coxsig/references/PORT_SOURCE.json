@@ -1,0 +1,124 @@
+{
+  "schema": "omicstat.source-port.v1",
+  "work_package": "P0-13 B4",
+  "target_module": "glmnet-coxsig",
+  "source_repository": "TOTO-git-q/medstat",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_read_only": true,
+  "runtime_dependency_on_MedStat": false,
+  "patient_rows_read_or_downloaded": false,
+  "native_R_execution_here": false,
+  "native_defaults_captured_here": false,
+  "files": [
+    {
+      "path": "skills/cpm-pipeline/SKILL.md",
+      "bytes": 27484,
+      "sha256": "ae99ddf3d02713b5f4cf4f49f3982cb5cb4fb334b6c66013caef485a417a40de",
+      "git_blob": "cbe54088f9b975b6677a68d22ee0d321358ea04e",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/SKILL.md",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/references/method-notes.md",
+      "bytes": 6392,
+      "sha256": "582779132861af3848175edb4801622e5727b14f27ab40b9df395a0767c60dee",
+      "git_blob": "69f1857f70eb58c2e057105a74a778c85fd4bc22",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/references/method-notes.md",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/references/qc-rules.md",
+      "bytes": 8566,
+      "sha256": "cb978d0cb5f34500be35af25b48f0284808b8d244e28d6ff8485caf91d30feb6",
+      "git_blob": "60790394976317c5ce238c4d2f4ce157893de582",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/references/qc-rules.md",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/scripts/calibration_binned.R",
+      "bytes": 4315,
+      "sha256": "998c54b5c9c1323b659e7f21538113fced1e54454091434534489efdcf9f357a",
+      "git_blob": "c602912ea36ed61d1d27c67dcf34b479e231761f",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/scripts/calibration_binned.R",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/scripts/cpm_core.R",
+      "bytes": 66939,
+      "sha256": "821680911f0ccea3da21f985edccd12c29ce6bf0b522b606818a5f3d9fe4c441",
+      "git_blob": "4ff7249919a150e5254f3e1fa18d6a6e48508726",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/scripts/cpm_core.R",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/scripts/cpm_qc.R",
+      "bytes": 18376,
+      "sha256": "86fe6abc8c08a77ae0d4b03c53735d847df0ea6957a2e3eda08a9721e8fe04d7",
+      "git_blob": "838fb99ed62226e5229ad931dafe76453023f6a2",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/scripts/cpm_qc.R",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/tests/run_smoke_test.R",
+      "bytes": 86444,
+      "sha256": "3c297d8d41a10450a69fafc23e7b6a4ec53386e161546dabc8f2b3b0925b241c",
+      "git_blob": "91388e113094c633a2468479ad6c91aba60d27ee",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/tests/run_smoke_test.R",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/tests/test_calibration_binned.R",
+      "bytes": 1085,
+      "sha256": "a3f33c38483037fe26261baf4412f22ec33f6456d938a919a125dcb9fea5e934",
+      "git_blob": "8535c69d6ae6c0290640cfc14d68069c535a26db",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/tests/test_calibration_binned.R",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/tests/verified/REFERENCE.md",
+      "bytes": 872,
+      "sha256": "f3a74763997b59b06b863eeb60f581a2d423a470be098c6f8c80fc7634bbef84",
+      "git_blob": "fb899bd59ac70441ead72bf08276f8f97e8c9a46",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/tests/verified/REFERENCE.md",
+      "read_scope": "code/documentation only; no patient data object"
+    },
+    {
+      "path": "skills/cpm-pipeline/tests/verified/run_verified.R",
+      "bytes": 3276,
+      "sha256": "da0dcefc43150739036ec41723000c975b4bf6acf332837eb1a22ecb1da3e32a",
+      "git_blob": "08d656669ba315575bddc6548d93f311e5767b0e",
+      "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/tests/verified/run_verified.R",
+      "read_scope": "code/documentation only; no patient data object"
+    }
+  ],
+  "copied_function_count": 11,
+  "copied_function_manifest": "references/COPIED_FUNCTIONS.json",
+  "source_line_endings": "Whole original raw bytes Git-verified; selected before functions normalized to LF with independent digests",
+  "plan": {
+    "repository": "TOTO-git-q/omic-MCP",
+    "commit": "3dc656ae362d6b59e138be6b8e82fc40c8087d9a",
+    "path": "docs/plans/WORK_PACKAGE_P0-13_port_from_medstat.md",
+    "git_blob": "ded3646cb567b29a49e0cc21c5b5a04c644097f7"
+  },
+  "included": [
+    "Riley prior-assumption sample-size wrapper",
+    "Source Harrell optimism sampling/arithmetic with explicit penalized-fit callbacks",
+    "Measured calibration slope and frozen-prediction external evaluation",
+    "Censoring-aware aggregate KM calibration and applicable source QC"
+  ],
+  "excluded": [
+    "Logistic clinical-only endpoint",
+    "Unpenalized rms refit substitution",
+    "DCA/nomogram/HL/suppression-variable modules",
+    "MedStat figure themes, report layouts and environment"
+  ],
+  "scientific_adaptations": [
+    "Existing penalized glmnet coefficients remain the prediction model; source CPM instead refits selected variables without penalty.",
+    "Each bootstrap repeats the declared original penalized CV/fit and inherits original biological folds for duplicate draws.",
+    "Actual training/test calibration slopes replace the source unpenalized apparent-slope identity1.",
+    "Training-only offset-Breslow baseline at fixed original coefficients supplies absolute risk; external prediction never updates it.",
+    "Source percentile optimism construction retained with explicit uncertainty limitation, not a coverage guarantee.",
+    "Only source CPM-01/04/05/06 QC formulas apply; worked-example precision claims removed and O/E identified correctly."
+  ],
+  "native_status": "pending exact R4.6.1 lineage and independent candidate installation; pmsampsize1.1.3 official source archive has been acquired and inspected"
+}

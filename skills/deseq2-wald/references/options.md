@@ -37,3 +37,16 @@ observed literature values are context, never automatic defaults.
 arguments, package versions and context-only extraction rows have no CLI option;
 they remain unmapped rather than being assigned an unrelated flag. Conditional
 requirements and refused inference options retain the behavior in parameters.md.
+
+## Optional selected-feature source views
+
+- `--selected-features`: comma-separated actual feature IDs present in the retained normalized-count matrix. No default selection is invented.
+- `--selection-reason`: required when features are selected; retained in the figure spec. Selected examples are not genome-wide performance evidence.
+- `--subject-col`: optional actual biological-subject column, used only to deduplicate descriptive n. Sample points are not averaged or treated as extra subjects.
+- `--pair-col`: optional true pair-ID column; no lines are drawn without it. More than one sample per pair/group must be explicitly aggregated upstream.
+
+The model design, Wald P/q values and shrinkage are unchanged by these reporting
+options. Subject/pair labels do not automatically adjust the fitted model. The
+display uses actual DESeq2 normalized counts, retains linear-scale zeros, exports
+all sample values and group counts, and includes only the existing model results.
+It never adds a naive sample-level significance test.

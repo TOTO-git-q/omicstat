@@ -111,6 +111,43 @@ os_limma_qc <- function(ft, model, a, prefix, n_input, extra = list()) {
 # with its metadata. The EList carries the precision weights that camera /
 # roast need; the expression_matrix is the explicit weight-free conversion
 # for GSVA-type consumers (state records that weights were dropped).
+os_limma_figure_context <- function(res, ft, model, a, module) {
+  zero <- is.null(a[["min-effect-fc"]]) || a[["min-effect-fc"]] == 1
+  native_margin <- res$fit$treat.lfc %||% 0
+  expected_margin <- if (zero) 0 else log2(a[["min-effect-fc"]])
+  if (!isTRUE(all.equal(as.numeric(native_margin), expected_margin, tolerance = 0)))
+    stop("OS_INVALID_RESULT: limma test margin disagrees with the actual fitted object.", call. = FALSE)
+  matched <- match(ft$feature_id, rownames(res$fit$coefficients))
+  table_matched <- match(ft$feature_id, rownames(res$tt))
+  tested_p <- res$fit$p.value[, model$coef]
+  if (anyNA(matched) || anyNA(table_matched) || anyDuplicated(ft$feature_id) ||
+      !isTRUE(all.equal(ft$pvalue, unname(tested_p[matched]), check.attributes = FALSE, tolerance = 0)) ||
+      !isTRUE(all.equal(ft$padj, res$tt$adj.P.Val[table_matched], check.attributes = FALSE, tolerance = 0)) ||
+      !isTRUE(all.equal(ft$log2fc, unname(res$fit$coefficients[matched, model$coef]), check.attributes = FALSE, tolerance = 0)) ||
+      !setequal(ft$feature_id[is.finite(ft$padj)], rownames(res$fit$coefficients)[is.finite(tested_p)]))
+    stop("OS_INVALID_RESULT: limma displayed P values/family differ from the complete native coefficient test.", call. = FALSE)
+  hypothesis <- if (zero) "zero_effect" else "minimum_effect"
+  margin <- if (zero) 0 else log2(a[["min-effect-fc"]])
+  backend_version <- as.character(utils::packageVersion("limma"))
+  test_id <- paste(module, model$coef, if (zero) "eBayes" else "TREAT", sep = ":")
+  list(
+    test = os_de_test_contract(hypothesis, margin, hypothesis, margin,
+      p_value_source = "Current fitted limma object; full topTable P.Value and adj.P.Val",
+      test_id = test_id, prespecified = TRUE,
+      test_method = if (zero) "limma moderated t" else "limma TREAT", model_id = model$formula,
+      software = "limma", software_version = backend_version, prior = "empirical-Bayes variance moderation", shrinkage = "no display coefficient shrinkage"),
+    effect = list(plotted_estimator = "limma coefficient estimate", tested_estimator = "limma coefficient estimate",
+      tested_effect_col = "log2fc", software = "limma", software_version = backend_version,
+      shrinkage = "none for plotted logFC", prior = "empirical-Bayes variance moderation",
+      contrast = list(numerator = a$target, reference = a$reference, expanded_control = "unknown"),
+      sample_counts = list(reference_biological_units = model$n_reference, target_biological_units = model$n_target,
+        reference_observations = model$n_reference_observations, target_observations = model$n_target_observations),
+      independent_unit = if (is.null(model$block)) "declared biological sample" else "declared correlated biological unit"),
+    family_id = test_id, family_size = sum(is.finite(ft$padj)),
+    family_source_ids = ft$feature_id[is.finite(ft$padj)], display_threshold = a[["display-lfc-filter"]] %||% 0,
+    abundance_unit = if (module == "limma-voom" || identical(a$mode, "rna")) "log2 counts per million" else "log2 normalized intensity")
+ }
+
 os_limma_write <- function(res, mat, model, a, module, version, prefix, outdir, module_dir, argv, entry, inputs, upstream = NULL, extra_qc = list()) {
   for (d in c("tables", "figures", "results", "draft", "objects")) dir.create(file.path(outdir, d), recursive = TRUE, showWarnings = FALSE)
   ft <- os_limma_feature(res$tt, model, a, module, res$annotation)
@@ -133,12 +170,17 @@ os_limma_write <- function(res, mat, model, a, module, version, prefix, outdir, 
   }
   label <- sprintf("%s vs %s", a$target, a$reference)
   figs <- list()
-  volcano <- os_limma_volcano(ft, a$alpha, a[["label-n"]], label, module, a$journal)
+  # Only report the hypothesis of the already fitted object. No P-value or
+  # shrinkage calculation is performed in this reporting adapter.
+  figure_context <- os_limma_figure_context(res, ft, model, a, module)
+  volcano <- os_limma_volcano(ft, a$alpha, a[["label-n"]], label, module, a$journal, figure_context)
+  utils::write.csv(attr(volcano, "os_meta")$data$decision_table,
+    file.path(outdir, "tables", "de_selection.csv"), row.names = FALSE, na = "NA")
   if (min(attr(volcano, "os_meta")$counts$up, attr(volcano, "os_meta")$counts$down) < a[["label-n"]])
     attr(volcano, "os_meta")$caption <- sub("The ([0-9]+) most significant features per direction", "Up to \\1 most significant features per direction", attr(volcano, "os_meta")$caption)
   figs$volcano <- os_finalize_figure(volcano,
                                      file.path(outdir, "figures", "volcano"), journal = a$journal, root = outdir)
-  figs$md <- os_finalize_figure(os_limma_md(ft, a$alpha, a[["label-n"]], label, module, a$journal),
+  figs$md <- os_finalize_figure(os_limma_md(ft, a$alpha, a[["label-n"]], label, module, a$journal, figure_context),
                                 file.path(outdir, "figures", "md"), journal = a$journal, root = outdir)
   if (!is.null(res$probe_map)) utils::write.csv(res$probe_map, file.path(outdir, "tables", "probe_mapping.csv"), row.names = FALSE)
   if (isTRUE(res$sa)) figs$sa_diagnostic <- os_finalize_figure(os_limma_sa(res$fit, a$platform, a$journal), file.path(outdir, "figures", "sa_diagnostic"), journal = a$journal, root = outdir)

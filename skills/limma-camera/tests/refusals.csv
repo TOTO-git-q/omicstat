@@ -1,0 +1,5 @@
+case,argv,expected_code,stage
+undirectional-1,"[""--ranked-list"", ""{fixtures}/rank.csv"", ""--rank-metric"", ""other"", ""--metric-name"", ""LRT"", ""--direction"", ""target"", ""--question"", ""competitive""]",OS_RANKING_UNDIRECTIONAL,scientific_input
+undirectional-2,"[""--ranked-list"", ""{fixtures}/rank.csv"", ""--rank-metric"", ""other"", ""--metric-name"", ""F"", ""--direction"", ""target"", ""--question"", ""competitive""]",OS_RANKING_UNDIRECTIONAL,scientific_input
+undirectional-3,"[""--ranked-list"", ""{fixtures}/rank.csv"", ""--rank-metric"", ""other"", ""--metric-name"", ""F statistic"", ""--direction"", ""target"", ""--question"", ""competitive""]",OS_RANKING_UNDIRECTIONAL,scientific_input
+undirectional-4,"[""--ranked-list"", ""{fixtures}/rank.csv"", ""--rank-metric"", ""other"", ""--metric-name"", ""likelihood ratio"", ""--direction"", ""target"", ""--question"", ""competitive""]",OS_RANKING_UNDIRECTIONAL,scientific_input

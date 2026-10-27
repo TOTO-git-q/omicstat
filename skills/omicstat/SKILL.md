@@ -29,6 +29,7 @@ This is the MCP execution registry. It lists only entry files that exist. The
 reference service's one method_map contains all 38 analysis targets, with an
 availability status; a literature target is not automatically executable.
 
+<!-- registry:begin -->
 | The question sounds like... | -> Module | CLI entry script |
 |---|---|---|
 | Test the R environment and output contract | `omicstat-selftest` | `scripts/run_omicstat_selftest.R` |
@@ -74,7 +75,23 @@ availability status; a literature target is not automatically executable.
 | Normalized bulk expression: exploratory coexpression modules and traits | `wgcna-network` | `scripts/run_wgcna_network.R` |
 | Somatic MAF: mutation landscape, TMB and cooccurrence | `maftools-landscape` | `scripts/run_maftools_landscape.R` |
 | Human bulk TPM: explicit offline infiltration method | `immunedeconv-infiltration` | `scripts/run_immunedeconv_infiltration.R` |
-
+| Independent biological-unit dose-response estimation | `drc-dose` | `scripts/run_drc_dose.R` |
+| Gaussian linear mixed-effects models for repeated subjects | `lme4-lmm` | `scripts/run_lme4_lmm.R` |
+| Declared marginal contrasts from a verified lme4 candidate model | `emmeans-contrast` | `scripts/run_emmeans_contrast.R` |
+| Two-group protein abundance with probabilistic dropout | `proda-diff` | `scripts/run_proda_diff.R` |
+| MSstats protein abundance contrasts with declared biological replication | `msstats-diff` | `scripts/run_msstats_diff.R` |
+| Standard-curve inverse prediction and dilution titers | `drc-calibrate` | `scripts/run_drc_calibrate.R` |
+| Repeated-subject nonlinear dose-response models | `nlme-dose` | `scripts/run_nlme_dose.R` |
+| Prespecified biological-unit tests, source advisory diagnostics, or independent fixed-grid distribution effects | `omicstat-groupcompare` | `scripts/run_omicstat_groupcompare.R` |
+| Normalize qPCR Ct per biological unit and reference gene using prespecified delta-delta-Ct | `omicstat-ddct` | `scripts/run_omicstat_ddct.R` |
+| Associate prespecified genes with right-censored survival using expression handoff, continuous Cox and declared KM cutoffs | `survival-expr` | `scripts/run_survival_expr.R` |
+| Train a prespecified expression LASSO-Cox signature and validate frozen coefficients with time-dependent ROC | `glmnet-coxsig` | `scripts/run_glmnet_coxsig.R` |
+| Run Reactome over-representation with explicit eligible Entrez background and frozen offline annotation | `reactomepa-ora` | `scripts/run_reactomepa_ora.R` |
+| Identify nonempty droplets with emptyDrops from unfiltered counts and explicit FDR/lower | `dropletutils-emptydrops` | `scripts/run_dropletutils_emptydrops.R` |
+| A priori independent biological-unit sample sizes or event requirements for five explicit laboratory designs | `omicstat-samplesize` | `scripts/run_omicstat_samplesize.R` |
+| Explicit-design method or rater agreement: Bland-Altman limits and CI, ICC form, Cohen or Fleiss kappa | `omicstat-agreement` | `scripts/run_omicstat_agreement.R` |
+| Independent-unit biomarker discrimination, explicit-direction ROC/AUC, exploratory cutoffs and adjusted paired DeLong comparisons | `proc-roc` | `scripts/run_proc_roc.R` |
+<!-- registry:end -->
 ## 2. Disambiguation trees
 
 ### Bulk expression and gene sets

@@ -1,0 +1,33 @@
+{
+  "caption": "Supplied time-dependent ROC curves. Censoring estimator, cohort and frozen-model validation must be recorded by the analysis; no AUC is invented by the renderer.",
+  "counts": [],
+  "data": [],
+  "encodings": [],
+  "evidence_refs": [
+    {
+      "family": "time_dependent_roc",
+      "reason": "Per-family independent visual review is incomplete",
+      "records": [],
+      "required_independent_records": 20,
+      "status": "pending"
+    }
+  ],
+  "figure_type": "time_dependent_roc",
+  "files": {
+    "png": {
+      "path": "time_roc.png",
+      "sha256": "77a41eef4b6cfd48a80d23ad7789fe31b7e9f932d85b8cc802a9ac74da542a0a"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 75,
+  "journal": "nature",
+  "notes": {
+    "time_unit": "months"
+  },
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": [],
+  "width_mm": 89
+}

@@ -90,3 +90,9 @@ L1 defaults are from WGCNA 1.74 Rd usage. The tutorial is L2 and older; its nume
 
 ## S2 printed-table clarification
 The container replay reproduces all printed label counts 0–18: 99/609/460/409/316/312/221/211/157/123/106/100/94/91/77/76/58/47/34. Eighteen means assigned modules, excluding grey. No version difference or tolerance adjustment was needed.
+
+## S1 adjudication addendum 2026-10-11 (owner decision, lock 7 record)
+
+| Item | Decision |
+|---|---|
+| P-1 network type (D-WG5) | `--network-type` is **user-required** (no default) from module 1.1.0. Evidence: signed 9 / not reported 14 of 23 (no corpus majority); the package author recommends a signed variety and calls the unsigned default of `blockwiseModules` a historical compatibility choice (Langfelder, "Signed or unsigned: which network type is preferable?", 2018-11-25). The locked function default `"unsigned"` is still recorded as `function_default` in the registry. Signedness changes the adjacency, the modules and the useful `--power` range, so it is now chosen before the power diagnostics are read. The anchor replay passes `--network-type unsigned` explicitly, so the golden files are byte-identical. |

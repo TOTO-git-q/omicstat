@@ -1,0 +1,83 @@
+{
+ "profile": "proteomics-de",
+ "checked_on": "2026-10-10",
+ "live_hit_count": 185,
+ "attempted_fulltexts": 12,
+ "outcomes": {
+  "screened": 11,
+  "metadata_only:rights_restricted": 1
+ },
+ "screened": 11,
+ "licence_clean_share": 0.92,
+ "requests": 13,
+ "feasible": true,
+ "screened_papers": [
+  {
+   "pmid": "42758812",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42566549",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42555728",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42637773",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42481480",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42467771",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42418565",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42409844",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42343371",
+   "journal": "Genome Biology",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42310446",
+   "journal": "Nature",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42247518",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  }
+ ],
+ "criteria": "hits > 0, >= 3 screened of the first 12, licence-clean share >= 0.5"
+}

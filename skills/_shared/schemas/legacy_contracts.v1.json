@@ -1,0 +1,221 @@
+{
+  "schema": "omicstat.legacy-contracts.v1",
+  "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+  "calls_registries": {
+    "skills/scanpy-qc/scripts/calls_registry.json": {
+      "sha256": "67bf4c38bf5cb0ab80cf03b8e5443cca094d97f9ebabe3779da334d5b5664492",
+      "module": "scanpy-qc",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/seurat-qc/scripts/calls_registry.json": {
+      "sha256": "b8d37a407ed855fa0e4c481818575ddd4c990549fb0025fcce7cde016734b9ad",
+      "module": "seurat-qc",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/cellchat-communication/scripts/calls_registry.json": {
+      "sha256": "edfcbce6fe3d80e947651f46222651478cca21f33b4fef1fc6e574df5aefcf5a",
+      "module": "cellchat-communication",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scanvi-annotate/scripts/calls_registry.json": {
+      "sha256": "e74d53ac0d71e0d7ed56aff2cd2168897f0327a912a4429318328dcb80c62271",
+      "module": "scanvi-annotate",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/deseq2-wald/scripts/calls_registry.json": {
+      "sha256": "371fc45e7c945a2bacb402509e2cda5b11cfb5fefd6d91cc4e669d524f3176a3",
+      "module": "deseq2-wald",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/clusterprofiler-ora/scripts/calls_registry.json": {
+      "sha256": "5e687b2a4f5c3b2ae90efefc0b1c3b5aa3ffe5dc740312ab3360ac84f47b53cd",
+      "module": "clusterprofiler-ora",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/seurat-markers/scripts/calls_registry.json": {
+      "sha256": "234fd54801cab419724d1111820f89b5694b39f303d18e364189f11fb903b856",
+      "module": "seurat-markers",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/limma-camera/scripts/calls_registry.json": {
+      "sha256": "4e6e2ec17ffa92b821a60977042b97f1db3cc73c36bede11f134055d20f238ae",
+      "module": "limma-camera",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/fgsea-prerank/scripts/calls_registry.json": {
+      "sha256": "d17e617910d4b9c6b28dcc6895358bae9ec5b3ef31d97e3a959526a9ed4ce2ba",
+      "module": "fgsea-prerank",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/immunedeconv-infiltration/scripts/calls_registry.json": {
+      "sha256": "385f9ad144fc7304301d70bf7418045b9821d78359be0e8f7b1b756382714d86",
+      "module": "immunedeconv-infiltration",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/seurat-integrate/scripts/calls_registry.json": {
+      "sha256": "df4a8733626d3e13ee1665a266e403002c2fd6ab6b10172291b049780d4accb6",
+      "module": "seurat-integrate",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/deseq2-qc/scripts/calls_registry.json": {
+      "sha256": "16d9f292665a0c86e6ac8503d3d1ece2b68210cc8b8407ea0b0ffba84f4cd303",
+      "module": "deseq2-qc",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/wgcna-network/scripts/calls_registry.json": {
+      "sha256": "b923c4c0866c492c9f90893fe4d70b218e433577c388a4f077ea64f6ce0bd904",
+      "module": "wgcna-network",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/singler-annotate/scripts/calls_registry.json": {
+      "sha256": "8ec28559ebf56c577ef806a29e692ee30a4db5fa1bdc6f79339707b70b22ca06",
+      "module": "singler-annotate",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/edger-qlf/scripts/calls_registry.json": {
+      "sha256": "f2f2ab7ea705c182123e4c1e6edc770989297aba70738f42a7a378646d474143",
+      "module": "edger-qlf",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/deseq2-lrt/scripts/calls_registry.json": {
+      "sha256": "003636c6e18350615cdf181b749089802fa4873d85b088792f8c7bfd294b011a",
+      "module": "deseq2-lrt",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/limma-array/scripts/calls_registry.json": {
+      "sha256": "ebf6bf5979a5a52d9a2c748f7fbb4cc2eb587249833b546c22dba694ad13683c",
+      "module": "limma-array",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scran-cluster/scripts/calls_registry.json": {
+      "sha256": "c2f3ee42b54fb2d487016f5e364882b55f9159776b184db06099855a8d4ec6ab",
+      "module": "scran-cluster",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/aucell-score/scripts/calls_registry.json": {
+      "sha256": "e602d2a7fb8327f47291a772f2eb3aeac574d602c1504c7ced137d9ca60da456",
+      "module": "aucell-score",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/sva-batch/scripts/calls_registry.json": {
+      "sha256": "e7647f9fe7c572b6c4ad55a1c4bfc509a485b85477d8d7b4791722135e259784",
+      "module": "sva-batch",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scran-markers/scripts/calls_registry.json": {
+      "sha256": "e47530539c7766743777635ce8d4746a9489f1ee7df5d40a85757f70ad3c18d6",
+      "module": "scran-markers",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scanpy-cluster/scripts/calls_registry.json": {
+      "sha256": "3c3ee47e3c868eceffb2264db16749be1dfbeb756e54cc915f90736fa1b2f6e3",
+      "module": "scanpy-cluster",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/clusterprofiler-compare/scripts/calls_registry.json": {
+      "sha256": "c83d16c73808ad0200b8955ad1f5ab54e286922642aefe7e56d47b1f1fdae5aa",
+      "module": "clusterprofiler-compare",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/seurat-modulescore/scripts/calls_registry.json": {
+      "sha256": "cd37ca161202a98816d6b8aab744ac537ddb329bc8bc5c2299c24a9a9d2aab65",
+      "module": "seurat-modulescore",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/batchelor-integrate/scripts/calls_registry.json": {
+      "sha256": "18e379557d0b1221755249dabdb806abe2a73cda34bbcde1c35d02ea7d4ffe12",
+      "module": "batchelor-integrate",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/seurat-cluster/scripts/calls_registry.json": {
+      "sha256": "1210461eb0687d6f5f8eecc2901c5de1dc410ba23269f3189101bd67b3afd436",
+      "module": "seurat-cluster",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/clusterprofiler-gsea/scripts/calls_registry.json": {
+      "sha256": "1506ec0ae216320f2fe20e9fb873d3dd01491087dd465464431ec2cb392bde1c",
+      "module": "clusterprofiler-gsea",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/gsva-score/scripts/calls_registry.json": {
+      "sha256": "2dfd5b041f4d0f207ad1516a7a1a13b8e4b2f1e9a65e351e0be5b26c9522a918",
+      "module": "gsva-score",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/limma-voom/scripts/calls_registry.json": {
+      "sha256": "d9dd36fab031be22b9b75a56c8d05bbd17033795981bc7a11898305893d1cd63",
+      "module": "limma-voom",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/muscat-pseudobulk/scripts/calls_registry.json": {
+      "sha256": "6bf0e0d12a3607e861b7dd2ced9495358b1d20713f6d3f4cb4beb4589e2216f1",
+      "module": "muscat-pseudobulk",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scanpy-purity/scripts/calls_registry.json": {
+      "sha256": "421fe6b7946c987b48150f29cbd362ed609c7042d9cddf4a0560340a0d280a5c",
+      "module": "scanpy-purity",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/omicstat-selftest-py/scripts/calls_registry.json": {
+      "sha256": "bbec316a49ad1c15a3bd7fd276535e823ba548fcbb0d3b9a6f7bb2c4ffd2bb3b",
+      "module": "omicstat-selftest-py",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/limma-dupcor/scripts/calls_registry.json": {
+      "sha256": "ef410ba9cdb3329928809d6d0aea6bd3bcec12088b7c62cd360e3fc2710f5018",
+      "module": "limma-dupcor",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/monocle3-trajectory/scripts/calls_registry.json": {
+      "sha256": "6d4e166b0966aee912574e8c55929c9c17599a58e1d94ffc15dfa820ff8e50d3",
+      "module": "monocle3-trajectory",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/omicstat-selftest/scripts/calls_registry.json": {
+      "sha256": "834d07a731f797c0595716a7a48ea9c24920c3edcd9523e80802f3d44fe61593",
+      "module": "omicstat-selftest",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/maftools-landscape/scripts/calls_registry.json": {
+      "sha256": "634c9166788be4d974c65a4e58281edfa5f17f34a948bc335d429a4ece7cd6f3",
+      "module": "maftools-landscape",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scanpy-annotate/scripts/calls_registry.json": {
+      "sha256": "469b4c66c64c98b0a20c33a0030dd403cf1bddba864ca2041c2d8141a90a2085",
+      "module": "scanpy-annotate",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/speckle-propeller/scripts/calls_registry.json": {
+      "sha256": "f1d1394eccefb196d2d69e47815ceb3cfa360ec30de88a6d2100ec53836649ff",
+      "module": "speckle-propeller",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scater-qc/scripts/calls_registry.json": {
+      "sha256": "4286290a138654bf3d312f0198dedc95c208f6603463f836de0c6bb893b369e7",
+      "module": "scater-qc",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scanpy-markers/scripts/calls_registry.json": {
+      "sha256": "a730f1906d393e90c9099eb79bacfaedcb710f060c027c82489bcd95012c2372",
+      "module": "scanpy-markers",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scvi-integrate/scripts/calls_registry.json": {
+      "sha256": "4428e528b74b4434335fc7901a6b3acb3924bc373a69cfc9fd4e0d87a8a1a377",
+      "module": "scvi-integrate",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/scanpy-ingest/scripts/calls_registry.json": {
+      "sha256": "2d47a23fd9e1864cfd15b9ff2a6837665166b106a6ba090cf694724460668854",
+      "module": "scanpy-ingest",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    },
+    "skills/slingshot-trajectory/scripts/calls_registry.json": {
+      "sha256": "952672cceb6d059dcf85941527c90e4ca40b38ffb4b611fe3cd5c74ba1c8699c",
+      "module": "slingshot-trajectory",
+      "reason": "sealed legacy registry; strict normalization deferred until owner unfreezes seals"
+    }
+  }
+}

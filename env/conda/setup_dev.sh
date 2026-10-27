@@ -7,7 +7,7 @@
 #
 # The dev tier is NOT the gold standard. Versions: R 4.5 + Bioconductor 3.22
 # (bioconda) versus R 4.6.1 + Bioconductor 3.23 in the locked image
-# (env/omicstat-env.json). Golden baselines written in this tier carry its
+# (env/r-env.json). Golden baselines written in this tier carry its
 # environment signature and are regenerated in the container at S5
 # (ENGINEERING_PLAN 3.5: a signature mismatch SKIPs the byte check).
 #

@@ -5,7 +5,7 @@ options(error = function() { cat(geterrmessage(), file = stderr()); quit(status 
 .shared <- file.path(.suite, "skills", "_shared", "scripts")
 for (f in c("args.R", "engine_run.R", "module_kit.R", "effect_table.R", "handoff.R", "fig_all.R", "m4_io.R", "fig_mod_m4.R")) source(file.path(.shared, f))
 for (f in c("wgcna_network_core.R", "wgcna_network_report.R", "wgcna_network_qc.R")) source(file.path(dirname(.this), f))
-SPEC <- os_arg_spec(usage = "Rscript run_wgcna_network.R --input <csv>|--from-run <dir> --power <number> --input-scale <scale> --samples <csv> --traits <columns> --outdir <dir>",
+SPEC <- os_arg_spec(usage = "Rscript run_wgcna_network.R --input <csv>|--from-run <dir> --power <number> --network-type <type> --input-scale <scale> --samples <csv> --traits <columns> --outdir <dir>",
  description = "Exploratory WGCNA modules and Pearson trait associations.", flags = list(
  os_flag("gsg-weights","string",help="Native goodSamplesGenes weights; JSON value or RDS wrapper; omitted uses locked value"),
  os_flag("gsg-min-fraction","string",help="Native goodSamplesGenes minFraction; JSON value or RDS wrapper; omitted uses locked value"),
@@ -62,7 +62,7 @@ SPEC <- os_arg_spec(usage = "Rscript run_wgcna_network.R --input <csv>|--from-ru
  os_flag("power", "num", required = TRUE, range = c(0.01, 100), help = "scientifically selected soft power; tutorial example 6"),
  os_flag("power-reason", "string", required = TRUE, help = "power selection rationale"),
  os_flag("powers", "string", default = "1,2,3,4,5,6,7,8,9,10,12,14,16,18,20", help = "diagnostic power vector"),
- os_flag("network-type", "enum", default = "unsigned", values = c("unsigned", "signed", "signed hybrid"), help = "network adjacency type"),
+ os_flag("network-type", "enum", required = TRUE, values = c("unsigned", "signed", "signed hybrid"), help = "network adjacency type; package author recommends signed or signed hybrid, unsigned is kept for compatibility with the liver tutorial"),
  os_flag("tom-type", "enum", default = "signed", values = c("signed", "unsigned"), help = "TOM type; tutorial example unsigned"),
  os_flag("min-module-size", "int", range = c(2, 100000), help = "minimum genes per module; absent resolves locked min(20,nGenes/2); tutorial example 30"),
  os_flag("deep-split", "int", default = 2L, range = c(0, 4), help = "dynamic tree split sensitivity"),

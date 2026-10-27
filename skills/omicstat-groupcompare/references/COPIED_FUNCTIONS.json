@@ -1,0 +1,170 @@
+[
+  {
+    "source_path": "skills/descriptive-distribution/scripts/descdist_core.R",
+    "target_path": "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+    "reference_path": "skills/omicstat-groupcompare/tests/ported_source/descdist_core.R",
+    "original_extracted_normalized_lf_sha256": "16c96ed6ab0665f48ba2cbe9dc848ec8a604c15ae2c46b196048b591b4feba1d",
+    "functions": [
+      {
+        "name": "dd_fail",
+        "original_normalized_lf_sha256": "061ae5df534accb3470d8a0559974339719fa7a17c75bba497b34118fc4830ee",
+        "adapted_function_sha256": "6fef0ab8142d292167324650a7e0ea57f3e00f317edbe2819587d2b06333866f",
+        "unchanged": false
+      },
+      {
+        "name": "dd_names",
+        "original_normalized_lf_sha256": "dfea49e22cf82c852ac77f1f476522cc1cb20368d275a7fe8eea9fabc94252d1",
+        "adapted_function_sha256": "ac6986a80176a8cfe9da96783235da7435f5c90c04b2a27e6a1ff573adc6c503",
+        "unchanged": false
+      },
+      {
+        "name": "dd_string",
+        "original_normalized_lf_sha256": "b6ed604dd2314a197a643ae164b864908d2d8eed4f593ebb95756e2540e0c79a",
+        "adapted_function_sha256": "60d4dac7040c4e5e21f8cc2747717c2c7fe9935041d021005c42f717df8e2089",
+        "unchanged": false
+      },
+      {
+        "name": "dd_numeric_vector",
+        "original_normalized_lf_sha256": "db823230d87d1c5735738f66c11513d23df697064006544a6217f0c3e4500973",
+        "adapted_function_sha256": "f64ea8a216139be960451e80676f07d5f5b0bf9e4eaf08eb91493dbffdac8bf5",
+        "unchanged": false
+      },
+      {
+        "name": "dd_integer",
+        "original_normalized_lf_sha256": "4c418a9d32537866e315ef5c62f75727a3ece1308642c0acdac638fd65b5fc02",
+        "adapted_function_sha256": "826bb622eec0c845859b35edeeba8d909b7f7c20f47340202778d392912903fb",
+        "unchanged": false
+      },
+      {
+        "name": "dd_validate_spec",
+        "original_normalized_lf_sha256": "e774daabd723cd3631b0e9ab70f040acb3718fc0ae003ffc8fe7c5dc119d3a99",
+        "adapted_function_sha256": "4901cb9677771d1c03b7f123894289cdfb69c549d805b54b3f5e5e1d50136a8b",
+        "unchanged": false
+      },
+      {
+        "name": "dd_cell_key",
+        "original_normalized_lf_sha256": "49f3376479eb7d8ce5e4b471c09cc8533a57622a7160f6569144e27bfece8795",
+        "adapted_function_sha256": "49f3376479eb7d8ce5e4b471c09cc8533a57622a7160f6569144e27bfece8795",
+        "unchanged": true
+      },
+      {
+        "name": "dd_num_column",
+        "original_normalized_lf_sha256": "05482a12b56991ef877018f3503dc1600cdc36a0293a85910b719b5895785626",
+        "adapted_function_sha256": "508f11236ffc741f728590f93e62b77493d73ac495cec0e2e36001cb2b628f35",
+        "unchanged": false
+      },
+      {
+        "name": "dd_prepare",
+        "original_normalized_lf_sha256": "d613eadfbd816a72a88672c5f4852673fb58478772383c41244b80af467ce380",
+        "adapted_function_sha256": "1b76b328158ff7513833f0b21972e60a42876a46b4f63223da5d984f18a01ac6",
+        "unchanged": false
+      },
+      {
+        "name": "dd_weighted",
+        "original_normalized_lf_sha256": "1f6c3e775359c19494f5e2cf69e328be980a193bec3796594cfd0d2a28b0b2ba",
+        "adapted_function_sha256": "ea6b830cd10e96eb37eed875aa313edbcbb01200ffc396b839eec63801e96e7a",
+        "unchanged": false
+      },
+      {
+        "name": "dd_groups",
+        "original_normalized_lf_sha256": "9f8a79f4a78a431938bd69221a9703551ff25cc35d743724f2ff0cda0646dad0",
+        "adapted_function_sha256": "7ab405ed1146bb1e7589ddb86c877cc7b298176c0145cd5418e8b757c3165c29",
+        "unchanged": false
+      },
+      {
+        "name": "dd_empty_metrics",
+        "original_normalized_lf_sha256": "6b0293810c923927b1b6cbdf242bbd23f67eca5083f1f1596f9edadac99a19b4",
+        "adapted_function_sha256": "6b0293810c923927b1b6cbdf242bbd23f67eca5083f1f1596f9edadac99a19b4",
+        "unchanged": true
+      },
+      {
+        "name": "dd_metrics",
+        "original_normalized_lf_sha256": "494677e50e4d53805a364e495904916fe20e2ce973110b1e5b7507305c8b15d0",
+        "adapted_function_sha256": "2a920cc12744b1e284691437598764f148cf23a198375afc311668d23be60515",
+        "unchanged": false
+      },
+      {
+        "name": "dd_bootstrap",
+        "original_normalized_lf_sha256": "637d5fefbdd9f0a5af0c546e7f88098ef1c58707ed51b125d360a125369f0e56",
+        "adapted_function_sha256": "96e2b8e329c3917b81a37ae840195971db93dc21dbc3021413464e690fffabb2",
+        "unchanged": false
+      },
+      {
+        "name": "dd_findings",
+        "original_normalized_lf_sha256": "e3e8f7386cb3f9d847a0a5bb4d4a38edad47e3788b22562532ef56e624dc1af3",
+        "adapted_function_sha256": "89793937140e7f099f3810c5317494627297685ec5632a2410474dd37f6e9c91",
+        "unchanged": false
+      },
+      {
+        "name": "dd_analyze",
+        "original_normalized_lf_sha256": "39abc59c90cbd9af57e76f694b7e34d37416423883820b05b07d7cd09fc85586",
+        "adapted_function_sha256": "07fdb144fc7c9a6d22ace6be390f68bc44e8b3d09b54dc26270c52e01741e857",
+        "unchanged": false
+      }
+    ]
+  },
+  {
+    "source_path": "skills/_shared/scripts/var_typing.R",
+    "target_path": "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+    "reference_path": "skills/omicstat-groupcompare/tests/ported_source/var_typing.R",
+    "original_extracted_normalized_lf_sha256": "382b654b1b7e284885fd9ef7983a77c36e6fa42045feab5722903c204017bb1b",
+    "functions": [
+      {
+        "name": "skewness_g1",
+        "original_normalized_lf_sha256": "042b414620736d88c2c1fa2ec8eb87ddb2ec55908fcf9f2895fcbbbe07d4ab8d",
+        "adapted_function_sha256": "042b414620736d88c2c1fa2ec8eb87ddb2ec55908fcf9f2895fcbbbe07d4ab8d",
+        "unchanged": true
+      },
+      {
+        "name": "filliben_r",
+        "original_normalized_lf_sha256": "85d895678ea5f27057c8f772bf6bb26c03e2be7114910d37318e1d6835d1300d",
+        "adapted_function_sha256": "9e6f9278e31f6bebac00f49ac007c3be9667f27b9aa3428eb20d46c703abd835",
+        "unchanged": false
+      },
+      {
+        "name": "shapiro_p_ref",
+        "original_normalized_lf_sha256": "68d295054f708de52502787330743ad201a383f77ac383ad2ef9704ed2984408",
+        "adapted_function_sha256": "45d2a33b698f647cc0d9d7712fe267fb2481c66051e55aa9c8f5ea9e3e627987",
+        "unchanged": false
+      },
+      {
+        "name": ".auto_var_type",
+        "original_normalized_lf_sha256": "89a3a1a2d8f69b6c424fa7343b1a12c21718c0de9a8c3010af97ada054baa782",
+        "adapted_function_sha256": "5fc74baa7985980ed76ec1a18f369e85ba79755dfecf379833b98837cc0cdbff",
+        "unchanged": false
+      },
+      {
+        "name": "classify_variable",
+        "original_normalized_lf_sha256": "ffdd80d31450f4572a1f5d23a3c218cba8826fc1535afdae2d069049f6d30441",
+        "adapted_function_sha256": "108786f3c704bf10d8c4c1c88f10388628f7182c5329c315f8c5b2255a261982",
+        "unchanged": false
+      },
+      {
+        "name": "expected_cell_min",
+        "original_normalized_lf_sha256": "1cdadd267f079c2c6798b53f158a15d94b66ca12f042e8d155073a09e9d51227",
+        "adapted_function_sha256": "1cdadd267f079c2c6798b53f158a15d94b66ca12f042e8d155073a09e9d51227",
+        "unchanged": true
+      },
+      {
+        "name": "recommend_test",
+        "original_normalized_lf_sha256": "c9a6acef10cb342b00e8fb3a9cacca7cf55473dff87c1b4d8a745009ffeeda0f",
+        "adapted_function_sha256": "c9a6acef10cb342b00e8fb3a9cacca7cf55473dff87c1b4d8a745009ffeeda0f",
+        "unchanged": true
+      }
+    ]
+  },
+  {
+    "source_path": "skills/baseline-table/scripts/baseline_table.R",
+    "target_path": "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R",
+    "reference_path": "skills/omicstat-groupcompare/tests/ported_source/baseline_classify.R",
+    "original_extracted_normalized_lf_sha256": "513387cb8309fa4aeabc107353ee6d8ced2fefdfad769902b31ad3e72500572c",
+    "functions": [
+      {
+        "name": ".bt_classify_all",
+        "original_normalized_lf_sha256": "241d9f7973e90c0c22dac37ef7c58cf4dc1aee082f7a788b369a0891d3faf58a",
+        "adapted_function_sha256": "5dbc2b6d09cc33b2e59ca3d64cb3f472eb0f7b846386690609542cc5338fa519",
+        "unchanged": false
+      }
+    ]
+  }
+]

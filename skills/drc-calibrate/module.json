@@ -1,0 +1,194 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "drc-calibrate",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_drc_calibrate.R",
+  "version": "0.1.0",
+  "qc_prefix": "CAL",
+  "engine_packages": [
+    "drc"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "development_drc-calibrate",
+      "development_model_metadata"
+    ]
+  },
+  "figure_builders": [
+    "os_scope_figures"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 48,
+    "question": "Standard-curve inverse prediction and dilution titers"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Biological identity column for unknown samples; standards/blanks are assay controls",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--mode",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Assay analysis mode",
+      "type_label": "calibration|titer",
+      "role": "scientific"
+    },
+    {
+      "flag": "--model",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified standard or titer curve",
+      "type_label": "LL4|LL5",
+      "role": "scientific"
+    },
+    {
+      "flag": "--blank-policy",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit blank correction",
+      "type_label": "subtract-mean|none",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-cv",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Maximum technical CV percent",
+      "type_label": "num in [0.001, 10000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--lloq",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Validated lower quantification limit in well units"
+    },
+    {
+      "flag": "--uloq",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Validated upper quantification limit in well units"
+    },
+    {
+      "flag": "--titer-definition",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Titer threshold definition"
+    },
+    {
+      "flag": "--endpoint-response",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Corrected response endpoint"
+    },
+    {
+      "flag": "--input",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Input CSV",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--dose-unit",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Actual concentration unit or reciprocal dilution",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified confidence level",
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Actual validated study contract JSON",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Recorded reproducibility seed",
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "New or empty output directory",
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit candidate execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Replay resolved spec"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 46,
+    "discovery_profile": {
+      "module": "drc-calibrate",
+      "epmc_query": "METHODS:\"drc\" OR METHODS:\"calibration\"",
+      "meta": false,
+      "signal_regex": "(?:drc|calibration)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

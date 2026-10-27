@@ -22,9 +22,20 @@ library only. ASCII only.
 import json
 import os
 import re
+from pathlib import Path
 
 from .errors import OmicstatError
 from .module_kit import sha256_file
+
+def check_handoff_type(value):
+    """Validate against the shared registry, preserving legacy carrier semantics."""
+    registry = Path(__file__).resolve().parents[2] / "schemas" / "handoff_types.v1.json"
+    with registry.open(encoding="utf-8") as fh:
+        known = {record["id"] for record in json.load(fh)["types"]}
+    if not isinstance(value, str) or value not in known:
+        raise OmicstatError("OS_HANDOFF_TYPE_UNKNOWN", "unregistered handoff type %r." % value)
+    return value
+
 
 OS_HANDOFF_SCHEMA = "omicstat.handoff.v1"
 OS_ECOSYSTEMS = ("seurat", "bioconductor", "scverse", "neutral")
@@ -70,6 +81,8 @@ def write_handoff(run_dir, run_id, module, module_version, objects, contract_has
     type examples: "AnnData" (.h5ad), "feature_table", "colour_registry",
     "count_matrix", "batch_corrected_matrix". Returns the handoff.json path.
     """
+    from .study_contract import bound_hash
+    contract_hash = bound_hash(contract_hash)
     if ecosystem not in OS_ECOSYSTEMS:
         raise OmicstatError("OS_INVALID_PARAMETER", "ecosystem must be one of %s." % ", ".join(OS_ECOSYSTEMS))
     if str(run_id) == os.path.basename(os.path.normpath(run_dir)):
@@ -79,6 +92,7 @@ def write_handoff(run_dir, run_id, module, module_version, objects, contract_has
     objs = []
     for nm in sorted(objects, key=lambda s: s.encode("utf-8")):
         o = objects[nm]
+        check_handoff_type(o.get("type"))
         rel = _rel_under(run_dir, o["path"])
         if rel is None:
             raise OmicstatError("OS_INVALID_PARAMETER", "handoff object '%s' is outside the run directory." % nm)
@@ -96,6 +110,8 @@ def write_handoff(run_dir, run_id, module, module_version, objects, contract_has
 
 
 def read_handoff(from_run, expect=None, front_end_ecosystem=None, contract_hash=None):
+    from .study_contract import bound_hash
+    contract_hash = bound_hash(contract_hash)
     """Verify, then describe, the objects of an upstream run.
 
     expect: {object name: expected type}. front_end_ecosystem: for single-cell
@@ -135,6 +151,7 @@ def read_handoff(from_run, expect=None, front_end_ecosystem=None, contract_hash=
     for o in doc.get("objects") or []:
         if not isinstance(o, dict) or not isinstance(o.get("name"), str) or not o.get("name"):
             raise OmicstatError("OS_HANDOFF_MISMATCH", "invalid handoff object record.")
+        check_handoff_type(o.get("type"))
         nm = o["name"]
         if nm in out:
             raise OmicstatError("OS_HANDOFF_MISMATCH", "duplicate handoff object '%s'." % nm)

@@ -57,7 +57,7 @@ def build(module):
     for base in (directory, ROOT / 'skills/_shared/py/ospy', ROOT / 'skills/_shared/py/tests'):
         files.extend(p for p in base.rglob('*') if p.is_file() and p.name != 'module_lock.json'
                      and '__pycache__' not in p.parts and '.pytest_cache' not in p.parts)
-    files += [ROOT / p for p in ('env/omicstat-env.json', 'env/py/uv.lock', 'env/py_lock.txt',
+    files += [ROOT / p for p in ('env/py/py-env.json', 'env/py/uv.lock', 'env/py_lock.txt',
               'tools/check_calls.py', 'tools/seal_python.py', 'tools/capture_locked_defaults.py',
               'tools/make_module_lock.py', 'skills/_shared/scripts/render_figure_request.R')]
     files.extend(p for p in (ROOT / 'skills/_shared/scripts').glob('fig_*.R') if p.is_file())

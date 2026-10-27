@@ -103,7 +103,7 @@ def main(out):
             data={"emb": FR.frame(emb, types={"cluster": "factor"}, levels={"cluster": clusters})},
             args={"group_col": "cluster", "reduction": "UMAP", "label": True})
     req.add("umap_cd3e", "os_feature_embedding",
-            data={"emb": FR.frame({k: emb[k] for k in ("cell", "x", "y")}), "values": FR.vector(expr)},
+            data={"emb": FR.frame({k: emb[k] for k in ("cell", "x", "y")}), "values": FR.vector(expr, names=emb["cell"])},
             args={"feature": "CD3E", "reduction": "UMAP", "value_title": "log-normalised expression"})
     req.add("marker_heatmap", "os_heatmap", data={"mat": FR.matrix(mat, genes, clusters)},
             args={"value_title": "z-score", "scale_type": "diverging", "cluster_rows": False, "cluster_cols": False},

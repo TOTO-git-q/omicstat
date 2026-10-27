@@ -1,0 +1,440 @@
+[
+  {
+    "name": "input-kind",
+    "kind": "enum",
+    "help": "Explicit subject-wide feature table or feature-by-sample expression matrix; aggregate DE tables are not subject measurements",
+    "required": true,
+    "values": [
+      "feature_table",
+      "expression_matrix"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "input",
+    "kind": "path",
+    "help": "Direct independent measurements; exclusive with from-run",
+    "required": false,
+    "values": null,
+    "when": [
+      "from-run is absent"
+    ],
+    "role": "input"
+  },
+  {
+    "name": "from-run",
+    "kind": "path",
+    "help": "Upstream run with exact typed/hash/StudyContract validation before inference",
+    "required": false,
+    "values": null,
+    "when": [
+      "input is absent"
+    ],
+    "role": "input"
+  },
+  {
+    "name": "object",
+    "kind": "string",
+    "help": "Exact handoff object name, of the declared input-kind",
+    "required": false,
+    "values": null,
+    "when": [
+      "from-run is present"
+    ],
+    "role": "input"
+  },
+  {
+    "name": "sample-sheet",
+    "kind": "path",
+    "help": "Independent-unit sheet containing ID, reference class and optional subgroup columns",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "input"
+  },
+  {
+    "name": "id-col",
+    "kind": "string",
+    "help": "Unique stable independent-unit ID; aligned by key, never row position",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "reference-col",
+    "kind": "string",
+    "help": "Binary reference-standard column in sample sheet",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "markers",
+    "kind": "string",
+    "help": "Distinct comma-separated marker IDs in deliberate order; first is primary, no data-driven feature selection",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "positive-class",
+    "kind": "string",
+    "help": "Explicit positive reference class, never inferred",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "negative-class",
+    "kind": "string",
+    "help": "Explicit negative reference class, distinct from positive",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "direction",
+    "kind": "enum",
+    "help": "One common declared marker direction; auto reversal is never reported",
+    "required": true,
+    "values": [
+      "higher-is-positive",
+      "lower-is-positive"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "labels",
+    "kind": "path",
+    "help": "Flat JSON map with distinct marker and class reader labels plus reference and population labels",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "input"
+  },
+  {
+    "name": "cutpoint",
+    "kind": "string",
+    "help": "none, finite prespecified value, youden, or closest.topleft; optimized values stay exploratory",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "cutpoint-source",
+    "kind": "enum",
+    "help": "Origin of a numeric primary threshold",
+    "required": false,
+    "values": [
+      "prespecified",
+      "published",
+      "guideline"
+    ],
+    "when": [
+      "cutpoint is numeric"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "cutpoint-rationale",
+    "kind": "string",
+    "help": "Exact prior rationale/source for a numeric cutoff, not fitted from current data",
+    "required": false,
+    "values": null,
+    "when": [
+      "cutpoint is numeric"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "cutpoints",
+    "kind": "string",
+    "help": "Optional finite threshold grid; primary is retained and counts balance",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "internal-validation",
+    "kind": "enum",
+    "help": "Exploratory cutoff companion; original bootstrap attempts min(requested,200), explicitly counted",
+    "required": false,
+    "values": [
+      "loo",
+      "bootstrap",
+      "none"
+    ],
+    "when": [
+      "cutpoint in youden,closest.topleft"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "allow-optimistic-cutpoint",
+    "kind": "bool",
+    "help": "Original explicit missing-internal-validation override only; high QC remains, no acceptance implied",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "p-adjust",
+    "kind": "enum",
+    "help": "Explicit adjustment of all requested primary-versus-rest raw DeLong P values; pointwise difference CIs stay unadjusted",
+    "required": false,
+    "values": [
+      "holm",
+      "bonferroni",
+      "BH",
+      "BY",
+      "hochberg",
+      "hommel"
+    ],
+    "when": [
+      "more than one marker"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "comparison-family",
+    "kind": "enum",
+    "help": "Original comparison family; no hidden all-pairs expansion",
+    "required": false,
+    "values": [
+      "primary-versus-rest"
+    ],
+    "when": [
+      "more than one marker"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "pauc",
+    "kind": "string",
+    "help": "Two distinct probabilities in [0,1]; independently fitted uncorrected partial AUC with bootstrap CI",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "pauc-focus",
+    "kind": "enum",
+    "help": "Explicit axis defining the partial area",
+    "required": false,
+    "values": [
+      "specificity",
+      "sensitivity"
+    ],
+    "when": [
+      "pauc is supplied"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "prevalence-grid",
+    "kind": "string",
+    "help": "Explicit assumed prevalence probabilities in (0,1); projected PPV/NPV only, no Se/Sp transfer claim",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "subgroups",
+    "kind": "string",
+    "help": "Explicit sheet columns; same primary threshold, sparse/single-class levels listed as skipped",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "confidence-level",
+    "kind": "num",
+    "help": "Prespecified level strictly inside (0,1) for all stated confidence intervals",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "ci-method",
+    "kind": "enum",
+    "help": "Accuracy proportion CI only; full AUC remains native DeLong",
+    "required": true,
+    "values": [
+      "exact",
+      "wilson"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "bootstrap-reps",
+    "kind": "int",
+    "help": "At least 100 requested draws for cutoff/pAUC/pointwise ROC band; internal validation retains original min(requested,200) cap",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "missing",
+    "kind": "enum",
+    "help": "Fail or explicitly declared complete-case analysis; paired marker sets must match exactly",
+    "required": true,
+    "values": [
+      "fail",
+      "complete-case"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "indeterminate",
+    "kind": "enum",
+    "help": "Reference sentinel handling; all three fixed-cutoff sensitivity scenarios accompany observed indeterminacy",
+    "required": true,
+    "values": [
+      "exclude",
+      "positive",
+      "negative"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "indeterminate-value",
+    "kind": "string",
+    "help": "Explicit reference-side sentinel; must differ from both real classes",
+    "required": false,
+    "values": null,
+    "when": [
+      "indeterminate in positive,negative"
+    ],
+    "role": "scientific"
+  },
+  {
+    "name": "independent-unit",
+    "kind": "enum",
+    "help": "Actual independent unit; individual cells, lesions and technical repeats cannot stand for independent animals/donors",
+    "required": true,
+    "values": [
+      "animal",
+      "donor",
+      "biological-sample",
+      "independent-culture",
+      "physical-test-item"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "unit-description",
+    "kind": "string",
+    "help": "Explain independence and any deliberate upstream aggregation",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "repeated-measures",
+    "kind": "enum",
+    "help": "This copied engine supports independent subjects only",
+    "required": true,
+    "values": [
+      "false"
+    ],
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "dataset-name",
+    "kind": "string",
+    "help": "Dataset label on each figure, not an attestation of real owner input",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "score-unit",
+    "kind": "string",
+    "help": "Primary marker measurement scale/unit; comparator units belong in their labels",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "journal",
+    "kind": "enum",
+    "help": "OmicStat display preset only",
+    "required": true,
+    "values": [
+      "nature",
+      "cell",
+      "science",
+      "generic"
+    ],
+    "when": null,
+    "role": "presentation"
+  },
+  {
+    "name": "study-contract",
+    "kind": "path",
+    "help": "Exact independently declared StudyContract bytes, bound through handoff",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "input"
+  },
+  {
+    "name": "development-mode",
+    "kind": "bool",
+    "help": "Explicit unsealed candidate execution only",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "execution"
+  },
+  {
+    "name": "seed",
+    "kind": "int",
+    "help": "Recorded nonnegative native bootstrap seed",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "scientific"
+  },
+  {
+    "name": "outdir",
+    "kind": "path",
+    "help": "New or empty output directory",
+    "required": true,
+    "values": null,
+    "when": null,
+    "role": "execution"
+  },
+  {
+    "name": "spec",
+    "kind": "path",
+    "help": "Exact resolved-spec replay, explicit overrides retained",
+    "required": false,
+    "values": null,
+    "when": null,
+    "role": "execution"
+  }
+]

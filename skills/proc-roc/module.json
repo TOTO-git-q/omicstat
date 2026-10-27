@@ -1,0 +1,424 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "proc-roc",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_proc_roc.R",
+  "version": "0.1.0",
+  "qc_prefix": "ROC",
+  "engine_packages": [
+    "pROC"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "expression_matrix",
+      "feature_table"
+    ],
+    "outputs": [
+      "development_roc_model"
+    ]
+  },
+  "figure_builders": [
+    "os_roc_curve"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 77,
+    "question": "Independent-unit biomarker discrimination, explicit-direction ROC/AUC, exploratory cutoffs and adjusted paired DeLong comparisons"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-17",
+    "order": 56,
+    "discovery_profile": {
+      "module": "proc-roc",
+      "epmc_query": "METHODS:\"pROC\" OR METHODS:\"ROC\"",
+      "meta": false,
+      "signal_regex": "(?:pROC|ROC)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "inputs": [
+    {
+      "flag": "--input-kind",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "feature_table|expression_matrix",
+      "role": "scientific"
+    },
+    {
+      "flag": "--input",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "path",
+      "role": "input",
+      "conditional_required": true,
+      "required_when": [
+        "from-run is absent"
+      ]
+    },
+    {
+      "flag": "--from-run",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "path",
+      "role": "input",
+      "conditional_required": true,
+      "required_when": [
+        "input is absent"
+      ]
+    },
+    {
+      "flag": "--object",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "input",
+      "conditional_required": true,
+      "required_when": [
+        "from-run is present"
+      ]
+    },
+    {
+      "flag": "--sample-sheet",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--id-col",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--reference-col",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--markers",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--positive-class",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--negative-class",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--direction",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "higher-is-positive|lower-is-positive",
+      "role": "scientific"
+    },
+    {
+      "flag": "--labels",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--cutpoint",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--cutpoint-source",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "prespecified|published|guideline",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "cutpoint is numeric"
+      ]
+    },
+    {
+      "flag": "--cutpoint-rationale",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "cutpoint is numeric"
+      ]
+    },
+    {
+      "flag": "--cutpoints",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--internal-validation",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "loo|bootstrap|none",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "cutpoint in youden,closest.topleft"
+      ]
+    },
+    {
+      "flag": "--allow-optimistic-cutpoint",
+      "default": false,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "switch",
+      "role": "scientific"
+    },
+    {
+      "flag": "--p-adjust",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "holm|bonferroni|BH|BY|hochberg|hommel",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "more than one marker"
+      ]
+    },
+    {
+      "flag": "--comparison-family",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "primary-versus-rest",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "more than one marker"
+      ]
+    },
+    {
+      "flag": "--pauc",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--pauc-focus",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "specificity|sensitivity",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "pauc is supplied"
+      ]
+    },
+    {
+      "flag": "--prevalence-grid",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--subgroups",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--confidence-level",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "num",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-method",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "exact|wilson",
+      "role": "scientific"
+    },
+    {
+      "flag": "--bootstrap-reps",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "int",
+      "role": "scientific"
+    },
+    {
+      "flag": "--missing",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "fail|complete-case",
+      "role": "scientific"
+    },
+    {
+      "flag": "--indeterminate",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "exclude|positive|negative",
+      "role": "scientific"
+    },
+    {
+      "flag": "--indeterminate-value",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "indeterminate in positive,negative"
+      ]
+    },
+    {
+      "flag": "--independent-unit",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "animal|donor|biological-sample|independent-culture|physical-test-item",
+      "role": "scientific"
+    },
+    {
+      "flag": "--unit-description",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--repeated-measures",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "false",
+      "role": "scientific"
+    },
+    {
+      "flag": "--dataset-name",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--score-unit",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "switch",
+      "role": "execution"
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "int",
+      "role": "scientific"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "source": "Reviewed explicit OmicStat entry; scientific defaults not guessed; original engine semantics documented in PORT_ADAPTATIONS.json",
+      "required": false,
+      "type_label": "path",
+      "role": "execution"
+    }
+  ],
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/diagnostic-accuracy/",
+  "lane_image": "omicstat-r:2026.10.4"
+}

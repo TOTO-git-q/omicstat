@@ -17,7 +17,7 @@
     "skills/deseq2-qc/references/troubleshooting.md": "86bb4e47266f146ecb4bf7ac4c99205ece29aa5da0b2bd184bc39ba6e50d77d7",
     "skills/deseq2-qc/tests/fixtures/make_pasilla.R": "4f017c1565fb4b49af3bf04fd924e2a388e830434b7ebcef7dc27859a29f0a1c",
     "skills/deseq2-qc/tests/run_smoke_test.R": "9fc3b2fc403e0926384a62fcc7964a6865a4d1c41be558d22578c45901a27dd7",
-    "skills/deseq2-qc/tests/golden_manifest.csv": "df84fa9b6fcd5f341f45af407712840140f8102e159dcbde63028c0dda592b98",
+    "skills/deseq2-qc/tests/golden_manifest.csv": "301e0f875b9cdd14ace6a36790131a722cf6f36f590eb69d3c232c3d8372776f",
     "acceptance/exemplars/deseq2-qc/PACK.md": "7a9c9833d03c7c334a5d91a4691d1c4f2bc6857dd5959fd17698d5146f5dc4b3"
   },
   "packages": {
@@ -28,7 +28,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

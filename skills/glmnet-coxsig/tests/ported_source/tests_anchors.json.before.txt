@@ -1,0 +1,82 @@
+[
+  {
+    "id": "cox_example_v1",
+    "metric": "CoxExample V1 interpolated coefficient at lambda .05",
+    "expected": 0.37710773,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v2",
+    "metric": "CoxExample V2 interpolated coefficient at lambda .05",
+    "expected": -0.09554676,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v3",
+    "metric": "CoxExample V3 interpolated coefficient at lambda .05",
+    "expected": -0.13605156,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v4",
+    "metric": "CoxExample V4 interpolated coefficient at lambda .05",
+    "expected": 0.09820157,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v5",
+    "metric": "CoxExample V5 interpolated coefficient at lambda .05",
+    "expected": -0.11442394,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v6",
+    "metric": "CoxExample V6 interpolated coefficient at lambda .05",
+    "expected": -0.38911885,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v7",
+    "metric": "CoxExample V7 interpolated coefficient at lambda .05",
+    "expected": 0.24303014,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v8",
+    "metric": "CoxExample V8 interpolated coefficient at lambda .05",
+    "expected": 0.03650661,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_5.0.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 4f75dd4aea3fc12c3f37c98253d62fa0bd32cbeec6ff8b5e4fa525105ff63039)",
+    "scope": "Module coefficient extraction using production-pinned glmnet5.0; independently printed upstream vignette, not this wrapper output",
+    "how": "printed"
+  }
+]

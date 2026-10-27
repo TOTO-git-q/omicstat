@@ -1,0 +1,304 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "scvi-integrate",
+  "lane": "py",
+  "domain": "sc-integration",
+  "entry": "scripts/run_scvi_integrate.py",
+  "version": "1.2.0",
+  "qc_prefix": "VI",
+  "engine_packages": [
+    "anndata",
+    "scanpy",
+    "scvi-tools"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "AnnData"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "CPU scVI latent-space batch integration, preserving original counts/clusters",
+    "order": 19
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "scvi-integrate",
+      "rule_id": "PUB-M-SCVI_INTEGRATE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Use the module-specific full output table and identified analysis units; distinguish effect estimation from descriptive QC, embeddings and scores"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review"
+      ],
+      "narrative_points": [
+        "CPU scVI latent-space batch integration, preserving original counts/clusters",
+        "Report exact user choices, locked package versions, seed and measured sample/cell/gene denominators",
+        "Do not claim numerical acceptance, literature majorities or external predictive accuracy from this source build"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "cell-level P values establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive or design-supported association, matching the declared estimand"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--batch-size",
+      "default": 128,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--journal",
+      "default": "nature",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--min-dist",
+      "default": 0.5,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--seed",
+      "default": 20260925,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--species",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--annotation",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--sample-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--counts-layer",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--batch-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--cluster-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-epochs",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [1, 400]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--n-neighbors",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "int in [2, 1000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    },
+    {
+      "flag": "--input",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "No --from-run is supplied; exactly one direct input or upstream run is required."
+      ]
+    },
+    {
+      "flag": "--from-run",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "No --input is supplied; exactly one direct input or upstream run is required."
+      ]
+    },
+    {
+      "flag": "--upstream-object",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "string",
+      "role": "scientific",
+      "required_when": [
+        "The upstream handoff contains multiple AnnData objects; select exactly one by its recorded name."
+      ]
+    },
+    {
+      "flag": "--label-island-eps",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "num in [0.000000000001, 1000000000000]",
+      "role": "presentation",
+      "required_when": [
+        "--label-placement largest-island is requested."
+      ]
+    },
+    {
+      "flag": "--label-island-min-samples",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "int in [1, 2147483647]",
+      "role": "presentation",
+      "required_when": [
+        "--label-placement largest-island is requested."
+      ]
+    },
+    {
+      "flag": "--n-latent",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "int in [2, 1000]",
+      "role": "scientific",
+      "required_when": [
+        "Training a new latent model rather than reusing --latent-from-run."
+      ]
+    },
+    {
+      "flag": "--leiden-resolution",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "num in [0.0001, 100]",
+      "role": "scientific",
+      "required_when": [
+        "--scvi-cluster-col is supplied; both settings are required together."
+      ]
+    },
+    {
+      "flag": "--scvi-cluster-col",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "string",
+      "role": "scientific",
+      "required_when": [
+        "--leiden-resolution is supplied; both settings are required together."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 36,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "scvi-integrate",
+      "entry_script": "scripts/run_scvi_integrate.py",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "4428e528b74b4434335fc7901a6b3acb3924bc373a69cfc9fd4e0d87a8a1a377",
+    "pack_present": false,
+    "implemented_new": true
+  }
+}

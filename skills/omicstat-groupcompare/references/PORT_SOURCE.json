@@ -1,0 +1,129 @@
+{
+  "source_repository": "TOTO-git-q/medstat",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_read_only": true,
+  "source_code_executed_in_MedStat": false,
+  "runtime_dependency_on_MedStat": false,
+  "files": [
+    {
+      "path": "skills/descriptive-distribution/SKILL.md",
+      "bytes": 9341,
+      "sha256": "1322639bd3a8ffabcce291fb6621b080fc3198b711b7a22125a18e22f0bc26f8",
+      "git_blob": "0a9d3283aa4c22531bda5cc05672e334f066b3d1"
+    },
+    {
+      "path": "skills/descriptive-distribution/scripts/descdist_core.R",
+      "bytes": 32550,
+      "sha256": "13e45839a66c77f40deee2d0babe276e667a05779a0d0736bf0c57ccfe60b9a4",
+      "git_blob": "089acdf8eb72ecd5757076a876e5142e932206e8"
+    },
+    {
+      "path": "skills/descriptive-distribution/scripts/descdist_cli.R",
+      "bytes": 12697,
+      "sha256": "34c2655240155170225105ef9036bc2f5cf56a0e4584a13e2a8e9a595dccbd73",
+      "git_blob": "9e45c359c124ee851a5ed1be97361a9aabcb76ef"
+    },
+    {
+      "path": "skills/descriptive-distribution/scripts/run_descdist.R",
+      "bytes": 9620,
+      "sha256": "8affbed09074b5c740f3f607395a63edabeecd2bfb7050b95e3e383c005f4857",
+      "git_blob": "4e43a504d35100a24b07c1c8522b53481e4ad59c"
+    },
+    {
+      "path": "skills/descriptive-distribution/tests/run_tests.R",
+      "bytes": 29516,
+      "sha256": "4af4dddd684cc3a98330060b25f0b9086b7ee25493a98f2c134099002b727c81",
+      "git_blob": "a8783b26b92f9284eaf4734a73c11fa743021d6c"
+    },
+    {
+      "path": "skills/descriptive-distribution/tests/test_harness.R",
+      "bytes": 1517,
+      "sha256": "b0212e576e2da2537d456215abc574d23368a77ddd364d27c3533cc4807243a3",
+      "git_blob": "d20eac5062725d2966671a1329b41e84b8db6c82"
+    },
+    {
+      "path": "skills/descriptive-distribution/references/method-notes.md",
+      "bytes": 7811,
+      "sha256": "c4749f95357f189518a7826a69257a39a1b6b285ebc4d26fed222b7c107d85e7",
+      "git_blob": "fb6933cce1cd9a3bae239b7eb424eb42eeddf5fd"
+    },
+    {
+      "path": "skills/descriptive-distribution/references/spec.schema.json",
+      "bytes": 7631,
+      "sha256": "d84c469c727c8f0b8f3ed1bdb57582bd5da44c3b0a19a34dae77b5417570dcfc",
+      "git_blob": "52474d537debe97df0024014797b374f5204ce45"
+    },
+    {
+      "path": "skills/descriptive-distribution/references/examples/distribution_comparison.spec.json",
+      "bytes": 445,
+      "sha256": "d5bc0a54a1b33d8ef71de075023087641501ce03176a04e030d36bb193b77fac",
+      "git_blob": "6c0a661819169cec81a118f818cacbda109e4c0a"
+    },
+    {
+      "path": "skills/baseline-table/SKILL.md",
+      "bytes": 27845,
+      "sha256": "9184c996acaff05e0bb1919e07d833f7b2868c3a6179cf295916b619f0e45325",
+      "git_blob": "e24673cc64b44b51f647da18d2465287e411a86e"
+    },
+    {
+      "path": "skills/baseline-table/scripts/baseline_table.R",
+      "bytes": 58251,
+      "sha256": "a534b8e64d06dcbeba22e95e5eb3e92007173c1b03e8f15d9db03b886e3378e6",
+      "git_blob": "22d2afe7b45a89e0a8c0ea06307f375c04810239"
+    },
+    {
+      "path": "skills/baseline-table/scripts/baseline_qc.R",
+      "bytes": 41723,
+      "sha256": "dc5a55360711357fef0b925a55df54da39665b97648803bff1e8b38856023e7f",
+      "git_blob": "5438ab990e124a8a490eab3562f454650a52b598"
+    },
+    {
+      "path": "skills/baseline-table/scripts/baseline_paired.R",
+      "bytes": 31619,
+      "sha256": "5cc1df1e1e029ab846312ffffa61793f10249a1e22802c00cf5f05342fbac5ed",
+      "git_blob": "58bdf1b926840f3f3c35ade976f0f5ed29d38fb1"
+    },
+    {
+      "path": "skills/baseline-table/scripts/run_table1.R",
+      "bytes": 43770,
+      "sha256": "4ff2549ca69e6a33b0dcc86c5fd54410ae02e5d6a51be75337509b44e7e61e5c",
+      "git_blob": "19abe27f03da42027f4065e15bf309cabab94628"
+    },
+    {
+      "path": "skills/baseline-table/tests/run_smoke_test.R",
+      "bytes": 86611,
+      "sha256": "b7aae8ccb84b57b862a0777851efc580a57d6dd68868d1e7798bc29910098a7d",
+      "git_blob": "2f2890f5ca2cab642c5484e22463030a022fe95f"
+    },
+    {
+      "path": "skills/baseline-table/tests/verified/REFERENCE.md",
+      "bytes": 740,
+      "sha256": "902c2270a8c60b57102df4f15be49d8487705c4cee711e1def9f9f395ec1ee23",
+      "git_blob": "c524b1a8260f213e4a2a8cb4cc8b59e9b69eb556"
+    },
+    {
+      "path": "skills/baseline-table/tests/verified/run_verified.R",
+      "bytes": 3188,
+      "sha256": "d32c02db1723f2763c09d94d6860ce046306868f43f89a565c7c8f9b580b1504",
+      "git_blob": "ec6773512360d46da438c4ef54f995eb70ef1e11"
+    },
+    {
+      "path": "skills/baseline-table/references/method-notes.md",
+      "bytes": 14131,
+      "sha256": "910b48cdacd21fcbccef317b0fcae7f3a48ef1fb13c3719c3dd720da25e2e988",
+      "git_blob": "76aea5ab82dbbac6e581560b847d717ecdccfdb0"
+    },
+    {
+      "path": "skills/baseline-table/references/qc-rules.md",
+      "bytes": 17641,
+      "sha256": "15fc0a4b434041ea6e312a3e1e3b57d91ca1eefed1bc29b749b313e7cc8cbebb",
+      "git_blob": "5ff69c51404736caf95ad8dd57ff114cd6b080aa"
+    },
+    {
+      "path": "skills/_shared/scripts/var_typing.R",
+      "bytes": 18402,
+      "sha256": "98bc07063c83ad45f8b980394536eaa475ec186052035ff6a2c67b3fe9f962cf",
+      "git_blob": "b1875ffe864b783171999760f36608e6bcb48bd0"
+    }
+  ]
+}

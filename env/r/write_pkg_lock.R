@@ -7,7 +7,7 @@ args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args) >= 1) args[[1]] else "/opt/omicstat/pkg_lock.csv"
 
 fields <- c("Repository", "RemoteType", "RemoteUsername", "RemoteRepo", "RemoteRef",
-            "RemoteSha", "biocViews", "git_last_commit")
+            "RemoteSha", "biocViews", "git_last_commit", "Depends", "Imports", "LinkingTo")
 ip <- installed.packages(fields = fields)
 ip <- ip[!duplicated(ip[, "Package"]), , drop = FALSE]
 val <- function(i, f) { v <- ip[i, f]; if (is.na(v)) "" else unname(v) }
@@ -30,7 +30,9 @@ rows <- lapply(seq_len(nrow(ip)), function(i) {
     src <- "other"; repo <- repo_f; sha <- val(i, "RemoteSha")
   }
   data.frame(package = val(i, "Package"), version = val(i, "Version"), source = src,
-             repository = repo, remote_sha = sha, stringsAsFactors = FALSE)
+             repository = repo, remote_sha = sha,
+             deps = paste(sort(unique(sub("[[:space:]]*[(].*$", "", trimws(unlist(strsplit(paste(val(i, "Depends"), val(i, "Imports"), val(i, "LinkingTo"), sep = ","), ","))))), method = "radix"), collapse = ";"),
+             stringsAsFactors = FALSE)
 })
 lock <- do.call(rbind, rows)
 lock <- lock[order(lock$package, method = "radix"), , drop = FALSE]

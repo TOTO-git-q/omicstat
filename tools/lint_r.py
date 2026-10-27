@@ -22,7 +22,7 @@ Allowlist: files under a tests/ or fixtures/ directory are skipped; a single
 line is exempted with a trailing comment "# lint-ok LR0x: <reason>".
 Exit 0 = clean.
 """
-import pathlib, re, sys
+import hashlib, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ALLOW_DIRS = {"tests", "fixtures"}
@@ -120,6 +120,17 @@ def lint_text(src, name="<text>"):
         if pm and rule in re.findall(r"LR\d\d", pm.group(1)):
             return
         problems.append("%s:%d: %s %s" % (name, ln, rule, msg))
+
+    if re.search(r"(?:^|/)skills/(?!_shared/)[^/]+/scripts/[^/]+[.]R$", name):
+        if re.search(r"(?:_figures|_support)[.]R$", name):
+            add(0, "LR05", "shared figure/support copies belong in skills/_shared/scripts")
+        for m in re.finditer(r"\bggplot\s*\(|\bgeom_[A-Za-z0-9_]+\s*\(", code):
+            add(m.start(), "LR05", "module figures must use shared builders")
+        legacy = ROOT / 'tools/legacy_lint_exemptions.json'
+        exemptions = __import__('json').loads(legacy.read_text()) if legacy.exists() else {}
+        frozen = exemptions.get(name, {}).get('sha256') == hashlib.sha256(src.encode()).hexdigest()
+        for m in re.finditer(r"[\"']#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?[\"']", src):
+            if not frozen: add(m.start(), "LR05", "module colour literals must use shared tokens")
 
     for m in RE_OPTIONS.finditer(code):
         body = code[m.end() - 1:close_of(code, m.end() - 1) + 1]

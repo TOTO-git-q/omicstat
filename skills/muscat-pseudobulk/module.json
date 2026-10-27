@@ -1,0 +1,162 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "muscat-pseudobulk",
+  "lane": "R",
+  "domain": "sc-pseudobulk",
+  "entry": "scripts/run_muscat_pseudobulk.R",
+  "version": "1.0.0",
+  "qc_prefix": "MP",
+  "engine_packages": [
+    "muscat"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": []
+  },
+  "figure_builders": [
+    "os_proportion_bar",
+    "os_pseudobulk_eligibility"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Replicated differential expression within cell types / pseudobulk",
+    "order": 35
+  },
+  "publication": {
+    "rule_category": "advisory",
+    "legacy_override": {
+      "module": "muscat-pseudobulk",
+      "rule_id": "MUSCAT-PSEUDOBULK-PUB-M-MUSCAT-PSEUDOBULK-001",
+      "category": "advisory",
+      "severity": "info",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/muscat-pseudobulk/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Publication proposal: sample-level inference, exact design/contrast/method/version and adjusted-P scope required; figures use full native tables and explicit display thresholds.",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Publication proposal: sample-level inference, exact design/contrast/method/version and adjusted-P scope required; figures use full native tables and explicit display thresholds.",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--donor-col",
+      "default": null,
+      "source": "optional explicit metadata; no change to the native estimator"
+    },
+    {
+      "flag": "--cluster-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--sample-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--condition-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--reference",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--target",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": null,
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 25,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "muscat-pseudobulk",
+      "entry_script": "scripts/run_muscat_pseudobulk.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "6bf0e0d12a3607e861b7dd2ced9495358b1d20713f6d3f4cb4beb4589e2216f1",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

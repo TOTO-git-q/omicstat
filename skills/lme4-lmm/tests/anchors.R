@@ -1,0 +1,5 @@
+args <- commandArgs(TRUE)
+root <- normalizePath(args[2]); setwd(root)
+script <- file.path(root,'tests/candidate-models/anchors.R')
+status <- system2(file.path(R.home('bin'),'Rscript'),c(shQuote(script),'lme4-lmm',shQuote(args[1])))
+quit(status=status)

@@ -1,0 +1,49 @@
+{
+  "status": "development_unsealed",
+  "candidate_runtime": "passed",
+  "r_execution": "passed_R_4.6.1_experimental_image",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "cli": "passed",
+  "documented_scientific_enums": "passed",
+  "replay": "tables_and_PNG_bytes_identical",
+  "handoff_quarantine": "passed",
+  "output_provenance_hashes": "passed",
+  "figures": "candidate_convention_review_passed; owner acceptance pending",
+  "anchors": [
+    {
+      "metric": "ryegrass slope",
+      "expected": 2.47033,
+      "obtained": 2.4703267974033,
+      "tolerance": 5e-05,
+      "pass": true,
+      "source": "https://doi.org/10.1371/journal.pone.0146021",
+      "scope": "module"
+    },
+    {
+      "metric": "ryegrass ED50",
+      "expected": 3.26336,
+      "obtained": 3.2633581954173,
+      "tolerance": 5e-05,
+      "pass": true,
+      "source": "https://doi.org/10.1371/journal.pone.0146021",
+      "scope": "module"
+    }
+  ],
+  "golden": "not_generated",
+  "locked_documentation": "candidate_L1_exported",
+  "installed_formals": "candidate_installed_api.json; check_calls zero problems",
+  "independent_review": "pending",
+  "publication_ready": false,
+  "remaining_gates": [
+    "owner scientific acceptance",
+    "ROLE B published-figure convention review",
+    "complete manuscript reporting/value-map",
+    "production environment/default/seal acceptance"
+  ],
+  "demo_scope_note": "Simulated ELISA response assay: 27 independent specimens at one assigned dose each, duplicate measurement wells and four blanks; explicit blank subtraction/technical means. No calibration inverse-prediction claim.",
+  "tested_module_source_commit": "44e4ebbc4d27665ffc815d15b37f6cbceb3223fa",
+  "input_output_hash_audit": "passed",
+  "suite_targeted_refusal_checks": 42,
+  "figure_evidence": "acceptance/exemplars/drc-dose/CANDIDATE_FIGURES.json",
+  "figure_evidence_task_c": "acceptance/exemplars/drc-dose/CANDIDATE_FIGURES_C.json"
+}

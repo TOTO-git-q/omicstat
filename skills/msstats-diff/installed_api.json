@@ -1,0 +1,49 @@
+{
+  "status": "candidate",
+  "module": "msstats-diff",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "calls": {
+    "MSstats::dataProcess": {
+      "package_version": "4.20.0",
+      "method": null,
+      "formals": {
+        "raw": "",
+        "logTrans": "2",
+        "normalization": "\"equalizeMedians\"",
+        "nameStandards": "NULL",
+        "featureSubset": "\"topN\"",
+        "remove_uninformative_feature_outlier": "FALSE",
+        "min_feature_count": "2",
+        "n_top_feature": "100",
+        "summaryMethod": "\"TMP\"",
+        "equalFeatureVar": "TRUE",
+        "censoredInt": "\"NA\"",
+        "MBimpute": "TRUE",
+        "remove50missing": "FALSE",
+        "fix_missing": "NULL",
+        "maxQuantileforCensored": "0.999",
+        "use_log_file": "TRUE",
+        "append": "FALSE",
+        "verbose": "TRUE",
+        "log_file_path": "NULL",
+        "numberOfCores": "1",
+        "aft_iterations": "90"
+      }
+    },
+    "MSstats::groupComparison": {
+      "package_version": "4.20.0",
+      "method": null,
+      "formals": {
+        "contrast.matrix": "",
+        "data": "",
+        "save_fitted_models": "TRUE",
+        "log_base": "2",
+        "use_log_file": "TRUE",
+        "append": "FALSE",
+        "verbose": "TRUE",
+        "log_file_path": "NULL",
+        "numberOfCores": "1"
+      }
+    }
+  }
+}

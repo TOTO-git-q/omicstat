@@ -1,0 +1,179 @@
+# Independently maintained OmicStat source-copy port. No MedStat runtime dependency.
+# ported_from: TOTO-git-q/medstat@12292d0:skills/cpm-pipeline/scripts/cpm_qc.R
+`%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
+
+.CPM_BLOCKING_IDS_DEFAULT <- character(0)
+.CPM_BLOCKING_IDS_STRICT <- c("CPM-01")
+
+.cpm_row <- function(id, severity, triggered, message, blocking_ids) {
+  data.frame(id = id, severity = severity, triggered = isTRUE(triggered),
+            blocking = isTRUE(triggered) && id %in% blocking_ids,
+            message = message, stringsAsFactors = FALSE)
+}
+
+run_qc <- function(ctx) {
+  blocking_ids <- if (isTRUE(ctx$strict)) .CPM_BLOCKING_IDS_STRICT else .CPM_BLOCKING_IDS_DEFAULT
+  draft_txt <- paste(ctx$draft_text %||% character(0), collapse = " ")
+  rows <- list()
+
+  # CPM-01: actual analytic N below the Riley/pmsampsize lower bound.
+  ss <- ctx$sample_size
+  req_n <- ss$sample_size %||% NA_real_
+  cpm01_trig <- !is.na(req_n) && (ctx$n_cc %||% NA_real_) < req_n
+  rows$CPM01 <- .cpm_row("CPM-01", "high", cpm01_trig, if (cpm01_trig) sprintf(
+    paste("Actual analytic N (%d) is below the pmsampsize/Riley lower bound (%d) computed from the",
+         "assumed C-statistic/R-squared ('%s'). Report this as a limitation (TRIPOD+AI item 10 still",
+         "requires the calculation to be shown, met or not); consider whether additional predictors",
+         "are truly justified at this sample size.%s"),
+    ctx$n_cc %||% NA_integer_, round(req_n), ss$assumed_source %||% "not recorded",
+    if (isTRUE(ctx$strict)) " --strict was given: the draft is withheld until this is addressed or --force is used." else "")
+    else sprintf("Not triggered: actual analytic N (%s) meets or exceeds the Riley lower bound (%s).",
+                ctx$n_cc %||% "NA", if (is.na(req_n)) "NA" else round(req_n)), blocking_ids)
+
+  # CPM-03: suppression-variable scan (P2 sec 4.3/4.4). Informational for
+  # every selection method except univariable, where cpm_core.R already hard-
+  # stops upstream unless --force was given -- so seeing this TRIGGERED here
+  # for method=="univariable" always means --force was used.
+  hits <- ctx$suppression_hits %||% character(0)
+  cpm03_trig <- length(hits) > 0
+  rows$CPM03 <- .cpm_row("CPM-03", "high", cpm03_trig, if (cpm03_trig) sprintf(
+    paste("Suppression-variable signature detected for %s (marginal-vs-conditional coefficient sign",
+         "flip or >2x magnitude jump; see qc/*_predictor_diagnostics.md). %s"),
+    paste(hits, collapse = ", "),
+    if (identical(ctx$selection_method, "univariable"))
+      "This run used --selection univariable with --force, overriding the automatic block -- confirm this was deliberate."
+    else
+      sprintf("Selection method '%s' was used, which (unlike univariable screening) can see this pattern, but confirm these predictors are retained in the final model.", ctx$selection_method %||% "?"))
+    else "Not triggered: no candidate predictor showed a marginal-vs-conditional sign flip or >2x magnitude jump.",
+    blocking_ids)
+
+  # CPM-04: apparent C reported without its bootstrap-corrected counterpart
+  # nearby in the drafted text -- a safety net over cpm_report.R's own
+  # templates, which never write one without the other (P2 sec 2.3's #1
+  # documented error: A1/A4 reported bare apparent C as model performance).
+  has_apparent_word <- grepl("apparent", draft_txt, ignore.case = TRUE)
+  has_corrected_word <- grepl("(bootstrap.corrected|optimism.corrected|corrected C)", draft_txt, ignore.case = TRUE)
+  cpm04_trig <- has_apparent_word && !has_corrected_word
+  rows$CPM04 <- .cpm_row("CPM-04", "high", cpm04_trig,
+    if (cpm04_trig) "The drafted text mentions an apparent C-index without its bootstrap-corrected counterpart nearby. Report apparent and optimism-corrected discrimination together; the source worked-example numbers do not describe this penalized adaptation."
+    else "Not triggered: the drafted text pairs apparent and bootstrap-corrected discrimination (or does not mention apparent discrimination in isolation).",
+    blocking_ids)
+
+  # CPM-05: split-sample requested -- allowed only as a sensitivity add-on,
+  # never as the sole internal validation (this engine always also runs the
+  # bootstrap, so "sole" cannot actually happen; this rule is a reminder,
+  # not a gate). Also flags a B below the house default of 1000 (still
+  # above the hard floor of 200 enforced upstream).
+  cpm05_trig <- isTRUE(ctx$split_sample_requested) || (ctx$boot_B %||% 1000) < 1000
+  # split_c_txt: the actual split-sample C, when available -- previously this
+  # rule said a split-sample run "was requested" with no number attached,
+  # even though the number itself was computed and printed (to stdout only)
+  # in the same run (P2/acceptance finding).
+  .cpm05_sval <- ctx$split_sample_c
+  split_c_txt <- if (!is.null(.cpm05_sval) && length(.cpm05_sval) == 1 && is.finite(.cpm05_sval)) sprintf(" (C = %.3f; see tables/performance.md, analysis_id=\"split_sample_sensitivity\")", .cpm05_sval) else ""
+  rows$CPM05 <- .cpm_row("CPM-05", "medium", cpm05_trig, if (cpm05_trig) sprintf(
+    paste0("%s%s",
+          # The Steyerberg split-sample caveat only applies when a
+          # split-sample run actually happened -- it used to be appended
+          # unconditionally, so a run that triggered this rule PURELY on
+          # --boot-B < 1000 (no --split-sample at all) got a paragraph about
+          # split-sample being inefficient despite never having run one.
+          if (isTRUE(ctx$split_sample_requested))
+            "Steyerberg 2001 (PMID 11470385): split-sample validation is inefficient and gives overly pessimistic, high-variance estimates -- it is never the primary internal-validation analysis in this engine's output, only a sensitivity check."
+          else ""),
+    if (isTRUE(ctx$split_sample_requested)) sprintf("A 7:3 split-sample sensitivity run was requested%s; ", split_c_txt) else "",
+    if ((ctx$boot_B %||% 1000) < 1000) sprintf("Requested B=%d is below the source project's reporting threshold of1000; no universal Monte Carlo accuracy or decimal stability is established for this penalized adaptation. ", ctx$boot_B) else "")
+    else "Not triggered: no split-sample sensitivity was requested and --boot-B >= 1000.", blocking_ids)
+
+  # CPM-06: calibration slope/intercept reported alongside the curve --
+  # built into cpm_report.R's templates by construction; audited here as a
+  # safety net (same "always satisfied by construction, still checked" shape
+  # as assoc-workflow's AW-15).
+  has_slope_word <- grepl("calibration slope", draft_txt, ignore.case = TRUE)
+  cpm06_trig <- isTRUE(ctx$calibration_curve_drawn) && !has_slope_word
+  rows$CPM06 <- .cpm_row("CPM-06", "high", cpm06_trig,
+    if (cpm06_trig) "A calibration curve was drawn but the drafted text does not mention a calibration slope value. TRIPOD+AI item 12e names calibration slope explicitly; report it as a number, not just 'the curve looked reasonable'."
+    else "Not triggered: numerical calibration slope accompanies the curve; prognostic calibration-in-the-large is an observed/expected risk ratio, not a fitted logistic intercept.", blocking_ids)
+
+  # CPM-07: small validation set -- downgrade to intercept+slope only
+  # (Van Calster 2019's own suggested floor: 200 events AND 200 non-events).
+  ne <- ctx$eval_n_events %||% NA_integer_; nne <- ctx$eval_n_nonevents %||% NA_integer_
+  cpm07_trig <- (!is.na(ne) && ne < 200) || (!is.na(nne) && nne < 200)
+  rows$CPM07 <- .cpm_row("CPM-07", "medium", cpm07_trig, if (cpm07_trig) sprintf(
+    paste("The evaluated set has %s events and %s non-events, below Van Calster 2019's suggested",
+         "200/200 floor for a moderate (flexible curve) calibration assessment. This engine reports",
+         "only the calibration intercept and slope for this run, not the loess curve -- do not",
+         "re-enable the curve by hand without more events."),
+    ifelse(is.na(ne), "NA", ne), ifelse(is.na(nne), "NA", nne))
+    else sprintf("Not triggered: the evaluated set has %s events and %s non-events, at or above the 200/200 floor.",
+                ifelse(is.na(ne), "NA", ne), ifelse(is.na(nne), "NA", nne)), blocking_ids)
+
+  # CPM-08/CPM-09: pre-specified DCA thresholds and explicit event-coding
+  # assertion -- both are hard requirements enforced upstream in
+  # cpm_dca()/run_cpm.R's argument parsing (execution stops before reaching
+  # this file otherwise), so both rows are always "not triggered", recorded
+  # for TRIPOD-checklist completeness rather than as a live gate.
+  rows$CPM08 <- .cpm_row("CPM-08", "high", FALSE,
+    "Not triggered: --dca-thresholds is a required argument in this engine (enforced before any DCA is computed) -- the pre-specified clinical range is always stated, never read off the curve after the fact (Vickers 2019, PMID 31592444).", blocking_ids)
+  rows$CPM09 <- .cpm_row("CPM-09", "high", FALSE,
+    "Not triggered: this engine asserts the DCA event coding (1=event, 0=non-event) before every dca() call and stops with OS_INVALID_INPUT otherwise -- dcurves' own coding assumption is only ever a message, easily lost in a pipeline, so it is re-asserted here explicitly.", blocking_ids)
+
+  # CPM-10: nomogram read-off fidelity, measured on the full analytic sample.
+  nf <- ctx$nomogram_fidelity
+  cpm10_trig <- !is.null(nf) && is.finite(nf$max_error) && nf$max_error > 0.01
+  rows$CPM10 <- .cpm_row("CPM-10", "medium", cpm10_trig, if (cpm10_trig) sprintf(
+    paste("Nomogram read-off fidelity: max absolute error %.4f (mean %.4f, p95 %.4f) across %d",
+         "analytic-sample subjects at nint=%s. This is a real discretization error, not a data bug --",
+         "consider raising --nomogram-nint further, and disclose the max error in the figure legend."),
+    nf$max_error, nf$mean_error, nf$p95_error, nf$n, ctx$nomogram_nint %||% 50)
+    else if (is.null(nf)) "Not triggered: no nomogram was requested (--presentation did not include 'nomogram')."
+    else sprintf("Not triggered: max read-off error %.4f is at or below the 0.01 threshold across %d subjects.", nf$max_error, nf$n),
+    blocking_ids)
+
+  # CPM-11: non-monotonic nomogram axis present -- not blocking (P2 sec 8.3:
+  # forward reading, predictor value -> points, is never ambiguous; only the
+  # REVERSE read, points -> predictor value, is), but must be disclosed in
+  # the figure legend, which cpm_report.R does automatically whenever this
+  # list is non-empty.
+  nonmono <- ctx$nomogram_nonmonotonic %||% character(0)
+  cpm11_trig <- length(nonmono) > 0
+  rows$CPM11 <- .cpm_row("CPM-11", "low", cpm11_trig, if (cpm11_trig) sprintf(
+    paste("Non-monotonic points axis for %s (P2 sec 8.3 -- the model entered these as a restricted",
+         "cubic spline or a non-monotone dose-response). Forward reading (predictor value -> points)",
+         "is unaffected; a figure-legend sentence explaining the non-monotonic axis is auto-inserted."),
+    paste(nonmono, collapse = ", "))
+    else "Not triggered: every nomogram points axis is monotonic.", blocking_ids)
+
+  # CPM-12: Hosmer-Lemeshow enabled without the calibration slope/intercept
+  # stated alongside it (Van Calster 2019's explicit "we recommend against
+  # using the Hosmer-Lemeshow test" plus this engine's own MUST rule: when
+  # HL is switched on it may never appear alone).
+  cpm12_trig <- isTRUE(ctx$hl_enabled) && !has_slope_word
+  rows$CPM12 <- .cpm_row("CPM-12", "high", cpm12_trig,
+    if (cpm12_trig)
+      "The Hosmer-Lemeshow test was enabled (--hl-test true) but the drafted text does not state the calibration slope/intercept alongside it. HL's P value is sample-size-driven (P2 sec 5.2) and must never appear without the model-size-invariant slope/intercept next to it."
+    else
+      "Not triggered: HL test was not enabled, or this engine's templates report calibration slope/intercept alongside it whenever it is.",
+    blocking_ids)
+
+  # CPM-13: negligible nomogram points-axis span (build spec sec 8.4 -- a
+  # points-axis span < 5, out of the 0-100 total-points scale, is an
+  # info-level "consider removing this axis from the figure" note; it was
+  # documented in the spec but had no corresponding rule until now). Not
+  # blocking, low severity -- this is a readability suggestion, not a
+  # correctness problem (a near-flat axis is a real, small model effect, not
+  # a bug).
+  neg <- ctx$nomogram_negligible_span %||% character(0)
+  cpm13_trig <- length(neg) > 0
+  rows$CPM13 <- .cpm_row("CPM-13", "low", cpm13_trig, if (cpm13_trig) sprintf(
+    paste("Points-axis span under 5 (out of the 0-100 total-points scale) for %s -- the axis prints as",
+         "close to unreadable (a near-single dot/bar) and contributes almost nothing to the total score.",
+         "Consider omitting it from the presented nomogram figure (the full model equation in",
+         "tables/model_coefficients.md is unaffected either way)."),
+    paste(neg, collapse = ", "))
+    else "Not triggered: every nomogram points axis spans at least 5 points.", blocking_ids)
+
+  out <- do.call(rbind, rows)
+  rownames(out) <- NULL
+  out
+}

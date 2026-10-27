@@ -1,0 +1,39 @@
+{
+  "caption": "Hazard ratios with supplied 95% confidence intervals; null = 1.",
+  "counts": {
+    "n_terms": 2
+  },
+  "data": {
+    "effects": "tables/effect_table.csv"
+  },
+  "encodings": [],
+  "evidence_refs": [
+    {
+      "family": "hazard_ratio",
+      "reason": "Per-family independent visual review is incomplete",
+      "records": [],
+      "required_independent_records": 20,
+      "status": "pending"
+    }
+  ],
+  "figure_type": "hazard_ratio_forest",
+  "files": {
+    "png": {
+      "path": "hr.png",
+      "sha256": "c93ebcfe1158082b7d5ae1f64b1fc017a8b345f9c8bf31920fde8792291ced65"
+    }
+  },
+  "font_family": "Liberation Sans",
+  "height_mm": 32,
+  "journal": "nature",
+  "notes": {
+    "ci_level": 0.95
+  },
+  "png_dpi": 600,
+  "schema": "omicstat.figure-spec.v1",
+  "style_version": "1.3.0",
+  "thresholds": {
+    "null": 1
+  },
+  "width_mm": 89
+}

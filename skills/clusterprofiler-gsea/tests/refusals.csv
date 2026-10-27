@@ -1,0 +1,5 @@
+case,argv,expected_code,stage
+undirectional-1,"[""--ranked"", ""{fixtures}/rank.csv"", ""--ranking-metric"", ""LRT"", ""--direction"", ""target""]",OS_RANKING_UNDIRECTIONAL,scientific_input
+undirectional-2,"[""--ranked"", ""{fixtures}/rank.csv"", ""--ranking-metric"", ""F"", ""--direction"", ""target""]",OS_RANKING_UNDIRECTIONAL,scientific_input
+undirectional-3,"[""--ranked"", ""{fixtures}/rank.csv"", ""--ranking-metric"", ""F statistic"", ""--direction"", ""target""]",OS_RANKING_UNDIRECTIONAL,scientific_input
+undirectional-4,"[""--ranked"", ""{fixtures}/rank.csv"", ""--ranking-metric"", ""likelihood ratio"", ""--direction"", ""target""]",OS_RANKING_UNDIRECTIONAL,scientific_input

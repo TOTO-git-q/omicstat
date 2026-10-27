@@ -1,0 +1,11 @@
+{
+  "doi": "10.1006/meth.2001.1262",
+  "source": "Livak and Schmittgen, Methods 25 (2001), Table 1, p405",
+  "primary_paper_copy": "https://mc.uchc.edu/mc/introduction/livak-2001.pdf",
+  "verified_text_mirror": "https://studylib.net/doc/18183813/analysis-of-relative-gene-expression-data-using-real",
+  "accessed": "2026-10-15",
+  "read_status": "Original paper text inspected; university PDF fetch/screenshot timed out, not pixel verified",
+  "scope": "Six technical PCR reactions per tissue/gene; one RNA preparation per tissue for normalization demonstration, no biological t-test",
+  "transcription_note": "Original Table1 final kidney GAPDH Ct is22.76. pcr vignette retyping24.18 conflicts with the source and its own mean22.66; do not silently use or correct the retyped source.",
+  "excluded_anchor": "Original Table2 brain printed mean6.93 is inconsistent with its six displayed delta-Ct values. No forced pass or adjusted source values; Table1 is the prespecified anchor."
+}

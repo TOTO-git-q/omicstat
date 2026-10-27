@@ -1,0 +1,152 @@
+[
+  {
+    "metric": "protein_99 diff",
+    "expected": -6.71,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_99 pval",
+    "expected": 5.18e-05,
+    "tolerance": 1e-05,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_91 diff",
+    "expected": -2.33,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-03",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_91 pval",
+    "expected": 0.000125,
+    "tolerance": 1e-05,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-04",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_100 diff",
+    "expected": 4.74,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-05",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_100 pval",
+    "expected": 0.00195,
+    "tolerance": 1e-05,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-06",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_96 diff",
+    "expected": -1.69,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-07",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_96 pval",
+    "expected": 0.00415,
+    "tolerance": 1e-05,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-08",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_92 diff",
+    "expected": 0.933,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-09",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_92 pval",
+    "expected": 0.00674,
+    "tolerance": 1e-05,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "official engine example (100 proteins, all-missing retained)",
+    "id": "proda-diff-10",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_99 adapter diff",
+    "expected": -6.71,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "module; all rows retained in upstream fit, all-missing canonical results withheld",
+    "id": "proda-diff-11",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_91 adapter diff",
+    "expected": -2.33,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "module; all rows retained in upstream fit, all-missing canonical results withheld",
+    "id": "proda-diff-12",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_100 adapter diff",
+    "expected": 4.74,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "module; all rows retained in upstream fit, all-missing canonical results withheld",
+    "id": "proda-diff-13",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_96 adapter diff",
+    "expected": -1.69,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "module; all rows retained in upstream fit, all-missing canonical results withheld",
+    "id": "proda-diff-14",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "protein_92 adapter diff",
+    "expected": 0.933,
+    "tolerance": 0.01,
+    "source": "L1/proDA/vignettes/Introduction.rendered.txt",
+    "scope": "module; all rows retained in upstream fit, all-missing canonical results withheld",
+    "id": "proda-diff-15",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

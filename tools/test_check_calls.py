@@ -30,7 +30,7 @@ def check(cond, msg):
 tmp = pathlib.Path(tempfile.mkdtemp(prefix="check-calls-"))
 pkg = tmp / "lib" / "fakesc"
 (pkg / "pp").mkdir(parents=True)
-(pkg / "__init__.py").write_text("from . import pp\nfrom .model import Model\n", encoding="utf-8")
+(pkg / "__init__.py").write_text("from . import pp\nfrom .model import Model\nfrom .annotate import annotate\n", encoding="utf-8")
 (pkg / "pp" / "__init__.py").write_text(textwrap.dedent("""
     def pca(adata, n_comps=None, svd_solver="arpack", random_state=0, **kwargs):
         return adata
@@ -51,6 +51,7 @@ pkg = tmp / "lib" / "fakesc"
         def latent(self):
             return 0
 """), encoding="utf-8")
+(pkg / "annotate.py").write_text("def annotate(adata, model=None, majority_voting=False):\n    return adata\n", encoding="utf-8")
 sys.path.insert(0, str(tmp / "lib"))
 
 reg = {
@@ -157,6 +158,17 @@ wrong_order = json.loads(json.dumps(input_reg))
 wrong_order['calls'][0]['positional_inputs'] = ['n_comps']
 check(any('positional_inputs differ from installed signature' in x for x in CC.check_default_drift(wrong_order)['problems']),
       "locked signature verifies positional input order")
+
+# A package-exported function may share its name with its implementation module.
+collision_reg = {"calls": [{"fn": "fakesc.annotate", "args": {
+    "model": {"function_default": "None"},
+    "majority_voting": {"function_default": "False"}}}]}
+check(callable(CC.resolve_object("fakesc.annotate")), "exported callable wins over same-name implementation module")
+check(CC.check_default_drift(collision_reg)["ok"], "same-name export has the actual callable defaults")
+check(callable(CC.resolve_object("fakesc.annotate.annotate")), "fully qualified implementation callable still resolves")
+collision_reg["calls"][0]["args"]["majority_voting"]["function_default"] = "True"
+check(any(x.startswith("D1 fakesc.annotate(majority_voting)") for x in CC.check_default_drift(collision_reg)["problems"]),
+      "same-name callable still refuses genuine default drift")
 
 # CLI on a module directory
 mod = tmp / "skills" / "fake-module"

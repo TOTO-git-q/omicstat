@@ -1,0 +1,57 @@
+{
+  "status": "development_unsealed",
+  "candidate_runtime": "passed",
+  "r_execution": "passed_R_4.6.1_experimental_image",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "cli": "passed",
+  "documented_scientific_enums": "passed",
+  "replay": "tables_and_PNG_bytes_identical",
+  "handoff_quarantine": "passed",
+  "output_provenance_hashes": "passed",
+  "figures": "candidate_convention_review_passed; owner acceptance pending",
+  "anchors": [
+    {
+      "metric": "feedlot EMM High",
+      "expected": 1031.0,
+      "obtained": 1030.97326926982,
+      "tolerance": 0.5,
+      "pass": true,
+      "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+      "scope": "module"
+    },
+    {
+      "metric": "feedlot EMM Low",
+      "expected": 1029.0,
+      "obtained": 1029.46516116855,
+      "tolerance": 0.5,
+      "pass": true,
+      "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+      "scope": "module"
+    },
+    {
+      "metric": "feedlot EMM Medium",
+      "expected": 998.0,
+      "obtained": 998.173222738747,
+      "tolerance": 0.5,
+      "pass": true,
+      "source": "https://rvlenth.github.io/emmeans/articles/predictions.html",
+      "scope": "module"
+    }
+  ],
+  "golden": "not_generated",
+  "locked_documentation": "candidate_L1_exported",
+  "installed_formals": "candidate_installed_api.json; check_calls zero problems",
+  "independent_review": "pending",
+  "publication_ready": false,
+  "remaining_gates": [
+    "owner scientific acceptance",
+    "ROLE B published-figure convention review",
+    "complete manuscript reporting/value-map",
+    "production environment/default/seal acceptance"
+  ],
+  "tested_module_source_commit": "44e4ebbc4d27665ffc815d15b37f6cbceb3223fa",
+  "input_output_hash_audit": "passed",
+  "suite_targeted_refusal_checks": 42,
+  "figure_evidence": "acceptance/exemplars/emmeans-contrast/CANDIDATE_FIGURES.json",
+  "figure_evidence_task_c": "acceptance/exemplars/emmeans-contrast/CANDIDATE_FIGURES_C.json"
+}

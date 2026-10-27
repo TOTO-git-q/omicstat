@@ -6,5 +6,5 @@ def report(res, a):
     return [("umap_annotations", "os_embedding", {"emb": F.frame(embedding)},
              {"group_col": "Predicted label", "family": a["prediction-col"], "reduction": "UMAP", "label": False}),
             ("prediction_probability", "os_feature_embedding", {"emb": F.frame(S.embedding_frame(res["adata"], a["prediction-col"])),
-             "values": F.vector(res["tables"]["annotations"]["max_probability"].tolist(), type="numeric")},
+             "values": F.vector(res["tables"]["annotations"]["max_probability"].tolist(), type="numeric", names=res["tables"]["annotations"]["cell"].tolist())},
              {"feature": "Maximum class probability", "value_title": "Class probability", "italic": False, "reduction": "UMAP"})]

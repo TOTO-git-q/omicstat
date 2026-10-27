@@ -1,0 +1,2313 @@
+{
+  "schema": "omicstat.error-codes.v1",
+  "codes": [
+    {
+      "code": "OS_ACCEPTANCE_DATA",
+      "family": "acceptance",
+      "meaning": "acceptance data",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/module_kit.R"
+      ]
+    },
+    {
+      "code": "OS_ACCEPTANCE_DATA_MISMATCH",
+      "family": "acceptance",
+      "meaning": "acceptance data mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/singler-annotate/tests/fixtures/make_pancreas.R"
+      ]
+    },
+    {
+      "code": "OS_ACCEPTANCE_DATA_MISSING",
+      "family": "acceptance",
+      "meaning": "acceptance data missing",
+      "status": "canonical",
+      "sources": [
+        "skills/deseq2-lrt/tests/fixtures/make_fission.R"
+      ]
+    },
+    {
+      "code": "OS_ACCEPTANCE_EVIDENCE_MISSING",
+      "family": "acceptance",
+      "meaning": "acceptance evidence missing",
+      "status": "canonical",
+      "sources": [
+        "skills/scran-cluster/tests/fixtures/make_grun.R",
+        "skills/scran-markers/tests/fixtures/make_grun.R",
+        "skills/scran-markers/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_AMBIGUOUS_FEATURE",
+      "family": "input",
+      "meaning": "Shared peptide cannot uniquely identify a protein",
+      "status": "canonical",
+      "sources": [
+        "skills/proda-diff",
+        "skills/msstats-diff",
+        "skills/_shared/scripts/candidate_model.R"
+      ]
+    },
+    {
+      "code": "OS_ANCHOR_HASH_MISMATCH",
+      "family": "anchor",
+      "meaning": "anchor hash mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/limma-array/tests/guide_17_4.R",
+        "skills/limma-dupcor/tests/fixtures/guide_yoruba.R",
+        "skills/limma-dupcor/tests/fixtures/make_illumina.R",
+        "skills/limma-voom/tests/fixtures/guide_yoruba.R",
+        "skills/limma-voom/tests/fixtures/make_gse63310.R"
+      ]
+    },
+    {
+      "code": "OS_ANCHOR_INVALID",
+      "family": "anchor",
+      "meaning": "anchor invalid",
+      "status": "canonical",
+      "sources": [
+        "skills/limma-dupcor/tests/fixtures/guide_yoruba.R",
+        "skills/limma-voom/tests/fixtures/guide_yoruba.R"
+      ]
+    },
+    {
+      "code": "OS_ANCHOR_MISMATCH",
+      "family": "anchor",
+      "meaning": "anchor mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/tests/sc_anchor.py",
+        "skills/deseq2-lrt/tests/fixtures/make_fission.R",
+        "skills/edger-qlf/tests/fixtures/make_gse60450.R"
+      ]
+    },
+    {
+      "code": "OS_API_MISMATCH",
+      "family": "api",
+      "meaning": "api mismatch",
+      "status": "canonical",
+      "sources": [
+        "tools/capture_locked_defaults.py"
+      ]
+    },
+    {
+      "code": "OS_BATCH_CORRECTED_INPUT",
+      "family": "batch",
+      "meaning": "batch corrected input",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py",
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/sc_smoke_support.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/scripts/m4_io.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/scripts/sc_seurat_io.R",
+        "skills/_shared/tests/test_omics_shared.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/tests/run_smoke_test.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/seurat-qc/tests/fixtures/seurat_chain.R",
+        "skills/singler-annotate/tests/run_smoke_test.R",
+        "skills/sva-batch/tests/run_smoke_test.R",
+        "skills/wgcna-network/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_BATCH_CORRECTED_TYPE",
+      "family": "batch",
+      "meaning": "batch corrected type",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py"
+      ]
+    },
+    {
+      "code": "OS_BATCH_LINEAGE_ALLOWED",
+      "family": "batch",
+      "meaning": "batch lineage allowed",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py"
+      ]
+    },
+    {
+      "code": "OS_CALLS_MISMATCH",
+      "family": "calls",
+      "meaning": "calls mismatch",
+      "status": "canonical",
+      "sources": [
+        "tools/capture_locked_defaults.py"
+      ]
+    },
+    {
+      "code": "OS_CELL_MISMATCH",
+      "family": "cell",
+      "meaning": "cell mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py"
+      ]
+    },
+    {
+      "code": "OS_CHAIN_STATE",
+      "family": "chain",
+      "meaning": "chain state",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/sc_seurat_io.R",
+        "skills/seurat-qc/tests/fixtures/seurat_chain.R"
+      ]
+    },
+    {
+      "code": "OS_CONFLICTING_PARAMETERS",
+      "family": "conflicting",
+      "meaning": "conflicting parameters",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/args.py",
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/args.R",
+        "skills/_shared/scripts/enrich_rank_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/_shared/tests/test_user_genesets.R",
+        "skills/aucell-score/scripts/aucell_score_core.R",
+        "skills/aucell-score/tests/run_smoke_test.R",
+        "skills/clusterprofiler-compare/scripts/run_clusterprofiler_compare.R",
+        "skills/clusterprofiler-gsea/scripts/clusterprofiler_gsea_core.R",
+        "skills/clusterprofiler-gsea/scripts/run_clusterprofiler_gsea.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/clusterprofiler-ora/scripts/run_clusterprofiler_ora.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/deseq2-qc/scripts/run_deseq2_qc.R",
+        "skills/deseq2-wald/scripts/run_deseq2_wald.R",
+        "skills/edger-qlf/scripts/edger_qlf_core.R",
+        "skills/edger-qlf/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/scripts/run_fgsea_prerank.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/immunedeconv-infiltration/tests/run_smoke_test.R",
+        "skills/limma-array/scripts/limma_array_core.R",
+        "skills/limma-array/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/limma-dupcor/scripts/run_limma_dupcor.R",
+        "skills/maftools-landscape/scripts/maftools_landscape_core.R",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/omicstat-selftest/tests/run_smoke_test.R",
+        "skills/scanpy-annotate/scripts/scanpy_annotate_core.py",
+        "skills/scanpy-annotate/tests/run_smoke_test.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanpy-qc/scripts/scanpy_qc_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scater-qc/scripts/run_scater_qc.R",
+        "skills/seurat-modulescore/tests/run_smoke_test.R",
+        "skills/singler-annotate/scripts/singler_annotate_core.R",
+        "skills/singler-annotate/tests/run_smoke_test.R",
+        "skills/sva-batch/scripts/sva_batch_core.R",
+        "skills/sva-batch/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_CONTRACT_INVALID",
+      "family": "contract",
+      "meaning": "contract invalid",
+      "status": "canonical",
+      "sources": [
+        "mcp/server.py"
+      ]
+    },
+    {
+      "code": "OS_CONTRACT_MISMATCH",
+      "family": "contract",
+      "meaning": "contract mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/tests/test_omics_shared.R"
+      ]
+    },
+    {
+      "code": "OS_CONVERGENCE",
+      "family": "model",
+      "meaning": "Declared model optimizer or covariance iteration failed",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/dose_scope_support.R",
+        "skills/nlme-dose/scripts/nlme_dose_core.R"
+      ]
+    },
+    {
+      "code": "OS_CONVERT_LAYER_MISSING",
+      "family": "convert",
+      "meaning": "convert layer missing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/tests/test_convert.R"
+      ]
+    },
+    {
+      "code": "OS_CONVERT_LAYER_ROLE",
+      "family": "convert",
+      "meaning": "convert layer role",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/tests/test_convert.R"
+      ]
+    },
+    {
+      "code": "OS_CONVERT_MISMATCH",
+      "family": "convert",
+      "meaning": "convert mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/tests/test_convert.R"
+      ]
+    },
+    {
+      "code": "OS_CONVERT_UNSUPPORTED",
+      "family": "convert",
+      "meaning": "convert unsupported",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/tests/test_convert.R"
+      ]
+    },
+    {
+      "code": "OS_DEGENERATE",
+      "family": "degenerate",
+      "meaning": "degenerate",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/feature_table.py",
+        "skills/_shared/scripts/feature_table.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/_shared/tests/test_omics_shared.R",
+        "skills/deseq2-lrt/scripts/deseq2_lrt_core.R",
+        "skills/deseq2-qc/scripts/deseq2_qc_core.R",
+        "skills/deseq2-wald/scripts/deseq2_wald_core.R",
+        "skills/edger-qlf/scripts/edger_qlf_core.R",
+        "skills/singler-annotate/scripts/singler_annotate_core.R"
+      ]
+    },
+    {
+      "code": "OS_DEPENDENCY_MISSING",
+      "family": "dependency",
+      "meaning": "dependency missing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py"
+      ]
+    },
+    {
+      "code": "OS_DEPRECATED",
+      "family": "deprecated",
+      "meaning": "deprecated",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/effect_table.R"
+      ]
+    },
+    {
+      "code": "OS_DESIGN_NA_ID_DROPPED",
+      "family": "design",
+      "meaning": "design na id dropped",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/design_check.R",
+        "skills/_shared/tests/test_engine_contract.R"
+      ]
+    },
+    {
+      "code": "OS_DISPLAY_ONLY_INPUT",
+      "family": "display",
+      "meaning": "display only input",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/scanpy-annotate/tests/run_smoke_test.py",
+        "skills/scanpy-ingest/tests/run_smoke_test.py",
+        "skills/scanpy-purity/tests/run_smoke_test.py"
+      ]
+    },
+    {
+      "code": "OS_ECOSYSTEM_CROSSING",
+      "family": "ecosystem",
+      "meaning": "ecosystem crossing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/singler-annotate/scripts/singler_annotate_qc.R"
+      ]
+    },
+    {
+      "code": "OS_ECOSYSTEM_MIXED",
+      "family": "ecosystem",
+      "meaning": "ecosystem mixed",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py",
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/sc_smoke_support.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/scripts/sc_seurat_io.R",
+        "skills/_shared/tests/test_convert.R",
+        "skills/_shared/tests/test_omics_shared.R",
+        "skills/_shared/tests/test_render_figure_request.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/seurat-qc/tests/fixtures/seurat_chain.R",
+        "skills/singler-annotate/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_EMPTY_DATA",
+      "family": "empty",
+      "meaning": "empty data",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/scripts/fig_enrich.R",
+        "skills/_shared/scripts/fig_enrich_network.R",
+        "skills/_shared/scripts/fig_mod_enrich_rank.R",
+        "skills/_shared/scripts/fig_sc_extra.R",
+        "skills/_shared/scripts/ranked_list.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_figures_ext.R",
+        "skills/clusterprofiler-compare/scripts/clusterprofiler_compare_core.R",
+        "skills/clusterprofiler-gsea/scripts/clusterprofiler_gsea_core.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/fgsea-prerank/scripts/fgsea_prerank_core.R",
+        "skills/gsva-score/scripts/gsva_score_core.R",
+        "skills/limma-camera/scripts/limma_camera_core.R",
+        "skills/scanpy-qc/scripts/scanpy_qc_core.py"
+      ]
+    },
+    {
+      "code": "OS_ENGINE_OUTPUT",
+      "family": "engine",
+      "meaning": "engine output",
+      "status": "canonical",
+      "sources": [
+        "mcp/test_client.py"
+      ]
+    },
+    {
+      "code": "OS_ENGINE_WARNING",
+      "family": "engine",
+      "meaning": "engine warning",
+      "status": "canonical",
+      "sources": [
+        "mcp/server.py",
+        "skills/_shared/py/ospy/engine_run.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/engine_run.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/omicstat-selftest-py/scripts/run_omicstat_selftest_py.py",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/omicstat-selftest/scripts/run_omicstat_selftest.R",
+        "skills/omicstat-selftest/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_ENVIRONMENT_MISMATCH",
+      "family": "environment",
+      "meaning": "environment mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "tools/make_module_lock.py",
+        "tools/seal_python.py"
+      ]
+    },
+    {
+      "code": "OS_ENV_CHECK_FAILED",
+      "family": "env",
+      "meaning": "env check failed",
+      "status": "canonical",
+      "sources": [
+        "mcp/test_client.py",
+        "skills/omicstat-selftest-py/scripts/run_omicstat_selftest_py.py",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/omicstat-selftest/scripts/run_omicstat_selftest.R",
+        "skills/omicstat-selftest/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_ENV_LAYER_FAILED",
+      "family": "env",
+      "meaning": "env layer failed",
+      "status": "canonical",
+      "sources": [
+        "env/r/layer_lib.R"
+      ]
+    },
+    {
+      "code": "OS_ENV_MISSING",
+      "family": "env",
+      "meaning": "env missing",
+      "status": "canonical",
+      "sources": [
+        "mcp/test_publication.py",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/tests/test_convert.R"
+      ]
+    },
+    {
+      "code": "OS_ENV_R_VERSION",
+      "family": "env",
+      "meaning": "env r version",
+      "status": "canonical",
+      "sources": [
+        "env/native/setup_native.R"
+      ]
+    },
+    {
+      "code": "OS_ENV_TAG_EXISTS",
+      "family": "environment",
+      "meaning": "Candidate image tag already exists; additive builds never overwrite tags.",
+      "status": "canonical",
+      "sources": [
+        "tools/env/build_candidate.py"
+      ]
+    },
+    {
+      "code": "OS_ENV_UNPINNED",
+      "family": "env",
+      "meaning": "env unpinned",
+      "status": "canonical",
+      "sources": [
+        "env/r/layer_lib.R",
+        "env/r/test_layer_lib.R"
+      ]
+    },
+    {
+      "code": "OS_FIGURE_DATA_MISMATCH",
+      "family": "figure",
+      "meaning": "figure data mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/render_figure_request.R",
+        "skills/_shared/tests/test_render_figure_request.R"
+      ]
+    },
+    {
+      "code": "OS_FIGURE_REQUEST_INVALID",
+      "family": "figure",
+      "meaning": "figure request invalid",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/render_figure_request.R",
+        "skills/_shared/tests/test_render_figure_request.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_AXIS_INCOMPATIBLE",
+      "family": "fig",
+      "meaning": "Panel axis sharing requires matching actual quantity, unit, transform, limits and ticks",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_compose.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_BRACKET_BUDGET",
+      "family": "fig",
+      "meaning": "Comparison annotation height exceeds the declared display budget; source rows are retained",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_mod_groupcomp.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_COL_LABELS_CROWDED",
+      "family": "fig",
+      "meaning": "fig col labels crowded",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_style.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_EXT",
+      "family": "fig",
+      "meaning": "fig ext",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_enrich_network.R",
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_sc_extra.R",
+        "skills/_shared/tests/test_figures_ext.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_GUIDE_CONFLICT",
+      "family": "fig",
+      "meaning": "The same entity has conflicting actual scale mappings across panels",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_compose.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_GUIDE_INCOMPATIBLE",
+      "family": "fig",
+      "meaning": "Declared or collected guides are incompatible with the actual rendered scales",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_compose.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_GUIDE_LOCAL",
+      "family": "fig",
+      "meaning": "A panel guide remains local because its actual scale cannot be shared safely",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_compose.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_LINT_BLOCKER",
+      "family": "fig",
+      "meaning": "fig lint blocker",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_compose.R",
+        "skills/_shared/tests/test_figures.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_LOCALE",
+      "family": "fig",
+      "meaning": "fig locale",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_style.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_NON_LATIN_TEXT",
+      "family": "fig",
+      "meaning": "fig non latin text",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_figures_ext.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_ORDER_SEMANTICS",
+      "family": "fig",
+      "meaning": "Clustering changes the declared ordered axis; original keys are retained",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_matrix_semantics.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_RASTER_UNAVAILABLE",
+      "family": "fig",
+      "meaning": "fig raster unavailable",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_style.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_ROW_LABELS_CROWDED",
+      "family": "fig",
+      "meaning": "fig row labels crowded",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/tests/test_figures.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_ROW_MISMATCH",
+      "family": "fig",
+      "meaning": "fig row mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/tests/test_figures_ext.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_STYLE_VERSION",
+      "family": "fig",
+      "meaning": "fig style version",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_bulk.R",
+        "skills/_shared/scripts/fig_compose.R",
+        "skills/_shared/scripts/fig_enrich.R",
+        "skills/_shared/scripts/fig_enrich_network.R",
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/scripts/fig_network.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_sc_extra.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_TOO_MANY_PANELS",
+      "family": "fig",
+      "meaning": "fig too many panels",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_compose.R"
+      ]
+    },
+    {
+      "code": "OS_FIG_TOO_TALL",
+      "family": "fig",
+      "meaning": "fig too tall",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/tests/test_figures.R"
+      ]
+    },
+    {
+      "code": "OS_GENE_IDENTIFIER",
+      "family": "gene",
+      "meaning": "gene identifier",
+      "status": "canonical",
+      "sources": [
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R"
+      ]
+    },
+    {
+      "code": "OS_GENE_SET_ID_MISMATCH",
+      "family": "gene",
+      "meaning": "gene set id mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_user_genesets.R",
+        "skills/aucell-score/tests/run_smoke_test.R",
+        "skills/clusterprofiler-compare/tests/run_smoke_test.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/scanpy-annotate/tests/run_smoke_test.py",
+        "skills/seurat-modulescore/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_GENE_SET_LOW_OVERLAP",
+      "family": "gene",
+      "meaning": "gene set low overlap",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_user_genesets.R",
+        "skills/aucell-score/tests/run_smoke_test.R",
+        "skills/clusterprofiler-compare/tests/run_smoke_test.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/scanpy-annotate/tests/run_smoke_test.py",
+        "skills/seurat-modulescore/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_GENE_SET_SPECIES_MISMATCH",
+      "family": "gene",
+      "meaning": "gene set species mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_user_genesets.R",
+        "skills/scanpy-annotate/tests/run_smoke_test.py"
+      ]
+    },
+    {
+      "code": "OS_GOLDEN_PENDING",
+      "family": "golden",
+      "meaning": "golden pending",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/tests/sc_smoke_support.py"
+      ]
+    },
+    {
+      "code": "OS_GPC_BINARY_COMPONENT_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: binary component below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_BOOTSTRAP_ALIGNMENT",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: bootstrap alignment",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_BOOTSTRAP_INSUFFICIENT_VALID_REPLICATES",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: bootstrap insufficient valid replicates",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_CDF_INCREMENT_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: cdf increment below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_CDF_TAIL_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: cdf tail below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_COMPLETE_CASE_EXCLUSIONS",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: complete case exclusions",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_DEGENERATE_BOOTSTRAP",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: degenerate bootstrap",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_DUPLICATE_TARGET_CELL",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: duplicate target cell",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_EFFECTIVE_N_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: effective n below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_GROUP_N_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: group n below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_INVALID_BINARY_OUTCOME",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: invalid binary outcome",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_INVALID_COLUMN",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: invalid column",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_INVALID_DATA",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: invalid data",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_INVALID_SPEC",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: invalid spec",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_INVALID_WEIGHTS",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: invalid weights",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_MISSING_POSITIVE_TARGET_CELL",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: missing positive target cell",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_NON_NUMERIC_CONTINUOUS",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: non numeric continuous",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_NON_UNIQUE_PERSON",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: non unique person",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_NO_ANALYZABLE_ROWS",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: no analyzable rows",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_NO_RELEASABLE_ESTIMATES",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: no releasable estimates",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_OUTSIDE_FIXED_TARGET_EXCLUSIONS",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: outside fixed target exclusions",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_QUANTILE_INCREMENT_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: quantile increment below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_QUANTILE_TAIL_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: quantile tail below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_SMD_ZERO_OR_UNDEFINED_SCALE",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: smd zero or undefined scale",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_TARGET_CELL_N_BELOW_MINIMUM",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: target cell n below minimum",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_UNDECLARED_GROUP",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: undeclared group",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_UNSUPPORTED_INFERENCE",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: unsupported inference",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_UNSUPPORTED_VECTOR_TYPE",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: unsupported vector type",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_GPC_ZERO_WEIGHT_EXCLUSIONS",
+      "family": "groupcompare",
+      "meaning": "Pinned distribution/type source guard: zero weight exclusions",
+      "status": "canonical",
+      "sources": [
+        "skills/omicstat-groupcompare/scripts/gpc_ported_descdist_core.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_var_typing.R",
+        "skills/omicstat-groupcompare/scripts/gpc_ported_baseline_classify.R"
+      ]
+    },
+    {
+      "code": "OS_HANDOFF_MISMATCH",
+      "family": "handoff",
+      "meaning": "handoff mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/display.py",
+        "skills/_shared/py/ospy/handoff.py",
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/sc_smoke_support.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/scripts/enrich_rank_io.R",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/scripts/limma_io.R",
+        "skills/_shared/scripts/m4_io.R",
+        "skills/_shared/scripts/ranked_list.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/tests/test_convert.R",
+        "skills/_shared/tests/test_omics_shared.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/deseq2-lrt/tests/run_smoke_test.R",
+        "skills/deseq2-qc/tests/run_smoke_test.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/limma-array/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/limma-dupcor/tests/run_smoke_test.R",
+        "skills/limma-voom/tests/run_smoke_test.R",
+        "skills/maftools-landscape/scripts/run_maftools_landscape.R",
+        "skills/omicstat-selftest-py/scripts/run_omicstat_selftest_py.py",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanpy-markers/scripts/scanpy_markers_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py",
+        "skills/seurat-qc/tests/fixtures/seurat_chain.R",
+        "skills/singler-annotate/tests/run_smoke_test.R",
+        "skills/sva-batch/tests/run_smoke_test.R",
+        "skills/wgcna-network/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_HANDOFF_MISSING",
+      "family": "handoff",
+      "meaning": "handoff missing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/tests/test_omics_shared.R",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py"
+      ]
+    },
+    {
+      "code": "OS_HANDOFF_SCHEMA",
+      "family": "handoff",
+      "meaning": "handoff schema",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/handoff.py"
+      ]
+    },
+    {
+      "code": "OS_HANDOFF_TYPE_UNKNOWN",
+      "family": "handoff",
+      "meaning": "handoff type unknown",
+      "status": "canonical",
+      "sources": []
+    },
+    {
+      "code": "OS_IDMAP_LOSS",
+      "family": "idmap",
+      "meaning": "idmap loss",
+      "status": "canonical",
+      "sources": []
+    },
+    {
+      "code": "OS_INPUT_SCALE",
+      "family": "input",
+      "meaning": "input scale",
+      "status": "canonical",
+      "sources": [
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/immunedeconv-infiltration/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_INVALID_ARG_SPEC",
+      "family": "invalid",
+      "meaning": "invalid arg spec",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/args.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/args.R",
+        "skills/_shared/tests/test_engine_contract.R"
+      ]
+    },
+    {
+      "code": "OS_INVALID_COUNTS",
+      "family": "invalid",
+      "meaning": "invalid counts",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/sc_seurat_io.R",
+        "skills/seurat-qc/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_INVALID_DESIGN",
+      "family": "invalid",
+      "meaning": "invalid design",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/design_check.R",
+        "skills/_shared/scripts/limma_io.R",
+        "skills/_shared/scripts/module_kit.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/deseq2-lrt/scripts/deseq2_lrt_core.R",
+        "skills/deseq2-lrt/tests/run_smoke_test.R",
+        "skills/deseq2-qc/scripts/deseq2_qc_core.R",
+        "skills/deseq2-qc/tests/run_smoke_test.R",
+        "skills/deseq2-wald/scripts/deseq2_wald_core.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/scripts/edger_qlf_core.R",
+        "skills/limma-array/scripts/run_limma_array.R",
+        "skills/limma-array/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/limma_camera_core.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/limma-dupcor/tests/run_smoke_test.R",
+        "skills/scanpy-markers/scripts/scanpy_markers_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py",
+        "skills/speckle-propeller/scripts/speckle_propeller_core.R",
+        "skills/sva-batch/scripts/sva_batch_core.R",
+        "skills/sva-batch/tests/run_smoke_test.R",
+        "skills/wgcna-network/scripts/run_wgcna_network.R"
+      ]
+    },
+    {
+      "code": "OS_INVALID_INPUT",
+      "family": "invalid",
+      "meaning": "invalid input",
+      "status": "canonical",
+      "sources": [
+        "env/py/split_lock.py",
+        "skills/_shared/py/ospy/display.py",
+        "skills/_shared/py/ospy/module_kit.py",
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/scripts/enrich_rank_io.R",
+        "skills/_shared/scripts/fig_enrich_network.R",
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/scripts/fig_mod_bulk.R",
+        "skills/_shared/scripts/fig_mod_enrich_rank.R",
+        "skills/_shared/scripts/fig_network.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_sc_extra.R",
+        "skills/_shared/scripts/m4_io.R",
+        "skills/_shared/scripts/module_kit.R",
+        "skills/_shared/scripts/ranked_list.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/scripts/sc_seurat_io.R",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_convert.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_figures_ext.R",
+        "skills/batchelor-integrate/scripts/batchelor_integrate_core.R",
+        "skills/clusterprofiler-compare/scripts/clusterprofiler_compare_core.R",
+        "skills/clusterprofiler-gsea/scripts/clusterprofiler_gsea_core.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/limma-array/scripts/limma_array_core.R",
+        "skills/limma-array/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/limma-dupcor/scripts/limma_dupcor_core.R",
+        "skills/limma-voom/scripts/limma_voom_core.R",
+        "skills/maftools-landscape/scripts/maftools_landscape_core.R",
+        "skills/monocle3-trajectory/scripts/monocle3_trajectory_core.R",
+        "skills/scanpy-annotate/scripts/scanpy_annotate_core.py",
+        "skills/scanpy-cluster/scripts/scanpy_cluster_core.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanpy-markers/scripts/scanpy_markers_core.py",
+        "skills/scater-qc/scripts/scater_qc_core.R",
+        "skills/scran-markers/scripts/scran_markers_core.R",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py",
+        "skills/seurat-markers/scripts/seurat_markers_core.R",
+        "skills/seurat-modulescore/scripts/seurat_modulescore_core.R",
+        "skills/singler-annotate/scripts/run_singler_annotate.R",
+        "skills/singler-annotate/scripts/singler_annotate_core.R",
+        "skills/slingshot-trajectory/scripts/slingshot_trajectory_core.R",
+        "skills/slingshot-trajectory/tests/run_smoke_test.R",
+        "skills/wgcna-network/scripts/run_wgcna_network.R",
+        "skills/wgcna-network/scripts/wgcna_network_core.R",
+        "tools/check_defaults.py",
+        "tools/check_flag_docs.py",
+        "tools/make_module_lock.py"
+      ]
+    },
+    {
+      "code": "OS_INVALID_PARAMETER",
+      "family": "invalid",
+      "meaning": "invalid parameter",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/args.py",
+        "skills/_shared/py/ospy/errors.py",
+        "skills/_shared/py/ospy/figure_request.py",
+        "skills/_shared/py/ospy/handoff.py",
+        "skills/_shared/py/ospy/module_kit.py",
+        "skills/_shared/py/ospy/native_options.py",
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/args.R",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/scripts/design_check.R",
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_sc_extra.R",
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/scripts/limma_io.R",
+        "skills/_shared/scripts/module_kit.R",
+        "skills/_shared/scripts/report_engine.R",
+        "skills/_shared/tests/test_convert.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_figures_ext.R",
+        "skills/_shared/tests/test_omics_shared.R",
+        "skills/_shared/tests/test_render_figure_request.R",
+        "skills/clusterprofiler-compare/scripts/run_clusterprofiler_compare.R",
+        "skills/clusterprofiler-gsea/scripts/run_clusterprofiler_gsea.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/clusterprofiler-ora/scripts/run_clusterprofiler_ora.R",
+        "skills/deseq2-lrt/scripts/deseq2_lrt_core.R",
+        "skills/deseq2-lrt/scripts/run_deseq2_lrt.R",
+        "skills/deseq2-wald/scripts/deseq2_wald_core.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/scripts/edger_qlf_core.R",
+        "skills/edger-qlf/scripts/run_edger_qlf.R",
+        "skills/edger-qlf/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/scripts/run_fgsea_prerank.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/limma-array/scripts/limma_array_core.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/omicstat-selftest-py/scripts/run_omicstat_selftest_py.py",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/omicstat-selftest/scripts/run_omicstat_selftest.R",
+        "skills/omicstat-selftest/tests/run_smoke_test.R",
+        "skills/scanpy-cluster/scripts/scanpy_cluster_core.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanpy-purity/scripts/scanpy_purity_core.py",
+        "skills/scanpy-qc/scripts/scanpy_qc_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py",
+        "skills/scvi-integrate/tests/run_smoke_test.py",
+        "skills/seurat-cluster/scripts/seurat_cluster_core.R",
+        "skills/seurat-integrate/scripts/seurat_integrate_core.R",
+        "skills/seurat-modulescore/scripts/seurat_modulescore_core.R",
+        "skills/seurat-qc/scripts/seurat_qc_core.R",
+        "skills/sva-batch/scripts/sva_batch_core.R",
+        "skills/wgcna-network/scripts/wgcna_network_core.R",
+        "tools/capture_locked_defaults.py",
+        "tools/make_module_lock.R",
+        "tools/make_module_lock.py",
+        "tools/new_module.py"
+      ]
+    },
+    {
+      "code": "OS_INVALID_RESULT",
+      "family": "invalid",
+      "meaning": "invalid result",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/limma_io.R",
+        "skills/clusterprofiler-compare/scripts/clusterprofiler_compare_report.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/gsva-score/scripts/gsva_score_core.R",
+        "skills/limma-dupcor/scripts/limma_dupcor_core.R",
+        "skills/limma-voom/scripts/limma_voom_core.R",
+        "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_core.R"
+      ]
+    },
+    {
+      "code": "OS_INVALID_UNIVERSE",
+      "family": "invalid",
+      "meaning": "invalid universe",
+      "status": "canonical",
+      "sources": [
+        "skills/clusterprofiler-compare/scripts/clusterprofiler_compare_core.R",
+        "skills/clusterprofiler-compare/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R"
+      ]
+    },
+    {
+      "code": "OS_JSON_INVALID_UNICODE",
+      "family": "json",
+      "meaning": "json invalid unicode",
+      "status": "canonical",
+      "sources": [
+        "mcp/publication.py",
+        "mcp/test_publication.py"
+      ]
+    },
+    {
+      "code": "OS_JSON_KEY_COLLISION",
+      "family": "json",
+      "meaning": "json key collision",
+      "status": "canonical",
+      "sources": [
+        "mcp/publication.py",
+        "mcp/test_publication.py"
+      ]
+    },
+    {
+      "code": "OS_JSON_NONFINITE",
+      "family": "json",
+      "meaning": "json nonfinite",
+      "status": "canonical",
+      "sources": [
+        "mcp/publication.py",
+        "mcp/test_publication.py"
+      ]
+    },
+    {
+      "code": "OS_LICENCE_REQUIRED",
+      "family": "licence",
+      "meaning": "licence required",
+      "status": "canonical",
+      "sources": [
+        "skills/aucell-score/scripts/aucell_score_core.R",
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/immunedeconv-infiltration/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_LIMIT_EXCEEDED",
+      "family": "limits",
+      "meaning": "Declared input size or runtime limit exceeded; data were not silently truncated",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/readers_io.R"
+      ]
+    },
+    {
+      "code": "OS_LOCK_MISMATCH",
+      "family": "lock",
+      "meaning": "lock mismatch",
+      "status": "canonical",
+      "sources": [
+        "tools/make_module_lock.py"
+      ]
+    },
+    {
+      "code": "OS_LOCK_PENDING",
+      "family": "lock",
+      "meaning": "lock pending",
+      "status": "canonical",
+      "sources": [
+        "tools/make_module_lock.py"
+      ]
+    },
+    {
+      "code": "OS_METHOD_UNAVAILABLE",
+      "family": "method",
+      "meaning": "method unavailable",
+      "status": "canonical",
+      "sources": [
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/immunedeconv-infiltration/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_COLUMN",
+      "family": "missing",
+      "meaning": "missing column",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/scripts/design_check.R",
+        "skills/_shared/scripts/limma_io.R",
+        "skills/_shared/scripts/module_kit.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/tests/test_convert.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/clusterprofiler-compare/scripts/clusterprofiler_compare_core.R",
+        "skills/clusterprofiler-gsea/scripts/clusterprofiler_gsea_core.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/deseq2-lrt/scripts/deseq2_lrt_core.R",
+        "skills/deseq2-lrt/scripts/run_deseq2_lrt.R",
+        "skills/deseq2-qc/scripts/deseq2_qc_core.R",
+        "skills/deseq2-wald/scripts/deseq2_wald_core.R",
+        "skills/deseq2-wald/scripts/run_deseq2_wald.R",
+        "skills/edger-qlf/scripts/edger_qlf_core.R",
+        "skills/edger-qlf/scripts/run_edger_qlf.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/limma-array/scripts/limma_array_core.R",
+        "skills/limma-array/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/maftools-landscape/scripts/maftools_landscape_core.R",
+        "skills/monocle3-trajectory/scripts/monocle3_trajectory_core.R",
+        "skills/scran-markers/scripts/scran_markers_core.R",
+        "skills/seurat-cluster/scripts/seurat_cluster_core.R",
+        "skills/seurat-integrate/scripts/seurat_integrate_core.R",
+        "skills/seurat-markers/scripts/seurat_markers_core.R",
+        "skills/seurat-qc/scripts/seurat_qc_core.R",
+        "skills/slingshot-trajectory/scripts/slingshot_trajectory_core.R",
+        "skills/sva-batch/scripts/sva_batch_core.R",
+        "skills/wgcna-network/scripts/run_wgcna_network.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_COLUMNS",
+      "family": "missing",
+      "meaning": "missing columns",
+      "status": "deprecated",
+      "sources": [
+        "skills/_shared/scripts/fig_bulk.R",
+        "skills/_shared/scripts/fig_enrich.R",
+        "skills/_shared/scripts/fig_mod_bulk.R",
+        "skills/_shared/scripts/fig_network.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_sc_extra.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_figures_ext.R"
+      ],
+      "alias_of": "OS_MISSING_COLUMN",
+      "legacy_sites": [
+        {
+          "path": "skills/_shared/scripts/fig_bulk.R",
+          "sha256": "b494497d9141385c314d0548d2246faa23049d852375f7440a6649144e23e757"
+        },
+        {
+          "path": "skills/_shared/scripts/fig_enrich.R",
+          "sha256": "dc1081793cf8a9146733abbb0a27aa34f38912f9eb873854446cab02ea9a0c3f"
+        },
+        {
+          "path": "skills/_shared/scripts/fig_mod_bulk.R",
+          "sha256": "b41e5c34cdd0918806d21a935659ea4e9b9e953b6c1fab3495f1d2836f0b0542"
+        },
+        {
+          "path": "skills/_shared/scripts/fig_network.R",
+          "sha256": "f6c5722f21c6543b275d6c28de08b0cca8c152021e9448bacd7e2836fa907482"
+        },
+        {
+          "path": "skills/_shared/scripts/fig_sc.R",
+          "sha256": "c43c375de0399409c3de69ec5372e2f0ea11a25871df6fe662272271ee951b4d"
+        },
+        {
+          "path": "skills/_shared/scripts/fig_sc_extra.R",
+          "sha256": "4ee7b143f092b1520af0e6fb4b1ac7809d6356fb90279f9513365ce306d957dd"
+        },
+        {
+          "path": "skills/_shared/tests/test_figures.R",
+          "sha256": "c155a324b069f3ccdea16124a244ab0358cce3a519996e90794882d9e0618d4a"
+        },
+        {
+          "path": "skills/_shared/tests/test_figures_ext.R",
+          "sha256": "cf9504a85d0bb043750045e2123610aeb8a18a8e4c8a1bdd152251f9b135d96d"
+        }
+      ]
+    },
+    {
+      "code": "OS_MISSING_DEPENDENCY",
+      "family": "missing",
+      "meaning": "missing dependency",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_bulk.R",
+        "skills/_shared/scripts/fig_compose.R",
+        "skills/_shared/scripts/fig_enrich.R",
+        "skills/_shared/scripts/fig_enrich_network.R",
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/scripts/fig_network.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_sc_extra.R",
+        "skills/_shared/scripts/render_docx.R",
+        "skills/_shared/scripts/render_md.R",
+        "skills/cellchat-communication/scripts/cellchat_communication_core.R",
+        "skills/singler-annotate/scripts/singler_annotate_core.R",
+        "skills/singler-annotate/tests/fixtures/make_pancreas.R",
+        "skills/singler-annotate/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_FILE",
+      "family": "missing",
+      "meaning": "missing file",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/validate_effect_table_cli.R",
+        "skills/_shared/scripts/validate_feature_table_cli.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_FUNCTION",
+      "family": "missing",
+      "meaning": "missing function",
+      "status": "canonical",
+      "sources": [
+        "tools/collect_l1.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_INPUT",
+      "family": "missing",
+      "meaning": "missing input",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/enrich_rank_io.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_LAYER",
+      "family": "missing",
+      "meaning": "missing layer",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/test_sc_contracts.py"
+      ]
+    },
+    {
+      "code": "OS_MISSING_PACKAGE",
+      "family": "missing",
+      "meaning": "missing package",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_bulk.R",
+        "skills/_shared/scripts/fig_heatmap.R",
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/scripts/render_docx.R",
+        "skills/_shared/scripts/validate_effect_table_cli.R",
+        "skills/_shared/scripts/validate_feature_table_cli.R",
+        "skills/omicstat-selftest/scripts/run_omicstat_selftest.R",
+        "tools/collect_l1.R"
+      ]
+    },
+    {
+      "code": "OS_MISSING_PARAMETER",
+      "family": "missing",
+      "meaning": "missing parameter",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/args.py",
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/args.R",
+        "skills/_shared/scripts/convert.R",
+        "skills/_shared/scripts/fig_sc.R",
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/scripts/m4_io.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/scripts/sc_bioc_io.R",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_convert.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_user_genesets.R",
+        "skills/clusterprofiler-compare/scripts/run_clusterprofiler_compare.R",
+        "skills/clusterprofiler-compare/tests/run_smoke_test.R",
+        "skills/clusterprofiler-gsea/scripts/clusterprofiler_gsea_core.R",
+        "skills/clusterprofiler-gsea/scripts/run_clusterprofiler_gsea.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/scripts/clusterprofiler_ora_core.R",
+        "skills/clusterprofiler-ora/scripts/run_clusterprofiler_ora.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/deseq2-lrt/scripts/deseq2_lrt_core.R",
+        "skills/deseq2-lrt/scripts/run_deseq2_lrt.R",
+        "skills/deseq2-qc/scripts/deseq2_qc_core.R",
+        "skills/deseq2-qc/tests/run_smoke_test.R",
+        "skills/deseq2-wald/scripts/deseq2_wald_core.R",
+        "skills/deseq2-wald/scripts/run_deseq2_wald.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/scripts/run_edger_qlf.R",
+        "skills/fgsea-prerank/scripts/run_fgsea_prerank.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/limma-array/scripts/limma_array_core.R",
+        "skills/limma-array/scripts/run_limma_array.R",
+        "skills/limma-array/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/limma-dupcor/scripts/limma_dupcor_core.R",
+        "skills/limma-dupcor/scripts/run_limma_dupcor.R",
+        "skills/limma-dupcor/tests/run_smoke_test.R",
+        "skills/limma-voom/scripts/run_limma_voom.R",
+        "skills/maftools-landscape/scripts/run_maftools_landscape.R",
+        "skills/maftools-landscape/tests/run_smoke_test.R",
+        "skills/monocle3-trajectory/scripts/monocle3_trajectory_core.R",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/omicstat-selftest/tests/run_smoke_test.R",
+        "skills/scanpy-annotate/scripts/scanpy_annotate_core.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanpy-purity/scripts/scanpy_purity_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scater-qc/scripts/run_scater_qc.R",
+        "skills/scran-cluster/scripts/run_scran_cluster.R",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py",
+        "skills/scvi-integrate/tests/run_smoke_test.py",
+        "skills/seurat-cluster/scripts/run_seurat_cluster.R",
+        "skills/seurat-integrate/scripts/run_seurat_integrate.R",
+        "skills/seurat-markers/scripts/run_seurat_markers.R",
+        "skills/seurat-markers/scripts/seurat_markers_core.R",
+        "skills/seurat-modulescore/scripts/run_seurat_modulescore.R",
+        "skills/seurat-modulescore/scripts/seurat_modulescore_core.R",
+        "skills/seurat-qc/scripts/run_seurat_qc.R",
+        "skills/singler-annotate/tests/run_smoke_test.R",
+        "skills/sva-batch/scripts/run_sva_batch.R",
+        "skills/sva-batch/scripts/sva_batch_core.R",
+        "skills/sva-batch/tests/run_smoke_test.R",
+        "tools/make_module_lock.R",
+        "tools/test_new_module_py.py"
+      ]
+    },
+    {
+      "code": "OS_MISSING_REDUCTION",
+      "family": "missing",
+      "meaning": "missing reduction",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "skills/_shared/py/tests/test_sc_contracts.py",
+        "skills/scanpy-cluster/scripts/scanpy_cluster_core.py",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanpy-purity/scripts/scanpy_purity_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py"
+      ]
+    },
+    {
+      "code": "OS_MITO_FEATURES",
+      "family": "mito",
+      "meaning": "mito features",
+      "status": "canonical",
+      "sources": [
+        "skills/seurat-qc/scripts/seurat_qc_core.R",
+        "skills/seurat-qc/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_MODULE_UNSEALED",
+      "family": "acceptance",
+      "meaning": "Candidate module requires explicit development-mode",
+      "status": "canonical",
+      "sources": [
+        "skills/proda-diff",
+        "skills/msstats-diff",
+        "skills/_shared/scripts/candidate_model.R"
+      ]
+    },
+    {
+      "code": "OS_NUMERICAL_DEGENERACY",
+      "family": "numerical",
+      "meaning": "numerical degeneracy",
+      "status": "canonical",
+      "sources": [
+        "skills/scanpy-cluster/scripts/scanpy_cluster_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py"
+      ]
+    },
+    {
+      "code": "OS_OUTPUT_EXISTS",
+      "family": "output",
+      "meaning": "output exists",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py",
+        "tools/capture_locked_defaults.py",
+        "tools/test_build_contracts.py"
+      ]
+    },
+    {
+      "code": "OS_OWNER_DECISION_PENDING",
+      "family": "owner",
+      "meaning": "owner decision pending",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/handoff.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/gsva-score/scripts/run_gsva_score.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/scanpy-qc/scripts/scanpy_qc_core.py"
+      ]
+    },
+    {
+      "code": "OS_PACKAGE_MISSING",
+      "family": "package",
+      "meaning": "package missing",
+      "status": "deprecated",
+      "sources": [],
+      "alias_of": "OS_MISSING_PACKAGE",
+      "legacy_sites": []
+    },
+    {
+      "code": "OS_PACKAGE_VERSION",
+      "family": "environment",
+      "meaning": "Installed package differs from reviewed candidate API",
+      "status": "canonical",
+      "sources": [
+        "skills/proda-diff",
+        "skills/msstats-diff",
+        "skills/_shared/scripts/candidate_model.R"
+      ]
+    },
+    {
+      "code": "OS_PAL_CATEGORY",
+      "family": "pal",
+      "meaning": "pal category",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/tests/test_figures.R"
+      ]
+    },
+    {
+      "code": "OS_PSEUDOREPLICATION",
+      "family": "pseudoreplication",
+      "meaning": "pseudoreplication",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/tests/sc_smoke_support.py",
+        "skills/_shared/scripts/limma_io.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/cellchat-communication/scripts/cellchat_communication_core.R",
+        "skills/cellchat-communication/tests/run_smoke_test.R",
+        "skills/limma-camera/scripts/limma_camera_core.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_core.R",
+        "skills/muscat-pseudobulk/tests/run_smoke_test.R",
+        "skills/scanpy-markers/scripts/scanpy_markers_core.py",
+        "skills/scanpy-markers/tests/marker_regressions.py",
+        "skills/scran-markers/scripts/scran_markers_core.R",
+        "skills/scran-markers/tests/run_smoke_test.R",
+        "skills/seurat-markers/scripts/run_seurat_markers.R",
+        "skills/seurat-markers/scripts/seurat_markers_core.R",
+        "skills/seurat-markers/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_QC_BLOCKED",
+      "family": "qc",
+      "meaning": "qc blocked",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/sc_module.py"
+      ]
+    },
+    {
+      "code": "OS_QC_BLOCKER",
+      "family": "qc",
+      "meaning": "qc blocker",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/limma_io.R",
+        "skills/_shared/scripts/sc_backend_io.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/deseq2-lrt/scripts/run_deseq2_lrt.R",
+        "skills/deseq2-qc/scripts/run_deseq2_qc.R",
+        "skills/deseq2-qc/tests/run_smoke_test.R",
+        "skills/deseq2-wald/scripts/run_deseq2_wald.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/scripts/run_edger_qlf.R",
+        "skills/edger-qlf/tests/run_smoke_test.R",
+        "skills/limma-array/scripts/limma_array_core.R",
+        "skills/limma-dupcor/scripts/limma_dupcor_core.R",
+        "skills/limma-dupcor/tests/run_smoke_test.R",
+        "skills/limma-voom/scripts/limma_voom_core.R",
+        "skills/scater-qc/scripts/run_scater_qc.R",
+        "skills/scater-qc/scripts/scater_qc_core.R",
+        "skills/seurat-qc/scripts/seurat_qc_core.R",
+        "skills/seurat-qc/tests/run_smoke_test.R",
+        "skills/sva-batch/scripts/run_sva_batch.R",
+        "skills/sva-batch/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_RANKING_UNDIRECTIONAL",
+      "family": "ranking",
+      "meaning": "ranking undirectional",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/ranked_list.R",
+        "skills/_shared/tests/test_scientific_refusals.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_REFDATA_MISMATCH",
+      "family": "refdata",
+      "meaning": "refdata mismatch",
+      "status": "canonical",
+      "sources": [
+        "env/r/fetch_addon_refdata.R",
+        "skills/_shared/py/ospy/user_genesets.py",
+        "skills/_shared/py/tests/test_user_genesets.py",
+        "skills/_shared/scripts/enrich_rank_io.R",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/_shared/tests/test_user_genesets.R",
+        "skills/aucell-score/tests/run_smoke_test.R",
+        "skills/clusterprofiler-compare/tests/run_smoke_test.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/scanpy-annotate/tests/run_smoke_test.py",
+        "skills/seurat-modulescore/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_REFDATA_MISSING",
+      "family": "refdata",
+      "meaning": "refdata missing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/enrich_io.R",
+        "skills/_shared/scripts/enrich_rank_io.R",
+        "skills/_shared/scripts/user_genesets.R",
+        "skills/aucell-score/scripts/aucell_score_core.R",
+        "skills/aucell-score/tests/run_smoke_test.R",
+        "skills/clusterprofiler-compare/tests/run_smoke_test.R",
+        "skills/clusterprofiler-gsea/tests/run_smoke_test.R",
+        "skills/clusterprofiler-ora/tests/run_smoke_test.R",
+        "skills/fgsea-prerank/tests/run_smoke_test.R",
+        "skills/gsva-score/tests/run_smoke_test.R",
+        "skills/immunedeconv-infiltration/scripts/immunedeconv_infiltration_core.R",
+        "skills/immunedeconv-infiltration/tests/run_smoke_test.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/seurat-modulescore/scripts/seurat_modulescore_core.R",
+        "skills/seurat-modulescore/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_RENDER_FAILED",
+      "family": "render",
+      "meaning": "Native renderer failed without another registered OS code; preserve the actual nonzero exit and diagnostic output",
+      "status": "canonical",
+      "sources": [
+        "mcp/server.py"
+      ]
+    },
+    {
+      "code": "OS_RENDER_INVALID_INPUT",
+      "family": "render",
+      "meaning": "render invalid input",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/render_docx.R",
+        "skills/_shared/scripts/render_md.R"
+      ]
+    },
+    {
+      "code": "OS_RESOURCE_LIMIT",
+      "family": "resource",
+      "meaning": "resource limit",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/errors.py",
+        "skills/scanpy-cluster/scripts/scanpy_cluster_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py"
+      ]
+    },
+    {
+      "code": "OS_RESULT_INCONSISTENT",
+      "family": "result",
+      "meaning": "result inconsistent",
+      "status": "canonical",
+      "sources": [
+        "skills/limma-camera/scripts/limma_camera_core.R",
+        "skills/scanpy-ingest/scripts/scanpy_ingest_core.py",
+        "skills/scanvi-annotate/scripts/scanvi_annotate_core.py",
+        "skills/scvi-integrate/scripts/scvi_integrate_core.py"
+      ]
+    },
+    {
+      "code": "OS_RESULT_INVALID",
+      "family": "result",
+      "meaning": "result invalid",
+      "status": "canonical",
+      "sources": [
+        "skills/immunedeconv-infiltration/scripts/run_immunedeconv_infiltration.R"
+      ]
+    },
+    {
+      "code": "OS_SAMPLE_MISMATCH",
+      "family": "sample",
+      "meaning": "sample mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/seurat-qc/scripts/seurat_qc_core.R"
+      ]
+    },
+    {
+      "code": "OS_SCHEMA_BUILD_FAILED",
+      "family": "schema",
+      "meaning": "schema build failed",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/effect_table.R"
+      ]
+    },
+    {
+      "code": "OS_SCHEMA_INTERNAL",
+      "family": "schema",
+      "meaning": "schema internal",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/effect_table.R"
+      ]
+    },
+    {
+      "code": "OS_SCHEMA_INVALID",
+      "family": "schema",
+      "meaning": "schema invalid",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/feature_table.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/effect_table.R",
+        "skills/_shared/scripts/feature_table.R",
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/scripts/validate_effect_table_cli.R",
+        "skills/_shared/scripts/validate_feature_table_cli.R"
+      ]
+    },
+    {
+      "code": "OS_SCHEMA_VALIDATION_FAILED",
+      "family": "schema",
+      "meaning": "schema validation failed",
+      "status": "canonical",
+      "sources": [
+        "mcp/server.py"
+      ]
+    },
+    {
+      "code": "OS_SCHEMA_WARNING",
+      "family": "schema",
+      "meaning": "schema warning",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/feature_table.py",
+        "skills/_shared/scripts/effect_table.R",
+        "skills/_shared/scripts/feature_table.R"
+      ]
+    },
+    {
+      "code": "OS_SINGULAR",
+      "family": "model",
+      "meaning": "Declared random effect or fitted covariance is singular",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/dose_scope_support.R",
+        "skills/nlme-dose/scripts/nlme_dose_core.R"
+      ]
+    },
+    {
+      "code": "OS_SLOT_INVALID_VALUE",
+      "family": "slot",
+      "meaning": "slot invalid value",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_SLOT_MISSING",
+      "family": "slot",
+      "meaning": "slot missing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_SLOT_TYPE_MISMATCH",
+      "family": "slot",
+      "meaning": "slot type mismatch",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_SLOT_UNKNOWN",
+      "family": "slot",
+      "meaning": "slot unknown",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_TEMPLATE_ALREADY_EXISTS",
+      "family": "template",
+      "meaning": "template already exists",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_TEMPLATE_NOT_FOUND",
+      "family": "template",
+      "meaning": "template not found",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_TEMPLATE_SLOT_MISSING",
+      "family": "template",
+      "meaning": "template slot missing",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/module_kit.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/module_kit.R"
+      ]
+    },
+    {
+      "code": "OS_TEMPLATE_UNFILLED_SLOT",
+      "family": "template",
+      "meaning": "template unfilled slot",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/report_engine.R"
+      ]
+    },
+    {
+      "code": "OS_TOO_MANY_CATEGORIES",
+      "family": "too",
+      "meaning": "too many categories",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/scripts/fig_bulk.R",
+        "skills/_shared/scripts/fig_enrich_network.R",
+        "skills/_shared/scripts/fig_mod_enrich_rank.R",
+        "skills/_shared/scripts/fig_style.R",
+        "skills/_shared/tests/test_figures.R",
+        "skills/_shared/tests/test_figures_ext.R",
+        "skills/scanpy-annotate/scripts/scanpy_annotate_core.py"
+      ]
+    },
+    {
+      "code": "OS_UNKNOWN_FLAG",
+      "family": "unknown",
+      "meaning": "unknown flag",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/ospy/args.py",
+        "skills/_shared/py/tests/sc_smoke_support.py",
+        "skills/_shared/py/tests/test_ospy.py",
+        "skills/_shared/scripts/args.R",
+        "skills/_shared/tests/test_engine_contract.R",
+        "skills/deseq2-qc/tests/run_smoke_test.R",
+        "skills/deseq2-wald/tests/run_smoke_test.R",
+        "skills/edger-qlf/tests/run_smoke_test.R",
+        "skills/limma-voom/tests/run_smoke_test.R",
+        "skills/omicstat-selftest-py/tests/run_smoke_test.py",
+        "skills/omicstat-selftest/tests/run_smoke_test.R",
+        "skills/singler-annotate/tests/run_smoke_test.R",
+        "skills/sva-batch/tests/run_smoke_test.R",
+        "skills/wgcna-network/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_UNSUPPORTED_DESIGN",
+      "family": "unsupported",
+      "meaning": "unsupported design",
+      "status": "canonical",
+      "sources": [
+        "skills/limma-camera/scripts/run_limma_camera.R",
+        "skills/limma-camera/tests/run_smoke_test.R",
+        "skills/sva-batch/scripts/sva_batch_core.R",
+        "skills/sva-batch/tests/run_smoke_test.R"
+      ]
+    },
+    {
+      "code": "OS_UNSUPPORTED_INPUT",
+      "family": "input",
+      "meaning": "Input is outside the declared scientific scope",
+      "status": "canonical",
+      "sources": [
+        "skills/proda-diff",
+        "skills/msstats-diff",
+        "skills/_shared/scripts/candidate_model.R"
+      ]
+    },
+    {
+      "code": "OS_VALUE_NONFINITE",
+      "family": "value",
+      "meaning": "value nonfinite",
+      "status": "canonical",
+      "sources": [
+        "mcp/publication.py",
+        "mcp/test_publication.py"
+      ]
+    },
+    {
+      "code": "OS_X",
+      "family": "x",
+      "meaning": "x",
+      "status": "canonical",
+      "sources": [
+        "skills/_shared/py/tests/test_ospy.py"
+      ]
+    },
+    {
+      "code": "OS_ZERO_SEMANTICS",
+      "family": "input",
+      "meaning": "Zero values have ambiguous incompatible scale semantics",
+      "status": "canonical",
+      "sources": [
+        "skills/proda-diff",
+        "skills/msstats-diff",
+        "skills/_shared/scripts/candidate_model.R"
+      ]
+    }
+  ],
+  "non_diagnostic_symbols": [
+    "OS_ARG_TYPES",
+    "OS_AXIS",
+    "OS_CVD_MACHADO",
+    "OS_DEFAULT_JOURNAL",
+    "OS_DE_SEMANTIC_VERSION",
+    "OS_ECOSYSTEMS",
+    "OS_ENRICH_DEFINITIONS",
+    "OS_FIG",
+    "OS_FIGURE_RENDER_SCHEMA",
+    "OS_FIGURE_REQUEST_SCHEMA",
+    "OS_FIG_",
+    "OS_FIG_MODEL",
+    "OS_FIG_SEMANTIC_VERSION",
+    "OS_FIG_TAG_MARGIN_LINES",
+    "OS_HELP_LINE_RE",
+    "OS_JOURNAL_PRESETS",
+    "OS_LABEL_MAX_LEADER_MM",
+    "OS_LABEL_MAX_OBSTACLES",
+    "OS_LABEL_PAD_MM",
+    "OS_LABEL_POINT_R_MM",
+    "OS_LABEL_STEP_MM",
+    "OS_MATRIX_SEMANTIC_VERSION",
+    "OS_MATRIX_STATE_STYLES",
+    "OS_MEAN_DEFINITIONS",
+    "OS_MINUS",
+    "OS_NDASH",
+    "OS_PAL_",
+    "OS_PAL_DISTANCE",
+    "OS_PAL_DIVERGING",
+    "OS_PAL_EXPRESSION",
+    "OS_PAL_GROUP",
+    "OS_PAL_MUTATION",
+    "OS_PAL_SEQUENTIAL",
+    "OS_P_ADJUST_NAMES",
+    "OS_QC_SEVERITIES",
+    "OS_RANKED_LIST_SCHEMA",
+    "OS_RANKED_REQUIRED",
+    "OS_RANKED_STATISTICS",
+    "OS_RENDER_BUILDERS",
+    "OS_RENDER_COL_TYPES",
+    "OS_REPEL_MAX_ITER",
+    "OS_REPEL_MAX_TIME",
+    "OS_REPEL_SEED",
+    "OS_RESOURCE_PARITY_OUTPUT",
+    "OS_RESOURCE_PLAN_JSON",
+    "OS_RESOURCE_PLAN_MAX_BYTES",
+    "OS_RESOURCE_PLAN_PREFIX",
+    "OS_RESOURCE_PLAN_SCHEMA",
+    "OS_RESOURCE_SAMPLING_SCHEMA",
+    "OS_RESTYLE_FIELDS",
+    "OS_RESTYLE_SCHEMA",
+    "OS_SC_ANNDATA_VERSION",
+    "OS_SC_CONSUMERS",
+    "OS_SC_ROLES",
+    "OS_SC_SEURAT_LAYER",
+    "OS_SC_TYPES",
+    "OS_SC_UNS_KEY",
+    "OS_SLOT_",
+    "OS_TIMES",
+    "OS_USER_GENESETS_CONTRACT_FLAGS",
+    "OS_USER_GENESETS_ID_TYPES",
+    "OS_USER_GENESETS_MIN_ID_PATTERN",
+    "OS_USER_GENESETS_MIN_OVERLAP",
+    "OS_USER_GENESETS_ORIGIN",
+    "OS_USER_GENESETS_PROV_KEYS",
+    "OS_USER_GENESETS_PROV_REQUIRED",
+    "OS_ZSCORE_MIN_GROUPS"
+  ]
+}

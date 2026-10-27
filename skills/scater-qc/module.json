@@ -1,0 +1,149 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "scater-qc",
+  "lane": "R",
+  "domain": "sc-qc",
+  "entry": "scripts/run_scater_qc.R",
+  "version": "1.0.0",
+  "qc_prefix": "XQ",
+  "engine_packages": [
+    "scuttle",
+    "BiocParallel"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "SingleCellExperiment"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "SCE per-cell quality control",
+    "order": 29
+  },
+  "publication": {
+    "rule_category": "advisory",
+    "legacy_override": {
+      "module": "scater-qc",
+      "rule_id": "SCATER-QC-XQ-CHOICES",
+      "category": "advisory",
+      "severity": "info",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/scater-qc/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Proposed publication rule: advisory `XQ-CHOICES`: declare mitochondrial IDs, mode, thresholds and batch column; do not imply doublets were removed.",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Proposed publication rule: advisory `XQ-CHOICES`: declare mitochondrial IDs, mode, thresholds and batch column; do not imply doublets were removed.",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--mt-genes",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--species",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--id-type",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--qc-mode",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "mad|fixed",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 19,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "scater-qc",
+      "entry_script": "scripts/run_scater_qc.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "4286290a138654bf3d312f0198dedc95c208f6603463f836de0c6bb893b369e7",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

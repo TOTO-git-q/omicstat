@@ -1,0 +1,39 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "proc-roc",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/proc-roc/scripts/proc_roc_core.R": "66caa746d7034b8d4aac6cf15b10127cbcd1c41c40a096945386bd11841432b0",
+    "skills/proc-roc/scripts/proc_roc_input.R": "2e84f97d0ea32e0d5a8be49901527a516759a3af4373a03c56ff6d04560cadbd",
+    "skills/proc-roc/scripts/proc_roc_qc.R": "7a68bfd029a50c30684bf76da8803e829af15c5610167a7665e09cc573d4d8b6",
+    "skills/proc-roc/scripts/proc_roc_report.R": "83539ee1d887e137ae78ef1298ff15c3e4df5d83024f0f45e5a3f7a738c89efb",
+    "skills/proc-roc/scripts/roc_ported_core.R": "e78541acb9101d38f04820a60125ee0d4aedcd029afb53db5717f1ab87e1b8b9",
+    "skills/proc-roc/scripts/roc_ported_qc.R": "673bace5a5f8e4a6f5c754e8f9e76bcde7486949b5d1c6adc730a889e186dd0b",
+    "skills/proc-roc/scripts/run_proc_roc.R": "a9cd3e054fb16a0318244e21eafe56be1f719ed679befa1bb863f487ec909bf6",
+    "skills/proc-roc/scripts/calls_registry.json": "352a3695b32a54cd9af76ed38e366999cc27d7a37f80bf2574b16e784a2e1644",
+    "skills/proc-roc/SKILL.md": "1f3650f0d0ca2b527b29df0b55558da43e10d0440b8c7457c8024b6af17773c9",
+    "skills/proc-roc/references/COPIED_FUNCTIONS.json": "eee282c692fe2a1a38002a454010018d3c22384205e566c8757f95a45b4ee330",
+    "skills/proc-roc/references/ERROR_MAPPING.json": "038888c526014265fad734fed4aaec95cd0eb409d89a6ba3f9eaa8db68032676",
+    "skills/proc-roc/references/PORT_ADAPTATIONS.json": "699276aba1fb295d8dc014db50a213911df171295a47c78b39f32c80db1df896",
+    "skills/proc-roc/references/PORT_SOURCE.json": "a6fd1d71af19eaacb475d704f37778b22254eafa4f891709591a06053c846d54",
+    "skills/proc-roc/references/PORT_diagacc_core.R.patch": "e700b7adc91d335356422f473461143e38c1bf66f47aa7cfaee8a6efd95c1a31",
+    "skills/proc-roc/references/PORT_diagacc_qc.R.patch": "adeeaae1ec104a11eea1f4a51857b66aa466a054ca4a50b0a4d88598a542462f",
+    "skills/proc-roc/references/method-basis.md": "b6381b635bcf96c07fcd1381fc1be68b6b17df9419218de98b74471a13a60aa3",
+    "skills/proc-roc/references/parameters.md": "0c741dbeab7ef4568b37487028ffa2e58070727dbd7aa6b122bc56d4a2978133",
+    "skills/proc-roc/references/qc-rules.md": "c63396a572fcc660d1cd65573fa57e873e44255ab5b1cc7e5d17bdfa56930a2b",
+    "skills/proc-roc/tests/run_anchors.R": "d8b3c654bc6f91434fbc8b91d9d4de17846ca2cb7c3b806d457bf8c8e1245426",
+    "skills/proc-roc/tests/run_smoke_test.R": "3727a350aa58a2de4f6ed6dd5d2e22532206a4db0c7df24275b942cc1ebb94eb",
+    "skills/proc-roc/tests/test_helpers.R": "8b4aac6af77fd721f99a0d375396b1dedab59ddc3f60ef46964b5602a75bdd80",
+    "skills/proc-roc/tests/golden_manifest.csv": "2bdf106f939b9d4a30d396857f5ba9a296e3aa2053a4a88c24d3bf354d7aa29d",
+    "acceptance/exemplars/proc-roc/PACK.md": "0d0cea8b35be2d3f16940e7f1fd856aaf71f4546c2458757a3a51363ecd3b370"
+  },
+  "packages": {},
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

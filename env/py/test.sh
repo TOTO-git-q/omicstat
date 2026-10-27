@@ -6,7 +6,9 @@
 # Usage: bash env/py/test.sh   -> env/py/test_report.txt
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd -P)"
-IMAGE="$(python3 -c "import json; c=json.load(open('$ROOT/env/omicstat-env.json'))['python_lane']; print(c['image']+':'+c['image_tag'])")"
+IMAGE="${OMICSTAT_IMAGE:-$(python3 -c "import json; c=json.load(open('$ROOT/env/py/py-env.json')); print(c['image']+':'+c['image_tag'])")}"
+REPORT="${OMICSTAT_TEST_REPORT:-$ROOT/env/py/test_report.txt}"
+mkdir -p "$(dirname "$REPORT")"
 IMAGE_ID="$(docker image inspect "$IMAGE" --format '{{.Id}}')" || exit 1
 artifact_mounts=()
 if [ -n "${OMICSTAT_TEST_ARTIFACTS:-}" ]; then
@@ -15,10 +17,10 @@ if [ -n "${OMICSTAT_TEST_ARTIFACTS:-}" ]; then
   artifact_mounts=(-v "$artifacts:/tmp/omicstat-test")
 fi
 docker run --rm --network none --user "$(id -u):$(id -g)" \
-  -v "$ROOT":/omicstat "${artifact_mounts[@]}" -w /omicstat \
-  -e HOME=/tmp/omicstat-home -e OMICSTAT_TEST_TMP=/tmp/omicstat-test \
+  -v "$ROOT":/omicstat:ro "${artifact_mounts[@]}" -w /omicstat \
+  -e OMICSTAT_WRITE_GOLDEN= -e PYTHONDONTWRITEBYTECODE=1 -e HOME=/tmp/omicstat-home -e OMICSTAT_TEST_TMP=/tmp/omicstat-test \
   -e OMICSTAT_PY_IMAGE_ID="$IMAGE_ID" -e OMICSTAT_REQUIRE_LOCKED=1 -e OMICSTAT_TEST_LOG_DIR=/tmp/omicstat-test/logs \
-  "$IMAGE" bash -c 'mkdir -p /tmp/omicstat-test /tmp/omicstat-home; bash tools/run_tests_py.sh' 2>&1 | tee "$ROOT/env/py/test_report.txt"
+  "$IMAGE_ID" bash -c 'mkdir -p /tmp/omicstat-test /tmp/omicstat-home; bash tools/run_tests_py.sh' 2>&1 | tee "$REPORT"
 status=${PIPESTATUS[0]}
-echo "image: $IMAGE $(docker image inspect "$IMAGE" --format '{{.Id}}')" >> "$ROOT/env/py/test_report.txt"
+echo "image: $IMAGE $(docker image inspect "$IMAGE" --format '{{.Id}}')" >> "$REPORT"
 exit $status

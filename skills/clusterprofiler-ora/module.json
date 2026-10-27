@@ -1,0 +1,210 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "clusterprofiler-ora",
+  "lane": "R",
+  "domain": "enrichment",
+  "entry": "scripts/run_clusterprofiler_ora.R",
+  "version": "1.1.0",
+  "qc_prefix": "CO",
+  "engine_packages": [
+    "clusterProfiler",
+    "enrichit"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "feature_table"
+    ],
+    "outputs": [
+      "eligible_universe",
+      "enrichment_table",
+      "gene_list"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Over-representation of a thresholded gene list against tested genes",
+    "order": 10
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "clusterprofiler-ora",
+      "rule_id": "PUB-M-CLUSTERPROFILER_ORA-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Use the module-specific full output table and identified analysis units; distinguish effect estimation from descriptive QC, embeddings and scores"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review"
+      ],
+      "narrative_points": [
+        "Over-representation of a thresholded gene list against tested genes",
+        "Report exact user choices, locked package versions, seed and measured sample/cell/gene denominators",
+        "Do not claim numerical acceptance, literature majorities or external predictive accuracy from this source build"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "cell-level P values establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive or design-supported association, matching the declared estimand"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--seed",
+      "default": 20260925,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--alpha",
+      "default": 0.05,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--top-n",
+      "default": 15,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--id-column",
+      "default": "feature_id",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--database",
+      "default": "GO",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--journal",
+      "default": "nature",
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--simplify",
+      "default": false,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    },
+    {
+      "flag": "--input",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "No verified upstream --from-run is supplied."
+      ]
+    },
+    {
+      "flag": "--universe",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "No verified upstream --from-run is supplied."
+      ]
+    },
+    {
+      "flag": "--selection-rule",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "string",
+      "role": "scientific",
+      "required_when": [
+        "No verified upstream --from-run is supplied."
+      ]
+    },
+    {
+      "flag": "--pool",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "TRUE|FALSE",
+      "role": "scientific",
+      "required_when": [
+        "--ontology ALL is requested."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 8,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "clusterprofiler-ora",
+      "entry_script": "scripts/run_clusterprofiler_ora.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "5e687b2a4f5c3b2ae90efefc0b1c3b5aa3ffe5dc740312ab3360ac84f47b53cd",
+    "pack_present": true,
+    "implemented_new": false
+  }
+}

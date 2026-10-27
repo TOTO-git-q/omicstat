@@ -22,7 +22,9 @@ sys.path.insert(0, str(HERE))
 import fork_status  # noqa: E402
 
 CONFIG_FILES = ("journals.json", "discovery_profiles.json", "method_map.json", "decision_rules.json",
-                "seed/catalog.json", "schemas/literature_request.v1.json")
+                "seed/catalog.json", "schemas/literature_request.v1.json", "method_lexicon.json",
+                "s0_evidence/catalog.json", "s0_evidence/option_defaults.json", "s0_evidence/default_adjudications.json",
+                "s0_evidence/probe_baseline.json")
 
 
 def stage(out: Path, commit: str | None = None) -> dict:

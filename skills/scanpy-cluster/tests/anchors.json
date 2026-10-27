@@ -1,0 +1,29 @@
+[
+  {
+    "id": "hvg_exact",
+    "metric": "HVG flags exactly equal independent Scanpy normalization/HVG replay",
+    "expected": true,
+    "tolerance": 0,
+    "source": "Registered F1 PBMC3k; existing skills/_shared/py/tests/sc_smoke_support.py independent_replay, Scanpy workflow",
+    "scope": "same-platform direct package replay; no invented printed number",
+    "how": "replay"
+  },
+  {
+    "id": "pca_fixed_tolerance",
+    "metric": "Canonical-sign PCA scores match direct Scanpy replay at existing atol=1e-6 and rtol=1e-6",
+    "expected": true,
+    "tolerance": 0,
+    "source": "Registered F1 PBMC3k; retained sc_smoke_support independent_replay and canonical_pca sign handling",
+    "scope": "same-platform direct package replay; inner numeric tolerance unchanged",
+    "how": "replay"
+  },
+  {
+    "id": "cluster_ari_one",
+    "metric": "Adjusted Rand index between canonical and direct neighbor/Leiden replay is exactly 1",
+    "expected": true,
+    "tolerance": 0,
+    "source": "Registered F1 PBMC3k; retained sc_smoke_support independent_replay Scanpy neighbors/Leiden, seed 20260925",
+    "scope": "same-platform direct package replay; cross-platform release gate remains separate",
+    "how": "replay"
+  }
+]

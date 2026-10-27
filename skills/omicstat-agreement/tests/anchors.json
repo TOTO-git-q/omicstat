@@ -1,0 +1,272 @@
+[
+  {
+    "id": "skin_kappa_published",
+    "metric": "SAS simple kappa",
+    "expected": 0.3449,
+    "tolerance": 6e-05,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_lower_published",
+    "metric": "SAS simple kappa lower95",
+    "expected": 0.203,
+    "tolerance": 0.00018,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_upper_published",
+    "metric": "SAS simple kappa upper95",
+    "expected": 0.4868,
+    "tolerance": 0.00018,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_none_estimate_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-08,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_none_ci_low_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_none_ci_high_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_linear_estimate_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-08,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_linear_ci_low_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_linear_ci_high_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_quadratic_estimate_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-08,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_quadratic_ci_low_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "skin_quadratic_ci_high_delta",
+    "metric": "Independent Fleiss-Cohen-Everitt formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_bias_published",
+    "metric": "Bland-Altman1986 first reading bias",
+    "expected": -2.1,
+    "tolerance": 0.051,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_ci_low_published",
+    "metric": "Bland-Altman1986 first reading ci_low",
+    "expected": -22.0,
+    "tolerance": 0.151,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_ci_high_published",
+    "metric": "Bland-Altman1986 first reading ci_high",
+    "expected": 17.8,
+    "tolerance": 0.151,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_bias_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_bias_low_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_bias_high_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_loa_lower_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_loa_upper_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_loa_lower_low_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_loa_lower_high_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_loa_upper_low_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "pefr_loa_upper_high_delta",
+    "metric": "Bland-Altman1999 explicit formula delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "icc21_published",
+    "metric": "Shrout-Fleiss1979 ICC21",
+    "expected": 0.29,
+    "tolerance": 0.0051,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "icc21_delta",
+    "metric": "Independent two-way ANOVA ICC21 delta",
+    "expected": 0,
+    "tolerance": 1e-08,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "icc31_published",
+    "metric": "Shrout-Fleiss1979 ICC31",
+    "expected": 0.71,
+    "tolerance": 0.0051,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "icc31_delta",
+    "metric": "Independent two-way ANOVA ICC31 delta",
+    "expected": 0,
+    "tolerance": 1e-08,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "icc31_ci_low_delta",
+    "metric": "Independent F-based ICC3,1 CI delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  },
+  {
+    "id": "icc31_ci_high_delta",
+    "metric": "Independent F-based ICC3,1 CI delta",
+    "expected": 0,
+    "tolerance": 1e-06,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/agreement/tests/verified/REFERENCE.md",
+    "scope": "Original published case; actual independent R4.6.1 replay with verified externally supplied inputs still required",
+    "how": "replay"
+  }
+]

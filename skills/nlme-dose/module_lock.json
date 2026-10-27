@@ -1,0 +1,32 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "nlme-dose",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/nlme-dose/scripts/nlme_dose_core.R": "77ab946e7c2ccd35fe4498d9eb595e4cff070bb7ccae9680a1d9a450159c1719",
+    "skills/nlme-dose/scripts/run_nlme_dose.R": "3dbdb42a1de3711abfb6a6a5a6a8cabee8ccb668679657ff1844e10b42491463",
+    "skills/nlme-dose/scripts/calls_registry.json": "a61bc63efd9d02f0f25d415a2b5e769f1e5e1c95491089ffeeaf563959bc200f",
+    "skills/nlme-dose/SKILL.md": "63378c05d880a0f5bff3f35d0610891f59eea45704b8c767d7a6130db00106f8",
+    "skills/nlme-dose/references/input-contract.md": "8ecd8c47a1b27c58898886c95864548214a5345550120ea24b137e49b5f87622",
+    "skills/nlme-dose/references/parameters.md": "1d465cf3f495856c2aea574fbb2db2d66793786bd7bb26a767f16cc967ad6b24",
+    "skills/nlme-dose/references/source-evidence/SKILL.md": "1fd8fc534cfb230937aebd36b816b658d86a522c74207bfe57555a7aa562503a",
+    "skills/nlme-dose/references/source-evidence/VALIDATION_STATUS.json": "84ec644e906e336a209cdb808b715e304218120de4e550e1e4d83e165ca62ecc",
+    "skills/nlme-dose/references/source-evidence/provenance.json": "504a9a33f9a2502be8ff634ec41ff0cb52fb3a566e84bc55bf62845f4b189cce",
+    "skills/nlme-dose/tests/anchors.R": "29c4329a40ac1b23b78ea47ecde41dc6ebab086366a24781e310e00a0bdbe6bf",
+    "skills/nlme-dose/tests/run_development_test.R": "9ea7cd434cac9fe046211a78277cfb8b921b6bea586012a559fd3687366237ce",
+    "skills/nlme-dose/tests/run_unit_scope_test.R": "4dbff8c555d128320da8ff7390a2b0db16493495dffcde0dfa452a0154a0c5b4",
+    "skills/nlme-dose/tests/golden_manifest.csv": "7d7533ab527a34ed8e499b22b5291cd1a3613bfd0c076a560fd21eb554f47127"
+  },
+  "packages": {
+    "stats": "4.6.1",
+    "nlme": "3.1.170"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

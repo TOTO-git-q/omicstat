@@ -1,0 +1,15 @@
+glmnet_coxsig_render <- function(res, out, module) {
+ m <- res$metadata
+ p <- os_time_roc(res$tables$time_roc, time_unit = m$time_unit, journal = m$journal)
+ p <- p + ggplot2::labs(subtitle = if (m$mode == "train") "Apparent training ROC" else "External cohort, frozen signature")
+ p <- os_with_meta(p, caption = paste(attr(p,"os_meta")$caption, m$performance_scope))
+ os_finalize_figure(p, file.path(out,"figures","time_roc"), root = out)
+ if (m$mode == "train") os_finalize_figure(os_lasso_path(res$tables$coefficient_path, selected_lambda = m$lambda, journal = m$journal), file.path(out,"figures","lasso_path"), root = out)
+ if (m$km_available) {
+  curves <- res$tables$km_curves
+  if (any(!is.finite(curves$lower) | !is.finite(curves$upper))) curves <- curves[setdiff(names(curves),c("lower","upper"))]
+  p <- os_km(curves,res$tables$km_risk,time_unit=m$time_unit,journal=m$journal,analysis_label=if(m$mode=="train") "Training risk groups, descriptive" else "Frozen training cutoff, external cohort")
+  p <- os_with_meta(p,caption=paste(attr(p,"os_meta")$caption,m$performance_scope,paste("Training risk cutoff:",signif(m$cutpoint,8))))
+  os_finalize_figure(p,file.path(out,"figures","risk_km"),root=out)
+ }
+}

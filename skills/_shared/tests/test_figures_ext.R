@@ -299,25 +299,25 @@ expect_error_code(os_heatmap(z, "z", row_split = c("a", "b")), "OS_INVALID_PARAM
 expect_error_code(os_heatmap(z, "z", row_annot = ra[1:10, , drop = FALSE]), "OS_INVALID_PARAMETER", "E4 row_annot missing rows")
 expect_error_code(os_heatmap(z, "z", row_split = rep(c("\u4e0a", "b"), 30)), "OS_FIG_NON_LATIN_TEXT", "E4 non-Latin slice title")
 expect_error_code(os_alluvial(sc$emb, "cluster"), "OS_INVALID_PARAMETER", "E4 alluvial with one axis")
-expect_error_code(os_alluvial(sc$emb, c("cluster", "nope")), "OS_MISSING_COLUMNS", "E4 alluvial missing column")
+expect_error_code(os_alluvial(sc$emb, c("cluster", "nope")), "OS_MISSING_COLUMN", "E4 alluvial missing column")
 expect_error_code(os_highlight_embedding(sc$emb, "cluster", "C99"), "OS_INVALID_PARAMETER", "E4 highlight target not present")
 expect_error_code(os_stacked_violin(sc$expr, sc$emb$cluster[-1]), "OS_INVALID_INPUT", "E4 stacked violin groups length")
-expect_error_code(os_stacked_violin(sc$expr, sc$emb$cluster, genes = "NOPE"), "OS_MISSING_COLUMNS", "E4 stacked violin unknown gene")
+expect_error_code(os_stacked_violin(sc$expr, sc$emb$cluster, genes = "NOPE"), "OS_MISSING_COLUMN", "E4 stacked violin unknown gene")
 expect_error_code(os_ridge(1, "a", "x"), "OS_EMPTY_DATA", "E4 ridge with one value")
 expect_error_code(os_density_embedding(sc$emb, rep(0, nrow(sc$emb)), "Z"), "OS_EMPTY_DATA", "E4 density with all-zero weights")
 expect_error_code(os_cluster_tree_dotplot(mk$md[mk$md$cluster %in% c("C1", "C2"), ]), "OS_EMPTY_DATA", "E4 cluster tree with 2 clusters")
 expect_error_code(os_cnet(et, gs$sets, padj_threshold = 1e-30), "OS_EMPTY_DATA", "E4 cnet without significant sets")
 expect_error_code(os_emap(et, gs$sets[1:2]), "OS_EMPTY_DATA", "E4 emap with fewer than 3 sets")
 expect_error_code(os_cnet(et, unname(gs$sets)), "OS_INVALID_INPUT", "E4 cnet gene_sets without names")
-expect_error_code(os_term_tree(et[, c("term_id", "padj")], gs$sets), "OS_MISSING_COLUMNS", "E4 term tree missing term_name")
+expect_error_code(os_term_tree(et[, c("term_id", "padj")], gs$sets), "OS_MISSING_COLUMN", "E4 term tree missing term_name")
 seven <- stats::setNames(rep(list(top_g[1:50]), 7), paste("set", 1:7))
 expect_error_code(os_gsea_multi(rk, seven), "OS_TOO_MANY_CATEGORIES", "E4 more than 6 sets in one GSEA panel")
 
 # ----------------------------------------------------- E5 compatibility ----
 old <- os_heatmap(z[1:20, ], "z", "diverging", clip = 2)
 om <- attr(old, "os_meta")
-check(identical(names(om$data), c("n_rows", "n_cols", "show_row_labels", "show_col_labels", "row_order", "col_order", "clustering")),
-      "E5 os_heatmap without new arguments keeps the old figure_spec data keys")
+check(identical(names(om$data), c("n_rows", "n_cols", "show_row_labels", "show_col_labels", "row_order", "col_order", "clustering", "missing_policy", "source_values", "analysis_values", "display_values", "trees", "permutations", "annotations")),
+      "E5 heatmap retains legacy data keys plus declared P0-12 raw/analysis/display, tree and ID-permutation extensions")
 check(identical(unlist(om$data$row_order), rownames(z)[1:20][stats::hclust(stats::dist(z[1:20, ]), "complete")$order]),
       "E5 os_heatmap unsplit row order = hclust order of the full matrix")
 check(identical(om$data$clustering, list(rows = "euclidean/complete", cols = "euclidean/complete")), "E5 unsplit clustering description unchanged")
@@ -359,6 +359,9 @@ check(!any(grepl("20[0-9]{2}-[0-9]{2}-[0-9]{2}", txt)), "E6 figure specs contain
 setwd(old_wd)
 check(!file.exists(file.path(tempdir(), "Rplots.pdf")) && !file.exists("Rplots.pdf"), "E6 no Rplots.pdf device leak")
 
+# P0-5 shares the extension protocol, and can also run independently.
+status <- system2(file.path(R.home("bin"), "Rscript"), file.path(here,"test_figures_standardization.R"))
+check(identical(status, 0L), "P0-5 new builder lint and deterministic replay")
 if (length(failures)) {
   cat(sprintf("%d check(s) FAILED:\n", length(failures)))
   for (f in failures) cat("  - ", f, "\n", sep = "")

@@ -20,7 +20,7 @@ A local AnnData `.h5ad` with unique cell/gene IDs, a declared raw-count layer, b
 python scripts/run_scvi_integrate.py --from-run cluster_run --sample-col sample --counts-layer counts --batch-col batch --cluster-col cluster --max-epochs 100 --n-neighbors 15 --species human --annotation declared_release --outdir run_001
 ```
 Values in this example illustrate syntax, not recommended QC cutoffs or clustering/training choices.
-`--help` lists every option; required choices have no implicit fallback. See references/parameters.md.
+`--help` lists every option; required choices have no implicit fallback. `--n-latent` is required whenever a model is trained (no default since 1.2.0) and not needed with `--latent-from-run`. See references/parameters.md.
 
 ### Via MCP
 Call `omicstat_describe` for this module, then `omicstat_run` with the documented arguments. The same five MCP tools are used.
@@ -60,7 +60,7 @@ Before choosing `--batch-col`, call `reference_advise(module='scvi-integrate', .
 Before choosing `--cluster-col`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--max-epochs`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--n-neighbors`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
-Before choosing `--n-latent`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
+Before choosing `--n-latent` (required when training; the scvi-tools default 10 is no longer applied silently), call `reference_advise(module='scvi-integrate', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--features-file`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` for published practice. If no curated evidence exists, show the locked L1 tutorial example and ask the user. See `references/options.md` for the extraction key.
 Before choosing `--species`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` if interpretation needs scientific judgement. Use declared study metadata for organism, annotation, sample IDs and count-layer roles; if evidence is absent, show the locked L1 example and ask the user.
 Before choosing `--annotation`, call `reference_advise(module='scvi-integrate', ...)` and `reference_search` if interpretation needs scientific judgement. Use declared study metadata for organism, annotation, sample IDs and count-layer roles; if evidence is absent, show the locked L1 example and ask the user.
@@ -73,3 +73,7 @@ Before choosing any exposed native option in `references/options.md`, consult `r
 Before choosing `--cell-list`, `--display-max-per-group`, `--label-placement`, density parameters, `--latent-from-run`, `--leiden-resolution`, or `--scvi-cluster-col`, consult `reference_advise(module="scvi-integrate", ...)` first and `reference_search`. No judgement values are invented. See references/display-options.md. Explicit cell-list selection is display only; it cannot feed proportions, pseudobulk, markers or DE.
 
 `--label-style halo` (default `plain`) only changes how embedding labels are drawn: a white halo behind each name and deterministic label spacing with a thin leader when a label moves. It is a rendering choice, not a scientific judgement, and needs no reference consultation.
+
+## Named tutorial configuration
+
+The scvi-tools harmonization tutorial uses `n_layers=2, n_latent=30, gene_likelihood="nb"`. The tutorial calls these parameters non-default and says they generally perform well on integration tasks. They are a named, optional configuration here, not defaults: the locked values stay `--n-layers 1` and `--gene-likelihood zinb`, and `--n-latent` must be chosen explicitly when training. To follow the tutorial pass `--n-layers 2 --n-latent 30 --gene-likelihood nb` explicitly, and report them.

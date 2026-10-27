@@ -1,0 +1,142 @@
+[
+  {
+    "id": "coefficient_max_error",
+    "metric": "Maximum absolute error for coefficient across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "se_max_error",
+    "metric": "Maximum absolute error for se across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "z_max_error",
+    "metric": "Maximum absolute error for z across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "p_value_max_error",
+    "metric": "Maximum absolute error for p_value across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "estimate_max_error",
+    "metric": "Maximum absolute error for estimate across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "ci_low_max_error",
+    "metric": "Maximum absolute error for ci_low across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "ci_high_max_error",
+    "metric": "Maximum absolute error for ci_high across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "km_product_limit_max_error",
+    "metric": "km_product_limit_max_error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: direct product-limit risk-set arithmetic and counts from synthetic source inputs",
+    "scope": "Synthetic canonical output independently checked; not published numerical anchors",
+    "how": "replay"
+  },
+  {
+    "id": "risk_count_max_error",
+    "metric": "risk_count_max_error",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: direct product-limit risk-set arithmetic and counts from synthetic source inputs",
+    "scope": "Synthetic canonical output independently checked; not published numerical anchors",
+    "how": "replay"
+  },
+  {
+    "id": "sample_event_count_max_error",
+    "metric": "sample_event_count_max_error",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: direct product-limit risk-set arithmetic and counts from synthetic source inputs",
+    "scope": "Synthetic canonical output independently checked; not published numerical anchors",
+    "how": "replay"
+  },
+  {
+    "id": "port_aj_max_error",
+    "metric": "Maximum exported AJ error against independent exact-fraction risk sets",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "tests/port_anchors.py + run_port_cli.py + run_port_smoke.R; original selected MedStat code at12292d0 and independent invented risk-set arithmetic in port_oracle.py",
+    "scope": "Software contracts only; not a real owner anchor. Requires exact R4.6.1/survival3.8-9 and actual CLI execution; no clinical rows acquired. Original CR-mgus2-cif stays blocked separately.",
+    "how": "replay"
+  },
+  {
+    "id": "port_legacy_table_invariance",
+    "metric": "Original same-input tables unchanged with optional diagnostics",
+    "expected": 1,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/port_anchors.py + run_port_cli.py + run_port_smoke.R; original selected MedStat code at12292d0 and independent invented risk-set arithmetic in port_oracle.py",
+    "scope": "Software contracts only; not a real owner anchor. Requires exact R4.6.1/survival3.8-9 and actual CLI execution; no clinical rows acquired. Original CR-mgus2-cif stays blocked separately.",
+    "how": "replay"
+  },
+  {
+    "id": "port_replay_csv_invariance",
+    "metric": "Four actual CLI branches replay identical numeric CSV bytes",
+    "expected": 1,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/port_anchors.py + run_port_cli.py + run_port_smoke.R; original selected MedStat code at12292d0 and independent invented risk-set arithmetic in port_oracle.py",
+    "scope": "Software contracts only; not a real owner anchor. Requires exact R4.6.1/survival3.8-9 and actual CLI execution; no clinical rows acquired. Original CR-mgus2-cif stays blocked separately.",
+    "how": "replay"
+  },
+  {
+    "id": "port_copied_source_same_input",
+    "metric": "Copied source native diagnostics/piecewise parity and independent AJ checks",
+    "expected": 1,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/port_anchors.py + run_port_cli.py + run_port_smoke.R; original selected MedStat code at12292d0 and independent invented risk-set arithmetic in port_oracle.py",
+    "scope": "Software contracts only; not a real owner anchor. Requires exact R4.6.1/survival3.8-9 and actual CLI execution; no clinical rows acquired. Original CR-mgus2-cif stays blocked separately.",
+    "how": "replay"
+  }
+]

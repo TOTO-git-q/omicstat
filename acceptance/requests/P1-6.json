@@ -1,0 +1,92 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P1-6",
+  "modules": [
+    "glmnet-coxsig"
+  ],
+  "image_candidate": "env/candidates/20261016-models",
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "full_regression": true,
+  "notes": [
+    "Eight independently printed glmnet5.0 coefficient anchors matching production pkg_lock. Initial4.1-8 source/anchors retained separately, never mixed.",
+    "Frozen cox_signature, independent identity checks and apparent-versus-external ROC labels. Golden/seal owner-deferred.",
+    "First exec repair: the complete 11-archive model source lock (including drc) is bound by SHA256 in source_locks. Run the declared explicit source preparation only with authorization, retain its report, then build offline. Missing source cache or dependency closure remains blocked; no automatic download, install, promotion or historical-denial override."
+  ],
+  "checks": [
+    [
+      "Rscript",
+      "skills/glmnet-coxsig/tests/run_smoke_test.R"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_locked_source_preparation.py"
+    ]
+  ],
+  "source_locks": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "path": "env/candidates/20261016-models/sources.lock.json",
+      "sha256": "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+      "required_packages": [
+        "drc",
+        "emmeans",
+        "proDA",
+        "MSstats",
+        "MSstatsConvert",
+        "multcomp",
+        "plotrix",
+        "TH.data",
+        "estimability",
+        "extraDistr",
+        "marray"
+      ]
+    }
+  ],
+  "source_preparation": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "check": [
+        "python3",
+        "tools/env/prepare_locked_sources.py",
+        "env/candidates/20261016-models",
+        "--lock-sha256",
+        "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+        "--check"
+      ],
+      "authorized_download": [
+        "python3",
+        "tools/env/prepare_locked_sources.py",
+        "env/candidates/20261016-models",
+        "--lock-sha256",
+        "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+        "--download"
+      ],
+      "build": [
+        "python3",
+        "tools/env/build_candidate.py",
+        "env/candidates/20261016-models",
+        "--build"
+      ],
+      "download_is_automatic": false,
+      "archive_cache": "env/candidates/20261016-models/sources",
+      "state": "requires_exec_source_preparation"
+    }
+  ]
+}

@@ -39,13 +39,13 @@ IMPORT_NAMES = {"scvi-tools": "scvi"}
 
 def read_env_config(suite_root):
     """(path, python_lane dict) from the checkout, else the image copy (OMICSTAT_ENV_DIR)."""
-    cands = [os.path.join(suite_root, "env", "omicstat-env.json")]
+    cands = [os.path.join(suite_root, "env", "py", "py-env.json")]
     if os.environ.get("OMICSTAT_ENV_DIR"):
-        cands.append(os.path.join(os.environ["OMICSTAT_ENV_DIR"], "omicstat-env.json"))
+        cands.append(os.path.join(os.environ["OMICSTAT_ENV_DIR"], "py", "py-env.json"))
     for p in cands:
         try:
             with open(p, encoding="utf-8") as fh:
-                return os.path.abspath(p).replace(os.sep, "/"), json.load(fh).get("python_lane")
+                return os.path.abspath(p).replace(os.sep, "/"), json.load(fh)
         except (OSError, ValueError):
             continue
     return None, None

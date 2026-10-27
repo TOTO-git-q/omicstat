@@ -146,3 +146,18 @@ omicstat never bundles or automatically downloads KEGG, CADD, PanglaoDB, DepMap,
 - Record: `provenance/user_gene_sets.json`, the key `user_gene_sets` of `provenance/provenance.json`, the file and provenance hashes under `inputs`, and one Methods sentence inserted before the Results heading: "Gene sets: <name> (<species>), retrieved from <source> on <download_time>, release <version>, used under <terms>; supplied by the user, not bundled with omicstat. The GMT file (SHA-256 <sha>) held <n> sets of <id_type> identifiers. <present> of <n_genes> unique set genes (<pct>%) were present in <universe>." Tables label the collection as "<source> (user-supplied)". The user is responsible for the terms of use of the file.
 - `calls_check.R`: when one function is called with two argument sets (compareCluster with `fun = "enrichGO"` or `"enricher"`), registry entries may carry `site_requires` / `site_excludes` (argument names); C1 and C3 then hold per entry.
 
+
+## Machine-readable contracts (standardization P0-1)
+
+The authoritative vocabularies are `skills/_shared/schemas/handoff_types.v1.json`
+and `error_codes.v1.json`. Both R and Python handoff readers and writers reject
+unknown types with `OS_HANDOFF_TYPE_UNKNOWN`. Existing carrier validation and
+scientific refusal semantics are preserved. New diagnostics must be registered;
+new code must use canonical codes rather than aliases.
+
+New modules and calls registries must satisfy `module.v1.schema.json` and
+`calls_registry.v1.schema.json`. `python tools/lint_contracts.py --check` checks
+all declarations and source descriptors. Existing sealed calls registries are
+read-only compatibility records pinned by SHA256 in `legacy_contracts.v1.json`:
+any edit loses the exemption and must satisfy the new schema. This is required
+by the owner seal freeze; it is not permission to edit a sealed registry.

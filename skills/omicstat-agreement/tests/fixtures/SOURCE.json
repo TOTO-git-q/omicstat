@@ -1,0 +1,153 @@
+{
+  "data_origin": "Project-invented deterministic arithmetic test values only; no human/clinical/public biological rows",
+  "real_owner_data": false,
+  "seed": null,
+  "generation": "Deterministic modular offsets, defined in the project test-asset generation record",
+  "files": [
+    {
+      "path": "binary.csv",
+      "bytes": 369,
+      "sha256": "9f9dd871b56c72c9beb2794c4ef5323207a5b04c5e493de21643f7e753176adc"
+    },
+    {
+      "path": "blank_labels.json",
+      "bytes": 553,
+      "sha256": "d56c7c3722b65bbdf79cf532f32d0d8e96352f5e71dcd9982046bc4d9610e365"
+    },
+    {
+      "path": "categories.csv",
+      "bytes": 776,
+      "sha256": "44e0d8fce5f65dd3ab7a8bf94bf7bfeb6fdf2e66fc2568a8d91f1cc0af2e270f"
+    },
+    {
+      "path": "colliding_labels.json",
+      "bytes": 582,
+      "sha256": "18feb8bda40a35e5e4627dd107b64ce5143903adc98829c249dc70b5815285be"
+    },
+    {
+      "path": "constant_difference.csv",
+      "bytes": 769,
+      "sha256": "53e8199bb6f7ca5248377fadaef97b4da0ab7f200a859273fe901455735d5a29"
+    },
+    {
+      "path": "constant_icc.csv",
+      "bytes": 515,
+      "sha256": "ef0f9bdaf1d15a14624d28ad5c1faa1ae749d2877cb5dae4d29b1d2dc6bb2392"
+    },
+    {
+      "path": "continuous.csv",
+      "bytes": 1039,
+      "sha256": "08e13cdda0cacd283dbc429f3d05d00d6db3b42d85f5cb2c514df10912e4dc65"
+    },
+    {
+      "path": "counts.csv",
+      "bytes": 104,
+      "sha256": "8a44c95c54ee1c3b598a222a731cc8d4c62dd80f51be509c415790aecdbfed93"
+    },
+    {
+      "path": "duplicate_cell.csv",
+      "bytes": 114,
+      "sha256": "3aa0f5ab7a58a7654bf70efa8c956d85655f81552e99bf73060d4a966672a2f4"
+    },
+    {
+      "path": "duplicate_ids.csv",
+      "bytes": 1039,
+      "sha256": "6af86be55e57c9b14f0300ef952c4d920c7cf464ada7c2683f1b81ca9737e643"
+    },
+    {
+      "path": "duplicate_pairs.csv",
+      "bytes": 1872,
+      "sha256": "e4bd70940cf438d5a3b960813ea231659a91104abf13b06b73baf8e5a62020e2"
+    },
+    {
+      "path": "duplicate_rating_ids.csv",
+      "bytes": 776,
+      "sha256": "ff36318be40ed430c83b224c73aeb5dd81cad994abc15850a6b5fd3b0987fdec"
+    },
+    {
+      "path": "fraction_count.csv",
+      "bytes": 106,
+      "sha256": "1cbe7b44adf01b62bcf78600b13f437ab287a4b63af6819109dc7bb09e6bfbf7"
+    },
+    {
+      "path": "huge_count.csv",
+      "bytes": 113,
+      "sha256": "3ea746bdb80ae8f71d3b82a6a422aba0b1ed17876bfcd21b421f12a2a17ce28c"
+    },
+    {
+      "path": "incomplete_labels.json",
+      "bytes": 542,
+      "sha256": "8b95da4c1b0081ce2bfb5dad5083cf051ed3ead5b720ae2b77f2b92cd4a70e8b"
+    },
+    {
+      "path": "labels.json",
+      "bytes": 582,
+      "sha256": "012b9c1c34def0aeb0f40a8420e98e6c82c596b0cc53513db9459db52c22b862"
+    },
+    {
+      "path": "large_bootstrap.csv",
+      "bytes": 110,
+      "sha256": "e46c983f21158091d69a085847bf0a89ad2c649697533ddd5a56402f2f7f78c4"
+    },
+    {
+      "path": "long.csv",
+      "bytes": 1857,
+      "sha256": "b1da4598e9079ad23258df3f93a2e2b9775c4d18bd59ce9235abd96412a826f7"
+    },
+    {
+      "path": "missing_cell.csv",
+      "bytes": 94,
+      "sha256": "a855ccaa2704db6414084582bfde23c03de78ddc4cea1a0947f50ab6dd005a87"
+    },
+    {
+      "path": "missing_measurement.csv",
+      "bytes": 1035,
+      "sha256": "08533fa8ff934e55735698c34baa0faa0bab85c5f8099376f7d1d464f7b0f15a"
+    },
+    {
+      "path": "missing_rating.csv",
+      "bytes": 773,
+      "sha256": "0fc25d1abf9b18572e38b59cb056c288943a1aaac64d611f4e837bdbd0aa4ae2"
+    },
+    {
+      "path": "negative_count.csv",
+      "bytes": 105,
+      "sha256": "e374f35df5ccb9daf14863b16de2ac5fe88e1f89e0610295ebfa5a6611febf6f"
+    },
+    {
+      "path": "nonfinite_measurement.csv",
+      "bytes": 1038,
+      "sha256": "7d1f2e77958eb04282f3a1ebd3284515cbd88c8779e644cd8fef54336ddf8dae"
+    },
+    {
+      "path": "nonnumeric_measurement.csv",
+      "bytes": 1042,
+      "sha256": "15693034de6d65e88df48b7e01d402f3c7693d8fc639850a818c04a95dafa4f6"
+    },
+    {
+      "path": "nonrectangular.csv",
+      "bytes": 1842,
+      "sha256": "01706e2e8bde74bc7030987a25938d043733067b1d59fc0cd73af994cbbb835c"
+    },
+    {
+      "path": "one_category.csv",
+      "bytes": 303,
+      "sha256": "e32732a0767fe77ce607508cb4d14ec1799b7abb58a50c0321ee5708ecd7edb7"
+    },
+    {
+      "path": "study_contract.json",
+      "bytes": 1004,
+      "sha256": "176d87cbfa374ce67a967df5ae612d7edd59a50318375a71280fbf959820a3a6"
+    },
+    {
+      "path": "two_pairs.csv",
+      "bytes": 111,
+      "sha256": "5b3665e1150f70716ca24aaa31400e6e67856cf7ecc990d617f6d3b37780af5c"
+    },
+    {
+      "path": "unknown_zero_cell.csv",
+      "bytes": 118,
+      "sha256": "9a5b76c3f274baca59107a23a9651239efb706921f67617cd571622c50675bad"
+    }
+  ]
+}

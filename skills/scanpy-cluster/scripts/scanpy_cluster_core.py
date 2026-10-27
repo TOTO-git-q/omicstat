@@ -18,7 +18,7 @@ def compute(adata, a, upstream):
     if (not a["use-rep"] and a["n-pcs"] >= min(adata.n_obs, adata.n_vars)) or a["n-hvg"] > adata.n_vars or a["n-neighbors"] >= adata.n_obs:
         raise OmicstatError("OS_INVALID_PARAMETER", "PCs, HVGs and neighbors exceed the supplied data dimensions.")
     if not a["use-rep"] and adata.n_obs * a["n-hvg"] > 100_000_000:
-        raise OmicstatError("OS_RESOURCE_LIMIT", "centered PCA is limited to 100 million cell-by-HVG values; prespecify fewer HVGs or use a smaller cohort.")
+        raise OmicstatError("OS_RESOURCE_LIMIT", "centered PCA is limited to 100 million cell-by-HVG values; prespecify fewer HVGs, or subsample cells within each biological unit (for example per sample) before clustering, or use a smaller cohort.")
     if a["hvg-batch-col"]:
         S.require_columns(adata.obs, [a["hvg-batch-col"]])
     raw = S.layer(adata, a["counts-layer"], counts=True)

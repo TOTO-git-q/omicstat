@@ -70,28 +70,43 @@ class DefaultCaptureTests(unittest.TestCase):
 
 
 class InventoryTests(unittest.TestCase):
-    def test_exactly_five_mcp_tools(self):
+    def test_mcp_tools_match_manifest(self):
         tree = ast.parse((ROOT / 'mcp/server.py').read_text())
-        tools = [n.name for n in tree.body if isinstance(n, ast.FunctionDef)
-                 and any(isinstance(d, ast.Call) and ast.unparse(d.func) == 'mcp.tool' for d in n.decorator_list)]
-        self.assertEqual(set(tools), {'omicstat_list_modules', 'omicstat_describe', 'omicstat_run',
-                                     'omicstat_read', 'omicstat_validate_publication'})
-        self.assertEqual(len(tools), 5)
+        tools = []
+        for n in tree.body:
+            if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                for d in n.decorator_list:
+                    if isinstance(d, ast.Call) and ast.unparse(d.func) == 'mcp.tool':
+                        tools.append(next((k.value.value for k in d.keywords if k.arg == 'name'), n.name))
+        manifest = json.loads((ROOT / 'mcp/tools_manifest.json').read_text())['tools']
+        self.assertEqual(set(tools), set(manifest))
+        self.assertEqual(len(tools), len(manifest))
+        self.assertEqual(len(tools), len(set(tools)))
+
+    def test_client_expects_exactly_the_six_manifest_tools(self):
+        manifest = json.loads((ROOT/'mcp/tools_manifest.json').read_text())['tools']
+        self.assertEqual(len(manifest), 6)
+        self.assertEqual(len(set(manifest)), 6)
+        source = (ROOT/'mcp/test_client.py').read_text()
+        for name in manifest:
+            self.assertIn('"%s"' % name, source, name)
+        self.assertNotIn('omicstat_restyle_figure', source)
 
     def test_router_only_lists_real_entries(self):
         text = (ROOT / 'skills/omicstat/SKILL.md').read_text()
         rows = re.findall(r'\|\s*`([a-z0-9-]+)`\s*\|\s*`(scripts/run_[a-z0-9_]+\.(?:R|py))`\s*\|', text)
-        self.assertEqual(len(rows), 43)  # 38 analysis engines, three display/annotation modules and two utilities.
+        self.assertEqual(len(rows), json.loads((ROOT / 'tools/registry_counts.json').read_text())['routed'])  # 38 analysis engines, three display/annotation modules and two utilities.
         self.assertEqual(len({m for m, _ in rows}), len(rows))
         for module, script in rows:
             self.assertTrue((ROOT / 'skills' / module / script).is_file(), module)
 
-    def test_method_map_and_source_status_cover_all_41(self):
+    def test_method_map_covers_accepted_reference_modules_and_legacy_source_status(self):
         methods = json.loads((ROOT / 'reference_service/app/method_map.json').read_text())
         status = json.loads((ROOT / 'docs/build/BUILD_STATUS.json').read_text())
-        self.assertEqual(len([m['module'] for m in methods['modules']]), 41)
-        self.assertEqual(set([m['module'] for m in methods['modules']]), {m['module'] for m in status['modules']})
-        self.assertEqual(len(status['implemented_new']), 27)
+        registered = {m['name'] for p in (ROOT/'skills').glob('*/module.json') if (m := json.loads(p.read_text()))['status']=='accepted' and m['reference']['enabled']}
+        self.assertEqual({m['module'] for m in methods['modules']}, registered)
+        self.assertTrue({m['module'] for m in status['modules']} <= registered)
+        self.assertEqual(len(status['implemented_new']), json.loads((ROOT / 'tools/registry_counts.json').read_text())['legacy_implemented_new'])
         self.assertEqual(len(status['unimplemented_new']), 0)
         self.assertFalse(status['complete_request'])  # independent S3 remains pending
         by_name = {m['module']: m for m in methods['modules']}
@@ -117,8 +132,25 @@ class InventoryTests(unittest.TestCase):
     def test_routing_dataset_structure_not_accuracy(self):
         records = [json.loads(line) for line in (ROOT / 'skills/omicstat/tests/routing_eval.jsonl').read_text(encoding='utf-8').splitlines()]
         known = {m['module'] for m in json.loads((ROOT / 'reference_service/app/method_map.json').read_text())['modules']}
-        self.assertEqual(len(records), 146)
-        self.assertEqual(len({r['id'] for r in records}), 146)
+        self.assertEqual(len(records), 146)  # Preserve the original corpus unchanged.
+        candidates={m['name'] for p in (ROOT/'skills').glob('*/module.json') if (m:=json.loads(p.read_text()))['status']=='candidate'}
+        extra=ROOT/'tests/routing_eval.jsonl'
+        extra_records=[json.loads(line) for line in extra.read_text().splitlines()] if extra.exists() else []
+        for row in extra_records:
+            self.assertTrue(row.get('candidate_only'))
+            if row.get('candidate_revision'):
+                meta=json.loads((ROOT/'skills'/row['expected']/'module.json').read_text())
+                self.assertEqual(meta['status'],'accepted')  # historical registration, not new acceptance
+                self.assertTrue(meta.get('candidate_revision'))
+                self.assertEqual(row['revision'],meta['version'])
+                self.assertIn('owner_seal_freeze',meta['status_notes'])
+                entry=(ROOT/'skills'/row['expected']/meta['entry']).read_text()
+                self.assertIn('OS_MODULE_UNSEALED',entry)
+                self.assertIn('development-mode',entry)
+            else:
+                self.assertIn(row['expected'],candidates | known)
+        records+=extra_records;known|=candidates
+        self.assertEqual(len({r['id'] for r in records}),len(records))
         counts = collections.Counter()
         def modules(answer):
             if isinstance(answer, str):
@@ -181,7 +213,7 @@ class InvocationTests(unittest.TestCase):
         self.assertEqual(recorded['run_id'], 'docker-42')
         args = recorded['args']
         self.assertTrue(any(args[i:i+2] == ['-e', 'OMICSTAT_RUN_ID'] for i in range(len(args)-1)))
-        cfg = json.loads((ROOT / 'env/omicstat-env.json').read_text())
+        cfg = json.loads((ROOT / 'env/r-env.json').read_text())
         self.assertIn(cfg['image'] + ':' + cfg['image_tag'], args)
         self.assertIn('/omicstat/skills/limma-camera/scripts/run_limma_camera.R', args)
 

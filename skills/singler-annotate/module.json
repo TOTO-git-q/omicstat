@@ -1,0 +1,96 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "singler-annotate",
+  "lane": "R",
+  "domain": "sc-annotation",
+  "entry": "scripts/run_singler_annotate.R",
+  "version": "1.0.0",
+  "qc_prefix": "SA",
+  "engine_packages": [
+    "SingleR",
+    "BiocParallel"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "SingleCellExperiment"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Reference cell-type annotation by SingleR",
+    "order": 34
+  },
+  "publication": {
+    "rule_category": "advisory",
+    "legacy_override": {
+      "module": "singler-annotate",
+      "rule_id": "SINGLER-ANNOTATE-PUB-M-SINGLER-ANNOTATE-001",
+      "category": "advisory",
+      "severity": "info",
+      "reporting_guidelines": [
+        "Package workflow and acceptance/exemplars/singler-annotate/S3_REQUEST.md publication proposal"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Retain complete native result tables and identify metric, units and multiplicity scope; descriptive outputs are not condition inference."
+        ]
+      },
+      "artifact_aliases": {
+        "results/*.json": "machine",
+        "qc/qc_results.csv": "qc",
+        "draft/methods_results.md": "draft"
+      },
+      "artifact_expectations": [
+        "native objects and complete tables",
+        "QC and provenance",
+        "Methods with actual options",
+        "suite figures and captions"
+      ],
+      "required_diagnostics": [
+        "Publication proposal: uncertainty/pruned labels must be explicit; score is not a probability; package version/reference identity/options required. Preserve the upstream front_end_ecosystem, record backend_ecosystem neutral and informational OS_ECOSYSTEM_CROSSING (reversible coordinator decision 4).",
+        "Valid module seal; review QC, captured native warnings and figure lint."
+      ],
+      "narrative_points": [
+        "Publication proposal: uncertainty/pruned labels must be explicit; score is not a probability; package version/reference identity/options required. Preserve the upstream front_end_ecosystem, record backend_ecosystem neutral and informational OS_ECOSYSTEM_CROSSING (reversible coordinator decision 4).",
+        "Report package version, input identity, actual options and documented acceptance limitations."
+      ],
+      "causal_language": {
+        "forbidden": [
+          "unsupported causal or replicated-condition claims from descriptive cell results"
+        ],
+        "restricted_to": [
+          "the prespecified native workflow and documented sample unit"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [],
+  "reference": {
+    "enabled": true,
+    "order": 24,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "singler-annotate",
+      "entry_script": "scripts/run_singler_annotate.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "8ec28559ebf56c577ef806a29e692ee30a4db5fa1bdc6f79339707b70b22ca06",
+    "pack_present": true,
+    "implemented_new": true
+  }
+}

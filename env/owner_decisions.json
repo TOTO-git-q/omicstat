@@ -1,0 +1,12 @@
+{
+  "schema": "omicstat.owner-decisions.v1",
+  "decision_reference": "https://github.com/TOTO-git-q/omic-MCP/blob/plan/standardization-20261016/docs/plans/OMICSTAT_STANDARDIZATION_PLAN_v1.md#\u7b2c-0-\u90e8\u5206owner-\u51b3\u5b9a2026-10-16",
+  "sealing_allowed": false,
+  "golden_writes_allowed": false,
+  "environment_promotion_allowed": false,
+  "reference_deploy_allowed": false,
+  "new_modules_default_status": "candidate",
+  "acceptance_max_verdict": "needs_visual",
+  "decoupler_resource_redistribution": "user_supplied",
+  "plan_git_blob": "926ed94e9fbe67ca804863af003ef842aec68473"
+}

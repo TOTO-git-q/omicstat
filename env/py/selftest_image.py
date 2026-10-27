@@ -28,8 +28,8 @@ import re
 import sys
 
 FAILS = []
-CFG_CANDIDATES = [pathlib.Path("/omicstat/env/omicstat-env.json"),
-                  pathlib.Path(os.environ.get("OMICSTAT_ENV_DIR", "/opt/omicstat/env")) / "omicstat-env.json"]
+CFG_CANDIDATES = [pathlib.Path("/omicstat/env/py/py-env.json"),
+                  pathlib.Path(os.environ.get("OMICSTAT_ENV_DIR", "/opt/omicstat/env")) / "py" / "py-env.json"]
 LOCK_CANDIDATES = [pathlib.Path("/omicstat/env/py_lock.txt"),
                    pathlib.Path(os.environ.get("OMICSTAT_ENV_DIR", "/opt/omicstat/env")) / "py_lock.txt"]
 IMPORT_NAME = {"scvi-tools": "scvi"}
@@ -58,7 +58,7 @@ def static_checks():
     cfg_path = first(CFG_CANDIDATES)
     if not check(cfg_path is not None, "omicstat-env.json found (%s)" % ", ".join(map(str, CFG_CANDIDATES))):
         return
-    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))["python_lane"]
+    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     check(platform.python_version() == cfg["python_version"],
           "Python %s == pin %s" % (platform.python_version(), cfg["python_version"]))
     lock_path = first(LOCK_CANDIDATES)

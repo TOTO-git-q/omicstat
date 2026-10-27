@@ -1,0 +1,11 @@
+r1,r2,n
+low,low,9
+low,mid,1
+low,high,2
+mid,low,1
+mid,mid,9
+mid,high,0
+high,low,2
+high,mid,0
+high,high,9
+outside,low,0

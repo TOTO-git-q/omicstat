@@ -1,0 +1,44 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/sleepstudy.csv",
+      "--response",
+      "Reaction",
+      "--subject",
+      "Subject",
+      "--formula",
+      "Reaction ~ period * cohort + (1 | Subject)",
+      "--estimation",
+      "REML",
+      "--singular-tolerance",
+      ".0001",
+      "--ci-level",
+      ".95",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{root}"
+    ]
+  },
+  "figure_policy": "required"
+}

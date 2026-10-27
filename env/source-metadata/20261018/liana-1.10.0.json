@@ -1,0 +1,89 @@
+{
+  "source_url": "https://pypi.org/pypi/liana/1.10.0/json",
+  "retrieved_utc": "2026-10-18T06:24:19.274087+00:00",
+  "response_sha256": "e6350745cb0469c854366c3630d3bbc5fcac95e8cddabf83abe6dc978bff791d",
+  "metadata_only": true,
+  "package": "liana",
+  "version": "1.10.0",
+  "requires_python": "<3.14,>=3.10",
+  "requires_dist": [
+    "anndata>=0.7.4",
+    "docrep>=0.3.1",
+    "mudata",
+    "numba",
+    "pandas<3",
+    "plotnine>=0.10.1",
+    "scanpy",
+    "session-info2",
+    "tqdm>=4.0",
+    "bumpversion>=0.6.0; extra == \"dev\"",
+    "highspy>=1.9.0; extra == \"dev\"",
+    "pre-commit>=3.0.0; extra == \"dev\"",
+    "pytest>=8.0; extra == \"dev\"",
+    "twine>=4.0.2; extra == \"dev\"",
+    "docutils!=0.18.*,!=0.19.*,>=0.8; extra == \"doc\"",
+    "ipykernel; extra == \"doc\"",
+    "ipython; extra == \"doc\"",
+    "myst-nb>=1.1; extra == \"doc\"",
+    "pre-commit; extra == \"doc\"",
+    "setuptools; extra == \"doc\"",
+    "sphinx-autodoc-typehints; extra == \"doc\"",
+    "sphinx-book-theme>=1; extra == \"doc\"",
+    "sphinx-copybutton; extra == \"doc\"",
+    "sphinx-tabs>=3.4.5; extra == \"doc\"",
+    "sphinx<9,>=8.1; extra == \"doc\"",
+    "sphinxcontrib-bibtex>=1; extra == \"doc\"",
+    "sphinxcontrib-mermaid>=0.9; extra == \"doc\"",
+    "sphinxext-opengraph; extra == \"doc\"",
+    "cell2cell; extra == \"extras\"",
+    "corneto==0.9.1-alpha.6; extra == \"extras\"",
+    "cvxpy-base>=1.6.1; extra == \"extras\"",
+    "decoupler>=2.0.0; extra == \"extras\"",
+    "gseapy>=1.1.0; extra == \"extras\"",
+    "kneed>=0.7.0; extra == \"extras\"",
+    "mofapy2>=0.7.0; extra == \"extras\"",
+    "mofax; extra == \"extras\"",
+    "muon; extra == \"extras\"",
+    "omnipath>=1.0.6; extra == \"extras\"",
+    "pydeseq2>=0.3.5; extra == \"extras\"",
+    "pyscipopt>=5.2.1; extra == \"extras\"",
+    "requests>=2.25.1; extra == \"extras\"",
+    "coverage; extra == \"test\"",
+    "pytest; extra == \"test\""
+  ],
+  "yanked": false,
+  "files": [
+    {
+      "filename": "liana-1.10.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/08/4f/fee3708c82d18f4e570b692dca2b6ce3ec492b63734ec8fe423231c78fac/liana-1.10.0-py3-none-any.whl",
+      "digests": {
+        "blake2b_256": "084ffee3708c82d18f4e570b692dca2b6ce3ec492b63734ec8fe423231c78fac",
+        "md5": "299d9aa6bb5ae8b7b9ec06fd1848bc8d",
+        "sha256": "f32393dfc5388462aa414b4068cb72965d9227baa9d9e83bdbd54d30a13c2e7e"
+      },
+      "packagetype": "bdist_wheel",
+      "requires_python": "<3.14,>=3.10",
+      "size": 601584,
+      "upload_time_iso_8601": "2026-08-27T09:24:23.373367Z",
+      "yanked": false,
+      "core-metadata": {
+        "sha256": "e279a3393ff62f4df0b5967aa4527e8b291653f6cc11c5ba6c6df81071761ae4"
+      }
+    },
+    {
+      "filename": "liana-1.10.0.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/32/99/2d65808a09ae69fa26fbd42f100db550bfb8574176b5a1cf47fa2a2ce00f/liana-1.10.0.tar.gz",
+      "digests": {
+        "blake2b_256": "32992d65808a09ae69fa26fbd42f100db550bfb8574176b5a1cf47fa2a2ce00f",
+        "md5": "70b05338de90536e37c396ed722c60dc",
+        "sha256": "8a7701bfa6a584589ebb492ac67feb98434aa9d8f87371f3347c00d70ef7a20a"
+      },
+      "packagetype": "sdist",
+      "requires_python": "<3.14,>=3.10",
+      "size": 42150974,
+      "upload_time_iso_8601": "2026-08-27T09:24:26.922943Z",
+      "yanked": false,
+      "core-metadata": false
+    }
+  ]
+}

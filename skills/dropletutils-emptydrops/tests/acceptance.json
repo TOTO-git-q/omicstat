@@ -1,0 +1,61 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/counts.rds",
+      "--format",
+      "rds",
+      "--input-state",
+      "unfiltered-raw",
+      "--species",
+      "human",
+      "--refdata-id",
+      "emptydrops_unfiltered_input",
+      "--refdata-registry",
+      "{fixtures}/registry.json",
+      "--input-provenance",
+      "{fixtures}/counts.rds.json",
+      "--lower",
+      "100",
+      "--fdr",
+      ".01",
+      "--niters",
+      "1000",
+      "--retain",
+      "none",
+      "--alpha",
+      "multinomial",
+      "--ignore",
+      "0",
+      "--test-ambient",
+      "false",
+      "--journal",
+      "nature",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261016",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{outdir}",
+      "{fixtures}"
+    ]
+  },
+  "figure_policy": "required"
+}

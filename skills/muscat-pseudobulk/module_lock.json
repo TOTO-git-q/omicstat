@@ -3,14 +3,15 @@
   "module": "muscat-pseudobulk",
   "module_version": "1.0.0",
   "files": {
-    "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_core.R": "69bee3123ba74d4d8feb01d10a9a7528131f35b6d359166451dbef56a5845399",
-    "skills/muscat-pseudobulk/scripts/run_muscat_pseudobulk.R": "eac810474a658483f6f745f8777a5adbd152ee62ac218b6418c812da70c4def4",
+    "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_audit.R": "2a53113013b764dbf99f571a873048da3e9f4978f0fad7ac9c76b27f202a7e58",
+    "skills/muscat-pseudobulk/scripts/muscat_pseudobulk_core.R": "1f788dbdd8bbc413382df0f289f50b0704b4f8cbf27fad441b5b24799b46709a",
+    "skills/muscat-pseudobulk/scripts/run_muscat_pseudobulk.R": "f6dc39faf0ffc4f3a98bb6595a23859d834df06ce98b976a6f3b5d10e5d13739",
     "skills/muscat-pseudobulk/scripts/calls_registry.json": "6bf0e0d12a3607e861b7dd2ced9495358b1d20713f6d3f4cb4beb4589e2216f1",
-    "skills/muscat-pseudobulk/SKILL.md": "863753f5c87c8c90927c508d8936d0d03e9ff7fbc67e5e848d43209567ff7af2",
+    "skills/muscat-pseudobulk/SKILL.md": "b2573e53073834415c76da336041acf4fe4a7ffe6108e5d4ecfa7c83ac7cc380",
     "skills/muscat-pseudobulk/references/methods-template.md": "7611edbc1918e7b4e00ce39fabfbf4d0384ed03e9ea56eb10edabd13a9571d60",
-    "skills/muscat-pseudobulk/references/options.md": "737b54e345b17c146ee30d755e023c11995b0e442130b48317afaa7bbb1f3971",
+    "skills/muscat-pseudobulk/references/options.md": "00766bb5c9c1ce5a59ddf9a52f720fbeee3a35b82795f5ec6a1ada5d08fb3c2a",
     "skills/muscat-pseudobulk/tests/fixtures/make_kang.R": "836167ffcbd4d252431c46bf5ae40aa1e6379c1168f1f5997b9f925474cded0c",
-    "skills/muscat-pseudobulk/tests/run_smoke_test.R": "48e1c4c34c364ec0ec6ab1dafc4c7f9752ac0ed605d656d10fdc2cc4c1ca4886",
+    "skills/muscat-pseudobulk/tests/run_smoke_test.R": "e52a3675af4fa54c1af29834691a404cf2001ce75d700fbf118c27ad0f037337",
     "skills/muscat-pseudobulk/tests/golden_manifest.csv": "ca0fc060bde58a12d75ec6e36a3016825ae76e2cee983c31a87d99f6aca7348b",
     "acceptance/exemplars/muscat-pseudobulk/PACK.md": "761e2ca6c252eeef8601c19e79808bec29f182da80dfe3555fd911da65a473e2"
   },
@@ -22,7 +23,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

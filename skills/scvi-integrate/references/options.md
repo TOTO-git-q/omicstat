@@ -20,7 +20,7 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--cluster-col` | no scientific default; consult L1 tutorial example | yes | `none` |
 | `--max-epochs` | no scientific default; consult L1 tutorial example | yes | `max_epochs` |
 | `--n-neighbors` | no scientific default; consult L1 tutorial example | yes | `none` |
-| `--n-latent` | 10 | no | `n_latent` |
+| `--n-latent` | required unless --latent-from-run (scvi-tools 1.5.1 default 10; harmonization tutorial 30) | no / conditional | `n_latent` |
 | `--batch-size` | 128 | no | `batch_size` |
 | `--min-dist` | 0.5 | no | `none` |
 | `--features-file` | None | no | `none` |
@@ -55,3 +55,7 @@ Locked defaults are captured in `scripts/calls_registry.json`; tutorial examples
 | `--umap-b` | `None` (sc.tl.umap.b; value) | no | `none` |
 
 Structured options accept JSON objects/lists, not Python expressions. `--groups` accepts `all` or a JSON list of cluster names; `--mask-var` names a Boolean var column. Optional numeric values omitted mean the locked `None`. Boolean options use `on`/`off` (and `none` where the API allows it). Partition types name supported leidenalg classes and require a compatible native Leiden implementation. Actual converted native arguments are recorded in the result summary and Methods.
+
+## Named tutorial configuration (owner adjudication 2026-10-11)
+
+The scvi-tools harmonization tutorial builds the model with `n_layers=2, n_latent=30, gene_likelihood="nb"`, states that these parameters are non-default and that they generally perform well on integration tasks. In this module that triple is a named, optional configuration, not a default: `--n-layers` stays at the locked scvi-tools 1.5.1 value `1`, `--gene-likelihood` stays `zinb`, and `--n-latent` has no default (it is required whenever the model is trained and is not needed with `--latent-from-run`). To follow the tutorial, pass `--n-layers 2 --n-latent 30 --gene-likelihood nb` explicitly. Literature counts that report 2 layers largely restate this tutorial and are not used to change a default.

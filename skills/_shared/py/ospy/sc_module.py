@@ -164,7 +164,8 @@ def batch_mixing(connectivities, batches):
 def read_input(a, module=None):
     if bool(a["input"]) == bool(a["from-run"]):
         raise OmicstatError("OS_MISSING_PARAMETER", "supply exactly one of --input and --from-run.")
-    contract_hash = K.sha256_file(a["study-contract"]) if a["study-contract"] else None
+    from .study_contract import read_study_contract
+    contract_hash = read_study_contract(a["study-contract"])["sha256"] if a["study-contract"] else None
     if a["study-contract"]:
         with open(a["study-contract"], encoding="utf-8") as stream:
             if not isinstance(json.load(stream), dict):
@@ -295,6 +296,11 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
                         contract_hash=contract_hash, ecosystem="scverse", state=state,
                         upstream_runs=(upstream or {}).get("upstream_runs") or [])
     request = F.FigureRequest(str(outdir), module, module_version, journal=a["journal"], colour_registry="objects/colour_registry.json" if registry is not None else None)
+    sampling_scope = None
+    if res.get("resource_sampling") is not None:
+        from .figure_scope import bound_sampling_scope
+        sampling_scope = bound_sampling_scope(res["resource_sampling"], int(adata.n_obs), outdir,
+                                              selected_ids=adata.obs_names.astype(str).tolist())
     for fig_id, builder, data, kwargs in figures:
         selected = {key: a[key] for key in ("min-genes", "max-genes", "min-counts", "max-counts", "max-mito-percent",
                     "min-cells", "doublet-mode", "n-hvg", "n-pcs", "resolution", "n-neighbors", "alpha", "test",
@@ -311,13 +317,23 @@ def write_outputs(res, a, module, module_dir, upstream, state, contract_hash, qc
             context += " Existing X_scVI coordinates were reused; no model was trained in this run."
         if res["summary"].get("representation_reused"):
             context += " The existing representation was used; PCA and scaling were not recomputed."
+        if sampling_scope is not None:
+            context += " " + sampling_scope["caption"]
         if builder == "os_embedding":
             data, kwargs = D.embedding_data(data, kwargs, a)
+            if sampling_scope is not None:
+                from .figure_scope import check_embedding_scope
+                check_embedding_scope(sampling_scope, data['emb'], set(adata.obs_names.astype(str)))
         if state.get("display_only"):
             context += " Display only: curated cells must not be used for proportions, pseudobulk, markers or DE."
-        request.add(fig_id, builder, data=data, args=kwargs, caption_context=context,
-                    width=a.get("embedding-width", "single") if builder == "os_embedding" else "single",
-                    height_mm=a.get("embedding-height-mm") if builder == "os_embedding" else None)
+        from .figure_scope import embedding_pages
+        pages = embedding_pages(fig_id, builder, data, kwargs,
+                                len(D.category_palette()) if builder == "os_embedding" else 1)
+        for page_id, page_builder, page_data, page_args in pages:
+            request.add(page_id, page_builder, data=page_data, args=page_args,
+                        caption_context=context, sampling_scope=sampling_scope,
+                        width=a.get("embedding-width", "single") if builder == "os_embedding" else "single",
+                        height_mm=a.get("embedding-height-mm") if builder == "os_embedding" else None)
     request.write()
     outputs.append(F.REQUEST_REL)
     K.write_qc_results(qc, str(outdir))

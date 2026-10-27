@@ -1,0 +1,111 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "omicstat-selftest",
+  "lane": "R",
+  "domain": "environment",
+  "entry": "scripts/run_omicstat_selftest.R",
+  "version": "0.1.0",
+  "qc_prefix": "ST",
+  "engine_packages": [],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "colour_registry",
+      "feature_table"
+    ]
+  },
+  "figure_builders": [
+    "os_volcano"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Test the R environment and output contract",
+    "order": 0
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "omicstat-selftest",
+      "rule_id": "PUB-M-SELFTEST-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "none: an environment self-test is not reportable research output"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "the synthetic feature table is a wiring fixture and is never reported as a result"
+        ]
+      },
+      "artifact_aliases": {
+        "environment_report.md": "qc",
+        "results/*.json": "machine"
+      },
+      "artifact_expectations": [
+        "environment report (QC)",
+        "QC rule results",
+        "feature table",
+        "provenance",
+        "methods draft"
+      ],
+      "required_diagnostics": [
+        "environment verdict from qc/qc_results.csv (rules ST-01..ST-08)",
+        "execution environment named by ST-07 (container, native or unmanaged)"
+      ],
+      "narrative_points": [
+        "state that the run is an environment self-test, not an analysis",
+        "never quote the synthetic fixture counts as findings"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "any biological interpretation of the synthetic fixture"
+        ],
+        "restricted_to": []
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": false,
+    "order": 0,
+    "added_at": "2026-10-04",
+    "legacy_entry": null
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "834d07a731f797c0595716a7a48ea9c24920c3edcd9523e80802f3d44fe61593",
+    "pack_present": false,
+    "implemented_new": false
+  }
+}

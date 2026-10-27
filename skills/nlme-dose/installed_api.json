@@ -1,0 +1,215 @@
+{
+  "status": "candidate_not_production_lock",
+  "image": "omicstat-r-exp:20261015",
+  "packages": {
+    "stats": "4.6.1",
+    "nlme": "3.1.170"
+  },
+  "calls": {
+    "nlme::fixef": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "nlme::intervals": {
+      "formals": {
+        "object": "",
+        "level": "0.95",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "intervals.lme": {
+          "object": "",
+          "level": "0.95",
+          "which": "c(\"all\", \"var-cov\", \"fixed\")",
+          "...": ""
+        }
+      }
+    },
+    "nlme::nlme": {
+      "formals": {
+        "model": "",
+        "data": "sys.frame(sys.parent())",
+        "fixed": "",
+        "random": "fixed",
+        "groups": "",
+        "start": "",
+        "correlation": "NULL",
+        "weights": "NULL",
+        "subset": "",
+        "method": "c(\"ML\", \"REML\")",
+        "na.action": "na.fail",
+        "naPattern": "",
+        "control": "list()",
+        "verbose": "FALSE"
+      },
+      "dispatch_methods": {
+        "nlme.formula": {
+          "model": "",
+          "data": "sys.frame(sys.parent())",
+          "fixed": "",
+          "random": "",
+          "groups": "",
+          "start": "",
+          "correlation": "NULL",
+          "weights": "NULL",
+          "subset": "",
+          "method": "c(\"ML\", \"REML\")",
+          "na.action": "na.fail",
+          "naPattern": "",
+          "control": "list()",
+          "verbose": "FALSE"
+        }
+      }
+    },
+    "nlme::nlmeControl": {
+      "formals": {
+        "maxIter": "50",
+        "pnlsMaxIter": "7",
+        "msMaxIter": "50",
+        "minScale": "0.001",
+        "tolerance": "1e-05",
+        "niterEM": "25",
+        "pnlsTol": "0.001",
+        "msTol": "1e-06",
+        "returnObject": "FALSE",
+        "msVerbose": "FALSE",
+        "msWarnNoConv": "TRUE",
+        "gradHess": "TRUE",
+        "apVar": "TRUE",
+        ".relStep": ".Machine$double.eps^(1/3)",
+        "minAbsParApVar": "0.05",
+        "opt": "c(\"nlminb\", \"nlm\")",
+        "natural": "TRUE",
+        "sigma": "NULL",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "nlme::VarCorr": {
+      "formals": {
+        "x": "",
+        "sigma": "1",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::aggregate": {
+      "formals": {
+        "x": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::coef": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "coef.drc": {
+          "object": "",
+          "...": ""
+        },
+        "coef.lme": {
+          "object": "",
+          "augFrame": "FALSE",
+          "level": "Q",
+          "data": "",
+          "which": "1:ncol(data)",
+          "FUN": "mean",
+          "omitGroupingFactor": "TRUE",
+          "subset": "NULL",
+          "...": ""
+        }
+      }
+    },
+    "stats::cov2cor": {
+      "formals": {
+        "V": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::fitted": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::getInitial": {
+      "formals": {
+        "object": "",
+        "data": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::predict": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "predict.drc": {
+          "object": "",
+          "newdata": "",
+          "se.fit": "FALSE",
+          "interval": "c(\"none\", \"confidence\", \"prediction\")",
+          "level": "0.95",
+          "na.action": "na.pass",
+          "od": "FALSE",
+          "vcov.": "vcov",
+          "...": ""
+        },
+        "predict.nlme": {
+          "object": "",
+          "newdata": "",
+          "level": "Q",
+          "asList": "FALSE",
+          "na.action": "na.fail",
+          "naPattern": "NULL",
+          "...": ""
+        }
+      }
+    },
+    "stats::residuals": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::SSlogis": {
+      "formals": {
+        "input": "",
+        "Asym": "",
+        "xmid": "",
+        "scal": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::vcov": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "vcov.drc": {
+          "object": "",
+          "...": "",
+          "corr": "FALSE",
+          "od": "FALSE",
+          "pool": "TRUE",
+          "unscaled": "FALSE"
+        },
+        "vcov.lme": {
+          "object": "",
+          "...": ""
+        }
+      }
+    }
+  }
+}

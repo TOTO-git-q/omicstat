@@ -18,7 +18,7 @@
     "skills/limma-camera/tests/fixtures/make_yoruba.R": "def4e4f0c1f0d861d6b11220b7d85605a1cc17d8151c5b5276ed50715599c04a",
     "skills/limma-camera/tests/registry_values_check.R": "4c714bcfc99d3bd0171e56b8ae0a93c4674581c779928924a2cf3253aba84b67",
     "skills/limma-camera/tests/run_smoke_test.R": "115a03b32575ca9bbb49c9c6fd0acd9a7c7a8cfa4ccd8c3371b156ea44f1fa49",
-    "skills/limma-camera/tests/golden_manifest.csv": "2c653a7670e8d0e3a9b05a7ced55f11ef03d7b32eb08f931d9504fc398ab615e",
+    "skills/limma-camera/tests/golden_manifest.csv": "7268e078a83cc03550241429d7530107254ae7c0a707beeb7bb7599d8e82aab1",
     "acceptance/exemplars/limma-camera/PACK.md": "00dc012f579c4a8e89426a060fce966f4ba0c424f14015e6302bba1687e62d80"
   },
   "packages": {
@@ -29,7 +29,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

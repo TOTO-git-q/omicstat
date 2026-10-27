@@ -1,0 +1,300 @@
+{
+  "module": "omicstat-samplesize",
+  "module_version": "0.1.0",
+  "package_versions": {},
+  "language": "R",
+  "binding_status": "unresolved_native_package_versions_and_formals",
+  "required_packages": [
+    "pwr",
+    "gsDesign"
+  ],
+  "native_defaults_verified": false,
+  "calls": [
+    {
+      "fn": "pwr::pwr.t.test",
+      "args": {
+        "d": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "sig.level": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "power": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "type": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "alternative": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pwr::pwr.t2n.test",
+      "args": {
+        "n1": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "n2": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "d": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "sig.level": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "alternative": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pwr::ES.h",
+      "args": {
+        "p1": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "p2": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pwr::pwr.2p.test",
+      "args": {
+        "h": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "sig.level": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "power": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "alternative": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pwr::pwr.2p2n.test",
+      "args": {
+        "h": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "n1": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "n2": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "sig.level": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "alternative": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pwr::pwr.anova.test",
+      "args": {
+        "k": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "f": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "sig.level": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "power": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "gsDesign::nEvents",
+      "args": {
+        "hr": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "alpha": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "sided": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "beta": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "ratio": {
+          "value": "Explicit copied engine expression; all scientific assumptions passed by the independent adapter",
+          "source": "Pinned MedStat engine source, PORT_SOURCE.json; installed OmicStat native default not yet captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    }
+  ],
+  "flag_defaults": {
+    "--design": "required",
+    "--alpha": "required",
+    "--power": "required",
+    "--ratio": "required",
+    "--dropout": "required",
+    "--sided": "required",
+    "--direction": "required",
+    "--groups": "required",
+    "--power-grid": "required",
+    "--biological-unit": "required",
+    "--unit-description": "required",
+    "--technical-replicates": "required",
+    "--technical-policy": "required",
+    "--planning-stage": "required",
+    "--effect-source": "required",
+    "--effect-rationale": "required",
+    "--outcome-unit": "required",
+    "--mean1": null,
+    "--mean2": null,
+    "--sd": null,
+    "--sd1": null,
+    "--sd2": null,
+    "--mean-diff": null,
+    "--sd-diff": null,
+    "--corr": null,
+    "--k": null,
+    "--f": null,
+    "--means": null,
+    "--p1": null,
+    "--p2": null,
+    "--hr": null,
+    "--event-prob": null,
+    "--journal": "required",
+    "--study-contract": null,
+    "--development-mode": false,
+    "--seed": "required",
+    "--outdir": "required",
+    "--spec": null,
+    "--study-contract-sha256": null
+  }
+}

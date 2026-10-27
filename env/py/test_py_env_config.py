@@ -28,9 +28,8 @@ def norm(name):
     return re.sub(r"[-_.]+", "-", name).lower()
 
 
-cfg_all = json.loads((ROOT / "env/omicstat-env.json").read_text(encoding="utf-8"))
-check("python_lane" in cfg_all, "omicstat-env.json has a python_lane block")
-cfg = cfg_all.get("python_lane", {})
+cfg_all = json.loads((ROOT / "env/r-env.json").read_text(encoding="utf-8"))
+cfg = json.loads((ROOT / "env/py/py-env.json").read_text(encoding="utf-8"))
 for k in ("schema", "py_env_version", "image", "image_tag", "python_version", "base_image", "base_image_digest",
           "pypi_cutoff", "exclude_newer", "pins", "pypi_index", "pytorch_index", "locker", "resolver_input",
           "lock", "py_lock", "installed_record", "image_id_file", "threads"):
@@ -103,10 +102,10 @@ check("--require-hashes" in docker and "--no-deps" in docker, "Dockerfile instal
 for var in ("OMP_NUM_THREADS=1", "MKL_NUM_THREADS=1", "OPENBLAS_NUM_THREADS=1", "NUMBA_NUM_THREADS=1", "PYTHONHASHSEED=0"):
     check(var in docker, "Dockerfile sets %s" % var)
 build = (ROOT / "env/py/build.sh").read_text(encoding="utf-8")
-check("python_lane" in build and "base_image_digest" in build, "build.sh reads every pin from python_lane")
+check("py-env.json" in build and "base_image_digest" in build, "build.sh reads every pin from python_lane")
 for f in (ROOT / "bin/omicstat-r-route.sh", ROOT / "bin/omicstat-r-route.ps1"):
     t = f.read_text(encoding="utf-8")
-    check("python_lane" in t and "omicstat-py:latest" not in t, "%s picks the Python image from python_lane" % f.name)
+    check("py-env.json" in t and "omicstat-py:latest" not in t, "%s picks the Python image from python_lane" % f.name)
 for f in sorted((ROOT / "env/py").glob("*")):
     if f.is_file() and f.suffix in {".py", ".sh", ".toml", ".txt", ""} and f.name != "test_py_env_config.py":
         check(FORK_PARENT not in f.read_text(encoding="utf-8", errors="replace").lower(),

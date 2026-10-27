@@ -1,0 +1,47 @@
+{
+  "status": "candidate",
+  "module": "emmeans-contrast",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "calls": {
+    "emmeans::contrast": {
+      "package_version": "2.0.4",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "emmeans::emmeans": {
+      "package_version": "2.0.4",
+      "method": null,
+      "formals": {
+        "object": "",
+        "specs": "",
+        "by": "NULL",
+        "fac.reduce": "function(coefs) apply(coefs, 2, mean)",
+        "contr": "",
+        "options": "get_emm_option(\"emmeans\")",
+        "weights": "",
+        "offset": "",
+        "...": "",
+        "tran": ""
+      }
+    },
+    "stats::model.frame": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "...": ""
+      }
+    },
+    "utils::packageVersion": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "pkg": "",
+        "lib.loc": "NULL"
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "module": "omicstat-agreement",
+  "module_version": "0.1.0",
+  "language": "R",
+  "package_versions": {},
+  "native_defaults_verified": false,
+  "binding_status": "unresolved_independent_native_versions_and_formals",
+  "required_packages": [
+    "vcd",
+    "irr",
+    "epiR"
+  ],
+  "calls": [
+    {
+      "fn": "vcd::Kappa",
+      "args": {
+        "x": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "epiR::epi.kappa",
+      "args": {
+        "dat": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "method": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "alternative": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.level": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "irr::kappam.fleiss",
+      "args": {
+        "ratings": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "exact": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "detail": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "irr::icc",
+      "args": {
+        "ratings": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "model": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "type": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "unit": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "r0": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.level": {
+          "value": "Explicit copied/adapted source expression; see PORT_ADAPTATIONS.json",
+          "source": "Pinned original engine plus current CRAN argument-name documentation; installed OmicStat defaults not captured",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    }
+  ]
+}

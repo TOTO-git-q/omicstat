@@ -14,7 +14,7 @@ def check(cond, msg):
     if not cond:
         fails.append(msg)
 
-cfg = json.loads((ROOT / "env/omicstat-env.json").read_text(encoding="utf-8"))
+cfg = json.loads((ROOT / "env/r-env.json").read_text(encoding="utf-8"))
 for k in ("r_version", "bioconductor", "base_image", "base_image_digest", "cran_snapshot", "cran_repo_linux",
           "cran_repo_other", "image", "image_tag", "layers", "env_version"):
     check(k in cfg, f"omicstat-env.json has '{k}'")
@@ -28,8 +28,14 @@ check(cfg["image_tag"] == cfg["env_version"], "image_tag equals env_version")
 docker = (ROOT / "env/container/Dockerfile").read_text(encoding="utf-8")
 copies = re.findall(r"^COPY env/layers/(L\d_[a-z_]+)\.txt", docker, re.M)
 runs = re.findall(r"install_layer\.R /opt/omicstat/env (L\d_[a-z_]+)", docker)
-check(copies == cfg["layers"], "Dockerfile COPYs every layer file in env order")
-check(runs == cfg["layers"], "Dockerfile installs every layer in env order")
+check(copies == cfg["layers"][:len(copies)], "bootstrap Dockerfile COPYs the exact inherited prefix")
+check(runs == copies, "bootstrap Dockerfile installs every inherited layer in env order")
+history_layers=[]
+for h in cfg.get("candidate_history",[]):
+    manifest=ROOT/h/"manifest.json"
+    check(manifest.is_file(),"promoted candidate history exists: "+h)
+    if manifest.is_file():history_layers.append(json.loads(manifest.read_text())["target_layer"])
+check(cfg["layers"][len(copies):]==history_layers,"all additive layers have ordered promotion history")
 check("FROM ${BASE_IMAGE}" in docker and "ARG BASE_IMAGE\n" in docker, "Dockerfile base image comes only from build.sh (no default)")
 for layer in cfg["layers"]:
     f = ROOT / "env/layers" / f"{layer}.txt"
@@ -51,7 +57,7 @@ check(all(p[0] in {"L5", "L6", "L8", "DEP"} for p in pins), "github pins belong 
 sh = (ROOT / "bin/omicstat-r-route.sh").read_text(encoding="utf-8")
 ps1 = (ROOT / "bin/omicstat-r-route.ps1").read_text(encoding="utf-8")
 check("omicstat-r:latest" not in sh and "omicstat-r:latest" not in ps1, "routers never use a floating image tag")
-check("omicstat-env.json" in sh and "omicstat-env.json" in ps1, "routers read the image from omicstat-env.json")
+check("r-env.json" in sh and "r-env.json" in ps1, "routers read the image from omicstat-env.json")
 check("R-4.6.0" not in ps1 and "Program Files" not in ps1, "Windows router has no hard-coded R installation")
 for f in list((ROOT / "env").rglob("*")) + [ROOT / "bin/omicstat-r-route.sh", ROOT / "bin/omicstat-r-route.ps1", ROOT / "mcp/server.py"]:
     if f.is_file() and f.suffix in {".R", ".sh", ".ps1", ".py", ".json", ".txt", ""} and f.name != "test_env_config.py" and not f.name.endswith("_report.txt"):
@@ -60,4 +66,10 @@ for f in list((ROOT / "env").rglob("*")) + [ROOT / "bin/omicstat-r-route.sh", RO
 srv = (ROOT / "mcp/server.py").read_text(encoding="utf-8")
 check("NATIVE_RSCRIPT" not in srv and "R-4.6.0" not in srv, "server.py has no hard-coded R installation")
 
+sys.path.insert(0,str(ROOT/"tools/env"))
+from check_registry import check as check_candidates
+candidate_errors,candidates=check_candidates(ROOT)
+check(not candidate_errors,"candidate/history metadata consistency: "+"; ".join(candidate_errors))
+for candidate in candidates:
+    print("CANDIDATE: "+json.dumps(candidate,sort_keys=True))
 sys.exit(1 if fails else 0)

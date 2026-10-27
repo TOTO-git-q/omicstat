@@ -1,0 +1,82 @@
+[
+  {
+    "id": "cox_example_v1",
+    "metric": "CoxExample V1 interpolated coefficient at lambda .05",
+    "expected": 0.37693638,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v2",
+    "metric": "CoxExample V2 interpolated coefficient at lambda .05",
+    "expected": -0.09547797,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v3",
+    "metric": "CoxExample V3 interpolated coefficient at lambda .05",
+    "expected": -0.13595972,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v4",
+    "metric": "CoxExample V4 interpolated coefficient at lambda .05",
+    "expected": 0.09814146,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v5",
+    "metric": "CoxExample V5 interpolated coefficient at lambda .05",
+    "expected": -0.11437545,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v6",
+    "metric": "CoxExample V6 interpolated coefficient at lambda .05",
+    "expected": -0.38898545,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v7",
+    "metric": "CoxExample V7 interpolated coefficient at lambda .05",
+    "expected": 0.242914,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  },
+  {
+    "id": "cox_example_v8",
+    "metric": "CoxExample V8 interpolated coefficient at lambda .05",
+    "expected": 0.03647596,
+    "tolerance": 5e-09,
+    "tolerance_kind": "absolute",
+    "source": "https://cran.r-project.org/src/contrib/Archive/glmnet/glmnet_4.1-8.tar.gz (inst/doc/Coxnet.pdf page3, SHA256 ac765878b086252436e13bd001606505bae29f2de6199e1d403e95d32210043f)",
+    "scope": "Module coefficient extraction with documented default path explicitly declared; version-specific independent upstream printed values",
+    "how": "printed"
+  }
+]

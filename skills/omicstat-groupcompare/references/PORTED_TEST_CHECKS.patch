@@ -1,0 +1,95 @@
+--- selected-pinned-source-checks
++++ selected-OmicStat-checks
+@@ -16,7 +16,7 @@
+ 
+ check("zero weights have no contribution", {
+   same(dd_weighted(c(1, 999), c(1, 0), .5)$quantile, 1)
+-  fails(dd_weighted(c(1, 2), c(0, 0)), "INVALID_WEIGHTS")
++  fails(dd_weighted(c(1, 2), c(0, 0)), "OS_GPC_INVALID_WEIGHTS")
+ })
+ 
+ check("shifted distributions recover all fixed contrasts", {
+@@ -38,22 +38,22 @@
+ 
+ check("no probability endpoint or data-dependent grid", {
+   s <- base_spec(); s$quantile_grid <- c(0, .5, 1)
+-  fails(dd_analyze(synthetic, s), "INVALID_SPEC")
+-  s$quantile_grid <- c(.5, .5); fails(dd_analyze(synthetic, s), "INVALID_SPEC")
++  fails(dd_analyze(synthetic, s), "OS_GPC_INVALID_SPEC")
++  s$quantile_grid <- c(.5, .5); fails(dd_analyze(synthetic, s), "OS_GPC_INVALID_SPEC")
+ })
+ 
+ check("unknown parameters and invalid scalars fail", {
+   s <- base_spec(); s$automatic_cutoff <- TRUE
+-  fails(dd_analyze(synthetic, s), "INVALID_SPEC")
++  fails(dd_analyze(synthetic, s), "OS_GPC_INVALID_SPEC")
+   s <- base_spec(); s$min_cell_n <- 9
+-  fails(dd_analyze(synthetic, s), "INVALID_SPEC")
++  fails(dd_analyze(synthetic, s), "OS_GPC_INVALID_SPEC")
+   s <- base_spec(); s$inference <- list(method = "none", seed = TRUE)
+-  fails(dd_analyze(synthetic, s), "INVALID_SPEC")
++  fails(dd_analyze(synthetic, s), "OS_GPC_INVALID_SPEC")
+ })
+ 
+ check("IDs checked before complete case filtering", {
+   d <- synthetic; d$person[2] <- d$person[1]; d$value[2] <- NA
+-  fails(dd_analyze(d, base_spec()), "NON_UNIQUE_PERSON")
++  fails(dd_analyze(d, base_spec()), "OS_GPC_NON_UNIQUE_PERSON")
+ })
+ 
+ check("confirmed internal row_key is the default identifier", {
+@@ -64,20 +64,20 @@
+ 
+ check("unknown group is not silently dropped", {
+   d <- synthetic; d$arm[1] <- "unplanned"
+-  fails(dd_analyze(d, base_spec()), "UNDECLARED_GROUP")
++  fails(dd_analyze(d, base_spec()), "OS_GPC_UNDECLARED_GROUP")
+ })
+ 
+ check("nonfinite or censored numeric values rejected", {
+   for (bad in c("<5", "Inf", "NaN", "word")) {
+     d <- synthetic; d$value <- as.character(d$value); d$value[1] <- bad
+-    fails(dd_analyze(d, base_spec()), "INVALID_COLUMN")
++    fails(dd_analyze(d, base_spec()), "OS_GPC_INVALID_COLUMN")
+   }
+ })
+ 
+ check("complete cases are explicit", {
+   d <- synthetic; d$value[1] <- NA
+   r <- dd_analyze(d, base_spec())
+-  stopifnot("COMPLETE_CASE_EXCLUSIONS" %in% unlist(r$guardrails$warnings))
++  stopifnot("OS_GPC_COMPLETE_CASE_EXCLUSIONS" %in% unlist(r$guardrails$warnings))
+   same(metric(r, "mean", "A")$n, 199)
+ })
+ 
+@@ -104,8 +104,8 @@
+   g <- r$guardrails; stopifnot(identical(g$status, "completed_with_suppression"), length(g$findings) > 0L)
+   codes <- vapply(g$findings, function(z) z$code, character(1))
+   warned <- unique(unlist(strsplit(unlist(g$warnings), ";", fixed = TRUE)))
+-  stopifnot(all(warned %in% codes), "GROUP_N_BELOW_MINIMUM" %in% codes)
+-  hit <- g$findings[[which(codes == "GROUP_N_BELOW_MINIMUM" & vapply(g$findings, function(z) identical(z$group, "A"), logical(1)))[1L]]]
++  stopifnot(all(warned %in% codes), "OS_GPC_GROUP_N_BELOW_MINIMUM" %in% codes)
++  hit <- g$findings[[which(codes == "OS_GPC_GROUP_N_BELOW_MINIMUM" & vapply(g$findings, function(z) identical(z$group, "A"), logical(1)))[1L]]]
+   stopifnot(nzchar(hit$message), !isTRUE(hit$blocking), "mean" %in% unlist(hit$statistics), 0.5 %in% unlist(hit$grid))
+   # every withheld metric row is covered by a finding for its group and one of its codes
+   w <- r$metrics[nzchar(r$metrics$suppression), , drop = FALSE]
+@@ -122,8 +122,8 @@
+   r <- dd_analyze(synthetic[c(1:5, 201:205), ], base_spec())
+   g <- r$guardrails
+   codes <- vapply(g$findings, function(z) z$code, character(1))
+-  stopifnot("NO_RELEASABLE_ESTIMATES" %in% codes, identical(g$blocking, 1L),
+-            isTRUE(g$findings[[which(codes == "NO_RELEASABLE_ESTIMATES")]]$blocking))
++  stopifnot("OS_GPC_NO_RELEASABLE_ESTIMATES" %in% codes, identical(g$blocking, 1L),
++            isTRUE(g$findings[[which(codes == "OS_GPC_NO_RELEASABLE_ESTIMATES")]]$blocking))
+ })
+ 
+ check("nonstandard fixed labels retain exact reference and ordering", {
+@@ -148,7 +148,7 @@
+ })
+ 
+ check("seeded bootstrap is reproducible and preserves caller RNG", {
+-  set.seed(19); before <- .Random.seed
++  rng_seed <- 19L; set.seed(rng_seed); before <- .Random.seed
+   a <- dd_analyze(synthetic, boot)
+   stopifnot(identical(before, .Random.seed))
+   b <- dd_analyze(synthetic[400:1, ], boot)

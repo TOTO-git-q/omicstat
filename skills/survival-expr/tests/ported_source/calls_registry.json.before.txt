@@ -1,0 +1,462 @@
+{
+  "module": "survival-expr",
+  "module_version": "0.1.0",
+  "package_versions": {
+    "stats": "4.5.0",
+    "survival": "3.8.3"
+  },
+  "calls": [
+    {
+      "fn": "stats::sd",
+      "args": {}
+    },
+    {
+      "fn": "stats::reformulate",
+      "args": {
+        "response": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "NULL"
+        }
+      }
+    },
+    {
+      "fn": "survival::coxph",
+      "args": {
+        "formula": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "data": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "ties": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "c(\"efron\", \"breslow\", \"exact\")"
+        },
+        "singular.ok": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "x": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "y": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "model": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "na.action": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "control": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "survival::coxph.control",
+      "args": {
+        "iter.max": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "20"
+        },
+        "eps": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "1e-09"
+        }
+      }
+    },
+    {
+      "fn": "stats::coef",
+      "args": {}
+    },
+    {
+      "fn": "stats::vcov",
+      "args": {}
+    },
+    {
+      "fn": "stats::pnorm",
+      "args": {}
+    },
+    {
+      "fn": "stats::qnorm",
+      "args": {}
+    },
+    {
+      "fn": "survival::cox.zph",
+      "args": {
+        "fit": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "transform": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "\"km\""
+        },
+        "terms": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "singledf": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "global": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "stats::p.adjust",
+      "args": {
+        "method": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "p.adjust.methods"
+        },
+        "n": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "length(p)"
+        }
+      }
+    },
+    {
+      "fn": "stats::median",
+      "args": {}
+    },
+    {
+      "fn": "survival::survdiff",
+      "args": {
+        "formula": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "data": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "rho": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "0"
+        },
+        "na.action": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "survival::Surv",
+      "args": {}
+    },
+    {
+      "fn": "survival::survfit",
+      "args": {
+        "formula": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "data": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "conf.int": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "conf.type": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        },
+        "se.fit": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": null
+        }
+      }
+    },
+    {
+      "fn": "stats::pchisq",
+      "args": {
+        "df": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": ""
+        },
+        "lower.tail": {
+          "value": "explicit expression in module core; scientific flags required",
+          "source": "R stats manual; actual cloud R 4.5.0 formals captured, production exec pending",
+          "pack": "D",
+          "function_default": "TRUE"
+        }
+      }
+    }
+  ],
+  "accessors": [],
+  "flag_defaults": {
+    "--from-run": "required",
+    "--clinical": "required",
+    "--unit-col": "required",
+    "--time-col": "required",
+    "--event-col": "required",
+    "--time-unit": "required",
+    "--genes": "required",
+    "--covariates": "required",
+    "--expression-scale": "required",
+    "--scaling": "required",
+    "--ties": "required",
+    "--min-events": "required",
+    "--max-iter": "required",
+    "--cox-eps": "required",
+    "--ph-transform": "required",
+    "--ph-alpha": "required",
+    "--adjust": "required",
+    "--family-size": "required",
+    "--ci-level": "required",
+    "--km-gene": "required",
+    "--cutoff": "required",
+    "--cutpoint": null,
+    "--exploratory": false,
+    "--min-group-fraction": null,
+    "--risk-times": "required",
+    "--journal": "required",
+    "--study-contract": "required",
+    "--development-mode": false,
+    "--seed": "required",
+    "--outdir": "required",
+    "--spec": null
+  },
+  "captured_signatures": {
+    "stats::sd": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE"
+      }
+    },
+    "stats::reformulate": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "termlabels": "",
+        "response": "NULL",
+        "intercept": "TRUE",
+        "env": "parent.frame()"
+      }
+    },
+    "survival::coxph": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "data": "",
+        "weights": "",
+        "subset": "",
+        "na.action": "",
+        "init": "",
+        "control": "",
+        "ties": "c(\"efron\", \"breslow\", \"exact\")",
+        "singular.ok": "TRUE",
+        "robust": "",
+        "model": "FALSE",
+        "x": "FALSE",
+        "y": "TRUE",
+        "tt": "",
+        "method": "ties",
+        "id": "",
+        "cluster": "",
+        "istate": "",
+        "statedata": "",
+        "nocenter": "c(-1, 0, 1)",
+        "...": ""
+      }
+    },
+    "survival::coxph.control": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "eps": "1e-09",
+        "toler.chol": ".Machine$double.eps^0.75",
+        "iter.max": "20",
+        "toler.inf": "sqrt(eps)",
+        "outer.max": "10",
+        "timefix": "TRUE"
+      }
+    },
+    "stats::coef": {
+      "package_version": "4.5.0",
+      "method": "coef.default",
+      "formals": {
+        "object": "",
+        "...": "",
+        "complete": "TRUE"
+      }
+    },
+    "stats::vcov": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "stats::pnorm": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "q": "",
+        "mean": "0",
+        "sd": "1",
+        "lower.tail": "TRUE",
+        "log.p": "FALSE"
+      }
+    },
+    "stats::qnorm": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "p": "",
+        "mean": "0",
+        "sd": "1",
+        "lower.tail": "TRUE",
+        "log.p": "FALSE"
+      }
+    },
+    "survival::cox.zph": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "fit": "",
+        "transform": "\"km\"",
+        "terms": "TRUE",
+        "singledf": "FALSE",
+        "global": "TRUE"
+      }
+    },
+    "stats::p.adjust": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "p": "",
+        "method": "p.adjust.methods",
+        "n": "length(p)"
+      }
+    },
+    "stats::median": {
+      "package_version": "4.5.0",
+      "method": "median.default",
+      "formals": {
+        "x": "",
+        "na.rm": "FALSE",
+        "...": ""
+      }
+    },
+    "survival::survdiff": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "data": "",
+        "subset": "",
+        "na.action": "",
+        "rho": "0",
+        "timefix": "TRUE"
+      }
+    },
+    "survival::Surv": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "time": "",
+        "time2": "",
+        "event": "",
+        "type": "c(\"right\", \"left\", \"interval\", \"counting\", \"interval2\", \"mstate\")",
+        "origin": "0"
+      }
+    },
+    "survival::survfit": {
+      "package_version": "3.8.3",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "...": ""
+      }
+    },
+    "stats::pchisq": {
+      "package_version": "4.5.0",
+      "method": null,
+      "formals": {
+        "q": "",
+        "df": "",
+        "ncp": "0",
+        "lower.tail": "TRUE",
+        "log.p": "FALSE"
+      }
+    }
+  },
+  "status": "candidate_native_api_observed_not_production"
+}

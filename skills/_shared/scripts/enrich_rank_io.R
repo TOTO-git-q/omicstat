@@ -20,7 +20,7 @@ os_rank_read <- function(path) {
 
 os_refdata_entry <- function(suite, id) {
   reg <- jsonlite::fromJSON(file.path(suite, "env", "refdata_registry.json"), simplifyVector = FALSE)
-  hits <- Filter(function(e) identical(e$id, id) && is.null(e$tier), reg$entries)
+  hits <- Filter(function(e) identical(e$id, id) && (is.null(e$tier) || identical(e$tier, "container")), reg$entries)
   if (length(hits) != 1L) stop(sprintf(paste0("OS_REFDATA_MISSING: collection '%s' is not a locked-container registry entry. ",
                                               "omicstat never bundles or downloads KEGG, MSigDB, PanglaoDB or similar gene sets; ",
                                               "a local GMT you obtained yourself runs with --collection user --gene-sets <file.gmt> ",

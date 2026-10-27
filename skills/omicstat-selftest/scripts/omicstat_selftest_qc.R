@@ -25,7 +25,7 @@ omicstat_selftest_qc <- function(res) {
   # ST-01 R version vs the pin (major.minor must match; patch = warning)
   if (is.na(pr$r_pin)) {
     rows[[1]] <- .st_rule("ST-01", "r_version", TRUE, "error",
-                          "env/omicstat-env.json could not be read, so the R version pin is unknown.",
+                          "env/r-env.json could not be read, so the R version pin is unknown.",
                           "Run the self-test from an omicstat checkout (the module must sit in <suite>/skills/).")
   } else if (!identical(.st_mm(pr$r_version), .st_mm(pr$r_pin))) {
     rows[[1]] <- .st_rule("ST-01", "r_version", TRUE, "error",

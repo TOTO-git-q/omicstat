@@ -15,8 +15,10 @@
 #   its own absolute path, otherwise git reports "not a git repository".
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
-cfg() { python3 -c "import json,sys; print(json.load(open('$ROOT/env/omicstat-env.json'))[sys.argv[1]])" "$1"; }
+cfg() { python3 -c "import json,sys; print(json.load(open('$ROOT/env/r-env.json'))[sys.argv[1]])" "$1"; }
 IMAGE="${OMICSTAT_IMAGE:-$(cfg image):$(cfg image_tag)}"
+REPORT="${OMICSTAT_TEST_REPORT:-$ROOT/env/test_report.txt}"
+mkdir -p "$(dirname "$REPORT")"
 IMAGE_ID="$(docker image inspect "$IMAGE" --format '{{.Id}}')" || exit 1
 acceptance_mounts=()
 if [ -L "$ROOT/.omicstat-acceptance" ]; then
@@ -37,13 +39,13 @@ if [ -f "$ROOT/.git" ]; then
   fi
 fi
 docker run --rm --network none --user "$(id -u):$(id -g)" \
-  -v "$ROOT":/omicstat "${git_mounts[@]}" "${acceptance_mounts[@]}" "${artifact_mounts[@]}" -w /omicstat \
-  -e HOME=/tmp/omicstat-home -e OMICSTAT_TEST_TMP=/tmp/omicstat-test -e OMICSTAT_TEST_H5AD=1 \
+  -v "$ROOT":/omicstat:ro "${git_mounts[@]}" "${acceptance_mounts[@]}" "${artifact_mounts[@]}" -w /omicstat \
+  -e OMICSTAT_WRITE_GOLDEN= -e PYTHONDONTWRITEBYTECODE=1 -e HOME=/tmp/omicstat-home -e OMICSTAT_TEST_TMP=/tmp/omicstat-test -e OMICSTAT_TEST_H5AD=1 \
   -e OMICSTAT_IMAGE_ID="$IMAGE_ID" -e OMICSTAT_TEST_LOG_DIR=/tmp/omicstat-test/logs \
   -e OMICSTAT_MCP_SCRATCH=/tmp/omicstat-test/mcp -e OMICSTAT_RUNS_ROOT=/tmp/omicstat-test/mcp-runs \
   -e GIT_CONFIG_COUNT=1 -e GIT_CONFIG_KEY_0=safe.directory -e GIT_CONFIG_VALUE_0=/omicstat \
   -e PATH="/opt/omicstat/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
-  "$IMAGE" bash -c 'mkdir -p /tmp/omicstat-test /tmp/omicstat-home; bash tools/run_tests.sh' 2>&1 | tee "$ROOT/env/test_report.txt"
+  "$IMAGE_ID" bash -c 'mkdir -p /tmp/omicstat-test /tmp/omicstat-home; bash tools/run_tests.sh' 2>&1 | tee "$REPORT"
 status=${PIPESTATUS[0]}
-echo "image: $IMAGE $(docker image inspect "$IMAGE" --format '{{.Id}}')" >> "$ROOT/env/test_report.txt"
+echo "image: $IMAGE $(docker image inspect "$IMAGE" --format '{{.Id}}')" >> "$REPORT"
 exit $status

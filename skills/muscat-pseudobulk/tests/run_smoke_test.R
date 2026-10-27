@@ -12,6 +12,8 @@ os_backend_smoke(mdir,sce,c('--cluster-col','cluster_id','--counts-layer','count
   native<-readRDS(file.path(out,'objects','native.rds'));stopifnot(length(SummarizedExperiment::assayNames(native$pseudobulk))==8L)
 })
 
+source(file.path(suite,"skills","_shared","scripts","fig_all.R"))
+source(file.path(mdir,"scripts","muscat_pseudobulk_audit.R"))
 source(file.path(mdir,"scripts","muscat_pseudobulk_core.R"))
 ids <- unlist(lapply(split(unique(as.character(sce$sample_id)),sub("[0-9].*","",unique(as.character(sce$sample_id)))),head,2),use.names=FALSE)
 ii <- unlist(lapply(ids,function(id) head(which(sce$sample_id==id & sce$cluster_id=="B cells"),50)),use.names=FALSE)

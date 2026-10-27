@@ -12,7 +12,7 @@ wg_native_function <- function(a,name,default) {
  getExportedValue(parts[1],parts[2])
 }
 # Locked WGCNA network computation; all formals explicit.
-WG_MODULE_VERSION <- "1.0.0"
+WG_MODULE_VERSION <- "1.1.0"
 suppressPackageStartupMessages(library(WGCNA))
 wg_cor <- function(x, y, a = list()) {
   WGCNA::cor(

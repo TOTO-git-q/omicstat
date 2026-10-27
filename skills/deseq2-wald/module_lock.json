@@ -3,21 +3,23 @@
   "module": "deseq2-wald",
   "module_version": "1.2.0",
   "files": {
-    "skills/deseq2-wald/scripts/deseq2_wald_core.R": "4cdb7155c659f1022e61138cab971a906b05430fdc5d98567ff304da5c293497",
+    "skills/deseq2-wald/scripts/deseq2_wald_core.R": "c9495034728bf17b2b95d99e3b418427496541c885c150279ecceac068c9a8d8",
     "skills/deseq2-wald/scripts/deseq2_wald_qc.R": "5354bc49307856e27a6115341f2214cf1d18401e38efb5df2b64c94be703840c",
-    "skills/deseq2-wald/scripts/deseq2_wald_report.R": "25984d816db13cfb9553746275c1bbeb2aa90a456e941e03b4f94cf177dd3eb9",
-    "skills/deseq2-wald/scripts/run_deseq2_wald.R": "9738b01c3318b4d99255cd055cf2619266571c37a4f036fc74b957f3da69db7e",
+    "skills/deseq2-wald/scripts/deseq2_wald_report.R": "1efe863b53b26b904e7aa25100e1d87106405cff162248b678ff2435690c94f9",
+    "skills/deseq2-wald/scripts/run_deseq2_wald.R": "e10137f853c6bd1240067544f2df66c320f312c5878cf51a172c10ad97a895b0",
     "skills/deseq2-wald/scripts/calls_registry.json": "371fc45e7c945a2bacb402509e2cda5b11cfb5fefd6d91cc4e669d524f3176a3",
     "skills/deseq2-wald/SKILL.md": "d49c3727ca7bea3beb13121e1e2812d8c32e5245ddfa3e3aafbca0e3bb90857d",
     "skills/deseq2-wald/references/method-basis.md": "372c000476f7bbb36915de41188ddd3dbd450761ff337fb605920837f8cbe91e",
-    "skills/deseq2-wald/references/options.md": "84d04485f49d3342f1aff7124dbcc84d65042395a8abaac5d3ecbfb488aa2a25",
+    "skills/deseq2-wald/references/options.md": "339e1e1da1610963d8392f33428f5a8708d7268a042a7ff265728f3c0a512235",
     "skills/deseq2-wald/references/parameters.md": "e837bd95838853ab5a92972219d479451e6b8e841905e6846f4532d83d99cc6d",
     "skills/deseq2-wald/references/qc-rules.md": "1b8fc097c38405f9cbc135a41105711620817c08b3bc0d461516375e14cb85f3",
     "skills/deseq2-wald/references/reporting-templates.md": "e62e0b4e46a96a1f81db60a2062cd45e760274269c0732ffa02b9848eb28dc50",
     "skills/deseq2-wald/references/troubleshooting.md": "67c0ea300eea2038cc9ab0f17b4a17386fa75ab72cded7c47d604ca110ca7a89",
+    "skills/deseq2-wald/tests/anchors.R": "58eb7b21e07669d047a05816d4aa92e114e9ac4e0f86dcaebeb818600ef1f70b",
     "skills/deseq2-wald/tests/fixtures/make_pasilla.R": "1c24cbb0dbb58276ed1e2a8e2660137601f5f41e221e893c940012733d00eb3e",
+    "skills/deseq2-wald/tests/prepare_acceptance.R": "c87f0ee367ba4d21791ae82557dd503574984546b069c82c7b68c9efe7f6c5a3",
     "skills/deseq2-wald/tests/run_smoke_test.R": "c8549b695f710219c7a23ca64505ce76cbe7c1a63b8028889de0e6715fa516cb",
-    "skills/deseq2-wald/tests/golden_manifest.csv": "f114e97b50bdee0a97abd22717891e6384414a86e512d69e21943bdd9c785555",
+    "skills/deseq2-wald/tests/golden_manifest.csv": "3726fe7d6bc9bc188a89a25060cbb096023d0699d87956d5d0dd426fd9f9f3b4",
     "acceptance/exemplars/deseq2-wald/PACK.md": "c2e2afc16b5e45beff76d67d8408b8781ed74934e81f50d7b49ba41774927174"
   },
   "packages": {
@@ -30,7 +32,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

@@ -1,0 +1,14 @@
+survival_expr_render <- function(res, out, module) {
+ m <- res$metadata; curves <- res$tables$km_curves
+ # The shared renderer requires finite CI bounds. Missing endpoint bounds remain in the table;
+ # omitting both interval columns avoids implying a made-up endpoint CI.
+ if (any(!is.finite(curves$lower) | !is.finite(curves$upper))) curves <- curves[setdiff(names(curves), c("lower", "upper"))]
+ p <- os_km(curves, res$tables$km_risk, time_unit = m$time_unit,
+  logrank_p = if (is.finite(m$logrank_p)) m$logrank_p else NULL, journal = m$journal,
+  analysis_label = if (m$exploratory_cutpoint) "Exploratory optimized split: p withheld" else paste("Prespecified", m$cutoff_rule, "split"))
+ meta <- attr(p, "os_meta"); meta$caption <- paste(meta$caption, paste0("Gene: ", m$km_gene, "; cutoff rule: ", m$cutoff_rule, "; cutpoint: ", signif(m$cutpoint, 8), "."), m$logrank_scope)
+ meta$notes$cutoff_rule <- m$cutoff_rule; meta$notes$cutpoint <- m$cutpoint; attr(p, "os_meta") <- meta
+ os_finalize_figure(p, file.path(out, "figures", "km"), root = out)
+ p <- os_hr_forest(res$tables$effect_table, ci_level = m$ci_level, journal = m$journal)
+ os_finalize_figure(p, file.path(out, "figures", "cox_hr"), root = out)
+}

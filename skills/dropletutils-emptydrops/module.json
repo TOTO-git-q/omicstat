@@ -1,0 +1,249 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "dropletutils-emptydrops",
+  "lane": "R",
+  "domain": "annotation",
+  "entry": "scripts/run_dropletutils_emptydrops.R",
+  "version": "0.1.0",
+  "qc_prefix": "EDP",
+  "engine_packages": [
+    "DropletUtils",
+    "BiocParallel",
+    "SingleCellExperiment"
+  ],
+  "refdata": [
+    "emptydrops_unfiltered_input"
+  ],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "SingleCellExperiment"
+    ]
+  },
+  "figure_builders": [
+    "os_diag_xy"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 55,
+    "question": "Identify nonempty droplets with emptyDrops from unfiltered counts and explicit FDR/lower"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--input",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Unfiltered raw droplet count matrix",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--format",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Explicit rds matrix or csv format",
+      "type_label": "rds|csv",
+      "role": "scientific"
+    },
+    {
+      "flag": "--input-state",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Unfiltered raw UMI declaration",
+      "type_label": "unfiltered-raw",
+      "role": "scientific"
+    },
+    {
+      "flag": "--species",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Declared specimen species",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--refdata-id",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Registered ambient-input identity",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--refdata-registry",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Offline reference registry",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--input-provenance",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Raw payload SHA and unfiltered declaration",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--lower",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Ambient total-count maximum",
+      "type_label": "int in [1, 100000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--fdr",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Nonempty BH FDR threshold",
+      "type_label": "num in [0.000000001, 0.5]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--niters",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Monte Carlo simulations per tested barcode",
+      "type_label": "int in [1000, 100000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--retain",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Positive explicit total threshold or none; no automatic knee",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--alpha",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "multinomial or estimate or positive DM concentration",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ignore",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Ignore-total threshold",
+      "type_label": "int in [0, 100000000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--test-ambient",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Evaluate low-count diagnostic probabilities",
+      "type_label": "true|false",
+      "role": "scientific"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Figure preset",
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "required": false,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Validated study contract",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Explicit candidate run",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Reproducible Monte Carlo seed",
+      "type_label": "int in [0, 2147483646]",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Empty output directory",
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "Explicit droplet-calling and resource contract",
+      "description": "Resolved replay spec"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 53,
+    "discovery_profile": {
+      "module": "dropletutils-emptydrops",
+      "epmc_query": "METHODS:\"emptyDrops\" OR METHODS:\"droplet\"",
+      "meta": false,
+      "signal_regex": "(?:emptyDrops|droplet)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "refdata_contracts": {
+    "emptydrops_unfiltered_input": {
+      "input_flag": "--input",
+      "provenance_flag": "--input-provenance"
+    }
+  },
+  "limits": {
+    "max_features": 40000,
+    "max_barcodes": 100000,
+    "max_simulation_product": 20000000,
+    "timeout_seconds": 1500
+  }
+}

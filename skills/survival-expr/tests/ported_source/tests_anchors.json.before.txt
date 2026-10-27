@@ -1,0 +1,102 @@
+[
+  {
+    "id": "coefficient_max_error",
+    "metric": "Maximum absolute error for coefficient across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "se_max_error",
+    "metric": "Maximum absolute error for se across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "z_max_error",
+    "metric": "Maximum absolute error for z across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "p_value_max_error",
+    "metric": "Maximum absolute error for p_value across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "estimate_max_error",
+    "metric": "Maximum absolute error for estimate across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "ci_low_max_error",
+    "metric": "Maximum absolute error for ci_low across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "ci_high_max_error",
+    "metric": "Maximum absolute error for ci_high across signal and two covariates",
+    "expected": 0,
+    "tolerance": 5e-07,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: independently implemented Efron partial likelihood, score, observed information and Newton solve using Python standard-library arithmetic; Cox model equations https://stat.ethz.ch/R-manual/R-patched/library/survival/doc/survival.pdf",
+    "scope": "Synthetic seed9182 input only; independently recomputed mathematical reference, not published patient anchors and not wrapper-generated expected values",
+    "how": "replay"
+  },
+  {
+    "id": "km_product_limit_max_error",
+    "metric": "km_product_limit_max_error",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: direct product-limit risk-set arithmetic and counts from synthetic source inputs",
+    "scope": "Synthetic canonical output independently checked; not published numerical anchors",
+    "how": "replay"
+  },
+  {
+    "id": "risk_count_max_error",
+    "metric": "risk_count_max_error",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: direct product-limit risk-set arithmetic and counts from synthetic source inputs",
+    "scope": "Synthetic canonical output independently checked; not published numerical anchors",
+    "how": "replay"
+  },
+  {
+    "id": "sample_event_count_max_error",
+    "metric": "sample_event_count_max_error",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "tests/anchors.py: direct product-limit risk-set arithmetic and counts from synthetic source inputs",
+    "scope": "Synthetic canonical output independently checked; not published numerical anchors",
+    "how": "replay"
+  }
+]

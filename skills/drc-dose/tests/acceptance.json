@@ -1,0 +1,50 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/elisa_curated.csv",
+      "--response",
+      "OD",
+      "--dose",
+      "dose",
+      "--unit",
+      "biological_id",
+      "--dose-unit",
+      "ng/mL",
+      "--model",
+      "LL4",
+      "--response-levels",
+      "10,50,90",
+      "--response-type",
+      "relative",
+      "--reference",
+      "control",
+      "--ci-level",
+      ".95",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{root}"
+    ]
+  },
+  "figure_policy": "required"
+}

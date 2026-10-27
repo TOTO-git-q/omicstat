@@ -1,0 +1,32 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "lme4-lmm",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/lme4-lmm/scripts/lme4_lmm_core.R": "0d25a74838200a200c78ec21bd0d572bd5b69819d469534a4f40b4f7eeaef8e4",
+    "skills/lme4-lmm/scripts/run_lme4_lmm.R": "67ff6c1e4b6ff124caf4efee5cf7c2bbbe433fa721bd2c27be6135d2770a9127",
+    "skills/lme4-lmm/scripts/calls_registry.json": "ef10abc6cf8ed33560b92c5b975a5da952b7337826b63a12ac3e814169439fcf",
+    "skills/lme4-lmm/SKILL.md": "0d3e8624a53584e7cef687f1ac0b563ec92562d4f5e7d3741fa6457a3847c435",
+    "skills/lme4-lmm/references/options.md": "e540129083685d3b9a88119f2fc619c489a2fa3f1665df9f411b780a14227da5",
+    "skills/lme4-lmm/references/parameters.md": "74cfca1ead0fcc27955e94a5947278bdb0fb3fbdf70ff4a286d309f360e91b3b",
+    "skills/lme4-lmm/references/source-evidence/SKILL.md": "13259f533f1b5769fdc439590f9d89929c4e30e71d2a1d361f68e234c434b4c9",
+    "skills/lme4-lmm/references/source-evidence/VALIDATION_STATUS.json": "21bfc9ce495632e75bceb6249941cf08727539f542e2f7bf611e24eb24aa50bb",
+    "skills/lme4-lmm/references/source-evidence/provenance.json": "5ab52854de17224bde0dd166a3e09d1368544071d5030c4108cd1e40d42002b9",
+    "skills/lme4-lmm/tests/anchors.R": "22ca2e7e2bba188191ab2d08eeaf97dbe8ec6b1af2632460cffb1c32b9494053",
+    "skills/lme4-lmm/tests/run_development_test.R": "323c4f1a45da37f75c6cc7b2dc630e369edc8b6f9fc564eeb3274a1936a19b41",
+    "skills/lme4-lmm/tests/golden_manifest.csv": "d290e0d35eb2bd8fb0b40ec6d495048aaa8215cf662675bb263ed0c174ac8dfd"
+  },
+  "packages": {
+    "lme4": "2.0.6",
+    "reformulas": "0.4.4",
+    "stats": "4.6.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P1-7",
+  "modules": [
+    "reactomepa-ora"
+  ],
+  "image_candidate": null,
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "full_regression": true,
+  "notes": [
+    "Installed SQLite and mapping hashes are mandatory; no online lookup. User-supplied resource licence review remains pending.",
+    "Four independent arithmetic/input anchors; fifteen CLI refusals. Missing native packages must remain failed/not_run, never mocked.",
+    "Baseline packages only (ReactomePA, celldex/SingleR, DropletUtils, org.*): run in the baseline lane image or omicstat-r:2026.10.4; no annotation candidate exists."
+  ],
+  "checks": [
+    [
+      "Rscript",
+      "skills/reactomepa-ora/tests/run_smoke_test.R"
+    ],
+    [
+      "Rscript",
+      "skills/reactomepa-ora/tests/test_contracts.R"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ]
+  ]
+}

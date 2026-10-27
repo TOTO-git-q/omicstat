@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sleep_t",
+    "metric": "Paired sleep t statistic",
+    "expected": -4.062,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_df",
+    "metric": "Paired sleep degrees of freedom",
+    "expected": 9,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_p",
+    "metric": "Paired sleep two-sided p value",
+    "expected": 0.003,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_difference",
+    "metric": "Drug1 minus drug2 mean extra sleep hours",
+    "expected": -1.58,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_ci_low",
+    "metric": "Paired sleep 90 percent CI lower",
+    "expected": -2.293,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_ci_high",
+    "metric": "Paired sleep 90 percent CI upper",
+    "expected": -0.867,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  }
+]

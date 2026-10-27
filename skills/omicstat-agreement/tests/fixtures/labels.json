@@ -1,0 +1,17 @@
+{
+  "population": "Project-invented independent physical test items",
+  "measurement": "Synthetic measurement or rating",
+  "method_a": "Synthetic instrument A",
+  "method_b": "Synthetic instrument B",
+  "rater3": "Synthetic continuous rater 3",
+  "rater4": "Synthetic continuous rater 4",
+  "r1": "Synthetic categorical rater 1",
+  "r2": "Synthetic categorical rater 2",
+  "r3": "Synthetic categorical rater 3",
+  "r4": "Synthetic categorical rater 4",
+  "low": "Low category",
+  "mid": "Middle category",
+  "high": "High category",
+  "0": "Category zero",
+  "1": "Category one"
+}

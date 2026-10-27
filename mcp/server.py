@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""omicstat MCP shell -- 5 generic tools over the omicstat R engines.
+"""omicstat MCP shell -- 6 generic tools over the omicstat R engines.
 
 Architecture forked from the medstat MCP (5 synchronous tools, stdio, no
 background jobs, 25-minute hard kill), but omicstat runs on its OWN R
@@ -21,7 +21,7 @@ scripts/run_*.py runs with `python` in the omicstat-py image (python_lane of
 env/omicstat-env.json) or, natively, with the "python" interpreter of the
 native-env.json; its figures are then drawn by the R render step
 (skills/_shared/scripts/render_figure_request.R) in omicstat-r / the native
-R. The tool surface is unchanged (still 5 tools).
+R. The six-tool surface is defined by mcp/tools_manifest.json.
 
 The shell never interprets statistics.  It translates {flag: value} into argv,
 refuses flags the module's own `--help` does not list, refuses paths outside
@@ -63,10 +63,13 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import yaml
-from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP, Context
+import asyncio
+import time
 
 import publication
 import package_identity
+import study_contract as study_contract_builder
 
 # --------------------------------------------------------------------------
 # Configuration
@@ -82,7 +85,8 @@ SKILLS_DIR = os.path.join(SUITE, "skills")
 ROUTER_SKILL = os.path.join(SKILLS_DIR, "omicstat", "SKILL.md")
 ROUTE_PS1 = os.path.join(SUITE, "bin", "omicstat-r-route.ps1")
 ROUTE_SH = os.path.join(SUITE, "bin", "omicstat-r-route.sh")
-ENV_CONFIG = os.path.join(SUITE, "env", "omicstat-env.json")
+ENV_CONFIG = os.path.join(SUITE, "env", "r-env.json")
+PY_ENV_CONFIG = os.path.join(SUITE, "env", "py", "py-env.json")
 # The native engine's description file (written by env/native/setup_native.R).
 # OMICSTAT_NATIVE_ENV overrides the location; bin/omicstat-r-route.sh/.ps1 read
 # the same variable, so availability here and execution there never diverge.
@@ -108,7 +112,21 @@ ALLOWED_ROOTS = [
     tempfile.gettempdir(),
 ]
 
-RUN_TIMEOUT_S = 25 * 60          # hard kill; stdio idle timeout is 30 min
+def run_timeout_s(value=None):
+    """Standalone default unchanged; web may raise the bound to at most six hours."""
+    if value is None:
+        value = os.environ.get("OMICSTAT_RUN_TIMEOUT_S", "1500")
+    try:
+        seconds = int(value)
+    except (TypeError, ValueError):
+        raise ValueError("OMICSTAT_RUN_TIMEOUT_S must be an integer between 1 and 21600")
+    if not 1 <= seconds <= 21600:
+        raise ValueError("OMICSTAT_RUN_TIMEOUT_S must be between 1 and 21600")
+    return seconds
+
+
+RUN_TIMEOUT_S = run_timeout_s()
+PROGRESS_INTERVAL_S = 30
 HELP_TIMEOUT_S = 300
 MANIFEST_BUDGET = 8000           # characters
 READ_LIMIT = 60000               # characters
@@ -247,21 +265,48 @@ def _powershell() -> str:
     return found or r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
 
 
-def _image_name() -> str:
+_LANE_IMAGE_RE = re.compile(r"^omicstat-[a-z0-9._-]+:[A-Za-z0-9._-]+$")
+
+
+def _lane_image(module: Optional[str]) -> Optional[str]:
+    """The optional `lane_image` of a module (module.json), else None.
+
+    A plug-in module whose package lives in its own lane image names that image
+    here; every other module uses the current lane image (env/r-env.json or
+    env/py/py-env.json). Operator overrides (OMICSTAT_IMAGE / OMICSTAT_PY_IMAGE)
+    still win. The value must look like an omicstat image tag.
+    """
+    if not module or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)+", module):
+        return None
+    try:
+        with io.open(os.path.join(SKILLS_DIR, module, "module.json"), encoding="utf-8") as fh:
+            value = json.load(fh).get("lane_image")
+    except (OSError, ValueError, AttributeError):
+        return None
+    return value if isinstance(value, str) and _LANE_IMAGE_RE.fullmatch(value) else None
+
+
+def _image_name(module: Optional[str] = None) -> str:
     """The pinned omicstat-r image (OMICSTAT_IMAGE overrides for testing)."""
     if os.environ.get("OMICSTAT_IMAGE"):
         return os.environ["OMICSTAT_IMAGE"]
+    lane = _lane_image(module)
+    if lane and not lane.startswith("omicstat-py"):
+        return lane
     with io.open(ENV_CONFIG, encoding="utf-8") as fh:
         cfg = json.load(fh)
     return "%s:%s" % (cfg["image"], cfg["image_tag"])
 
 
-def _py_image_name() -> str:
+def _py_image_name(module: Optional[str] = None) -> str:
     """The pinned omicstat-py image (OMICSTAT_PY_IMAGE overrides for testing)."""
     if os.environ.get("OMICSTAT_PY_IMAGE"):
         return os.environ["OMICSTAT_PY_IMAGE"]
-    with io.open(ENV_CONFIG, encoding="utf-8") as fh:
-        cfg = json.load(fh)["python_lane"]
+    lane = _lane_image(module)
+    if lane and lane.startswith("omicstat-py"):
+        return lane
+    with io.open(PY_ENV_CONFIG, encoding="utf-8") as fh:
+        cfg = json.load(fh)
     return "%s:%s" % (cfg["image"], cfg["image_tag"])
 
 
@@ -1272,17 +1317,17 @@ def _docker_image_id(docker: List[str], image: str) -> Optional[str]:
     return None
 
 
-def _python_env_probe(engine: str) -> Dict[str, Any]:
+def _python_env_probe(engine: str, module: Optional[str] = None) -> Dict[str, Any]:
     """Provenance probe of the Python lane (ENGINEERING_PLAN 10.6 item 4):
     interpreter version, importlib.metadata package versions, image ID."""
     docker = ["wsl", "-e", "docker"] if IS_WINDOWS else ["docker"]
     try:
-        image = _py_image_name()
+        image = _py_image_name(module)
     except (OSError, ValueError, KeyError):
         image = "omicstat-py:unknown"
     try:
-        with io.open(ENV_CONFIG, encoding="utf-8") as fh:
-            lane = json.load(fh).get("python_lane") or {}
+        with io.open(PY_ENV_CONFIG, encoding="utf-8") as fh:
+            lane = json.load(fh)
     except (OSError, ValueError):
         lane = {}
     user_flags = [] if IS_WINDOWS else ["--user", "%s:%s" % (os.getuid(), os.getgid())]
@@ -1324,7 +1369,7 @@ def _software_versions(engine: str, module: Optional[str] = None) -> Dict[str, A
     )
     docker = ["wsl", "-e", "docker"] if IS_WINDOWS else ["docker"]
     try:
-        image = _image_name()
+        image = _image_name(module)
     except (OSError, ValueError, KeyError):
         image = "omicstat-r:unknown"
     user_flags = [] if IS_WINDOWS else ["--user", "%s:%s" % (os.getuid(), os.getgid())]
@@ -1360,7 +1405,7 @@ def _software_versions(engine: str, module: Optional[str] = None) -> Dict[str, A
     python_engine = None
     try:
         if module and _is_python_entry(_entry_path(module)):
-            python_engine = _python_env_probe(engine)
+            python_engine = _python_env_probe(engine, module)
             python_engine["render_image"] = image if engine == "container" else None
             python_engine["render_image_id"] = image_id
     except (OSError, RuntimeError, ValueError):
@@ -1527,7 +1572,7 @@ def _python_render_step(entry: str, outdir: str, engine: str, rc: int, timed_out
         return record
     argv = ["--run-dir", outdir, "--request", FIGURE_REQUEST_REL]
     cmd = _router_cmd() + ["Rscript", RENDER_SCRIPT] + argv
-    remaining = max(60, int(RUN_TIMEOUT_S - elapsed))
+    remaining = max(1, int(RUN_TIMEOUT_S - elapsed))
     r_rc, r_out, r_err, r_dur, r_to = _exec(cmd, cwd=outdir, timeout=remaining, engine=engine, extra_env=extra_env)
     record.update({"status": "timed_out" if r_to else ("rendered" if r_rc == 0 else "failed"),
                    "exit_code": r_rc, "duration_s": r_dur, "timed_out": r_to,
@@ -1539,6 +1584,32 @@ def _python_render_step(entry: str, outdir: str, engine: str, rc: int, timed_out
 # --------------------------------------------------------------------------
 # Tools
 # --------------------------------------------------------------------------
+
+@mcp.tool()
+def omicstat_create_study_contract(design: str, biological_unit: str, population: str,
+                                  comparison: Dict[str, str], outcomes: List[Dict[str, str]],
+                                  covariates: List[Any], missing_data: str, multiplicity: str,
+                                  analysis_sets: List[Any]) -> str:
+    """Write only explicit user declarations, validate schema/semantics, return path and SHA256.
+
+    No design choice, biological unit, comparison or missing-data policy is inferred.
+    """
+    contract = study_contract_builder.build_contract(
+        design=design, biological_unit=biological_unit, population=population,
+        comparison=comparison, outcomes=outcomes, covariates=covariates,
+        missing_data=missing_data, multiplicity=multiplicity, analysis_sets=analysis_sets,
+        schema_path=os.path.join(SKILLS_DIR, "_shared/schemas/study_contract.v1.schema.json"))
+    contract, errors = publication.normalize_study_contract(contract)
+    if errors: raise ValueError("OS_CONTRACT_INVALID: " + "; ".join(errors))
+    raw = study_contract_builder.contract_bytes(contract)
+    _guard_path(RUNS_ROOT, "study contract output", WORKSPACE)
+    if _has_link_or_reparse(RUNS_ROOT): raise ValueError("symlink StudyContract run root is forbidden")
+    _run, outdir, _parent = _allocate_run_directory("study-contract", None)
+    path = os.path.join(outdir, "study_contract.json")
+    with open(path, "xb") as f: f.write(raw)
+    return _dumps({"path": path, "sha256": hashlib.sha256(raw).hexdigest(),
+                   "study_contract": contract, "validated": True})
+
 
 @mcp.tool()
 def omicstat_list_modules() -> str:
@@ -1604,7 +1675,6 @@ def omicstat_describe(module: str) -> str:
     )
 
 
-@mcp.tool()
 def omicstat_run(module: str, args: Dict[str, Any], engine: str = "container",
                 study_contract: Optional[Dict[str, Any]] = None) -> str:
     """Run one omicstat module and return a compact JSON manifest of what it produced.
@@ -1622,7 +1692,7 @@ def omicstat_run(module: str, args: Dict[str, Any], engine: str = "container",
     environment) or "native" (the isolated omicstat library made by
     env/native/setup_native.R). Neither uses any other R installation.
 
-    Runs synchronously, hard-killed at 25 minutes. The manifest carries
+    Runs synchronously with OMICSTAT_RUN_TIMEOUT_S (default 1500 seconds). The manifest carries
     exit_code, duration_s, outdir, artifacts grouped as tables/figures/draft/
     qc/provenance/other, the triggered QC rules, `engine_warnings` (OS_* codes
     and convergence/NaN warnings that exist only on the console -- ALWAYS read
@@ -1651,6 +1721,10 @@ def omicstat_run(module: str, args: Dict[str, Any], engine: str = "container",
             + "; ".join(contract_errors[:10])
         )
 
+    if normalized_contract is not None and any(str(k).lstrip("-") in ("study-contract", "study-contract-sha256") for k in args):
+        raise ValueError("OS_CONFLICTING_PARAMETERS: provide the MCP contract object or CLI file, not both")
+    if normalized_contract is not None and "study-contract" not in _flags(module):
+        raise ValueError("OS_CONTRACT_INVALID: module cannot consume a StudyContract path")
     request_args = copy.deepcopy(args)
     requested_arg = args.pop("outdir", None)
     # Validate flags and path-like inputs before allocating a persistent UUID
@@ -1665,6 +1739,26 @@ def omicstat_run(module: str, args: Dict[str, Any], engine: str = "container",
         module, None if requested_arg is None else str(requested_arg)
     )
 
+    # Host-only allocation receipt, outside the engine/container environment.
+    state_path = os.environ.get("OMICSTAT_RUN_STATE_PATH")
+    if state_path:
+        with io.open(state_path + ".tmp", "w", encoding="utf-8") as receipt:
+            json.dump({"run_id": run_id, "outdir": outdir}, receipt)
+        os.replace(state_path + ".tmp", state_path)
+
+    contract_binding = None
+    if normalized_contract is not None:
+        # Engine output directories stay empty until the engine starts.
+        # Candidate modules deliberately refuse pre-populated output trees.
+        contract_dir = os.path.join(RUNS_ROOT, "_study_contracts")
+        _guard_path(contract_dir, "StudyContract snapshot", WORKSPACE)
+        if _has_link_or_reparse(contract_dir): raise ValueError("symlink contract snapshot directory is forbidden")
+        os.makedirs(contract_dir, exist_ok=True)
+        contract_path = os.path.join(contract_dir, run_id + ".json")
+        raw = study_contract_builder.contract_bytes(normalized_contract)
+        with open(contract_path, "xb") as f: f.write(raw)
+        args["study-contract"] = contract_path
+        contract_binding = {"path": contract_path, "sha256": hashlib.sha256(raw).hexdigest()}
     argv = _to_argv(module, args, cwd=outdir)
     argv.extend(["--outdir", outdir])
 
@@ -1674,7 +1768,14 @@ def omicstat_run(module: str, args: Dict[str, Any], engine: str = "container",
     # the run directory is mounted as /ws (a module that names its run from
     # basename(outdir) would otherwise record "ws"; the Python lane reads this).
     run_env = {"OMICSTAT_RUN_ID": run_id}
-    rc, out, err, dur, timed_out = _exec(cmd, cwd=outdir, timeout=RUN_TIMEOUT_S, engine=engine, extra_env=run_env)
+    engine_env = dict(run_env)
+    lane_image = _lane_image(module)
+    if lane_image and engine == "container":
+        # The router picks the image from these variables; an operator-set value wins.
+        key = "OMICSTAT_PY_IMAGE" if _is_python_entry(entry) else "OMICSTAT_IMAGE"
+        if not os.environ.get(key):
+            engine_env[key] = lane_image
+    rc, out, err, dur, timed_out = _exec(cmd, cwd=outdir, timeout=RUN_TIMEOUT_S, engine=engine, extra_env=engine_env)
     render = _python_render_step(entry, outdir, engine, rc, timed_out, dur, run_env)
     if render is not None:
         # One manifest per run: the render step's console joins the engine's,
@@ -1735,6 +1836,7 @@ def omicstat_run(module: str, args: Dict[str, Any], engine: str = "container",
         "stdout_tail": _tail(out, 20),
         "timed_out": timed_out,
         "render_step": render,
+        "study_contract_binding": contract_binding,
         "request": {
             "module": module,
             "engine": engine,
@@ -1946,6 +2048,24 @@ def omicstat_read(path: str) -> str:
         text = (text[:READ_LIMIT]
                 + "\n\n[TRUNCATED at %d of %d characters]" % (READ_LIMIT, len(text)))
     return text
+
+
+@mcp.tool(name="omicstat_run", description=omicstat_run.__doc__)
+async def _run_with_progress(module: str, args: Dict[str, Any], ctx: Context,
+                             engine: str = "container",
+                             study_contract: Optional[Dict[str, Any]] = None) -> str:
+    # Keep the protocol loop responsive and emit progress during long blocking engines.
+    task = asyncio.create_task(asyncio.to_thread(omicstat_run, module, args, engine, study_contract))
+    started = time.monotonic()
+    try:
+        while not task.done():
+            done, _ = await asyncio.wait({task}, timeout=PROGRESS_INTERVAL_S)
+            if not done:
+                await ctx.report_progress(time.monotonic() - started, message="omicstat run is active")
+        return await task
+    finally:
+        if not task.done():
+            task.cancel()
 
 
 # --------------------------------------------------------------------------

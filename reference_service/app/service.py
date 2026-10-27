@@ -84,9 +84,27 @@ def invoke(fn, *args, **kwargs) -> dict:
                     getattr(exc, "message", "Reference unavailable. Check local CLI status, acquisition route, and seed integrity."))
 
 
+def last_digest() -> dict:
+    """Pointer to the newest monthly coverage digest written by the host-side tools/reference_digest.py."""
+    folder = Path(os.environ.get("OMICSTAT_REFERENCE_REPORTS", "/reports"))
+    host = os.environ.get("OMICSTAT_REFERENCE_REPORTS_HOST", str(folder))
+    if not folder.is_dir():
+        return {"status": "reports_dir_not_mounted"}
+    files = sorted(folder.glob("digest-????-??.json"))
+    if not files:
+        return {"status": "none_yet", "host_dir": host}
+    latest = files[-1]
+    try:
+        data = json.loads(latest.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"status": "unreadable", "host_file": host.rstrip("/") + "/" + latest.name}
+    return {"status": "available", "month": data.get("month"), "generated_at": data.get("generated_at"),
+            "host_file": host.rstrip("/") + "/" + latest.name.replace(".json", ".md"), "headline": data.get("headline")}
+
+
 def status() -> dict:
     import curation
-    return {"status": "review_required", "curated": core().status(),
+    return {"status": "review_required", "curated": core().status(), "last_digest": last_digest(),
             "discovery": harvest_store().status(),
             "reviewed_supplement": curation.supplement_status(data_dir()),
             "interface": {"server": "omicstat_reference", "search_columns": ["curated", "reviewed_supplement", "discovery"],

@@ -1,0 +1,5 @@
+# Troubleshooting
+
+OS_INVALID_DESIGN: inspect folds/events, identities, convergence and censoring support. No silent
+resampling or partial path. OS_HANDOFF_MISMATCH: verify unchanged signature, exact ordered genes,
+preprocessing and units. Validation must not contain training identities or tuning arguments.

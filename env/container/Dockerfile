@@ -35,6 +35,8 @@ RUN printf '%s\n' "options(repos = c(CRAN = '${CRAN_REPO}'))" \
     && Rscript -e "stopifnot(as.character(BiocManager::version()) == '${BIOC_VERSION}')"
 
 COPY env/omicstat-env.json /opt/omicstat/env/omicstat-env.json
+COPY env/r-env.json /opt/omicstat/env/r-env.json
+COPY env/py/py-env.json /opt/omicstat/env/py/py-env.json
 COPY env/r/ /opt/omicstat/env/r/
 COPY env/layers/github_pins.txt /opt/omicstat/env/layers/github_pins.txt
 
@@ -61,6 +63,8 @@ FROM ${ADDON_BASE_IMAGE} AS addons
 ARG ENV_VERSION
 LABEL org.omicstat.env_version="${ENV_VERSION}"
 COPY env/omicstat-env.json /opt/omicstat/env/omicstat-env.json
+COPY env/r-env.json /opt/omicstat/env/r-env.json
+COPY env/py/py-env.json /opt/omicstat/env/py/py-env.json
 COPY env/layers/github_pins.txt /opt/omicstat/env/layers/github_pins.txt
 COPY env/layers/L8_addons.txt /opt/omicstat/env/layers/
 RUN Rscript /opt/omicstat/env/r/install_layer.R /opt/omicstat/env L8_addons

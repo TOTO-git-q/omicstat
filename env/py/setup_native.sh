@@ -13,7 +13,7 @@
 # "visual equivalence" tier (ENGINEERING_PLAN 3.5 / 10.4 lock 5).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd -P)"
-pcfg() { python3 -c "import json,sys; print(json.load(open('$ROOT/env/omicstat-env.json'))['python_lane'][sys.argv[1]])" "$1"; }
+pcfg() { python3 -c "import json,sys; print(json.load(open('$ROOT/env/py/py-env.json'))[sys.argv[1]])" "$1"; }
 want="$(pcfg python_version)"
 base="${1:-python${want%.*}}"
 have="$("$base" -c 'import platform; print(platform.python_version())')"

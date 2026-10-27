@@ -1,0 +1,37 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "dropletutils-emptydrops",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/dropletutils-emptydrops/scripts/dropletutils_emptydrops_core.R": "0fc62ceb41a36e7517f1cfe707dd694f7bd620e5c2ad0988d091fb4770ee828f",
+    "skills/dropletutils-emptydrops/scripts/dropletutils_emptydrops_qc.R": "14d15b486619016f17e4bbb93fd48fc9b78573c84a1ec335d7a3ac3de96b74ec",
+    "skills/dropletutils-emptydrops/scripts/dropletutils_emptydrops_report.R": "a69f3e72bf9096796739f3e16c51af74d003ce49121904a6182b1b27fd92f8a4",
+    "skills/dropletutils-emptydrops/scripts/run_dropletutils_emptydrops.R": "67d77c2bc9d62d329982d32dc6846709725d74ecb8005cfa0405436d0ff90500",
+    "skills/dropletutils-emptydrops/scripts/calls_registry.json": "1d07038849d4a761213b42c42d10d0ae00dbc580497e8718ce8f103395dfbe1b",
+    "skills/dropletutils-emptydrops/SKILL.md": "593f96355cec5e6d956f2bdaba6b26d57f2f203a2b487e7e4555b06018b69396",
+    "skills/dropletutils-emptydrops/references/method-basis.md": "6c37bef34b7185ab985ddd7f2d6d34b2de57f7879d04bd18a13a19efb52b17d5",
+    "skills/dropletutils-emptydrops/references/parameters.md": "2a651aaa8bf1ebcd3ac62f0edfbb23e3e4224981925dd582563bc3a66f4f3785",
+    "skills/dropletutils-emptydrops/references/qc-rules.md": "dd3e1088b89a520c22e8bdf7ff454c7e4f9d58d44f438f7fef105da7b552d467",
+    "skills/dropletutils-emptydrops/references/reporting-templates.md": "cb0c510ba715995dcf9204cf5dfe9baf2e943dfb6e9a1ec28dd0da738a5ac48c",
+    "skills/dropletutils-emptydrops/references/troubleshooting.md": "189c5a39d034fd1246d41ee44dd48c962405041c9f5bbd8c4a713a61dde40503",
+    "skills/dropletutils-emptydrops/tests/anchors.R": "0dd33fb9e8e6828fb6d53cc39d7530b09b589c584b794466c976aecfd7391fe6",
+    "skills/dropletutils-emptydrops/tests/make_inputs.R": "fa65bdbbbc564c0cf4d5bac70f73991b6fdc1e1fad1c340ebb502288ac412482",
+    "skills/dropletutils-emptydrops/tests/run_smoke_test.R": "53f7b58b7b2d01d0f520762d042f4cfa684b88eba24c33888dd8a1ce4d62b196",
+    "skills/dropletutils-emptydrops/tests/test_contracts.R": "b146f85a4f14e67326c2177ad79bc642b64590f22c03814cdd0f82f9fc1e3648",
+    "skills/dropletutils-emptydrops/tests/verify_native_output.R": "9994f43437f9f13ba5db3b80a602da2af18a083b5349a3859e92f65c457d325b",
+    "skills/dropletutils-emptydrops/tests/golden_manifest.csv": "650edf3dfc63ccb74c2e45dea2a5537d2cd46c6a59db09c8fbbc272fc1280c49"
+  },
+  "packages": {
+    "DropletUtils": "1.32.0",
+    "BiocParallel": "1.46.0",
+    "stats": "4.6.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

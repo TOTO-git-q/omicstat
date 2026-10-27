@@ -1,0 +1,11 @@
+{
+  "schema": "omicstat.mcp-tools.v1",
+  "tools": [
+    "omicstat_create_study_contract",
+    "omicstat_list_modules",
+    "omicstat_describe",
+    "omicstat_validate_publication",
+    "omicstat_read",
+    "omicstat_run"
+  ]
+}

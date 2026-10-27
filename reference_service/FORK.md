@@ -101,3 +101,23 @@ History: M7 first deployed the base unchanged (vendored, config overlay only; de
   New display search profiles are explicitly weak and have no curated evidence. Do not hand-edit generated files.
 - Never port anything from medstat-reference v2.1 (7f0a999 / c1f39aa) until its audit finding is
   fixed and re-audited upstream.
+
+## Coverage upgrade (2026-10-10, branch infra/reference-coverage)
+
+Declared in `FORK_CHANGES.json`; re-implemented here, nothing ported from medstat-reference v2.1.x.
+
+- **Method-map reconcile.** `HarvestStore.configure_method_map` reconciles automatically when the stored order is an
+  order-preserving subsequence of the new order and the stored `next_module` still exists (modules were only added): the
+  stored map is rebound (state `active`), the cursor is kept and a `reconciled` module event is written. Any other change
+  stays `map_change_blocked`; `cli.py map-reconcile --to-module <m> [--confirm]` is the owner-confirmed way out.
+- **Method lexicon** (`method_lexicon.json`, built by `build_lexicon.py`): omics packages and omics method names only
+  (no clinical statistics). `screen_article` returns the lexicon tokens of countable-licence Methods regions; the harvester
+  stores tokens only (`method_mentions`, once per paper, also for `off_topic` papers) and never a snippet.
+- **Coverage probe** (`probe.py`, table `method_probe`): Europe PMC `hitCount` per rank-eligible lexicon term and window,
+  same filter and journal whitelist as the harvester, at most 400 requests per month, 1 s spacing, no full text, one chunk
+  of at most 60 per worker cycle, no immediate retry, a chunk ends after three consecutive failures. The S0 search logs are
+  the 2020-2026 baseline of the module series (`s0_evidence/probe_baseline.json`, no request).
+- **Defaults versus literature** (`defaults.py`): context only; `reference_advise` returns `default_context`.
+  Nothing changes a default, a route, a profile or the method map.
+- **Digest** (`reference_digest.py`, host side, stdlib only): monthly `runtime/reports/digest-YYYY-MM.{md,json}`,
+  mounted read-only into the container for the `last_digest` pointer of `cli.py status`. Timer: `systemd/` (user units).

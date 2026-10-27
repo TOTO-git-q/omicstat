@@ -46,6 +46,7 @@ REQUEST_DAILY_SLOTS = 4
 REQUEST_MAX_ATTEMPTS = 3
 LEGACY_FLAG = "legacy_v1_unscreened"
 MIGRATION_V2 = "v2-001-screening-gates"
+MIGRATION_V3 = "v3-001-coverage"
 ACTIVE_REQUEST_STATES = ("queued", "searching")
 TERMINAL_REQUEST_STATES = ("fulfilled", "partially_fulfilled", "unavailable", "cancelled", "expired")
 REQUEST_PHASE_MAX_REQUESTS = 24
@@ -205,6 +206,7 @@ class HarvestStore:
         finally:
             con.close()
         self._migrate_v2()
+        self._migrate_v3()
 
     # ------------------------------------------------------------ v2 migration
     V2_TABLES = """
@@ -277,6 +279,171 @@ class HarvestStore:
             if con.in_transaction:
                 con.execute("ROLLBACK")
             raise
+        finally:
+            con.close()
+
+    # ------------------------------------------------------------ v3 migration (coverage upgrade)
+    V3_TABLES = """
+      CREATE TABLE IF NOT EXISTS method_mentions (
+        paper_ref TEXT NOT NULL, token TEXT NOT NULL, lexicon_version TEXT NOT NULL,
+        from_outcome TEXT NOT NULL CHECK(from_outcome IN ('screened','off_topic')),
+        candidate_id TEXT, day TEXT NOT NULL, PRIMARY KEY(paper_ref, token)
+      );
+      CREATE INDEX IF NOT EXISTS ix_method_mentions_token ON method_mentions(token);
+      CREATE TABLE IF NOT EXISTS mention_papers (
+        paper_ref TEXT PRIMARY KEY, lexicon_version TEXT NOT NULL,
+        from_outcome TEXT NOT NULL CHECK(from_outcome IN ('screened','off_topic')),
+        n_tokens INTEGER NOT NULL, day TEXT NOT NULL
+      );
+      CREATE TABLE IF NOT EXISTS method_probe (
+        run_month TEXT NOT NULL, term TEXT NOT NULL,
+        term_kind TEXT NOT NULL CHECK(term_kind IN ('module','family_member','candidate','total')),
+        year INTEGER NOT NULL, window_end TEXT NOT NULL, hit_count INTEGER NOT NULL, query_sha256 TEXT NOT NULL,
+        source TEXT NOT NULL DEFAULT 'probe', recorded_at TEXT NOT NULL,
+        PRIMARY KEY(term, term_kind, year, window_end, query_sha256)
+      );
+      CREATE INDEX IF NOT EXISTS ix_method_probe_month ON method_probe(run_month);
+      CREATE TABLE IF NOT EXISTS probe_runs (
+        run_month TEXT PRIMARY KEY, requests INTEGER NOT NULL DEFAULT 0, failures INTEGER NOT NULL DEFAULT 0,
+        state TEXT NOT NULL, detail_json TEXT NOT NULL DEFAULT '{}', updated_at TEXT NOT NULL
+      );
+    """
+
+    def _migrate_v3(self) -> None:
+        """Additive only (method mentions, probe ledger); no existing row is touched."""
+        con = self._connection()
+        try:
+            con.executescript(self.V3_TABLES)
+            con.execute("INSERT OR IGNORE INTO schema_migrations(version,applied_at,detail_json) VALUES(?,?,?)", (
+                MIGRATION_V3, _utc_now(), json.dumps({"tables": ["method_mentions", "mention_papers", "method_probe", "probe_runs"]})))
+        finally:
+            con.close()
+
+    @staticmethod
+    def paper_ref(aliases: Iterable[str]) -> str | None:
+        """Stable per-paper key for mention counting: pmid, else pmcid, else doi (one count per paper)."""
+        values = sorted(set(aliases))
+        for prefix in ("pmid:", "pmcid:", "doi:"):
+            for value in values:
+                if value.startswith(prefix):
+                    return value
+        return values[0] if values else None
+
+    def add_mentions(self, aliases: Iterable[str], tokens: Iterable[str], version: str, outcome: str, day: str,
+                     candidate_id: str | None = None, *, con: sqlite3.Connection | None = None) -> bool:
+        """Record which lexicon tokens a countable-licence article's Methods mention (tokens only; once per paper)."""
+        ref = self.paper_ref(aliases)
+        if ref is None or outcome not in {"screened", "off_topic"}:
+            return False
+        tokens = sorted({str(t)[:80] for t in tokens})
+        own = con is None
+        con = con or self._connection()
+        try:
+            added = con.execute("INSERT OR IGNORE INTO mention_papers(paper_ref,lexicon_version,from_outcome,n_tokens,day) VALUES(?,?,?,?,?)",
+                                (ref, version, outcome, len(tokens), day)).rowcount == 1
+            if added:
+                con.executemany("INSERT OR IGNORE INTO method_mentions(paper_ref,token,lexicon_version,from_outcome,candidate_id,day) VALUES(?,?,?,?,?,?)",
+                                [(ref, t, version, outcome, candidate_id, day) for t in tokens])
+            elif candidate_id is not None:
+                con.execute("UPDATE method_mentions SET candidate_id=? WHERE paper_ref=? AND candidate_id IS NULL", (candidate_id, ref))
+            return added
+        finally:
+            if own:
+                con.close()
+
+    # ---- coverage probe ledger (see probe.py)
+    def probe_done(self, month: str) -> set[tuple[str, str, int, str]]:
+        con = self._connection()
+        try:
+            return {(r["term"], r["term_kind"], int(r["year"]), r["window_end"])
+                    for r in con.execute("SELECT term,term_kind,year,window_end FROM method_probe")}
+        finally:
+            con.close()
+
+    def baseline_total_needs(self) -> list[tuple[str, int, str]]:
+        """(term, year, window_end) of imported S0 baseline windows that have no whitelist-total row yet."""
+        con = self._connection()
+        try:
+            rows = con.execute("SELECT DISTINCT year,window_end FROM method_probe WHERE source LIKE 's0_search_log%' AND term_kind='module' "
+                               "AND NOT EXISTS (SELECT 1 FROM method_probe t WHERE t.term_kind='total' AND t.year=method_probe.year "
+                               "AND t.window_end=method_probe.window_end) ORDER BY year").fetchall()
+            return [("__whitelist_total__", int(r["year"]), r["window_end"]) for r in rows]
+        finally:
+            con.close()
+
+    def probe_years(self, term: str, kind: str) -> set[int]:
+        con = self._connection()
+        try:
+            return {int(r["year"]) for r in con.execute("SELECT DISTINCT year FROM method_probe WHERE term=? AND term_kind=?", (term, kind))}
+        finally:
+            con.close()
+
+    def probe_latest_end(self, term: str, kind: str) -> str | None:
+        con = self._connection()
+        try:
+            row = con.execute("SELECT max(window_end) m FROM method_probe WHERE term=? AND term_kind=?", (term, kind)).fetchone()
+            return row["m"]
+        finally:
+            con.close()
+
+    def probe_requests(self, month: str) -> int:
+        con = self._connection()
+        try:
+            row = con.execute("SELECT requests FROM probe_runs WHERE run_month=?", (month,)).fetchone()
+            return 0 if row is None else int(row["requests"])
+        finally:
+            con.close()
+
+    def add_probe_row(self, month: str, term: str, kind: str, year: int, window_end: str, hit_count: int,
+                      query_sha256: str, source: str = "probe") -> None:
+        con = self._connection()
+        try:
+            con.execute("INSERT OR REPLACE INTO method_probe(run_month,term,term_kind,year,window_end,hit_count,query_sha256,source,recorded_at) VALUES(?,?,?,?,?,?,?,?,?)",
+                        (month, term, kind, int(year), window_end, int(hit_count), query_sha256, source, _utc_now()))
+        finally:
+            con.close()
+
+    def import_probe_rows(self, rows: Iterable[Mapping[str, Any]], *, run_month: str) -> int:
+        """Idempotent import of the S0 search-log baseline (no network); returns the number of NEW rows."""
+        con = self._connection()
+        try:
+            con.execute("BEGIN IMMEDIATE")
+            added = 0
+            for r in rows:
+                added += con.execute("INSERT OR IGNORE INTO method_probe(run_month,term,term_kind,year,window_end,hit_count,query_sha256,source,recorded_at) VALUES(?,?,?,?,?,?,?,?,?)",
+                                     (run_month, r["term"], r["term_kind"], int(r["year"]), r["window_end"], int(r["hit_count"]),
+                                      r["query_sha256"], r.get("source", "s0_search_log"), _utc_now())).rowcount
+            con.execute("COMMIT")
+            return added
+        except Exception:
+            if con.in_transaction:
+                con.execute("ROLLBACK")
+            raise
+        finally:
+            con.close()
+
+    def probe_note_failure(self, month: str, term: str, code: str) -> None:
+        con = self._connection()
+        try:
+            row = con.execute("SELECT detail_json FROM probe_runs WHERE run_month=?", (month,)).fetchone()
+            detail = json.loads(row["detail_json"]) if row else {}
+            failed = detail.setdefault("failed_terms", {})
+            if len(failed) < 40:
+                failed[term] = code
+            con.execute("INSERT INTO probe_runs(run_month,requests,failures,state,detail_json,updated_at) VALUES(?,0,0,'running',?,?) "
+                        "ON CONFLICT(run_month) DO UPDATE SET detail_json=excluded.detail_json,updated_at=excluded.updated_at",
+                        (month, json.dumps(detail), _utc_now()))
+        finally:
+            con.close()
+
+    def probe_record(self, month: str, requests: int, failures: int, state: str) -> int:
+        """Add this chunk's requests to the month's budget ledger; returns the month's total."""
+        con = self._connection()
+        try:
+            con.execute("INSERT INTO probe_runs(run_month,requests,failures,state,detail_json,updated_at) VALUES(?,?,?,?,?,?) "
+                        "ON CONFLICT(run_month) DO UPDATE SET requests=requests+excluded.requests,failures=failures+excluded.failures,"
+                        "state=excluded.state,updated_at=excluded.updated_at", (month, requests, failures, state, "{}", _utc_now()))
+            return int(con.execute("SELECT requests FROM probe_runs WHERE run_month=?", (month,)).fetchone()["requests"])
         finally:
             con.close()
 
@@ -388,8 +555,21 @@ class HarvestStore:
         finally:
             con.close()
 
+    @staticmethod
+    def _is_subsequence(old: list[str], new: list[str]) -> bool:
+        """True when every old module appears in the new order, in the same relative order."""
+        it = iter(new)
+        return all(module in it for module in old)
+
     def configure_method_map(self, method_map: Mapping[str, Any]) -> dict[str, Any]:
-        """Durably initialize the authoritative order or block an unsafe remap."""
+        """Durably initialize the authoritative order or block an unsafe remap.
+
+        omicstat fork (coverage upgrade): when the stored order is an order-preserving subsequence of the
+        new order and the stored ``next_module`` is still present, the cursor stays meaningful (modules were
+        only added), so the stored map is reconciled automatically and a ``reconciled`` module event is
+        recorded.  Any other hash change (removal, reorder, ``next_module`` gone) stays blocked and needs
+        ``cli.py map-reconcile --to-module <m> --confirm``.
+        """
         order, map_hash = list(method_map["order"]), str(method_map["hash"])
         con = self._connection()
         try:
@@ -403,8 +583,17 @@ class HarvestStore:
                 return {"state": "initialized", "next_module": order[0], "hash": map_hash, "order": order}
             old_order = json.loads(current["order_json"])
             if current["map_hash"] != map_hash:
-                # A cursor means the predecessor relationship is meaningful.  Do not guess
-                # how to translate it after a router order change.
+                if current["next_module"] in order and self._is_subsequence(old_order, order):
+                    added = [m for m in order if m not in set(old_order)]
+                    con.execute("UPDATE method_map_state SET map_hash=?,source_sha256=?,order_json=?,state=?,updated_at=? WHERE singleton=1", (
+                        map_hash, method_map.get("source_sha256"), json.dumps(order, ensure_ascii=False), "active", _utc_now()))
+                    con.execute("INSERT OR IGNORE INTO module_events VALUES(?,?,?,?,?,?)", (
+                        _day(), current["next_module"], map_hash, "reconciled",
+                        ("auto %s->%s +%d:%s" % (current["map_hash"][:12], map_hash[:12], len(added), ",".join(added)))[:160], _utc_now()))
+                    con.execute("COMMIT")
+                    return {"state": "reconciled", "next_module": current["next_module"], "hash": map_hash, "order": order, "added": added}
+                # Not a pure extension: the predecessor relationship is not obvious.  Do not guess
+                # how to translate the cursor after a router order change.
                 con.execute("UPDATE method_map_state SET state=?,updated_at=? WHERE singleton=1", (
                     "map_change_blocked", _utc_now()))
                 con.execute("COMMIT")
@@ -424,18 +613,58 @@ class HarvestStore:
         finally:
             con.close()
 
+    def reconcile_method_map(self, method_map: Mapping[str, Any], to_module: str, *, confirm: bool = False) -> dict[str, Any]:
+        """Owner-confirmed reconciliation after a non-extending map change (``cli.py map-reconcile``).
+
+        Rebinds the stored map state to the new map and points the rotation cursor at ``to_module``.
+        ``query_cursors`` (per-module Europe PMC cursors) are left untouched.  Without ``confirm`` it only
+        reports what would change.
+        """
+        order, map_hash = list(method_map["order"]), str(method_map["hash"])
+        if to_module not in order:
+            raise HarvestError("unknown_module", "--to-module must be a module of the new method map")
+        current = self.map_status()
+        if current is None:
+            raise HarvestError("no_map_state", "No stored method-map state exists yet; the next harvest initializes it")
+        plan = {"confirmed": bool(confirm), "to_module": to_module, "new_hash": map_hash, "new_modules": len(order),
+                "old": {"hash": current["hash"], "state": current["state"], "next_module": current["next_module"],
+                        "modules": len(current["order"])},
+                "removed": [m for m in current["order"] if m not in order],
+                "added": [m for m in order if m not in current["order"]]}
+        if not confirm:
+            return {**plan, "state": "dry_run", "note": "Nothing changed. Re-run with --confirm to apply."}
+        con = self._connection()
+        try:
+            con.execute("BEGIN IMMEDIATE")
+            con.execute("UPDATE method_map_state SET map_hash=?,source_sha256=?,order_json=?,next_module=?,state='active',updated_at=? WHERE singleton=1", (
+                map_hash, method_map.get("source_sha256"), json.dumps(order, ensure_ascii=False), to_module, _utc_now()))
+            con.execute("INSERT OR IGNORE INTO module_events VALUES(?,?,?,?,?,?)", (
+                _day(), to_module, map_hash, "reconciled", ("manual from %s (%s)" % (current["hash"][:12], current["state"]))[:160], _utc_now()))
+            con.execute("COMMIT")
+        except Exception:
+            if con.in_transaction:
+                con.execute("ROLLBACK")
+            raise
+        finally:
+            con.close()
+        return {**plan, "state": "reconciled"}
+
     def map_status(self) -> dict[str, Any] | None:
         con = self._connection()
         try:
             row = con.execute("SELECT map_hash,source_sha256,order_json,next_module,state,updated_at FROM method_map_state WHERE singleton=1").fetchone()
-            return None if row is None else {"hash": row["map_hash"], "source_sha256": row["source_sha256"],
+            if row is None:
+                return None
+            reconciled = con.execute("SELECT day,module,detail FROM module_events WHERE outcome='reconciled' ORDER BY recorded_at DESC, rowid DESC LIMIT 1").fetchone()
+            return {"hash": row["map_hash"], "source_sha256": row["source_sha256"],
                 "order": json.loads(row["order_json"]), "next_module": row["next_module"],
-                "state": row["state"], "updated_at": row["updated_at"]}
+                "state": row["state"], "updated_at": row["updated_at"],
+                "last_reconcile": None if reconciled is None else {"day": reconciled["day"], "next_module": reconciled["module"], "detail": reconciled["detail"]}}
         finally:
             con.close()
 
     def record_module_event(self, day: str, module: str, map_hash: str, outcome: str, detail: str = "") -> None:
-        if outcome not in {"deferred", "missing", "accepted"}:
+        if outcome not in {"deferred", "missing", "accepted", "reconciled"}:
             raise HarvestError("invalid_module_event", "Module event outcome is not supported")
         con = self._connection()
         try:
@@ -472,6 +701,8 @@ class HarvestStore:
             if request_id is not None:
                 con.execute("INSERT INTO request_links(request_id,candidate_id,day,counted,linked_at) VALUES(?,?,?,?,?)", (
                     request_id, candidate_id, day, int(counts_toward_quota), _utc_now()))
+            if status == "screened" and isinstance(record.get("method_mentions"), list):
+                self.add_mentions(aliases, record["method_mentions"], str(record.get("mentions_version") or "unknown"), "screened", day, candidate_id, con=con)
             if counts_toward_quota:
                 con.execute("INSERT INTO daily_ledger(day,candidate_id,counted_at) VALUES(?,?,?)", (day, candidate_id, _utc_now()))
                 if map_hash is not None:
@@ -505,6 +736,9 @@ class HarvestStore:
             map_status = None if map_row is None else {"hash": map_row["map_hash"], "source_sha256": map_row["source_sha256"],
                 "order": json.loads(map_row["order_json"]), "next_module": map_row["next_module"],
                 "state": map_row["state"], "updated_at": map_row["updated_at"]}
+            reconciled = con.execute("SELECT day,module,detail FROM module_events WHERE outcome='reconciled' ORDER BY recorded_at DESC, rowid DESC LIMIT 1").fetchone()
+            if map_status is not None:
+                map_status["last_reconcile"] = None if reconciled is None else {"day": reconciled["day"], "next_module": reconciled["module"], "detail": reconciled["detail"]}
             by_status = {r["status"]: int(r["n"]) for r in con.execute("SELECT status, count(*) n FROM candidates WHERE legacy_flag IS NULL GROUP BY status")}
             legacy = int(con.execute("SELECT count(*) FROM candidates WHERE legacy_flag IS NOT NULL").fetchone()[0])
             requests = {r["status"]: int(r["n"]) for r in con.execute("SELECT status, count(*) n FROM literature_requests GROUP BY status")}
@@ -517,7 +751,12 @@ class HarvestStore:
                     "last_outcome": None if not last else {"day": last["day"], "state": last["state"], "detail": json.loads(last["detail_json"]), "updated_at": last["updated_at"]},
                     "backlog": int(sum(by_status.values())), "candidates_by_status": by_status,
                     "legacy_v1_unscreened": legacy, "literature_requests": requests,
-                    "request_daily_slots": REQUEST_DAILY_SLOTS, "method_map": map_status}
+                    "request_daily_slots": REQUEST_DAILY_SLOTS, "method_map": map_status,
+                    "coverage": {"mention_papers": int(con.execute("SELECT count(*) FROM mention_papers").fetchone()[0]),
+                                 "mention_rows": int(con.execute("SELECT count(*) FROM method_mentions").fetchone()[0]),
+                                 "probe_rows": int(con.execute("SELECT count(*) FROM method_probe").fetchone()[0]),
+                                 "last_probe_run": (lambda r: None if r is None else {"run_month": r["run_month"], "state": r["state"], "requests": r["requests"]})(
+                                     con.execute("SELECT run_month,state,requests FROM probe_runs ORDER BY run_month DESC LIMIT 1").fetchone())}}
         finally:
             con.close()
 
@@ -1015,12 +1254,18 @@ def _screen_one(run: _Run, item: Any, profile: Mapping[str, Any], journals: Mapp
     record["provenance"].update({"fulltext_source": source, "route": run.route})
     record.update({"fulltext_sha256": sha, "jats_identifiers": seen})
     gate, detail = discovery.screen_article(article, profile)
+    if gate in {"screened", "off_topic"} and "method_mentions" in detail:
+        import lexicon
+        record["method_mentions"], record["mentions_version"] = detail["method_mentions"], lexicon.default_lexicon()["version"]
     if gate == "screened":
         record.update({"status": "screened", "rights": "confirmed_for_limited_extraction", "licence": detail["licence"],
                        "signal": detail["signal"], "license_links": detail.get("license_links", []),
                        "flags": ["unreviewed_machine_screened", "snippet_limited_to_25_words", "human_applicability_review_required"]})
         return "screened", record, identities
     if gate == "off_topic":
+        # Identifier-only memory plus lexicon tokens (names only): the paper's Methods text is never kept.
+        if "method_mentions" in record:
+            run.store.add_mentions(identities, record["method_mentions"], record["mentions_version"], "off_topic", run.day)
         return "forget:off_topic", None, identities
     record["flags"].append(gate)
     if "licence" in detail:

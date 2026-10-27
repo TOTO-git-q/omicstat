@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Calls registry v1 (strict new format)",
+  "type": "object",
+  "required": [
+    "module",
+    "module_version",
+    "package_versions",
+    "calls"
+  ],
+  "properties": {
+    "module": {
+      "type": "string",
+      "minLength": 1
+    },
+    "module_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "package_versions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "calls": {
+      "type": "array",
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "title": "Recorded upstream call",
+        "type": "object",
+        "required": [
+          "fn",
+          "args"
+        ],
+        "properties": {
+          "fn": {
+            "type": "string",
+            "minLength": 1
+          },
+          "args": {
+            "type": "object",
+            "additionalProperties": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "title": "Explicit scientific argument",
+              "type": "object",
+              "required": [
+                "value",
+                "source",
+                "pack",
+                "function_default"
+              ],
+              "properties": {
+                "value": {},
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "pack": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "function_default": {}
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "accessors": {
+      "type": "array"
+    },
+    "flag_defaults": {
+      "type": "object"
+    },
+    "captured_signatures": {
+      "type": "object"
+    },
+    "language": {
+      "enum": [
+        "R",
+        "py",
+        "python"
+      ]
+    },
+    "site_requires": {},
+    "site_excludes": {}
+  },
+  "additionalProperties": true
+}

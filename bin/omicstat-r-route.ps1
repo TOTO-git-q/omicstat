@@ -55,8 +55,8 @@ if ($env:OMICSTAT_R_NATIVE -eq '1') {
 # Python lane: OMICSTAT_PY_IMAGE, else python_lane image:image_tag.
 $image = if ($IsPy) { $env:OMICSTAT_PY_IMAGE } else { $env:OMICSTAT_IMAGE }
 if (-not $image) {
-    $cfg = Get-Content -Raw -LiteralPath (Join-Path $suite 'env\omicstat-env.json') | ConvertFrom-Json
-    if ($IsPy) { $image = $cfg.python_lane.image + ':' + $cfg.python_lane.image_tag }
+    $cfg = Get-Content -Raw -LiteralPath (Join-Path $suite $(if ($IsPy) { 'env\py\py-env.json' } else { 'env\r-env.json' })) | ConvertFrom-Json
+    if ($IsPy) { $image = $cfg.image + ':' + $cfg.image_tag }
     else { $image = $cfg.image + ':' + $cfg.image_tag }
 }
 

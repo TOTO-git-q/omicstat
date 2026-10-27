@@ -1,0 +1,51 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}",
+        "{root}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/pbmc3k.h5ad",
+      "--outdir",
+      "{outdir}",
+      "--species",
+      "human",
+      "--annotation",
+      "anchor-provided-identifiers",
+      "--sample-col",
+      "sample",
+      "--counts-layer",
+      "X",
+      "--seed",
+      "20260925",
+      "--n-hvg",
+      "600",
+      "--n-pcs",
+      "10",
+      "--n-neighbors",
+      "10",
+      "--resolution",
+      "0.5"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.py",
+    "argv": [
+      "{fixtures}/pbmc3k.h5ad",
+      "{run1}",
+      "{anchor_results}"
+    ]
+  },
+  "figure_policy": "required",
+  "owner_review": {
+    "dataset_id": "pbmc3k",
+    "receipt": "owner_dataset.json"
+  }
+}

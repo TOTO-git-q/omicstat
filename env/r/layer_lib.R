@@ -1,12 +1,12 @@
 # layer_lib.R -- shared by the container build and the native setup of the
 # omicstat R environment. ASCII only on purpose.
-# Repositories come from env/omicstat-env.json: Bioconductor = its "bioconductor"
+# Repositories come from env/r-env.json: Bioconductor = its "bioconductor"
 # release, CRAN = the dated snapshot. Nothing floats to "latest".
 
 options(Ncpus = max(1L, min(4L, parallel::detectCores(logical = FALSE))), timeout = 1200)
 
 os_env_config <- function(env_dir) {
-  cfg <- jsonlite::fromJSON(file.path(env_dir, "omicstat-env.json"), simplifyVector = TRUE)
+  cfg <- jsonlite::fromJSON(file.path(env_dir, "r-env.json"), simplifyVector = TRUE)
   cfg$env_dir <- normalizePath(env_dir, winslash = "/")
   cfg
 }

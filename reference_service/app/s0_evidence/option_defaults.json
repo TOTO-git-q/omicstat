@@ -1,0 +1,6194 @@
+{
+  "modules": {
+    "aucell-score": {
+      "--accept-licence": {
+        "default": null,
+        "keys": []
+      },
+      "--assay": {
+        "default": "none; expression assay counts or logcounts; rankings are monotonic-transform invariant except ties",
+        "keys": [
+          "input_assay"
+        ]
+      },
+      "--auc-args": {
+        "default": "none; supplementary native AUC arguments",
+        "keys": []
+      },
+      "--auc-max-rank": {
+        "default": "none; rank window; native default ceiling(0.05 * genes); check detected-gene distribution",
+        "keys": [
+          "auc_max_rank"
+        ]
+      },
+      "--cluster-col": {
+        "default": "none; group metadata for score distributions; scientific grouping choice",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "none; required counts source layer for conversion",
+        "keys": []
+      },
+      "--feature-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": "none; upstream single-cell run",
+        "keys": []
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--input": {
+        "default": "none; local SCE RDS",
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature\"; figure preset",
+        "keys": []
+      },
+      "--keep-zeroes-as-na": {
+        "default": "FALSE\"; native zero handling",
+        "keys": [
+          "keep_zeroes_as_na"
+        ]
+      },
+      "--logcounts-layer": {
+        "default": "none; required normalized source layer for conversion",
+        "keys": []
+      },
+      "--norm-auc": {
+        "default": "TRUE\"; native AUC normalization",
+        "keys": [
+          "norm_auc"
+        ]
+      },
+      "--outdir": {
+        "default": "none; output directory",
+        "keys": []
+      },
+      "--ranking-args": {
+        "default": "none; supplementary native ranking arguments",
+        "keys": []
+      },
+      "--seed": {
+        "default": "333; explicit random seed",
+        "keys": []
+      },
+      "--sets-file": {
+        "default": null,
+        "keys": [
+          "gene_set_source"
+        ]
+      },
+      "--sets-licence": {
+        "default": null,
+        "keys": []
+      },
+      "--sets-source": {
+        "default": null,
+        "keys": []
+      },
+      "--source-assay": {
+        "default": "none; Seurat source assay for explicit conversion",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; resolved spec replay",
+        "keys": []
+      },
+      "--split-by-blocks": {
+        "default": "FALSE\"; native blocked ranking",
+        "keys": [
+          "split_by_blocks"
+        ]
+      }
+    },
+    "batchelor-integrate": {
+      "--auto-merge": {
+        "default": "FALSE\"; automatically select merge order",
+        "keys": [
+          "auto_merge"
+        ]
+      },
+      "--batch-col": {
+        "default": "none; batch metadata column; scientific batch definition",
+        "keys": [
+          "batch_definition"
+        ]
+      },
+      "--combine-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": []
+      },
+      "--cos-norm": {
+        "default": "TRUE\"; cosine normalization",
+        "keys": [
+          "cos_norm"
+        ]
+      },
+      "--from-run": {
+        "default": "none; upstream single-cell run",
+        "keys": []
+      },
+      "--hvg-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": []
+      },
+      "--input": {
+        "default": "none; local SCE RDS",
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature\"; figure preset",
+        "keys": []
+      },
+      "--label-col": {
+        "default": "none; optional biological annotation",
+        "keys": []
+      },
+      "--mixing-k": {
+        "default": "none; neighbours for descriptive batch purity",
+        "keys": []
+      },
+      "--mnn-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": []
+      },
+      "--mnn-k": {
+        "default": "none; MNN neighbours; locked default 20",
+        "keys": [
+          "fastmnn_k"
+        ]
+      },
+      "--n-hvg": {
+        "default": "none; HVG number; correction vignette example 5000",
+        "keys": [
+          "subset_row"
+        ]
+      },
+      "--n-pcs": {
+        "default": "none; fastMNN rank; locked default 50, explicit study choice",
+        "keys": [
+          "fastmnn_d"
+        ]
+      },
+      "--ndist": {
+        "default": "3; MNN distance cutoff",
+        "keys": [
+          "ndist"
+        ]
+      },
+      "--norm-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": [
+          "norm_args"
+        ]
+      },
+      "--outdir": {
+        "default": "none; output directory",
+        "keys": []
+      },
+      "--pca-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": []
+      },
+      "--seed": {
+        "default": "101; explicit random seed",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; resolved spec replay",
+        "keys": []
+      },
+      "--umap-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": []
+      },
+      "--umap-dims": {
+        "default": "none; corrected dimensions for UMAP",
+        "keys": [
+          "umap_dims"
+        ]
+      },
+      "--umap-min-dist": {
+        "default": "0.01; uwot locked minimum distance",
+        "keys": []
+      },
+      "--umap-neighbors": {
+        "default": "none; UMAP neighbours; locked default 15",
+        "keys": []
+      },
+      "--variance-args": {
+        "default": "none; supplementary native named JSON options; omitted arguments retain locked defaults",
+        "keys": []
+      }
+    },
+    "cellchat-communication": {
+      "--aggregate-pairlr-use": {
+        "default": "NULL",
+        "keys": [
+          "pairlr_use"
+        ]
+      },
+      "--aggregate-remove-isolate": {
+        "default": "TRUE",
+        "keys": [
+          "remove_isolate"
+        ]
+      },
+      "--aggregate-return-object": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--aggregate-signaling": {
+        "default": "NULL",
+        "keys": [
+          "signaling_use"
+        ]
+      },
+      "--aggregate-sources-use": {
+        "default": "NULL",
+        "keys": [
+          "sources_use"
+        ]
+      },
+      "--aggregate-targets-use": {
+        "default": "NULL",
+        "keys": [
+          "targets_use"
+        ]
+      },
+      "--aggregate-thresh": {
+        "default": "0.05",
+        "keys": [
+          "p_cutoff"
+        ]
+      },
+      "--centrality-net": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--centrality-net-name": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--centrality-slot-name": {
+        "default": "netP",
+        "keys": [
+          "centrality_slot"
+        ]
+      },
+      "--centrality-thresh": {
+        "default": "0.05",
+        "keys": [
+          "p_cutoff"
+        ]
+      },
+      "--cluster-col": {
+        "default": "labels tutorial example",
+        "keys": [
+          "group_by"
+        ]
+      },
+      "--communication-datasets": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-ligand-logfc": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-ligand-pct-1": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-ligand-pct-2": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-ligand-pvalues": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-net": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-pairlr-use": {
+        "default": "NULL",
+        "keys": [
+          "pairlr_use"
+        ]
+      },
+      "--communication-receptor-logfc": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-receptor-pct-1": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-receptor-pct-2": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-receptor-pvalues": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--communication-signaling": {
+        "default": "NULL",
+        "keys": [
+          "signaling_use"
+        ]
+      },
+      "--communication-slot-name": {
+        "default": "net",
+        "keys": [
+          "centrality_slot"
+        ]
+      },
+      "--communication-sources-use": {
+        "default": "NULL",
+        "keys": [
+          "sources_use"
+        ]
+      },
+      "--communication-targets-use": {
+        "default": "NULL",
+        "keys": [
+          "targets_use"
+        ]
+      },
+      "--communication-thresh": {
+        "default": "0.05",
+        "keys": [
+          "p_cutoff"
+        ]
+      },
+      "--counts-layer": {
+        "default": "explicit raw-count role; counts vignette example",
+        "keys": []
+      },
+      "--create-assay": {
+        "default": "NULL",
+        "keys": [
+          "assay"
+        ]
+      },
+      "--create-coordinates": {
+        "default": "NULL",
+        "keys": [
+          "coordinates"
+        ]
+      },
+      "--create-datatype": {
+        "default": "c(\"RNA\", \"spatial\")",
+        "keys": [
+          "datatype"
+        ]
+      },
+      "--create-do-sparse": {
+        "default": "T",
+        "keys": []
+      },
+      "--create-spatial-factors": {
+        "default": "NULL",
+        "keys": [
+          "spatial_factors"
+        ]
+      },
+      "--db-non-protein": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--db-species": {
+        "default": "human skin tutorial example human",
+        "keys": [
+          "database"
+        ]
+      },
+      "--db-subset": {
+        "default": "Secreted Signaling tutorial example",
+        "keys": [
+          "database"
+        ]
+      },
+      "--ecosystem": {
+        "default": "seurat / bioconductor / scverse",
+        "keys": []
+      },
+      "--filter-min-cells": {
+        "default": "10",
+        "keys": [
+          "filter_min_cells"
+        ]
+      },
+      "--filter-min-samples": {
+        "default": "NULL",
+        "keys": [
+          "filter_min_samples"
+        ]
+      },
+      "--filter-nonfilter-keep": {
+        "default": "FALSE",
+        "keys": [
+          "nonfilter_keep"
+        ]
+      },
+      "--filter-rare-keep": {
+        "default": "FALSE",
+        "keys": [
+          "rare_keep"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--genes-data-use": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--genes-do-de": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--genes-do-fast": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--genes-features": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--genes-features-name": {
+        "default": "features",
+        "keys": []
+      },
+      "--genes-group-by": {
+        "default": "NULL",
+        "keys": [
+          "group_by"
+        ]
+      },
+      "--genes-group-dataset": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--genes-group-de-combined": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--genes-idents-use": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--genes-invert": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--genes-min-cells": {
+        "default": "10",
+        "keys": [
+          "filter_min_cells"
+        ]
+      },
+      "--genes-only-pos": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--genes-pos-dataset": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--genes-return-object": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--genes-thresh-fc": {
+        "default": "0",
+        "keys": []
+      },
+      "--genes-thresh-p": {
+        "default": "0.05",
+        "keys": []
+      },
+      "--genes-thresh-pc": {
+        "default": "0",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--interactions-features": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--interactions-features-name": {
+        "default": "features",
+        "keys": []
+      },
+      "--interactions-return-object": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--interactions-variable-both": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature; nature / cell / science / generic",
+        "keys": []
+      },
+      "--logcounts-layer": {
+        "default": "explicit normalized log expression; logcounts vignette example",
+        "keys": []
+      },
+      "--object-name": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pathway-net": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--pathway-pairlr-use": {
+        "default": "NULL",
+        "keys": [
+          "pairlr_use"
+        ]
+      },
+      "--pathway-thresh": {
+        "default": "0.05",
+        "keys": [
+          "p_cutoff"
+        ]
+      },
+      "--prob-contact-dependent": {
+        "default": "TRUE",
+        "keys": [
+          "contact_dependent"
+        ]
+      },
+      "--prob-contact-dependent-forced": {
+        "default": "FALSE",
+        "keys": [
+          "contact_dependent_forced"
+        ]
+      },
+      "--prob-contact-knn-k": {
+        "default": "NULL",
+        "keys": [
+          "contact_knn_k"
+        ]
+      },
+      "--prob-contact-range": {
+        "default": "NULL",
+        "keys": [
+          "contact_range"
+        ]
+      },
+      "--prob-distance-use": {
+        "default": "TRUE",
+        "keys": [
+          "distance_use"
+        ]
+      },
+      "--prob-do-symmetric": {
+        "default": "TRUE",
+        "keys": [
+          "do_symmetric"
+        ]
+      },
+      "--prob-interaction-range": {
+        "default": "250",
+        "keys": [
+          "interaction_range"
+        ]
+      },
+      "--prob-k-min": {
+        "default": "10",
+        "keys": [
+          "k_min"
+        ]
+      },
+      "--prob-kh": {
+        "default": "0.5",
+        "keys": [
+          "kh"
+        ]
+      },
+      "--prob-lr-use": {
+        "default": "NULL",
+        "keys": [
+          "lr_use"
+        ]
+      },
+      "--prob-n": {
+        "default": "1",
+        "keys": [
+          "hill_n"
+        ]
+      },
+      "--prob-nboot": {
+        "default": "100",
+        "keys": [
+          "nboot"
+        ]
+      },
+      "--prob-population-size": {
+        "default": "FALSE",
+        "keys": [
+          "population_size"
+        ]
+      },
+      "--prob-raw-use": {
+        "default": "TRUE",
+        "keys": [
+          "raw_use"
+        ]
+      },
+      "--prob-scale-distance": {
+        "default": "0.01",
+        "keys": [
+          "scale_distance"
+        ]
+      },
+      "--prob-seed-use": {
+        "default": "1L",
+        "keys": [
+          "seed_use"
+        ]
+      },
+      "--prob-trim": {
+        "default": "0.1",
+        "keys": [
+          "trim"
+        ]
+      },
+      "--prob-type": {
+        "default": "c(\"triMean\", \"truncatedMean\", \"thresholdedMean\", \"median\")",
+        "keys": [
+          "type"
+        ]
+      },
+      "--sample-col": {
+        "default": "samples",
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default)",
+        "keys": []
+      },
+      "--source-assay": {
+        "default": "RNA tutorial example",
+        "keys": [
+          "assay"
+        ]
+      },
+      "--spec": {
+        "default": "none; replay resolved_spec.json",
+        "keys": []
+      },
+      "--subset-features": {
+        "default": "NULL",
+        "keys": []
+      }
+    },
+    "clusterprofiler-compare": {
+      "--database": {
+        "default": "GO",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--key-type": {
+        "default": "ENTREZID",
+        "keys": []
+      },
+      "--manifest": {
+        "default": null,
+        "keys": [
+          "clusters"
+        ]
+      },
+      "--max-size": {
+        "default": "500",
+        "keys": []
+      },
+      "--min-size": {
+        "default": "10",
+        "keys": []
+      },
+      "--ontology": {
+        "default": "BP",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pool": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--top-n-per-group": {
+        "default": "5",
+        "keys": []
+      }
+    },
+    "clusterprofiler-gsea": {
+      "--database": {
+        "default": "GO",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--direction": {
+        "default": null,
+        "keys": []
+      },
+      "--exploratory-fdr": {
+        "default": "off",
+        "keys": [
+          "enrich_cutoff"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--key-type": {
+        "default": "ENTREZID",
+        "keys": []
+      },
+      "--lfc-type": {
+        "default": null,
+        "keys": [
+          "ranking_metric"
+        ]
+      },
+      "--max-size": {
+        "default": "500",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--min-size": {
+        "default": "10",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--ontology": {
+        "default": "BP",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--ranked": {
+        "default": null,
+        "keys": []
+      },
+      "--ranking-metric": {
+        "default": null,
+        "keys": [
+          "ranking_metric"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--statistic-kind": {
+        "default": "test_statistic",
+        "keys": [
+          "ranking_metric"
+        ]
+      },
+      "--top-n": {
+        "default": "15",
+        "keys": []
+      }
+    },
+    "clusterprofiler-ora": {
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "enrich_cutoff"
+        ]
+      },
+      "--database": {
+        "default": "GO",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--id-column": {
+        "default": "feature_id",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": [
+          "input_genes"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--key-type": {
+        "default": "ENTREZID",
+        "keys": []
+      },
+      "--max-size": {
+        "default": "500",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--min-size": {
+        "default": "10",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--ontology": {
+        "default": "BP",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pool": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--selection-rule": {
+        "default": null,
+        "keys": [
+          "input_genes"
+        ]
+      },
+      "--simplify": {
+        "default": "off",
+        "keys": [
+          "simplify"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--top-n": {
+        "default": "15",
+        "keys": []
+      },
+      "--universe": {
+        "default": null,
+        "keys": [
+          "universe"
+        ]
+      }
+    },
+    "deseq2-lrt": {
+      "--adjust": {
+        "default": null,
+        "keys": [
+          "design_type"
+        ]
+      },
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "padj_cutoff"
+        ]
+      },
+      "--counts": {
+        "default": null,
+        "keys": []
+      },
+      "--fit-type": {
+        "default": "parametric",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--full": {
+        "default": null,
+        "keys": [
+          "design_type",
+          "full_model"
+        ]
+      },
+      "--gene-annotation": {
+        "default": null,
+        "keys": []
+      },
+      "--group-col": {
+        "default": null,
+        "keys": []
+      },
+      "--group-reference": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--min-count": {
+        "default": "10",
+        "keys": []
+      },
+      "--min-samples": {
+        "default": "0",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pattern-clustering": {
+        "default": "off",
+        "keys": [
+          "pattern_clustering"
+        ]
+      },
+      "--reduced": {
+        "default": null,
+        "keys": [
+          "reduced_model"
+        ]
+      },
+      "--report-coef": {
+        "default": null,
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--sf-type": {
+        "default": "ratio",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--time-col": {
+        "default": null,
+        "keys": []
+      },
+      "--top-n": {
+        "default": "50",
+        "keys": []
+      }
+    },
+    "deseq2-qc": {
+      "--blind-false-supplement": {
+        "default": "off",
+        "keys": [
+          "blind"
+        ]
+      },
+      "--condition": {
+        "default": "condition",
+        "keys": []
+      },
+      "--counts": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": []
+      },
+      "--fit-type": {
+        "default": "parametric",
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--min-count": {
+        "default": "10",
+        "keys": [
+          "prefilter"
+        ]
+      },
+      "--min-samples": {
+        "default": "0",
+        "keys": [
+          "prefilter"
+        ]
+      },
+      "--ntop": {
+        "default": "500",
+        "keys": [
+          "pca_ntop"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--sf-type": {
+        "default": "ratio",
+        "keys": []
+      },
+      "--shape-col": {
+        "default": null,
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--transform": {
+        "default": "vst",
+        "keys": [
+          "transform"
+        ]
+      }
+    },
+    "deseq2-wald": {
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "padj_cutoff"
+        ]
+      },
+      "--condition": {
+        "default": "condition",
+        "keys": [
+          "design"
+        ]
+      },
+      "--counts": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": [
+          "design"
+        ]
+      },
+      "--display-lfc-filter": {
+        "default": "0",
+        "keys": [
+          "lfc_filter"
+        ]
+      },
+      "--fit-type": {
+        "default": "parametric",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-annotation": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--label-n": {
+        "default": "10",
+        "keys": []
+      },
+      "--lfc-threshold": {
+        "default": "0",
+        "keys": [
+          "lfc_threshold_test"
+        ]
+      },
+      "--min-count": {
+        "default": "10",
+        "keys": [
+          "prefilter"
+        ]
+      },
+      "--min-samples": {
+        "default": "0",
+        "keys": [
+          "prefilter"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": [
+          "design"
+        ]
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--sf-type": {
+        "default": "ratio",
+        "keys": []
+      },
+      "--shrinkage": {
+        "default": "apeglm",
+        "keys": [
+          "shrinkage"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": [
+          "design"
+        ]
+      },
+      "--top-n": {
+        "default": "50",
+        "keys": []
+      }
+    },
+    "edger-qlf": {
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "padj_cutoff"
+        ]
+      },
+      "--condition": {
+        "default": "condition",
+        "keys": []
+      },
+      "--counts": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": []
+      },
+      "--display-lfc-filter": {
+        "default": "0",
+        "keys": [
+          "lfc_filter"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-annotation": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--label-n": {
+        "default": "10",
+        "keys": []
+      },
+      "--large-n": {
+        "default": "10",
+        "keys": [
+          "filter"
+        ]
+      },
+      "--legacy": {
+        "default": "off",
+        "keys": []
+      },
+      "--min-count": {
+        "default": "10",
+        "keys": [
+          "filter"
+        ]
+      },
+      "--min-prop": {
+        "default": "0.7",
+        "keys": [
+          "filter"
+        ]
+      },
+      "--min-total-count": {
+        "default": "15",
+        "keys": [
+          "filter"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": []
+      },
+      "--top-n": {
+        "default": "50",
+        "keys": []
+      },
+      "--treat-fc": {
+        "default": "0",
+        "keys": [
+          "treat"
+        ]
+      }
+    },
+    "fgsea-prerank": {
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "enrich_cutoff"
+        ]
+      },
+      "--collection": {
+        "default": "msigdb_collections",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--direction": {
+        "default": null,
+        "keys": []
+      },
+      "--feature-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--max-size": {
+        "default": "500",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--metric-name": {
+        "default": null,
+        "keys": [
+          "ranking_metric"
+        ]
+      },
+      "--min-size": {
+        "default": "15",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--rank-metric": {
+        "default": "wald_stat",
+        "keys": [
+          "ranking_metric"
+        ]
+      },
+      "--ranked-list": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "gsva-score": {
+      "--collection": {
+        "default": "msigdb_collections",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--covariates": {
+        "default": null,
+        "keys": [
+          "downstream_test"
+        ]
+      },
+      "--feature-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--group-col": {
+        "default": "condition",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": [
+          "input"
+        ]
+      },
+      "--input-scale": {
+        "default": null,
+        "keys": [
+          "input"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--kcdf": {
+        "default": "auto",
+        "keys": [
+          "kcdf"
+        ]
+      },
+      "--max-size": {
+        "default": "500",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--min-size": {
+        "default": "5",
+        "keys": [
+          "gs_size"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": [
+          "downstream_test"
+        ]
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": [
+          "downstream_test"
+        ]
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "immunedeconv-infiltration": {
+      "--accept-licence": {
+        "default": "none; epic or cibersort",
+        "keys": []
+      },
+      "--arrays": {
+        "default": "FALSE",
+        "keys": [
+          "arrays"
+        ]
+      },
+      "--cibersort-abs-method": {
+        "default": "sig.score; no.sumto1 alternative",
+        "keys": []
+      },
+      "--cibersort-matrix": {
+        "default": "none; user-supplied LM22",
+        "keys": []
+      },
+      "--cibersort-source": {
+        "default": "none; user-supplied R source",
+        "keys": []
+      },
+      "--consensus-stat-method": {
+        "default": "ssgsea locked top-level wrapper",
+        "keys": []
+      },
+      "--expected-cell-types": {
+        "default": "NULL; all xCell types",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--indications": {
+        "default": "NULL; one cancer type/sample required for TIMER/ConsensusTME",
+        "keys": [
+          "indications"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--input-scale": {
+        "default": null,
+        "keys": [
+          "input_scale"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--method": {
+        "default": null,
+        "keys": [
+          "method"
+        ]
+      },
+      "--method-args": {
+        "default": "NULL; offline named JSON native arguments",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--rmgenes": {
+        "default": "NULL",
+        "keys": [
+          "rmgenes"
+        ]
+      },
+      "--scale-mrna": {
+        "default": "TRUE",
+        "keys": [
+          "scale_mrna"
+        ]
+      },
+      "--seed": {
+        "default": "20260925 explicit suite seed",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--tumor": {
+        "default": "TRUE",
+        "keys": [
+          "tumor"
+        ]
+      },
+      "--upstream-object": {
+        "default": "expression_matrix",
+        "keys": []
+      },
+      "--xcell-alpha": {
+        "default": "0.5 locked xCell default",
+        "keys": []
+      },
+      "--xcell-scale": {
+        "default": "TRUE locked xCell default",
+        "keys": []
+      },
+      "--xcell-threads": {
+        "default": "1 explicit execution choice; locked wrapper uses 2",
+        "keys": []
+      }
+    },
+    "limma-array": {
+      "--above-background": {
+        "default": null,
+        "keys": [
+          "probe_filter"
+        ]
+      },
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "padj_cutoff"
+        ]
+      },
+      "--background-k": {
+        "default": null,
+        "keys": [
+          "probe_filter"
+        ]
+      },
+      "--condition": {
+        "default": "condition",
+        "keys": []
+      },
+      "--control-ids": {
+        "default": null,
+        "keys": [
+          "probe_filter"
+        ]
+      },
+      "--controls-removed": {
+        "default": "off",
+        "keys": [
+          "probe_filter"
+        ]
+      },
+      "--covariates": {
+        "default": null,
+        "keys": []
+      },
+      "--display-lfc-filter": {
+        "default": "0",
+        "keys": [
+          "lfc_filter"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--keep-other-levels": {
+        "default": "off",
+        "keys": []
+      },
+      "--label-n": {
+        "default": "5",
+        "keys": []
+      },
+      "--matrix": {
+        "default": null,
+        "keys": []
+      },
+      "--min-effect-fc": {
+        "default": "1",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--platform": {
+        "default": null,
+        "keys": []
+      },
+      "--preprocessing": {
+        "default": null,
+        "keys": [
+          "normalization"
+        ]
+      },
+      "--probe-annotation": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": []
+      },
+      "--robust": {
+        "default": "auto",
+        "keys": [
+          "ebayes"
+        ]
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": []
+      },
+      "--technical-ids": {
+        "default": null,
+        "keys": [
+          "probe_filter"
+        ]
+      },
+      "--trend": {
+        "default": "auto",
+        "keys": [
+          "ebayes"
+        ]
+      },
+      "--verified-technical-ids": {
+        "default": "off",
+        "keys": [
+          "probe_filter"
+        ]
+      }
+    },
+    "limma-camera": {
+      "--acknowledge-block-ignored": {
+        "default": "off",
+        "keys": []
+      },
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "enrich_cutoff"
+        ]
+      },
+      "--block-col": {
+        "default": null,
+        "keys": []
+      },
+      "--collection": {
+        "default": "msigdb_collections",
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--correlation": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": []
+      },
+      "--direction": {
+        "default": null,
+        "keys": []
+      },
+      "--feature-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--group-col": {
+        "default": "condition",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": [
+          "expression_input"
+        ]
+      },
+      "--input-scale": {
+        "default": null,
+        "keys": [
+          "expression_input"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--metric-name": {
+        "default": null,
+        "keys": []
+      },
+      "--nrot": {
+        "default": "9999",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--question": {
+        "default": null,
+        "keys": [
+          "test"
+        ]
+      },
+      "--rank-metric": {
+        "default": "wald_stat",
+        "keys": []
+      },
+      "--ranked-list": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--self-contained-method": {
+        "default": null,
+        "keys": [
+          "test"
+        ]
+      },
+      "--set-id": {
+        "default": null,
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": []
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      },
+      "--weights": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "limma-dupcor": {
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "padj_cutoff"
+        ]
+      },
+      "--block": {
+        "default": null,
+        "keys": [
+          "block"
+        ]
+      },
+      "--block-description": {
+        "default": null,
+        "keys": [
+          "block"
+        ]
+      },
+      "--block-rationale": {
+        "default": null,
+        "keys": [
+          "block"
+        ]
+      },
+      "--block-role": {
+        "default": "correlated_unit",
+        "keys": [
+          "block"
+        ]
+      },
+      "--condition": {
+        "default": "condition",
+        "keys": []
+      },
+      "--counts": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": []
+      },
+      "--display-lfc-filter": {
+        "default": "0",
+        "keys": [
+          "lfc_filter"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--label-n": {
+        "default": "5",
+        "keys": []
+      },
+      "--matrix": {
+        "default": null,
+        "keys": []
+      },
+      "--min-count": {
+        "default": "10",
+        "keys": []
+      },
+      "--min-effect-fc": {
+        "default": "1",
+        "keys": []
+      },
+      "--mode": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--platform": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": []
+      },
+      "--robust": {
+        "default": "auto",
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": []
+      },
+      "--trend": {
+        "default": "auto",
+        "keys": []
+      }
+    },
+    "limma-voom": {
+      "--alpha": {
+        "default": "0.05",
+        "keys": [
+          "padj_cutoff"
+        ]
+      },
+      "--condition": {
+        "default": "condition",
+        "keys": []
+      },
+      "--counts": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": []
+      },
+      "--display-lfc-filter": {
+        "default": "0",
+        "keys": [
+          "lfc_filter"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--interface": {
+        "default": "voomLmFit",
+        "keys": [
+          "voom_variant"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--label-n": {
+        "default": "5",
+        "keys": []
+      },
+      "--min-count": {
+        "default": "10",
+        "keys": [
+          "filter"
+        ]
+      },
+      "--min-effect-fc": {
+        "default": "1",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--reference": {
+        "default": null,
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--sample-weights": {
+        "default": "off",
+        "keys": [
+          "voom_variant"
+        ]
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--target": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "maftools-landscape": {
+      "--call-source": {
+        "default": null,
+        "keys": [
+          "maf_source"
+        ]
+      },
+      "--capture-regions": {
+        "default": "NULL; offline native TSV alternative to capture-size",
+        "keys": []
+      },
+      "--capture-regions-source": {
+        "default": null,
+        "keys": []
+      },
+      "--capture-size": {
+        "default": "none; alternative to capture-regions",
+        "keys": [
+          "tmb_capture_size"
+        ]
+      },
+      "--clinical": {
+        "default": null,
+        "keys": []
+      },
+      "--cn-level": {
+        "default": "all",
+        "keys": []
+      },
+      "--cn-table": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gistic-amp": {
+        "default": null,
+        "keys": []
+      },
+      "--gistic-del": {
+        "default": null,
+        "keys": []
+      },
+      "--gistic-lesions": {
+        "default": null,
+        "keys": []
+      },
+      "--gistic-scores": {
+        "default": null,
+        "keys": []
+      },
+      "--ignore-cnv": {
+        "default": "true",
+        "keys": [
+          "tmb_ignore_cnv"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--interaction-genes": {
+        "default": null,
+        "keys": [
+          "interaction_gene_set"
+        ]
+      },
+      "--interaction-top": {
+        "default": "25",
+        "keys": [
+          "interaction_gene_set"
+        ]
+      },
+      "--is-tcga": {
+        "default": "false",
+        "keys": [
+          "read_maf_istcga"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--non-synonymous": {
+        "default": null,
+        "keys": [
+          "read_maf_nonsyn"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--remove-duplicates": {
+        "default": "true",
+        "keys": [
+          "read_maf_duplicates"
+        ]
+      },
+      "--rm-flags": {
+        "default": "false",
+        "keys": [
+          "read_maf_rmflags"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--top": {
+        "default": "10",
+        "keys": [
+          "oncoplot_top"
+        ]
+      },
+      "--upstream-object": {
+        "default": "maf",
+        "keys": []
+      },
+      "--use-all": {
+        "default": "true",
+        "keys": [
+          "read_maf_useall"
+        ]
+      }
+    },
+    "monocle3-trajectory": {
+      "--cds-verbose": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--cluster-col": {
+        "default": "named upstream cluster/cell-type metadata",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "explicit raw-count role; counts vignette example",
+        "keys": []
+      },
+      "--ecosystem": {
+        "default": "seurat / bioconductor / scverse",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--graph-genes-file": {
+        "default": "all genes; explicit subset only",
+        "keys": [
+          "use_genes"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature; nature / cell / science / generic",
+        "keys": []
+      },
+      "--learn-close-loop": {
+        "default": "TRUE",
+        "keys": [
+          "close_loop"
+        ]
+      },
+      "--learn-learn-graph-control": {
+        "default": "NULL",
+        "keys": [
+          "learn_graph_control"
+        ]
+      },
+      "--learn-use-partition": {
+        "default": "TRUE",
+        "keys": [
+          "use_partition"
+        ]
+      },
+      "--learn-verbose": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--logcounts-layer": {
+        "default": "explicit normalized log expression; logcounts vignette example",
+        "keys": []
+      },
+      "--object-name": {
+        "default": null,
+        "keys": []
+      },
+      "--order-reduction-method": {
+        "default": "UMAP",
+        "keys": [
+          "reduction_method"
+        ]
+      },
+      "--order-root-cells": {
+        "default": "NULL",
+        "keys": [
+          "root_cells"
+        ]
+      },
+      "--order-root-pr-nodes": {
+        "default": "NULL",
+        "keys": [
+          "root_pr_nodes"
+        ]
+      },
+      "--order-verbose": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--partition-col": {
+        "default": "official cluster_cells partitions copied upstream",
+        "keys": []
+      },
+      "--root-rationale": {
+        "default": "earliest developmental time in guide",
+        "keys": [
+          "root_rationale"
+        ]
+      },
+      "--root-time-col": {
+        "default": "embryo.time.bin / 130-170 guide example; alternative is --order-root-cells or --order-root-pr-nodes",
+        "keys": [
+          "root_rationale"
+        ]
+      },
+      "--root-time-value": {
+        "default": "embryo.time.bin / 130-170 guide example; alternative is --order-root-cells or --order-root-pr-nodes",
+        "keys": [
+          "root_rationale"
+        ]
+      },
+      "--seed": {
+        "default": "20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default)",
+        "keys": []
+      },
+      "--source-assay": {
+        "default": "RNA tutorial example",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; replay resolved_spec.json",
+        "keys": []
+      },
+      "--test-alternative": {
+        "default": "greater",
+        "keys": [
+          "graph_test_alternative"
+        ]
+      },
+      "--test-cores": {
+        "default": "1",
+        "keys": []
+      },
+      "--test-expression-family": {
+        "default": "quasipoisson",
+        "keys": [
+          "graph_test_family"
+        ]
+      },
+      "--test-k": {
+        "default": "25",
+        "keys": [
+          "graph_test_k"
+        ]
+      },
+      "--test-method": {
+        "default": "c(\"Moran_I\")",
+        "keys": [
+          "graph_test_method"
+        ]
+      },
+      "--test-neighbor-graph": {
+        "default": "c(\"knn\", \"principal_graph\")",
+        "keys": [
+          "graph_test_neighbor"
+        ]
+      },
+      "--test-nn-control": {
+        "default": "list()",
+        "keys": []
+      },
+      "--test-reduction-method": {
+        "default": "UMAP",
+        "keys": [
+          "reduction_method"
+        ]
+      },
+      "--test-verbose": {
+        "default": "FALSE",
+        "keys": []
+      }
+    },
+    "muscat-pseudobulk": {
+      "--aggregate-bpparam": {
+        "default": "SerialParam(progressbar = verbose)",
+        "keys": []
+      },
+      "--aggregate-fun": {
+        "default": "c(\"sum\", \"mean\", \"median\", \"prop.detected\", \"num.detected\")",
+        "keys": [
+          "aggregate_fun"
+        ]
+      },
+      "--aggregate-scale": {
+        "default": "FALSE",
+        "keys": [
+          "aggregate_scale"
+        ]
+      },
+      "--aggregate-verbose": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--cluster-col": {
+        "default": "named upstream cluster/cell-type metadata",
+        "keys": []
+      },
+      "--condition-col": {
+        "default": "vignette group_id",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "explicit raw-count role; counts vignette example",
+        "keys": []
+      },
+      "--display-fdr": {
+        "default": "suite volcano display default 0.05",
+        "keys": [
+          "fdr_cutoff"
+        ]
+      },
+      "--display-lfc": {
+        "default": "suite volcano display default 1",
+        "keys": []
+      },
+      "--ds-bpparam": {
+        "default": "SerialParam(progressbar = verbose)",
+        "keys": []
+      },
+      "--ds-coef": {
+        "default": "NULL",
+        "keys": [
+          "coef"
+        ]
+      },
+      "--ds-contrast": {
+        "default": "NULL",
+        "keys": [
+          "contrast"
+        ]
+      },
+      "--ds-design": {
+        "default": "NULL",
+        "keys": [
+          "design"
+        ]
+      },
+      "--ds-filter": {
+        "default": "c(\"both\", \"genes\", \"samples\", \"none\")",
+        "keys": [
+          "filter"
+        ]
+      },
+      "--ds-method": {
+        "default": "c(\"edgeR\", \"DESeq2\", \"limma-trend\", \"limma-voom\", \"DD\")",
+        "keys": [
+          "pb_method"
+        ]
+      },
+      "--ds-min-cells": {
+        "default": "10",
+        "keys": [
+          "min_cells"
+        ]
+      },
+      "--ds-treat": {
+        "default": "FALSE",
+        "keys": [
+          "treat"
+        ]
+      },
+      "--ds-verbose": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--ecosystem": {
+        "default": "seurat / bioconductor / scverse",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature; nature / cell / science / generic",
+        "keys": []
+      },
+      "--logcounts-layer": {
+        "default": "explicit normalized log expression; logcounts vignette example",
+        "keys": []
+      },
+      "--object-name": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--prep-drop": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--reference": {
+        "default": "ctrl / stim vignette example",
+        "keys": [
+          "contrast"
+        ]
+      },
+      "--sample-col": {
+        "default": "vignette sample_id",
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default)",
+        "keys": []
+      },
+      "--source-assay": {
+        "default": "RNA tutorial example",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; replay resolved_spec.json",
+        "keys": []
+      },
+      "--target": {
+        "default": "ctrl / stim vignette example",
+        "keys": [
+          "contrast"
+        ]
+      }
+    },
+    "scanpy-cluster": {
+      "--annotation": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--cluster-col": {
+        "default": "'cluster'",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--help": {
+        "default": null,
+        "keys": []
+      },
+      "--hvg-batch-col": {
+        "default": null,
+        "keys": [
+          "batch_key"
+        ]
+      },
+      "--hvg-flavor": {
+        "default": "seurat (sc.pp.highly_variable_genes.flavor; value; seurat\\",
+        "keys": [
+          "seurat_v3\\"
+        ]
+      },
+      "--hvg-n-bins": {
+        "default": "20 (sc.pp.highly_variable_genes.n_bins; value)",
+        "keys": [
+          "hvg_n_bins"
+        ]
+      },
+      "--hvg-span": {
+        "default": "0.3 (sc.pp.highly_variable_genes.span; value)",
+        "keys": [
+          "hvg_span"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "'nature'",
+        "keys": []
+      },
+      "--leiden-flavor": {
+        "default": "igraph (retained tutorial branch); leidenalg for partition-type",
+        "keys": [
+          "leiden_flavor"
+        ]
+      },
+      "--leiden-n-iterations": {
+        "default": "-1 (sc.tl.leiden.n_iterations; value)",
+        "keys": [
+          "leiden_n_iterations"
+        ]
+      },
+      "--leiden-partition-type": {
+        "default": null,
+        "keys": [
+          "CPMVertexPartition\\"
+        ]
+      },
+      "--leiden-use-weights": {
+        "default": "on (sc.tl.leiden.use_weights; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--log1p-base": {
+        "default": null,
+        "keys": [
+          "base"
+        ]
+      },
+      "--min-dist": {
+        "default": "0.5",
+        "keys": []
+      },
+      "--n-hvg": {
+        "default": "no scientific default; consult L1 tutorial example; clustering tutorial Cell 27: 2000",
+        "keys": [
+          "n_top_genes"
+        ]
+      },
+      "--n-neighbors": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "n_neighbors"
+        ]
+      },
+      "--n-pcs": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "n_pcs"
+        ]
+      },
+      "--neighbors-method": {
+        "default": "umap (sc.pp.neighbors.method; value)",
+        "keys": [
+          "neighbors_method"
+        ]
+      },
+      "--neighbors-metric": {
+        "default": null,
+        "keys": [
+          "metric"
+        ]
+      },
+      "--neighbors-metric-kwds": {
+        "default": "{} (sc.pp.neighbors.metric_kwds; object)",
+        "keys": [
+          "neighbors_metric_kwds"
+        ]
+      },
+      "--neighbors-transformer": {
+        "default": null,
+        "keys": [
+          "sklearn)"
+        ]
+      },
+      "--normalize-exclude-highly-expressed": {
+        "default": "off (sc.pp.normalize_total.exclude_highly_expressed; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--normalize-max-fraction": {
+        "default": "0.05 (sc.pp.normalize_total.max_fraction; value)",
+        "keys": [
+          "max_fraction"
+        ]
+      },
+      "--outdir": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--pca-dtype": {
+        "default": "float32 (sc.pp.pca.dtype; value; float32\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--pca-svd-solver": {
+        "default": null,
+        "keys": [
+          "auto\\"
+        ]
+      },
+      "--pca-zero-center": {
+        "default": "on (sc.pp.pca.zero_center; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--resolution": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "cluster_resolution"
+        ]
+      },
+      "--sample-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--scale": {
+        "default": "off (cited clustering tutorial; on selects scaling)",
+        "keys": []
+      },
+      "--scale-max": {
+        "default": null,
+        "keys": []
+      },
+      "--scale-zero-center": {
+        "default": "on (sc.pp.scale.zero_center; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--species": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--study-contract": {
+        "default": null,
+        "keys": []
+      },
+      "--target-sum": {
+        "default": null,
+        "keys": [
+          "target_sum"
+        ]
+      },
+      "--umap-a": {
+        "default": null,
+        "keys": [
+          "umap_a"
+        ]
+      },
+      "--umap-alpha": {
+        "default": "1.0 (sc.tl.umap.alpha; value)",
+        "keys": [
+          "umap_alpha"
+        ]
+      },
+      "--umap-b": {
+        "default": null,
+        "keys": [
+          "umap_b"
+        ]
+      },
+      "--umap-gamma": {
+        "default": "1.0 (sc.tl.umap.gamma; value)",
+        "keys": [
+          "umap_gamma"
+        ]
+      },
+      "--umap-init-pos": {
+        "default": "spectral (sc.tl.umap.init_pos; value)",
+        "keys": [
+          "umap_init_pos"
+        ]
+      },
+      "--umap-maxiter": {
+        "default": null,
+        "keys": [
+          "umap_maxiter"
+        ]
+      },
+      "--umap-negative-sample-rate": {
+        "default": "5 (sc.tl.umap.negative_sample_rate; value)",
+        "keys": [
+          "umap_negative_sample_rate"
+        ]
+      },
+      "--umap-spread": {
+        "default": "1.0 (sc.tl.umap.spread; value)",
+        "keys": [
+          "umap_spread"
+        ]
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "scanpy-markers": {
+      "--annotation": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--cluster-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "groupby"
+        ]
+      },
+      "--corr-method": {
+        "default": "benjamini-hochberg (sc.tl.rank_genes_groups.corr_method; value; benjamini-hochberg\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--counts-layer": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--expression-layer": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--groups": {
+        "default": "all (sc.tl.rank_genes_groups.groups; groups)",
+        "keys": [
+          "groups"
+        ]
+      },
+      "--help": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "'nature'",
+        "keys": []
+      },
+      "--mask-var": {
+        "default": null,
+        "keys": [
+          "mask_var"
+        ]
+      },
+      "--n-genes": {
+        "default": null,
+        "keys": [
+          "n_genes"
+        ]
+      },
+      "--outdir": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--purpose": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--rankby-abs": {
+        "default": "off (sc.tl.rank_genes_groups.rankby_abs; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--reference": {
+        "default": "rest (sc.tl.rank_genes_groups.reference; value)",
+        "keys": [
+          "reference"
+        ]
+      },
+      "--sample-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--species": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--study-contract": {
+        "default": null,
+        "keys": []
+      },
+      "--test": {
+        "default": "'t-test' (package default; official clustering tutorial uses wilcoxon; seurat-markers defaults to wilcox; reviewed literature 16 of 21 Wilcoxon; Pullin and McCarthy 2024 PMID 38409056 report Wilcoxon, t-test and logistic regression all strong)",
+        "keys": [
+          "method"
+        ]
+      },
+      "--tie-correct": {
+        "default": "off (sc.tl.rank_genes_groups.tie_correct; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--top-n": {
+        "default": "5",
+        "keys": []
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "scanpy-qc": {
+      "--annotation": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--doublet-mode": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--doublet-threshold": {
+        "default": null,
+        "keys": []
+      },
+      "--expected-doublet-rate": {
+        "default": null,
+        "keys": [
+          "expected_doublet_rate"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--help": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "'nature'",
+        "keys": []
+      },
+      "--knn-dist-metric": {
+        "default": "euclidean (sc.pp.scrublet.knn_dist_metric; value)",
+        "keys": [
+          "knn_dist_metric"
+        ]
+      },
+      "--log-transform": {
+        "default": "off (sc.pp.scrublet.log_transform; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--max-counts": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "max_counts"
+        ]
+      },
+      "--max-genes": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "max_genes"
+        ]
+      },
+      "--max-mito-percent": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "pct_counts_mt"
+        ]
+      },
+      "--mean-center": {
+        "default": "on (sc.pp.scrublet.mean_center; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--min-cells": {
+        "default": "no scientific default; consult L1 tutorial example; clustering tutorial filtering example: 3",
+        "keys": [
+          "min_cells"
+        ]
+      },
+      "--min-counts": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "min_counts"
+        ]
+      },
+      "--min-genes": {
+        "default": "no scientific default; consult L1 tutorial example; clustering tutorial filtering example: 100",
+        "keys": [
+          "min_genes"
+        ]
+      },
+      "--mito-prefix": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--n-neighbors": {
+        "default": null,
+        "keys": [
+          "n_neighbors"
+        ]
+      },
+      "--normalize-variance": {
+        "default": "on (sc.pp.scrublet.normalize_variance; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--outdir": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "batch_key"
+        ]
+      },
+      "--scrublet-pcs": {
+        "default": "30",
+        "keys": [
+          "n_prin_comps"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--sim-doublet-ratio": {
+        "default": "2.0 (sc.pp.scrublet.sim_doublet_ratio; value)",
+        "keys": [
+          "sim_doublet_ratio"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--species": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--stdev-doublet-rate": {
+        "default": "0.02 (sc.pp.scrublet.stdev_doublet_rate; value)",
+        "keys": [
+          "stdev_doublet_rate"
+        ]
+      },
+      "--study-contract": {
+        "default": null,
+        "keys": []
+      },
+      "--synthetic-doublet-umi-subsampling": {
+        "default": "1.0 (sc.pp.scrublet.synthetic_doublet_umi_subsampling; value)",
+        "keys": [
+          "synthetic_doublet_umi_subsampling"
+        ]
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      },
+      "--use-approx-neighbors": {
+        "default": null,
+        "keys": [
+          "none)"
+        ]
+      }
+    },
+    "scanvi-annotate": {
+      "--adversarial-classifier": {
+        "default": null,
+        "keys": [
+          "none)"
+        ]
+      },
+      "--annotation": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--batch-size": {
+        "default": "128",
+        "keys": [
+          "batch_size"
+        ]
+      },
+      "--cluster-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--datasplitter-kwargs": {
+        "default": null,
+        "keys": [
+          "datasplitter_kwargs"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--help": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "'nature'",
+        "keys": []
+      },
+      "--labels-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "labels_key"
+        ]
+      },
+      "--max-epochs": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "max_epochs"
+        ]
+      },
+      "--min-confidence": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--outdir": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--plan-kwargs": {
+        "default": null,
+        "keys": [
+          "plan_kwargs"
+        ]
+      },
+      "--prediction-col": {
+        "default": "'scanvi_label'",
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--samples-per-label": {
+        "default": null,
+        "keys": [
+          "n_samples_per_label"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": [
+          "seed"
+        ]
+      },
+      "--shuffle-set-split": {
+        "default": "on (model.train.shuffle_set_split; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--species": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--study-contract": {
+        "default": null,
+        "keys": []
+      },
+      "--train-size": {
+        "default": "0.9 (model.train.train_size; value)",
+        "keys": [
+          "train_size"
+        ]
+      },
+      "--unlabeled-category": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "unlabeled_category"
+        ]
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      },
+      "--use-posterior-mean": {
+        "default": "on (model.predict.use_posterior_mean; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--validation-size": {
+        "default": null,
+        "keys": [
+          "validation_size"
+        ]
+      }
+    },
+    "scater-qc": {
+      "--batch-col": {
+        "default": null,
+        "keys": []
+      },
+      "--filter-args": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--max-mito": {
+        "default": null,
+        "keys": [
+          "mito_cutoff"
+        ]
+      },
+      "--metrics-args": {
+        "default": null,
+        "keys": []
+      },
+      "--min-counts": {
+        "default": null,
+        "keys": []
+      },
+      "--min-features": {
+        "default": null,
+        "keys": []
+      },
+      "--mt-genes": {
+        "default": null,
+        "keys": []
+      },
+      "--nmads": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--qc-mode": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--species": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "scran-cluster": {
+      "--batch-col": {
+        "default": null,
+        "keys": []
+      },
+      "--block-col": {
+        "default": null,
+        "keys": []
+      },
+      "--cluster-method": {
+        "default": "walktrap",
+        "keys": [
+          "graph_cluster_method"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--graph-args": {
+        "default": null,
+        "keys": []
+      },
+      "--graph-k": {
+        "default": null,
+        "keys": [
+          "graph_k"
+        ]
+      },
+      "--hvg-args": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--lognorm-args": {
+        "default": null,
+        "keys": []
+      },
+      "--n-hvg": {
+        "default": null,
+        "keys": [
+          "hvg_n"
+        ]
+      },
+      "--n-pcs": {
+        "default": null,
+        "keys": [
+          "pca_components"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pca-args": {
+        "default": null,
+        "keys": []
+      },
+      "--pool-args": {
+        "default": null,
+        "keys": []
+      },
+      "--pool-sizes": {
+        "default": "21",
+        "keys": [
+          "sumfactor_sizes"
+        ]
+      },
+      "--pseudo-count": {
+        "default": "1",
+        "keys": [
+          "lognorm_pseudocount"
+        ]
+      },
+      "--quick-method": {
+        "default": "igraph",
+        "keys": [
+          "quickcluster_method"
+        ]
+      },
+      "--quick-min-size": {
+        "default": "100",
+        "keys": [
+          "quickcluster_min_size"
+        ]
+      },
+      "--quickcluster-args": {
+        "default": null,
+        "keys": []
+      },
+      "--resolution": {
+        "default": null,
+        "keys": []
+      },
+      "--sample-col": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "100",
+        "keys": [
+          "seed"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-args": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-min-dist": {
+        "default": "0.01",
+        "keys": [
+          "umap_min_dist"
+        ]
+      },
+      "--umap-neighbors": {
+        "default": null,
+        "keys": [
+          "umap_neighbors"
+        ]
+      },
+      "--variance-args": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "scran-markers": {
+      "--block-col": {
+        "default": "none; optional blocking column",
+        "keys": [
+          "block"
+        ]
+      },
+      "--cluster-col": {
+        "default": "none; cluster metadata; example colLabels in locked Rd",
+        "keys": [
+          "groups"
+        ]
+      },
+      "--direction": {
+        "default": "any\"; compatibility direction any/up/down",
+        "keys": [
+          "direction"
+        ]
+      },
+      "--from-run": {
+        "default": "none; upstream single-cell run",
+        "keys": []
+      },
+      "--input": {
+        "default": "none; local SCE RDS",
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature\"; figure preset",
+        "keys": []
+      },
+      "--lfc": {
+        "default": "0; native effect threshold; no display-only filtering",
+        "keys": [
+          "lfc"
+        ]
+      },
+      "--marker-args": {
+        "default": "none; supplementary native options including subset.row, pairings and summaries",
+        "keys": []
+      },
+      "--outdir": {
+        "default": "none; output directory",
+        "keys": []
+      },
+      "--pval-type": {
+        "default": "any\"; compatibility p-value any/some/all",
+        "keys": [
+          "pval_type"
+        ]
+      },
+      "--rank-by": {
+        "default": "none; native ranking column; recommend mean.AUC for scoreMarkers or summary.logFC for findMarkers; FDR ranking is ranking, not significance",
+        "keys": [
+          "rank_by"
+        ]
+      },
+      "--rank-decreasing": {
+        "default": "TRUE\"; descending effect ranking; set false for P-value/FDR ranking",
+        "keys": []
+      },
+      "--route": {
+        "default": "scoreMarkers\"; scoreMarkers effect summaries or compatibility findMarkers",
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample\"; biological sample column; absent allows only upstream cluster_col",
+        "keys": []
+      },
+      "--seed": {
+        "default": "100; explicit random seed",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; resolved spec replay",
+        "keys": []
+      },
+      "--test-type": {
+        "default": "t\"; compatibility test t/wilcox/binom",
+        "keys": [
+          "test_type"
+        ]
+      },
+      "--top-n": {
+        "default": "none; display genes per cluster; S0 examples 10 or 100",
+        "keys": [
+          "top_n"
+        ]
+      }
+    },
+    "scvi-integrate": {
+      "--annotation": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--batch-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "batch_key"
+        ]
+      },
+      "--batch-size": {
+        "default": "128",
+        "keys": [
+          "batch_size"
+        ]
+      },
+      "--categorical-covariate-keys": {
+        "default": null,
+        "keys": [
+          "categorical_covariate_keys"
+        ]
+      },
+      "--cluster-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--continuous-covariate-keys": {
+        "default": null,
+        "keys": [
+          "continuous_covariate_keys"
+        ]
+      },
+      "--counts-layer": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "layer"
+        ]
+      },
+      "--datasplitter-kwargs": {
+        "default": null,
+        "keys": [
+          "datasplitter_kwargs"
+        ]
+      },
+      "--dispersion": {
+        "default": "gene (scvi.model.SCVI.dispersion; value; gene\\",
+        "keys": [
+          "gene-label\\"
+        ]
+      },
+      "--dropout-rate": {
+        "default": "0.1 (scvi.model.SCVI.dropout_rate; value)",
+        "keys": [
+          "dropout_rate"
+        ]
+      },
+      "--early-stopping": {
+        "default": "off (model.train.early_stopping; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--features-file": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-likelihood": {
+        "default": "zinb (scvi.model.SCVI.gene_likelihood; value; zinb\\",
+        "keys": [
+          "poisson\\"
+        ]
+      },
+      "--help": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "'nature'",
+        "keys": []
+      },
+      "--latent-distribution": {
+        "default": "normal (scvi.model.SCVI.latent_distribution; value; normal\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--max-epochs": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": [
+          "max_epochs"
+        ]
+      },
+      "--min-dist": {
+        "default": "0.5",
+        "keys": []
+      },
+      "--n-hidden": {
+        "default": "128 (scvi.model.SCVI.n_hidden; value)",
+        "keys": [
+          "n_hidden"
+        ]
+      },
+      "--n-latent": {
+        "default": null,
+        "keys": [
+          "n_latent"
+        ]
+      },
+      "--n-layers": {
+        "default": "1 (scvi.model.SCVI.n_layers; value)",
+        "keys": [
+          "n_layers"
+        ]
+      },
+      "--n-neighbors": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--neighbors-method": {
+        "default": "umap (sc.pp.neighbors.method; value)",
+        "keys": []
+      },
+      "--neighbors-metric": {
+        "default": null,
+        "keys": []
+      },
+      "--neighbors-metric-kwds": {
+        "default": "{} (sc.pp.neighbors.metric_kwds; object)",
+        "keys": []
+      },
+      "--neighbors-transformer": {
+        "default": null,
+        "keys": [
+          "sklearn)"
+        ]
+      },
+      "--outdir": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--plan-kwargs": {
+        "default": null,
+        "keys": [
+          "plan_kwargs"
+        ]
+      },
+      "--sample-col": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": [
+          "seed"
+        ]
+      },
+      "--shuffle-set-split": {
+        "default": "on (model.train.shuffle_set_split; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--size-factor-key": {
+        "default": null,
+        "keys": [
+          "size_factor_key"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--species": {
+        "default": "no scientific default; consult L1 tutorial example",
+        "keys": []
+      },
+      "--study-contract": {
+        "default": null,
+        "keys": []
+      },
+      "--train-size": {
+        "default": null,
+        "keys": [
+          "train_size"
+        ]
+      },
+      "--umap-a": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-alpha": {
+        "default": "1.0 (sc.tl.umap.alpha; value)",
+        "keys": []
+      },
+      "--umap-b": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-gamma": {
+        "default": "1.0 (sc.tl.umap.gamma; value)",
+        "keys": []
+      },
+      "--umap-init-pos": {
+        "default": "spectral (sc.tl.umap.init_pos; value)",
+        "keys": []
+      },
+      "--umap-maxiter": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-negative-sample-rate": {
+        "default": "5 (sc.tl.umap.negative_sample_rate; value)",
+        "keys": []
+      },
+      "--umap-spread": {
+        "default": "1.0 (sc.tl.umap.spread; value)",
+        "keys": []
+      },
+      "--upstream-object": {
+        "default": null,
+        "keys": []
+      },
+      "--use-observed-lib-size": {
+        "default": "on (scvi.model.SCVI.use_observed_lib_size; boolean; on\\",
+        "keys": [
+          "no"
+        ]
+      },
+      "--validation-size": {
+        "default": null,
+        "keys": [
+          "validation_size"
+        ]
+      }
+    },
+    "seurat-cluster": {
+      "--algorithm": {
+        "default": "1",
+        "keys": [
+          "cluster_algorithm"
+        ]
+      },
+      "--cluster-group-singletons": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--cluster-initial-membership": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--cluster-leiden-method": {
+        "default": "c(\"leidenbase\", \"igraph\")",
+        "keys": []
+      },
+      "--cluster-leiden-objective-function": {
+        "default": "c(\"modularity\", \"CPM\")",
+        "keys": []
+      },
+      "--cluster-modularity-fxn": {
+        "default": "1",
+        "keys": []
+      },
+      "--cluster-n-iter": {
+        "default": "10",
+        "keys": []
+      },
+      "--cluster-n-start": {
+        "default": "10",
+        "keys": []
+      },
+      "--cluster-node-sizes": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--dims": {
+        "default": null,
+        "keys": [
+          "neighbor_dims"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--graph-annoy-metric": {
+        "default": "euclidean",
+        "keys": []
+      },
+      "--graph-l2-norm": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--graph-n-trees": {
+        "default": "50",
+        "keys": []
+      },
+      "--graph-nn-eps": {
+        "default": "0",
+        "keys": []
+      },
+      "--graph-nn-method": {
+        "default": "annoy",
+        "keys": []
+      },
+      "--graph-prune-SNN": {
+        "default": "1/15",
+        "keys": []
+      },
+      "--hvg-batch-col": {
+        "default": null,
+        "keys": []
+      },
+      "--hvg-binning-method": {
+        "default": "equal_width",
+        "keys": []
+      },
+      "--hvg-clip-max": {
+        "default": "auto",
+        "keys": []
+      },
+      "--hvg-dispersion-cutoff": {
+        "default": "c(1, Inf)",
+        "keys": []
+      },
+      "--hvg-dispersion-function": {
+        "default": "FastLogVMR",
+        "keys": []
+      },
+      "--hvg-loess-span": {
+        "default": "0.3",
+        "keys": []
+      },
+      "--hvg-mean-cutoff": {
+        "default": "c(0.1, 8)",
+        "keys": []
+      },
+      "--hvg-mean-function": {
+        "default": "FastExpMean",
+        "keys": []
+      },
+      "--hvg-num-bin": {
+        "default": "20",
+        "keys": []
+      },
+      "--hvg-selection-method": {
+        "default": "vst",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--min-dist": {
+        "default": "0.3",
+        "keys": [
+          "umap_min_dist"
+        ]
+      },
+      "--n-hvg": {
+        "default": null,
+        "keys": [
+          "hvg_n"
+        ]
+      },
+      "--n-pcs": {
+        "default": null,
+        "keys": [
+          "pca_npcs"
+        ]
+      },
+      "--neighbors": {
+        "default": null,
+        "keys": [
+          "neighbor_k"
+        ]
+      },
+      "--normalization": {
+        "default": null,
+        "keys": [
+          "normalization_route"
+        ]
+      },
+      "--normalize-margin": {
+        "default": "1",
+        "keys": []
+      },
+      "--normalize-normalization-method": {
+        "default": "LogNormalize",
+        "keys": [
+          "normalization_method"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pca-approx": {
+        "default": "<absent>",
+        "keys": []
+      },
+      "--pca-rev-pca": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--pca-weight-by-var": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--resolution": {
+        "default": null,
+        "keys": [
+          "cluster_resolution"
+        ]
+      },
+      "--scale-block-size": {
+        "default": "1000",
+        "keys": []
+      },
+      "--scale-do-center": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--scale-do-scale": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--scale-factor": {
+        "default": "10000",
+        "keys": [
+          "scale_factor"
+        ]
+      },
+      "--scale-min-cells-to-block": {
+        "default": "3000",
+        "keys": []
+      },
+      "--scale-model-use": {
+        "default": "linear",
+        "keys": []
+      },
+      "--scale-scale-max": {
+        "default": "10",
+        "keys": []
+      },
+      "--scale-split-by": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--scale-use-umi": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--scale-vars-to-regress": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--sct-clip-range": {
+        "default": "c(-sqrt(x = ncol(x = object[[assay]])/30), sqrt(x = ncol(x = object[[assay]])/30))",
+        "keys": []
+      },
+      "--sct-conserve-memory": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--sct-do-center": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--sct-do-correct-umi": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--sct-do-scale": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--sct-ncells": {
+        "default": "5000",
+        "keys": []
+      },
+      "--sct-reference-model": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--sct-residual-features": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--sct-return-only-var-genes": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--sct-variable-features-rv-th": {
+        "default": "1.3",
+        "keys": []
+      },
+      "--sct-vars-to-regress": {
+        "default": "NULL",
+        "keys": [
+          "sct_vars_to_regress"
+        ]
+      },
+      "--sct-vst-flavor": {
+        "default": "v2",
+        "keys": [
+          "sct_vst_flavor"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-a": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-angular-rp-forest": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--umap-b": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-dens-frac": {
+        "default": "0.3",
+        "keys": []
+      },
+      "--umap-dens-lambda": {
+        "default": "2",
+        "keys": []
+      },
+      "--umap-dens-var-shift": {
+        "default": "0.1",
+        "keys": []
+      },
+      "--umap-densmap": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--umap-learning-rate": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-local-connectivity": {
+        "default": "1L",
+        "keys": []
+      },
+      "--umap-metric": {
+        "default": "cosine",
+        "keys": [
+          "umap_metric"
+        ]
+      },
+      "--umap-metric-kwds": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-n-components": {
+        "default": "2L",
+        "keys": []
+      },
+      "--umap-n-epochs": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-negative-sample-rate": {
+        "default": "5L",
+        "keys": []
+      },
+      "--umap-neighbors": {
+        "default": null,
+        "keys": [
+          "umap_neighbors"
+        ]
+      },
+      "--umap-repulsion-strength": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-set-op-mix-ratio": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-spread": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-umap-method": {
+        "default": "uwot",
+        "keys": []
+      },
+      "--umap-uwot-approx-pow": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--umap-uwot-init": {
+        "default": "spectral",
+        "keys": []
+      },
+      "--umap-uwot-sgd": {
+        "default": "FALSE",
+        "keys": []
+      }
+    },
+    "seurat-integrate": {
+      "--batch-col": {
+        "default": null,
+        "keys": [
+          "batch_variable"
+        ]
+      },
+      "--cluster-algorithm": {
+        "default": "1",
+        "keys": []
+      },
+      "--cluster-group-singletons": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--cluster-leiden-method": {
+        "default": "c(\"leidenbase\", \"igraph\")",
+        "keys": []
+      },
+      "--cluster-leiden-objective-function": {
+        "default": "c(\"modularity\", \"CPM\")",
+        "keys": []
+      },
+      "--cluster-modularity-fxn": {
+        "default": "1",
+        "keys": []
+      },
+      "--cluster-n-iter": {
+        "default": "10",
+        "keys": []
+      },
+      "--cluster-n-start": {
+        "default": "10",
+        "keys": []
+      },
+      "--dims": {
+        "default": null,
+        "keys": [
+          "input_dims"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--graph-annoy-metric": {
+        "default": "euclidean",
+        "keys": []
+      },
+      "--graph-l2-norm": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--graph-n-trees": {
+        "default": "50",
+        "keys": []
+      },
+      "--graph-nn-eps": {
+        "default": "0",
+        "keys": []
+      },
+      "--graph-nn-method": {
+        "default": "annoy",
+        "keys": []
+      },
+      "--graph-prune-SNN": {
+        "default": "1/15",
+        "keys": []
+      },
+      "--harmony-early-stop": {
+        "default": "<absent>",
+        "keys": [
+          "early_stop"
+        ]
+      },
+      "--harmony-nclust": {
+        "default": "<absent>",
+        "keys": [
+          "nclust"
+        ]
+      },
+      "--harmony-ncores": {
+        "default": "<absent>",
+        "keys": []
+      },
+      "--harmony-options-alpha": {
+        "default": "0.2",
+        "keys": []
+      },
+      "--harmony-options-batch-prop-cutoff": {
+        "default": "1e-05",
+        "keys": []
+      },
+      "--harmony-options-block-size": {
+        "default": "0.05",
+        "keys": [
+          "block_size"
+        ]
+      },
+      "--harmony-options-epsilon-cluster": {
+        "default": "0.001",
+        "keys": [
+          "epsilon_cluster"
+        ]
+      },
+      "--harmony-options-epsilon-harmony": {
+        "default": "0.01",
+        "keys": [
+          "epsilon_harmony"
+        ]
+      },
+      "--harmony-options-max-iter-cluster": {
+        "default": "4",
+        "keys": [
+          "max_iter_cluster"
+        ]
+      },
+      "--harmony-options-tau": {
+        "default": "0",
+        "keys": [
+          "tau"
+        ]
+      },
+      "--harmony-project-dim": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--integrate-block-size": {
+        "default": "<absent>",
+        "keys": [
+          "block_size"
+        ]
+      },
+      "--integrate-epsilon-cluster": {
+        "default": "<absent>",
+        "keys": [
+          "epsilon_cluster"
+        ]
+      },
+      "--integrate-epsilon-harmony": {
+        "default": "<absent>",
+        "keys": [
+          "epsilon_harmony"
+        ]
+      },
+      "--integrate-max-iter-cluster": {
+        "default": "<absent>",
+        "keys": [
+          "max_iter_cluster"
+        ]
+      },
+      "--integrate-nclust": {
+        "default": "<absent>",
+        "keys": [
+          "nclust"
+        ]
+      },
+      "--integrate-new-reduction": {
+        "default": null,
+        "keys": []
+      },
+      "--integrate-tau": {
+        "default": "<absent>",
+        "keys": [
+          "tau"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--lambda": {
+        "default": null,
+        "keys": [
+          "lambda"
+        ]
+      },
+      "--max-iter": {
+        "default": "10",
+        "keys": [
+          "max_iter_harmony"
+        ]
+      },
+      "--method": {
+        "default": null,
+        "keys": [
+          "integration_route"
+        ]
+      },
+      "--min-dist": {
+        "default": "0.3",
+        "keys": []
+      },
+      "--neighbors": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--resolution": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--sigma": {
+        "default": "0.1",
+        "keys": [
+          "sigma"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--theta": {
+        "default": null,
+        "keys": [
+          "theta"
+        ]
+      },
+      "--umap-a": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-angular-rp-forest": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--umap-b": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-dens-frac": {
+        "default": "0.3",
+        "keys": []
+      },
+      "--umap-dens-lambda": {
+        "default": "2",
+        "keys": []
+      },
+      "--umap-dens-var-shift": {
+        "default": "0.1",
+        "keys": []
+      },
+      "--umap-densmap": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--umap-learning-rate": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-local-connectivity": {
+        "default": "1L",
+        "keys": []
+      },
+      "--umap-metric": {
+        "default": "cosine",
+        "keys": []
+      },
+      "--umap-metric-kwds": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-n-components": {
+        "default": "2L",
+        "keys": []
+      },
+      "--umap-n-epochs": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--umap-negative-sample-rate": {
+        "default": "5L",
+        "keys": []
+      },
+      "--umap-neighbors": {
+        "default": null,
+        "keys": []
+      },
+      "--umap-repulsion-strength": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-set-op-mix-ratio": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-spread": {
+        "default": "1",
+        "keys": []
+      },
+      "--umap-umap-method": {
+        "default": "uwot",
+        "keys": []
+      },
+      "--umap-uwot-approx-pow": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--umap-uwot-init": {
+        "default": "spectral",
+        "keys": []
+      },
+      "--umap-uwot-sgd": {
+        "default": "FALSE",
+        "keys": []
+      }
+    },
+    "seurat-markers": {
+      "--assay": {
+        "default": null,
+        "keys": [
+          "assay"
+        ]
+      },
+      "--condition": {
+        "default": null,
+        "keys": []
+      },
+      "--contrast-densify": {
+        "default": "<absent>",
+        "keys": []
+      },
+      "--contrast-latent-vars": {
+        "default": "NULL",
+        "keys": [
+          "latent_vars"
+        ]
+      },
+      "--contrast-max-cells-per-ident": {
+        "default": "<absent>",
+        "keys": [
+          "max_cells_per_ident"
+        ]
+      },
+      "--contrast-min-cells-feature": {
+        "default": "<absent>",
+        "keys": [
+          "min_cells_feature"
+        ]
+      },
+      "--contrast-min-cells-group": {
+        "default": "<absent>",
+        "keys": [
+          "min_cells_group"
+        ]
+      },
+      "--contrast-min-diff-pct": {
+        "default": "<absent>",
+        "keys": [
+          "min_diff_pct"
+        ]
+      },
+      "--contrast-only-pos": {
+        "default": "<absent>",
+        "keys": [
+          "only_pos"
+        ]
+      },
+      "--display-lfc-filter": {
+        "default": "0",
+        "keys": [
+          "logfc_filter"
+        ]
+      },
+      "--fc-name": {
+        "default": "<absent>",
+        "keys": []
+      },
+      "--fc-slot": {
+        "default": "<absent>",
+        "keys": [
+          "fc_slot"
+        ]
+      },
+      "--features": {
+        "default": "<absent>",
+        "keys": [
+          "features"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--group-by": {
+        "default": "NULL",
+        "keys": [
+          "group_by"
+        ]
+      },
+      "--ident-1": {
+        "default": null,
+        "keys": [
+          "ident_1"
+        ]
+      },
+      "--ident-2": {
+        "default": null,
+        "keys": [
+          "ident_2"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--logfc-threshold": {
+        "default": "0.1",
+        "keys": [
+          "logfc_threshold"
+        ]
+      },
+      "--markers-base": {
+        "default": "2",
+        "keys": [
+          "base"
+        ]
+      },
+      "--markers-densify": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--markers-latent-vars": {
+        "default": "NULL",
+        "keys": [
+          "latent_vars"
+        ]
+      },
+      "--markers-max-cells-per-ident": {
+        "default": "Inf",
+        "keys": [
+          "max_cells_per_ident"
+        ]
+      },
+      "--markers-mean-fxn": {
+        "default": "NULL; package::function",
+        "keys": []
+      },
+      "--markers-min-cells-feature": {
+        "default": "3",
+        "keys": [
+          "min_cells_feature"
+        ]
+      },
+      "--markers-min-cells-group": {
+        "default": "3",
+        "keys": [
+          "min_cells_group"
+        ]
+      },
+      "--markers-min-diff-pct": {
+        "default": "-Inf",
+        "keys": [
+          "min_diff_pct"
+        ]
+      },
+      "--markers-only-pos": {
+        "default": "FALSE",
+        "keys": [
+          "only_pos"
+        ]
+      },
+      "--min-pct": {
+        "default": "0.01",
+        "keys": [
+          "min_pct"
+        ]
+      },
+      "--mode": {
+        "default": "all; example all; tutorial contrast ident-1=2 versus others",
+        "keys": []
+      },
+      "--node": {
+        "default": "NULL",
+        "keys": [
+          "node"
+        ]
+      },
+      "--only-pos": {
+        "default": "true; example true",
+        "keys": [
+          "only_pos"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pseudocount-use": {
+        "default": "<absent>",
+        "keys": [
+          "pseudocount_use"
+        ]
+      },
+      "--recorrect-umi": {
+        "default": "<absent>",
+        "keys": [
+          "recorrect_umi"
+        ]
+      },
+      "--return-thresh": {
+        "default": "0.01",
+        "keys": [
+          "return_thresh"
+        ]
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--slot": {
+        "default": "<absent>",
+        "keys": [
+          "slot"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--subset-ident": {
+        "default": "NULL",
+        "keys": [
+          "subset_ident"
+        ]
+      },
+      "--test": {
+        "default": "wilcox; example wilcox",
+        "keys": [
+          "test"
+        ]
+      },
+      "--top-n": {
+        "default": "10",
+        "keys": []
+      }
+    },
+    "seurat-modulescore": {
+      "--assay": {
+        "default": null,
+        "keys": [
+          "assay"
+        ]
+      },
+      "--ctrl": {
+        "default": "100; example 43 for CellCycleScoring replay; direct AddModuleScore default 100",
+        "keys": [
+          "ctrl"
+        ]
+      },
+      "--feature-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets": {
+        "default": null,
+        "keys": [
+          "gene_set"
+        ]
+      },
+      "--gene-sets-id-type": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-name": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-provenance": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-source": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--gene-sets-species": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-terms": {
+        "default": null,
+        "keys": []
+      },
+      "--gene-sets-version": {
+        "default": null,
+        "keys": [
+          "gene_set_db"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--k": {
+        "default": "false",
+        "keys": [
+          "k"
+        ]
+      },
+      "--kmeans-object": {
+        "default": null,
+        "keys": [
+          "kmeans_obj"
+        ]
+      },
+      "--name": {
+        "default": "Cluster",
+        "keys": [
+          "name"
+        ]
+      },
+      "--nbin": {
+        "default": "24",
+        "keys": [
+          "nbin"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pool": {
+        "default": null,
+        "keys": [
+          "pool"
+        ]
+      },
+      "--seed": {
+        "default": "20260925; example 1 for tutorial/native score replay; suite contract 20260925",
+        "keys": [
+          "seed"
+        ]
+      },
+      "--set-organism": {
+        "default": null,
+        "keys": []
+      },
+      "--slot": {
+        "default": "data",
+        "keys": [
+          "slot"
+        ]
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "seurat-qc": {
+      "--create-min-features": {
+        "default": null,
+        "keys": [
+          "min_features"
+        ]
+      },
+      "--create-names-delim": {
+        "default": "_",
+        "keys": []
+      },
+      "--create-names-field": {
+        "default": "1",
+        "keys": []
+      },
+      "--create-project": {
+        "default": "CreateSeuratObject",
+        "keys": []
+      },
+      "--feature-type": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--input-format": {
+        "default": "10x",
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--max-counts": {
+        "default": null,
+        "keys": [
+          "count_upper"
+        ]
+      },
+      "--max-features": {
+        "default": null,
+        "keys": [
+          "feature_upper"
+        ]
+      },
+      "--max-mito": {
+        "default": null,
+        "keys": [
+          "mito_upper"
+        ]
+      },
+      "--metadata": {
+        "default": null,
+        "keys": []
+      },
+      "--min-cells": {
+        "default": null,
+        "keys": [
+          "min_cells"
+        ]
+      },
+      "--min-counts": {
+        "default": null,
+        "keys": [
+          "count_lower"
+        ]
+      },
+      "--min-features": {
+        "default": null,
+        "keys": [
+          "feature_lower"
+        ]
+      },
+      "--missing-mito": {
+        "default": "error",
+        "keys": []
+      },
+      "--mito-pattern": {
+        "default": null,
+        "keys": [
+          "mito_pattern"
+        ]
+      },
+      "--organism": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--sample": {
+        "default": "sample",
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      }
+    },
+    "singler-annotate": {
+      "--aggr-ref": {
+        "default": "false; false / true",
+        "keys": [
+          "aggr_ref"
+        ]
+      },
+      "--cluster-col": {
+        "default": "named upstream cluster/cell-type metadata",
+        "keys": []
+      },
+      "--counts-layer": {
+        "default": "explicit raw-count role; counts vignette example",
+        "keys": []
+      },
+      "--de-method": {
+        "default": "classic; classic / wilcox / t (wilcox guide single-cell example)",
+        "keys": [
+          "de_method"
+        ]
+      },
+      "--de-n": {
+        "default": "NULL",
+        "keys": [
+          "de_n"
+        ]
+      },
+      "--ecosystem": {
+        "default": "seurat / bioconductor / scverse",
+        "keys": []
+      },
+      "--fine-tune": {
+        "default": "true; true / false",
+        "keys": [
+          "fine_tune"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature; nature / cell / science / generic",
+        "keys": []
+      },
+      "--logcounts-layer": {
+        "default": "explicit normalized log expression; logcounts vignette example",
+        "keys": []
+      },
+      "--nmads": {
+        "default": "3",
+        "keys": [
+          "prune_nmads"
+        ]
+      },
+      "--object-name": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--prune-get-thresholds": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--prune-min-diff-med": {
+        "default": "-Inf",
+        "keys": [
+          "min_diff_med"
+        ]
+      },
+      "--prune-min-diff-next": {
+        "default": "0",
+        "keys": [
+          "min_diff_next"
+        ]
+      },
+      "--prune-nmads": {
+        "default": "3",
+        "keys": [
+          "prune_nmads"
+        ]
+      },
+      "--quantile": {
+        "default": "0.8",
+        "keys": [
+          "quantile"
+        ]
+      },
+      "--reference": {
+        "default": "Muraro vignette example",
+        "keys": [
+          "reference"
+        ]
+      },
+      "--reference-label-col": {
+        "default": "label",
+        "keys": [
+          "label_level"
+        ]
+      },
+      "--reference-name": {
+        "default": "Muraro example",
+        "keys": [
+          "reference"
+        ]
+      },
+      "--reference-version": {
+        "default": "EH2692-EH2693 example",
+        "keys": [
+          "reference_version"
+        ]
+      },
+      "--seed": {
+        "default": "20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default)",
+        "keys": []
+      },
+      "--singler-aggr-args": {
+        "default": "list()",
+        "keys": []
+      },
+      "--singler-aggr-ref": {
+        "default": "FALSE",
+        "keys": [
+          "aggr_ref"
+        ]
+      },
+      "--singler-assay-type-ref": {
+        "default": "logcounts",
+        "keys": [
+          "assay_type_ref"
+        ]
+      },
+      "--singler-assay-type-test": {
+        "default": "logcounts",
+        "keys": [
+          "assay_type_test"
+        ]
+      },
+      "--singler-bnparam": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--singler-bpparam": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--singler-check-missing": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--singler-check-missing-ref": {
+        "default": "check.missing",
+        "keys": [
+          "check_missing_ref"
+        ]
+      },
+      "--singler-check-missing-test": {
+        "default": "FALSE",
+        "keys": [
+          "check_missing_test"
+        ]
+      },
+      "--singler-de-args": {
+        "default": "list()",
+        "keys": []
+      },
+      "--singler-de-method": {
+        "default": "classic",
+        "keys": [
+          "de_method"
+        ]
+      },
+      "--singler-de-n": {
+        "default": "NULL",
+        "keys": [
+          "de_n"
+        ]
+      },
+      "--singler-fine-tune": {
+        "default": "TRUE",
+        "keys": [
+          "fine_tune"
+        ]
+      },
+      "--singler-fine-tune-combined": {
+        "default": "fine.tune",
+        "keys": []
+      },
+      "--singler-genes": {
+        "default": "de",
+        "keys": [
+          "genes"
+        ]
+      },
+      "--singler-hint-sce": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--singler-method": {
+        "default": "NULL",
+        "keys": [
+          "method"
+        ]
+      },
+      "--singler-num-threads": {
+        "default": "1",
+        "keys": []
+      },
+      "--singler-prune": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--singler-quantile": {
+        "default": "0.8",
+        "keys": [
+          "quantile"
+        ]
+      },
+      "--singler-recompute": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--singler-restrict": {
+        "default": "NULL",
+        "keys": [
+          "restrict"
+        ]
+      },
+      "--singler-sd-thresh": {
+        "default": "1",
+        "keys": [
+          "sd_thresh"
+        ]
+      },
+      "--singler-tune-thresh": {
+        "default": "0.05",
+        "keys": [
+          "tune_thresh"
+        ]
+      },
+      "--source-assay": {
+        "default": "RNA tutorial example",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; replay resolved_spec.json",
+        "keys": []
+      },
+      "--species": {
+        "default": "human example; user declaration",
+        "keys": []
+      },
+      "--test-role": {
+        "default": "logcounts; logcounts / counts",
+        "keys": [
+          "assay_type_test"
+        ]
+      },
+      "--tune-thresh": {
+        "default": "0.05",
+        "keys": [
+          "tune_thresh"
+        ]
+      },
+      "--unit": {
+        "default": "cell; cell / cluster",
+        "keys": [
+          "annotation_unit"
+        ]
+      }
+    },
+    "slingshot-trajectory": {
+      "--association-contrasttype": {
+        "default": "start",
+        "keys": [
+          "assoc_contrast_type"
+        ]
+      },
+      "--association-global": {
+        "default": "TRUE",
+        "keys": [
+          "assoc_global"
+        ]
+      },
+      "--association-inverse": {
+        "default": "ifelse(l2fc == 0, \"Chol\", \"eigen\")",
+        "keys": []
+      },
+      "--association-l2fc": {
+        "default": "0",
+        "keys": [
+          "assoc_l2fc"
+        ]
+      },
+      "--association-lineages": {
+        "default": "FALSE",
+        "keys": [
+          "assoc_lineages"
+        ]
+      },
+      "--association-npoints": {
+        "default": "2 * tradeSeq::nknots(models)",
+        "keys": [
+          "assoc_npoints"
+        ]
+      },
+      "--cluster-col": {
+        "default": "named upstream cluster/cell-type metadata",
+        "keys": [
+          "cluster_labels"
+        ]
+      },
+      "--counts-layer": {
+        "default": "explicit raw-count role; counts vignette example",
+        "keys": []
+      },
+      "--ecosystem": {
+        "default": "seurat / bioconductor / scverse",
+        "keys": []
+      },
+      "--fit-gam": {
+        "default": "true, official downstream tradeSeq workflow",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gam-bpparam": {
+        "default": "BiocParallel::bpparam()",
+        "keys": []
+      },
+      "--gam-conditions": {
+        "default": "NULL",
+        "keys": [
+          "fit_conditions"
+        ]
+      },
+      "--gam-control": {
+        "default": "mgcv::gam.control()",
+        "keys": []
+      },
+      "--gam-family": {
+        "default": "nb",
+        "keys": [
+          "fit_family"
+        ]
+      },
+      "--gam-gcv": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--gam-genes": {
+        "default": "seq_len(nrow(counts))",
+        "keys": [
+          "fit_genes"
+        ]
+      },
+      "--gam-nknots": {
+        "default": "6",
+        "keys": [
+          "nknots"
+        ]
+      },
+      "--gam-offset": {
+        "default": "NULL",
+        "keys": [
+          "fit_offset"
+        ]
+      },
+      "--gam-parallel": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--gam-sce": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--gam-u": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--gam-verbose": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--gam-weights": {
+        "default": "NULL",
+        "keys": [
+          "fit_weights"
+        ]
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature; nature / cell / science / generic",
+        "keys": []
+      },
+      "--logcounts-layer": {
+        "default": "explicit normalized log expression; logcounts vignette example",
+        "keys": []
+      },
+      "--object-name": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--reduced-dim": {
+        "default": "PCA/UMAP vignette example; use existing upstream embedding",
+        "keys": [
+          "reduced_dim"
+        ]
+      },
+      "--rng-version": {
+        "default": "3.5.0; tradeSeq.Rmd setup",
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default)",
+        "keys": []
+      },
+      "--sling-allow-breaks": {
+        "default": "TRUE",
+        "keys": [
+          "allow_breaks"
+        ]
+      },
+      "--sling-approx-points": {
+        "default": "NULL",
+        "keys": [
+          "approx_points"
+        ]
+      },
+      "--sling-dist-method": {
+        "default": "slingshot",
+        "keys": [
+          "dist_method"
+        ]
+      },
+      "--sling-end-clus": {
+        "default": "NULL",
+        "keys": [
+          "end_cluster"
+        ]
+      },
+      "--sling-extend": {
+        "default": "y",
+        "keys": [
+          "extend"
+        ]
+      },
+      "--sling-maxit": {
+        "default": "15",
+        "keys": [
+          "maxit"
+        ]
+      },
+      "--sling-omega": {
+        "default": "FALSE",
+        "keys": [
+          "omega"
+        ]
+      },
+      "--sling-omega-scale": {
+        "default": "1.5",
+        "keys": [
+          "omega_scale"
+        ]
+      },
+      "--sling-reassign": {
+        "default": "TRUE",
+        "keys": [
+          "reassign"
+        ]
+      },
+      "--sling-reweight": {
+        "default": "TRUE",
+        "keys": [
+          "reweight"
+        ]
+      },
+      "--sling-shrink": {
+        "default": "TRUE",
+        "keys": [
+          "shrink"
+        ]
+      },
+      "--sling-shrink-method": {
+        "default": "cosine",
+        "keys": [
+          "shrink_method"
+        ]
+      },
+      "--sling-smoother": {
+        "default": "smooth.spline",
+        "keys": [
+          "smoother"
+        ]
+      },
+      "--sling-stretch": {
+        "default": "2",
+        "keys": [
+          "stretch"
+        ]
+      },
+      "--sling-thresh": {
+        "default": "0.001",
+        "keys": [
+          "curve_thresh"
+        ]
+      },
+      "--sling-times": {
+        "default": "NULL",
+        "keys": [
+          "times"
+        ]
+      },
+      "--sling-use-median": {
+        "default": "FALSE",
+        "keys": [
+          "use_median"
+        ]
+      },
+      "--source-assay": {
+        "default": "RNA tutorial example",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; replay resolved_spec.json",
+        "keys": []
+      },
+      "--start-cluster": {
+        "default": "NULL unsupervised default, or known early cluster (vignette 1)",
+        "keys": [
+          "start_cluster"
+        ]
+      },
+      "--trajectory-rds": {
+        "default": "none; optional official cached slingshot object",
+        "keys": []
+      }
+    },
+    "speckle-propeller": {
+      "--cluster-col": {
+        "default": "named upstream cluster/cell-type metadata",
+        "keys": []
+      },
+      "--condition-col": {
+        "default": "vignette group",
+        "keys": [
+          "group_key"
+        ]
+      },
+      "--counts-layer": {
+        "default": "explicit raw-count role; counts vignette example",
+        "keys": []
+      },
+      "--ecosystem": {
+        "default": "seurat / bioconductor / scverse",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature; nature / cell / science / generic",
+        "keys": []
+      },
+      "--logcounts-layer": {
+        "default": "explicit normalized log expression; logcounts vignette example",
+        "keys": []
+      },
+      "--object-name": {
+        "default": null,
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--prop-robust": {
+        "default": "TRUE",
+        "keys": [
+          "robust"
+        ]
+      },
+      "--prop-transform": {
+        "default": "logit",
+        "keys": [
+          "transform"
+        ]
+      },
+      "--prop-trend": {
+        "default": "FALSE",
+        "keys": [
+          "trend"
+        ]
+      },
+      "--props-transform": {
+        "default": "NULL",
+        "keys": [
+          "transform"
+        ]
+      },
+      "--sample-col": {
+        "default": "vignette sample",
+        "keys": [
+          "sample_key"
+        ]
+      },
+      "--seed": {
+        "default": "20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default)",
+        "keys": []
+      },
+      "--source-assay": {
+        "default": "RNA tutorial example",
+        "keys": []
+      },
+      "--spec": {
+        "default": "none; replay resolved_spec.json",
+        "keys": []
+      }
+    },
+    "sva-batch": {
+      "--batch": {
+        "default": null,
+        "keys": []
+      },
+      "--covariates": {
+        "default": null,
+        "keys": [
+          "mod"
+        ]
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--method": {
+        "default": null,
+        "keys": [
+          "method"
+        ]
+      },
+      "--num-sv-method": {
+        "default": "be",
+        "keys": []
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--pca-ntop": {
+        "default": "500",
+        "keys": []
+      },
+      "--sample-col": {
+        "default": "sample",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--study-var": {
+        "default": null,
+        "keys": [
+          "mod"
+        ]
+      },
+      "--study-var-type": {
+        "default": "categorical",
+        "keys": [
+          "mod"
+        ]
+      }
+    },
+    "wgcna-network": {
+      "--cor-cosine": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--cor-cosine-x": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--cor-cosine-y": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--cor-method": {
+        "default": "pearson",
+        "keys": []
+      },
+      "--cor-quick": {
+        "default": "0",
+        "keys": []
+      },
+      "--cor-use": {
+        "default": "p\" (tutorial pairwise correlation)",
+        "keys": []
+      },
+      "--cor-weights-x": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--cor-weights-y": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--deep-split": {
+        "default": "2L",
+        "keys": [
+          "deep_split"
+        ]
+      },
+      "--eigengene-align": {
+        "default": "along average",
+        "keys": []
+      },
+      "--eigengene-exclude-grey": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--eigengene-impute": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--eigengene-n-pc": {
+        "default": "1",
+        "keys": []
+      },
+      "--eigengene-scale": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--eigengene-sub-hubs": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--from-run": {
+        "default": null,
+        "keys": []
+      },
+      "--gsg-min-fraction": {
+        "default": "1/2",
+        "keys": []
+      },
+      "--gsg-min-ngenes": {
+        "default": "4",
+        "keys": []
+      },
+      "--gsg-min-nsamples": {
+        "default": "4",
+        "keys": []
+      },
+      "--gsg-min-relative-weight": {
+        "default": "0.1",
+        "keys": []
+      },
+      "--gsg-tol": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--gsg-weights": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--input": {
+        "default": null,
+        "keys": []
+      },
+      "--input-scale": {
+        "default": null,
+        "keys": [
+          "input_expression"
+        ]
+      },
+      "--journal": {
+        "default": "nature",
+        "keys": []
+      },
+      "--max-block-size": {
+        "default": "5000L",
+        "keys": []
+      },
+      "--merge-height": {
+        "default": "0.15",
+        "keys": [
+          "merge_cut_height"
+        ]
+      },
+      "--min-module-size": {
+        "default": null,
+        "keys": [
+          "min_module_size"
+        ]
+      },
+      "--network-cor-type": {
+        "default": "pearson",
+        "keys": []
+      },
+      "--network-cosine-correlation": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--network-detect-cut-height": {
+        "default": "0.995",
+        "keys": []
+      },
+      "--network-impute": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--network-max-poutliers": {
+        "default": "1",
+        "keys": []
+      },
+      "--network-min-core-kme": {
+        "default": "0.5",
+        "keys": []
+      },
+      "--network-min-core-kmesize": {
+        "default": "minSize/3",
+        "keys": []
+      },
+      "--network-min-kmeto-stay": {
+        "default": "0.3",
+        "keys": []
+      },
+      "--network-pam-stage": {
+        "default": "TRUE",
+        "keys": []
+      },
+      "--network-pearson-fallback": {
+        "default": "individual",
+        "keys": []
+      },
+      "--network-quick-cor": {
+        "default": "0",
+        "keys": []
+      },
+      "--network-replace-missing-adjacencies": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--network-suppress-negative-tom": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--network-suppress-tomfor-zero-adjacencies": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--network-tomdenom": {
+        "default": "min",
+        "keys": []
+      },
+      "--network-type": {
+        "default": null,
+        "keys": [
+          "network_type"
+        ]
+      },
+      "--outdir": {
+        "default": null,
+        "keys": []
+      },
+      "--outlier-rule": {
+        "default": null,
+        "keys": [
+          "sample_outlier_rule"
+        ]
+      },
+      "--pam-respects-dendro": {
+        "default": "true",
+        "keys": []
+      },
+      "--power": {
+        "default": null,
+        "keys": [
+          "soft_power"
+        ]
+      },
+      "--power-reason": {
+        "default": null,
+        "keys": []
+      },
+      "--powers": {
+        "default": "1,2,3,4,5,6,7,8,9,10,12,14,16,18,20",
+        "keys": []
+      },
+      "--preprocessing": {
+        "default": null,
+        "keys": []
+      },
+      "--reassign-threshold": {
+        "default": "0.000001",
+        "keys": []
+      },
+      "--samples": {
+        "default": null,
+        "keys": []
+      },
+      "--seed": {
+        "default": "20260925L",
+        "keys": []
+      },
+      "--soft-cor-fnc": {
+        "default": "WGCNA::cor",
+        "keys": []
+      },
+      "--soft-cor-options": {
+        "default": "list(use = \"p\")",
+        "keys": []
+      },
+      "--soft-n-breaks": {
+        "default": "10",
+        "keys": []
+      },
+      "--soft-remove-first": {
+        "default": "FALSE",
+        "keys": []
+      },
+      "--soft-rsquared-cut": {
+        "default": "0.85",
+        "keys": []
+      },
+      "--soft-weights": {
+        "default": "NULL",
+        "keys": []
+      },
+      "--spec": {
+        "default": null,
+        "keys": []
+      },
+      "--tom-type": {
+        "default": "signed",
+        "keys": []
+      },
+      "--trait-p-adjust": {
+        "default": "BH",
+        "keys": []
+      },
+      "--traits": {
+        "default": null,
+        "keys": []
+      },
+      "--upstream-object": {
+        "default": "expression_matrix",
+        "keys": []
+      }
+    }
+  },
+  "schema": "omicstat.s0-option-defaults.v1"
+}

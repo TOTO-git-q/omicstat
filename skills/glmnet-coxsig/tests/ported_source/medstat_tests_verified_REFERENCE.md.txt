@@ -1,0 +1,7 @@
+# CPM-one-predictor
+
+- Data: seeded synthetic n=240 binary-outcome sample with a single monotone predictor `x`.
+- Engine: diagnostic CPM with prespecified `x`, 200 bootstrap repetitions, equation presentation. Output `tables/cpm_performance.csv`, apparent AUC.
+- Expected: apparent binary-outcome C-index (AUC) from pair ranking of the predictor across all positive-negative pairs, counting ties as one-half. A one-predictor logistic fit is monotone in `x` when its slope is positive. Tolerance 1e-5.
+- Source: Bamber D. The area above the ordinal dominance graph and the area below the receiver operating characteristic graph. *J Math Psychol* 1975;12:387-415, Eq. 2; Hanley JA, McNeil BJ. *Radiology* 1982;143:29-36, AUC rank interpretation.
+- Why independent: pairwise comparisons of original input `x` in base R, no `rms`, pROC, or engine performance functions.

@@ -1,0 +1,15 @@
+# Independent source port from TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa
+# skills/baseline-table/scripts/baseline_table.R; source numerical equivalence awaits native R4.6.1.
+# See PORT_ADAPTATIONS.json. Loaded only into an isolated private environment.
+.bt_classify_all <- function(data, vars, factor_vars = character(0), continuous_vars = character(0)) {
+  out <- lapply(vars, function(v) {
+    if (!v %in% names(data)) {
+      stop(sprintf("OS_MISSING_COLUMN: analysis variable '%s' is not a column of the input data.", v),
+           call. = FALSE)
+    }
+    force_type <- if (v %in% factor_vars) "categorical" else if (v %in% continuous_vars && length(unique(data[[v]][!is.na(data[[v]])])) > 1L) "continuous" else NULL
+    classify_variable(data[[v]], var_name = v, force_type = force_type)
+  })
+  names(out) <- vars
+  out
+}

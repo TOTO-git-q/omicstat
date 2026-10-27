@@ -1,0 +1,126 @@
+[
+  {
+    "source_path": "skills/survival-nonph/scripts/nonph_core.R",
+    "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+    "source_git_blob": "edfe85864745f51d13a5463c0d5c71ef653faa19",
+    "source_raw_bytes": 79904,
+    "source_raw_sha256": "7b9bc7db2e286f05a9e341712235adc4ea2784cea882d390064bcf52d9c2bc04",
+    "reference_path": "skills/survival-expr/tests/ported_source/nonph_selected_before.R.txt",
+    "target_path": "skills/survival-expr/scripts/survival_ported_nonph.R",
+    "original_extracted_normalized_lf_sha256": "64fd07eef533bc5d005d8aa864a2115512dc46cd1a27e02b57d0edff6cb1f7bf",
+    "adaptations": [
+      "Selected functions only; source line endings normalized to LF; diagnostic codes mapped to existing OmicStat registry.",
+      "The unrequested survey::svycoxph branch becomes an explicit typed refusal; no survey package or runtime dependency is imported.",
+      "Name the same coxph formula, cox.zph fit and survSplit formula arguments; no values or native defaults are changed.",
+      "Classification retains source P threshold 0.05 and user-declared engineering magnitude; piecewise retains native Cox defaults under an explicit source-native acknowledgement.",
+      "Source period labels and zero-time nudge remain in the copied helper. The public adapter refuses nonpositive times, and records correct counting-process interval endpoints in separate display columns.",
+      "Update source-only diagnostic guidance to local OmicStat references; preserve refusal conditions and avoid suggesting unavailable MedStat functions."
+    ],
+    "functions": [
+      {
+        "name": ".zph_slope_row",
+        "original_normalized_lf_sha256": "756136d5b8e8c9480c9108e553bc3e398c33d0d8b96c5154c5ccab88b022af51",
+        "adapted_function_sha256": "756136d5b8e8c9480c9108e553bc3e398c33d0d8b96c5154c5ccab88b022af51"
+      },
+      {
+        "name": "zph_diagnostics",
+        "original_normalized_lf_sha256": "87d9a6fcb3806654b4e83987c441afa47ba7e6d37dbdc0281c5df6c1facad77b",
+        "adapted_function_sha256": "ca57f7b693e723c0c4c14d8eff964fa7190c0495d1be2b353d670747e869d108"
+      },
+      {
+        "name": "zph_classify",
+        "original_normalized_lf_sha256": "6708cd5a30594557ad5b11a76775b8e41ebe983598a3bdaf0b4f0ea68d005f0c",
+        "adapted_function_sha256": "d2bc03a5028ce9947e77b4a73fb696f3701363b79feb89070dd81a31413b56c3"
+      },
+      {
+        "name": ".period_labels",
+        "original_normalized_lf_sha256": "0865ff49a11a831292a87e63d39f2019bd0c20d2747159ceededaaa2f8bb9efb",
+        "adapted_function_sha256": "0865ff49a11a831292a87e63d39f2019bd0c20d2747159ceededaaa2f8bb9efb"
+      },
+      {
+        "name": "piecewise_split",
+        "original_normalized_lf_sha256": "fa71f5e8345508630fb966c31619276687fbbb4b2aa734eab1e70b57aeceed34",
+        "adapted_function_sha256": "a7492f42b3ee78bd5938dd6594a7dc0c1f8bc8935e19bd25378ace60d52761f0"
+      },
+      {
+        "name": "piecewise_hr",
+        "original_normalized_lf_sha256": "8ba282abf8aea1057a734145dde3e94b06235ba6f57a5d08c7e4ed1360ed449d",
+        "adapted_function_sha256": "1294c427ea050dfce6362747fade2c12b25941c940723980d1055393e87440f1"
+      },
+      {
+        "name": ".coxph_warn_terms",
+        "original_normalized_lf_sha256": "daa5e77655f6161e8020ecf5087bead7b39798b92bc63db2cb21b747ef3f924f",
+        "adapted_function_sha256": "daa5e77655f6161e8020ecf5087bead7b39798b92bc63db2cb21b747ef3f924f"
+      },
+      {
+        "name": ".piecewise_at_risk",
+        "original_normalized_lf_sha256": "45fe639c7742ef19a1d2bcb6341f2739388b505dd3d08ddfa6e5f90e2e535809",
+        "adapted_function_sha256": "45fe639c7742ef19a1d2bcb6341f2739388b505dd3d08ddfa6e5f90e2e535809"
+      }
+    ]
+  },
+  {
+    "source_path": "skills/competing-risks/scripts/cr_core.R",
+    "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+    "source_git_blob": "d67d8d5918f86c862fce2c5d51fc7457058bb063",
+    "source_raw_bytes": 73990,
+    "source_raw_sha256": "29f117d7708affa4baf359c60222213b0be6be26e96b9e2a2a719c6bcba002bf",
+    "reference_path": "skills/survival-expr/tests/ported_source/cr_selected_before.R.txt",
+    "target_path": "skills/survival-expr/scripts/survival_ported_cr.R",
+    "original_extracted_normalized_lf_sha256": "86fa14cf7f07a77426aaf9695a573d97cf961f7713dc1b27843a6b4620c87e6e",
+    "adaptations": [
+      "Selected functions only; source line endings normalized to LF; diagnostic codes mapped to existing OmicStat registry.",
+      "Explicitly retain factor level 0 for the censoring state, including all-event data and per-group subsets. This is a reviewed encoding correction, not a claim of same numerical behavior for the defective no-censor source case.",
+      "Name the unchanged survfit formula argument. The copied Aalen-Johansen primitive remains point-estimate only: no CI, Gray, cause-specific or Fine-Gray result is invented.",
+      "The outer adapter rejects missing/nonfinite status before this copied helper, requires a distinct multi-cause status column and verifies the unchanged binary event column equals the nominated cause.",
+      "Update source-only diagnostic guidance to local OmicStat references; preserve refusal conditions and avoid suggesting unavailable MedStat functions."
+    ],
+    "functions": [
+      {
+        "name": ".cr_stop",
+        "original_normalized_lf_sha256": "90f6e5e4d2959fb8eea0e3b6ae0dabfb80d48a524a4160d9a3fa0215172514cd",
+        "adapted_function_sha256": "90f6e5e4d2959fb8eea0e3b6ae0dabfb80d48a524a4160d9a3fa0215172514cd"
+      },
+      {
+        "name": ".cr_warn",
+        "original_normalized_lf_sha256": "4f638ced83307a55b61625932651d314fbce64ff50416723a66b9229e505d894",
+        "adapted_function_sha256": "4f638ced83307a55b61625932651d314fbce64ff50416723a66b9229e505d894"
+      },
+      {
+        "name": "cr_status",
+        "original_normalized_lf_sha256": "c4ffff3ed782a5091fe229b01e2b0ea0ee8f130a67909d00db229d9ef4f06a27",
+        "adapted_function_sha256": "c80cf0661743bf48323b3811c62c3f579be9f17053e957a162d6fd9e9b64be3e"
+      },
+      {
+        "name": "cr_triage",
+        "original_normalized_lf_sha256": "c09333218d1008ddb744db9aab0cf7e2c27bf7bc9a6fc0c6bbd076b81bcf437f",
+        "adapted_function_sha256": "fbb6445ad20487af0f0829e29b155567058cd8952b07193c2619afae39bd9b1c"
+      },
+      {
+        "name": "one_minus_km",
+        "original_normalized_lf_sha256": "8be87a697eba89fa24ce1c75c96e780466783c993792d217f493a7df8aaecbe8",
+        "adapted_function_sha256": "4d9dd1467e7fa0a99ad76c889cdd9675639cb9c8c3fce00cedfa54997078a6cc"
+      },
+      {
+        "name": "aalen_johansen",
+        "original_normalized_lf_sha256": "88d79eab9d3a9082399cac1064208fc33e41778df3917ca5366c0878ab629ef8",
+        "adapted_function_sha256": "77d4b519fcde57b45f0a919b9af3ced08412973290f6c076060bbc7881f8aa53"
+      },
+      {
+        "name": "km_vs_cif_table",
+        "original_normalized_lf_sha256": "7ffcb86a0730911568748eade6661f7d0706a7c3f0303945838de0d25542d438",
+        "adapted_function_sha256": "7ffcb86a0730911568748eade6661f7d0706a7c3f0303945838de0d25542d438"
+      },
+      {
+        "name": "km_sum_check",
+        "original_normalized_lf_sha256": "2d1cc4da42a2e9da8c9a937233a34a24efdf1b733a44bfa79d263173adbcc99c",
+        "adapted_function_sha256": "b81b0edbdd8c35b19dc6cdb37e3ffc9120700b78c0a25578de05c0f9dffb66b9"
+      },
+      {
+        "name": "guard_cif_estimator",
+        "original_normalized_lf_sha256": "400e9b17a31764aca45d37fb6f1bf37d028d52f8a1e35a9769d63ac58f7669d0",
+        "adapted_function_sha256": "655756f17be8de646e7c521e0b358561647fa5c86e9290212fff05f95dbe3ccb"
+      }
+    ]
+  }
+]

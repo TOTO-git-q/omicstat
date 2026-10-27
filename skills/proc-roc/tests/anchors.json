@@ -1,0 +1,119 @@
+[
+  {
+    "id": "sensitivity",
+    "metric": "Original counted-2x2 sensitivity",
+    "expected": 0.9,
+    "tolerance": 1e-10,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/diagnostic-accuracy/tests/verified/REFERENCE.md",
+    "scope": "Pinned original synthetic numerical anchor, not real owner data; native OmicStat R4.6.1 execution required",
+    "how": "replay"
+  },
+  {
+    "id": "specificity",
+    "metric": "Original counted-2x2 specificity",
+    "expected": 0.8,
+    "tolerance": 1e-10,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/diagnostic-accuracy/tests/verified/REFERENCE.md",
+    "scope": "Pinned original synthetic numerical anchor, not real owner data; native OmicStat R4.6.1 execution required",
+    "how": "replay"
+  },
+  {
+    "id": "ppv",
+    "metric": "Original counted-2x2 ppv",
+    "expected": 0.8181818181818182,
+    "tolerance": 1e-10,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/diagnostic-accuracy/tests/verified/REFERENCE.md",
+    "scope": "Pinned original synthetic numerical anchor, not real owner data; native OmicStat R4.6.1 execution required",
+    "how": "replay"
+  },
+  {
+    "id": "auc_pair_count",
+    "metric": "Original counted-2x2 auc_pair_count",
+    "expected": 0.98,
+    "tolerance": 1e-10,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/diagnostic-accuracy/tests/verified/REFERENCE.md",
+    "scope": "Pinned original synthetic numerical anchor, not real owner data; native OmicStat R4.6.1 execution required",
+    "how": "replay"
+  },
+  {
+    "id": "auc_delong_ci_low_delta",
+    "metric": "Independent formula or copied-original paired contract: auc_delong_ci_low_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "auc_delong_ci_high_delta",
+    "metric": "Independent formula or copied-original paired contract: auc_delong_ci_high_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "paired_delong_p_delta",
+    "metric": "Independent formula or copied-original paired contract: paired_delong_p_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "paired_auc_difference_delta",
+    "metric": "Independent formula or copied-original paired contract: paired_auc_difference_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "holm_adjustment_delta",
+    "metric": "Independent formula or copied-original paired contract: holm_adjustment_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "wilson_sensitivity_low_delta",
+    "metric": "Independent formula or copied-original paired contract: wilson_sensitivity_low_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "simel_lr_positive_delta",
+    "metric": "Independent formula or copied-original paired contract: simel_lr_positive_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "simel_lr_positive_low_delta",
+    "metric": "Independent formula or copied-original paired contract: simel_lr_positive_low_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  },
+  {
+    "id": "same_input_before_after_auc_delta",
+    "metric": "Independent formula or copied-original paired contract: same_input_before_after_auc_delta",
+    "expected": 0,
+    "tolerance": 1e-09,
+    "source": "Independent formula and adapter check in skills/proc-roc/tests/test_helpers.R and tests/run_anchors.R; original numerical inputs are separately bound by tests/fixtures/SOURCE.json",
+    "scope": "Supplementary deterministic source/formula check, not a value printed in the original reference; no observed native result claimed",
+    "how": "replay"
+  }
+]

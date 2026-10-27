@@ -1,0 +1,37 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "proda-diff",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/proda-diff/scripts/proda_diff_core.R": "625f6027bf465bab58b11845c305ba1999a3beedd677631807568e714aa02181",
+    "skills/proda-diff/scripts/proda_diff_qc.R": "516791aa720a6bc04d1219bb171c8733d27ec4a9a7694ee111dc3ee896e0004b",
+    "skills/proda-diff/scripts/proda_diff_report.R": "75ee580478a41a366caca75d97669c27933bace53c445e1b7453423f2c85a396",
+    "skills/proda-diff/scripts/run_proda_diff.R": "4eba3af84e7dd21fed1e18a6735fd31f1818f21efc9e5af2d6b0ce3eae0a0e9c",
+    "skills/proda-diff/scripts/calls_registry.json": "d2a0b5d635e4620dec8a9f59285d8e2924c6dca8503e3a7c9dc48d3bf079bbee",
+    "skills/proda-diff/SKILL.md": "0a40eefac1e8f1003eb88e7b2179b5a416613a290a6154a90286caac5c509a49",
+    "skills/proda-diff/references/method-basis.md": "cb9ceff884174d42d380b7483158d87b453af3e96fc2db46b177ddeebe0cd313",
+    "skills/proda-diff/references/options.md": "fdb55c1d2b0f97de8fe75e11019c31c157613e328cedb663050b8e5aae9b534a",
+    "skills/proda-diff/references/parameters.md": "17b2f30491290a2cabe91129b29508ddfa833087024c7a118918479b2017f453",
+    "skills/proda-diff/references/qc-rules.md": "bb8d560a25beda02134a2ec08534325d28401460d61693b4a4662407723b689f",
+    "skills/proda-diff/references/reporting-templates.md": "c24db0a1096b236e09689f484c8854d528b51a3bb2def13eb0d7194397be987e",
+    "skills/proda-diff/references/source-evidence/SKILL.md": "25092fffeec990a6a09cbfdd77deb21abc3dc24e20523590aedb29b6b4ac02da",
+    "skills/proda-diff/references/source-evidence/VALIDATION_STATUS.json": "a15d143ffc65ccc9f6b4ad0f1a8aa8fa802ae027f8468e63ef0665154383c7fa",
+    "skills/proda-diff/references/source-evidence/acceptance_status.json": "91f4f2b8e603b9f6e47a485a7b652656abff5c9ef35f4e23a8a0d9f6f7e1b859",
+    "skills/proda-diff/references/source-evidence/provenance.json": "5ab52854de17224bde0dd166a3e09d1368544071d5030c4108cd1e40d42002b9",
+    "skills/proda-diff/references/troubleshooting.md": "fb5ad1d2db6191ecb168b825641ac237e9ecbc001436c4f332249d1bdfe301a0",
+    "skills/proda-diff/tests/anchors.R": "155ad29ce19bd74c88cf4bc606cae152c41dbdb9fbbfebcca6e9e0615621ad32",
+    "skills/proda-diff/tests/run_smoke_test.R": "d257a8222955b6dbccfd44e6a76a4cd61beae6c87f23bd246a287c326446f1de",
+    "skills/proda-diff/tests/golden_manifest.csv": "8ccaef670562315376025c546c9a3e3468e6fbee5519f219525298c76b1a37ba"
+  },
+  "packages": {
+    "proDA": "1.26.0"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

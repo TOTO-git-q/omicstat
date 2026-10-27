@@ -1,8 +1,13 @@
-# The image only needs env/ and mcp/requirements.txt; keep the context small.
-*
-!env/omicstat-env.json
-!env/r/
-!env/layers/
+# Explicit build inputs. Keep each ancestor traversable for Docker's matcher.
+**
+!env/
+!env/**
+!mcp/
 !mcp/requirements.txt
-!env/refdata_registry.json
-!env/basilisk_pkg_lock.txt
+!tools/
+!tools/env/
+!tools/env/**
+# Regenerable interpreter caches are never required build inputs.
+**/__pycache__/
+**/*.pyc
+**/.git/

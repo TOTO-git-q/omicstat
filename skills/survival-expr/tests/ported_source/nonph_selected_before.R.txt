@@ -1,0 +1,263 @@
+`%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
+
+ZPH_TRANSFORMS <- c("km", "rank", "identity", "log")
+
+.zph_slope_row <- function(z, term, coef_val) {
+  tbl <- z$table
+  df_row <- tbl[term, "df"]
+  if (is.na(df_row) || df_row > 1) {
+    return(list(slope = NA_real_, delta_loghr = NA_real_, hr_start = NA_real_,
+                hr_end = NA_real_, multi_df = TRUE))
+  }
+  y_col <- z$y[, term]
+  x_vals <- z$x
+  # Non-finite x (e.g. transform="log" on a time of 0 -> log(0) = -Inf, which
+  # is routine in NHANES linked-mortality files where permth_exm=0 means
+  # "died in the exam month") must never reach lm.fit() -- it dies on
+  # NA/NaN/Inf in x with no useful message and halts the entire run before
+  # any artefact is written. Drop the non-finite rows (and the matching y)
+  # and fit on what remains; report how many were dropped so the caller can
+  # surface it in qc/ instead of it being silent.
+  finite_idx <- is.finite(x_vals) & is.finite(y_col)
+  n_dropped <- sum(!finite_idx)
+  x_vals_fit <- x_vals[finite_idx]
+  y_col_fit <- y_col[finite_idx]
+  if (length(unique(x_vals_fit)) < 2) {
+    return(list(slope = NA_real_, delta_loghr = NA_real_, hr_start = NA_real_,
+                hr_end = NA_real_, multi_df = FALSE, n_nonfinite_x = n_dropped))
+  }
+  fit <- stats::lm(y_col_fit ~ x_vals_fit)
+  sl <- stats::coef(fit)[2]
+  x_vals <- x_vals_fit
+  span <- diff(range(x_vals))
+  delta <- unname(sl) * span
+  hr_start <- exp(coef_val + unname(sl) * (min(x_vals) - mean(x_vals)))
+  hr_end   <- exp(coef_val + unname(sl) * (max(x_vals) - mean(x_vals)))
+  list(slope = unname(sl), delta_loghr = unname(delta), hr_start = unname(hr_start),
+       hr_end = unname(hr_end), multi_df = FALSE, n_nonfinite_x = n_dropped)
+}
+
+zph_diagnostics <- function(fit, transforms = ZPH_TRANSFORMS) {
+  if (inherits(fit, "svycoxph")) {
+    stop(paste("MS_INVALID_MODEL: zph_diagnostics() must not be called on a svycoxph object --",
+               "cox.zph() silently returns an uninformative result on a design-weighted fit",
+               "(P2 sec 8.1: GLOBAL chisq ~0.005, P~1.00 on data with a real, large violation).",
+               "Use zph_screening_weighted() for a design-unweighted screening test, and",
+               "ph_wald_design() for the formal design-based PH test."), call. = FALSE)
+  }
+  if (!inherits(fit, "coxph")) {
+    stop("MS_INVALID_MODEL: zph_diagnostics() expects a coxph() fit.", call. = FALSE)
+  }
+  coefs <- stats::coef(fit)
+  rows <- list()
+  for (tr in transforms) {
+    z <- survival::cox.zph(fit, transform = tr)
+    tbl <- as.data.frame(z$table)
+    terms <- rownames(tbl)
+    for (term in terms) {
+      is_global <- identical(term, "GLOBAL")
+      # WP-M3: a factor / character covariate has no coefficient NAMED after its term (genderM,
+      # race_catBlack, ...); `coefs[[term]]` raised "subscript out of bounds" there, so a Model 3 with
+      # any text covariate could not run. Such a term gets NA here (its slope row is multi-df or has no
+      # single coefficient), exactly what the `%||% NA_real_` above always intended.
+      cv <- if (is_global) NA_real_ else (if (term %in% names(coefs)) coefs[[term]] else NA_real_)
+      sl_info <- if (is_global) {
+        list(slope = NA_real_, delta_loghr = NA_real_, hr_start = NA_real_, hr_end = NA_real_, multi_df = FALSE)
+      } else {
+        .zph_slope_row(z, term, cv)
+      }
+      rows[[length(rows) + 1]] <- data.frame(
+        transform = tr, term = term, chisq = tbl[term, "chisq"], df = tbl[term, "df"],
+        p = tbl[term, "p"], slope = sl_info$slope, delta_loghr = sl_info$delta_loghr,
+        hr_start = sl_info$hr_start, hr_end = sl_info$hr_end, multi_df = sl_info$multi_df,
+        is_global = is_global, n_nonfinite_x = sl_info$n_nonfinite_x %||% 0L, stringsAsFactors = FALSE)
+    }
+  }
+  out <- do.call(rbind, rows)
+  rownames(out) <- NULL
+  out
+}
+
+zph_classify <- function(diag, term, primary_transform = "km", magnitude_threshold = 0.20) {
+  sub <- diag[diag$transform == primary_transform & !diag$is_global, ]
+  row <- sub[sub$term == term, ]
+  global_row <- diag[diag$transform == primary_transform & diag$is_global, ]
+  if (!nrow(row)) {
+    stop(sprintf("MS_INVALID_PARAMETER: term '%s' not found in the zph_diagnostics() table (transform='%s').",
+                 term, primary_transform), call. = FALSE)
+  }
+  if (!nrow(global_row)) {
+    stop(sprintf("MS_INVALID_PARAMETER: no GLOBAL row at transform='%s'.", primary_transform), call. = FALSE)
+  }
+  p_global <- global_row$p[1]
+  p_term <- row$p[1]
+  delta <- abs(row$delta_loghr[1])
+  if (isTRUE(row$multi_df[1])) {
+    return(list(severity = "unassessed", p_global = p_global, p_term = p_term, delta_loghr = NA_real_,
+                reason = "multi-df term: chisq/P reported, no single slope; magnitude not assessable by this algorithm (P2 sec 1.4)."))
+  }
+  if (p_global >= 0.05 && p_term >= 0.05) {
+    return(list(severity = "none", p_global = p_global, p_term = p_term, delta_loghr = row$delta_loghr[1],
+                reason = sprintf("GLOBAL P=%.3g and %s P=%.3g are both >= 0.05.", p_global, term, p_term)))
+  }
+  if (is.na(delta) || delta < magnitude_threshold) {
+    return(list(severity = "low", p_global = p_global, p_term = p_term, delta_loghr = row$delta_loghr[1],
+                reason = sprintf(paste("P<0.05 (GLOBAL P=%.3g) but the %s end-to-end log-HR change is %.3f,",
+                                       "below the %.2f magnitude threshold -- a statistically detectable but",
+                                       "small departure (P2 sec 1.3)."),
+                                 p_global, term, delta, magnitude_threshold)))
+  }
+  list(severity = "high", p_global = p_global, p_term = p_term, delta_loghr = row$delta_loghr[1],
+       reason = sprintf("P<0.05 (GLOBAL P=%.3g) and end-to-end log-HR change |%.3f| >= %.2f threshold (P2 sec 1.3).",
+                        p_global, delta, magnitude_threshold))
+}
+
+.period_labels <- function(cuts) {
+  bounds <- c(0, sort(cuts), Inf)
+  n <- length(bounds) - 1
+  vapply(seq_len(n), function(i) {
+    lo <- bounds[i]; hi <- bounds[i + 1]
+    # ">=lo" for the open-ended final period, not "[lo,inf)" -- applied
+    # papers write ">=7" or "7+", never a literal "inf" (acceptance report
+    # minor).
+    if (is.infinite(hi)) sprintf(">=%s", format(lo, trim = TRUE))
+    else sprintf("[%s,%s)", format(lo, trim = TRUE), format(hi, trim = TRUE))
+  }, character(1))
+}
+
+piecewise_split <- function(data, time, event, cuts, id_col = "nonph_id") {
+  if (id_col %in% names(data)) {
+    stop(sprintf("MS_INVALID_PARAMETER: id_col '%s' already exists in data; pass a different name.", id_col), call. = FALSE)
+  }
+  cuts <- sort(unique(cuts))
+  # survival::survSplit() recognizes its LHS by literal call name -- it must
+  # be the unqualified "Surv(...)" (verified: "survival::Surv(...) ~ ."
+  # errors "left hand side not recognized"), unlike coxph()/svycoxph() below,
+  # which are fine with the namespace-qualified form.
+  if (!requireNamespace("survival", quietly = TRUE)) {
+    stop("MS_MISSING_PACKAGE: package 'survival' is required.", call. = FALSE)
+  }
+  form <- stats::as.formula(sprintf("Surv(%s, %s) ~ .", time, event))
+  n0 <- nrow(data)
+  # blocker fix: survival::survSplit()'s time origin defaults to zero=0, and
+  # it hard-errors ("'zero' parameter must be less than any observed times")
+  # the instant any follow-up time equals 0 -- routine in NHANES linked-
+  # mortality files (permth_exm=0, "died in the exam month"). A subject with
+  # a genuinely zero-length follow-up has no interval width to assign to a
+  # period; the pragmatic, widely used convention (rather than dropping the
+  # row, which would silently discard a real death) is to nudge it to an
+  # infinitesimally small positive value so it is assigned to period 1 with
+  # essentially zero duration, preserving the event. n_zero_time is recorded
+  # as an attribute so callers can disclose the nudge (see run_nonph.R's
+  # Table 1/Table 2 footnotes) rather than it happening silently.
+  n_zero_time <- sum(data[[time]] <= 0, na.rm = TRUE)
+  if (n_zero_time > 0) {
+    eps <- min(data[[time]][data[[time]] > 0], na.rm = TRUE) / 1000
+    if (!is.finite(eps) || eps <= 0) eps <- 1e-6
+    data[[time]][data[[time]] <= 0] <- eps
+  }
+  ds <- survival::survSplit(form, data = data, cut = cuts, episode = "period", id = id_col)
+  # NP-09 self-check: row count must increase (P2 sec 3.1 MUST rule 7) and the
+  # id column must exist -- both indicate the split actually ran on the
+  # counting-process form, not silently on Surv(time,status) alone.
+  if (nrow(ds) <= n0 || !(id_col %in% names(ds))) {
+    stop("MS_SPLIT_FAILED: survSplit() did not increase the row count or is missing the id column -- the counting-process split did not happen as expected.", call. = FALSE)
+  }
+  labels <- .period_labels(cuts)
+  ds$period <- factor(ds$period, levels = seq_along(labels), labels = labels)
+  attr(ds, "period_labels") <- labels
+  attr(ds, "cuts") <- cuts
+  attr(ds, "n_zero_time") <- n_zero_time
+  attr(ds, "time") <- time
+  attr(ds, "event") <- event
+  attr(ds, "id_col") <- id_col
+  ds
+}
+
+piecewise_hr <- function(ds, exposure, covars = character(0), design = NULL, alpha = 0.05) {
+  time <- attr(ds, "time"); event <- attr(ds, "event")
+  labels <- attr(ds, "period_labels")
+  covar_txt <- if (length(covars)) paste0(" + ", paste(covars, collapse = " + ")) else ""
+  f <- stats::as.formula(sprintf("survival::Surv(tstart, %s, %s) ~ %s:strata(period)%s",
+                                 time, event, exposure, covar_txt))
+  # C6: trap coxph's "coefficient may be infinite / did not converge" warnings
+  # instead of letting the boundary fit print as a real estimate (HR 0.0000,
+  # CI 0-Inf, P 0.989). The warning text names the offending column index(es),
+  # which is mapped back to the model term below.
+  warns <- character(0)
+  .trap <- function(expr) withCallingHandlers(expr, warning = function(w) {
+    if (grepl("infinite|did not converge", conditionMessage(w), ignore.case = TRUE)) {
+      warns <<- c(warns, conditionMessage(w)); invokeRestart("muffleWarning")
+    }
+  })
+  fit <- if (is.null(design)) {
+    .trap(survival::coxph(f, data = ds))
+  } else {
+    .trap(survey::svycoxph(f, design = design))
+  }
+  s <- summary(fit, conf.int = 1 - alpha)
+  term_names <- paste0(exposure, ":strata(period)", labels)
+  ci <- s$conf.int
+  coefmat <- s$coefficients
+  bad_terms <- character(0); bad_all <- FALSE
+  if (length(warns)) {
+    wt <- .coxph_warn_terms(warns, names(stats::coef(fit)))
+    bad_terms <- wt$terms; bad_all <- wt$unmapped
+    # a warning that names only a covariate leaves the exposure terms alone, but
+    # it must not be swallowed: hand it back to the caller's console.
+    if (!bad_all && !length(intersect(bad_terms, term_names))) warning(paste(unique(warns), collapse = " | "), call. = FALSE)
+  }
+  # C6: events per exposure level within each period. A period in which one
+  # arm has no events has no estimable contrast (the partial likelihood is
+  # monotone), whatever the total event count of the period is.
+  lv_exp <- sort(unique(ds[[exposure]]))
+  ev_tab <- tapply(ds[[event]], list(factor(ds$period, levels = labels), factor(ds[[exposure]], levels = lv_exp)),
+                   function(v) sum(v == 1, na.rm = TRUE))
+  ev_tab[is.na(ev_tab)] <- 0
+  rows <- lapply(seq_along(labels), function(i) {
+    tn <- term_names[i]
+    ev_i <- ev_tab[i, ]
+    ev_txt <- paste(sprintf("%s=%d", lv_exp, as.integer(ev_i)), collapse = "; ")
+    no_arm <- if (length(lv_exp) == 2) any(ev_i == 0) else sum(ev_i > 0) < 2
+    note <- NA_character_
+    if (no_arm) {
+      note <- if (sum(ev_i) == 0) "not estimable (no events in one arm; zero events in this period)" else
+        "not estimable (no events in one arm)"
+    } else if (bad_all || tn %in% bad_terms) {
+      note <- "not estimable (coxph did not converge or the coefficient is infinite)"
+    } else if (!tn %in% rownames(ci)) {
+      note <- "not estimable (coefficient could not be estimated)"
+    }
+    if (!is.na(note)) {
+      return(data.frame(period = labels[i], term = tn, hr = NA_real_, ci_low = NA_real_,
+                        ci_high = NA_real_, p_value = NA_real_, note = note,
+                        events_by_exposure = ev_txt, stringsAsFactors = FALSE))
+    }
+    p_col <- if ("Pr(>|z|)" %in% colnames(coefmat)) "Pr(>|z|)" else if ("p" %in% colnames(coefmat)) "p" else tail(colnames(coefmat), 1)
+    data.frame(period = labels[i], term = tn, hr = unname(ci[tn, 1]),
+              ci_low = unname(ci[tn, 3]), ci_high = unname(ci[tn, 4]),
+              p_value = unname(coefmat[tn, p_col]), note = NA_character_,
+              events_by_exposure = ev_txt, stringsAsFactors = FALSE)
+  })
+  out <- do.call(rbind, rows)
+  at_risk <- .piecewise_at_risk(ds, time, event)
+  out <- merge(out, at_risk, by = "period", sort = FALSE)
+  out <- out[match(labels, out$period), ]
+  rownames(out) <- NULL
+  out$n_unweighted <- nrow(ds[!duplicated(ds[[attr(ds, "id_col")]]), ])
+  if (length(warns)) attr(out, "coxph_warnings") <- unique(warns)
+  out
+}
+
+.coxph_warn_terms <- function(warns, coef_names) {
+  idx <- unlist(lapply(regmatches(warns, regexpr("variable[s]?[ ]+[0-9, ]+", warns)), function(x)
+    as.integer(strsplit(gsub("[^0-9,]", "", x), ",")[[1]])))
+  idx <- idx[!is.na(idx) & idx >= 1 & idx <= length(coef_names)]
+  list(terms = coef_names[idx], unmapped = !length(idx) && length(warns) > 0)
+}
+
+.piecewise_at_risk <- function(ds, time, event) {
+  agg <- stats::aggregate(list(n_at_risk_at_start = ds$tstart), by = list(period = ds$period), FUN = length)
+  ev <- stats::aggregate(list(n_events = ds[[event]]), by = list(period = ds$period), FUN = sum)
+  merge(agg, ev, by = "period")
+}

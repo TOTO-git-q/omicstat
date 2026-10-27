@@ -122,7 +122,10 @@ def canonical_argv(spec, args, skip=("help", "spec", "outdir")):
             continue
         if v is None:
             continue
-        out += ["--" + f.name, fmt_value(v)]
+        value = fmt_value(v)
+        if isinstance(v, float) and float(value) != v:
+            value = format(v, ".17g")
+        out += ["--" + f.name, value]
     return out
 
 
@@ -199,11 +202,11 @@ def env_tier():
 def env_signature():
     """tier + Python + py_env_version + platform + image (module_kit.R os_env_signature)."""
     ver = None
-    for p in (os.path.join(os.environ.get("OMICSTAT_ENV_DIR", ""), "omicstat-env.json"),
-              os.path.join(os.path.dirname(__file__), "..", "..", "..", "..", "env", "omicstat-env.json")):
+    for p in (os.path.join(os.environ.get("OMICSTAT_ENV_DIR", ""), "py", "py-env.json"),
+              os.path.join(os.path.dirname(__file__), "..", "..", "..", "..", "env", "py", "py-env.json")):
         try:
             with open(p, encoding="utf-8") as fh:
-                ver = json.load(fh)["python_lane"]["py_env_version"]
+                ver = json.load(fh)["py_env_version"]
             break
         except (OSError, KeyError, ValueError):
             continue

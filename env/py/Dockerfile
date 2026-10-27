@@ -37,6 +37,8 @@ RUN python -c "import platform, sys; v = platform.python_version(); \
 sys.exit(0 if v == '${PYTHON_VERSION}' else 'OS_ENV_PYTHON_VERSION: base image has Python %s, pin is ${PYTHON_VERSION}' % v)"
 
 COPY omicstat-env.json /opt/omicstat/env/omicstat-env.json
+COPY r-env.json /opt/omicstat/env/r-env.json
+COPY py/py-env.json /opt/omicstat/env/py/py-env.json
 COPY py_lock.txt /opt/omicstat/env/py_lock.txt
 COPY py/uv.lock py/split_lock.py py/write_py_installed.py /opt/omicstat/env/py/
 

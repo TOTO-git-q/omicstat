@@ -1,0 +1,253 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "omicstat-ddct",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_omicstat_ddct.R",
+  "version": "0.1.0",
+  "qc_prefix": "DDC",
+  "engine_packages": [
+    "stats"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "development_ddct"
+    ]
+  },
+  "figure_builders": [
+    "os_group_points"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 51,
+    "question": "Normalize qPCR Ct per biological unit and reference gene using prespecified delta-delta-Ct"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--input",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--ct-col",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--gene-col",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--group-col",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--well-col",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--well-layout",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "separate|same",
+      "role": "scientific"
+    },
+    {
+      "flag": "--target-genes",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--reference-gene",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--reference-group",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--group-order",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--design",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "independent|paired",
+      "role": "scientific"
+    },
+    {
+      "flag": "--inference",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "descriptive|welch|paired-t",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ct-max",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "num in [1, Inf]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--assay-validation",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--adjust",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "none|holm|bonferroni|BH|BY",
+      "role": "scientific"
+    },
+    {
+      "flag": "--family-size",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "int in [1, Inf]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--display",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "box|bar",
+      "role": "scientific"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "prespecified scientific input",
+      "required": false,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "source": "execution control",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "prespecified scientific input",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "source": "execution control"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 49,
+    "discovery_profile": {
+      "module": "omicstat-ddct",
+      "epmc_query": "METHODS:\"delta delta Ct\" OR METHODS:\"qPCR\"",
+      "meta": false,
+      "signal_regex": "(?:delta delta Ct|qPCR)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

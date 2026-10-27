@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Owner freeze: empty string also disables legacy nzchar() write gates.
+export OMICSTAT_WRITE_GOLDEN=
 # Run every Python-lane test INSIDE the omicstat-py image (env/py/test.sh):
 # the image self-test (static + functional determinism), the python_lane
 # config checks, the _shared/py unit tests, the lock-3 checker tests, and for
@@ -12,13 +14,15 @@ cd "$(dirname "$0")/.."
 fail=0; test_index=0
 log="${TMPDIR:-/tmp}/omicstat_test_py.$$.log"
 run() {
+  local command_rc=0
   echo "== $*"
-  if "$@" > "$log" 2>&1; then tail -1 "$log"; else grep -v '^PASS' "$log" | tail -25; fail=1; fi
+  if "$@" > "$log" 2>&1; then tail -1 "$log"; else command_rc=$?; grep -v '^PASS' "$log" | tail -25; fail=1; fi
   test_index=$((test_index + 1))
   if [ -n "${OMICSTAT_TEST_LOG_DIR:-}" ]; then
     mkdir -p "$OMICSTAT_TEST_LOG_DIR"
     cp "$log" "$OMICSTAT_TEST_LOG_DIR/$(printf '%03d' "$test_index").log"
     printf '%03d\t%s\n' "$test_index" "$*" >> "$OMICSTAT_TEST_LOG_DIR/index.tsv"
+    printf '%03d\t%s\t%s\n' "$test_index" "$command_rc" "$*" >> "$OMICSTAT_TEST_LOG_DIR/status.tsv"
   fi
 }
 run python env/py/selftest_image.py --functional
@@ -28,6 +32,9 @@ run python skills/_shared/py/tests/test_user_genesets.py
 run python tools/test_check_calls.py
 run python tools/test_new_module_py.py
 run python tools/test_build_contracts.py
+run python tools/test_summarize_test_run.py
+run python skills/scanpy-qc/tests/test_stage_report.py
+run python tools/test_acceptance.py
 run python tools/check_skill_frontmatter.py
 for mod in skills/*/; do
   set -- "$mod"scripts/run_*.py

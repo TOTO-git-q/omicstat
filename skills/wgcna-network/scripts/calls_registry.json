@@ -128,7 +128,7 @@
         },
         "networkType": {
           "value": "a[[\"network-type\"]]",
-          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "source": "user-required; owner adjudication 2026-10-11 (package author Langfelder recommends signed; function default unsigned is historical)",
           "pack": "D-WG",
           "function_default": "\"unsigned\""
         },
@@ -253,7 +253,7 @@
         },
         "networkType": {
           "value": "a[[\"network-type\"]]",
-          "source": "locked formals probe; parameter policy 2026-09-29; PACK D-WG",
+          "source": "user-required; owner adjudication 2026-10-11 (package author Langfelder recommends signed; function default unsigned is historical)",
           "pack": "D-WG",
           "function_default": "\"unsigned\""
         },

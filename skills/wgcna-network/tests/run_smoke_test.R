@@ -16,7 +16,7 @@ for (tool in c("check_calls.R", "check_defaults.py", "check_flag_docs.py", "lint
  check(system2(cmd, c(shQuote(file.path(suite, "tools", tool)), shQuote(mod))) == 0, tool)
 }
 f <- make_female_liver(suite, file.path(tmp, "input")); check(!is.null(f), "FemaleLiver hash, 3600x143/361x38 structures and tutorial 134 retained samples")
-base <- c("--input", shQuote(f$input), "--samples", shQuote(f$samples), "--traits", "other_fat", "--input-scale", "normalized_array", "--preprocessing", "tutorial-selected-3600-probes", "--outlier-rule", "tutorial-height15-minSize10-retain-cluster1", "--power", "6", "--power-reason", "tutorial-example-replay", "--tom-type", "unsigned", "--min-module-size", "30", "--merge-height", "0.25", "--reassign-threshold", "0", "--pam-respects-dendro", "false")
+base <- c("--input", shQuote(f$input), "--samples", shQuote(f$samples), "--traits", "other_fat", "--input-scale", "normalized_array", "--preprocessing", "tutorial-selected-3600-probes", "--outlier-rule", "tutorial-height15-minSize10-retain-cluster1", "--power", "6", "--power-reason", "tutorial-example-replay", "--network-type", "unsigned", "--tom-type", "unsigned", "--min-module-size", "30", "--merge-height", "0.25", "--reassign-threshold", "0", "--pam-respects-dendro", "false")
 a0 <- file.path(tmp, "anchor"); z <- run(base, "--outdir", shQuote(a0)); check(z$status == 0, paste("full tutorial engine", paste(tail(z$out, 2), collapse = " | ")))
 net <- WGCNA::blockwiseModules(f$x, power = 6, TOMType = "unsigned", minModuleSize = 30, reassignThreshold = 0,
  mergeCutHeight = 0.25, numericLabels = TRUE, pamRespectsDendro = FALSE, saveTOMs = FALSE, verbose = 0, nThreads = 1)
@@ -46,6 +46,8 @@ b8 <- base; b8[match("--power", b8)+1] <- "8"
 s2 <- file.path(tmp, "power8"); check(run(b8, "--outdir", shQuote(s2))$status == 0, "power flag")
 check(sha(file.path(a0, "tables", "gene_modules.csv")) != sha(file.path(s2, "tables", "gene_modules.csv")), "power changes full-anchor module assignments/membership")
 err <- run(b, "--wrong-flag", "1", "--outdir", shQuote(file.path(tmp, "error"))); check(err$status != 0 && any(grepl("OS_UNKNOWN_FLAG", err$out)), "typed unknown flag")
+nt <- which(base == "--network-type"); nb <- base[-c(nt, nt + 1L)]
+e <- run(nb, "--outdir", shQuote(file.path(tmp, "no-network-type"))); check(e$status != 0 && any(grepl("OS_MISSING_PARAMETER.*network-type", e$out)), "network type is required (no silent unsigned default)")
 u <- file.path(tmp, "upstream"); dir.create(file.path(u, "objects"), recursive = TRUE, showWarnings = FALSE); file.copy(small, file.path(u, "objects", "expression.csv"), overwrite = TRUE)
 write_handoff(u, "fixture", "fixture", "1.0.0", list(expression_matrix = list(path = file.path(u, "objects", "expression.csv"), type = "expression_matrix")), state = list(input_scale = "normalized_array"))
 bc <- b[-c(match("--input", b), match("--input", b)+1)]

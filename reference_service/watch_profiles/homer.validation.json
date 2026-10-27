@@ -1,0 +1,43 @@
+{
+ "profile": "homer",
+ "checked_on": "2026-10-10",
+ "live_hit_count": 2474,
+ "attempted_fulltexts": 12,
+ "outcomes": {
+  "forget:off_topic": 3,
+  "screened": 4,
+  "metadata_only:rights_restricted": 4,
+  "forget:excluded_by_regex": 1
+ },
+ "screened": 4,
+ "licence_clean_share": 0.64,
+ "requests": 12,
+ "feasible": true,
+ "screened_papers": [
+  {
+   "pmid": "42806046",
+   "journal": "Nature Communications",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42758816",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42758809",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42715313",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  }
+ ],
+ "criteria": "hits > 0, >= 3 screened of the first 12, licence-clean share >= 0.5"
+}

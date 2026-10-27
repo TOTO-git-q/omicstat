@@ -1,0 +1,42 @@
+[
+  {
+    "id": "exact_hypergeometric_max_error",
+    "metric": "exact_hypergeometric_max_error",
+    "expected": 0,
+    "tolerance": 1e-10,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Hypergeometric.html ; Python exact integer combinations and independent BH reverse cumulative minima; author example in ReactomePA1.56.0 R/enrichPathway.R",
+    "scope": "Actual engine output independently recomputed from SHA-bound resource memberships and input universe, never wrapper-generated expected P values",
+    "how": "replay"
+  },
+  {
+    "id": "independent_bh_max_error",
+    "metric": "independent_bh_max_error",
+    "expected": 0,
+    "tolerance": 1e-10,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Hypergeometric.html ; Python exact integer combinations and independent BH reverse cumulative minima; author example in ReactomePA1.56.0 R/enrichPathway.R",
+    "scope": "Actual engine output independently recomputed from SHA-bound resource memberships and input universe, never wrapper-generated expected P values",
+    "how": "replay"
+  },
+  {
+    "id": "integer_count_max_error",
+    "metric": "integer_count_max_error",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Hypergeometric.html ; Python exact integer combinations and independent BH reverse cumulative minima; author example in ReactomePA1.56.0 R/enrichPathway.R",
+    "scope": "Actual engine output independently recomputed from SHA-bound resource memberships and input universe, never wrapper-generated expected P values",
+    "how": "replay"
+  },
+  {
+    "id": "author_selected_input_count",
+    "metric": "author_selected_input_count",
+    "expected": 15,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Hypergeometric.html ; Python exact integer combinations and independent BH reverse cumulative minima; author example in ReactomePA1.56.0 R/enrichPathway.R",
+    "scope": "Actual engine output independently recomputed from SHA-bound resource memberships and input universe, never wrapper-generated expected P values",
+    "how": "replay"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "source_url": "https://pypi.org/pypi/celltypist/1.7.1/json",
+  "retrieved_utc": "2026-10-18T06:24:13.657373+00:00",
+  "response_sha256": "7833568a05091d4dbeed1a03162e2fe09753a82de3f268fd9284686781b39677",
+  "metadata_only": true,
+  "package": "celltypist",
+  "version": "1.7.1",
+  "requires_python": ">=3.6",
+  "requires_dist": [
+    "numpy>=1.19.0",
+    "pandas>=1.0.5",
+    "scikit-learn>=0.24.1",
+    "openpyxl>=3.0.4",
+    "click>=7.1.2",
+    "requests>=2.23.0",
+    "scanpy>=1.7.0",
+    "leidenalg>=0.9.0"
+  ],
+  "yanked": false,
+  "files": [
+    {
+      "filename": "celltypist-1.7.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/92/6c/12f14d20ccd49bfe8709cebd1b77a244f019e44a8702d3962021b618812e/celltypist-1.7.1-py3-none-any.whl",
+      "digests": {
+        "blake2b_256": "926c12f14d20ccd49bfe8709cebd1b77a244f019e44a8702d3962021b618812e",
+        "md5": "73a4d0a241996c922ef58b96bba14329",
+        "sha256": "3953f96a4476ed1dd2807446d97d3945e8905bbdac6bfef0d20b84a9a00d1101"
+      },
+      "packagetype": "bdist_wheel",
+      "requires_python": ">=3.6",
+      "size": 7331762,
+      "upload_time_iso_8601": "2025-06-25T21:14:56.669645Z",
+      "yanked": false,
+      "core-metadata": {
+        "sha256": "c5c2693cb24d8f2f044afb5542d729151ad33fd9ac3af53e2971ad0e9f5c1b85"
+      }
+    },
+    {
+      "filename": "celltypist-1.7.1.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/d9/4d/947ca18ecfd80fb2d7ce18d6f6bb2c23f5a45e09a6e7579a7fa69c782315/celltypist-1.7.1.tar.gz",
+      "digests": {
+        "blake2b_256": "d94d947ca18ecfd80fb2d7ce18d6f6bb2c23f5a45e09a6e7579a7fa69c782315",
+        "md5": "191ae29c98008dc4ed17da504bcb498b",
+        "sha256": "6ffaebc0f296d24785ffce25951ad70a00553bd8d06aff2f55f98251b739ce00"
+      },
+      "packagetype": "sdist",
+      "requires_python": ">=3.6",
+      "size": 6676736,
+      "upload_time_iso_8601": "2025-06-25T21:14:58.406166Z",
+      "yanked": false,
+      "core-metadata": false
+    }
+  ]
+}

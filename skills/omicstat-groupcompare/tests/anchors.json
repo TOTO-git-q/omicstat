@@ -1,0 +1,172 @@
+[
+  {
+    "id": "sleep_t",
+    "metric": "Paired sleep t statistic",
+    "expected": -4.062,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_df",
+    "metric": "Paired sleep degrees of freedom",
+    "expected": 9,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_p",
+    "metric": "Paired sleep two-sided p value",
+    "expected": 0.003,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_difference",
+    "metric": "Drug1 minus drug2 mean extra sleep hours",
+    "expected": -1.58,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_ci_low",
+    "metric": "Paired sleep 90 percent CI lower",
+    "expected": -2.293,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "sleep_ci_high",
+    "metric": "Paired sleep 90 percent CI upper",
+    "expected": -0.867,
+    "tolerance": 0.0005,
+    "tolerance_kind": "absolute",
+    "source": "https://stat.ethz.ch/CRAN/web/packages/TOSTER/vignettes/IntroTOSTt.html#paired-samples-analysis",
+    "scope": "module; paired t NHST only, not TOST equivalence",
+    "how": "printed"
+  },
+  {
+    "id": "source_mean_difference",
+    "metric": "Original shifted-distribution mean difference",
+    "expected": 2,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_smd",
+    "metric": "Original average-unbiased-variance SMD",
+    "expected": 0.03455473702325441,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_quantile_diff_min",
+    "metric": "Original shifted-distribution fixed-grid quantile differences minimum",
+    "expected": 2,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_quantile_diff_max",
+    "metric": "Original shifted-distribution fixed-grid quantile differences maximum",
+    "expected": 2,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_inverse_ties_first",
+    "metric": "Original inverse ECDF ties: first quantile",
+    "expected": 0,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_inverse_ties_middle",
+    "metric": "Original inverse ECDF ties: median",
+    "expected": 2,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_inverse_ties_last",
+    "metric": "Original inverse ECDF ties: last quantile",
+    "expected": 9,
+    "tolerance": 0,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "source_reference_flip",
+    "metric": "Original explicit reference flips mean difference",
+    "expected": -2,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "baseline_welch_moment_error",
+    "metric": "Original BT-welch P compared with independent sample-moment reference",
+    "expected": 0,
+    "tolerance": 1e-08,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/baseline-table/tests/verified/run_verified.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  },
+  {
+    "id": "adapter_before_after_max_error",
+    "metric": "Same-input original vs OS-mapped point/CI numerical columns maximum absolute difference",
+    "expected": 0,
+    "tolerance": 1e-12,
+    "tolerance_kind": "absolute",
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/descriptive-distribution/tests/run_tests.R",
+    "scope": "Synthetic numerical source-port contract only; not owner data or obtained native evidence",
+    "how": "replay",
+    "native_status": "pending_R4.6.1"
+  }
+]

@@ -53,7 +53,7 @@ def _infer(values):
     if all(isinstance(v, bool) for v in vals):
         return "logical"
     if all(isinstance(v, int) and not isinstance(v, bool) for v in vals):
-        return "integer"
+        return "integer" if all(-2147483647 <= v <= 2147483647 for v in vals) else "numeric"
     if all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in vals):
         return "numeric"
     return "character"
@@ -76,11 +76,17 @@ def _cell(v, t):
     if t in ("character", "factor"):
         return '"' + str(v).replace('"', '""') + '"'
     if t == "numeric":
+        if isinstance(v, int) and not isinstance(v, bool):
+            bits = abs(v).bit_length()
+            if bits > 1024 or bits > 53 and v % (1 << (bits - 53)):
+                raise OmicstatError("OS_INVALID_PARAMETER", "numeric source integer is not exactly representable as binary64")
         x = float(v)
         if math.isinf(x):
             return "Inf" if x > 0 else "-Inf"
         return "%.17g" % x
     if t == "integer":
+        if isinstance(v, bool) or not isinstance(v, int) or not -2147483647 <= v <= 2147483647:
+            raise OmicstatError("OS_INVALID_PARAMETER", "integer source value must fit R's non-missing signed 32-bit integer range")
         return str(int(v))
     if t == "logical":
         return "TRUE" if bool(v) else "FALSE"
@@ -91,8 +97,12 @@ class _Data(dict):
     pass
 
 
-def frame(table, types=None, levels=None):
-    """A data.frame argument. table: list of row dicts, dict of columns, or a pandas DataFrame."""
+def frame(table, types=None, levels=None, row_id=None):
+    """A data.frame argument; optional row_id becomes an explicit R row-name index.
+
+    The index column is checksum-protected in CSV, then removed from displayed
+    annotation tracks. It must contain unique, nonempty string IDs.
+    """
     types, levels = dict(types or {}), {k: list(v) for k, v in (levels or {}).items()}
     if hasattr(table, "columns") and hasattr(table, "to_dict"):          # pandas, without importing it
         cols = [str(c) for c in table.columns]
@@ -125,7 +135,13 @@ def frame(table, types=None, levels=None):
                 raise OmicstatError("OS_INVALID_PARAMETER", "frame(): column %s has values outside its levels: %s" % (c, bad[:5]))
             col["levels"] = [str(x) for x in lv]
         spec.append(col)
-    return _Data(kind="data.frame", columns=spec, data=data, n=(n.pop() if n else 0))
+    result = _Data(kind="data.frame", columns=spec, data=data, n=(n.pop() if n else 0))
+    if row_id is not None:
+        ids = data.get(row_id, [])
+        if row_id not in data or not ids or any(not isinstance(x, str) or not x for x in ids) or len(set(ids)) != len(ids):
+            raise OmicstatError("OS_INVALID_PARAMETER", "frame(): row_id must name unique, nonempty string IDs")
+        result["row_id_column"] = row_id
+    return result
 
 
 def vector(values, type=None, names=None):                                # noqa: A002
@@ -149,7 +165,9 @@ def matrix(values, row_names, col_names):
     row_names, col_names = [str(x) for x in row_names], [str(x) for x in col_names]
     if len(rows) != len(row_names) or any(len(r) != len(col_names) for r in rows):
         raise OmicstatError("OS_INVALID_PARAMETER", "matrix(): dimensions and dimnames disagree")
-    if len(set(col_names)) != len(col_names) or "row_id" in col_names:
+    if not row_names or not col_names or len(set(row_names)) != len(row_names) or any(not x for x in row_names):
+        raise OmicstatError("OS_INVALID_PARAMETER", "matrix(): row names must be unique and nonempty")
+    if len(set(col_names)) != len(col_names) or "row_id" in col_names or any(not x for x in col_names):
         raise OmicstatError("OS_INVALID_PARAMETER", "matrix(): column names must be unique and not 'row_id'")
     data = {"row_id": row_names}
     for j, c in enumerate(col_names):
@@ -177,7 +195,7 @@ class FigureRequest:
         self.figures = []
 
     def add(self, fig_id, builder, data, args=None, out_stem=None, width="single", height_mm=None,
-            formats=("pdf", "png"), caption_context=None):
+            formats=("pdf", "png"), caption_context=None, definition=None, evidence_refs=None, sampling_scope=None):
         if not _ID_RE.match(fig_id) or any(f["id"] == fig_id for f in self.figures):
             raise OmicstatError("OS_INVALID_PARAMETER", "figure id %r is invalid or duplicated" % fig_id)
         if not re.match(r"^os_[a-z0-9_]+$", builder):
@@ -192,6 +210,28 @@ class FigureRequest:
             raise OmicstatError("OS_INVALID_PARAMETER", "formats must be a non-empty subset of %s" % ", ".join(FORMATS))
         if caption_context is not None and (not isinstance(caption_context, str) or not caption_context.strip()):
             raise OmicstatError("OS_INVALID_PARAMETER", "caption_context must be a nonempty string")
+        if definition is not None:
+            from .figure_semantics import validate_definition
+            definition = validate_definition(definition)
+        if evidence_refs is not None:
+            from .figure_semantics import validate_evidence_refs
+            evidence_refs = validate_evidence_refs(evidence_refs)
+        if sampling_scope is not None:
+            from .figure_scope import bound_sampling_scope, SOURCE_REL
+            import json
+            try:
+                with open(os.path.join(self.outdir, SOURCE_REL), encoding='utf-8') as stream:
+                    record = json.load(stream)
+                expected = bound_sampling_scope(record, sampling_scope['observations_after'], self.outdir)
+            except (OSError, ValueError, KeyError, TypeError) as exc:
+                raise OmicstatError('OS_INVALID_INPUT', 'figure sampling source is missing or invalid') from exc
+            if expected != sampling_scope:
+                raise OmicstatError('OS_INVALID_INPUT', 'figure sampling metadata differs from the bound source')
+            if not isinstance(caption_context, str) or sampling_scope['caption'] not in caption_context:
+                raise OmicstatError('OS_INVALID_INPUT', 'figure caption must include the complete bound sampling scope')
+            if 'emb' in data:
+                from .figure_scope import check_embedding_scope
+                check_embedding_scope(sampling_scope, data['emb'])
         entries = {}
         for arg, d in data.items():
             if not isinstance(d, _Data):
@@ -200,6 +240,8 @@ class FigureRequest:
             path = write_data_csv(d, os.path.join(self.outdir, *rel.split("/")))
             entries[arg] = {"kind": d["kind"], "path": rel, "sha256": sha256_file(path), "n_rows": d["n"],
                             "columns": d["columns"]}
+            if d.get("row_id_column") is not None:
+                entries[arg]["row_id_column"] = d["row_id_column"]
         clash = sorted(set(entries) & set(args or {}))
         if clash:
             raise OmicstatError("OS_INVALID_PARAMETER", "argument(s) given both as data and as args: %s" % clash)
@@ -208,6 +250,12 @@ class FigureRequest:
                              "args": dict(args or {})})
         if caption_context is not None:
             self.figures[-1]["caption_context"] = caption_context
+        if definition is not None:
+            self.figures[-1]["definition"] = definition
+        if evidence_refs is not None:
+            self.figures[-1]["evidence_refs"] = evidence_refs
+        if sampling_scope is not None:
+            self.figures[-1]["sampling_scope"] = sampling_scope
         return self
 
     def to_dict(self):
@@ -234,6 +282,23 @@ def validate_request(outdir, rel=REQUEST_REL):
     if req.get("schema") != FIGURE_REQUEST_SCHEMA:
         probs.append("schema tag")
     for f in req.get("figures") or []:
+        if f.get('sampling_scope') is not None:
+            try:
+                from .figure_scope import bound_sampling_scope, SOURCE_REL
+                with open(os.path.join(outdir, SOURCE_REL), encoding='utf-8') as stream:
+                    record = json.load(stream)
+                expected = bound_sampling_scope(record, f['sampling_scope']['observations_after'], outdir)
+                if expected != f['sampling_scope'] or expected['caption'] not in (f.get('caption_context') or ''):
+                    raise OmicstatError('OS_INVALID_INPUT', 'sampling scope/caption differs from source')
+            except (OmicstatError, OSError, ValueError, KeyError, TypeError) as exc:
+                probs.append('%s/sampling_scope: %s' % (f.get('id', 'unknown'), exc))
+        for field, validator in (("definition", "validate_definition"), ("evidence_refs", "validate_evidence_refs")):
+            if f.get(field) is not None:
+                from . import figure_semantics
+                try:
+                    getattr(figure_semantics, validator)(f[field])
+                except OmicstatError as exc:
+                    probs.append("%s/%s: %s" % (f.get("id", "unknown"), field, exc))
         for arg, d in (f.get("data") or {}).items():
             p = os.path.join(outdir, *d["path"].split("/"))
             if not os.path.isfile(p):

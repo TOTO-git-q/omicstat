@@ -1,0 +1,6 @@
+# Troubleshooting
+
+OS_HANDOFF_MISMATCH requires the exact unmodified expression producer. OS_INVALID_DESIGN
+requires inspecting identities, event counts, model rank and declared genes. Do not jitter constant
+expression or drop subjects to force a model fit. OS_BATCH_CORRECTED_INPUT requires original
+uncorrected expression and explicit covariate design, not relabelling a corrected artifact.

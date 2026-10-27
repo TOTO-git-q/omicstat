@@ -1,0 +1,149 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "limma-camera",
+  "lane": "R",
+  "domain": "enrichment",
+  "entry": "scripts/run_limma_camera.R",
+  "version": "1.1.1",
+  "qc_prefix": "LC",
+  "engine_packages": [
+    "limma"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "enrichment_table",
+      "expression_matrix",
+      "gene_sets",
+      "ranked_list",
+      "sample_table"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Competitive or self-contained gene-set tests; single roast tests one set",
+    "order": 15
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "limma-camera",
+      "rule_id": "PUB-M-LIMMA_CAMERA-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Use the module-specific full output table and identified analysis units; distinguish effect estimation from descriptive QC, embeddings and scores"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review"
+      ],
+      "narrative_points": [
+        "Competitive or self-contained gene-set tests; single roast tests one set",
+        "Report exact user choices, locked package versions, seed and measured sample/cell/gene denominators",
+        "Do not claim numerical acceptance, literature majorities or external predictive accuracy from this source build"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "cell-level P values establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive or design-supported association, matching the declared estimand"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--alpha",
+      "default": 0.05,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--seed",
+      "default": 20260925,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--nrot",
+      "default": 9999,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--question",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "competitive|self-contained",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 13,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "limma-camera",
+      "entry_script": "scripts/run_limma_camera.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "4e6e2ec17ffa92b821a60977042b97f1db3cc73c36bede11f134055d20f238ae",
+    "pack_present": true,
+    "implemented_new": false
+  }
+}

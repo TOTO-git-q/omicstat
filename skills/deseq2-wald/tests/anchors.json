@@ -1,0 +1,83 @@
+[
+  {
+    "id": "DW-A1",
+    "metric": "n_tested",
+    "expected": 8148,
+    "tolerance": 0,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A2",
+    "metric": "n_significant",
+    "expected": 1069,
+    "tolerance": 0,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A3",
+    "metric": "n_up",
+    "expected": 533,
+    "tolerance": 0,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A4",
+    "metric": "n_down",
+    "expected": 536,
+    "tolerance": 0,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A5",
+    "metric": "FBgn0000017.log2fc_mle",
+    "expected": -0.23842494,
+    "tolerance": 5e-07,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A6",
+    "metric": "FBgn0000017.padj",
+    "expected": 0.289604,
+    "tolerance": 5e-06,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A7",
+    "metric": "FBgn0000017.log2fc_shrunken",
+    "expected": -0.18810628,
+    "tolerance": 5e-07,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A8",
+    "metric": "FBgn0000008.log2fc_mle",
+    "expected": 0.00399148,
+    "tolerance": 5e-07,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  },
+  {
+    "id": "DW-A9",
+    "metric": "FBgn0000008.log2fc_shrunken",
+    "expected": 0.00195376,
+    "tolerance": 5e-07,
+    "source": "Existing acceptance/exemplars/deseq2-wald/PACK.md and preserved tests/run_smoke_test.R, DESeq2 vignette pasilla printed anchors",
+    "scope": "pasilla condition treated vs untreated, alpha=0.1; legacy pinned package environment",
+    "how": "printed"
+  }
+]

@@ -1,0 +1,569 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "glmnet-coxsig",
+  "lane": "R",
+  "domain": "expr-survival",
+  "entry": "scripts/run_glmnet_coxsig.R",
+  "version": "0.1.0",
+  "qc_prefix": "CXS",
+  "engine_packages": [
+    "glmnet",
+    "survival",
+    "timeROC",
+    "Hmisc",
+    "pmsampsize"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "expression_matrix",
+      "cox_signature"
+    ],
+    "outputs": [
+      "cox_signature"
+    ]
+  },
+  "figure_builders": [
+    "os_time_roc",
+    "os_lasso_path",
+    "os_km",
+    "os_calibration"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 53,
+    "question": "Train a prespecified expression LASSO-Cox signature and validate frozen coefficients with time-dependent ROC"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--mode",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Train or externally validate frozen coefficients",
+      "type_label": "train|validate",
+      "role": "scientific"
+    },
+    {
+      "flag": "--from-run",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Verified expression handoff",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--signature-run",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Frozen cox_signature run for validation"
+    },
+    {
+      "flag": "--clinical",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Clinical table",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Unique biological subject identity",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--time-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Positive right-censored follow-up",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--event-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit zero censored one event",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--time-unit",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared units, frozen across cohorts",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--genes",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Ordered prespecified gene IDs",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--covariates",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Gene-only signature boundary",
+      "type_label": "none",
+      "role": "scientific"
+    },
+    {
+      "flag": "--expression-scale",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared identical preprocessing scale",
+      "type_label": "normalized-log2|normalized-other",
+      "role": "scientific"
+    },
+    {
+      "flag": "--min-events",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Minimum observed event count",
+      "type_label": "int in [2, Inf]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--folds",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training CSV unit,fold; exact biological matching"
+    },
+    {
+      "flag": "--standardize",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training glmnet standardization"
+    },
+    {
+      "flag": "--nlambda",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training path grid size"
+    },
+    {
+      "flag": "--lambda-min-ratio",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training path extent"
+    },
+    {
+      "flag": "--selection",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Penalty selection rule"
+    },
+    {
+      "flag": "--lambda",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Fixed penalty value within fitted path"
+    },
+    {
+      "flag": "--cv-measure",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Cross-validation objective"
+    },
+    {
+      "flag": "--cv-grouped",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox CV risk-set evaluation"
+    },
+    {
+      "flag": "--max-iter",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training optimizer maximum passes"
+    },
+    {
+      "flag": "--thresh",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training convergence threshold"
+    },
+    {
+      "flag": "--cox-ties",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit version-stable Breslow ties"
+    },
+    {
+      "flag": "--cutoff",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training risk split to freeze"
+    },
+    {
+      "flag": "--cutpoint",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified training risk cutoff"
+    },
+    {
+      "flag": "--roc-times",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Sorted IPCW ROC horizons",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--risk-times",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Sorted KM risk times",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "KM marginal CI",
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Figure style",
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified validated contract",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit candidate execution",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Recorded seed; folds never silently regenerated",
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "New empty output directory",
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--prediction-workup",
+      "default": "none",
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Optional source-copy prediction workup; none preserves original behavior",
+      "type_label": "none|cpm",
+      "role": "scientific"
+    },
+    {
+      "flag": "--dataset-name",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Dataset name for every workup figure; no identifying subject details",
+      "type_label": "string",
+      "role": "presentation",
+      "conditional_required": true,
+      "required_when": [
+        "Every --prediction-workup cpm execution."
+      ]
+    },
+    {
+      "flag": "--planning-source",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Citation for external prior Riley planning assumptions; never derived from this fitted cohort",
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--planning-parameters",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "All prespecified candidate parameters, at least every candidate gene",
+      "type_label": "int in [1, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--planning-cs-r2",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Prior anticipated Cox-Snell R-squared, strictly between zero and target shrinkage",
+      "type_label": "num in [0, 1]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--planning-shrinkage",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Prespecified target shrinkage strictly below one; no automatic recommendation",
+      "type_label": "num in [0, 1]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--planning-rate",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Prior event rate per declared time unit, strictly positive",
+      "type_label": "num in [0, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--planning-horizon",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Positive planning horizon equal to the primary calibration horizon",
+      "type_label": "num in [0, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--planning-mean-followup",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Positive prior mean follow-up in the same declared time unit",
+      "type_label": "num in [0, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--bootstrap-B",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Requested bootstrap budget; source floor200, explicit serial technical cap2000",
+      "type_label": "int in [200, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--bootstrap-seed",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Explicit reproducible bootstrap seed, no inferred seed",
+      "type_label": "int in [0, 2147483647]",
+      "role": "execution",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--bootstrap-fit-policy",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Acknowledge repeating original penalized CV/fit with original biological folds",
+      "type_label": "penalized-pipeline",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--baseline-estimator",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Acknowledge training-only baseline at frozen original coefficients, no unpenalized model replacement",
+      "type_label": "frozen-offset-breslow",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--calibration-horizon",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Primary positive event-risk horizon inside training support, frozen externally",
+      "type_label": "num in [0, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--calibration-min-bin",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Minimum original subjects per aggregate KM calibration bin",
+      "type_label": "int in [10, Inf]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--calibration-max-bins",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Requested maximum bins; no smoothing or invented bin values",
+      "type_label": "int in [1, 10]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--calibration-slope-fit",
+      "default": null,
+      "required": false,
+      "source": "P0-13B4 explicit source-copy adaptation contract",
+      "description": "Acknowledge source-native Cox slope diagnostic, distinct from prediction coefficients",
+      "type_label": "source-native",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "--prediction-workup cpm and --mode train are selected; external validation must reuse the frozen value."
+      ]
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Resolved spec replay"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 51,
+    "discovery_profile": {
+      "module": "glmnet-coxsig",
+      "epmc_query": "METHODS:\"glmnet\" OR METHODS:\"Cox\"",
+      "meta": false,
+      "signal_regex": "(?:glmnet|Cox)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "limits": {
+    "max_genes": 100,
+    "max_samples": 5000,
+    "max_cv_folds": 20,
+    "max_roc_horizons": 10,
+    "timeout_seconds": 1500,
+    "max_bootstrap_requested": 2000,
+    "max_calibration_bins": 10,
+    "min_calibration_bin_subjects": 10
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

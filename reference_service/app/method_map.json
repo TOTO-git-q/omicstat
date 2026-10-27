@@ -1,9 +1,9 @@
 {
  "schema": "omicstat.method-map.v1",
- "source_path": "skills/omicstat/SKILL.md section 1; docs/handoff/ENGINEERING_PLAN.md sections 1.2 and 10.2",
- "source_sha256": "413a0313205c2c600b0b3f1e22c76ab9d628ecf6c202de59d7585811a9026b72",
+ "source_path": "skills/*/module.json; skills/omicstat/SKILL.md section 1",
+ "source_sha256": "d950be7cb4b40c407240288aafde1c943cb5a98f62d8409a56419589b2000729",
  "plan_sha256": "736ade745fe11f68445b43b02797c2f014845c640e7e9cbdc28def58338c989d",
- "order_rule": "Preserves the overlay's 38-target order for reference-store compatibility. Router section 1 is the execution registry; entry_status explicitly separates available source from unimplemented planned targets. Display/curation modules are appended after the historical targets.",
+ "order_rule": "Accepted reference-enabled module.json records in reference.order; historical targets retain their order. Deployment must reconcile the stored method-map cursor.",
  "modules": [
   {
    "module": "deseq2-wald",
@@ -208,6 +208,86 @@
   {
    "module": "scanpy-ingest",
    "entry_script": "scripts/run_scanpy_ingest.py",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "drc-dose",
+   "entry_script": "scripts/run_drc_dose.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "lme4-lmm",
+   "entry_script": "scripts/run_lme4_lmm.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "emmeans-contrast",
+   "entry_script": "scripts/run_emmeans_contrast.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "proda-diff",
+   "entry_script": "scripts/run_proda_diff.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "msstats-diff",
+   "entry_script": "scripts/run_msstats_diff.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "drc-calibrate",
+   "entry_script": "scripts/run_drc_calibrate.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "nlme-dose",
+   "entry_script": "scripts/run_nlme_dose.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "omicstat-groupcompare",
+   "entry_script": "scripts/run_omicstat_groupcompare.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "omicstat-ddct",
+   "entry_script": "scripts/run_omicstat_ddct.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "survival-expr",
+   "entry_script": "scripts/run_survival_expr.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "glmnet-coxsig",
+   "entry_script": "scripts/run_glmnet_coxsig.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "reactomepa-ora",
+   "entry_script": "scripts/run_reactomepa_ora.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "dropletutils-emptydrops",
+   "entry_script": "scripts/run_dropletutils_emptydrops.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "omicstat-samplesize",
+   "entry_script": "scripts/run_omicstat_samplesize.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "omicstat-agreement",
+   "entry_script": "scripts/run_omicstat_agreement.R",
+   "entry_status": "implemented_routed"
+  },
+  {
+   "module": "proc-roc",
+   "entry_script": "scripts/run_proc_roc.R",
    "entry_status": "implemented_routed"
   }
  ]

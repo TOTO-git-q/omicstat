@@ -1,0 +1,182 @@
+{
+  "module": "emmeans-contrast",
+  "status": "UNSEALED_PENDING_LOCKED_FORMALS",
+  "note": "Candidate installed API inventory in omicstat-r-exp:20261015; not scientific acceptance or a production seal. See installed_api.json for every formal, including omitted defaults. P0-13B2 added call declarations are unverified until independent OmicStat R4.6.1 capture; old signature observations remain historical.",
+  "package_versions": {
+    "emmeans": "2.0.4"
+  },
+  "calls": [
+    {
+      "fn": "emmeans::contrast",
+      "args": {
+        "object": {
+          "value": "runtime expression; see module core",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "emmeans::emmeans",
+      "args": {
+        "object": {
+          "value": "runtime expression; see module core",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "specs": {
+          "value": "runtime expression; see module core",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "by": {
+          "value": "runtime expression; see module core",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "weights": {
+          "value": "runtime expression; see module core",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "stats::model.frame",
+      "args": {},
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "utils::packageVersion",
+      "args": {},
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "emmeans::joint_tests",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "lme4::isSingular",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "lme4::VarCorr",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "lme4::nobars",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "lme4::findbars",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "reformulas::nobars",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "reformulas::findbars",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "digest::digest",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "stats::formula",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "stats::terms",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "stats::aggregate",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    },
+    {
+      "fn": "stats::as.formula",
+      "args": {},
+      "status": "declared_native_capture_pending",
+      "source": "Pinned MedStat numerical source and independent adapter; no installed R4.6.1 formals claim"
+    }
+  ],
+  "accessors": [],
+  "installed_api_status": "candidate_verified",
+  "module_version": "0.1.0",
+  "flag_defaults": {},
+  "captured_signatures": {
+    "emmeans::contrast": {
+      "package_version": "2.0.4",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "emmeans::emmeans": {
+      "package_version": "2.0.4",
+      "method": null,
+      "formals": {
+        "object": "",
+        "specs": "",
+        "by": "NULL",
+        "fac.reduce": "function(coefs) apply(coefs, 2, mean)",
+        "contr": "",
+        "options": "get_emm_option(\"emmeans\")",
+        "weights": "",
+        "offset": "",
+        "...": "",
+        "tran": ""
+      }
+    },
+    "stats::model.frame": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "...": ""
+      }
+    },
+    "utils::packageVersion": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "pkg": "",
+        "lib.loc": "NULL"
+      }
+    }
+  },
+  "moved_to_shared": [],
+  "native_longitudinal_formals_verified": false
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "input_cells",
+    "metric": "input_cells",
+    "expected": 2700,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "printed"
+  },
+  {
+    "id": "created_genes",
+    "metric": "created_genes",
+    "expected": 13714,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "printed"
+  },
+  {
+    "id": "first_cell_counts",
+    "metric": "first_cell_counts",
+    "expected": 2419,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "printed"
+  },
+  {
+    "id": "first_cell_features",
+    "metric": "first_cell_features",
+    "expected": 779,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "printed"
+  },
+  {
+    "id": "first_cell_mito_percent",
+    "metric": "first_cell_mito_percent",
+    "expected": 3.0177759,
+    "tolerance": 5e-08,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "printed"
+  },
+  {
+    "id": "strict_filter_cells_exact",
+    "metric": "strict_filter_cells_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "replay"
+  },
+  {
+    "id": "retained_feature_ids_exact",
+    "metric": "retained_feature_ids_exact",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "replay"
+  },
+  {
+    "id": "flow_reconciles",
+    "metric": "flow_reconciles",
+    "expected": true,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/omic-MCP/blob/2117420bd3790f43d5972c36bf2f5cf864eaef1f/skills/seurat-qc/tests/run_smoke_test.R",
+    "scope": "Full registered PBMC3k; same Seurat strict tutorial QC thresholds and creation settings as existing smoke",
+    "how": "replay"
+  }
+]

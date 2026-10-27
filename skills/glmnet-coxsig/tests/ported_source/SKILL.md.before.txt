@@ -1,0 +1,92 @@
+---
+name: glmnet-coxsig
+description: >
+  Train a prespecified gene-only LASSO-Cox expression signature with biological cross-validation
+  folds, and evaluate an independent cohort using frozen coefficients, penalty and risk cutoff.
+  IPCW timeROC, coefficient paths and descriptive KM. Candidate only. Triggers: Cox signature, LASSO survival.
+---
+# glmnet-coxsig
+
+## When to use / when not
+Expression signature development or independent validation, never a clinical-only model. One
+right-censored event per biological subject. No post-selection coefficient p-values, causal claims,
+competing risks, recurrent events, interactions or automatic gene selection before cross-validation.
+
+## Input requirements
+Mandatory --from-run expression_matrix and exact clinical subject IDs, explicit 0/1 events and
+positive times. Gene IDs/order, normalized expression scale and time units must be declared.
+Gene-only covariates none is explicit. Candidate/display-only/batch-corrected expression is refused.
+At most 100 prespecified genes, 5000 subjects, 20 CV folds and ten ROC horizons; no downsampling.
+Training requires supplied unit,fold CSV, each holdout at least five subjects and two events,
+standardization, path extent/grid, objective, grouped-risk-set choice, convergence settings,
+penalty-selection rule and risk-cutoff rule. Breslow ties are explicit across glmnet versions. Training requires glmnet >=5.0 and uses its control API.
+
+## Run
+The canonical fixture command is in tests/acceptance.json. --mode train requires training flags;
+--mode validate requires --signature-run and refuses every training/tuning/cutpoint flag.
+Validation declares the same gene order, preprocessing scale and time units. Use the same
+prespecified study contract covering both cohorts. Globally unique subject IDs cannot overlap
+training; a matching label is treated conservatively as overlap, not silently renamed.
+All runs require --development-mode while candidate status persists.
+
+## What gets produced
+Typed cox_signature RDS with named original-scale coefficients, gene order, preprocessing declaration,
+selected lambda, frozen training risk cutoff and hashed training identities. Tables include scores,
+coefficients, CV curve, coefficient paths, IPCW AUC/ROC and descriptive KM/risk counts.
+Figures use shared builders. Full input/fold/signature hashes, QC, method text and replay spec retained.
+External validation writes the unchanged signature object; no coefficient or cutoff is refit.
+
+## Reading the results
+Training ROC is apparent performance, even when CV selected lambda. CV penalty selection does not
+make training AUC external validation. No AUC CI or post-selection coefficient p is fabricated.
+Returned glmnet coefficients already undo its standardization; validation multiplies original-scale
+expression by those coefficients without restandardizing to the validation cohort.
+The supplied study preprocessing must make cohorts comparable; a matching scale label alone is
+not experimental proof. Marginal Kaplan-Meier IPCW assumes independent censoring; no covariate
+censoring model is inferred. KM score groups are descriptive and have no logrank test.
+A null/constant score remains valid; when its frozen split is uninformative, KM is omitted, never recut.
+
+## When a QC rule fires
+CXS-01 blocks candidate publication and clinical application. CXS-02 labels apparent training ROC.
+CXS-03 explains omitted KM when a frozen group has fewer than two subjects. Invalid folds,
+nonconvergence, leakage, unsupported horizons or mismatched signature are typed refusals.
+
+## Known limitations
+Gene-only LASSO alpha=1, right censoring and marginal IPCW. No nested-CV performance estimator,
+absolute event-risk prediction, AUC uncertainty, categorical clinical model, or automated threshold
+optimization. Owner scientific/visual review and locked-image exec remain pending.
+
+## Reference files
+parameters.md, method-basis.md, qc-rules.md, reporting-templates.md and troubleshooting.md.
+
+<!-- parameter-guidance:begin -->
+## Mandatory parameter questions
+
+Recommendations are proposals, never engine defaults. Ask once for all unresolved choices below; pass every required value explicitly.
+
+| Required flag | Kind / type | Options and meaning | Recommended (not automatic) | Basis | Ask the user when |
+|---|---|---|---|---|---|
+| --mode | scientific / train\|validate | train: Fit the signature using the prespecified training cohort and fixed folds.; validate: Apply the frozen signature to the independent validation cohort. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --from-run | input / path | user value: Verified expression handoff. | null | none:  | The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork. |
+| --clinical | input / path | user value: Clinical table. | null | none:  | The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork. |
+| --unit-col | scientific / string | user value: Name the independent biological-unit or matched-subject identifier used to prevent pseudoreplication. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous. |
+| --time-col | scientific / string | user value: Positive right-censored follow-up. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous. |
+| --event-col | scientific / string | user value: Explicit zero censored one event. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous. |
+| --time-unit | scientific / string | user value: Declared units, frozen across cohorts. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --genes | scientific / string | user value: Ordered prespecified gene IDs. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --covariates | scientific / none | none: Explicitly acknowledge the supported constraint: Gene-only signature boundary. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --expression-scale | scientific / normalized-log2\|normalized-other | normalized-log2: Expression is already normalized on the log2 scale.; normalized-other: Expression uses a different explicitly declared normalized scale. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --min-events | scientific / int in [2, Inf] | user value: Minimum observed event count. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --roc-times | scientific / string | user value: Sorted IPCW ROC horizons. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --risk-times | scientific / string | user value: Sorted KM risk times. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose. |
+| --ci-level | scientific / num in [0.5, 0.9999] | user value: Specify the coverage level for the reported marginal intervals; this is not automatically simultaneous family coverage. | null | none:  | The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.; A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result. |
+| --journal | presentation / nature\|cell\|science\|generic | nature: Use the existing Nature-oriented size and typography preset.; cell: Use the existing Cell-oriented size and typography preset.; science: Use the existing Science-oriented size and typography preset.; generic: Use the suite generic publication-figure preset. | null | none:  | The target publication style is unknown or differs from the previous figure set. |
+| --study-contract | input / path | user value: Prespecified validated contract. | null | none:  | The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork. |
+| --seed | execution / int | user value: Recorded seed; folds never silently regenerated. | null | none:  | The output location or reproducibility seed has not been supplied for this run, or needs to change. |
+| --outdir | execution / path | user value: Choose the permitted output directory for a new run; this does not alter the scientific analysis. | null | none:  | The output location or reproducibility seed has not been supplied for this run, or needs to change. |
+| --development-mode | execution / switch; conditional: Every execution of this candidate requires an explicit development-mode acknowledgement. | True: Acknowledge candidate execution and its outstanding acceptance review; this does not seal or promote the module. | null | none:  | This analysis/input branch applies and the value has not been explicitly declared.; Every execution of this candidate requires an explicit development-mode acknowledgement. |
+
+Optional `--parameter-choices` accepts a JSON object mapping explicitly supplied flag names (without `--`) to `user`, `recommended_accepted_by_user`, or `owner_default`. It never supplies a missing argument. An accepted recommendation must match its cited value; `owner_default` additionally requires a recorded owner-adjudication basis.
+Choice origins are caller declarations recorded in provenance and replay; they are not a verification of human consent. Omitted optional engine defaults remain separately identified.
+Use `python tools/describe_module.py glmnet-coxsig --for-question` or MCP `omicstat_describe(module, for_question=True)` for the complete machine-readable question set.
+<!-- parameter-guidance:end -->

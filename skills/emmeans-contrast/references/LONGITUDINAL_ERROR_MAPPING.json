@@ -1,0 +1,12 @@
+{
+  "mapping": {
+    "MS_NOT_LONGITUDINAL": "OS_INVALID_DESIGN",
+    "MS_INVALID_PARAMETER": "OS_INVALID_PARAMETER",
+    "MS_NOT_ESTIMABLE": "OS_NUMERICAL_DEGENERACY",
+    "MS_DEGENERATE_CONTRAST": "OS_NUMERICAL_DEGENERACY",
+    "MS_DF_METHOD_MISMATCH": "OS_INVALID_RESULT",
+    "MS_SCHEMA_INTERNAL": "OS_INVALID_RESULT"
+  },
+  "public_namespace": "Existing OS_* canonical codes only; exact source guard cause stays in the message.",
+  "new_public_diagnostic_codes": []
+}

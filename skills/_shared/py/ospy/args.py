@@ -140,6 +140,9 @@ class OsArgSpec:
 
 def os_arg_spec(usage, flags, description=None, exclusive=()):
     flags = list(flags)
+    for name in ("study-contract", "study-contract-sha256"):
+        if not any(f.name == name for f in flags):
+            flags.append(os_flag(name, "path" if name == "study-contract" else "string", must_exist=name == "study-contract", help="shared StudyContract byte binding; see _shared/docs/STUDY_CONTRACT.md"))
     if not any(f.name == "help" for f in flags):
         flags.append(os_flag("help", "bool", help="show this help and exit"))
     names = [f.name for f in flags]
@@ -238,6 +241,8 @@ def os_parse_args(spec, argv=None):
         if len(hit) > 1:
             raise OmicstatError("OS_CONFLICTING_PARAMETERS", "%s are mutually exclusive (give at most one)"
                                 % ", ".join("--" + h for h in hit))
+    from .study_contract import bind_args
+    bind_args(out)
     return out
 
 

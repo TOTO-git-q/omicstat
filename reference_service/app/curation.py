@@ -200,7 +200,7 @@ def _supplement_item(row: sqlite3.Row) -> dict[str, Any]:
             "pmid": candidate.get("pmid"), "pmcid": candidate.get("pmcid"), "findings": review.get("findings", [])[:5],
             "limitations": review.get("limitations", [])[:5], "locator": json.loads(row["locator_json"]),
             "reported_parameters": review.get("usage", {}).get("parameters", []),
-            "citations": [candidate], "provenance": review.get("usage", {}).get("provenance"),
+            "citations": [{k: v for k, v in candidate.items() if k != "methods_used"}], "provenance": review.get("usage", {}).get("provenance"),
             "curator": row["curator"], "promoted_at": row["promoted_at"], "supplement_version": row["supplement_version"]}
 
 

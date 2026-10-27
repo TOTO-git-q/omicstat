@@ -1,0 +1,85 @@
+{
+  "status": "development_unsealed",
+  "candidate_runtime": "passed",
+  "r_execution": "passed_R_4.6.1_experimental_image",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "cli": "passed",
+  "documented_scientific_enums": "passed",
+  "replay": "tables_and_PNG_bytes_identical",
+  "handoff_quarantine": "passed",
+  "output_provenance_hashes": "passed",
+  "figures": "candidate_convention_review_passed; owner acceptance pending",
+  "anchors": [
+    {
+      "metric": "P0A8F4 Condition1 vs Condition2",
+      "expected": -0.36836494,
+      "obtained": -0.368364937535813,
+      "tolerance": 1e-05,
+      "pass": true,
+      "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+      "scope": "official engine spike-in example; adapter refuses insufficient biology"
+    },
+    {
+      "metric": "P0A8F4 Condition1 vs Condition3",
+      "expected": -0.433896,
+      "obtained": -0.433895995867917,
+      "tolerance": 1e-05,
+      "pass": true,
+      "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+      "scope": "official engine spike-in example; adapter refuses insufficient biology"
+    },
+    {
+      "metric": "P0A8F4 Condition1 vs Condition4",
+      "expected": -1.12564427,
+      "obtained": -1.12564426852168,
+      "tolerance": 1e-05,
+      "pass": true,
+      "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+      "scope": "official engine spike-in example; adapter refuses insufficient biology"
+    },
+    {
+      "metric": "P0A8F4 Condition1 vs Condition5",
+      "expected": -1.15790197,
+      "obtained": -1.15790196507618,
+      "tolerance": 1e-05,
+      "pass": true,
+      "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+      "scope": "official engine spike-in example; adapter refuses insufficient biology"
+    },
+    {
+      "metric": "P0A8F4 Condition2 vs Condition3",
+      "expected": -0.06553106,
+      "obtained": -0.0655310583321037,
+      "tolerance": 1e-05,
+      "pass": true,
+      "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+      "scope": "official engine spike-in example; adapter refuses insufficient biology"
+    },
+    {
+      "metric": "P0A8F4 Condition2 vs Condition4",
+      "expected": -0.75727933,
+      "obtained": -0.757279330985866,
+      "tolerance": 1e-05,
+      "pass": true,
+      "source": "L1/MSstats/vignettes/MSstatsWorkflow.rendered.txt",
+      "scope": "official engine spike-in example; adapter refuses insufficient biology"
+    }
+  ],
+  "golden": "not_generated",
+  "locked_documentation": "candidate_L1_exported",
+  "installed_formals": "candidate_installed_api.json; check_calls zero problems",
+  "independent_review": "pending",
+  "publication_ready": false,
+  "remaining_gates": [
+    "owner scientific acceptance",
+    "ROLE B published-figure convention review",
+    "complete manuscript reporting/value-map",
+    "production environment/default/seal acceptance"
+  ],
+  "anchor_scope_note": "Published DDA/PD spike-in example has one BioReplicate/group: reproduced upstream only; adapter correctly refuses. Official DIARawData executes under its unchanged structurally paired labels; that benchmark is not proof of biological replication. Synthetic independent/paired lab-format inputs explicitly declare their simulated biological units.",
+  "tested_module_source_commit": "44e4ebbc4d27665ffc815d15b37f6cbceb3223fa",
+  "input_output_hash_audit": "passed",
+  "suite_targeted_refusal_checks": 42,
+  "figure_evidence": "acceptance/exemplars/msstats-diff/CANDIDATE_FIGURES.json",
+  "figure_evidence_task_c": "acceptance/exemplars/msstats-diff/CANDIDATE_FIGURES_C.json"
+}

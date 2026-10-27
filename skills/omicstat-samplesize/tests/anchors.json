@@ -1,0 +1,65 @@
+[
+  {
+    "id": "SS-V1_mean_n1",
+    "metric": "Independent means: analyzable n per arm",
+    "expected": 64,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/sample-size/tests/verified/run_verified.R",
+    "scope": "Ported original independent numerical oracle; freshly obtained R4.6.1 results required",
+    "how": "replay"
+  },
+  {
+    "id": "SS-V1_mean_total",
+    "metric": "Independent means: total analyzable biological n",
+    "expected": 128,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/sample-size/tests/verified/run_verified.R",
+    "scope": "Ported original independent numerical oracle; freshly obtained R4.6.1 results required",
+    "how": "replay"
+  },
+  {
+    "id": "SS-V2_logrank_events",
+    "metric": "Balanced HR 0.67 log-rank required events",
+    "expected": 196,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/sample-size/tests/verified/run_verified.R",
+    "scope": "Ported original independent numerical oracle; freshly obtained R4.6.1 results required",
+    "how": "replay"
+  },
+  {
+    "id": "SS-V2_logrank_total",
+    "metric": "HR 0.67, event probability 0.4, total analyzable biological n",
+    "expected": 490,
+    "tolerance": 0,
+    "source": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/sample-size/tests/verified/run_verified.R",
+    "scope": "Ported original independent numerical oracle; freshly obtained R4.6.1 results required",
+    "how": "replay"
+  },
+  {
+    "id": "paired_oracle_delta",
+    "metric": "Paired n versus native pwr.t.test",
+    "expected": 0,
+    "tolerance": 0,
+    "source": "Pinned MedStat samplesize_engines.R and native package replay; supplementary same-package check, not an independent printed anchor",
+    "scope": "Supplementary three-design native package consistency",
+    "how": "replay"
+  },
+  {
+    "id": "anova_oracle_delta",
+    "metric": "ANOVA n versus native pwr.anova.test",
+    "expected": 0,
+    "tolerance": 0,
+    "source": "Pinned MedStat samplesize_engines.R and native package replay; supplementary same-package check, not an independent printed anchor",
+    "scope": "Supplementary three-design native package consistency",
+    "how": "replay"
+  },
+  {
+    "id": "proportions_oracle_delta",
+    "metric": "Proportion n versus native pwr.2p.test",
+    "expected": 0,
+    "tolerance": 0,
+    "source": "Pinned MedStat samplesize_engines.R and native package replay; supplementary same-package check, not an independent printed anchor",
+    "scope": "Supplementary three-design native package consistency",
+    "how": "replay"
+  }
+]

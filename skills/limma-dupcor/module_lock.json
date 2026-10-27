@@ -18,7 +18,7 @@
     "skills/limma-dupcor/tests/fixtures/guide_yoruba.R": "999d929ecaf7ad4533b36491437ee056f5ffcb1df1d969cb5735f7819925bbc2",
     "skills/limma-dupcor/tests/fixtures/make_illumina.R": "faa5479d73d5cfca27c78b4a455c2699f106847bea8b0f2af4e684751e79df80",
     "skills/limma-dupcor/tests/run_smoke_test.R": "202a9487f287d3b4db11cd112a3dfb5a2c24c3aaf37d4c9fada25c8214cd2c80",
-    "skills/limma-dupcor/tests/golden_manifest.csv": "8e24435f9f447d1856db456adb7b09bf3b941b50e61ab9dc403cb92ea10418ff",
+    "skills/limma-dupcor/tests/golden_manifest.csv": "a3405ebfbc271837882b98813ce7a70df4d6aaa2efce12400b3365c78d6e9517",
     "acceptance/exemplars/limma-dupcor/PACK.md": "5f5b8fa45218a04ad3101c8b87110dd285c683276d36ed4ab4c5e525daafbe96"
   },
   "packages": {
@@ -30,7 +30,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

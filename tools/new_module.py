@@ -14,18 +14,16 @@ Fills module name, entry-script name, QC rule prefix (appendix A table; a
 prefix already used by medstat or by another omicstat module gets an 'O'
 in front) and the SKILL.md section headings. Content is written at S2.
 """
-import argparse, json, pathlib, re, sys
+import argparse, csv, json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "templates" / "module"
 TEMPLATES_PY = ROOT / "templates" / "module_py"
-PKG_CASE = {"deseq2": "DESeq2", "edger": "edgeR", "limma": "limma", "sva": "sva", "clusterprofiler": "clusterProfiler",
-            "fgsea": "fgsea", "gsva": "GSVA", "seurat": "Seurat", "scater": "scater", "scran": "scran",
-            "batchelor": "batchelor", "aucell": "AUCell", "singler": "SingleR", "muscat": "muscat", "speckle": "speckle",
-            "cellchat": "CellChat", "monocle3": "monocle3", "slingshot": "slingshot", "wgcna": "WGCNA",
-            "maftools": "maftools", "immunedeconv": "immunedeconv",
-            # Python lane: the DISTRIBUTION name (calls_registry.json package_versions)
-            "scanpy": "scanpy", "scvi": "scvi-tools", "scanvi": "scvi-tools", "anndata": "anndata"}
+def package_case(pkg):
+    from package_inventory import packages
+    name=packages(ROOT,candidate=True).get(pkg.lower().replace('-',''))
+    if name:return name
+    raise SystemExit("OS_MISSING_PACKAGE: prefix needs a locked or attested observed candidate package")
 
 
 def used_prefixes():
@@ -51,18 +49,25 @@ def resolve_prefix(module, explicit):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("pkg"); ap.add_argument("part")
+    ap.add_argument("--adopt", action="store_true", help="adopt existing candidate sources without rewriting them")
+    ap.add_argument("--domain", default="basic-stats")
+    ap.add_argument("--question", default="Candidate analysis module; review its input contract")
     ap.add_argument("--prefix"); ap.add_argument("--force", action="store_true")
     ap.add_argument("--python", action="store_true", help="scaffold a Python/scverse-lane module")
     a = ap.parse_args()
+    domain_schema=json.loads((ROOT/'skills/_shared/schemas/module.v1.schema.json').read_text())
+    if a.domain not in domain_schema['properties']['domain']['enum']:sys.exit('OS_INVALID_PARAMETER: unknown module domain')
     pkg, part = a.pkg.lower(), a.part.lower()
     if not re.fullmatch(r"[a-z0-9]+", pkg) or not re.fullmatch(r"[a-z0-9]+", part):
         sys.exit("OS_INVALID_PARAMETER: pkg and part must be lowercase alphanumerics")
     module = f"{pkg}-{part}"
     dest = ROOT / "skills" / module
-    if dest.exists() and not a.force:
+    if (dest / "module_lock.json").exists() and a.force:
+        sys.exit("OS_INVALID_PARAMETER: owner seal freeze forbids overwriting an existing sealed module")
+    if dest.exists() and not a.force and not a.adopt:
         sys.exit(f"OS_INVALID_PARAMETER: {dest} exists (use --force to overwrite template files)")
     subs = {"{{module}}": module, "{{pkg}}": pkg, "{{part}}": part,
-            "{{pkg_cased}}": PKG_CASE.get(pkg, pkg), "{{prefix}}": resolve_prefix(module, a.prefix)}
+            "{{pkg_cased}}": package_case(pkg), "{{prefix}}": resolve_prefix(module, a.prefix)}
     renames = {"run.R.tmpl": f"run_{pkg}_{part}.R", "core.R.tmpl": f"{pkg}_{part}_core.R",
                "report.R.tmpl": f"{pkg}_{part}_report.R", "qc.R.tmpl": f"{pkg}_{part}_qc.R",
                "run.py.tmpl": f"run_{pkg}_{part}.py", "core.py.tmpl": f"{pkg}_{part}_core.py",
@@ -74,7 +79,8 @@ def main():
         sources.update({s.relative_to(TEMPLATES_PY): s for s in TEMPLATES_PY.rglob("*.tmpl")})
     else:
         sources = {s.relative_to(TEMPLATES): s for s in TEMPLATES.rglob("*.tmpl")}
-    for rel in sorted(sources):
+    for rel in ([] if a.adopt else sorted(sources)):
+        if "golden" in str(rel): continue  # owner section 0: no golden writes
         src = sources[rel]
         name = renames.get(rel.name, rel.name[:-5])
         out = dest / rel.parent / name
@@ -84,6 +90,21 @@ def main():
             text = text.replace(k, v)
         out.write_text(text, encoding="utf-8", newline="\n")
     (dest / "tests" / "fixtures").mkdir(parents=True, exist_ok=True)
+    from sync_registry import sync
+    prefix=subs['{{prefix}}']; lane="py" if a.python else "R"
+    existing=[json.loads(p.read_text()) for p in (ROOT/'skills').glob('*/module.json')]
+    meta={"schema":"omicstat.module.v1","name":module,"lane":lane,"domain":a.domain,
+          "entry":f"scripts/run_{pkg}_{part}."+("py" if a.python else "R"),"version":"0.1.0",
+          "qc_prefix":prefix,"engine_packages":[] if pkg=="omicstat" else [package_case(pkg)],"refdata":[],
+          "handoff":{"inputs":[],"outputs":[]},"figure_builders":[],"anchors":"tests/anchors.json",
+          "refusals":"tests/refusals.csv","routing":{"order":max([m['routing']['order'] for m in existing],default=-1)+1,"question":a.question},
+          "publication":{"rule_category":"universal_hard"},"status":"candidate","status_notes":["owner_seal_freeze","scientific_review_pending"],"inputs":[],
+          "reference":{"enabled":False,"added_at":"2026-10-16"}}
+    (dest/'module.json').write_text(json.dumps(meta,indent=2)+"\n")
+    registry=dest/'scripts/calls_registry.json'
+    if registry.exists() and not a.adopt:
+        reg=json.loads(registry.read_text());reg['module_version']=meta['version'];registry.write_text(json.dumps(reg,indent=2)+"\n")
+    sync(ROOT)
     print(f"created {dest.relative_to(ROOT)} (QC prefix {subs['{{prefix}}']}{', Python lane' if a.python else ''})")
 
 

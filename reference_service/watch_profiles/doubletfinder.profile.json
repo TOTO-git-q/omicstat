@@ -1,0 +1,10 @@
+{
+ "module": "doubletfinder",
+ "epmc_query": "METHODS:\"DoubletFinder\"",
+ "meta": false,
+ "signal_regex": "\\bDoubletFinder\\b",
+ "signal_require_regex": "\\bDoubletFinder\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile from the 2026-10 coverage ranking: accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

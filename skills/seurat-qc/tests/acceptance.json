@@ -1,0 +1,63 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "figure_policy": "required",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.R",
+      "argv": [
+        "{fixtures}",
+        "{root}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/pbmc3k_counts.rds",
+      "--input-format",
+      "rds",
+      "--outdir",
+      "{outdir}",
+      "--organism",
+      "Homo_sapiens",
+      "--feature-type",
+      "symbol",
+      "--sample",
+      "pbmc3k",
+      "--mito-pattern",
+      "^MT-",
+      "--missing-mito",
+      "error",
+      "--min-cells",
+      "3",
+      "--create-min-features",
+      "200",
+      "--min-features",
+      "200",
+      "--max-features",
+      "2500",
+      "--min-counts",
+      "0",
+      "--max-counts",
+      "1000000000",
+      "--max-mito",
+      "5",
+      "--seed",
+      "20260925",
+      "--journal",
+      "nature"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{fixtures}/pbmc3k_counts.rds",
+      "{run1}",
+      "{anchor_results}"
+    ]
+  },
+  "owner_review": {
+    "dataset_id": "pbmc3k",
+    "receipt": "owner_dataset.json"
+  }
+}

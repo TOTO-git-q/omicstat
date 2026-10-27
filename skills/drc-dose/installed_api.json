@@ -1,0 +1,118 @@
+{
+  "status": "candidate",
+  "module": "drc-dose",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "calls": {
+    "drc::ED": {
+      "package_version": "3.0.1",
+      "method": "ED.drc",
+      "formals": {
+        "object": "",
+        "respLev": "",
+        "interval": "c(\"none\", \"delta\", \"fls\", \"tfls\")",
+        "clevel": "NULL",
+        "level": "ifelse(!(interval == \"none\"), 0.95, NULL)",
+        "reference": "c(\"control\", \"upper\")",
+        "type": "c(\"relative\", \"absolute\")",
+        "lref": "",
+        "uref": "",
+        "bound": "TRUE",
+        "od": "FALSE",
+        "vcov.": "vcov",
+        "display": "TRUE",
+        "pool": "TRUE",
+        "logBase": "NULL",
+        "multcomp": "FALSE",
+        "...": ""
+      }
+    },
+    "drc::LL.3": {
+      "package_version": "3.0.1",
+      "method": null,
+      "formals": {
+        "fixed": "c(NA, NA, NA)",
+        "names": "c(\"b\", \"d\", \"e\")",
+        "...": ""
+      }
+    },
+    "drc::LL.4": {
+      "package_version": "3.0.1",
+      "method": null,
+      "formals": {
+        "fixed": "c(NA, NA, NA, NA)",
+        "names": "c(\"b\", \"c\", \"d\", \"e\")",
+        "...": ""
+      }
+    },
+    "drc::drm": {
+      "package_version": "3.0.1",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "curveid": "",
+        "pmodels": "",
+        "weights": "",
+        "data": "NULL",
+        "subset": "",
+        "fct": "",
+        "type": "c(\"continuous\", \"binomial\", \"Poisson\", \"quantal\", \"event\")",
+        "bcVal": "NULL",
+        "bcAdd": "0",
+        "start": "",
+        "na.action": "na.omit",
+        "robust": "\"mean\"",
+        "logDose": "NULL",
+        "control": "drmc()",
+        "lowerl": "NULL",
+        "upperl": "NULL",
+        "separate": "FALSE",
+        "pshifts": "NULL"
+      }
+    },
+    "stats::coef": {
+      "package_version": "4.6.1",
+      "method": "coef.drc",
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "stats::predict": {
+      "package_version": "4.6.1",
+      "method": "predict.drc",
+      "formals": {
+        "object": "",
+        "newdata": "",
+        "se.fit": "FALSE",
+        "interval": "c(\"none\", \"confidence\", \"prediction\")",
+        "level": "0.95",
+        "na.action": "na.pass",
+        "od": "FALSE",
+        "vcov.": "vcov",
+        "...": ""
+      }
+    },
+    "utils::packageVersion": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "pkg": "",
+        "lib.loc": "NULL"
+      }
+    },
+    "utils::read.csv": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "file": "",
+        "header": "TRUE",
+        "sep": "\",\"",
+        "quote": "\"\\\"\"",
+        "dec": "\".\"",
+        "fill": "TRUE",
+        "comment.char": "\"\"",
+        "...": ""
+      }
+    }
+  }
+}

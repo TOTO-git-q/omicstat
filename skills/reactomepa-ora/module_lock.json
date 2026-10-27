@@ -1,0 +1,34 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "reactomepa-ora",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/reactomepa-ora/scripts/reactomepa_ora_core.R": "a4eaebb7e2369c3662c3190bdc6213467fd8866a6610b893b306054e6e14165c",
+    "skills/reactomepa-ora/scripts/reactomepa_ora_qc.R": "ff19cff2dc03ea87fc6227ee0e01de96ae60b816c0f3f20ec2db73145f74f9d8",
+    "skills/reactomepa-ora/scripts/reactomepa_ora_report.R": "fd3d2136600a7fba833f21f29d327ec64ae77fcabf62798dbe2bd3bc0254a55e",
+    "skills/reactomepa-ora/scripts/run_reactomepa_ora.R": "3efbe399231c45b98de80d2df7219398d35ce42d7dcf8bf515f3b058fd897b82",
+    "skills/reactomepa-ora/scripts/calls_registry.json": "e825a7acf95a34772ed8932e4929c47dc270febd0698536cbfeda34b02657016",
+    "skills/reactomepa-ora/SKILL.md": "689e3fdcd3353bb24a666c861f19ba6e4e0c99a5382fc5e9249b604fac4c0459",
+    "skills/reactomepa-ora/references/method-basis.md": "04725897cac43c92b4e383bf4dd394e74a357bf6425617ffc82c11096d8ce7df",
+    "skills/reactomepa-ora/references/parameters.md": "c56b84148550759e8278fa3badcd61d03192d0aa89ca913bd49d62d477cf465c",
+    "skills/reactomepa-ora/references/qc-rules.md": "172dfdc30a8350cd1521b059278dbc9a4b5657aab344812983f6564f814d4a90",
+    "skills/reactomepa-ora/references/reporting-templates.md": "d347a7953f3b95de47b2a23ceeb8584d27c7486017aeca0cbb2baa2c4009d72e",
+    "skills/reactomepa-ora/references/troubleshooting.md": "673426c8fd8c291519e3003cb5bc13670988e3a168f7548b2fe01e081b5fec31",
+    "skills/reactomepa-ora/tests/make_inputs.R": "4699476bf25a64a0c6b4fb9b77b8f60df9afc71e050590222134ddb55295fb25",
+    "skills/reactomepa-ora/tests/run_smoke_test.R": "7b73e94f44f43371448e455a768c8dbde189517474613e755690b239b7311733",
+    "skills/reactomepa-ora/tests/test_contracts.R": "83cec646c3f4783cf9f55677b0cc0314914c8ac51c455ea01e6c174df50cb0eb",
+    "skills/reactomepa-ora/tests/golden_manifest.csv": "dd4f7432639213134684fb0d44984e7918a1c8ebc0569700c37508cf0bd43d10"
+  },
+  "packages": {
+    "ReactomePA": "1.56.0",
+    "stats": "4.6.1"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

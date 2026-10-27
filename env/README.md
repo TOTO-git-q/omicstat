@@ -16,7 +16,7 @@ omicstat 的所有 R 引擎只在这里定义的环境里运行。唯一的版�
 
 ## 两种形态
 
-1. **容器 `omicstat-r:2026.09.1`（推荐，金标准所在环境）**
+1. **容器 `omicstat-r:2026.10.4`（当前 owner 批准的生产 R 环境）**
    ```bash
    bash env/build.sh      # 读取 omicstat-env.json 构建；输出 env/pkg_lock.csv、env/image_id.txt
    bash env/test.sh       # 在镜像里跑全部测试 -> env/test_report.txt

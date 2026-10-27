@@ -1,0 +1,14 @@
+{
+  "mapping": {
+    "MS_INVALID_PARAMETER": "OS_INVALID_PARAMETER",
+    "MS_MISSING_SEED": "OS_MISSING_PARAMETER",
+    "MS_INVALID_PAIRED_SET": "OS_INVALID_DESIGN"
+  },
+  "qc_mapping": "DA-01..23 -> ROC-01..23; no mixed emitted namespaces",
+  "source_report_only_omissions": [
+    "qc_da05_scan_draft",
+    "qc_blocks_draft",
+    "render_qc_md"
+  ],
+  "replacement": "All required labels checked before computation; suite QC/finish; no MedStat draft theme or journal content copied"
+}

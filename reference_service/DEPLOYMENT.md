@@ -170,3 +170,18 @@ The Claude (`E:\claude workspace\.mcp.json`) and Codex (`config.toml`) snippets 
   changed.
 - `omicstat` points at `reference_service/omicstat_entry.py`, with `OMICSTAT_ORIGINAL_SERVER` set to
   the omicstat `mcp/server.py` to be used.
+
+## Coverage upgrade operations (from 2026-10-10)
+
+| Item | Where |
+|---|---|
+| Method map | 41 modules (38 analysis + 3 display modules appended); a pure extension reconciles on its own; see FORK.md |
+| Probe | worker, one chunk per cycle after the harvest; `docker exec omicstat-reference python /app/cli.py probe --dry-run` shows the plan; ledger in `harvest.sqlite` (`probe_runs`, `method_probe`) |
+| Digest | `~/omic-infra-reference/release/reference_digest.py`, systemd user timer `omicstat-reference-digest.timer` (3rd of each month 04:00), installed with `systemd/install_digest_timer.sh`; output `runtime/reports/digest-YYYY-MM.md` + `.json`; pointer in `cli.py status` (`last_digest`) |
+| Reports mount | `../runtime/reports:/reports:ro` (the container cannot write reports); `deploy_gt103.sh` creates the directory before `up` |
+| Rebuild inputs | `python build_lexicon.py` (lexicon), `python build_probe_baseline.py` (needs the S0 lane worktrees), `python import_s0_evidence.py` (S0 bundle, methods_used sidecar `s0_methods_used.json`, option defaults) |
+| Redeploy | DEPLOY_SEED.md procedure (backup compose + image tag + data tar with sha256, stop only this service, loader, offline verification, switch, health) |
+| Rollback | restore `data.before.tar` and `compose.before.yaml` of the deploy's ops directory (see DEPLOYMENT_LOG.md); the previous image tags stay on the host |
+
+Budget and licence rules: probe at most 400 requests per month; no full text; the journal whitelist is not widened;
+KEGG, CADD, PanglaoDB and DepMap are never bundled or downloaded (the lexicon marks them `licence_note`, never ranked).

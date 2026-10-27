@@ -1,7 +1,21 @@
 # fig_mod_sc_bioc.R -- lane-owned figures; presentation tokens stay shared.
-os_bioc_scatter <- function(d, x, y, group, caption, registry = NULL, journal = NULL, thresholds = NULL) {
+os_bioc_scatter <- function(d, x, y, group, caption, registry = NULL, journal = NULL, thresholds = NULL, qc_status = FALSE) {
   lv <- sort(unique(as.character(d[[group]])), method = "radix")
-  cr <- os_colours_for(lv, family = group, registry = registry)
+  if (!is.logical(qc_status) || length(qc_status) != 1L || is.na(qc_status))
+    stop("OS_INVALID_INPUT: qc_status must be one declared logical value", call. = FALSE)
+  if (qc_status) {
+    if (!identical(group, "status") || !is.logical(d$discard) || length(d$discard) != nrow(d) ||
+        anyNA(d$discard) || anyNA(d$status) ||
+        !identical(as.character(d$status), ifelse(d$discard, "discarded", "retained")))
+      stop("OS_INVALID_INPUT: QC status labels must agree exactly with the computed discard mask", call. = FALSE)
+    role_colours <- c(retained = OS_FIG$col_ns, discarded = OS_PAL_GROUP[1L])
+    # The input categorical registry stays untouched, but does not describe
+    # this status-role encoding and must not be advertised as the plot palette.
+    cr <- list(colours = role_colours[lv], registry = NULL)
+    # Draw removed cells last so the emphasized observations remain visible.
+    d <- d[order(d$discard, seq_len(nrow(d))), , drop = FALSE]
+    caption <- paste(caption, sprintf("Grey: %d retained cells; accent: %d discarded cells, drawn last. Colours encode QC disposition, not expression direction or statistical significance. All input cells remain in this display.", sum(!d$discard), sum(d$discard)))
+  } else cr <- os_colours_for(lv, family = group, registry = registry)
   d$.x <- d[[x]]; d$.y <- d[[y]]; d$.g <- factor(d[[group]], levels = lv)
   p <- ggplot2::ggplot(d, ggplot2::aes(x = .x, y = .y, colour = .g)) +
     ggplot2::geom_point(size = os_cell_point_mm(nrow(d)), shape = OS_FIG$shape_dense, stroke = 0) +
@@ -16,9 +30,14 @@ os_bioc_scatter <- function(d, x, y, group, caption, registry = NULL, journal = 
       p <- p + os_hline(unique(val[thresholds$metric == key & is.finite(val)]))
     }
   }
-  os_with_meta(p, figure_type = "bioc_scatter", default_height_mm = 80,
+  out <- os_with_meta(p, figure_type = "bioc_scatter", default_height_mm = 80,
                caption = caption, data = list(n_cells = nrow(d)), colour_registry = cr$registry,
                encodings = list(colour = as.list(cr$colours)))
+  if (qc_status) out <- os_with_meta(out, counts = list(retained = sum(!d$discard), discarded = sum(d$discard)),
+    notes = list(qc_status_role_colours = TRUE, discarded_drawn_last = TRUE,
+      source_registry_unchanged = TRUE, categorical_registry_applied = FALSE,
+      filtering_recomputed = FALSE))
+  out
 }
 os_bioc_embedding <- function(d, group, caption, registry = NULL, journal = NULL) {
   p <- os_embedding(d, group_col = group, label = FALSE, colour_registry = registry,
@@ -36,8 +55,8 @@ os_bioc_qc_violin <- function(d, bounds, caption, journal) {
     subsets_Mito_percent = unique(bounds$higher[bounds$metric == "high_subsets_Mito_percent"]))
   p <- os_qc_violin(d, metrics = c("sum", "detected", "subsets_Mito_percent"),
     thresholds = thresholds, metric_labels = c(sum = "Total counts", detected = "Detected genes", subsets_Mito_percent = "Mitochondrial counts (%)"),
-    log10_metrics = c("sum", "detected"), journal = journal)
-  os_with_meta(p, caption = caption)
+    log10_metrics = c("sum", "detected"), journal = journal, data_stage = "raw_input")
+  os_with_meta(p, caption = paste(attr(p, "os_meta")$caption, caption))
 }
 os_bioc_elbow <- function(d, pcs, n, journal) {
   p <- ggplot2::ggplot(d, ggplot2::aes(x = PC, y = variance)) +
@@ -65,4 +84,16 @@ os_bioc_auc_violin <- function(d, maxrank, journal) {
 os_bioc_auc_heatmap <- function(mat,n,maxrank,journal){
  p<-os_heatmap(mat,value_title="Mean AUCell AUC",scale_type="sequential",italic_rows=FALSE,journal=journal)
  os_with_meta(p,caption=sprintf("Mean AUCell AUC by cluster for %d cells; aucMaxRank=%d; no activity threshold or significance test.",n,maxrank))
+}
+
+# Ambient estimates are displayed separately from the realized removed fraction.
+os_ambient_candidate_figures <- function(res,out,module) {
+ d<-res$tables$contamination
+ manual<-identical(res$metadata$engine_details$rho_mode,'manual')
+ fraction_label<-if(manual)'Prespecified contamination fraction'else'Estimated contamination fraction'
+ cap<-paste(res$method,'Original raw counts/cells retained. Corrected floating-point matrix is a separate candidate object; no rounding. The prespecified or model-estimated contamination fraction need not equal the realized fraction removed.')
+ p<-os_diag_xy(d,x='log10_raw_umi',y='estimated_contamination',kind='points',group='cluster',xlab='log10 raw UMI',ylab=fraction_label,caption=cap,figure_type='ambient_contamination',journal=res$metadata$journal)
+ os_finalize_figure(p,file.path(out,'figures/contamination'),root=out)
+ p<-os_diag_xy(d,x='raw_umi',y='corrected_umi',kind='points',group='cluster',xlab='Original raw UMI',ylab='Candidate corrected total',caption=paste(cap,sprintf('%d zero-total corrected cells remain present.',res$metadata$n_zero_corrected)),figure_type='ambient_totals',journal=res$metadata$journal)
+ os_finalize_figure(p,file.path(out,'figures/count_totals'),root=out)
 }

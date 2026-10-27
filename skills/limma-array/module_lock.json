@@ -16,8 +16,8 @@
     "skills/limma-array/references/reporting-templates.md": "71b5c4c1741aa2e95ef6a1fde349e3dd1a33c922aa99e8b2456eb18efecac9fa",
     "skills/limma-array/references/troubleshooting.md": "62fdae6f7dee911ea442d8e812a8d8b634d0254918227e0ac522d2f1ce39b92a",
     "skills/limma-array/tests/guide_17_4.R": "22b088b74265f7b59ee6bbd519ba26cfe547bc53dd02c97d20a80611560970bd",
-    "skills/limma-array/tests/run_smoke_test.R": "0ecdfb838b3d982e2d3d655a403003a34479512e2842e7da9d9eddce92bef3c9",
-    "skills/limma-array/tests/golden_manifest.csv": "0b91c45fbfcb2e799a911ce1d9cf118796d6409ace92793042fc8e16af5415f4",
+    "skills/limma-array/tests/run_smoke_test.R": "8d265d961dabc8c2087a8c92ecc6de4b98ed69dda5ededbde3672eee3fdaeb5e",
+    "skills/limma-array/tests/golden_manifest.csv": "6feb8d0e32adf4b5164e3ad34824040ca546a86cfe214affc11bdc537a4caff7",
     "acceptance/exemplars/limma-array/PACK.md": "1b40d532f9d7404f396c0cc097f513226cdcc9fd74925be6053a044842883d96"
   },
   "packages": {
@@ -29,7 +29,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

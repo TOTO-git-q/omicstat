@@ -1,0 +1,213 @@
+{
+  "module": "dropletutils-emptydrops",
+  "module_version": "0.1.0",
+  "package_versions": {
+    "DropletUtils": "1.32.0",
+    "BiocParallel": "1.40.0",
+    "stats": "4.5.0"
+  },
+  "calls": [
+    {
+      "fn": "DropletUtils::emptyDrops",
+      "args": {
+        "m": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": ""
+        },
+        "lower": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "100"
+        },
+        "retain": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "barcode.args": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "list()"
+        },
+        "round": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "test.ambient": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "niters": {
+          "value": "Explicit named source expression; see core",
+          "source": "Explicit argument forwarded by emptyDrops ANY method ... to testEmptyDrops; actual destination formal recorded in captured_signatures.forwarded_arguments, no fabricated direct default",
+          "pack": "D",
+          "function_default": null
+        },
+        "ignore": {
+          "value": "Explicit named source expression; see core",
+          "source": "Explicit argument forwarded by emptyDrops ANY method ... to testEmptyDrops; actual destination formal recorded in captured_signatures.forwarded_arguments, no fabricated direct default",
+          "pack": "D",
+          "function_default": null
+        },
+        "alpha": {
+          "value": "Explicit named source expression; see core",
+          "source": "Explicit argument forwarded by emptyDrops ANY method ... to testEmptyDrops; actual destination formal recorded in captured_signatures.forwarded_arguments, no fabricated direct default",
+          "pack": "D",
+          "function_default": null
+        },
+        "by.rank": {
+          "value": "Explicit named source expression; see core",
+          "source": "Explicit argument forwarded by emptyDrops ANY method ... to testEmptyDrops; actual destination formal recorded in captured_signatures.forwarded_arguments, no fabricated direct default",
+          "pack": "D",
+          "function_default": null
+        },
+        "known.empty": {
+          "value": "Explicit named source expression; see core",
+          "source": "Explicit argument forwarded by emptyDrops ANY method ... to testEmptyDrops; actual destination formal recorded in captured_signatures.forwarded_arguments, no fabricated direct default",
+          "pack": "D",
+          "function_default": null
+        },
+        "BPPARAM": {
+          "value": "Explicit named source expression; see core",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "SerialParam()"
+        }
+      },
+      "s4_signature": {
+        "m": "ANY"
+      }
+    },
+    {
+      "fn": "BiocParallel::SerialParam",
+      "args": {
+        "RNGseed": {
+          "value": "Explicit source expression",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "progressbar": {
+          "value": "Explicit source expression",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "stop.on.error": {
+          "value": "Explicit source expression",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "TRUE"
+        }
+      }
+    },
+    {
+      "fn": "stats::p.adjust",
+      "args": {
+        "p": {
+          "value": "Explicit source expression",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": ""
+        },
+        "method": {
+          "value": "Explicit source expression",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "p.adjust.methods"
+        },
+        "n": {
+          "value": "Explicit source expression",
+          "source": "Actual installed exact DropletUtils1.32.0 developer API; S4 ANY method resolved explicitly where applicable",
+          "pack": "D",
+          "function_default": "length(p)"
+        }
+      }
+    }
+  ],
+  "accessors": [],
+  "flag_defaults": {},
+  "captured_signatures": {
+    "status": "actual_installed_developer_API",
+    "source": {
+      "package": "DropletUtils",
+      "version": "1.32.0",
+      "url": "https://bioconductor.posit.co/packages/3.23/bioc/src/contrib/Archive/DropletUtils/DropletUtils_1.32.0.tar.gz",
+      "sha256": "bb5ecfc2b69776627a6914525853ac97d6ed5bbe689753ea335273923c425dab",
+      "bytes": 606362,
+      "downloaded_utc": "2026-10-16T08:11:43.709660+00:00"
+    },
+    "R": "R version 4.6.1 (2026-06-24)",
+    "actual_packages": {
+      "DropletUtils": "1.32.0",
+      "BiocParallel": "1.46.0",
+      "stats": "4.6.1"
+    },
+    "functions": {
+      "DropletUtils::emptyDrops": {
+        "m": "",
+        "lower": "100",
+        "retain": "NULL",
+        "barcode.args": "list()",
+        "round": "TRUE",
+        "test.ambient": "FALSE",
+        "...": "",
+        "BPPARAM": "SerialParam()"
+      },
+      "BiocParallel::SerialParam": {
+        "stop.on.error": "TRUE",
+        "progressbar": "FALSE",
+        "RNGseed": "NULL",
+        "timeout": "WORKER_TIMEOUT",
+        "log": "FALSE",
+        "threshold": "\"INFO\"",
+        "logdir": "NA_character_",
+        "resultdir": "NA_character_",
+        "jobname": "\"BPJOB\"",
+        "force.GC": "FALSE"
+      },
+      "stats::p.adjust": {
+        "p": "",
+        "method": "p.adjust.methods",
+        "n": "length(p)"
+      }
+    },
+    "forwarded_arguments": {
+      "niters": {
+        "destination": "DropletUtils::testEmptyDrops",
+        "function_default": "10000",
+        "route": "emptyDrops ANY method ...; not a direct emptyDrops formal"
+      },
+      "ignore": {
+        "destination": "DropletUtils::testEmptyDrops",
+        "function_default": "NULL",
+        "route": "emptyDrops ANY method ...; not a direct emptyDrops formal"
+      },
+      "alpha": {
+        "destination": "DropletUtils::testEmptyDrops",
+        "function_default": "Inf",
+        "route": "emptyDrops ANY method ...; not a direct emptyDrops formal"
+      },
+      "by.rank": {
+        "destination": "DropletUtils::testEmptyDrops",
+        "function_default": "NULL",
+        "route": "emptyDrops ANY method ...; not a direct emptyDrops formal"
+      },
+      "known.empty": {
+        "destination": "DropletUtils::testEmptyDrops",
+        "function_default": "NULL",
+        "route": "emptyDrops ANY method ...; not a direct emptyDrops formal"
+      }
+    }
+  },
+  "status": "candidate_DropletUtils_source_formals_not_native_capture"
+}

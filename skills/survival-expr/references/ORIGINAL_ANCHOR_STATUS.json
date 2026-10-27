@@ -1,0 +1,60 @@
+{
+  "schema": "omicstat.port-original-anchor-status.v1",
+  "native_executed": false,
+  "real_owner_anchor_available": false,
+  "owner_review": null,
+  "anchors": [
+    {
+      "id": "CR-mgus2-cif",
+      "source_reference": {
+        "path": "skills/competing-risks/tests/verified/REFERENCE.md",
+        "bytes": 966,
+        "sha256": "b967203bae1c4193d4de6cf2b63c2a7f7ce741e3dd12c2167a7d5458a4a83662",
+        "git_blob": "c96590d1baea31bad96c1e09327b47d3f828c99b",
+        "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/tests/verified/REFERENCE.md",
+        "read_scope": "code or documentation only; never a clinical data object"
+      },
+      "source_runner": {
+        "path": "skills/competing-risks/tests/verified/run_verified.R",
+        "bytes": 3452,
+        "sha256": "144aeacffc26cf2e132402e75b1e18f46a98f22f9928ced774a5b6c5119c4ea3",
+        "git_blob": "e33e857e952b99d9009724fdda10e6ff7d3662f8",
+        "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/competing-risks/tests/verified/run_verified.R",
+        "read_scope": "code or documentation only; never a clinical data object"
+      },
+      "dataset": "survival::mgus2, Mayo Clinic MGUS cohort",
+      "expected_method": "Manual product-integral F1+=S(t-)*d1/Y and S*=1-(d1+d2)/Y; event1 at365",
+      "source_absolute_tolerance": 1e-08,
+      "dataset_sha256": null,
+      "input_acquired": false,
+      "status": "blocked_clinical_row_data_not_authorized_here_and_exact_native_R_unavailable",
+      "migration_limit": "Original wrapper also performs etiologic covariate modeling; this B3 port includes only the AJ primitive. No substitute synthetic result certifies this original case."
+    },
+    {
+      "id": "SN-V1",
+      "source_reference": {
+        "path": "skills/survival-nonph/tests/verified/REFERENCE.md",
+        "bytes": 908,
+        "sha256": "4f8abbeba22e837912fcb7429329adf1e9cd6347fff503fb9715eebac0e95694",
+        "git_blob": "6ef2c1e13ac76fd152d7a2b6f407da6e75019190",
+        "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/tests/verified/REFERENCE.md",
+        "read_scope": "code or documentation only; never a clinical data object"
+      },
+      "source_runner": {
+        "path": "skills/survival-nonph/tests/verified/run_verified.R",
+        "bytes": 3368,
+        "sha256": "f93b0d40e3c3ceb5d26b4529adba46bf62963b089490e3ecc15f0915998e9e86",
+        "git_blob": "52e392b5a8a729346a08ef3e194f7de382c51007",
+        "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/survival-nonph/tests/verified/run_verified.R",
+        "read_scope": "code or documentation only; never a clinical data object"
+      },
+      "dataset": "Original160 seeded two-arm generated records",
+      "expected_method": "Unadjusted RMST difference from independently integrated KM areas to tau10",
+      "source_absolute_tolerance": 1e-05,
+      "status": "not_applicable_to_selected_B3_functions_RMST_not_ported",
+      "native_executed": false,
+      "migration_limit": "No claim that the new diagnostic/piecewise tests reproduce the original RMST anchor."
+    }
+  ],
+  "additional_contracts": "tests/anchors.json retains all10 existing independent mathematical checks and adds4 native port software contracts. Synthetic inputs never satisfy the real owner-anchor requirement."
+}

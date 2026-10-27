@@ -1,0 +1,52 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--matrix",
+      "{fixtures}/proteins.csv",
+      "--samples",
+      "{fixtures}/samples.csv",
+      "--sample-col",
+      "sample",
+      "--bio-col",
+      "biological_id",
+      "--condition",
+      "condition",
+      "--reference",
+      "Condition_1",
+      "--target",
+      "Condition_2",
+      "--input-scale",
+      "log2",
+      "--zero-policy",
+      "observed",
+      "--normalization",
+      "none",
+      "--feature-id-type",
+      "simulation",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{root}"
+    ]
+  },
+  "figure_policy": "required"
+}

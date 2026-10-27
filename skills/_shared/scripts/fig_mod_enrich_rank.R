@@ -21,32 +21,45 @@ os_fgsea_curve_figure <- function(stats, set, term_name, nes, padj, alpha, journ
 
 # ---- gsva-score ----
 os_gsva_score_heatmap <- function(scores, sample_table = NULL, sample_col = "sample",
-                                  group_col = NULL, min_size = 5, max_size = 500, journal = NULL) {
+                                  group_col = NULL, min_size = 5, max_size = 500, journal = NULL,
+                                  max_per_group = 6L, max_samples = 24L, missing_policy = c("error", "no_cluster")) {
+  missing_policy <- match.arg(missing_policy)
+  .os_require_ids(rownames(scores), "score set IDs"); .os_require_ids(colnames(scores), "score sample IDs")
+  if (length(max_per_group) != 1L || !is.finite(max_per_group) || max_per_group < 1 || max_per_group != as.integer(max_per_group) ||
+      length(max_samples) != 1L || !is.finite(max_samples) || max_samples < 1 || max_samples != as.integer(max_samples))
+    stop("OS_INVALID_INPUT: display caps must be positive integers.", call. = FALSE)
+  scaling <- .os_row_zscores(scores)
   ord <- order(-apply(scores, 1, stats::var), rownames(scores), method = "radix")
   m <- scores[utils::head(ord, 20), , drop = FALSE]
   if (!is.null(sample_table) && !is.null(group_col)) {
     groups <- as.character(sample_table[[group_col]])
-    sample_ids <- as.character(sample_table[[sample_col]])
+    sample_ids <- .os_require_ids(sample_table[[sample_col]], "score metadata sample IDs")
+    if (!setequal(sample_ids, colnames(scores)) || anyNA(groups)) stop("OS_INVALID_INPUT: score metadata must match all samples with nonmissing groups.", call. = FALSE)
     selected <- unlist(lapply(sort(unique(groups), method = "radix"), function(g)
-      utils::head(sort(sample_ids[groups == g], method = "radix"), 6)), use.names = FALSE)
-    selected <- utils::head(selected, 24)
+      utils::head(sort(sample_ids[groups == g], method = "radix"), max_per_group)), use.names = FALSE)
+    selected <- utils::head(selected, max_samples)
     annot <- data.frame(Group = factor(groups[match(selected, sample_ids)], levels = sort(unique(groups), method = "radix")), row.names = selected)
   } else {
-    selected <- utils::head(sort(colnames(m), method = "radix"), 24)
+    selected <- utils::head(sort(colnames(m), method = "radix"), max_samples)
     annot <- NULL
   }
   m <- m[, selected, drop = FALSE]
-  row_mean <- rowMeans(m)
-  row_sd <- apply(m, 1, stats::sd)
-  z <- sweep(sweep(m, 1, row_mean, "-"), 1, ifelse(row_sd > 0, row_sd, 1), "/")
+  z <- scaling$values[rownames(m), selected, drop = FALSE]
   p <- os_heatmap(z, value_title = "Row z score", scale_type = "diverging",
                   cluster_rows = TRUE, cluster_cols = TRUE, italic_rows = FALSE,
                   show_col_labels = FALSE, col_annot = annot,
-                  annot_colours = if (is.null(annot)) NULL else list(Group = os_group_colours(levels(annot$Group))), journal = journal)
+                  annot_colours = if (is.null(annot)) NULL else list(Group = os_group_colours(levels(annot$Group))), journal = journal,
+                  missing_policy = missing_policy, value_state = scaling$state[rownames(m), selected, drop = FALSE])
   meta <- attr(p, "os_meta")
   meta$caption <- paste0(meta$caption, " GSVA score heatmap: ", nrow(m), " of ", nrow(scores),
                          " gene sets and ", ncol(m), " of ", ncol(scores), " samples shown. Set sizes after gene ID intersection and GSVA's removal of constant rows: ",
                          min_size, "-", max_size, ". No significance threshold applies to this descriptive heatmap.")
+  meta$caption <- paste0(meta$caption, " Row z scores use all ", ncol(scores), " scored samples before display selection; top sets by full-cohort variance, samples by group then sample ID. Raw scores are not probabilities or P values.")
+  meta$data <- utils::modifyList(meta$data, list(reference_sample_ids = as.list(colnames(scores)),
+      reference_sha256 = digest::digest(scores[, order(colnames(scores), method = "radix"), drop = FALSE], algo = "sha256"),
+      reference_center = as.list(scaling$center), reference_sd = as.list(scaling$sd),
+      selected_sample_ids = as.list(selected), raw_scores = scores,
+      selection = list(max_per_group = max_per_group, max_samples = max_samples, rule = "full-cohort variance; group then sample ID")))
   meta$counts <- list(sets_shown = nrow(m), sets_scored = nrow(scores),
                       samples_shown = ncol(m), samples_scored = ncol(scores))
   attr(p, "os_meta") <- meta

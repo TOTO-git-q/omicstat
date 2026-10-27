@@ -41,3 +41,18 @@ Methods: edgeR|DESeq2|limma-trend|limma-voom|DD; filtering: both|genes|samples|n
 | `--spec` | none; replay resolved_spec.json | no | none |
 | `--seed` | 20260925 suite seed (7 for tradeSeq vignette; 1 for CellChat function default) | no | none |
 | `--journal` | nature; nature / cell / science / generic | no | none |
+
+## Explicit donor and fitted-sample audit
+
+`--donor-col` is an optional column of actual donor IDs in the cell metadata.
+It does not infer identities or alter aggregation. A sample cannot mix donors;
+one donor-condition split into multiple sample labels is refused until technical
+samples are aggregated explicitly upstream. Repeated donors across conditions
+require an explicit `--ds-design` spanning the declared donor effects.
+
+The eligibility table and companion figure keep original/prepared cell counts,
+native library sizes, actual fitted-data sample IDs and per-condition sample/donor
+counts. The no-cell, preparation-excluded, below-cell-threshold, zero-library and
+unfitted states have separate reasons. Sample labels without donor information
+do not prove biological independence. Inadequate actual fitted replicates remain
+a blocker; no inference is rescued by increasing the number of cells or subtypes.

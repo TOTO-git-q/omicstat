@@ -1,0 +1,360 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "omicstat-groupcompare",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_omicstat_groupcompare.R",
+  "version": "0.1.0",
+  "qc_prefix": "GPC",
+  "engine_packages": [
+    "stats"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "development_group_comparison"
+    ]
+  },
+  "figure_builders": [
+    "os_group_points",
+    "os_distribution_effects"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 50,
+    "question": "Prespecified biological-unit tests, source advisory diagnostics, or independent fixed-grid distribution effects"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--input",
+      "default": "required",
+      "source": "required scientific declaration",
+      "format": "CSV",
+      "unit": "biological",
+      "required_columns": [
+        "--response-col",
+        "--group-col",
+        "--unit-col"
+      ],
+      "technical_policy_required": true,
+      "design_required": true,
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--response-col",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--group-col",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--group-order",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--design",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "independent|paired",
+      "role": "scientific"
+    },
+    {
+      "flag": "--technical-policy",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "reject|mean",
+      "role": "scientific"
+    },
+    {
+      "flag": "--technical-col",
+      "default": null,
+      "source": "execution control; no scientific inference",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "string",
+      "role": "scientific",
+      "required_when": [
+        "--technical-policy mean is declared."
+      ]
+    },
+    {
+      "flag": "--comparisons",
+      "default": null,
+      "source": "execution control; no scientific inference",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--pairwise-test is not none."
+      ]
+    },
+    {
+      "flag": "--pairwise-test",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "none|welch|student|paired-t|wilcoxon|paired-wilcoxon",
+      "role": "scientific"
+    },
+    {
+      "flag": "--omnibus",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "none|anova|welch-anova|kruskal|friedman",
+      "role": "scientific"
+    },
+    {
+      "flag": "--rank-method",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "not-applicable|exact|asymptotic",
+      "role": "scientific"
+    },
+    {
+      "flag": "--adjust",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "none|holm|bonferroni|BH|BY",
+      "role": "scientific"
+    },
+    {
+      "flag": "--family-size",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "int in [1, Inf]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--display",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "box|bar|interval",
+      "role": "scientific"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "required scientific declaration",
+      "required": false,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "source": "execution control; no scientific inference",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "required scientific declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "source": "execution control; no scientific inference"
+    },
+    {
+      "flag": "--analysis-mode",
+      "default": "hypothesis-tests",
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "hypothesis-tests|distribution-effects",
+      "role": "scientific"
+    },
+    {
+      "flag": "--distribution-diagnostics",
+      "default": "off",
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "off|source-advisory",
+      "role": "scientific"
+    },
+    {
+      "flag": "--reference-group",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects"
+      ]
+    },
+    {
+      "flag": "--quantile-grid",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects"
+      ]
+    },
+    {
+      "flag": "--min-cell-n",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "int in [10, 1000000]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects"
+      ]
+    },
+    {
+      "flag": "--outcome-unit",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "string",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects"
+      ]
+    },
+    {
+      "flag": "--inference",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "none|iid_stratified_bootstrap",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects"
+      ]
+    },
+    {
+      "flag": "--bootstrap-replicates",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "int in [200, 100000]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects AND inference = iid_stratified_bootstrap"
+      ]
+    },
+    {
+      "flag": "--min-success-fraction",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "num in [0.95, 1]",
+      "role": "scientific",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects AND inference = iid_stratified_bootstrap"
+      ]
+    },
+    {
+      "flag": "--dataset-name",
+      "default": null,
+      "source": "Reviewed P0-13 independent source adapter; no native formals or numerical equivalence claim",
+      "required": false,
+      "type_label": "string",
+      "role": "presentation",
+      "conditional_required": true,
+      "required_when": [
+        "analysis-mode = distribution-effects"
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 48,
+    "discovery_profile": {
+      "module": "omicstat-groupcompare",
+      "epmc_query": "METHODS:\"group comparison\" OR METHODS:\"biological replicates\"",
+      "meta": false,
+      "signal_regex": "(?:group comparison|biological replicates)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "ported_from": "TOTO-git-q/medstat@12292d020ef4a8575a3a1db880b81786ee3547fa:skills/descriptive-distribution/,skills/baseline-table/,skills/_shared/scripts/var_typing.R",
+  "lane_image": "omicstat-r:2026.10.4"
+}

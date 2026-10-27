@@ -1,0 +1,194 @@
+{
+  "module": "proc-roc",
+  "module_version": "0.1.0",
+  "language": "R",
+  "package_versions": {},
+  "native_defaults_verified": false,
+  "binding_status": "unresolved_independent_native_versions_and_formals",
+  "required_packages": [
+    "pROC"
+  ],
+  "calls": [
+    {
+      "fn": "pROC::roc",
+      "args": {
+        "response": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "predictor": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "levels": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "direction": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "quiet": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pROC::auc",
+      "args": {}
+    },
+    {
+      "fn": "pROC::ci.auc",
+      "args": {
+        "method": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.level": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pROC::coords",
+      "args": {
+        "x": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "ret": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pROC::roc.test",
+      "args": {
+        "method": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "paired": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.level": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pROC::ci.coords",
+      "args": {
+        "x": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "input": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "best.method": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "ret": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "boot.n": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.level": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    },
+    {
+      "fn": "pROC::ci.se",
+      "args": {
+        "specificities": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "boot.n": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        },
+        "conf.level": {
+          "value": "Explicit copied/adapted source expression; method and assumptions in PORT_ADAPTATIONS.json",
+          "source": "Pinned original source; actual OmicStat native formals still require capture",
+          "pack": "D",
+          "function_default": null,
+          "function_default_status": "unverified_native_capture_required"
+        }
+      }
+    }
+  ]
+}

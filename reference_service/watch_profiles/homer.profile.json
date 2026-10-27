@@ -1,0 +1,10 @@
+{
+ "module": "homer",
+ "epmc_query": "METHODS:\"HOMER\" AND (METHODS:\"motif\" OR METHODS:\"ChIP-seq\" OR METHODS:\"ATAC-seq\")",
+ "meta": false,
+ "signal_regex": "\\bHOMER\\b[^.;]{0,160}(?:motif|annotatePeaks|findMotifs|peaks?)|(?:motif|peak annotation)[^.;]{0,160}\\bHOMER\\b",
+ "signal_require_regex": "\\bHOMER\\b",
+ "exclude_regex": "\\b(?:protocol|benchmark)\\b",
+ "profile_status": "ok",
+ "note": "Watch profile from the 2026-10 coverage ranking: accumulates screened reading for a method without an omicstat module; never a module, never a default."
+}

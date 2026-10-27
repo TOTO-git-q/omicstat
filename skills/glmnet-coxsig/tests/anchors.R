@@ -1,0 +1,1 @@
+a<-commandArgs(trailingOnly=TRUE);d<-read.csv(file.path(a[2],"tables/coefficients.csv"));z<-setNames(as.list(d$coefficient[match(paste0("V",1:8),d$gene)]),paste0("cox_example_v",1:8));jsonlite::write_json(z,a[1],auto_unbox=TRUE,digits=NA)

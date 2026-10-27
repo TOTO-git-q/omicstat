@@ -1,0 +1,88 @@
+survival_expr_compute_legacy <- function(a) {
+ inp <- os_survival_input(a); E <- inp$E; d <- inp$clinical
+ if (!a[["km-gene"]] %in% rownames(E)) stop("OS_INVALID_DESIGN: km-gene must be one of the prespecified genes", call. = FALSE)
+ if (a[["family-size"]] < nrow(E)) stop("OS_INVALID_DESIGN: family-size cannot be smaller than the tested gene family", call. = FALSE)
+ if (a$cutoff == "prespecified" && is.null(a[["cutpoint"]])) stop("OS_MISSING_PARAMETER: prespecified cutoff requires cutpoint", call. = FALSE)
+ if (a$cutoff != "prespecified" && !is.null(a$cutpoint)) stop("OS_CONFLICTING_PARAMETERS: cutpoint only applies to prespecified cutoff", call. = FALSE)
+ if (a$cutoff == "optimal" && (!isTRUE(a$exploratory) || is.null(a[["min-group-fraction"]]))) stop("OS_MISSING_PARAMETER: optimal cutoff requires exploratory and min-group-fraction", call. = FALSE)
+ if (a$cutoff != "optimal" && (isTRUE(a$exploratory) || !is.null(a[["min-group-fraction"]]))) stop("OS_CONFLICTING_PARAMETERS: search options only apply to optimal cutoff", call. = FALSE)
+ curves <- risks <- NULL; fits <- phs <- rows <- allcoef <- list(); scaling <- list()
+ for (i in seq_len(nrow(E))) {
+  gene <- rownames(E)[i]; x <- as.numeric(E[i, ]); mu <- if (a$scaling == "zscore") mean(x) else 0; sd <- if (a$scaling == "zscore") stats::sd(x) else 1
+  dat <- d; dat$expression <- (x - mu) / sd
+  form <- stats::reformulate(c("expression", if (length(inp$covariates)) paste0("c", seq_along(inp$covariates)) else character()), response = "survival::Surv(time, event)")
+  fit <- survival::coxph(formula = form, data = dat, ties = a$ties, singular.ok = FALSE, x = TRUE, y = TRUE, model = TRUE, na.action = stats::na.fail,
+   control = survival::coxph.control(iter.max = a[["max-iter"]], eps = a[["cox-eps"]]))
+  b <- stats::coef(fit); se <- sqrt(diag(stats::vcov(fit)))
+  if (any(!is.finite(b)) || any(!is.finite(se) | se <= 0) || any(fit$iter >= a[["max-iter"]])) stop("OS_INVALID_DESIGN: nonfinite, singular or nonconverged Cox model; no automatic variable dropping", call. = FALSE)
+  z <- b / se; p <- 2 * stats::pnorm(-abs(z)); q <- stats::qnorm((1 + a[["ci-level"]]) / 2)
+  cf <- data.frame(gene = gene, term = c("expression", inp$covariates), coefficient = b, se = se, z = z, p_value = p,
+   estimate = exp(b), ci_low = exp(b - q * se), ci_high = exp(b + q * se), row.names = NULL)
+  if (any(!is.finite(as.matrix(cf[c("estimate", "ci_low", "ci_high")]))) || any(cf$ci_low <= 0)) stop("OS_INVALID_DESIGN: unbounded hazard ratio interval", call. = FALSE)
+  allcoef[[i]] <- cf; rows[[i]] <- transform(cf[1, , drop = FALSE], term = gene, n_biological = nrow(d), n_events = sum(d$event))
+  ph <- survival::cox.zph(fit = fit, transform = a[["ph-transform"]], terms = TRUE, singledf = FALSE, global = TRUE)
+  pt <- as.data.frame(ph$table); names(pt) <- c("chisq", "df", "p_value"); pt$term <- c("expression", inp$covariates, "GLOBAL"); pt$gene <- gene
+  if (any(!is.finite(as.matrix(pt[c("chisq", "df", "p_value")])))) stop("OS_INVALID_DESIGN: undefined PH diagnostic", call. = FALSE)
+  phs[[i]] <- pt; fits[[gene]] <- fit; scaling[[i]] <- data.frame(gene = gene, center = mu, scale = sd)
+ }
+ effects <- do.call(rbind, rows); effects$p_adjusted <- stats::p.adjust(effects$p_value, method = a$adjust, n = a[["family-size"]])
+ ph <- do.call(rbind, phs)
+ # Cutoffs are always on the supplied expression scale, independent of Cox standardization.
+ x <- as.numeric(E[a[["km-gene"]], ]); cut <- if (a$cutoff == "median") stats::median(x) else a$cutpoint
+ search <- data.frame(cutpoint = numeric(), chisq = numeric(), n_low = integer(), n_high = integer())
+ logrank <- function(group) {
+  dd <- transform(d, group = group)
+  survival::survdiff(formula = survival::Surv(time, event) ~ group, data = dd, rho = 0, na.action = stats::na.fail)
+ }
+ if (a$cutoff == "optimal") {
+  candidates <- sort(unique(x)); candidates <- candidates[-length(candidates)]
+  if (length(candidates) > 256L) stop("OS_INVALID_DESIGN: exploratory cutpoint search exceeds 256 unique thresholds; use a prespecified cutoff, no silent subsampling", call. = FALSE)
+  for (v in candidates) {
+   nl <- sum(x <= v); nh <- sum(x > v)
+   if (min(nl, nh) < max(2, ceiling(length(x) * a[["min-group-fraction"]]))) next
+   g <- factor(ifelse(x <= v, "low", "high"), levels = c("low", "high"))
+   if (any(tapply(d$event, g, sum) == 0)) next
+   lr <- logrank(g); search <- rbind(search, data.frame(cutpoint = v, chisq = lr$chisq, n_low = nl, n_high = nh))
+  }
+  if (!nrow(search)) stop("OS_INVALID_DESIGN: no eligible exploratory cutpoint", call. = FALSE)
+  cut <- search$cutpoint[which.max(search$chisq)]
+ }
+ group <- factor(ifelse(x <= cut, "low", "high"), levels = c("low", "high"))
+ if (any(table(group) < 2) || any(tapply(d$event, group, sum) == 0)) stop("OS_INVALID_DESIGN: KM split requires at least two subjects and an event in both groups", call. = FALSE)
+ dat <- transform(d, group = group); lr <- logrank(group)
+ sf <- survival::survfit(formula = survival::Surv(time, event) ~ group, data = dat, conf.int = a[["ci-level"]], conf.type = "log-log", se.fit = TRUE)
+ groupvec <- rep(sub("^group=", "", names(sf$strata)), sf$strata)
+ # At S=0 the upstream log-log bound may be NA. Export NA, omit the interval there; never invent CI.
+ curves <- data.frame(time = sf$time, survival = sf$surv, lower = sf$lower, upper = sf$upper, n_censor = sf$n.censor, group = groupvec)
+ curves <- rbind(data.frame(time = 0, survival = 1, lower = 1, upper = 1, n_censor = 0, group = levels(group)), curves)
+ tt <- suppressWarnings(as.numeric(strsplit(a[["risk-times"]], ",", fixed = TRUE)[[1]]))
+ if (any(!is.finite(tt)) || any(tt < 0 | tt > max(d$time)) || anyDuplicated(tt) || is.unsorted(tt, strictly = TRUE)) stop("OS_INVALID_PARAMETER: sorted unique risk times in observed follow-up required", call. = FALSE)
+ risks <- do.call(rbind, lapply(levels(group), function(g) data.frame(time = tt, n_risk = vapply(tt, function(z) sum(d$time[group == g] >= z), 0L), group = g)))
+ memberships <- data.frame(unit = d$unit, gene = a[["km-gene"]], expression = x, group = group)
+ kp <- if (a$cutoff == "optimal") NA_real_ else stats::pchisq(lr$chisq, df = 1, lower.tail = FALSE)
+ meta <- list(n_biological = nrow(d), n_events = sum(d$event), genes = rownames(E), covariates = inp$covariates,
+  scaling = a$scaling, expression_scale = a[["expression-scale"]], ties = a$ties, ph_transform = a[["ph-transform"]], ph_alpha = a[["ph-alpha"]],
+  ci_level = a[["ci-level"]], adjustment = a$adjust, family_size = a[["family-size"]], km_gene = a[["km-gene"]], cutoff_rule = a$cutoff,
+  cutpoint = cut, split = "low <= cutpoint; high > cutpoint", logrank_p = kp, exploratory_cutpoint = a$cutoff == "optimal",
+  logrank_scope = if (a$cutoff == "optimal") "Optimized exploratory split: p-value deliberately withheld; no confirmatory group inference" else "Single prespecified KM display; unadjusted logrank diagnostic separate from gene Cox family",
+  ph_violations = sum(ph$p_value < a[["ph-alpha"]]), min_events = a[["min-events"]], time_unit = a[["time-unit"]], journal = a$journal)
+ list(tables = list(effect_table = effects, coefficients = do.call(rbind, allcoef), ph_tests = ph, scaling = do.call(rbind, scaling),
+  km_curves = curves, km_risk = risks, km_membership = memberships, cutpoint_search = search,
+  km_test = data.frame(chisq = lr$chisq, df = 1, p_value = kp, cutoff_rule = a$cutoff, cutpoint = cut)),
+  object = fits, handoff_type = "development_expression_survival", metadata = meta, upstream = inp$upstream, input_files = inp$input_files,
+  ready = TRUE, packages = "survival", method = c("Per-gene continuous Cox models with prespecified numeric covariates; two-sided Wald intervals and gene-family p adjustment.",
+   "PH tests are diagnostics, not model-selection filters. Right censoring only, no case deletion or row-derived biological replication.", meta$logrank_scope))
+}
+
+# The original statistical body above is unchanged apart from its private name.
+survival_expr_compute <- function(a) {
+ mode <- if (is.null(a[["survival-extension"]])) "none" else a[["survival-extension"]]
+ if (identical(mode, "none")) {
+  extra <- c("dataset-name", "nonph-primary", "nonph-transforms", "nonph-magnitude", "piecewise-cuts", "piecewise-gene", "piecewise-fit", "piecewise-adjust", "piecewise-family-size", "competing-status-col", "event-of-interest", "cif-estimator", "cif-interval")
+  if (any(vapply(extra, function(k) !is.null(a[[k]]), logical(1)))) stop("OS_INVALID_PARAMETER: extension flags require an explicit active survival extension", call. = FALSE)
+  return(survival_expr_compute_legacy(a))
+ }
+ if (identical(mode, "nonph")) return(os_srv_nonph_compute(a))
+ if (identical(mode, "competing-risks")) return(os_srv_competing_compute(a))
+ stop("OS_INVALID_PARAMETER: unknown survival extension", call. = FALSE)
+}

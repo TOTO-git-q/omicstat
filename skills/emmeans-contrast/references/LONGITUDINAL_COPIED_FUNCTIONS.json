@@ -1,0 +1,61 @@
+{
+  "original_selected": "skills/emmeans-contrast/tests/ported_source/longitudinal_selected_before.R",
+  "target": "skills/emmeans-contrast/scripts/longitudinal_ported.R",
+  "source_path": "skills/longitudinal-change/scripts/longitudinal_core.R",
+  "functions": [
+    {
+      "name": "`%||%`",
+      "original_normalized_lf_sha256": "aab9ce7094b6acaa2b6c63bd7471f4b3457f4002b6bf3b20b877c7f66b12df70",
+      "adapted_sha256": "aab9ce7094b6acaa2b6c63bd7471f4b3457f4002b6bf3b20b877c7f66b12df70",
+      "unchanged": true
+    },
+    {
+      "name": ".lc_stop",
+      "original_normalized_lf_sha256": "adaf500a3527de0b9342eb930bcce17dfac43fc793a3093bd88ea137b9a6d096",
+      "adapted_sha256": "adaf500a3527de0b9342eb930bcce17dfac43fc793a3093bd88ea137b9a6d096",
+      "unchanged": true
+    },
+    {
+      "name": "check_longitudinal",
+      "original_normalized_lf_sha256": "dfa704fac055315098aa624f9a1624147c9d2ac2454bf10a7a0e2d5d86a26bc1",
+      "adapted_sha256": "214a151fea2cdfb0d821baf2d42dcd6c13bf960cdfb2c7ab84d95cc9cbeef885",
+      "unchanged": false
+    },
+    {
+      "name": "scan_waves",
+      "original_normalized_lf_sha256": "c745815a822e81247afbf409eb149b697fd6ec7df02bdcb2ed294e1ff7f3cdb7",
+      "adapted_sha256": "ae8793b1b109e941131eb31867b671b898ed0ad8dcdfe04de5f6282fed353288",
+      "unchanged": false
+    },
+    {
+      "name": ".lc_singular",
+      "original_normalized_lf_sha256": "aa19ae06faecefdf46d5b618149df34b87ea40f25c654dfc402c2a080a96cfda",
+      "adapted_sha256": "aa19ae06faecefdf46d5b618149df34b87ea40f25c654dfc402c2a080a96cfda",
+      "unchanged": true
+    },
+    {
+      "name": "lc_emm_and_tests",
+      "original_normalized_lf_sha256": "d255602a80dc6575be52cafa89f6bf0e8fcff63ba26e62b2f6d170258c7c4108",
+      "adapted_sha256": "6e1dd6ea4a4207d386f1c4370f59943c2c2c0f2d8f318e91031396453413e6ae",
+      "unchanged": false
+    },
+    {
+      "name": "lc_lmer_df",
+      "original_normalized_lf_sha256": "220cd7ac08c671829d900491f23d94187e713666726b46159a8fe126797998fc",
+      "adapted_sha256": "b79ff1148d3f1153fb5430c14d388d8673a2ac367aa493faa5bebc2c4612316a",
+      "unchanged": false
+    },
+    {
+      "name": "diff_effect_rows",
+      "original_normalized_lf_sha256": "e1178f1b8a60bb949ca3f53e1efd5211f886ac745189b2c068e9d5e2742644de",
+      "adapted_sha256": "2e438b8f513f19bae6b5c0cb891587f80f837aa150b030ad001a495cf5f24c62",
+      "unchanged": false
+    },
+    {
+      "name": "interaction_effect_rows",
+      "original_normalized_lf_sha256": "2de9a84cdba444841119868b2615c20761715112edcaf9c9e26e5271c584845b",
+      "adapted_sha256": "2de9a84cdba444841119868b2615c20761715112edcaf9c9e26e5271c584845b",
+      "unchanged": true
+    }
+  ]
+}

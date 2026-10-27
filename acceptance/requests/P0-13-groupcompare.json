@@ -1,0 +1,85 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "groupcompare",
+  "modules": [
+    "omicstat-groupcompare"
+  ],
+  "actual_remote_parent": "df22b225301bcf8421599d16bc13002a9c396471",
+  "image_candidate": null,
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "full_regression": true,
+  "full_item_complete": false,
+  "owner_visual_review": null,
+  "notes": [
+    "P0-13B1 source port within the existing module; exact independent R4.6.1 lineage is required for all new native checks.",
+    "Existing prespecified estimator and test choices stay unchanged. Source heuristic is optional advice only; no automatic test or adjustment choice.",
+    "Distribution-effects is separate, independent,aggregate-only with source minimum10/fixed-gridECDF/SMD and pointwise95%bootstrap guards. No synthetic owner review.",
+    "Do not reuse failed evidence directories. Existing real sleep anchors/receipt cover paired prior path only, not the new independent effects branch.",
+    "Cloud has noRscript/Docker; native numerical before-after/replay/refusals/figures and new real registered owner contact sheet remain pending.",
+    "Golden/seal stages are read-only deferred_by_owner; no writes, acceptance, merging, deployment or promotion."
+  ],
+  "checks": [
+    [
+      "python3",
+      "tools/test_groupcompare_port.py"
+    ],
+    [
+      "python3",
+      "tools/test_owner_groupcompare_adapter.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "omicstat-groupcompare",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "python3",
+      "tools/test_figure_restyle_freeze_revision.py"
+    ],
+    [
+      "Rscript",
+      "skills/omicstat-groupcompare/tests/run_smoke_test.R"
+    ],
+    [
+      "Rscript",
+      "skills/omicstat-groupcompare/tests/run_distribution_contracts.R"
+    ],
+    [
+      "python3",
+      "skills/omicstat-groupcompare/tests/run_distribution_cli.py",
+      "--outdir",
+      "/evidence/groupcompare-distribution-native"
+    ]
+  ],
+  "owner_review_policy": {
+    "synthetic_owner_sheets_allowed": false,
+    "dataset_label_required_per_figure": true,
+    "existing_canonical": "registered r-sleep paired example only",
+    "new_distribution_branch": "pending_registered_real_independent_source_and_native_render",
+    "clinical_rows_upload_allowed": false,
+    "new_distribution_receipt": null
+  }
+}

@@ -1,0 +1,42 @@
+args <- commandArgs(FALSE)
+here <- dirname(normalizePath(sub("^--file=", "", args[grepl("^--file=", args)][1])))
+scripts <- normalizePath(file.path(here,"../scripts"))
+for (f in c("args.R","engine_run.R","module_kit.R","handoff.R","fig_all.R","render_figure_request.R")) source(file.path(scripts,f))
+source(file.path(here,"fixtures/fig_fixtures_exec_visual.R"))
+python <- Sys.which("python3")
+if (!nzchar(python)) stop("Python3 is required for this declared cross-lane check; it must not silently skip.")
+out <- Sys.getenv("OMICSTAT_EXEC_VISUAL_REQUEST_OUT",file.path(tempdir(),"exec-visual-requests"))
+dir.create(out,recursive=TRUE,showWarnings=FALSE)
+source <- file.path(out,"synthetic_source.json")
+writeLines(jsonlite::toJSON(fx_exec_visual(),auto_unbox=TRUE,pretty=TRUE,
+  dataframe="rows",null="null",na="null",digits=I(17)),source,useBytes=TRUE)
+sha <- function(p) digest::digest(file=p,algo="sha256")
+output_sha <- function(path) if(grepl("\\.pdf$",path))os_pdf_content_sha256(path) else sha(path)
+n <- 0L
+check <- function(value,label) {if(!isTRUE(value))stop(paste("FAIL",label));n<<-n+1L;cat("PASS",label,"\n")}
+for (j in c("nature","cell")) {
+  run <- file.path(out,j,"request");native <- file.path(out,j,"native")
+  result <- system2(python,c(shQuote(file.path(here,"../py/tests/make_exec_visual_request.py")),shQuote(source),shQuote(run),j),stdout=TRUE,stderr=TRUE)
+  check(is.null(attr(result,"status")) || attr(result,"status")==0L,paste(j,"real Python FigureRequest writer"))
+  rendered <- os_render_figure_request(run)
+  check(length(rendered$figures)==3L,paste(j,"all three requested shared builders render"))
+  first <- list()
+  for (id in names(fx_exec_visual_builders(j))) {
+    got <- os_finalize_figure(fx_exec_visual_builders(j)[[id]](),file.path(native,"figures",id),journal=j,root=native)
+    request_stem <- file.path(run,"figures",id)
+    check(identical(sha(got$files$png),sha(paste0(request_stem,".png"))),paste(j,id,"native/request PNG equality"))
+    check(identical(os_pdf_content_sha256(got$files$pdf),os_pdf_content_sha256(paste0(request_stem,".pdf"))),paste(j,id,"native/request normalized PDF equality"))
+    check(identical(sha(got$spec),sha(paste0(request_stem,".figure_spec.json"))),paste(j,id,"complete native/request spec equality"))
+    first[[id]]<-vapply(c(".png",".pdf",".figure_spec.json"),function(ext)output_sha(paste0(request_stem,ext)),character(1))
+  }
+  os_write_json(first,file.path(out,j,"before_replay_hashes.json"))
+  os_render_figure_request(run)
+  check(all(vapply(names(first),function(id)identical(first[[id]],vapply(c(".png",".pdf",".figure_spec.json"),function(ext)output_sha(file.path(run,"figures",paste0(id,ext))),character(1))),logical(1))),paste(j,"exact second request replay with declared PDF metadata normalization"))
+  req <- jsonlite::fromJSON(file.path(run,"figure_data/figure_request.json"),simplifyVector=FALSE)
+  path <- file.path(run,req$figures[[1]]$data$curves$path);old <- readBin(path,"raw",n=file.info(path)$size)
+  cat("\n",file=path,append=TRUE)
+  error <- tryCatch({os_render_figure_request(run);"no_error"},error=conditionMessage)
+  check(grepl("OS_FIGURE_DATA_MISMATCH",error,fixed=TRUE),paste(j,"tampered source bytes are refused"))
+  writeBin(old,path)
+}
+cat("ALL PASSED:",n,"real Python/R request checks; no inference or clinical fixture\n")

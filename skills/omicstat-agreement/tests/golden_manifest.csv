@@ -1,0 +1,8 @@
+# env: container|R 4.6.1|Bioc 3.23|x86_64-pc-linux-gnu
+path,sha256,tier,exempt_fields
+figures/bland_altman.figure_spec.json,00476097748c404ad3d31e5a7ea5088585be84e3a9fe73d1953e556c1f457d32,container,
+figures/bland_altman.png,5a39ca520828a3bbb443dcd8241990a8780d538864e500d7d01f2308b65d7559,container,
+tables/acceptability.csv,033790758f0a30760aca76fb329f2119c6dfc3c3d6a4e3aadbfbf8713cdbcf7a,container,
+tables/diagnostics.csv,b64b2f3debb0e5cbce8cdd1dba123728c968ce1406ee01be32b5ac781301bff8,container,
+tables/effect_table.csv,5b564b1e2d0e3ee799baa78e681ac2afa50f70d264aeb152023fe155a2231d4c,container,
+tables/pairs.csv,16a324c989cdb75342368ae383e2fc35ea2571adf388a90da497f071f07285b7,container,

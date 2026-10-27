@@ -1,0 +1,148 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "longitudinal",
+  "modules": [
+    "lme4-lmm",
+    "emmeans-contrast"
+  ],
+  "actual_remote_parent": "066f8cfe829acd2fb19f3a127c1113b024beba8c",
+  "image_candidate": "env/candidates/20261016-models",
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "source_locks": [
+    {
+      "candidate": "env/candidates/20261016-models",
+      "path": "env/candidates/20261016-models/sources.lock.json",
+      "sha256": "78d8c59385dff6436392a9b0134204a7e7315b002fa5558ea8b13afeb7a3c17b",
+      "required_packages": [
+        "drc",
+        "emmeans",
+        "proDA",
+        "MSstats",
+        "MSstatsConvert",
+        "multcomp",
+        "plotrix",
+        "TH.data",
+        "estimability",
+        "extraDistr",
+        "marray"
+      ]
+    }
+  ],
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "full_regression": true,
+  "full_item_complete": false,
+  "full_native_acceptance_passed": false,
+  "owner_visual_review": null,
+  "notes": [
+    "P0-13B2 independent copied longitudinal post-fit functions inside existing lme4-lmm/emmeans-contrast. Exact parent PR81 and pinned MedStat source identities are recorded; no MedStat runtime dependency.",
+    "Original LMM fitter and original within-by pairwise numerical body are unchanged. Explicit --longitudinal requires dataset/time labels, same fitted Gaussian group-time interaction and finite KR or Satterthwaite df; never refit, raise the 3000-row ceiling, or silently substitute asymptotic inference.",
+    "The original LONG-balanced-cells source seed/RNG and 1e-5 absolute tolerance are retained; eight source same-input table comparisons are separately identified, not independent printed anchors. Existing three feedlot printed references retain their original tolerances.",
+    "Native source contracts use synthetic fixtures only. They never qualify as real owner data. New official nonclinical Soybean example still needs exact package/data binding, eligible prespecified design, registry entry and per-figure dataset-labelled actual PNG contact sheet.",
+    "Cloud Rscript/Docker absent. Native R4.6.1 models, source before/after, CLI/replay/refusals, formals and PNG/spec checks have not passed here. Preserve missing-dependency and cross-language jsonschema blockers; use a fresh evidence directory.",
+    "Use the independently built exact model candidate identity or authorized exact source/platform/hash procedure. No automatic download or install; existing archive locks remain byte-identical. Original candidate preparation/context/inventory failures stay visible.",
+    "Golden/seal stages are read-only deferred_by_owner. No source locks, golden outputs, seals, deployment, merge, production or MedStat writes.",
+    "Round4 R7: validated computed StudyContract SHA remains in canonical argv while its original nullable engine default is not re-attributed to a user. Real file/schema/digest checks and ordinary scientific-default drift checks remain mandatory in both languages.",
+    "The only ported statistical-body edit names the unchanged emmeans::contrast object and revpairwise method. Original copied hashes and adaptations remain immutable; exact before/after function bindings are separate.",
+    "Native mutated-theta singularity failure from exec3b on exact PR82 is still unresolved. The copied guard, 1e-4 tolerance and original failing assertion remain; new aggregate diagnostics are written before that assertion. Do not label native/owner/full regression complete.",
+    "Run the new shared R parser check in exact R4.6.1 and rerun both original longitudinal native suites/CLI in a NEW evidence directory. Existing cli output-directory arguments are historical; executor must allocate a fresh explicit directory rather than reusing previous failed evidence."
+  ],
+  "checks": [
+    [
+      "python3",
+      "tools/test_longitudinal_port.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "emmeans-contrast",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "lme4-lmm",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "python3",
+      "tools/test_figure_restyle_freeze_revision.py"
+    ],
+    [
+      "python3",
+      "tools/test_resource_owner_cumulative_request.py"
+    ],
+    [
+      "Rscript",
+      "skills/emmeans-contrast/tests/run_development_test.R"
+    ],
+    [
+      "Rscript",
+      "skills/emmeans-contrast/tests/run_adjustment_audit_test.R"
+    ],
+    [
+      "Rscript",
+      "skills/emmeans-contrast/tests/run_serialized_handoff_test.R"
+    ],
+    [
+      "Rscript",
+      "skills/emmeans-contrast/tests/run_longitudinal_contracts.R"
+    ],
+    [
+      "python3",
+      "skills/emmeans-contrast/tests/run_longitudinal_cli.py",
+      "--outdir",
+      "/evidence/longitudinal-native-cli"
+    ],
+    [
+      "python3",
+      "tools/test_study_contract_choice_replay.py"
+    ],
+    [
+      "python3",
+      "tools/test_longitudinal_replay_binding.py"
+    ],
+    [
+      "Rscript",
+      "skills/_shared/tests/test_study_contract_choice_replay.R"
+    ]
+  ],
+  "owner_review_policy": {
+    "synthetic_owner_sheets_allowed": false,
+    "dataset_label_required_per_figure": true,
+    "proposed_dataset": "nlme::Soybean (nonclinical official data)",
+    "registration": "pending exact independent package/data hashes and approved preset",
+    "real_longitudinal_contact_sheet": null,
+    "owner_visual_approval": null,
+    "clinical_rows_upload_allowed": false
+  },
+  "round4_refresh": {
+    "actual_remote_parent": "f1a446070f2782e176f30391896c84771c1f19ba",
+    "source_binding": "docs/round4/20261018-longitudinal-replay-r7/BINDINGS.json",
+    "current_scope": "docs/round4/20261018-longitudinal-replay-r7/SCOPE.json",
+    "native_singularity_failure_resolved": false,
+    "native_acceptance_passed": false,
+    "owner_visual_review": null,
+    "previous_request_fields_preserved": true
+  }
+}

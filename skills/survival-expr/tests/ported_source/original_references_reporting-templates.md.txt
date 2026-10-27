@@ -1,0 +1,5 @@
+# Reporting
+
+Report biological subjects/events, expression preprocessing and scale, gene list, numeric covariates,
+ties, per-unit or per-SD HR and marginal CI, p family/adjustment, PH diagnostics, KM gene and
+cutoff rule/value. Optimal cutoff must be labelled exploratory with no confirmatory logrank p.

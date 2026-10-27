@@ -35,6 +35,21 @@
 
 `%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
 
+# Resolve alongside this source file; independent of the caller's working directory.
+.omicstat_handoff_types_file <- local({
+  files <- vapply(sys.frames(), function(f) if (is.null(f$ofile)) "" else as.character(f$ofile)[1], "")
+  files <- files[basename(files) == "handoff.R"]
+  if (!length(files)) stop("OS_HANDOFF_TYPE_UNKNOWN: cannot locate the handoff type registry.", call. = FALSE)
+  normalizePath(file.path(dirname(tail(files, 1)), "..", "schemas", "handoff_types.v1.json"), mustWork = TRUE)
+})
+os_handoff_type_check <- function(type) {
+  registry <- jsonlite::fromJSON(.omicstat_handoff_types_file, simplifyVector = FALSE)
+  known <- vapply(registry$types, `[[`, "", "id")
+  if (!is.character(type) || length(type) != 1L || is.na(type) || !type %in% known)
+    stop(sprintf("OS_HANDOFF_TYPE_UNKNOWN: unregistered handoff type '%s'.", paste(type, collapse = ",")), call. = FALSE)
+  invisible(type)
+}
+
 OS_HANDOFF_SCHEMA <- "omicstat.handoff.v1"
 OS_ECOSYSTEMS <- c("seurat", "bioconductor", "scverse", "neutral")
 OS_BATCH_CORRECTED_TYPE <- "batch_corrected_matrix"
@@ -62,6 +77,7 @@ os_run_id <- function(run_dir) {
 # "feature_table", "colour_registry">).
 write_handoff <- function(run_dir, run_id, module, module_version, objects, contract_hash = NA_character_,
                           ecosystem = "neutral", state = list(), upstream_runs = character(0)) {
+  if (exists("os_study_contract_bound_hash", mode = "function")) contract_hash <- os_study_contract_bound_hash(contract_hash)
   if (!ecosystem %in% OS_ECOSYSTEMS) stop(sprintf("OS_INVALID_PARAMETER: ecosystem must be one of %s.", paste(OS_ECOSYSTEMS, collapse = ", ")), call. = FALSE)
   if (identical(as.character(run_id), basename(run_dir))) run_id <- os_run_id(run_dir)
   obj_dir <- file.path(run_dir, "objects")
@@ -69,6 +85,7 @@ write_handoff <- function(run_dir, run_id, module, module_version, objects, cont
   root <- normalizePath(run_dir, winslash = "/", mustWork = TRUE)
   objs <- lapply(names(objects), function(nm) {
     o <- objects[[nm]]
+    os_handoff_type_check(o$type)
     p <- normalizePath(o$path, winslash = "/", mustWork = TRUE)
     if (!startsWith(p, paste0(root, "/"))) stop(sprintf("OS_INVALID_PARAMETER: handoff object '%s' is outside the run directory.", nm), call. = FALSE)
     list(name = nm, type = o$type, path = substring(p, nchar(root) + 2), sha256 = .os_sha(p))
@@ -90,6 +107,7 @@ write_handoff <- function(run_dir, run_id, module, module_version, objects, cont
 # single-cell FRONT-END modules (qc, cluster, integrate, markers, scoring),
 # the ecosystem this module belongs to; NULL for ecosystem-neutral modules.
 read_handoff <- function(from_run, expect = list(), front_end_ecosystem = NULL, contract_hash = NULL) {
+  if (exists("os_study_contract_bound_hash", mode = "function")) contract_hash <- os_study_contract_bound_hash(contract_hash)
   path <- file.path(from_run, "objects", "handoff.json")
   if (!file.exists(path)) stop(sprintf("OS_HANDOFF_MISSING: no objects/handoff.json under --from-run %s", from_run), call. = FALSE)
   doc <- jsonlite::fromJSON(path, simplifyVector = FALSE)
@@ -112,6 +130,7 @@ read_handoff <- function(from_run, expect = list(), front_end_ecosystem = NULL, 
   out <- list()
   for (nm in names(objs)) {
     o <- objs[[nm]]
+    os_handoff_type_check(o$type)
     if (!is.character(o$path) || length(o$path) != 1L ||
         grepl("^(/|[A-Za-z]:)|(^|/)\\.\\.(/|$)", chartr("\\", "/", o$path)))
       stop("OS_HANDOFF_MISMATCH: object path escapes the run directory.", call. = FALSE)

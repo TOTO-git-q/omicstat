@@ -1,0 +1,36 @@
+{
+  "schema": "omicstat.registry-counts.v1",
+  "total": 59,
+  "routed": 59,
+  "by_lane": {
+    "R": 50,
+    "py": 9
+  },
+  "by_domain": {
+    "annotation": 2,
+    "basic-stats": 10,
+    "bulk-de": 8,
+    "enrichment": 6,
+    "environment": 2,
+    "expr-survival": 2,
+    "expression": 2,
+    "infiltration": 1,
+    "mutation": 1,
+    "network": 1,
+    "sc-annotation": 3,
+    "sc-cluster": 3,
+    "sc-communication": 1,
+    "sc-integration": 3,
+    "sc-markers": 3,
+    "sc-proportions": 1,
+    "sc-pseudobulk": 1,
+    "sc-qc": 3,
+    "sc-scoring": 2,
+    "sc-trajectory": 2,
+    "single-cell": 2
+  },
+  "by_status": {
+    "accepted": 59
+  },
+  "legacy_implemented_new": 27
+}

@@ -1,0 +1,253 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "scanpy-annotate",
+  "lane": "py",
+  "domain": "sc-annotation",
+  "entry": "scripts/run_scanpy_annotate.py",
+  "version": "1.0.0",
+  "qc_prefix": "YA",
+  "engine_packages": [
+    "anndata",
+    "scanpy"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "AnnData"
+    ]
+  },
+  "figure_builders": [],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Marker-panel descriptive cluster naming with an explicit label map",
+    "order": 20
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "scanpy-annotate",
+      "rule_id": "PUB-M-SCANPY_ANNOTATE-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Report the full descriptive tables and measured cell/cluster denominators; these diagnostics are not inferential effect estimates"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft",
+        "cluster_annotation.csv",
+        "colour_registry.json"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review",
+        "Retain unresolved clusters; record the user marker panel, label map and expression layer",
+        "Show cluster sizes, panel scores, marker evidence, assigned names and assignment status"
+      ],
+      "narrative_points": [
+        "Marker-panel cluster naming is descriptive; supplied names are user decisions rather than validated cell identities",
+        "Report unresolved cells with their denominator and preserve the complete annotation object",
+        "Inherit any display_only flag; curated inputs must not support proportions, pseudobulk, markers or differential expression",
+        "Report exact user choices, locked package versions, seed and provenance; any figure-only cap must appear in its caption"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "validated cell type",
+          "curated cells establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive annotation or display/curation diagnostics"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--species",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--annotation",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--sample-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--counts-layer",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--cluster-col",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--marker-panel",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--unresolved-label",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--expression-layer",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    },
+    {
+      "flag": "--input",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "No --from-run is supplied; exactly one direct input or upstream run is required."
+      ]
+    },
+    {
+      "flag": "--from-run",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "No --input is supplied; exactly one direct input or upstream run is required."
+      ]
+    },
+    {
+      "flag": "--upstream-object",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "string",
+      "role": "scientific",
+      "required_when": [
+        "The upstream handoff contains multiple AnnData objects; select exactly one by its recorded name."
+      ]
+    },
+    {
+      "flag": "--label-island-eps",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "num in [0.000000000001, 1000000000000]",
+      "role": "presentation",
+      "required_when": [
+        "--label-placement largest-island is requested."
+      ]
+    },
+    {
+      "flag": "--label-island-min-samples",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "int in [1, 2147483647]",
+      "role": "presentation",
+      "required_when": [
+        "--label-placement largest-island is requested."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 38,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "scanpy-annotate",
+      "entry_script": "scripts/run_scanpy_annotate.py",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "469b4c66c64c98b0a20c33a0030dd403cf1bddba864ca2041c2d8141a90a2085",
+    "pack_present": false,
+    "implemented_new": true
+  }
+}

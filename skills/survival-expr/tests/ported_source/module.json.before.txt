@@ -1,0 +1,1105 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "survival-expr",
+  "lane": "R",
+  "domain": "expr-survival",
+  "entry": "scripts/run_survival_expr.R",
+  "version": "0.1.0",
+  "qc_prefix": "SRV",
+  "engine_packages": [
+    "survival"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "expression_matrix"
+    ],
+    "outputs": [
+      "development_expression_survival"
+    ]
+  },
+  "figure_builders": [
+    "os_km",
+    "os_hr_forest"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 52,
+    "question": "Associate prespecified genes with right-censored survival using expression handoff, continuous Cox and declared KM cutoffs"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "candidate",
+  "status_notes": [
+    "owner_seal_freeze",
+    "scientific_review_pending"
+  ],
+  "inputs": [
+    {
+      "flag": "--from-run",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Verified upstream expression_matrix handoff",
+      "type_label": "path",
+      "role": "input",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Verified upstream expression_matrix handoff."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork."
+        ]
+      }
+    },
+    {
+      "flag": "--clinical",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Clinical CSV one row per biological subject",
+      "type_label": "path",
+      "role": "input",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Clinical CSV one row per biological subject."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork."
+        ]
+      }
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Biological subject identity",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Name the independent biological-unit or matched-subject identifier used to prevent pseudoreplication."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous."
+        ]
+      }
+    },
+    {
+      "flag": "--time-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Positive right-censored time",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Positive right-censored time."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous."
+        ]
+      }
+    },
+    {
+      "flag": "--event-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit zero censored one event",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Explicit zero censored one event."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous."
+        ]
+      }
+    },
+    {
+      "flag": "--time-unit",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared follow-up units",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Declared follow-up units."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--genes",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified comma-separated exact gene IDs",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Prespecified comma-separated exact gene IDs."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--covariates",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Numeric covariates comma-separated or none",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Numeric covariates comma-separated or none."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--expression-scale",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared normalized expression scale",
+      "type_label": "normalized-log2|normalized-other",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "normalized-log2",
+            "meaning": "Expression is already normalized on the log2 scale."
+          },
+          {
+            "value": "normalized-other",
+            "meaning": "Expression uses a different explicitly declared normalized scale."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--scaling",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Per-gene Cox units",
+      "type_label": "none|zscore",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "none",
+            "meaning": "Keep the declared expression scale when fitting the effect."
+          },
+          {
+            "value": "zscore",
+            "meaning": "Express the effect per within-cohort standard deviation, with the scaling parameters recorded."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--ties",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox ties method",
+      "type_label": "efron|breslow|exact",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "efron",
+            "meaning": "Use the Efron approximation for tied event times."
+          },
+          {
+            "value": "breslow",
+            "meaning": "Use the Breslow approximation for tied event times."
+          },
+          {
+            "value": "exact",
+            "meaning": "Use the exact partial-likelihood treatment supported by the native model."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--min-events",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified minimum observed events",
+      "type_label": "int in [2, Inf]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Prespecified minimum observed events."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--max-iter",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox iteration limit",
+      "type_label": "int in [1, 10000]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Cox iteration limit."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--cox-eps",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox convergence tolerance",
+      "type_label": "num in [0.000000000001, 0.01]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Cox convergence tolerance."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--ph-transform",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "PH time transform",
+      "type_label": "km|rank|identity|log",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "km",
+            "meaning": "Use the Kaplan-Meier-based time transformation for the PH diagnostic."
+          },
+          {
+            "value": "rank",
+            "meaning": "Use ranked event times for the PH diagnostic."
+          },
+          {
+            "value": "identity",
+            "meaning": "Use original event times for the PH diagnostic."
+          },
+          {
+            "value": "log",
+            "meaning": "Use log event times for the PH diagnostic."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--ph-alpha",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Diagnostic threshold never a gene filter",
+      "type_label": "num in [0.000001, 0.5]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Diagnostic threshold never a gene filter."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--adjust",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox gene-family p adjustment",
+      "type_label": "none|holm|bonferroni|BH|BY",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "none",
+            "meaning": "Leave the reported tests unadjusted; this does not control family-wise error or FDR."
+          },
+          {
+            "value": "holm",
+            "meaning": "Control family-wise error using the step-down Holm correction."
+          },
+          {
+            "value": "bonferroni",
+            "meaning": "Control family-wise error by multiplying by the declared family size."
+          },
+          {
+            "value": "BH",
+            "meaning": "Control false discovery rate under the assumptions of the Benjamini-Hochberg procedure."
+          },
+          {
+            "value": "BY",
+            "meaning": "Use the more conservative Benjamini-Yekutieli FDR correction allowing arbitrary dependence."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--family-size",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Planned Cox gene-family size",
+      "type_label": "int in [1, Inf]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Specify the total prespecified hypothesis-family size, including planned tests not represented by finite P values."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Marginal Wald and KM CI level",
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Specify the coverage level for the reported marginal intervals; this is not automatically simultaneous family coverage."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--km-gene",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "One prespecified displayed gene",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "One prespecified displayed gene."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--cutoff",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "KM split rule",
+      "type_label": "median|prespecified|optimal",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "median",
+            "meaning": "Split the displayed KM groups at the specified cohort median; this is a display rule."
+          },
+          {
+            "value": "prespecified",
+            "meaning": "Use the numerical cutoff fixed before inspecting the outcome."
+          },
+          {
+            "value": "optimal",
+            "meaning": "Use the explicitly requested exploratory outcome-selected cutoff, with its selection limitations."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--cutpoint",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified supplied-expression threshold",
+      "conditional_required": true,
+      "type_label": "num",
+      "role": "scientific",
+      "required_when": [
+        "--cutoff prespecified is selected."
+      ],
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Supply the numerical expression cutpoint fixed before outcome inspection."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "This analysis/input branch applies and the value has not been explicitly declared.",
+          "--cutoff prespecified is selected."
+        ]
+      }
+    },
+    {
+      "flag": "--exploratory",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit optimal-cutoff exploration",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "scientific",
+      "required_when": [
+        "--cutoff optimal is explicitly requested."
+      ],
+      "guidance": {
+        "options": [
+          {
+            "value": true,
+            "meaning": "Acknowledge the exploratory, outcome-selected cutpoint and its selection limitations."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "This analysis/input branch applies and the value has not been explicitly declared.",
+          "--cutoff optimal is explicitly requested."
+        ]
+      }
+    },
+    {
+      "flag": "--min-group-fraction",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Exploratory search minimum fraction each group",
+      "conditional_required": true,
+      "type_label": "num in [0.05, 0.49]",
+      "role": "scientific",
+      "required_when": [
+        "--cutoff optimal is explicitly requested."
+      ],
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Prespecify the smallest permitted fraction on either side of the exploratory split."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "This analysis/input branch applies and the value has not been explicitly declared.",
+          "--cutoff optimal is explicitly requested."
+        ]
+      }
+    },
+    {
+      "flag": "--risk-times",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Sorted comma-separated risk table times",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Sorted comma-separated risk table times."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Figure style",
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation",
+      "guidance": {
+        "options": [
+          {
+            "value": "nature",
+            "meaning": "Use the existing Nature-oriented size and typography preset."
+          },
+          {
+            "value": "cell",
+            "meaning": "Use the existing Cell-oriented size and typography preset."
+          },
+          {
+            "value": "science",
+            "meaning": "Use the existing Science-oriented size and typography preset."
+          },
+          {
+            "value": "generic",
+            "meaning": "Use the suite generic publication-figure preset."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The target publication style is unknown or differs from the previous figure set."
+        ]
+      }
+    },
+    {
+      "flag": "--study-contract",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Validated prespecified study declaration",
+      "type_label": "path",
+      "role": "input",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Validated prespecified study declaration."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork."
+        ]
+      }
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit candidate execution",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ],
+      "guidance": {
+        "options": [
+          {
+            "value": true,
+            "meaning": "Acknowledge candidate execution and its outstanding acceptance review; this does not seal or promote the module."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "This analysis/input branch applies and the value has not been explicitly declared.",
+          "Every execution of this candidate requires an explicit development-mode acknowledgement."
+        ]
+      }
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Recorded seed",
+      "type_label": "int",
+      "role": "execution",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Recorded seed."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The output location or reproducibility seed has not been supplied for this run, or needs to change."
+        ]
+      }
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "New empty output directory",
+      "type_label": "path",
+      "role": "execution",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Choose the permitted output directory for a new run; this does not alter the scientific analysis."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The output location or reproducibility seed has not been supplied for this run, or needs to change."
+        ]
+      }
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Resolved spec replay"
+    }
+  ],
+  "reference": {
+    "enabled": false,
+    "added_at": "2026-10-16"
+  },
+  "limits": {
+    "max_genes": 100,
+    "max_samples": 5000,
+    "max_cutpoint_candidates": 256,
+    "timeout_seconds": 1500
+  },
+  "parameter_contract": {
+    "schema": "omicstat.required_parameters.v1",
+    "acquisition": "actual_entry_help",
+    "required": [
+      {
+        "flag": "--from-run",
+        "type_label": "path",
+        "help": "Verified upstream expression_matrix handoff"
+      },
+      {
+        "flag": "--clinical",
+        "type_label": "path",
+        "help": "Clinical CSV one row per biological subject"
+      },
+      {
+        "flag": "--unit-col",
+        "type_label": "string",
+        "help": "Biological subject identity"
+      },
+      {
+        "flag": "--time-col",
+        "type_label": "string",
+        "help": "Positive right-censored time"
+      },
+      {
+        "flag": "--event-col",
+        "type_label": "string",
+        "help": "Explicit zero censored one event"
+      },
+      {
+        "flag": "--time-unit",
+        "type_label": "string",
+        "help": "Declared follow-up units"
+      },
+      {
+        "flag": "--genes",
+        "type_label": "string",
+        "help": "Prespecified comma-separated exact gene IDs"
+      },
+      {
+        "flag": "--covariates",
+        "type_label": "string",
+        "help": "Numeric covariates comma-separated or none"
+      },
+      {
+        "flag": "--expression-scale",
+        "type_label": "normalized-log2|normalized-other",
+        "help": "Declared normalized expression scale"
+      },
+      {
+        "flag": "--scaling",
+        "type_label": "none|zscore",
+        "help": "Per-gene Cox units"
+      },
+      {
+        "flag": "--ties",
+        "type_label": "efron|breslow|exact",
+        "help": "Cox ties method"
+      },
+      {
+        "flag": "--min-events",
+        "type_label": "int in [2, Inf]",
+        "help": "Prespecified minimum observed events"
+      },
+      {
+        "flag": "--max-iter",
+        "type_label": "int in [1, 10000]",
+        "help": "Cox iteration limit"
+      },
+      {
+        "flag": "--cox-eps",
+        "type_label": "num in [0.000000000001, 0.01]",
+        "help": "Cox convergence tolerance"
+      },
+      {
+        "flag": "--ph-transform",
+        "type_label": "km|rank|identity|log",
+        "help": "PH time transform"
+      },
+      {
+        "flag": "--ph-alpha",
+        "type_label": "num in [0.000001, 0.5]",
+        "help": "Diagnostic threshold never a gene filter"
+      },
+      {
+        "flag": "--adjust",
+        "type_label": "none|holm|bonferroni|BH|BY",
+        "help": "Cox gene-family p adjustment"
+      },
+      {
+        "flag": "--family-size",
+        "type_label": "int in [1, Inf]",
+        "help": "Planned Cox gene-family size"
+      },
+      {
+        "flag": "--ci-level",
+        "type_label": "num in [0.5, 0.9999]",
+        "help": "Marginal Wald and KM CI level"
+      },
+      {
+        "flag": "--km-gene",
+        "type_label": "string",
+        "help": "One prespecified displayed gene"
+      },
+      {
+        "flag": "--cutoff",
+        "type_label": "median|prespecified|optimal",
+        "help": "KM split rule"
+      },
+      {
+        "flag": "--risk-times",
+        "type_label": "string",
+        "help": "Sorted comma-separated risk table times"
+      },
+      {
+        "flag": "--journal",
+        "type_label": "nature|cell|science|generic",
+        "help": "Figure style"
+      },
+      {
+        "flag": "--study-contract",
+        "type_label": "path",
+        "help": "Validated prespecified study declaration"
+      },
+      {
+        "flag": "--seed",
+        "type_label": "int",
+        "help": "Recorded seed"
+      },
+      {
+        "flag": "--outdir",
+        "type_label": "path",
+        "help": "New empty output directory"
+      }
+    ],
+    "sources": [
+      {
+        "path": "skills/_shared/scripts/args.R",
+        "sha256": "d2d00a22e5a4bab4736c32e1eeb9f471af727069c52578ca0f0ae6df4266183a"
+      },
+      {
+        "path": "skills/_shared/scripts/sc_backend_io.R",
+        "sha256": "2946e8d78d800846eae2a251c3a34e612b5491a6ace0e9215fb9cae7eadf46fb"
+      },
+      {
+        "path": "skills/_shared/scripts/user_genesets.R",
+        "sha256": "137a1e07b01d2abbab94977dc2cf0c0eb3d4f878fa98b8da84898c026831f2ca"
+      },
+      {
+        "path": "skills/survival-expr/scripts/run_survival_expr.R",
+        "sha256": "e6bd1fa615315cdf1d580edaf303629c8331390e8c7ae973124add20a8609fb0"
+      },
+      {
+        "path": "skills/survival-expr/scripts/survival_expr_core.R",
+        "sha256": "3bc90f00ee4e274c059f8599ccc7c12a97a21dac03b04e03f232ad427a3613ec"
+      }
+    ],
+    "conditional_required": [
+      {
+        "flag": "--development-mode",
+        "type_label": "switch",
+        "help": "Explicit candidate execution",
+        "required_when": [
+          "Every execution of this candidate requires an explicit development-mode acknowledgement."
+        ],
+        "guard_sources": [
+          "skills/survival-expr/scripts/run_survival_expr.R"
+        ]
+      },
+      {
+        "flag": "--cutpoint",
+        "type_label": "num",
+        "help": "Prespecified supplied-expression threshold",
+        "required_when": [
+          "--cutoff prespecified is selected."
+        ],
+        "guard_sources": [
+          "skills/survival-expr/scripts/survival_expr_core.R"
+        ]
+      },
+      {
+        "flag": "--exploratory",
+        "type_label": "switch",
+        "help": "Explicit optimal-cutoff exploration",
+        "required_when": [
+          "--cutoff optimal is explicitly requested."
+        ],
+        "guard_sources": [
+          "skills/survival-expr/scripts/survival_expr_core.R"
+        ]
+      },
+      {
+        "flag": "--min-group-fraction",
+        "type_label": "num in [0.05, 0.49]",
+        "help": "Exploratory search minimum fraction each group",
+        "required_when": [
+          "--cutoff optimal is explicitly requested."
+        ],
+        "guard_sources": [
+          "skills/survival-expr/scripts/survival_expr_core.R"
+        ]
+      }
+    ]
+  }
+}

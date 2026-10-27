@@ -15,7 +15,7 @@
 | --power | required | See typed --help |
 | --power-reason | required | See typed --help |
 | --powers | 1,2,3,4,5,6,7,8,9,10,12,14,16,18,20 | See typed --help |
-| --network-type | unsigned | See typed --help |
+| --network-type | required | unsigned, signed or signed hybrid; see 待裁决 |
 | --tom-type | signed | See typed --help |
 | --min-module-size | none | See typed --help |
 | --deep-split | 2 | See typed --help |
@@ -30,3 +30,5 @@ Missing min-module-size resolves the locked expression min(20,nGenes/2). All oth
 
 ## 待裁决
 Power, preprocessing, sample exclusions and biological interpretation need explicit user decisions. Tutorial part 2 power 6, unsigned TOM, minModuleSize 30, deepSplit 2, mergeCutHeight 0.25, reassignThreshold 0 and pamRespectsDendro FALSE are documented examples, not general recommendations.
+
+Signedness (`--network-type`) is required since module 1.1.0 (owner adjudication 2026-10-11). The locked WGCNA 1.74 function default is `"unsigned"`, but the package author recommends one of the signed varieties and describes the unsigned default as retained for historical compatibility. The corpus gives no majority either way (signed 9, not reported 14 of 23). Signedness changes the adjacency, the module partition and the choice of `--power`, so it must be chosen before the `soft_threshold.csv` diagnostics are read; an `unsigned` run remains available to reproduce earlier or tutorial-based work.

@@ -819,6 +819,150 @@
    "profile_status": "weak",
    "validation_rounds": 0,
    "note": "New display/curation module: search profile has no screened corpus or curated evidence yet; do not infer scientific defaults."
+  },
+  {
+   "module": "drc-dose",
+   "epmc_query": "METHODS:\"drc\" OR METHODS:\"dose response\"",
+   "meta": false,
+   "signal_regex": "(?:drc|dose response)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "lme4-lmm",
+   "epmc_query": "METHODS:\"lme4\" OR METHODS:\"mixed effects\"",
+   "meta": false,
+   "signal_regex": "(?:lme4|mixed effects)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "emmeans-contrast",
+   "epmc_query": "METHODS:\"emmeans\" OR METHODS:\"marginal means\"",
+   "meta": false,
+   "signal_regex": "(?:emmeans|marginal means)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "proda-diff",
+   "epmc_query": "METHODS:\"proDA\" OR METHODS:\"protein abundance\"",
+   "meta": false,
+   "signal_regex": "(?:proDA|protein abundance)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "msstats-diff",
+   "epmc_query": "METHODS:\"MSstats\" OR METHODS:\"proteomics\"",
+   "meta": false,
+   "signal_regex": "(?:MSstats|proteomics)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "drc-calibrate",
+   "epmc_query": "METHODS:\"drc\" OR METHODS:\"calibration\"",
+   "meta": false,
+   "signal_regex": "(?:drc|calibration)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "nlme-dose",
+   "epmc_query": "METHODS:\"nlme\" OR METHODS:\"dose response\"",
+   "meta": false,
+   "signal_regex": "(?:nlme|dose response)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "omicstat-groupcompare",
+   "epmc_query": "METHODS:\"group comparison\" OR METHODS:\"biological replicates\"",
+   "meta": false,
+   "signal_regex": "(?:group comparison|biological replicates)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "omicstat-ddct",
+   "epmc_query": "METHODS:\"delta delta Ct\" OR METHODS:\"qPCR\"",
+   "meta": false,
+   "signal_regex": "(?:delta delta Ct|qPCR)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "survival-expr",
+   "epmc_query": "METHODS:\"Cox\" OR METHODS:\"gene expression\"",
+   "meta": false,
+   "signal_regex": "(?:Cox|gene expression)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "glmnet-coxsig",
+   "epmc_query": "METHODS:\"glmnet\" OR METHODS:\"Cox\"",
+   "meta": false,
+   "signal_regex": "(?:glmnet|Cox)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "reactomepa-ora",
+   "epmc_query": "METHODS:\"ReactomePA\" OR METHODS:\"over representation\"",
+   "meta": false,
+   "signal_regex": "(?:ReactomePA|over representation)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "dropletutils-emptydrops",
+   "epmc_query": "METHODS:\"emptyDrops\" OR METHODS:\"droplet\"",
+   "meta": false,
+   "signal_regex": "(?:emptyDrops|droplet)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "omicstat-samplesize",
+   "epmc_query": "METHODS:\"sample size\" OR METHODS:\"power\"",
+   "meta": false,
+   "signal_regex": "(?:sample size|power)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "omicstat-agreement",
+   "epmc_query": "METHODS:\"agreement\" OR METHODS:\"intraclass correlation\"",
+   "meta": false,
+   "signal_regex": "(?:agreement|intraclass correlation)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+  },
+  {
+   "module": "proc-roc",
+   "epmc_query": "METHODS:\"pROC\" OR METHODS:\"ROC\"",
+   "meta": false,
+   "signal_regex": "(?:pROC|ROC)",
+   "profile_status": "weak",
+   "validation_rounds": 0,
+   "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
   }
  ]
 }

@@ -1,0 +1,247 @@
+{
+  "status": "candidate",
+  "module": "lme4-lmm",
+  "image": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+  "calls": {
+    "lme4::VarCorr": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "x": "",
+        "sigma": "1",
+        "...": ""
+      }
+    },
+    "lme4::findbars": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "...": ""
+      }
+    },
+    "lme4::fixef": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "lme4::isSingular": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "object": "",
+        "tol": "getSingTol()"
+      }
+    },
+    "lme4::lmer": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "data": "NULL",
+        "REML": "TRUE",
+        "control": "lmerControl()",
+        "start": "NULL",
+        "verbose": "0L",
+        "subset": "",
+        "weights": "",
+        "na.action": "",
+        "offset": "",
+        "contrasts": "NULL",
+        "devFunOnly": "FALSE"
+      }
+    },
+    "lme4::lmerControl": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "optimizer": "\"nloptwrap\"",
+        "restart_edge": "TRUE",
+        "boundary.tol": "1e-05",
+        "calc.derivs": "NULL",
+        "use.last.params": "FALSE",
+        "sparseX": "FALSE",
+        "standardize.X": "FALSE",
+        "autoscale": "NULL",
+        "check.nobs.vs.rankZ": "\"ignore\"",
+        "check.nobs.vs.nlev": "\"stop\"",
+        "check.nlev.gtreq.5": "\"ignore\"",
+        "check.nlev.gtr.1": "\"stop\"",
+        "check.nobs.vs.nRE": "\"stop\"",
+        "check.rankX": "c(\"message+drop.cols\", \"silent.drop.cols\", \"warn+drop.cols\",     \"stop.deficient\", \"ignore\")",
+        "check.scaleX": "c(\"warning\", \"stop\", \"silent.rescale\", \"message+rescale\", \"warn+rescale\",     \"ignore\")",
+        "check.formula.LHS": "\"stop\"",
+        "check.conv.nobsmax": "10000",
+        "check.conv.nparmax": "10",
+        "check.conv.grad": ".makeCC(\"warning\", tol = 0.002, relTol = NULL)",
+        "check.conv.singular": ".makeCC(action = \"message\", tol = getSingTol())",
+        "check.conv.hess": ".makeCC(action = \"warning\", tol = 1e-06)",
+        "optCtrl": "list()",
+        "mod.type": "\"lmer\""
+      }
+    },
+    "lme4::nobars": {
+      "package_version": "2.0.6",
+      "method": null,
+      "formals": {
+        "...": ""
+      }
+    },
+    "stats::confint": {
+      "package_version": "4.6.1",
+      "method": "confint.merMod",
+      "formals": {
+        "object": "",
+        "parm": "",
+        "level": "0.95",
+        "method": "c(\"profile\", \"Wald\", \"boot\")",
+        "zeta": "",
+        "nsim": "500",
+        "boot.type": "c(\"perc\", \"basic\", \"norm\")",
+        "FUN": "NULL",
+        "quiet": "FALSE",
+        "oldNames": "",
+        "signames": "TRUE",
+        "boot.scale": "c(\"sdcor\", \"vcov\")",
+        "...": ""
+      }
+    },
+    "stats::fitted": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "stats::model.matrix": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "stats::residuals": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "utils::packageVersion": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "pkg": "",
+        "lib.loc": "NULL"
+      }
+    },
+    "utils::read.csv": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "file": "",
+        "header": "TRUE",
+        "sep": "\",\"",
+        "quote": "\"\\\"\"",
+        "dec": "\".\"",
+        "fill": "TRUE",
+        "comment.char": "\"\"",
+        "...": ""
+      }
+    },
+    "reformulas::findbars": {
+      "package_version": "0.4.4",
+      "method": null,
+      "formals": {
+        "term": ""
+      }
+    },
+    "reformulas::nobars": {
+      "package_version": "0.4.4",
+      "method": null,
+      "formals": {
+        "term": ""
+      }
+    },
+    "stats::contrasts": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "x": "",
+        "contrasts": "TRUE",
+        "sparse": "FALSE"
+      }
+    },
+    "stats::contrasts<-": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "x": "",
+        "how.many": "NULL",
+        "value": ""
+      }
+    },
+    "stats::predict": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "object": "",
+        "...": ""
+      }
+    },
+    "stats::model.frame": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "formula": "",
+        "...": ""
+      }
+    },
+    "stats::formula": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "x": "",
+        "...": ""
+      }
+    },
+    "stats::aggregate": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "x": "",
+        "...": ""
+      }
+    },
+    "stats::as.formula": {
+      "package_version": "4.6.1",
+      "method": null,
+      "formals": {
+        "object": "",
+        "env": "parent.frame()"
+      }
+    },
+    "stats::vcov": {
+      "package_version": "4.6.1",
+      "method": "vcov.merMod",
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "method_formals": {
+        "object": "",
+        "correlation": "TRUE",
+        "sigm": "sigma(object)",
+        "use.hessian": "NULL",
+        "full": "FALSE",
+        "noScale": "NULL",
+        "...": ""
+      }
+    }
+  }
+}

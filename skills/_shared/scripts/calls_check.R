@@ -76,6 +76,41 @@ check_calls <- function(scripts, registry, allowed_unregistered = character(0)) 
   list(ok = !length(problems), problems = problems, n_sites = length(sites))
 }
 
+.os_expanded_method_formals <- function(method) {
+  fm <- formals(method)
+  if (!"..." %in% names(fm)) return(fm)
+  # S4 wraps extra formals in a canonical .local closure. Inspect the AST only;
+  # never evaluate a method body or infer defaults from an arbitrary wrapper.
+  b <- body(method)
+  if (!is.call(b) || !identical(b[[1]], as.name("{")) || length(b) != 3L)
+    stop("S4 method has no canonical inspectable .local wrapper")
+  assignment <- b[[2]]
+  if (!is.call(assignment) || length(assignment) != 3L ||
+      !identical(assignment[[1]], as.name("<-")) ||
+      !identical(assignment[[2]], as.name(".local")))
+    stop("S4 method has no canonical .local assignment")
+  local <- assignment[[3]]
+  expected_call <- as.call(c(list(as.name(".local")), lapply(names(fm), as.name)))
+  if (!identical(b[[3]], expected_call))
+    stop("S4 method wrapper does not directly forward its generic arguments")
+  # Installed S4 wrappers embed a closure constant; parsed wrappers embed a
+  # function expression. Both expose formals without evaluating the body.
+  if (is.function(local)) return(formals(local))
+  if (!is.call(local) || !identical(local[[1]], as.name("function")) ||
+      !is.pairlist(local[[2]])) stop("S4 .local is not an inspectable function")
+  local[[2]]
+}
+
+.os_s4_method_formals <- function(generic, signature) {
+  if (!methods::is(generic, "standardGeneric")) stop("declared S4 signature on non-S4 function")
+  signature <- unlist(signature, use.names = TRUE)
+  if (!is.character(signature) || !identical(names(signature), generic@signature) ||
+      anyNA(signature) || any(!nzchar(signature))) stop("exact named S4 signature required")
+  method <- methods::selectMethod(generic, signature, useInherited = FALSE, optional = TRUE)
+  if (is.null(method)) stop("declared exact S4 method not installed")
+  .os_expanded_method_formals(method)
+}
+
 check_default_drift <- function(registry) {
   reg <- if (is.character(registry)) jsonlite::fromJSON(registry, simplifyVector = FALSE) else registry
   problems <- character(0)
@@ -85,11 +120,19 @@ check_default_drift <- function(registry) {
     f <- tryCatch(getExportedValue(parts[1], parts[2]), error = function(e) NULL)
     if (is.null(f)) { problems <- c(problems, sprintf("D0 %s not found", cl$fn)); next }
     fm <- formals(f)
+    if (!is.null(cl$s4_signature)) {
+      resolved <- tryCatch(.os_s4_method_formals(f, cl$s4_signature), error = identity)
+      if (inherits(resolved, "error")) {
+        problems <- c(problems, sprintf("D0 %s S4 method: %s", cl$fn, conditionMessage(resolved)))
+        next
+      }
+      fm <- resolved
+    }
     # S3 generics (prcomp, results, ...) carry their arguments on the default
     # method: fall back to <fn>.default (or the method named in the registry
     # entry's "method" field) when an argument is not on the generic itself.
     meth <- cl$method %||% paste0(parts[2], ".default")
-    fm_def <- tryCatch(formals(get(meth, envir = asNamespace(parts[1]))), error = function(e) NULL)
+    fm_def <- if (is.null(cl$s4_signature)) tryCatch(formals(get(meth, envir = asNamespace(parts[1]))), error = function(e) NULL) else NULL
     for (a in names(cl$args %||% list())) {
       if (!a %in% names(fm) && !is.null(fm_def) && a %in% names(fm_def)) fm <- c(fm, fm_def[a])
       want <- cl$args[[a]]$function_default

@@ -52,20 +52,44 @@ os_embedding <- function(emb, group_col, label = TRUE, colour_registry = NULL, f
                          reduction = c("UMAP", "t-SNE"), legend_ncol = NULL, journal = NULL, label_xy = NULL,
                          display_max_per_group = NULL, display_n_input = NULL,
                          label_island_eps = NULL, label_island_min_samples = NULL,
-                         label_style = c("plain", "halo")) {
+                         label_style = c("plain", "halo"), category_namespace = NULL, category_role = "unknown",
+                         run_id = NULL, redundant_shapes = FALSE, missing_label = "Missing metadata") {
   reduction <- match.arg(reduction)
   label_style <- match.arg(label_style)
-  for (cc in c("x", "y", group_col)) if (!cc %in% names(emb)) stop(sprintf("OS_MISSING_COLUMNS: os_embedding needs '%s'.", cc), call. = FALSE)
+  for (cc in c("x", "y", group_col)) if (!cc %in% names(emb)) stop(sprintf("OS_MISSING_COLUMN: os_embedding needs '%s'.", cc), call. = FALSE)
+  if (!nrow(emb) || any(!is.finite(emb$x)) || any(!is.finite(emb$y))) stop("OS_INVALID_INPUT: embedding coordinates must be finite",call.=FALSE)
   d <- emb[os_draw_order(nrow(emb)), , drop = FALSE]
   g <- as.character(d[[group_col]])
-  lv <- if (is.factor(emb[[group_col]])) levels(emb[[group_col]]) else sort(unique(g), method = "radix")
-  cr <- os_colours_for(lv, family = family, registry = colour_registry)
+  missing <- is.na(g) | !nzchar(g)
+  if(any(missing) && (length(missing_label)!=1L || is.na(missing_label) || !nzchar(missing_label) || missing_label %in% g[!missing]))
+    stop("OS_INVALID_INPUT: explicit missing category label collides with an observed label",call.=FALSE)
+  g[missing] <- missing_label
+  lv <- if (is.factor(emb[[group_col]])) intersect(levels(emb[[group_col]]),unique(g)) else sort(unique(g), method = "radix")
+  if(any(missing)) lv<-c(setdiff(lv,missing_label),missing_label)
+  category_encoding<-NULL
+  if(!is.null(category_namespace)) {
+    category_encoding<-os_category_encodings(lv,category_namespace,category_role,colour_registry,run_id,legend_ids=lv,label_ids=lv)
+    cr<-list(colours=unlist(category_encoding$colour),registry=category_encoding$registry)
+  } else cr <- os_colours_for(lv, family = family, registry = colour_registry)
   cols <- cr$colours
+  if(any(missing))cols[missing_label]<-OS_FIG$col_reference_group
+  shapes<-if(!is.null(category_encoding))unlist(category_encoding$shape)else stats::setNames(rep(c(16,17,15,18,3,8),length.out=length(lv)),lv)
+  if(any(missing)) {
+    shapes[missing_label]<-4L
+    registry_key<-if(is.null(category_encoding))family else category_encoding$registry_key
+    cr$registry$families[[registry_key]][missing_label]<-cols[missing_label]
+    if(!is.null(category_encoding)) {
+      cr$registry$styles[[registry_key]]$shape[[missing_label]]<-4L
+      category_encoding$colour[[missing_label]]<-unname(cols[missing_label])
+      category_encoding$shape[[missing_label]]<-4L
+      category_encoding$registry<-cr$registry
+    }
+  }
   d$.g <- factor(g, levels = lv)
   os_assert_latin(lv, "category names")
   pt <- os_cell_point_mm(nrow(d))
   xr <- range(d$x); yr <- range(d$y)
-  pts <- os_points_layer(ggplot2::geom_point(shape = OS_FIG$shape_dense, size = pt, stroke = 0), nrow(d))
+  pts <- os_points_layer(if(redundant_shapes || any(missing)) ggplot2::geom_point(ggplot2::aes(shape=.g),size=pt,stroke=.2) else ggplot2::geom_point(shape = OS_FIG$shape_dense, size = pt, stroke = 0), nrow(d))
   p <- ggplot2::ggplot(d, ggplot2::aes(x = x, y = y, colour = .g)) +
     pts$layer +
     ggplot2::scale_colour_manual(values = cols, breaks = lv,
@@ -75,6 +99,7 @@ os_embedding <- function(emb, group_col, label = TRUE, colour_registry = NULL, f
     ggplot2::coord_fixed(ratio = diff(xr) / diff(yr), clip = "off") +
     theme_omicstat(journal = journal, axes = "none", legend = if (label) "none" else "right") +
     ggplot2::theme(axis.title = ggplot2::element_blank())
+  if(redundant_shapes || any(missing))p<-p+ggplot2::scale_shape_manual(values=shapes,breaks=lv,guide=if(label)"none"else ggplot2::guide_legend(title=group_col))
   p <- .os_embedding_axes(p, xr, yr, paste(reduction, "1"), paste(reduction, "2"))
   if (label) {
     if (is.null(label_xy)) {
@@ -125,7 +150,9 @@ os_embedding <- function(emb, group_col, label = TRUE, colour_registry = NULL, f
                               display_max_per_group, nrow(d), display_n_input))
   }
   meta_data <- list(n_cells = nrow(d))
-  meta_notes <- list(rasterised_points = pts$rasterised)
+  meta_notes <- list(rasterised_points = pts$rasterised,category_namespace=category_namespace,category_role=category_role,
+                     run_id=run_id,category_encoding=category_encoding,missing_metadata_n=sum(missing),missing_metadata_label=if(any(missing))missing_label else NULL)
+  if(any(missing))cap<-paste(cap,sprintf("%d cells have missing metadata, retained as grey cross glyphs labelled '%s'.",sum(missing),missing_label))
   if (!is.null(label_xy)) meta_notes$label_xy <- label_xy
   if (label && identical(label_style, "halo")) meta_notes$label_style <- label_style
   if (!is.null(label_island_eps)) {
@@ -137,19 +164,28 @@ os_embedding <- function(emb, group_col, label = TRUE, colour_registry = NULL, f
     meta_data$display_max_per_group <- display_max_per_group
     meta_data$display_n_input <- display_n_input
   }
-  os_with_meta(p, figure_type = "embedding", default_height_mm = 80, caption = cap,
-               encodings = list(colour = as.list(cols), point_mm = pt),
+  out <- os_with_meta(p, figure_type = "embedding", default_height_mm = 80, caption = cap,
+               encodings = list(colour = as.list(cols), shape=if(redundant_shapes || any(missing))as.list(shapes)else NULL, point_mm = pt),
                counts = counts, data = meta_data, colour_registry = cr$registry,
                notes = meta_notes)
+  if (!label) cen <- NULL
+  if (!exists(".os_restyle_attach", mode="function")) return(out)
+  .os_restyle_attach(out, "embedding", environment())
 }
 
 # Expression on the embedding: grey (zero) -> purple (high); cells drawn in
 # ascending expression so expressing cells are on top. Title is the gene
 # symbol in italics.
 os_feature_embedding <- function(emb, values, feature, reduction = c("UMAP", "t-SNE"), value_title = "Expression",
-                                 italic = TRUE, journal = NULL) {
+                                 italic = TRUE, journal = NULL, value_ids = names(values)) {
   reduction <- match.arg(reduction)
-  d <- emb; d$.v <- as.numeric(values)
+  if (!all(c("cell", "x", "y") %in% names(emb))) stop("OS_MISSING_COLUMN: feature embedding needs cell/x/y.", call. = FALSE)
+  ids <- .os_require_ids(emb$cell, "embedding cell IDs")
+  value_ids <- .os_require_ids(value_ids, "feature value cell IDs")
+  if (length(values) != length(value_ids) || !setequal(ids, value_ids))
+    stop("OS_INVALID_INPUT: feature values and coordinates must have the same cell ID set.", call. = FALSE)
+  if (any(!is.finite(emb$x)) || any(!is.finite(emb$y))) stop("OS_INVALID_INPUT: embedding coordinates must be finite.", call. = FALSE)
+  d <- emb; d$.v <- as.numeric(values[match(ids, value_ids)])
   d <- d[order(d$.v, os_draw_order(nrow(d)), method = "radix"), , drop = FALSE]
   xr <- range(d$x); yr <- range(d$y)
   lim <- c(0, max(d$.v, na.rm = TRUE))
@@ -172,6 +208,9 @@ os_feature_embedding <- function(emb, values, feature, reduction = c("UMAP", "t-
                                  feature, reduction, os_num(nrow(d)),
                                  if (pts$rasterised) sprintf(" Cells are rendered as a %d dpi bitmap layer; text and axes are vector.", OS_FIG$raster_dpi) else ""),
                encodings = list(colour = list(scale = "expression", palette = as.list(OS_PAL_EXPRESSION))),
+               data = list(cell_ids = as.list(ids), value_join = "unique_cell_id",
+                           coordinate_sha256 = digest::digest(emb[order(ids, method = "radix"), c("cell", "x", "y")], algo = "sha256"),
+                           source_values = data.frame(cell = ids, value = as.numeric(values[match(ids, value_ids)]))),
                notes = list(rasterised_points = pts$rasterised))
 }
 
@@ -207,7 +246,7 @@ os_marker_dotplot <- function(md, gene_order = NULL, cluster_order = NULL, scale
     stop(sprintf("OS_INVALID_PARAMETER: mean_definition must be one of %s.", paste(names(OS_MEAN_DEFINITIONS), collapse = ", ")),
          call. = FALSE)
   }
-  for (cc in c("cluster", "gene", "avg_exp", "pct_exp")) if (!cc %in% names(md)) stop(sprintf("OS_MISSING_COLUMNS: os_marker_dotplot needs '%s'.", cc), call. = FALSE)
+  for (cc in c("cluster", "gene", "avg_exp", "pct_exp")) if (!cc %in% names(md)) stop(sprintf("OS_MISSING_COLUMN: os_marker_dotplot needs '%s'.", cc), call. = FALSE)
   mean_def <- unname(OS_MEAN_DEFINITIONS[mean_definition])
   d <- md
   g_lv <- gene_order %||% unique(as.character(d$gene))
@@ -275,7 +314,7 @@ os_marker_dotplot <- function(md, gene_order = NULL, cluster_order = NULL, scale
 # condition, celltype, n). Stacks follow the category (registry) order,
 # first category at the top.
 os_proportion_bar <- function(pd, colour_registry = NULL, family = "celltype", condition_order = NULL, journal = NULL) {
-  for (cc in c("sample", "condition", "celltype", "n")) if (!cc %in% names(pd)) stop(sprintf("OS_MISSING_COLUMNS: os_proportion_bar needs '%s'.", cc), call. = FALSE)
+  for (cc in c("sample", "condition", "celltype", "n")) if (!cc %in% names(pd)) stop(sprintf("OS_MISSING_COLUMN: os_proportion_bar needs '%s'.", cc), call. = FALSE)
   lv <- sort(unique(as.character(pd$celltype)), method = "radix")
   cr <- os_colours_for(lv, family = family, registry = colour_registry)
   tot <- stats::aggregate(n ~ sample, data = pd, FUN = sum); names(tot)[2] <- "tot"
@@ -321,56 +360,152 @@ os_proportion_bar <- function(pd, colour_registry = NULL, family = "celltype", c
                colour_registry = cr$registry)
 }
 
-# Per-sample QC violins. qc: data.frame(sample, <metric columns>). thresholds:
-# named list metric -> numeric vector of cut-offs (dashed). log10_metrics are
-# drawn on a log10 axis labelled in real units (1,000 not 3). One stacked
-# panel per metric (each with its own axis); sample labels only on the bottom
-# panel.
+# Per-sample QC distributions. Log10 displays preserve every positive value;
+# zero and missing values are counted separately and never replaced by one.
+# data_stage describes the supplied rows, not the downstream retained object.
 os_qc_violin <- function(qc, metrics, thresholds = list(), metric_labels = NULL, log10_metrics = character(0),
-                         group_col = NULL, reference = NULL, journal = NULL) {
+                         group_col = NULL, reference = NULL, journal = NULL,
+                         data_stage = "unspecified", stage_counts = NULL, metric_definitions = list()) {
+  bad <- function(message) stop(paste("OS_INVALID_INPUT:", message), call. = FALSE)
+  stages <- c("unspecified", "raw_input", "after_creation", "after_cell_qc", "after_doublet_filter")
+  if (!is.character(data_stage) || length(data_stage) != 1L || is.na(data_stage) || !data_stage %in% stages)
+    bad("QC data_stage must identify an explicit supported stage or unspecified")
+  if (!is.data.frame(qc) || !nrow(qc) || !is.character(metrics) || !length(metrics) || anyNA(metrics) ||
+      anyDuplicated(metrics) || !all(c("sample", metrics, group_col) %in% names(qc)))
+    bad("QC figure requires rows, sample and unique named metric columns")
+  if (anyNA(qc$sample) || any(!nzchar(as.character(qc$sample)))) bad("QC sample identities must be nonmissing")
+  if (!all(log10_metrics %in% metrics)) bad("log10_metrics must be among the plotted metrics")
+  for (m in metrics) {
+    v <- qc[[m]]
+    if (!is.numeric(v) || any(!is.na(v) & !is.finite(v))) bad(paste("QC metric must be numeric and finite or missing:", m))
+    if (m %in% log10_metrics && any(v < 0, na.rm = TRUE)) bad(paste("negative QC values have no log10 display:", m))
+  }
+  if (!is.list(thresholds) || (length(thresholds) && (is.null(names(thresholds)) || anyDuplicated(names(thresholds)) || !all(names(thresholds) %in% metrics))))
+    bad("QC thresholds must be a named list of plotted metrics")
+  for (m in names(thresholds)) if (!is.numeric(thresholds[[m]]) && length(thresholds[[m]])) bad("QC thresholds must be numeric")
   mlab <- metric_labels %||% stats::setNames(metrics, metrics)
+  if (!all(metrics %in% names(mlab)) || anyNA(mlab[metrics])) bad("QC metric labels must cover every plotted metric")
+  if (!is.list(metric_definitions) || (length(metric_definitions) && (is.null(names(metric_definitions)) || !all(names(metric_definitions) %in% metrics))))
+    bad("QC metric definitions must be a named list of plotted metrics")
   s_lv <- sort(unique(as.character(qc$sample)), method = "radix")
+  if (!is.null(stage_counts)) {
+    cols <- c("sample", "input", "displayed", "removed_before_stage")
+    if (!is.data.frame(stage_counts) || !all(cols %in% names(stage_counts)) || !nrow(stage_counts) ||
+        anyNA(stage_counts[, cols, drop = FALSE]) || anyDuplicated(stage_counts$sample) ||
+        any(!nzchar(as.character(stage_counts$sample))) || !all(s_lv %in% stage_counts$sample))
+      bad("stage_counts needs unique sample/input/displayed/removed_before_stage rows covering the supplied cells")
+    for (n in cols[-1]) if (!is.numeric(stage_counts[[n]]) || any(!is.finite(stage_counts[[n]]) | stage_counts[[n]] < 0 | stage_counts[[n]] != floor(stage_counts[[n]])))
+      bad("stage_counts must contain nonnegative finite integer counts")
+    s_lv <- sort(as.character(stage_counts$sample), method = "radix")
+    stage_counts <- stage_counts[match(s_lv, stage_counts$sample), cols, drop = FALSE]
+    observed <- as.integer(table(factor(as.character(qc$sample), levels = s_lv)))
+    if (any(stage_counts$displayed != observed) || any(stage_counts$input != stage_counts$displayed + stage_counts$removed_before_stage) ||
+        (identical(data_stage, "raw_input") && any(stage_counts$removed_before_stage != 0)))
+      bad("stage_counts do not reconcile with the plotted rows and their declared stage")
+  }
   grp <- if (is.null(group_col)) rep("all", nrow(qc)) else as.character(qc[[group_col]])
+  if (anyNA(grp) || any(!nzchar(grp))) bad("QC grouping metadata must be nonmissing")
   fills <- if (is.null(group_col)) c(all = OS_FIG$col_ns) else os_group_colours(sort(unique(grp), method = "radix"), reference)
+  metric_counts <- stats::setNames(lapply(metrics, function(m) {
+    v <- qc[[m]]; is_log <- m %in% log10_metrics
+    rows <- lapply(s_lv, function(s) {
+      x <- v[as.character(qc$sample) == s]
+      data.frame(sample = s, total = length(x), missing = sum(is.na(x)), zero = sum(x == 0, na.rm = TRUE),
+                 positive_below_one = sum(x > 0 & x < 1, na.rm = TRUE),
+                 displayed = sum(!is.na(x) & (!is_log | x > 0)), stringsAsFactors = FALSE)
+    })
+    list(total = length(v), missing = sum(is.na(v)), zero = sum(v == 0, na.rm = TRUE),
+         positive_below_one = sum(v > 0 & v < 1, na.rm = TRUE),
+         displayed = sum(!is.na(v) & (!is_log | v > 0)), per_sample = do.call(rbind, rows))
+  }), metrics)
+  drawn_thresholds <- stats::setNames(lapply(metrics, function(m) {
+    t <- thresholds[[m]] %||% numeric(0)
+    t[is.finite(t) & (!(m %in% log10_metrics) | t > 0)]
+  }), metrics)
+  undrawn_thresholds <- stats::setNames(lapply(metrics, function(m) {
+    t <- thresholds[[m]] %||% numeric(0)
+    t[!is.finite(t) | ((m %in% log10_metrics) & t <= 0)]
+  }), metrics)
+  single_sample <- length(s_lv) == 1L
+  violin_width <- if (single_sample) .32 else .8
   panels <- lapply(seq_along(metrics), function(i) {
-    m <- metrics[i]
+    m <- metrics[i]; is_log <- m %in% log10_metrics
     d <- data.frame(s = factor(qc$sample, levels = s_lv), v = qc[[m]], g = grp)
-    is_log <- m %in% log10_metrics
-    if (is_log) d$v <- pmax(d$v, 1)
+    if (is_log) d$v[!is.na(d$v) & d$v == 0] <- NA_real_
+    empty_log <- is_log && !any(is.finite(d$v))
     p <- ggplot2::ggplot(d, ggplot2::aes(x = s, y = v))
-    if (!is.null(thresholds[[m]])) p <- p + os_hline(thresholds[[m]])
-    p <- p + ggplot2::geom_violin(ggplot2::aes(fill = g), scale = "width", width = 0.8, colour = OS_FIG$col_ink,
-                                  linewidth = os_lw(OS_FIG$lw_segment), draw_quantiles = 0.5) +
+    if (length(drawn_thresholds[[m]])) p <- p + os_hline(drawn_thresholds[[m]])
+    p <- p + ggplot2::geom_violin(ggplot2::aes(fill = g), scale = "width", width = violin_width, colour = OS_FIG$col_ink,
+                                  linewidth = os_lw(OS_FIG$lw_segment), draw_quantiles = 0.5, na.rm = TRUE) +
+      ggplot2::scale_x_discrete(drop = FALSE) +
       ggplot2::scale_fill_manual(values = fills, guide = if (is.null(group_col) || i > 1) "none" else os_guide_legend(group_col)) +
-      (if (is_log) ggplot2::scale_y_log10(labels = function(x) os_num(x), breaks = scales::breaks_log(n = 4))
+      (if (is_log) ggplot2::scale_y_log10(labels = os_axis_labels, breaks = scales::breaks_log(n = 4),
+                                        limits = if (empty_log && !length(drawn_thresholds[[m]])) c(0.1, 10) else NULL)
        else ggplot2::scale_y_continuous(labels = os_axis_labels)) +
       ggplot2::labs(x = NULL, y = unname(mlab[m])) +
       theme_omicstat(journal = journal, legend = if (is.null(group_col)) "none" else "right")
-    if (i < length(metrics)) {
-      p <- p + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
-    } else {
-      p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5))
+    if (single_sample) {
+      points <- os_points_layer(ggplot2::geom_point(colour = OS_FIG$col_ink,
+        size = os_cell_point_mm(nrow(d)), shape = OS_FIG$shape_dense, stroke = 0, alpha = .35,
+        position = ggplot2::position_jitter(width = .075, height = 0, seed = 1), na.rm = TRUE), nrow(d))
+      p <- p + points$layer
+      attr(p, "os_qc_points_rasterised") <- points$rasterised
     }
+    z <- metric_counts[[m]]
+    if (is_log) p <- p + ggplot2::labs(subtitle = sprintf("%s%s zero / %s missing excluded", if (empty_log) "No positive values; " else "log10; ", os_num(z$zero), os_num(z$missing))) +
+      ggplot2::theme(plot.subtitle = ggplot2::element_text(size = OS_FIG$size_annot))
+    else if (z$missing) p <- p + ggplot2::labs(subtitle = sprintf("%s missing values excluded", os_num(z$missing))) +
+      ggplot2::theme(plot.subtitle = ggplot2::element_text(size = OS_FIG$size_annot))
+    if (i < length(metrics)) p <- p + ggplot2::theme(axis.text.x = ggplot2::element_blank(), axis.ticks.x = ggplot2::element_blank())
+    else p <- p + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5))
     p
   })
-  p <- patchwork::wrap_plots(panels, ncol = 1, guides = "collect")
-  # n with its unit: x labels stay sample ids; cells per sample go in the caption
+  point_rasterised <- if (single_sample) stats::setNames(vapply(panels, function(panel)
+    isTRUE(attr(panel, "os_qc_points_rasterised")), logical(1)), metrics) else logical(0)
+  stage_title <- switch(data_stage, unspecified = "Supplied rows; stage unspecified", raw_input = "Raw input, before cell QC",
+                        after_creation = "After object creation", after_cell_qc = "After cell QC", after_doublet_filter = "After doublet filtering")
+  stage_n <- if (is.null(stage_counts)) paste(os_num(nrow(qc)), "cells shown") else sprintf("%s input; %s shown; %s removed earlier", os_num(sum(stage_counts$input)), os_num(nrow(qc)), os_num(sum(stage_counts$removed_before_stage)))
+  p <- patchwork::wrap_plots(panels, ncol = 1, guides = "collect") +
+    patchwork::plot_annotation(subtitle = paste(stage_title, stage_n, sep = "\n"),
+      theme = ggplot2::theme(plot.subtitle = ggplot2::element_text(size = OS_FIG$size_annot, family = os_font_family())))
   cells_per_sample <- as.integer(table(factor(as.character(qc$sample), levels = s_lv)))
   grp_n <- if (is.null(group_col)) NULL else {
     sg <- unique(data.frame(s = as.character(qc$sample), g = grp, stringsAsFactors = FALSE))
     g_lv <- sort(unique(sg$g), method = "radix")
     stats::setNames(vapply(g_lv, function(g) length(unique(sg$s[sg$g == g])), integer(1)), g_lv)
   }
+  stage_label <- switch(data_stage, unspecified = "at the supplied stage (not specified)", raw_input = "at raw input, before cell QC",
+                        after_creation = "after object creation, before subsequent cell QC", after_cell_qc = "after cell QC",
+                        after_doublet_filter = "after doublet filtering")
   cap <- paste0("Per-cell quality-control metrics by sample (", length(s_lv), " samples, ", os_num(nrow(qc)),
-                " cells before filtering; ", os_n_label(cells_per_sample, "cells", per = "sample"),
-                if (!is.null(grp_n)) paste0("; ", paste(sprintf("%s, %s", names(grp_n), vapply(grp_n, os_n_label, character(1), unit = "samples")),
-                                                        collapse = "; ")) else "",
-                "). ",
-                "Violins are scaled to equal width; horizontal line inside each violin, median; dashed lines, filtering thresholds",
-                if (length(log10_metrics)) paste0("; ", paste(unname(mlab[log10_metrics]), collapse = " and "), " on a log10 axis") else "", ".")
-  os_with_meta(p, figure_type = "qc_violin", default_height_mm = 25 + 30 * length(metrics), caption = cap,
-               thresholds = thresholds,
-               counts = list(cells_per_sample = as.list(stats::setNames(cells_per_sample, s_lv))))
+                " cells ", stage_label, "; ", os_n_label(cells_per_sample, "cells", per = "sample"),
+                if (!is.null(grp_n)) paste0("; ", paste(sprintf("%s, %s", names(grp_n), vapply(grp_n, os_n_label, character(1), unit = "samples")), collapse = "; ")) else "",
+                "). Violins are scaled to equal width; horizontal line inside each violin, median; dashed lines, filtering thresholds.")
+  if (!is.null(stage_counts)) cap <- paste(cap, sprintf("%s input cells; %s removed before this stage; their unobserved QC distributions are not reconstructed.",
+                                                       os_num(sum(stage_counts$input)), os_num(sum(stage_counts$removed_before_stage))))
+  if (single_sample) cap <- paste(cap, "Single-sample display: violin width 0.32 with all drawable cell points overlaid; deterministic horizontal jitter (width 0.075, seed 1) changes no QC values, thresholds or filtering decisions. Cells are not independent biological replicates.")
+  if (any(point_rasterised)) cap <- paste(cap, sprintf("Dense point layers rasterised at %s dpi: %s. No point subsampling; axes and text remain vector in PDF.",
+    OS_FIG$raster_dpi, paste(names(point_rasterised)[point_rasterised], collapse = ", ")))
+  for (m in metrics) {
+    z <- metric_counts[[m]]
+    if (m %in% log10_metrics) cap <- paste(cap, sprintf("%s: log10 axis in original units; %s zero and %s missing values excluded from the density; %s positive values below 1 retained unchanged.",
+                                                      mlab[[m]], os_num(z$zero), os_num(z$missing), os_num(z$positive_below_one)))
+    else if (z$missing) cap <- paste(cap, sprintf("%s: %s missing values excluded from the density.", mlab[[m]], os_num(z$missing)))
+  }
+  if (any(lengths(undrawn_thresholds))) cap <- paste(cap, "Nonfinite or nonpositive-log cutoffs are not drawn; all requested thresholds remain in the figure metadata.")
+  out <- os_with_meta(p, figure_type = "qc_violin", default_height_mm = 33 + 30 * length(metrics), caption = cap,
+               thresholds = thresholds, data = list(data_stage = data_stage),
+               counts = list(cells_per_sample = as.list(stats::setNames(cells_per_sample, s_lv)), metric_display = metric_counts,
+                             stage_flow = stage_counts),
+               notes = list(log10_zero_policy = "exclude_and_report_separately", drawn_thresholds = drawn_thresholds,
+                            undrawn_thresholds = undrawn_thresholds, missing_values = "excluded_and_counted_never_zero"),
+               definition = list(metrics = metric_definitions, unspecified_metrics = as.list(setdiff(metrics, names(metric_definitions)))))
+  if (single_sample) out <- os_with_meta(out, notes = list(single_sample_display = TRUE,
+    violin_width = violin_width, jitter_width = .075, jitter_height = 0, jitter_seed = 1L,
+    jitter_points = "all drawable cells; existing missing/log-zero exclusions retained",
+    rasterised_points = as.list(point_rasterised),
+    filtering_recomputed = FALSE))
+  out
 }
 
 # Score violins by cluster / cell type (module score, AUCell, GSVA per cell).

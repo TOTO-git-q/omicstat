@@ -1,0 +1,10 @@
+args <- commandArgs(FALSE); here <- dirname(normalizePath(sub("^--file=", "", args[grepl("^--file=",args)][1])))
+s <- normalizePath(file.path(here,"../scripts"))
+for (f in c("args.R","engine_run.R","module_kit.R","feature_table.R","handoff.R","fig_all.R","render_figure_request.R")) source(file.path(s,f))
+out <- file.path(tempdir(),"p05-python-render"); dir.create(out,recursive=TRUE,showWarnings=FALSE)
+status <- system2("python3",c(shQuote(file.path(here,"../py/tests/make_standardization_render_fixture.py")),shQuote(out)))
+stopifnot(identical(status,0L))
+a <- os_render_figure_request(out); b <- os_render_figure_request(out)
+stopifnot(length(a$figures)==7,identical(vapply(a$figures,function(f) f$spec$sha256,""),vapply(b$figures,function(f) f$spec$sha256,"")),
+          identical(vapply(a$figures,function(f) f$files$png$sha256,""),vapply(b$figures,function(f) f$files$png$sha256,"")))
+cat("ALL PASSED: seven Python requests rendered twice with identical PNG/spec bytes\n")

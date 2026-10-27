@@ -1,0 +1,793 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "glmnet-coxsig",
+  "lane": "R",
+  "domain": "expr-survival",
+  "entry": "scripts/run_glmnet_coxsig.R",
+  "version": "0.1.0",
+  "qc_prefix": "CXS",
+  "engine_packages": [
+    "glmnet",
+    "survival",
+    "timeROC"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [
+      "expression_matrix",
+      "cox_signature"
+    ],
+    "outputs": [
+      "cox_signature"
+    ]
+  },
+  "figure_builders": [
+    "os_time_roc",
+    "os_lasso_path",
+    "os_km"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 53,
+    "question": "Train a prespecified expression LASSO-Cox signature and validate frozen coefficients with time-dependent ROC"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "candidate",
+  "status_notes": [
+    "owner_seal_freeze",
+    "scientific_review_pending"
+  ],
+  "inputs": [
+    {
+      "flag": "--mode",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Train or externally validate frozen coefficients",
+      "type_label": "train|validate",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "train",
+            "meaning": "Fit the signature using the prespecified training cohort and fixed folds."
+          },
+          {
+            "value": "validate",
+            "meaning": "Apply the frozen signature to the independent validation cohort."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--from-run",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Verified expression handoff",
+      "type_label": "path",
+      "role": "input",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Verified expression handoff."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork."
+        ]
+      }
+    },
+    {
+      "flag": "--signature-run",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Frozen cox_signature run for validation"
+    },
+    {
+      "flag": "--clinical",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Clinical table",
+      "type_label": "path",
+      "role": "input",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Clinical table."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork."
+        ]
+      }
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Unique biological subject identity",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Name the independent biological-unit or matched-subject identifier used to prevent pseudoreplication."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous."
+        ]
+      }
+    },
+    {
+      "flag": "--time-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Positive right-censored follow-up",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Positive right-censored follow-up."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous."
+        ]
+      }
+    },
+    {
+      "flag": "--event-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit zero censored one event",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Explicit zero censored one event."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "The column identity, observed group levels, contrast direction, or independent biological unit is ambiguous."
+        ]
+      }
+    },
+    {
+      "flag": "--time-unit",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared units, frozen across cohorts",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Declared units, frozen across cohorts."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--genes",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Ordered prespecified gene IDs",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Ordered prespecified gene IDs."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--covariates",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Gene-only signature boundary",
+      "type_label": "none",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "none",
+            "meaning": "Explicitly acknowledge the supported constraint: Gene-only signature boundary."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--expression-scale",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Declared identical preprocessing scale",
+      "type_label": "normalized-log2|normalized-other",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": "normalized-log2",
+            "meaning": "Expression is already normalized on the log2 scale."
+          },
+          {
+            "value": "normalized-other",
+            "meaning": "Expression uses a different explicitly declared normalized scale."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--min-events",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Minimum observed event count",
+      "type_label": "int in [2, Inf]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Minimum observed event count."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--folds",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training CSV unit,fold; exact biological matching"
+    },
+    {
+      "flag": "--standardize",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training glmnet standardization"
+    },
+    {
+      "flag": "--nlambda",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training path grid size"
+    },
+    {
+      "flag": "--lambda-min-ratio",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training path extent"
+    },
+    {
+      "flag": "--selection",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Penalty selection rule"
+    },
+    {
+      "flag": "--lambda",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Fixed penalty value within fitted path"
+    },
+    {
+      "flag": "--cv-measure",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Cross-validation objective"
+    },
+    {
+      "flag": "--cv-grouped",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Cox CV risk-set evaluation"
+    },
+    {
+      "flag": "--max-iter",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training optimizer maximum passes"
+    },
+    {
+      "flag": "--thresh",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training convergence threshold"
+    },
+    {
+      "flag": "--cox-ties",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit version-stable Breslow ties"
+    },
+    {
+      "flag": "--cutoff",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Training risk split to freeze"
+    },
+    {
+      "flag": "--cutpoint",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified training risk cutoff"
+    },
+    {
+      "flag": "--roc-times",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Sorted IPCW ROC horizons",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Sorted IPCW ROC horizons."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--risk-times",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Sorted KM risk times",
+      "type_label": "string",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Sorted KM risk times."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose."
+        ]
+      }
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "KM marginal CI",
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Specify the coverage level for the reported marginal intervals; this is not automatically simultaneous family coverage."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The study has not explicitly specified this value, or a previous choice no longer matches the design, assay, population, or analysis purpose.",
+          "A numerical threshold or analysis budget is not prespecified; do not tune it to obtain a desired result."
+        ]
+      }
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Figure style",
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation",
+      "guidance": {
+        "options": [
+          {
+            "value": "nature",
+            "meaning": "Use the existing Nature-oriented size and typography preset."
+          },
+          {
+            "value": "cell",
+            "meaning": "Use the existing Cell-oriented size and typography preset."
+          },
+          {
+            "value": "science",
+            "meaning": "Use the existing Science-oriented size and typography preset."
+          },
+          {
+            "value": "generic",
+            "meaning": "Use the suite generic publication-figure preset."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The target publication style is unknown or differs from the previous figure set."
+        ]
+      }
+    },
+    {
+      "flag": "--study-contract",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified validated contract",
+      "type_label": "path",
+      "role": "input",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Prespecified validated contract."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The exact eligible input and its version, provenance, or permission have not been established; do not select a file by guesswork."
+        ]
+      }
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit candidate execution",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ],
+      "guidance": {
+        "options": [
+          {
+            "value": true,
+            "meaning": "Acknowledge candidate execution and its outstanding acceptance review; this does not seal or promote the module."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "This analysis/input branch applies and the value has not been explicitly declared.",
+          "Every execution of this candidate requires an explicit development-mode acknowledgement."
+        ]
+      }
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Recorded seed; folds never silently regenerated",
+      "type_label": "int",
+      "role": "execution",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Recorded seed; folds never silently regenerated."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The output location or reproducibility seed has not been supplied for this run, or needs to change."
+        ]
+      }
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "New empty output directory",
+      "type_label": "path",
+      "role": "execution",
+      "guidance": {
+        "options": [
+          {
+            "value": null,
+            "meaning": "Choose the permitted output directory for a new run; this does not alter the scientific analysis."
+          }
+        ],
+        "recommended": null,
+        "basis": {
+          "kind": "none",
+          "citations": []
+        },
+        "ask_user_when": [
+          "The output location or reproducibility seed has not been supplied for this run, or needs to change."
+        ]
+      }
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Resolved spec replay"
+    }
+  ],
+  "reference": {
+    "enabled": false,
+    "added_at": "2026-10-16"
+  },
+  "limits": {
+    "max_genes": 100,
+    "max_samples": 5000,
+    "max_cv_folds": 20,
+    "max_roc_horizons": 10,
+    "timeout_seconds": 1500
+  },
+  "parameter_contract": {
+    "schema": "omicstat.required_parameters.v1",
+    "acquisition": "actual_entry_help",
+    "required": [
+      {
+        "flag": "--mode",
+        "type_label": "train|validate",
+        "help": "Train or externally validate frozen coefficients"
+      },
+      {
+        "flag": "--from-run",
+        "type_label": "path",
+        "help": "Verified expression handoff"
+      },
+      {
+        "flag": "--clinical",
+        "type_label": "path",
+        "help": "Clinical table"
+      },
+      {
+        "flag": "--unit-col",
+        "type_label": "string",
+        "help": "Unique biological subject identity"
+      },
+      {
+        "flag": "--time-col",
+        "type_label": "string",
+        "help": "Positive right-censored follow-up"
+      },
+      {
+        "flag": "--event-col",
+        "type_label": "string",
+        "help": "Explicit zero censored one event"
+      },
+      {
+        "flag": "--time-unit",
+        "type_label": "string",
+        "help": "Declared units, frozen across cohorts"
+      },
+      {
+        "flag": "--genes",
+        "type_label": "string",
+        "help": "Ordered prespecified gene IDs"
+      },
+      {
+        "flag": "--covariates",
+        "type_label": "none",
+        "help": "Gene-only signature boundary"
+      },
+      {
+        "flag": "--expression-scale",
+        "type_label": "normalized-log2|normalized-other",
+        "help": "Declared identical preprocessing scale"
+      },
+      {
+        "flag": "--min-events",
+        "type_label": "int in [2, Inf]",
+        "help": "Minimum observed event count"
+      },
+      {
+        "flag": "--roc-times",
+        "type_label": "string",
+        "help": "Sorted IPCW ROC horizons"
+      },
+      {
+        "flag": "--risk-times",
+        "type_label": "string",
+        "help": "Sorted KM risk times"
+      },
+      {
+        "flag": "--ci-level",
+        "type_label": "num in [0.5, 0.9999]",
+        "help": "KM marginal CI"
+      },
+      {
+        "flag": "--journal",
+        "type_label": "nature|cell|science|generic",
+        "help": "Figure style"
+      },
+      {
+        "flag": "--study-contract",
+        "type_label": "path",
+        "help": "Prespecified validated contract"
+      },
+      {
+        "flag": "--seed",
+        "type_label": "int",
+        "help": "Recorded seed; folds never silently regenerated"
+      },
+      {
+        "flag": "--outdir",
+        "type_label": "path",
+        "help": "New empty output directory"
+      }
+    ],
+    "sources": [
+      {
+        "path": "skills/_shared/scripts/args.R",
+        "sha256": "d2d00a22e5a4bab4736c32e1eeb9f471af727069c52578ca0f0ae6df4266183a"
+      },
+      {
+        "path": "skills/_shared/scripts/sc_backend_io.R",
+        "sha256": "2946e8d78d800846eae2a251c3a34e612b5491a6ace0e9215fb9cae7eadf46fb"
+      },
+      {
+        "path": "skills/_shared/scripts/user_genesets.R",
+        "sha256": "137a1e07b01d2abbab94977dc2cf0c0eb3d4f878fa98b8da84898c026831f2ca"
+      },
+      {
+        "path": "skills/glmnet-coxsig/scripts/run_glmnet_coxsig.R",
+        "sha256": "4072d06106ca3c3220ecb42a254cfcde52a58f85a66b854decaa1bfed63982b9"
+      }
+    ],
+    "conditional_required": [
+      {
+        "flag": "--development-mode",
+        "type_label": "switch",
+        "help": "Explicit candidate execution",
+        "required_when": [
+          "Every execution of this candidate requires an explicit development-mode acknowledgement."
+        ],
+        "guard_sources": [
+          "skills/glmnet-coxsig/scripts/run_glmnet_coxsig.R"
+        ]
+      }
+    ]
+  }
+}

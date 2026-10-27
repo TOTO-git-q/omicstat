@@ -1,0 +1,52 @@
+{
+  "schema": "omicstat.port-original-anchor-status.v1",
+  "native_executed": false,
+  "real_owner_anchor_available": false,
+  "owner_review": null,
+  "anchors": [
+    {
+      "id": "CPM-one-predictor",
+      "source_reference": {
+        "path": "skills/cpm-pipeline/tests/verified/REFERENCE.md",
+        "bytes": 872,
+        "sha256": "f3a74763997b59b06b863eeb60f581a2d423a470be098c6f8c80fc7634bbef84",
+        "git_blob": "fb899bd59ac70441ead72bf08276f8f97e8c9a46",
+        "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/tests/verified/REFERENCE.md",
+        "read_scope": "code/documentation only; no patient data object"
+      },
+      "source_runner": {
+        "path": "skills/cpm-pipeline/tests/verified/run_verified.R",
+        "bytes": 3276,
+        "sha256": "da0dcefc43150739036ec41723000c975b4bf6acf332837eb1a22ecb1da3e32a",
+        "git_blob": "08d656669ba315575bddc6548d93f311e5767b0e",
+        "url": "https://github.com/TOTO-git-q/medstat/blob/12292d020ef4a8575a3a1db880b81786ee3547fa/skills/cpm-pipeline/tests/verified/run_verified.R",
+        "read_scope": "code/documentation only; no patient data object"
+      },
+      "dataset": "Original seeded152 invented240-unit binary logistic fixture",
+      "dataset_sha256": null,
+      "status": "not_applicable_to_selected_survival_penalized_prediction_model",
+      "original_absolute_tolerance": 1e-05,
+      "reason": "Independent pair-rank apparent AUC of a one-predictor logistic fit does not validate survival bootstrap/calibration or this penalized adaptation."
+    },
+    {
+      "id": "CPM-binned-KM-censoring",
+      "dataset": "Original invented10-unit numerical fixture: censor at1, event at2, remaining follow-up10",
+      "expected": {
+        "event_risk": 0.1111111111111111,
+        "n_at_risk": 8,
+        "unsupported_horizon": 20
+      },
+      "status": "native same-input original/adapted comparison pending",
+      "dataset_sha256": null,
+      "clinical_data": false
+    },
+    {
+      "id": "glmnet-CoxExample",
+      "dataset": "Official glmnet simulated CoxExample already registered in the original module",
+      "status": "original eight printed coefficient anchors and5e-9 tolerance preserved; native workup/owner sheet pending",
+      "input_acquired_here": false,
+      "dataset_sha256": null
+    }
+  ],
+  "clinical_source_smoke": "Not run or acquired: source broad smoke references clinical rotterdam/gbsg; no permission inferred from source code"
+}

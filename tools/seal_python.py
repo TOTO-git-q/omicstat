@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def require_locked_environment():
-    lane = json.loads((ROOT / 'env/omicstat-env.json').read_text())['python_lane']
+    lane = json.loads((ROOT / 'env/py/py-env.json').read_text())
     problems = []
     if os.environ.get('OMICSTAT_PY_CONTAINER') != '1':
         problems.append('OMICSTAT_PY_CONTAINER=1 is required; use the supplied container image')

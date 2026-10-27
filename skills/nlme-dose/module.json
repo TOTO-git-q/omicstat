@@ -1,0 +1,218 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "nlme-dose",
+  "lane": "R",
+  "domain": "basic-stats",
+  "entry": "scripts/run_nlme_dose.R",
+  "version": "0.1.0",
+  "qc_prefix": "NLD",
+  "engine_packages": [
+    "nlme"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "development_nlme-dose",
+      "development_model_metadata"
+    ]
+  },
+  "figure_builders": [
+    "os_scope_figures"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 49,
+    "question": "Repeated-subject nonlinear dose-response models"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--response",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Response column",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--dose",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Positive untransformed dose column",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--unit-col",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Biological subject identity column",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--subject",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Compatibility assertion; if supplied must equal unit-col"
+    },
+    {
+      "flag": "--technical-policy",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Reject repeated unit/dose rows; technical aggregation must be explicit upstream",
+      "type_label": "reject",
+      "role": "scientific"
+    },
+    {
+      "flag": "--random-parameter",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "One scalar random effect",
+      "type_label": "Asym|logED50",
+      "role": "scientific"
+    },
+    {
+      "flag": "--direction",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified response direction",
+      "type_label": "increasing|decreasing",
+      "role": "scientific"
+    },
+    {
+      "flag": "--method",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Estimation method",
+      "type_label": "ML|REML",
+      "role": "scientific"
+    },
+    {
+      "flag": "--residual",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Conditional residual structure",
+      "type_label": "independent",
+      "role": "scientific"
+    },
+    {
+      "flag": "--singular-tol",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Relative random SD boundary tolerance",
+      "type_label": "num in [0.00000001, 0.5]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-iter",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Optimizer maximum iterations",
+      "type_label": "int in [1, 10000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--input",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Input CSV",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--dose-unit",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Actual concentration unit or reciprocal dilution",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--ci-level",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Prespecified confidence level",
+      "type_label": "num in [0.5, 0.9999]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Actual validated study contract JSON",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "Recorded reproducibility seed",
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified candidate entry contract",
+      "description": "New or empty output directory",
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Explicit candidate execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified candidate entry contract",
+      "description": "Replay resolved spec"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 47,
+    "discovery_profile": {
+      "module": "nlme-dose",
+      "epmc_query": "METHODS:\"nlme\" OR METHODS:\"dose response\"",
+      "meta": false,
+      "signal_regex": "(?:nlme|dose response)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "lane_image": "omicstat-r:2026.10.4"
+}

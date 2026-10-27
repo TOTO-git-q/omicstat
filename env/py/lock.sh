@@ -6,7 +6,7 @@
 #         capped at exclude-newer) and env/py_lock.txt (its pip export).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-want="$(python3 -c "import json; print(json.load(open('$ROOT/env/omicstat-env.json'))['python_lane']['locker'].split()[1])")"
+want="$(python3 -c "import json; print(json.load(open('$ROOT/env/py/py-env.json'))['locker'].split()[1])")"
 have="$(uv --version | awk '{print $2}')"
 if [ "$have" != "$want" ]; then
   echo "OS_ENV_LOCKER_VERSION: uv $have found, the lock is defined with uv $want (pip install uv==$want)" >&2; exit 3

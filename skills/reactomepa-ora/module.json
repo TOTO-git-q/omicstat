@@ -1,0 +1,250 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "reactomepa-ora",
+  "lane": "R",
+  "domain": "annotation",
+  "entry": "scripts/run_reactomepa_ora.R",
+  "version": "0.1.0",
+  "qc_prefix": "RPA",
+  "engine_packages": [
+    "ReactomePA",
+    "reactome.db",
+    "enrichit",
+    "AnnotationDbi"
+  ],
+  "refdata": [
+    "reactome_gene_sets"
+  ],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "enrichment_table"
+    ]
+  },
+  "figure_builders": [
+    "os_enrich_dotplot"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "order": 54,
+    "question": "Run Reactome over-representation with explicit eligible Entrez background and frozen offline annotation"
+  },
+  "publication": {
+    "rule_category": "universal_hard"
+  },
+  "status": "accepted",
+  "status_notes": [
+    "owner_accepted_2026_10_20"
+  ],
+  "inputs": [
+    {
+      "flag": "--input",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Selected Entrez CSV",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--universe",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Explicit eligible background CSV",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--id-column",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Entrez identifier column",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--selection-rule",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Prespecified selection and assay eligibility",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--organism",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Declared resource species",
+      "type_label": "human|mouse|rat|celegans|yeast|zebrafish|fly",
+      "role": "scientific"
+    },
+    {
+      "flag": "--universe-policy",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Refuse loss or explicitly intersect annotated IDs",
+      "type_label": "strict|annotated-intersection",
+      "role": "scientific"
+    },
+    {
+      "flag": "--min-size",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Minimum background-intersected set size",
+      "type_label": "int in [1, 60000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--max-size",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Maximum background-intersected set size",
+      "type_label": "int in [1, 60000]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--alpha",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "BH reporting threshold",
+      "type_label": "num in [0.000000001, 1]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--top-n",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Display-only number of significant pathways",
+      "type_label": "int in [1, 50]",
+      "role": "scientific"
+    },
+    {
+      "flag": "--refdata-id",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Registry reference ID",
+      "type_label": "string",
+      "role": "scientific"
+    },
+    {
+      "flag": "--refdata-registry",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Offline registry v2",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--refdata-input",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Installed-resource snapshot manifest",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--refdata-provenance",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Caller-supplied licence use and SHA declaration",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--journal",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Shared figure journal preset",
+      "type_label": "nature|cell|science|generic",
+      "role": "presentation"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "required": false,
+      "source": "prespecified explicit annotation contract",
+      "description": "Validated prespecified study contract",
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--development-mode",
+      "default": false,
+      "required": false,
+      "source": "prespecified explicit annotation contract",
+      "description": "Explicit candidate run",
+      "conditional_required": true,
+      "type_label": "switch",
+      "role": "execution",
+      "required_when": [
+        "Every execution of this candidate requires an explicit development-mode acknowledgement."
+      ]
+    },
+    {
+      "flag": "--seed",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Recorded deterministic seed",
+      "type_label": "int",
+      "role": "execution"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "required": true,
+      "source": "prespecified explicit annotation contract",
+      "description": "Empty output directory",
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--spec",
+      "default": null,
+      "required": false,
+      "source": "prespecified explicit annotation contract",
+      "description": "Resolved replay spec"
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "added_at": "2026-10-16",
+    "order": 52,
+    "discovery_profile": {
+      "module": "reactomepa-ora",
+      "epmc_query": "METHODS:\"ReactomePA\" OR METHODS:\"over representation\"",
+      "meta": false,
+      "signal_regex": "(?:ReactomePA|over representation)",
+      "profile_status": "weak",
+      "validation_rounds": 0,
+      "note": "Owner accepted execution on 2026-10-20. Search terms have no screened corpus or curated evidence yet; no scientific default is inferred."
+    }
+  },
+  "refdata_contracts": {
+    "reactome_gene_sets": {
+      "input_flag": "--refdata-input",
+      "provenance_flag": "--refdata-provenance"
+    }
+  },
+  "limits": {
+    "max_selected": 20000,
+    "max_universe": 60000,
+    "max_effective_memberships": 2000000,
+    "timeout_seconds": 1500
+  }
+}

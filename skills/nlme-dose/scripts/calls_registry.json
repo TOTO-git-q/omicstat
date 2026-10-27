@@ -1,0 +1,383 @@
+{
+  "module": "nlme-dose",
+  "status": "candidate_installed_api_verified_unsealed",
+  "package_versions": {
+    "stats": "4.6.1",
+    "nlme": "3.1.170"
+  },
+  "calls": [
+    {
+      "fn": "nlme::fixef",
+      "args": {}
+    },
+    {
+      "fn": "nlme::intervals",
+      "args": {
+        "level": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "0.95"
+        }
+      }
+    },
+    {
+      "fn": "nlme::nlme",
+      "args": {
+        "data": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "sys.frame(sys.parent())"
+        },
+        "fixed": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "random": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "fixed"
+        },
+        "groups": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "start": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "method": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "c(\"ML\", \"REML\")"
+        },
+        "na.action": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "na.fail"
+        },
+        "control": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "list()"
+        }
+      }
+    },
+    {
+      "fn": "nlme::nlmeControl",
+      "args": {
+        "maxIter": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "50"
+        },
+        "pnlsMaxIter": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "7"
+        },
+        "msMaxIter": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "50"
+        },
+        "returnObject": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": "FALSE"
+        }
+      }
+    },
+    {
+      "fn": "nlme::VarCorr",
+      "args": {}
+    },
+    {
+      "fn": "stats::aggregate",
+      "args": {}
+    },
+    {
+      "fn": "stats::coef",
+      "args": {}
+    },
+    {
+      "fn": "stats::cov2cor",
+      "args": {}
+    },
+    {
+      "fn": "stats::fitted",
+      "args": {}
+    },
+    {
+      "fn": "stats::getInitial",
+      "args": {
+        "data": {
+          "value": "Explicit source expression; inspect module core",
+          "source": "installed_api.json from source candidate image; see source-evidence/provenance.json",
+          "pack": "D",
+          "function_default": ""
+        }
+      }
+    },
+    {
+      "fn": "stats::predict",
+      "args": {}
+    },
+    {
+      "fn": "stats::residuals",
+      "args": {}
+    },
+    {
+      "fn": "stats::SSlogis",
+      "args": {}
+    },
+    {
+      "fn": "stats::vcov",
+      "args": {}
+    }
+  ],
+  "module_version": "0.1.0",
+  "flag_defaults": {
+    "--response": "required",
+    "--dose": "required",
+    "--unit-col": "required",
+    "--subject": null,
+    "--technical-policy": "required",
+    "--random-parameter": "required",
+    "--direction": "required",
+    "--method": "required",
+    "--residual": "required",
+    "--singular-tol": "required",
+    "--max-iter": "required",
+    "--input": "required",
+    "--dose-unit": "required",
+    "--ci-level": "required",
+    "--study-contract": null,
+    "--seed": "required",
+    "--outdir": "required",
+    "--development-mode": false,
+    "--spec": null
+  },
+  "captured_signatures": {
+    "nlme::fixef": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "nlme::intervals": {
+      "formals": {
+        "object": "",
+        "level": "0.95",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "intervals.lme": {
+          "object": "",
+          "level": "0.95",
+          "which": "c(\"all\", \"var-cov\", \"fixed\")",
+          "...": ""
+        }
+      }
+    },
+    "nlme::nlme": {
+      "formals": {
+        "model": "",
+        "data": "sys.frame(sys.parent())",
+        "fixed": "",
+        "random": "fixed",
+        "groups": "",
+        "start": "",
+        "correlation": "NULL",
+        "weights": "NULL",
+        "subset": "",
+        "method": "c(\"ML\", \"REML\")",
+        "na.action": "na.fail",
+        "naPattern": "",
+        "control": "list()",
+        "verbose": "FALSE"
+      },
+      "dispatch_methods": {
+        "nlme.formula": {
+          "model": "",
+          "data": "sys.frame(sys.parent())",
+          "fixed": "",
+          "random": "",
+          "groups": "",
+          "start": "",
+          "correlation": "NULL",
+          "weights": "NULL",
+          "subset": "",
+          "method": "c(\"ML\", \"REML\")",
+          "na.action": "na.fail",
+          "naPattern": "",
+          "control": "list()",
+          "verbose": "FALSE"
+        }
+      }
+    },
+    "nlme::nlmeControl": {
+      "formals": {
+        "maxIter": "50",
+        "pnlsMaxIter": "7",
+        "msMaxIter": "50",
+        "minScale": "0.001",
+        "tolerance": "1e-05",
+        "niterEM": "25",
+        "pnlsTol": "0.001",
+        "msTol": "1e-06",
+        "returnObject": "FALSE",
+        "msVerbose": "FALSE",
+        "msWarnNoConv": "TRUE",
+        "gradHess": "TRUE",
+        "apVar": "TRUE",
+        ".relStep": ".Machine$double.eps^(1/3)",
+        "minAbsParApVar": "0.05",
+        "opt": "c(\"nlminb\", \"nlm\")",
+        "natural": "TRUE",
+        "sigma": "NULL",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "nlme::VarCorr": {
+      "formals": {
+        "x": "",
+        "sigma": "1",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::aggregate": {
+      "formals": {
+        "x": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::coef": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "coef.drc": {
+          "object": "",
+          "...": ""
+        },
+        "coef.lme": {
+          "object": "",
+          "augFrame": "FALSE",
+          "level": "Q",
+          "data": "",
+          "which": "1:ncol(data)",
+          "FUN": "mean",
+          "omitGroupingFactor": "TRUE",
+          "subset": "NULL",
+          "...": ""
+        }
+      }
+    },
+    "stats::cov2cor": {
+      "formals": {
+        "V": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::fitted": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::getInitial": {
+      "formals": {
+        "object": "",
+        "data": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::predict": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "predict.drc": {
+          "object": "",
+          "newdata": "",
+          "se.fit": "FALSE",
+          "interval": "c(\"none\", \"confidence\", \"prediction\")",
+          "level": "0.95",
+          "na.action": "na.pass",
+          "od": "FALSE",
+          "vcov.": "vcov",
+          "...": ""
+        },
+        "predict.nlme": {
+          "object": "",
+          "newdata": "",
+          "level": "Q",
+          "asList": "FALSE",
+          "na.action": "na.fail",
+          "naPattern": "NULL",
+          "...": ""
+        }
+      }
+    },
+    "stats::residuals": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::SSlogis": {
+      "formals": {
+        "input": "",
+        "Asym": "",
+        "xmid": "",
+        "scal": ""
+      },
+      "dispatch_methods": []
+    },
+    "stats::vcov": {
+      "formals": {
+        "object": "",
+        "...": ""
+      },
+      "dispatch_methods": {
+        "vcov.drc": {
+          "object": "",
+          "...": "",
+          "corr": "FALSE",
+          "od": "FALSE",
+          "pool": "TRUE",
+          "unscaled": "FALSE"
+        },
+        "vcov.lme": {
+          "object": "",
+          "...": ""
+        }
+      }
+    }
+  }
+}

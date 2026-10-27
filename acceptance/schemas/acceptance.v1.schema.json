@@ -1,0 +1,508 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machine acceptance; owner section 0 caps verdict at needs_visual",
+  "type": "object",
+  "required": [
+    "schema",
+    "module",
+    "module_version",
+    "lane",
+    "commit",
+    "branch",
+    "image",
+    "started",
+    "finished",
+    "runner",
+    "stages",
+    "verdict",
+    "visual_review",
+    "logs_dir",
+    "fingerprint",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "properties": {
+    "schema": {
+      "const": "omicstat.acceptance.v1"
+    },
+    "module": {
+      "type": "string",
+      "minLength": 1
+    },
+    "module_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lane": {
+      "enum": [
+        "R",
+        "py"
+      ]
+    },
+    "commit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "branch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "image": {
+      "type": "object",
+      "required": [
+        "tag",
+        "id"
+      ],
+      "properties": {
+        "tag": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "started": {
+      "type": "string",
+      "minLength": 1
+    },
+    "finished": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "runner": {
+      "type": "object"
+    },
+    "stages": {
+      "type": "object",
+      "required": [
+        "static",
+        "anchors",
+        "replay",
+        "refusals",
+        "chain",
+        "figures",
+        "golden",
+        "seal",
+        "regression"
+      ],
+      "properties": {
+        "static": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "anchors": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "replay": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "refusals": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "chain": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "figures": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "golden": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "seal": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "regression": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "blocked",
+                "not_run",
+                "not_applicable",
+                "deferred_by_owner"
+              ]
+            },
+            "ok": {
+              "type": "boolean"
+            },
+            "problems": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "fail",
+        "needs_visual"
+      ]
+    },
+    "visual_review": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "by",
+            "date",
+            "figures_ok",
+            "notes"
+          ],
+          "properties": {
+            "by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "date": {
+              "type": "string",
+              "minLength": 1
+            },
+            "figures_ok": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "logs_dir": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fingerprint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "anchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "metric",
+          "expected",
+          "tolerance",
+          "source",
+          "scope",
+          "how"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected": {},
+          "tolerance": {
+            "type": "number",
+            "minimum": 0
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "how": {
+            "enum": [
+              "printed",
+              "replay"
+            ]
+          },
+          "obtained": {},
+          "pass": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "replay": {
+      "type": "object"
+    },
+    "refusals": {
+      "type": "array"
+    },
+    "chain": {
+      "type": "object"
+    },
+    "figures": {
+      "type": "array"
+    },
+    "golden": {
+      "type": "object"
+    },
+    "seal": {
+      "type": "object"
+    },
+    "regression": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

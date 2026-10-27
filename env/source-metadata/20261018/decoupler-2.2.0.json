@@ -1,0 +1,55 @@
+{
+  "source_url": "https://pypi.org/pypi/decoupler/2.2.0/json",
+  "retrieved_utc": "2026-10-18T06:24:16.502667+00:00",
+  "response_sha256": "5f6f1e7c17de4629124f471cdedd90a878cc2a4eebc964267a5ee8239d1fea67",
+  "metadata_only": true,
+  "package": "decoupler",
+  "version": "2.2.0",
+  "requires_python": ">=3.11",
+  "requires_dist": [
+    "adjusttext",
+    "anndata",
+    "docrep",
+    "marsilea",
+    "numba",
+    "requests",
+    "scipy",
+    "session-info2",
+    "tqdm"
+  ],
+  "yanked": false,
+  "files": [
+    {
+      "filename": "decoupler-2.2.0-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/29/28/83df019db913031ce826e3ed3fa655df9663d58cc1f083d1adc78a1bb528/decoupler-2.2.0-py3-none-any.whl",
+      "digests": {
+        "blake2b_256": "292883df019db913031ce826e3ed3fa655df9663d58cc1f083d1adc78a1bb528",
+        "md5": "c24bced37752d8ee724a7532ab5f9583",
+        "sha256": "b44557e15438ef7af08011bd37101330cf0123c67e53d18ed738c53a832df137"
+      },
+      "packagetype": "bdist_wheel",
+      "requires_python": ">=3.11",
+      "size": 147413,
+      "upload_time_iso_8601": "2026-07-11T00:57:32.399681Z",
+      "yanked": false,
+      "core-metadata": {
+        "sha256": "c39a7aaeef9dff00ca69aa93012d1a0b6b9773019bd2d545f278b841ecee42ed"
+      }
+    },
+    {
+      "filename": "decoupler-2.2.0.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/30/e9/7c65275561ab6801e5c45bc07ab26f52134cf6f7cd5cc510831fe5c9483d/decoupler-2.2.0.tar.gz",
+      "digests": {
+        "blake2b_256": "30e97c65275561ab6801e5c45bc07ab26f52134cf6f7cd5cc510831fe5c9483d",
+        "md5": "2e26f7a94a0f627df4af7d945166e12a",
+        "sha256": "7e73ee9619b2006e4ab1c33cc465a952598f17c45dd74c6fd5056562c9e03233"
+      },
+      "packagetype": "sdist",
+      "requires_python": ">=3.11",
+      "size": 1209804,
+      "upload_time_iso_8601": "2026-07-11T00:57:34.017225Z",
+      "yanked": false,
+      "core-metadata": false
+    }
+  ]
+}

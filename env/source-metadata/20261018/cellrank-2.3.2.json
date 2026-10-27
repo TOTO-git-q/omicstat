@@ -1,0 +1,71 @@
+{
+  "source_url": "https://pypi.org/pypi/cellrank/2.3.2/json",
+  "retrieved_utc": "2026-10-18T06:24:26.409296+00:00",
+  "response_sha256": "030e87e1e2ab89a912ccc431dbf6c108c0a3fa13e2d9d424d01eae995f8b0077",
+  "metadata_only": true,
+  "package": "cellrank",
+  "version": "2.3.2",
+  "requires_python": ">=3.12",
+  "requires_dist": [
+    "anndata>=0.11",
+    "docrep>=0.3",
+    "joblib>=1.4",
+    "matplotlib>=3.9",
+    "networkx>=3.4",
+    "numba>=0.60",
+    "numpy>=2",
+    "pandas>=2.2",
+    "pygam>=0.10",
+    "pygpcca>=1.0.4",
+    "rich>=13",
+    "scanpy>=1.11",
+    "scikit-learn>=1.6",
+    "scipy>=1.14",
+    "seaborn>=0.13",
+    "session-info2>=0.2",
+    "wrapt>=1.16",
+    "jax; extra == \"jax\"",
+    "jaxlib; extra == \"jax\"",
+    "moscot; extra == \"moscot\"",
+    "petsc4py; extra == \"petsc\"",
+    "slepc4py; extra == \"petsc\"",
+    "adjusttext; extra == \"plot\"",
+    "rpy2>=3.3; extra == \"r\"",
+    "scvelo>=0.3; extra == \"scvelo\""
+  ],
+  "yanked": false,
+  "files": [
+    {
+      "filename": "cellrank-2.3.2-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/63/02/3f07b87bdcc0354f7b4bef973b2ecc60676035ec04754c4cc7457ff9a4c1/cellrank-2.3.2-py3-none-any.whl",
+      "digests": {
+        "blake2b_256": "63023f07b87bdcc0354f7b4bef973b2ecc60676035ec04754c4cc7457ff9a4c1",
+        "md5": "f137fdd79aeb064dff4819a2fec42e8c",
+        "sha256": "7a29e03cabac4a7bc80335e48341a10f69383d36283ff84dc8e0e9a086932cf5"
+      },
+      "packagetype": "bdist_wheel",
+      "requires_python": ">=3.12",
+      "size": 244997,
+      "upload_time_iso_8601": "2026-06-24T06:37:44.773514Z",
+      "yanked": false,
+      "core-metadata": {
+        "sha256": "a2d8c9d25086503ceb8027b7f1546f6fc4d924397ced6e8e640562c753e178fd"
+      }
+    },
+    {
+      "filename": "cellrank-2.3.2.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/06/ff/a49554a3c0eef26c4c8a0ec1111b5fe364ca7f3244d9883add45536ba8d1/cellrank-2.3.2.tar.gz",
+      "digests": {
+        "blake2b_256": "06ffa49554a3c0eef26c4c8a0ec1111b5fe364ca7f3244d9883add45536ba8d1",
+        "md5": "e4d42182cd798a5aae594d2cdd4b8d3c",
+        "sha256": "120946194fb26f9ed2354f83f1f53b7f2d1c91cd564f198039f4b34e6ed8016f"
+      },
+      "packagetype": "sdist",
+      "requires_python": ">=3.12",
+      "size": 8090270,
+      "upload_time_iso_8601": "2026-06-24T06:37:46.249816Z",
+      "yanked": false,
+      "core-metadata": false
+    }
+  ]
+}

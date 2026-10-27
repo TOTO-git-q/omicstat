@@ -168,28 +168,43 @@ def _next_midnight(now: dt.datetime) -> dt.datetime:
 
 
 def _attempt(store: HarvestStore, now: dt.datetime,
-             harvest_fn: Callable[..., dict[str, Any]]) -> dict[str, Any]:
+             harvest_fn: Callable[..., dict[str, Any]],
+             probe_fn: Callable[..., dict[str, Any]] | None = None) -> dict[str, Any]:
     try:
         result = harvest_fn(store, target=10, transport="direct", seed_catalog=ROOT / "seed" / "catalog.json",
                             max_requests=60, now=now)
-        return _compact_summary(result)
+        summary = _compact_summary(result)
     except (HarvestError, OSError, RuntimeError, ValueError) as exc:
         return {"day": now.date().isoformat(), "state": "worker_attempt_failed",
                 "error": getattr(exc, "code", type(exc).__name__), "message": str(exc)[:240]}
+    # Coverage upgrade: after the harvest, one bounded chunk of the monthly probe (hitCounts only; its own
+    # lease, budget and spacing).  It can never fail or delay the harvest result.  Tests that inject a fake
+    # harvest function get no probe unless they inject one too.
+    if probe_fn is None and harvest_fn is harvest_daily:
+        import probe
+        probe_fn = probe.run_probe
+    if probe_fn is not None:
+        try:
+            outcome = probe_fn(store, now=now)
+            summary["probe"] = {k: outcome[k] for k in ("month", "state", "requests", "budget_used", "tasks_remaining") if k in outcome}
+        except Exception as exc:  # noqa: BLE001 -- the probe is optional context, never a harvest failure
+            summary["probe"] = {"state": "probe_error", "error": type(exc).__name__}
+    return summary
 
 
 def run_once(*, data_dir: Path | None = None, now: dt.datetime | None = None,
-             harvest_fn: Callable[..., dict[str, Any]] = harvest_daily) -> dict[str, Any]:
+             harvest_fn: Callable[..., dict[str, Any]] = harvest_daily,
+             probe_fn: Callable[..., dict[str, Any]] | None = None) -> dict[str, Any]:
     """Manual deterministic invocation.  It deliberately does not touch resident liveness."""
     directory = data_dir or _data_dir()
     directory.mkdir(parents=True, exist_ok=True)
-    return _attempt(HarvestStore(directory / "harvest.sqlite"), now or _now(), harvest_fn)
+    return _attempt(HarvestStore(directory / "harvest.sqlite"), now or _now(), harvest_fn, probe_fn)
 
 
 def run_worker(*, data_dir: Path | None = None, logs_dir: Path | None = None,
                now_fn: Callable[[], dt.datetime] = _now, sleep_fn: Callable[[float], None] | None = None,
                harvest_fn: Callable[..., dict[str, Any]] = harvest_daily, stop_event: threading.Event | None = None,
-               max_cycles: int | None = None, lock_factory: Callable[[Path], _WorkerLock] = _WorkerLock) -> dict[str, Any]:
+               probe_fn: Callable[..., dict[str, Any]] | None = None, max_cycles: int | None = None, lock_factory: Callable[[Path], _WorkerLock] = _WorkerLock) -> dict[str, Any]:
     """Run PID1 scheduling; bounded injection seams keep timing/network tests deterministic."""
     directory, log_directory = data_dir or _data_dir(), logs_dir or _logs_dir()
     directory.mkdir(parents=True, exist_ok=True)
@@ -224,7 +239,7 @@ def run_worker(*, data_dir: Path | None = None, logs_dir: Path | None = None,
                 status.update({"state": "running", "heartbeat_at": _iso(current), "last_attempt_at": _iso(current),
                                "next_due_at": _iso(next_due)})
                 _write_status(status_file, status)
-                summary = _attempt(store, current, harvest_fn)
+                summary = _attempt(store, current, harvest_fn, probe_fn)
                 finished = now_fn().astimezone(TZ_SHANGHAI)
                 status.update({"state": "waiting", "last_summary": summary, "last_completed_at": _iso(finished),
                                "heartbeat_at": _iso(finished)})

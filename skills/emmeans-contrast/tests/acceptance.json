@@ -1,0 +1,94 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--from-run",
+      "{fixtures}/upstream",
+      "--factor",
+      "period",
+      "--weights",
+      "equal",
+      "--df-method",
+      "asymptotic",
+      "--adjust",
+      "none",
+      "--ci-level",
+      ".95",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{root}"
+    ]
+  },
+  "figure_policy": "required",
+  "chain": {
+    "upstream_module": "lme4-lmm",
+    "upstream_run": "runs/upstream",
+    "upstream": {
+      "script": "scripts/run_lme4_lmm.R",
+      "argv": [
+        "--input",
+        "{fixtures}/sleepstudy.csv",
+        "--response",
+        "Reaction",
+        "--subject",
+        "Subject",
+        "--formula",
+        "Reaction ~ period * cohort + (1 | Subject)",
+        "--estimation",
+        "REML",
+        "--singular-tolerance",
+        ".0001",
+        "--ci-level",
+        ".95",
+        "--study-contract",
+        "{fixtures}/contract.json",
+        "--development-mode",
+        "--seed",
+        "20261015",
+        "--outdir",
+        "{outdir}"
+      ]
+    },
+    "argv": [
+      "--from-run",
+      "{upstream}",
+      "--factor",
+      "period",
+      "--weights",
+      "equal",
+      "--df-method",
+      "asymptotic",
+      "--adjust",
+      "none",
+      "--ci-level",
+      ".95",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ],
+    "expected_ecosystem": "neutral"
+  }
+}

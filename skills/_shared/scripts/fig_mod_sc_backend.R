@@ -20,12 +20,16 @@ os_singler_crosstab <- function(tab, n_cells, nmads, journal, min.diff.med = -In
 }
 # ---- muscat-pseudobulk ----
 os_muscat_volcano <- function(tab, fdr, lfc, contrast, journal) {
+  .os_require_cols(tab,c("gene","logFC","p_adj.loc"),"os_muscat_volcano")
+  .os_require_ids(tab$gene,"muscat gene IDs")
   ft <- data.frame(feature_id=tab$gene,log2fc=tab$logFC,padj=tab$p_adj.loc)
   p <- os_volcano(ft,padj_threshold=fdr,lfc_threshold=lfc,label_n=5,
     contrast_label=contrast,method_label='muscat pseudobulk; within-cluster FDR',journal=journal)
-  os_with_meta(p,caption=paste0(attr(p,'omicstat_meta')$caption %||% '',
+  os_with_meta(p,caption=paste0(attr(p,'os_meta')$caption %||% '',
     sprintf(' %d gene tests; within-cluster adjusted P display cutoff = %s; absolute logFC display cutoff = %s. Display only.',nrow(ft),fdr,lfc)),
-    counts=list(genes=nrow(ft)),thresholds=list(fdr=fdr,logFC=lfc))
+    counts=list(genes=nrow(ft)),thresholds=list(fdr=fdr,logFC=lfc),
+    data=list(muscat_source=tab,statistic_column="p_adj.loc",unused_global_adjustment_column=if("p_adj.glb" %in% names(tab))"p_adj.glb"else NULL),
+    notes=list(statistic_kind="adjusted_p",family_scope="within_subtype",adjustment_method="unknown",global_adjustment_substituted=FALSE))
 }
 # ---- slingshot-trajectory / monocle3-trajectory ----
 os_backend_trajectory <- function(rd, pt, curves=NULL, reduction='UMAP', journal=NULL) {

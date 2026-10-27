@@ -1,0 +1,22 @@
+[
+  {
+    "metric": "ryegrass slope",
+    "expected": 2.47033,
+    "tolerance": 5e-05,
+    "source": "https://doi.org/10.1371/journal.pone.0146021",
+    "scope": "module",
+    "id": "drc-dose-01",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  },
+  {
+    "metric": "ryegrass ED50",
+    "expected": 3.26336,
+    "tolerance": 5e-05,
+    "source": "https://doi.org/10.1371/journal.pone.0146021",
+    "scope": "module",
+    "id": "drc-dose-02",
+    "how": "printed",
+    "tolerance_kind": "absolute"
+  }
+]

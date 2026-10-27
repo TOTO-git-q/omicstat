@@ -15,6 +15,11 @@ STAMP = '2026-09-30T00:00:00+00:00'  # import provenance date, not a fabricated 
 def dump(obj):
     return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
 
+def searchable_text(usage: dict) -> str:
+    """Search index text of a usage; the paper's lexicon tokens (methods_used) are co-use context, not search text."""
+    paper = {k: v for k, v in usage.get('paper', {}).items() if k != 'methods_used'}
+    return ReferenceStore._searchable({**usage, 'paper': paper})
+
 def load(bundle_path: Path, data_dir: Path) -> dict:
     data_dir = data_dir.resolve()
     raw = bundle_path.read_bytes()
@@ -70,7 +75,7 @@ def load(bundle_path: Path, data_dir: Path) -> dict:
                         locator_json=excluded.locator_json,supplement_version=excluded.supplement_version,searchable=excluded.searchable""",
                         (ident, ident + '-review', ident, dump(usage['module_tags']), dump(review), dump(paper), dump(usage['source_locator']),
                          'S0 verified/redone evidence import', usage['provenance']['evidence_state'], STAMP, version,
-                         ReferenceStore._searchable(usage)))
+                         searchable_text(usage)))
                 else:
                     first = next((p['source_locator'] for p in usage['parameters'] if p['source_locator']['snippet']), {})
                     record = paper | {'module': usage['module_tags'][0], 'usage': usage,

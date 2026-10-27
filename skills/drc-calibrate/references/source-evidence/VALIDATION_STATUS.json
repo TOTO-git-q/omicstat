@@ -1,0 +1,84 @@
+{
+  "schema": "omicstat.validation-status.candidate.v1",
+  "module": "drc-calibrate",
+  "status": "development_unsealed",
+  "publication_ready": false,
+  "runtime": {
+    "image": "omicstat-r-exp:20261015",
+    "image_id": "sha256:c080eb9c20d9e25d93c18cdacb8a58c9fae23a7da581028ddf3a172f8892999b",
+    "R": "4.6.1",
+    "drc": "3.0.1",
+    "nlme": "3.1.170"
+  },
+  "anchors": [
+    {
+      "metric": "backfit dose 0",
+      "obtained": 0.550069153838962,
+      "expected": 0.5500692,
+      "tolerance": 1e-06,
+      "pass": true,
+      "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+      "scope": "installed documented-data inverse helper; printed reference"
+    },
+    {
+      "metric": "backfit dose 0.94",
+      "obtained": 0.77437829555841,
+      "expected": 0.7743783,
+      "tolerance": 1e-06,
+      "pass": true,
+      "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+      "scope": "installed documented-data inverse helper; printed reference"
+    },
+    {
+      "metric": "backfit dose 1.88",
+      "obtained": 1.87442919198106,
+      "expected": 1.8744292,
+      "tolerance": 1e-06,
+      "pass": true,
+      "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+      "scope": "installed documented-data inverse helper; printed reference"
+    },
+    {
+      "metric": "backfit dose 3.75",
+      "obtained": 3.78305001749318,
+      "expected": 3.78305,
+      "tolerance": 1e-06,
+      "pass": true,
+      "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+      "scope": "installed documented-data inverse helper; printed reference"
+    },
+    {
+      "metric": "backfit dose 7.5",
+      "obtained": 7.08118321737224,
+      "expected": 7.0811832,
+      "tolerance": 1e-06,
+      "pass": true,
+      "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+      "scope": "installed documented-data inverse helper; printed reference"
+    },
+    {
+      "metric": "backfit dose 15",
+      "obtained": 10.1667582460307,
+      "expected": 10.1667582,
+      "tolerance": 1e-06,
+      "pass": true,
+      "source": "https://doseresponse.github.io/drc/reference/backfit.html",
+      "scope": "installed documented-data inverse helper; printed reference"
+    }
+  ],
+  "golden": "not_generated",
+  "seal": "not_generated",
+  "production_registered": false,
+  "figure_evidence": "acceptance/exemplars/drc-calibrate/CANDIDATE_FIGURES.json",
+  "evidence_root": "/home/<user>/omic-sol61/scope",
+  "remaining_gates": [
+    "owner scientific acceptance",
+    "independent statistical review",
+    "complete manuscript value map/denominator ledger",
+    "production environment/default/seal acceptance"
+  ],
+  "source_hash_manifest": "/home/<user>/omic-sol61/scope/evidence/final-source-hashes.json",
+  "source_hash_manifest_sha256": "fd1e29a9206260cad76cb8f45499d88a9719fda2ea20d82738561a116ed70faa",
+  "runtime_tests": "passed candidate CLI/options/replay/anchors/refusals/semantic/smoke",
+  "figure_status": "visually_reviewed_candidate"
+}

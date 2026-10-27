@@ -1,0 +1,760 @@
+{
+ "modules": {
+  "cellchat-communication": [
+   {
+    "class": "other",
+    "matched": [
+     "filterCommunication"
+    ],
+    "package": "CellChat",
+    "text": "Update `filterCommunication` to allow identifying consistent cell-cell communication across samples when mutiple samples/replicates/batches are merged as an input for CellChat analysis.",
+    "version": "2.1.2"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "computeCommunProb"
+    ],
+    "package": "CellChat",
+    "text": "Update `computeCommunProb` where the ECM-receptor signaling is now assumed as diffusible signaling when analyzing spatial transcrptomics.",
+    "version": "2.1.2"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "computeCommunProb"
+    ],
+    "package": "CellChat",
+    "text": "Enable to flexibly infer contact-dependent or juxtacrine signaling from any type of spatial transcriptomics data by defining the `contact.range` in `computeCommunProb`.",
+    "version": "2.1.1"
+   }
+  ],
+  "clusterprofiler-compare": [
+   {
+    "class": "bug_fix",
+    "matched": [
+     "enrichGO"
+    ],
+    "package": "clusterProfiler",
+    "text": "fix: map non-ENTREZID universe in enrichGO (2026-04-22, Wed)",
+    "version": "4.19.8"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "enrichGO"
+    ],
+    "package": "clusterProfiler",
+    "text": "optimize `enrichGO()` to avoid memory boom when keyType is not ENTREZID (2026-01-21, Wed, #805)",
+    "version": "4.19.5"
+   }
+  ],
+  "clusterprofiler-ora": [
+   {
+    "class": "bug_fix",
+    "matched": [
+     "enrichGO"
+    ],
+    "package": "clusterProfiler",
+    "text": "fix: map non-ENTREZID universe in enrichGO (2026-04-22, Wed)",
+    "version": "4.19.8"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "enrichGO"
+    ],
+    "package": "clusterProfiler",
+    "text": "optimize `enrichGO()` to avoid memory boom when keyType is not ENTREZID (2026-01-21, Wed, #805)",
+    "version": "4.19.5"
+   }
+  ],
+  "edger-qlf": [
+   {
+    "class": "other",
+    "matched": [
+     "DGEList"
+    ],
+    "package": "edgeR",
+    "text": "New function DGEListFromTximport() to assemble a DGEList object from the list object created by tximport::tximport.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "DGEList"
+    ],
+    "package": "edgeR",
+    "text": "New function DGEListFromTximeta() to assemble a DGEList object from the list object created by tximeta::tximeta.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "glmQLFit"
+    ],
+    "package": "edgeR",
+    "text": "glmQLFit() with `legacy=FALSE` now caps any preset dispersions to be <= 4. Previously, large preset dispersions could lead to a segmentation error.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "DGEList",
+     "glmQLFit"
+    ],
+    "package": "edgeR",
+    "text": "glmQLFit() with `legacy=FALSE` no longer automatically estimates the NB dispersion from trended values found in the DGEList object, if present. The results will now be the same whether the DGEList contains dispersion estimates or not.",
+    "version": "4.10.0"
+   }
+  ],
+  "limma-array": [
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "treat"
+    ],
+    "package": "limma",
+    "text": "New argument `treat.lfc` for topSplice() to allow TREAT fold-change thresholding with diffSplice() output.",
+    "version": "3.68.0"
+   }
+  ],
+  "limma-dupcor": [
+   {
+    "class": "other",
+    "matched": [
+     "DGEList"
+    ],
+    "package": "edgeR",
+    "text": "New function DGEListFromTximport() to assemble a DGEList object from the list object created by tximport::tximport.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "DGEList"
+    ],
+    "package": "edgeR",
+    "text": "New function DGEListFromTximeta() to assemble a DGEList object from the list object created by tximeta::tximeta.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "DGEList",
+     "glmQLFit"
+    ],
+    "package": "edgeR",
+    "text": "glmQLFit() with `legacy=FALSE` no longer automatically estimates the NB dispersion from trended values found in the DGEList object, if present. The results will now be the same whether the DGEList contains dispersion estimates or not.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "voom"
+    ],
+    "package": "limma",
+    "text": "New arguments `offset` and `offset.prior` for voom(). voom() now supports offsets in DGEList objects.",
+    "version": "3.68.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "treat"
+    ],
+    "package": "limma",
+    "text": "New argument `treat.lfc` for topSplice() to allow TREAT fold-change thresholding with diffSplice() output.",
+    "version": "3.68.0"
+   },
+   {
+    "class": "default_change",
+    "matched": [
+     "adaptive.span"
+    ],
+    "package": "limma",
+    "text": "In normalizeCyclicLoess(), default for `adaptive.span` becomes `TRUE`, and the `span` is chosen using the default settings of chooseLoessSpan().",
+    "version": "3.68.0"
+   }
+  ],
+  "limma-voom": [
+   {
+    "class": "other",
+    "matched": [
+     "DGEList"
+    ],
+    "package": "edgeR",
+    "text": "New function DGEListFromTximport() to assemble a DGEList object from the list object created by tximport::tximport.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "DGEList"
+    ],
+    "package": "edgeR",
+    "text": "New function DGEListFromTximeta() to assemble a DGEList object from the list object created by tximeta::tximeta.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "DGEList",
+     "glmQLFit"
+    ],
+    "package": "edgeR",
+    "text": "glmQLFit() with `legacy=FALSE` no longer automatically estimates the NB dispersion from trended values found in the DGEList object, if present. The results will now be the same whether the DGEList contains dispersion estimates or not.",
+    "version": "4.10.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "voom"
+    ],
+    "package": "limma",
+    "text": "New arguments `offset` and `offset.prior` for voom(). voom() now supports offsets in DGEList objects.",
+    "version": "3.68.0"
+   },
+   {
+    "class": "behaviour_change",
+    "matched": [
+     "treat"
+    ],
+    "package": "limma",
+    "text": "New argument `treat.lfc` for topSplice() to allow TREAT fold-change thresholding with diffSplice() output.",
+    "version": "3.68.0"
+   },
+   {
+    "class": "default_change",
+    "matched": [
+     "adaptive.span"
+    ],
+    "package": "limma",
+    "text": "In normalizeCyclicLoess(), default for `adaptive.span` becomes `TRUE`, and the `span` is chosen using the default settings of chooseLoessSpan().",
+    "version": "3.68.0"
+   }
+  ],
+  "monocle3-trajectory": [
+   {
+    "class": "bug_fix",
+    "matched": [
+     "graph_test"
+    ],
+    "package": "monocle3",
+    "text": "Fix error in graph_test() on R 4.5.0.",
+    "version": "1.4.25"
+   }
+  ],
+  "muscat-pseudobulk": [
+   {
+    "class": "bug_fix",
+    "matched": [
+     "scale"
+    ],
+    "package": "muscat",
+    "text": "bug fix in '.mm_dream' (underlying 'mmDS' methods 'poisson' and 'nbinom'): transform size factors from linear- to log-scale before being used as offset",
+    "version": "1.25.2"
+   },
+   {
+    "class": "bug_fix",
+    "matched": [
+     "pbDS"
+    ],
+    "package": "muscat",
+    "text": "fix #146: support for sparse matrices by 'pbDS'",
+    "version": "1.25.1"
+   }
+  ],
+  "singler-annotate": [
+   {
+    "class": "bug_fix",
+    "matched": [
+     "SingleR"
+    ],
+    "package": "SingleR",
+    "text": "Bugfix to SingleR() to respect non-default assay.type.ref=.",
+    "version": "2.14.2"
+   },
+   {
+    "class": "other",
+    "matched": [
+     "aggr.ref",
+     "de.method",
+     "hint.sce"
+    ],
+    "package": "SingleR",
+    "text": "Added hint.sce= to trainSingleR() to nudge users towards setting a more appropriate de.method= for single-cell references. Similarly, suggest the use of aggr.ref=TRUE for large single-cell references.",
+    "version": "2.14.0"
+   },
+   {
+    "class": "deprecation",
+    "matched": [
+     "BNPARAM"
+    ],
+    "package": "SingleR",
+    "text": "Updated to the latest version of singlepp, which provides direct support for sparse test/reference matrices. This also eliminates the need for BiocNeighbors so all BNPARAM= arguments are now soft-deprecated.",
+    "version": "2.14.0"
+   }
+  ]
+ },
+ "no_news": [
+  {
+   "locked": "1.34.0",
+   "modules": [
+    "aucell-score"
+   ],
+   "package": "AUCell"
+  },
+  {
+   "locked": "1.46.0",
+   "modules": [
+    "aucell-score",
+    "batchelor-integrate",
+    "gsva-score",
+    "scater-qc",
+    "scran-cluster",
+    "scran-markers",
+    "singler-annotate"
+   ],
+   "package": "BiocParallel"
+  },
+  {
+   "locked": "0.0.1.9000",
+   "modules": [
+    "immunedeconv-infiltration"
+   ],
+   "package": "ConsensusTME"
+  },
+  {
+   "locked": "1.1.7",
+   "modules": [
+    "immunedeconv-infiltration"
+   ],
+   "package": "EPIC"
+  },
+  {
+   "locked": "1.74.0",
+   "modules": [
+    "aucell-score"
+   ],
+   "package": "GSEABase"
+  },
+  {
+   "locked": "1.2.0",
+   "modules": [
+    "immunedeconv-infiltration"
+   ],
+   "package": "MCPcounter"
+  },
+  {
+   "locked": "5.5.1",
+   "modules": [
+    "seurat-cluster",
+    "seurat-integrate",
+    "seurat-markers",
+    "seurat-modulescore",
+    "seurat-qc"
+   ],
+   "package": "Seurat"
+  },
+  {
+   "locked": "5.4.0",
+   "modules": [
+    "seurat-cluster",
+    "seurat-integrate",
+    "seurat-markers",
+    "seurat-modulescore",
+    "seurat-qc"
+   ],
+   "package": "SeuratObject"
+  },
+  {
+   "locked": "1.74",
+   "modules": [
+    "wgcna-network"
+   ],
+   "package": "WGCNA"
+  },
+  {
+   "locked": "0.13.3.post0",
+   "modules": [
+    "scanpy-annotate",
+    "scanpy-cluster",
+    "scanpy-ingest",
+    "scanpy-markers",
+    "scanpy-purity",
+    "scanpy-qc",
+    "scanvi-annotate",
+    "scvi-integrate"
+   ],
+   "package": "anndata"
+  },
+  {
+   "locked": "1.28.0",
+   "modules": [
+    "batchelor-integrate"
+   ],
+   "package": "batchelor"
+  },
+  {
+   "locked": "1.22.0",
+   "modules": [
+    "batchelor-integrate",
+    "scran-cluster"
+   ],
+   "package": "bluster"
+  },
+  {
+   "locked": "2.0.5",
+   "modules": [
+    "seurat-integrate"
+   ],
+   "package": "harmony"
+  },
+  {
+   "locked": "2.1.4",
+   "modules": [
+    "immunedeconv-infiltration"
+   ],
+   "package": "immunedeconv"
+  },
+  {
+   "locked": "2.28.0",
+   "modules": [
+    "maftools-landscape"
+   ],
+   "package": "maftools"
+  },
+  {
+   "locked": "1.20.0",
+   "modules": [
+    "immunedeconv-infiltration"
+   ],
+   "package": "quantiseqr"
+  },
+  {
+   "locked": "1.12.4",
+   "modules": [
+    "scanpy-annotate",
+    "scanpy-cluster",
+    "scanpy-ingest",
+    "scanpy-markers",
+    "scanpy-purity",
+    "scanpy-qc",
+    "scvi-integrate"
+   ],
+   "package": "scanpy"
+  },
+  {
+   "locked": "1.40.2",
+   "modules": [
+    "batchelor-integrate",
+    "scran-cluster"
+   ],
+   "package": "scater"
+  },
+  {
+   "locked": "1.9.1",
+   "modules": [
+    "scanpy-ingest",
+    "scanpy-purity"
+   ],
+   "package": "scikit-learn"
+  },
+  {
+   "locked": "1.40.0",
+   "modules": [
+    "batchelor-integrate",
+    "scran-cluster",
+    "scran-markers"
+   ],
+   "package": "scran"
+  },
+  {
+   "locked": "1.22.0",
+   "modules": [
+    "scater-qc",
+    "scran-cluster"
+   ],
+   "package": "scuttle"
+  },
+  {
+   "locked": "1.5.1",
+   "modules": [
+    "scanvi-annotate",
+    "scvi-integrate"
+   ],
+   "package": "scvi-tools"
+  },
+  {
+   "locked": "3.60.0",
+   "modules": [
+    "sva-batch"
+   ],
+   "package": "sva"
+  },
+  {
+   "locked": "1.1.0",
+   "modules": [
+    "immunedeconv-infiltration"
+   ],
+   "package": "xCell"
+  }
+ ],
+ "packages": {
+  "CellChat": {
+   "blocks": 2,
+   "by_class": {
+    "behaviour_change": 3,
+    "bug_fix": 1,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 2
+   },
+   "entries": 6,
+   "locked": "2.2.0.9001",
+   "relevant": 3,
+   "source": "acceptance/exemplars/cellchat-communication/L1_github/CellChat/NEWS.md",
+   "window": "versions > 2.1.0 up to 2.2.0.9001"
+  },
+  "DEGreport": {
+   "blocks": 0,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 0,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 0
+   },
+   "entries": 0,
+   "locked": "1.48.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/deseq2-lrt/L1_bioc3.23/DEGreport/NEWS.txt",
+   "window": "Bioconductor previous release line -> 1.48.0 (versions > 1.46.x)"
+  },
+  "DESeq2": {
+   "blocks": 1,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 1,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 0
+   },
+   "entries": 1,
+   "locked": "1.52.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/deseq2-lrt/L1_bioc3.23/DESeq2/NEWS.txt",
+   "window": "Bioconductor previous release line -> 1.52.0 (versions > 1.50.x)"
+  },
+  "GSVA": {
+   "blocks": 1,
+   "by_class": {
+    "behaviour_change": 1,
+    "bug_fix": 8,
+    "default_change": 0,
+    "deprecation": 1,
+    "other": 6
+   },
+   "entries": 16,
+   "locked": "2.6.6",
+   "relevant": 0,
+   "source": "acceptance/exemplars/gsva-score/L1_bioc3.23/GSVA/NEWS.txt",
+   "window": "Bioconductor previous release line -> 2.6.6 (versions > 2.4.x)"
+  },
+  "SingleR": {
+   "blocks": 2,
+   "by_class": {
+    "behaviour_change": 1,
+    "bug_fix": 1,
+    "default_change": 0,
+    "deprecation": 1,
+    "other": 4
+   },
+   "entries": 7,
+   "locked": "2.14.2",
+   "relevant": 3,
+   "source": "acceptance/exemplars/singler-annotate/L1_bioc3.23/SingleR/NEWS.txt",
+   "window": "Bioconductor previous release line -> 2.14.2 (versions > 2.12.x)"
+  },
+  "apeglm": {
+   "blocks": 6,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 2,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 4
+   },
+   "entries": 6,
+   "locked": "1.34.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/deseq2-wald/L1/apeglm/NEWS.txt",
+   "window": "newest 6 NEWS blocks up to 1.34.0 (no release rule for this package)"
+  },
+  "ashr": {
+   "blocks": 1,
+   "by_class": {
+    "behaviour_change": 5,
+    "bug_fix": 0,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 3
+   },
+   "entries": 8,
+   "locked": "2.2-63",
+   "relevant": 0,
+   "source": "acceptance/exemplars/deseq2-wald/L1/ashr/NEWS.txt",
+   "window": "newest 6 NEWS blocks up to 2.2-63 (no release rule for this package)"
+  },
+  "clusterProfiler": {
+   "blocks": 8,
+   "by_class": {
+    "behaviour_change": 4,
+    "bug_fix": 4,
+    "default_change": 1,
+    "deprecation": 0,
+    "other": 23
+   },
+   "entries": 32,
+   "locked": "4.20.0",
+   "relevant": 2,
+   "source": "acceptance/exemplars/clusterprofiler-compare/L1_bioc3.23/clusterProfiler/NEWS.txt",
+   "window": "Bioconductor previous release line -> 4.20.0 (versions > 4.18.x)"
+  },
+  "edgeR": {
+   "blocks": 1,
+   "by_class": {
+    "behaviour_change": 3,
+    "bug_fix": 0,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 3
+   },
+   "entries": 6,
+   "locked": "4.10.5",
+   "relevant": 4,
+   "source": "acceptance/exemplars/edger-qlf/L1_bioc3.23/edgeR/NEWS.txt",
+   "window": "Bioconductor previous release line -> 4.10.5 (versions > 4.8.x)"
+  },
+  "enrichit": {
+   "blocks": 6,
+   "by_class": {
+    "behaviour_change": 2,
+    "bug_fix": 6,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 47
+   },
+   "entries": 55,
+   "locked": "0.2.1",
+   "relevant": 0,
+   "source": "acceptance/exemplars/clusterprofiler-gsea/L1_cran2026-09-15/enrichit/NEWS.txt",
+   "window": "newest 6 NEWS blocks up to 0.2.1 (no release rule for this package)"
+  },
+  "fgsea": {
+   "blocks": 1,
+   "by_class": {
+    "behaviour_change": 2,
+    "bug_fix": 1,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 0
+   },
+   "entries": 3,
+   "locked": "1.38.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/fgsea-prerank/L1_bioc3.23/fgsea/NEWS.txt",
+   "window": "Bioconductor previous release line -> 1.38.0 (versions > 1.36.x)"
+  },
+  "limma": {
+   "blocks": 1,
+   "by_class": {
+    "behaviour_change": 2,
+    "bug_fix": 0,
+    "default_change": 1,
+    "deprecation": 1,
+    "other": 0
+   },
+   "entries": 4,
+   "locked": "3.68.5",
+   "relevant": 3,
+   "source": "acceptance/exemplars/limma-array/L1_bioc3.23/limma/NEWS.txt",
+   "window": "Bioconductor previous release line -> 3.68.5 (versions > 3.66.x)"
+  },
+  "monocle3": {
+   "blocks": 3,
+   "by_class": {
+    "behaviour_change": 1,
+    "bug_fix": 3,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 9
+   },
+   "entries": 13,
+   "locked": "1.4.27",
+   "relevant": 1,
+   "source": "acceptance/exemplars/monocle3-trajectory/L1_github/monocle3/NEWS.md",
+   "window": "versions > 1.4.0 up to 1.4.27"
+  },
+  "muscat": {
+   "blocks": 4,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 3,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 7
+   },
+   "entries": 10,
+   "locked": "1.26.0",
+   "relevant": 2,
+   "source": "acceptance/exemplars/muscat-pseudobulk/L1_bioc3.23/muscat/NEWS.txt",
+   "window": "Bioconductor previous release line -> 1.26.0 (versions > 1.24.x)"
+  },
+  "slingshot": {
+   "blocks": 0,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 0,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 0
+   },
+   "entries": 0,
+   "locked": "2.20.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/slingshot-trajectory/L1_bioc3.23/slingshot/NEWS.txt",
+   "window": "Bioconductor previous release line -> 2.20.0 (versions > 2.18.x)"
+  },
+  "speckle": {
+   "blocks": 0,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 0,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 0
+   },
+   "entries": 0,
+   "locked": "1.12.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/speckle-propeller/L1_bioc3.23/speckle/NEWS.txt",
+   "window": "Bioconductor previous release line -> 1.12.0 (versions > 1.10.x)"
+  },
+  "tradeSeq": {
+   "blocks": 0,
+   "by_class": {
+    "behaviour_change": 0,
+    "bug_fix": 0,
+    "default_change": 0,
+    "deprecation": 0,
+    "other": 0
+   },
+   "entries": 0,
+   "locked": "1.26.0",
+   "relevant": 0,
+   "source": "acceptance/exemplars/slingshot-trajectory/L1_bioc3.23/tradeSeq/NEWS.txt",
+   "window": "Bioconductor previous release line -> 1.26.0 (versions > 1.24.x)"
+  }
+ }
+}

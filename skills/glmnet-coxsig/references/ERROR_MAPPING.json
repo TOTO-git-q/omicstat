@@ -1,0 +1,11 @@
+{
+  "mapping": {
+    "MS_INVALID_OUTCOME_CODING": "OS_INVALID_INPUT",
+    "MS_INVALID_TIME": "OS_INVALID_INPUT",
+    "MS_MISSING_PARAMETER": "OS_MISSING_PARAMETER",
+    "MS_INVALID_PARAMETER": "OS_INVALID_PARAMETER",
+    "MS_BOOTSTRAP_FAILED": "OS_INVALID_RESULT"
+  },
+  "registered_existing_codes_only": true,
+  "source_status": "Selected source runtime contains no remaining MS diagnostics"
+}

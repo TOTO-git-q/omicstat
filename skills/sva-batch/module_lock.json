@@ -19,7 +19,7 @@
     "skills/sva-batch/tests/fixtures/make_combat_seq_sim.R": "69d639017c5a2d98bff270952dad198d07bcd231e1dbf46b551d85645abaf9b4",
     "skills/sva-batch/tests/fixtures/make_zfgenes.R": "c7b0a170e64fb3189b1ac4894cac2676cb77bc6cfd75bbc0dd502dcd74554019",
     "skills/sva-batch/tests/run_smoke_test.R": "35355e3b51c6db6c857f8ee2da5c37cb2fbcd68934668dcb2841138e0096c778",
-    "skills/sva-batch/tests/golden_manifest.csv": "92b6a251051822e665bfe6a7c14a8e96f60971c6e5db94797632325182bd6121",
+    "skills/sva-batch/tests/golden_manifest.csv": "af8629eb6b739860f508014fafa8c8475156fff1263dd852d9c920a36da1eca1",
     "acceptance/exemplars/sva-batch/PACK.md": "b978577cc56f3936e95eacb3b0e5b73c3ad796f45688c38a97b7cadaf7b4f772"
   },
   "packages": {
@@ -31,7 +31,7 @@
     "r": "4.6.1",
     "bioconductor": "3.23",
     "platform": "x86_64-pc-linux-gnu",
-    "image": "sha256:d77c48fe94fe3f06ded5af701246b0d06eaf823096b84529e620a2fc7cdde0c7",
-    "env_version": "2026.10.1"
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
   }
 }

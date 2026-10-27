@@ -1,0 +1,89 @@
+{
+  "source_repository": "TOTO-git-q/medstat",
+  "source_commit": "12292d020ef4a8575a3a1db880b81786ee3547fa",
+  "source_tree": "380172d56fde3e77eca6ff82226d8315750d21b1",
+  "source_read_only": true,
+  "source_files_verified": 13,
+  "code_executed_in_MedStat": false,
+  "runtime_dependency_on_MedStat": false,
+  "files": [
+    {
+      "path": "skills/agreement/SKILL.md",
+      "git_blob": "9cb28ecebf589a2bcc7fd802241c5869e87aaade",
+      "bytes": 20146,
+      "sha256": "ccd9e1ec953e6a7c258285bf429819ab84c96819a35016f2542d9f0ad0b89483"
+    },
+    {
+      "path": "skills/agreement/outputs.json",
+      "git_blob": "2c8afdf99ed609f384d9690c8b24dc1e7fe32062",
+      "bytes": 14722,
+      "sha256": "8b58984bb443466e9cbbc09c32840fb7372b4fd0b27eb19449e33f5156a730c9"
+    },
+    {
+      "path": "skills/agreement/references/citations.md",
+      "git_blob": "a4aa860e0370a9f8d3b5d711e917c9780cb616e8",
+      "bytes": 7123,
+      "sha256": "0d69610e7d8faaff77f94346f50d592922270478bba99df0f25732032a566c61"
+    },
+    {
+      "path": "skills/agreement/references/open-issues.md",
+      "git_blob": "946aeef52157d66b4dbbb3cc2186bac84fc08165",
+      "bytes": 7292,
+      "sha256": "c563ab42ff186af4aee6b4a5f3be449e667d19efc40ee2fab500ebc98257415e"
+    },
+    {
+      "path": "skills/agreement/references/qc-rules.md",
+      "git_blob": "a2be047680313f31ce1e3a08ee2d88a7f0689c17",
+      "bytes": 7747,
+      "sha256": "85459f9bd47abd718b3605ca85fa3c8160c15a8a5c6b6c409121f0fa85a37013"
+    },
+    {
+      "path": "skills/agreement/scripts/agreement_core.R",
+      "git_blob": "51b2b0a737112818a35b5a0b6288c513bb5f2650",
+      "bytes": 67265,
+      "sha256": "6f73250bced29eefba47762cf71eb4cd66ce7d9bd58737ad7e7ce43b12e9296a"
+    },
+    {
+      "path": "skills/agreement/scripts/agreement_plot.R",
+      "git_blob": "5af1bb6b02d6e7a1a815733ebeb6628b1d7e0c3d",
+      "bytes": 15366,
+      "sha256": "adf70253e64f161ddb092b6504c72f7fdda73219b5af5a513c470905a5016b96"
+    },
+    {
+      "path": "skills/agreement/scripts/agreement_qc.R",
+      "git_blob": "cbf932fd712dd88ee482564a23e2ae4c3ca58846",
+      "bytes": 18516,
+      "sha256": "941b1758e9835902852f79e5f4d06613ae84304a0c388334a9a68baefd49f11e"
+    },
+    {
+      "path": "skills/agreement/scripts/agreement_report.R",
+      "git_blob": "2b057dfee6ac01ed98665ef94090cd1e5e46213c",
+      "bytes": 14550,
+      "sha256": "60e57f4b6f323321f9741026fbc4f7b816c53cb57d095a0573fac181256dd27e"
+    },
+    {
+      "path": "skills/agreement/scripts/run_agreement.R",
+      "git_blob": "0600233adedd4f78f9f45be73d3342ae45f66519",
+      "bytes": 138035,
+      "sha256": "9c321b2ca766e729686a6e3492bfe13d7efcfbfad203b8ef8a06dd008b806ad2"
+    },
+    {
+      "path": "skills/agreement/tests/run_smoke_test.R",
+      "git_blob": "53a77971421cb207b90c6548bb04b3cce1b37741",
+      "bytes": 60560,
+      "sha256": "b434961cf421371dabb658d183166bc1e4b9e73d88bd5f6687ab0ad3a6291300"
+    },
+    {
+      "path": "skills/agreement/tests/verified/REFERENCE.md",
+      "git_blob": "60c210a754fe2aa309b86c155231e70e3f82a8b1",
+      "bytes": 3484,
+      "sha256": "197f01f7bcf4b0375541ee01c4ac4f4d31bceb33f555fc2ab2edec67e03e5b3f"
+    },
+    {
+      "path": "skills/agreement/tests/verified/run_verified.R",
+      "git_blob": "aa08f783a0d41a4ee37f4dc3c8591a13b4eda89c",
+      "bytes": 11468,
+      "sha256": "09a60531ca26aea8b71d37b4b974586eeeeab4d57297e1705160b1ea10adc8ff"
+    }
+  ]
+}

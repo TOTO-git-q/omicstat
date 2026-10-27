@@ -17,7 +17,7 @@ ALL CONVERT CHECKS PASSED
 == Rscript skills/_shared/tests/test_effect_table.R
 All checks passed.
 == Rscript skills/_shared/tests/test_render.R
-All checks passed. Rendered files are in /tmp/Rtmp0cHbgJ/omicstat_render_test
+All checks passed. Rendered files are in /tmp/RtmpcoOT8F/omicstat_render_test
 == Rscript skills/_shared/tests/test_engine_contract.R
 ALL ENGINE CONTRACT CHECKS PASSED
 == Rscript tools/test_calls_wrapper_sites.R
@@ -109,7 +109,7 @@ PASS: PACK C anchor, native output, --from-run chain equality, static calls/defa
 == Rscript skills/sva-batch/tests/run_smoke_test.R
 SMOKE PASSED (with 2 documented KNOWN-FAILING anchor(s), listed above)
 == Rscript skills/wgcna-network/tests/run_smoke_test.R
-SMOKE PASSED: 59 checks
+SMOKE PASSED: 60 checks
 == python3 skills/omicstat-selftest-py/tests/run_smoke_test.py
 SMOKE PASSED (3 skipped)
 == python3 skills/scanpy-annotate/tests/run_smoke_test.py

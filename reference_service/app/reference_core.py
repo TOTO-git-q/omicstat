@@ -271,7 +271,7 @@ class ReferenceStore:
         missing = self._missing_inputs(study_contract, {**common, **rules.get("additional_required", {})})
         decisions = [self.get("decision", x["record_id"])["record"] for x in self.search(module=module, limit=50)["results"] if x["record_type"] == "decision"]
         candidates = [{"decision_id": d["decision_id"], "question": d.get("question"), "status": d.get("status"), "applicable_when": d.get("applicable_when"), "options": d.get("options", []), "avoid_when": d.get("avoid_when", []), "unresolved": d.get("unresolved", []), "required_inputs": d.get("required_inputs", []), "evidence_usage_ids": d.get("evidence_usage_ids", []), "citations": [citation for usage_id in d.get("evidence_usage_ids", []) for citation in self._citations(self.get("usage", usage_id)["record"])]} for d in decisions]
-        base = {"module": module, "execution_authorized": False, "automatic_parameter_application": False, "curated_evidence": self._curated_evidence(module), "input_checklist": {"common": common, "module_specific": rules.get("additional_required", {}), "contraindication_prompts": rules.get("contraindication_prompts", []), "reusable_covariate_goals": self._covariate_goals()}, "material_unknowns": missing, "candidate_decisions": candidates}
+        base = {"module": module, "execution_authorized": False, "automatic_parameter_application": False, "curated_evidence": self._curated_evidence(module), "default_context": self._default_context(module), "input_checklist": {"common": common, "module_specific": rules.get("additional_required", {}), "contraindication_prompts": rules.get("contraindication_prompts", []), "reusable_covariate_goals": self._covariate_goals()}, "material_unknowns": missing, "candidate_decisions": candidates}
         if missing:
             return {**base, "status": "needs_input", "assumptions_to_confirm": ["Explicit null/not_applicable values are recorded as material unknowns and need human review."], "candidate_usages": [], "parameter_options": []}
         usages = [self.get("usage", x["record_id"])["record"] for x in self.search(module=module, limit=50)["results"] if x["record_type"] == "usage"]
@@ -283,6 +283,14 @@ class ReferenceStore:
         usages.extend(supplement[:3])
         proposed = [self._parameter_option(u) for u in usages if self._eligible(u)]
         return {**base, "status": "review_required", "assumptions_to_confirm": ["Study-contract fields and design compatibility require human confirmation.", "Reported source values are observations, not a universal optimum or parameter prescription."], "candidate_usages": [self._usage_candidate(u) for u in usages], "parameter_options": proposed, "reviewed_supplement_total": supplement_total, "reviewed_supplement_returned": min(3, supplement_total), "evidence_page_note": "Initial supplement page (usage_id order); use reference_search and reference_get_record(record_type=supplement) for all observations.", "parameter_option_note": "Empty options means no evidence met the conservative parameter-proposal gate; browseable records remain available via search/get."}
+
+    def _default_context(self, module: str) -> dict[str, Any]:
+        """Coverage upgrade: locked default versus reported S0 values (context only; never changes a default)."""
+        import defaults
+        try:
+            return defaults.default_context(self.db_path.parent, module)
+        except (OSError, ValueError, sqlite3.Error):
+            return {"status": "unavailable", "module": module}
 
     def _rules(self) -> dict[str, Any]:
         here = Path(__file__).with_name("decision_rules.json")

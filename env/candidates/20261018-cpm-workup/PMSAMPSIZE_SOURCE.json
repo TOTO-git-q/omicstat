@@ -1,0 +1,128 @@
+{
+  "schema": "omicstat.actual-official-source-inspection.v1",
+  "source_url": "https://cran.r-project.org/src/contrib/pmsampsize_1.1.3.tar.gz",
+  "sha256": "0801e590432715f06d3ed70dde47fcc2f2fe2ac76f38867c5a9ba6476d3c9069",
+  "bytes": 15074,
+  "package": "pmsampsize",
+  "version": "1.1.3",
+  "kind": "source",
+  "DESCRIPTION": {
+    "Package": "pmsampsize",
+    "Version": "1.1.3",
+    "Date": "2023-12-05",
+    "Title": "Sample Size for Development of a Prediction Model",
+    "Authors@R": "c(person(\"Joie\", \"Ensor\", role = c(\"aut\", \"cre\"), email = \"j.ensor@bham.ac.uk\"))",
+    "Maintainer": "Joie Ensor <j.ensor@bham.ac.uk>",
+    "Depends": "R (>= 2.1)",
+    "Suggests": "stats",
+    "Description": "Computes the minimum sample size required for the development of a new multivariable prediction model using the criteria proposed by Riley et al. (2018) <doi: 10.1002/sim.7992>. pmsampsize can be used to calculate the minimum sample size for the development of models with continuous, binary or survival (time-to-event) outcomes. Riley et al. (2018) <doi: 10.1002/sim.7992> lay out a series of criteria the sample size should meet. These aim to minimise the overfitting and to ensure precise estimation of key parameters in the prediction model.",
+    "License": "GPL (>= 3)",
+    "RoxygenNote": "7.2.3",
+    "Encoding": "UTF-8",
+    "NeedsCompilation": "no",
+    "Packaged": "2023-12-06 00:06:39 UTC; ensorj",
+    "Author": "Joie Ensor [aut, cre]",
+    "Repository": "CRAN",
+    "Date/Publication": "2023-12-06 09:10:02 UTC"
+  },
+  "members": [
+    {
+      "path": "pmsampsize/NAMESPACE",
+      "bytes": 141,
+      "sha256": "c3fdca00d8c3b013bebcde33c9480982be6ff350066e6f5dc51273317aef41dd",
+      "md5": "951bb18f577049e40937cab7be6ff336"
+    },
+    {
+      "path": "pmsampsize/man/pmsampsize.Rd",
+      "bytes": 11641,
+      "sha256": "2ac36e34512ff7a8777e2e5eb55dd3865ca65fbba9ff3836977b4c4d7dd82476",
+      "md5": "bfadecb86b2272b319b553ce30c05bb2"
+    },
+    {
+      "path": "pmsampsize/DESCRIPTION",
+      "bytes": 1047,
+      "sha256": "0085d50156aeeb63cb07072fa291e31909de215dc283ad223e0cbba91f8b0953",
+      "md5": "b1f6194b279193eef8739f5b5ed82e35"
+    },
+    {
+      "path": "pmsampsize/tests/testthat/test_surv.R",
+      "bytes": 3432,
+      "sha256": "49b381e2857a7092c1afecefcd5117e9e60a06be37aa8376ab6435012239190c",
+      "md5": "6e76812e8a5a123d40df3fde9c3736ec"
+    },
+    {
+      "path": "pmsampsize/tests/testthat/test_bin.R",
+      "bytes": 1471,
+      "sha256": "60a62aa7ecfbf15b4c4bebcaeecc7a99c0ce91821fc3947464435b6087c669f1",
+      "md5": "1367f414f5dc5a592195d92173915177"
+    },
+    {
+      "path": "pmsampsize/tests/testthat/test_syntax.R",
+      "bytes": 6325,
+      "sha256": "08bcbf5cedbd1b4625d88856ccbeeebb12d714f711f3c62bbc572fd2a878f75a",
+      "md5": "1e652b1174fbff01c1fac96adf56fa04"
+    },
+    {
+      "path": "pmsampsize/tests/testthat/test_cont.R",
+      "bytes": 2784,
+      "sha256": "19da2543f1fd4fb9981e460e626168babc495edc04a5835740602e1411ee9e2a",
+      "md5": "b477d1f50f1bd309501b2b6348122678"
+    },
+    {
+      "path": "pmsampsize/R/pmsampsize_cont.R",
+      "bytes": 3846,
+      "sha256": "c97078c716b403392d53b7bc2c56ab2159c1b5017e7d13429e62b01fbfb76093",
+      "md5": "01f8471cdfb9a24445620f24cbb7f2c2"
+    },
+    {
+      "path": "pmsampsize/R/cstat2rsq.R",
+      "bytes": 934,
+      "sha256": "bfdc23b582df4c0347d6b183a5b39b554f581d882107289a057efa5b64d9b4d6",
+      "md5": "f4903bbd800674abf4b9c60ade9eaeb5"
+    },
+    {
+      "path": "pmsampsize/R/pmsampsize_errorcheck.R",
+      "bytes": 4499,
+      "sha256": "187fde8c39b7646ec5c6d00c1d365a10d41d92f4a221fa4672888b330c8e9be8",
+      "md5": "5d7191edd591d65d23bcfabecc4838e8"
+    },
+    {
+      "path": "pmsampsize/R/pmsampsize_bin.R",
+      "bytes": 2671,
+      "sha256": "dcb3973cb9b79316f8c9d0d04776f095f3e88f331687f9847754490121d39b6a",
+      "md5": "a75faa91377516895a95e03d59eacb07"
+    },
+    {
+      "path": "pmsampsize/R/pmsampsize.R",
+      "bytes": 20343,
+      "sha256": "f6a1b6cd9b211497ff9618aa64838f8aa4e82f62403a723f64873fce35238217",
+      "md5": "e75d0ef76e6f2b16fffb4b714d8ec992"
+    },
+    {
+      "path": "pmsampsize/R/pmsampsize_surv.R",
+      "bytes": 3454,
+      "sha256": "434ae4cc9fce4358f11e9225d0bf05a8393e7977800a52c9613de57646f01953",
+      "md5": "66cb81d07f819e63637dfe000a254e3b"
+    },
+    {
+      "path": "pmsampsize/NEWS.md",
+      "bytes": 2594,
+      "sha256": "ab5e4531db21da52c3e7bb99fa0b2ad276a6cbe6d4cd0ba60fc114c785c93d02",
+      "md5": "9e40914045830d03be37a4c5229b64de"
+    },
+    {
+      "path": "pmsampsize/MD5",
+      "bytes": 747,
+      "sha256": "eeb30a86590fce5da336863411814b5e4e09cd3a91b96d1cacc08e3e9da2b697",
+      "md5": "9d2bb9a9ade39ab68459fe8d646cef0f"
+    }
+  ],
+  "md5_manifest_matches": 14,
+  "archive_symlink_or_path_escape": false,
+  "no_data_or_extdata_directory": true,
+  "source_inspected_only": true,
+  "installation_performed": false,
+  "native_execution": false,
+  "owner_review": null,
+  "inspected_at_utc": "2026-10-18T09:00:20.451246+00:00"
+}

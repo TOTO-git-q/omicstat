@@ -1,0 +1,37 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "omicstat-samplesize",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/omicstat-samplesize/scripts/omicstat_samplesize_core.R": "606b0fee4c14e63251c4462cbdea0debcbfad45b836e76cc2b09f452e4be7374",
+    "skills/omicstat-samplesize/scripts/omicstat_samplesize_qc.R": "3f49ce5169873198f9d4695e6a0907d6b72918bfb3fb773a077c2fe3d0a27bc5",
+    "skills/omicstat-samplesize/scripts/omicstat_samplesize_report.R": "3ff534e27632a45d735c7f58f49338d09e7516cda8173bf6bb8f53e6215ab818",
+    "skills/omicstat-samplesize/scripts/run_omicstat_samplesize.R": "6893815c42f2a070bbde347fbdc58076281b0e22d43d363ee83d1f6cdebbdc96",
+    "skills/omicstat-samplesize/scripts/samplesize_ported_engines.R": "820feff3630fa7783f9b03001c167993ab70e12a31767be08d9dc3dd15787592",
+    "skills/omicstat-samplesize/scripts/samplesize_ported_qc.R": "1b8e879bc3f74fc398e28f23d61641c42c8703d7e80452c15e42a267689cd7dd",
+    "skills/omicstat-samplesize/scripts/calls_registry.json": "94de08a749f7fa63665eb62ca5cd73eb638f4c63bac3493b5227a317a0db5d53",
+    "skills/omicstat-samplesize/SKILL.md": "7ff1b601e9b5132e285d3ffee8acf453b3bde261830753dd310ed2b348e7ab6e",
+    "skills/omicstat-samplesize/references/COPIED_GUARD_CONDITIONS.json": "b26fb66d37a66d594c1b1b243ee7a9c6f8cb6087bc05338e8ed85e5510b94a68",
+    "skills/omicstat-samplesize/references/PORT_ADAPTATIONS.json": "6589a84f9e4889406e2a7eebd9f8c9d47a26166173c86d8a758583f9590f378f",
+    "skills/omicstat-samplesize/references/PORT_SOURCE.json": "d5983dc57e92d20afb08f97dba825417fded4972ff98afb04f0a631201b45da2",
+    "skills/omicstat-samplesize/references/method-basis.md": "cee5e73c7288b22fb5cad35f0e86848d1dcd3fd3f36f57443b1e4e3c5436f438",
+    "skills/omicstat-samplesize/references/methods-template.md": "7af790a3958f6403d589f3e3ea71cb23243119ffa516699ee185ddd13857b624",
+    "skills/omicstat-samplesize/references/parameters.md": "db2ec307e0a8f9c347999755179cd8b5322a1abf427543f8623787f902bec6ea",
+    "skills/omicstat-samplesize/references/qc-rules.md": "b4ff27ad2db1d9a0775c061f648a38f639c89256f29d81b74619058c543b8ad0",
+    "skills/omicstat-samplesize/references/troubleshooting.md": "5e335a5951cd50b7a68297bd57e7e7b93cf81d180d362da2f91db75c0f7acabd",
+    "skills/omicstat-samplesize/tests/run_anchors.R": "c9e6b3051d7853cbc4c56577a25d8b278584140073dce228333dabeb9da95904",
+    "skills/omicstat-samplesize/tests/run_smoke_test.R": "0601c6d6782e59f4ec9ad29c0e65f0e1b5a02762fa1f6fcaa5e0138b614850df",
+    "skills/omicstat-samplesize/tests/test_helpers.R": "07d3c44538f09d491b95904f0c7e7aad384f471ef8ff50088de4274220f1a0a7",
+    "skills/omicstat-samplesize/tests/golden_manifest.csv": "89bd36acf769f3c2166a351e6fe0b1915699c7815c0af05d195b2aaaefd9e10f",
+    "acceptance/exemplars/omicstat-samplesize/PACK.md": "32dbf5e0d6ad16201b5e8f4ba58555d240c7da5059d7be443d8c45da2eccc305"
+  },
+  "packages": {},
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    },
+    {
+      "script": "tests/prepare_distribution_fixture.py",
+      "argv": [
+        "{fixtures}/distribution"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/sleep.csv",
+      "--response-col",
+      "extra",
+      "--group-col",
+      "group",
+      "--unit-col",
+      "ID",
+      "--group-order",
+      "1,2",
+      "--design",
+      "paired",
+      "--technical-policy",
+      "reject",
+      "--comparisons",
+      "{fixtures}/comparisons.csv",
+      "--pairwise-test",
+      "paired-t",
+      "--omnibus",
+      "none",
+      "--rank-method",
+      "not-applicable",
+      "--adjust",
+      "none",
+      "--family-size",
+      "1",
+      "--ci-level",
+      ".9",
+      "--display",
+      "box",
+      "--journal",
+      "nature",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261016",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{outdir}"
+    ]
+  },
+  "figure_policy": "required",
+  "owner_review": {
+    "dataset_id": "r-sleep",
+    "receipt": "owner_dataset.json"
+  }
+}

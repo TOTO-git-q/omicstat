@@ -1,0 +1,7 @@
+{
+  "schema": "omicstat.acceptance-refusal-fixture.v1",
+  "prepare": [
+    {"script": "tests/prepare_resource_fixture.py", "argv": ["{fixtures}"]}
+  ],
+  "purpose": "Synthetic resource refusals only; no canonical run, numerical anchor or golden is supplied."
+}

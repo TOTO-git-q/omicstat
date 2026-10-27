@@ -1,0 +1,74 @@
+{
+  "schema": "omicstat.exec-request.v1",
+  "package_id": "P0-13",
+  "work_item": "agreement",
+  "modules": [
+    "omicstat-agreement"
+  ],
+  "actual_remote_parent": "7f29eef108665f951504e06b0558b2387229cdc9",
+  "image_candidate": "env/candidates/20261020-core-final2",
+  "write_golden": false,
+  "fixtures_to_fetch": [],
+  "stages": [
+    "static",
+    "anchors",
+    "replay",
+    "refusals",
+    "chain",
+    "figures",
+    "golden",
+    "seal",
+    "regression"
+  ],
+  "full_regression": true,
+  "full_item_complete": false,
+  "owner_visual_review": null,
+  "notes": [
+    "Partial independent source adaptation of pinned MedStat agreement: Bland-Altman, explicit ICC, Cohen/Fleiss kappa. QBA excluded.",
+    "irr-only is a reviewed source adaptation removing the original automatic psych estimator fallback. Binary companions require real epiR; no fabricated package capture or substitutes.",
+    "Native anchors/replay/refusals/figures must actually run under OmicStat R4.6.1 with exact authorized independent closure. Host/static results do not certify production.",
+    "Original three published anchor cases require externally supplied verified source inputs. No PEFR patient rows are uploaded. Synthetic canonical data are contract tests only, not owner evidence.",
+    "Registered real-anchor owner adapter/contact sheets, package capture and visual approval remain pending. Every figure names its dataset; a name alone is not a real-data receipt.",
+    "Golden/seal remain read-only deferred_by_owner. Earlier P0-12/P0-13/P0-14 gaps and all missing inventory errors remain open."
+  ],
+  "checks": [
+    [
+      "python3",
+      "tools/test_agreement_port.py"
+    ],
+    [
+      "python3",
+      "tools/sync_registry.py",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/lint_contracts.py",
+      "omicstat-agreement",
+      "--check"
+    ],
+    [
+      "python3",
+      "tools/test_parameter_guidance_freeze_revision.py"
+    ],
+    [
+      "Rscript",
+      "skills/omicstat-agreement/tests/run_smoke_test.R"
+    ],
+    [
+      "python3",
+      "skills/omicstat-agreement/tests/check_native_readiness.py"
+    ]
+  ],
+  "owner_review_policy": {
+    "synthetic_owner_sheets_allowed": false,
+    "dataset_label_required_per_figure": true,
+    "state": "blocked: current invented fixture is for contracts, not a registered official real-data owner adapter",
+    "clinical_rows_upload_allowed": false,
+    "original_anchor_outputs_local_only": true
+  },
+  "native_anchor_environment": {
+    "OMICSTAT_AGREEMENT_ANCHOR_DIR": "Optional override; default is tests/fixtures/published_anchor_inputs (public published tables, committed)",
+    "OMICSTAT_AGREEMENT_PRIVATE_ANCHOR_OUT": "Optional scratch directory; default is a fresh temporary directory"
+  }
+}

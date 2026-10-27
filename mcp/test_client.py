@@ -103,7 +103,7 @@ def container_image():
     """(image, None) when the pinned image exists locally, else (image, reason)."""
     image = os.environ.get("OMICSTAT_IMAGE")
     if not image:
-        with open(os.path.join(SUITE_ROOT, "env", "omicstat-env.json"), encoding="utf-8") as fh:
+        with open(os.path.join(SUITE_ROOT, "env", "r-env.json"), encoding="utf-8") as fh:
             cfg = json.load(fh)
         image = "%s:%s" % (cfg["image"], cfg["image_tag"])
     docker = ["wsl", "-e", "docker"] if os.name == "nt" else ["docker"]
@@ -121,8 +121,8 @@ def py_container_image():
     """(image, None) when the pinned omicstat-py image exists locally, else (image, reason)."""
     image = os.environ.get("OMICSTAT_PY_IMAGE")
     if not image:
-        with open(os.path.join(SUITE_ROOT, "env", "omicstat-env.json"), encoding="utf-8") as fh:
-            lane = json.load(fh)["python_lane"]
+        with open(os.path.join(SUITE_ROOT, "env", "py", "py-env.json"), encoding="utf-8") as fh:
+            lane = json.load(fh)
         image = "%s:%s" % (lane["image"], lane["image_tag"])
     docker = ["wsl", "-e", "docker"] if os.name == "nt" else ["docker"]
     try:
@@ -622,8 +622,8 @@ async def python_module_checks(session, py_engines, listing):
         full = full_manifest(man)
         versions = full.get("software_versions") or {}
         pe = versions.get("python_engine") or {}
-        with open(os.path.join(SUITE_ROOT, "env", "omicstat-env.json"), encoding="utf-8") as fh:
-            lane = json.load(fh)["python_lane"]
+        with open(os.path.join(SUITE_ROOT, "env", "py", "py-env.json"), encoding="utf-8") as fh:
+            lane = json.load(fh)
         check("%s: provenance probe carries the Python environment (interpreter + package versions)" % label,
               pe.get("python") == lane["python_version"] and pe.get("packages", {}).get("scanpy") == lane["pins"]["scanpy"]
               and pe.get("packages", {}).get("scvi-tools") == lane["pins"]["scvi-tools"]
@@ -664,11 +664,22 @@ async def main():
             # ---------------- surface ----------------
             tools = await session.list_tools()
             names = sorted(t.name for t in tools.tools)
-            check("list_tools returns exactly 5 tools", len(names) == 5, names)
-            check("the 5 tools are the designed ones",
-                  names == ["omicstat_describe", "omicstat_list_modules",
-                            "omicstat_read", "omicstat_run",
-                            "omicstat_validate_publication"], names)
+            expected = sorted(["omicstat_create_study_contract", "omicstat_describe", "omicstat_list_modules",
+                               "omicstat_read", "omicstat_run", "omicstat_validate_publication"])
+            manifest = sorted(json.load(open(os.path.join(SUITE_ROOT, "mcp/tools_manifest.json"), encoding="utf-8"))["tools"])
+            check("list_tools returns exactly the 6 designed tools and matches the manifest",
+                  names == expected == manifest and len(names) == len(set(names)), names)
+            _created, raw_contract = await call_ok(session, "omicstat_create_study_contract", {
+                "design": "paired synthetic assay", "biological_unit": "donor",
+                "population": "All complete synthetic donors",
+                "comparison": {"target": "population ED50", "measure": "ng/mL", "exposure": "concentration", "comparator": "lower asymptote"},
+                "outcomes": [{"name": "response", "timepoint": "24 h"}], "covariates": [],
+                "missing_data": "Refuse missing rows", "multiplicity": "One prespecified estimand", "analysis_sets": ["All complete donors"]})
+            created = json.loads(raw_contract)
+            check("create_study_contract validates declarations and returns a persisted SHA", created.get("validated") and bool(re.fullmatch("[0-9a-f]{64}", created.get("sha256", ""))) and os.path.isfile(created.get("path", "")))
+            with open(created["path"], "rb") as stream:
+                import hashlib
+                check("created StudyContract exact bytes match advertised SHA", hashlib.sha256(stream.read()).hexdigest() == created["sha256"])
             run_tool = next(t for t in tools.tools if t.name == "omicstat_run")
             check("omicstat_run exposes optional study_contract",
                   "study_contract" in run_tool.inputSchema.get("properties", {})

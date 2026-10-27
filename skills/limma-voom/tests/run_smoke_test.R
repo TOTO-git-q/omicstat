@@ -202,7 +202,7 @@ if (is.null(p)) cat("SKIP: GSE63310 F4 is absent\n") else {
       check(file.exists(file.path(a0, "figures", paste0(f, ".png"))) && nzchar(sp$caption %||% ""), paste(f, "figure PNG and caption"))
     }
     cap <- function(f) jsonlite::fromJSON(file.path(a0, "figures", paste0(f, ".figure_spec.json")))$caption
-    check(grepl("adjusted P", cap("volcano")) && grepl(sprintf("span = %s", format(j0$details$span)), cap("voom_trend"), fixed = TRUE) &&
+    check(grepl("adjusted_p < 0.05", cap("volcano"), fixed = TRUE) && grepl(sprintf("span = %s", format(j0$details$span)), cap("voom_trend"), fixed = TRUE) &&
           grepl(sprintf("one of %d features", nrow(utils::read.csv(file.path(a0, "tables", "voom_trend_points.csv")))), cap("voom_trend"), fixed = TRUE) && grepl("9 samples", cap("mds")) && grepl("top 500 features (of 17062)", cap("mds"), fixed = TRUE) &&
           grepl("log2 CPM (prior count 2)", cap("mds"), fixed = TRUE),
           "figure captions state thresholds, n, span and MDS input scale")

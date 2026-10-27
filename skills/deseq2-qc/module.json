@@ -1,0 +1,171 @@
+{
+  "schema": "omicstat.module.v1",
+  "name": "deseq2-qc",
+  "lane": "R",
+  "domain": "bulk-de",
+  "entry": "scripts/run_deseq2_qc.R",
+  "version": "1.1.0",
+  "qc_prefix": "DQ",
+  "engine_packages": [
+    "DESeq2"
+  ],
+  "refdata": [],
+  "handoff": {
+    "inputs": [],
+    "outputs": [
+      "colour_registry",
+      "count_matrix",
+      "expression_matrix",
+      "sample_table"
+    ]
+  },
+  "figure_builders": [
+    "os_pca_plot",
+    "os_pca_scores"
+  ],
+  "anchors": "tests/anchors.json",
+  "refusals": "tests/refusals.csv",
+  "routing": {
+    "question": "Bulk RNA-seq sample QC, variance stabilization, PCA and distances",
+    "order": 3
+  },
+  "publication": {
+    "rule_category": "universal_hard",
+    "legacy_override": {
+      "module": "deseq2-qc",
+      "rule_id": "PUB-M-DESEQ2_QC-001",
+      "category": "universal_hard",
+      "severity": "hard_error",
+      "reporting_guidelines": [
+        "Engineering plan section 4.5: units, inputs, methods, multiplicity and traceability",
+        "Module references/method-basis.md and references/reporting-templates.md; locked-version acceptance remains required"
+      ],
+      "effect_table_policy": {
+        "primary_metrics": [],
+        "allow_no_effect_table": true,
+        "requirements": [
+          "Use the module-specific full output table and identified analysis units; distinguish effect estimation from descriptive QC, embeddings and scores"
+        ]
+      },
+      "artifact_aliases": {
+        "tables/*.csv": "table",
+        "results/*.json": "machine",
+        "objects/handoff.json": "machine",
+        "provenance/*.json": "machine",
+        "qc/*.csv": "qc"
+      },
+      "artifact_expectations": [
+        "QC rule results",
+        "provenance",
+        "methods draft"
+      ],
+      "required_diagnostics": [
+        "Typed input and lineage validation",
+        "Nondegenerate module-specific result tables",
+        "Verified module lock and a real locked-container golden baseline",
+        "Shared R figure rendering and human visual review"
+      ],
+      "narrative_points": [
+        "Bulk RNA-seq sample QC, variance stabilization, PCA and distances",
+        "Report exact user choices, locked package versions, seed and measured sample/cell/gene denominators",
+        "Do not claim numerical acceptance, literature majorities or external predictive accuracy from this source build"
+      ],
+      "causal_language": {
+        "forbidden": [
+          "proves causation",
+          "cell-level P values establish condition-level biological replication"
+        ],
+        "restricted_to": [
+          "descriptive or design-supported association, matching the declared estimand"
+        ]
+      }
+    }
+  },
+  "status": "accepted",
+  "status_notes": [
+    "legacy_slim",
+    "preserve_sealed_documentation",
+    "legacy_acceptance_retained_not_newly_signed"
+  ],
+  "inputs": [
+    {
+      "flag": "--seed",
+      "default": 20260925,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--min-count",
+      "default": 10,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--min-samples",
+      "default": 0,
+      "source": "legacy calls_registry.flag_defaults",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "int in [0, 1000000]",
+      "role": "scientific",
+      "required_when": [
+        "The declared design has covariates or is not exactly two observed condition levels; supply a positive count."
+      ]
+    },
+    {
+      "flag": "--ntop",
+      "default": 500,
+      "source": "legacy calls_registry.flag_defaults"
+    },
+    {
+      "flag": "--counts",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--samples",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "input"
+    },
+    {
+      "flag": "--outdir",
+      "default": "required",
+      "source": "explicit required CLI declaration",
+      "required": true,
+      "type_label": "path",
+      "role": "execution"
+    },
+    {
+      "flag": "--study-contract",
+      "default": "none",
+      "source": "actual CLI declaration; conditional guard reviewed",
+      "required": false,
+      "conditional_required": true,
+      "type_label": "path",
+      "role": "input",
+      "required_when": [
+        "--study-contract-sha256 is supplied; a hash never replaces the actual validated contract bytes."
+      ]
+    }
+  ],
+  "reference": {
+    "enabled": true,
+    "order": 1,
+    "added_at": "2026-10-04",
+    "legacy_entry": {
+      "module": "deseq2-qc",
+      "entry_script": "scripts/run_deseq2_qc.R",
+      "entry_status": "implemented_routed"
+    }
+  },
+  "migration": {
+    "baseline": "7164ee1ed8514f158e0b15c89ba24aaa1043b43c",
+    "calls_registry_sha256": "16d9f292665a0c86e6ac8503d3d1ece2b68210cc8b8407ea0b0ffba84f4cd303",
+    "pack_present": true,
+    "implemented_new": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+ "profile": "sctransform",
+ "checked_on": "2026-10-10",
+ "live_hit_count": 1978,
+ "attempted_fulltexts": 12,
+ "outcomes": {
+  "forget:excluded_by_regex": 2,
+  "screened": 8,
+  "metadata_only:rights_restricted": 2
+ },
+ "screened": 8,
+ "licence_clean_share": 0.8,
+ "requests": 11,
+ "feasible": true,
+ "screened_papers": [
+  {
+   "pmid": "42826196",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42608147",
+   "journal": "Genome Research",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42814831",
+   "journal": "Science Advances",
+   "licence": "cc-by-nc",
+   "year": "2026"
+  },
+  {
+   "pmid": "42777036",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42768223",
+   "journal": "Nature Immunology",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42748249",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42715338",
+   "journal": "Science Advances",
+   "licence": "cc-by",
+   "year": "2026"
+  },
+  {
+   "pmid": "42711427",
+   "journal": "Nature Genetics",
+   "licence": "cc-by",
+   "year": "2026"
+  }
+ ],
+ "criteria": "hits > 0, >= 3 screened of the first 12, licence-clean share >= 0.5"
+}

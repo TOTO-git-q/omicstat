@@ -1,0 +1,48 @@
+{
+  "schema": "omicstat.module_lock.v1",
+  "module": "emmeans-contrast",
+  "module_version": "0.1.0",
+  "files": {
+    "skills/emmeans-contrast/scripts/emmeans_contrast_core.R": "e9d9df43cd36d9101f0689342036b92443e2d9d7b4bfa051dfec3c90f0bf7f83",
+    "skills/emmeans-contrast/scripts/longitudinal_adapter.R": "5bdebba21e960aab36f1b8c3ab0dee660b63d6cd817c46275e7d55f46562f7ac",
+    "skills/emmeans-contrast/scripts/longitudinal_ported.R": "102a35b88fc811bb34478034f0c8776d59d6110a8f349d9be4c634ddc8d28cb4",
+    "skills/emmeans-contrast/scripts/run_emmeans_contrast.R": "46082e002701c063d90133526ee0c30ed8208c164028ef58795aeaf3cb5e09ee",
+    "skills/emmeans-contrast/scripts/calls_registry.json": "385b6c05382a781c9e4ba9d6f4adc5f216b7296569b80623985e8174faac3cd2",
+    "skills/emmeans-contrast/SKILL.md": "bf02653fc2519fa619a59f8f6b3b99ab2c568fb5281125f64556175bb819eed9",
+    "skills/emmeans-contrast/references/LONGITUDINAL_COPIED_FUNCTIONS.json": "a509b0ab65d77e45dfbad0202f5378228d760ad6906aec006c2dc88eab0b0866",
+    "skills/emmeans-contrast/references/LONGITUDINAL_ERROR_MAPPING.json": "cf2dc47c1c0e3d33f53e3cd31b30bc90df41d3ddcd9b89f14329b93bc3793306",
+    "skills/emmeans-contrast/references/LONGITUDINAL_PORT.patch": "c40179cd51834dd220c71bc4176a45f2997b797b4591f7db340f16e85c845783",
+    "skills/emmeans-contrast/references/LONGITUDINAL_PORT_ADAPTATIONS.json": "c22dcb5f6e7d0d78d356d7a532d36bc68e03363b93f823d3265b42b063db367c",
+    "skills/emmeans-contrast/references/LONGITUDINAL_PORT_SOURCE.json": "f0bd417040dde0215d6abaac42b12d7f0646b0931af011325d4c5aa48c0e5c2e",
+    "skills/emmeans-contrast/references/longitudinal-validation.md": "d5b9541e75519dfd39803782f291d43a2201a744a09987f5eaad4f80a92bade6",
+    "skills/emmeans-contrast/references/options.md": "1e70676ff24666f1ee4c35432f15e6e29b7c54b631320ae48c1c36ff74dad9a1",
+    "skills/emmeans-contrast/references/parameters.md": "fd848146e2d6c435c443d66404817dbedb0e6f048358f4ffc318ddcc66e54a04",
+    "skills/emmeans-contrast/references/source-evidence/SKILL.md": "a430f33e282e79168283b09df251a372292de40952ebd157686a4028084b4063",
+    "skills/emmeans-contrast/references/source-evidence/VALIDATION_STATUS.json": "fc211ba09085eecbeb181f7742d203e7c062c9fc80a1a5b7ebd07fc23f865f75",
+    "skills/emmeans-contrast/references/source-evidence/provenance.json": "5ab52854de17224bde0dd166a3e09d1368544071d5030c4108cd1e40d42002b9",
+    "skills/emmeans-contrast/tests/anchors.R": "c22e8f9a667464eec5f6419bfb13dcaa4276c7ec90599992b3589ceaf57a87a4",
+    "skills/emmeans-contrast/tests/longitudinal_test_helpers.R": "cc4b59585e4725400a0c8383c1a80410045c4f2c1e8689021c19139bd6eb9c86",
+    "skills/emmeans-contrast/tests/make_longitudinal_inputs.R": "7a841aaeb82d9117dc7622d4faa121fb582bd5ae361de85100b06c293dec0bfb",
+    "skills/emmeans-contrast/tests/ported_source/candidate_anchors_before.R": "77c690d85f3598c9110ec18777d41f199505347c910cf0f13a3caef3995d0d6d",
+    "skills/emmeans-contrast/tests/ported_source/emmeans_contrast_before.R": "ebc643c1f1ad293b74be4d7ce54bd6da1047f96c89d7511609d43010c355f376",
+    "skills/emmeans-contrast/tests/ported_source/lme4_lmm_before.R": "0d25a74838200a200c78ec21bd0d572bd5b69819d469534a4f40b4f7eeaef8e4",
+    "skills/emmeans-contrast/tests/ported_source/longitudinal_selected_before.R": "afef67c073f4ed0b0578ad4a680ffd89c3e201cffb84a4fc4ff552f23ac5d8ea",
+    "skills/emmeans-contrast/tests/ported_source/source_run_verified.R": "d507bf287f9e393e5bc986f9d1c7b84710ffe08f4f4c7c47e9f0a35a6908f5a9",
+    "skills/emmeans-contrast/tests/run_adjustment_audit_test.R": "1e3d77c56f8f27da4831c88463040099a5e234c697cc2912bcb77f988f10f1df",
+    "skills/emmeans-contrast/tests/run_development_test.R": "557ff277ac1eb36ec1830e825abf87b7d1111e9f82cd31c19c06e3e8acb9ba3d",
+    "skills/emmeans-contrast/tests/run_longitudinal_contracts.R": "6c45327e9fa516f9a2a83f8719af5135b8dd1061670830282a82ca678a219f53",
+    "skills/emmeans-contrast/tests/run_serialized_handoff_test.R": "b323162f6270e555f6a3446702d2462fc23bef8930bfc279e9e9c1f48618db20",
+    "skills/emmeans-contrast/tests/golden_manifest.csv": "3e47d674f2974f9497f68ac883047a1dd398407db36c4b0faf3a46f5a0fdc944"
+  },
+  "packages": {
+    "emmeans": "2.0.4"
+  },
+  "environment": {
+    "tier": "container",
+    "r": "4.6.1",
+    "bioconductor": "3.23",
+    "platform": "x86_64-pc-linux-gnu",
+    "image": "sha256:16b79c344a57901f34a4c81039da9233578a76da13c1f8f2e4d24a70ff0e421e",
+    "env_version": "2026.10.4"
+  }
+}

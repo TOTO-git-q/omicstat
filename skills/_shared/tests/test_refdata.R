@@ -1,0 +1,11 @@
+source("skills/_shared/scripts/refdata_io.R")
+d <- tempfile();writeLines("a",d)
+p <- list(refdata_id="r",source_url="https://example.org/a",version="1",licence="CC0-1.0",sha256=digest::digest(file=d,algo="sha256"),permitted_use="analysis")
+j <- tempfile();jsonlite::write_json(p,j,auto_unbox=TRUE)
+stopifnot(identical(os_user_refdata(d,j,"r"),p))
+reject <- function(p,code) {jsonlite::write_json(p,j,auto_unbox=TRUE);e<-tryCatch(os_user_refdata(d,j,"r"),error=identity);stopifnot(inherits(e,"error"),grepl(code,conditionMessage(e),fixed=TRUE))}
+x<-p;x$sha256<-paste(rep("0",64),collapse="");reject(x,"OS_REFDATA_MISMATCH")
+x<-p;x$permitted_use<-NULL;reject(x,"OS_REFDATA_MISSING")
+x<-p;x$source_url<-"https://user:secret@example.org/a";reject(x,"OS_REFDATA_MISMATCH")
+x<-p;x$refdata_id<-"other";reject(x,"OS_REFDATA_MISMATCH")
+cat("PASS: real R user reference positive and four refusal cases\n")

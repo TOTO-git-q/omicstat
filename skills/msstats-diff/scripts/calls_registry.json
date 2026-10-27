@@ -1,0 +1,215 @@
+{
+  "module": "msstats-diff",
+  "note": "Candidate installed API inventory in omicstat-r-exp:20261015; not scientific acceptance or a production seal. See installed_api.json for every formal, including omitted defaults.",
+  "package_versions": {
+    "MSstats": "4.20.0",
+    "MSstatsConvert": "1.22.1"
+  },
+  "flag_defaults": {},
+  "accessors": [],
+  "calls": [
+    {
+      "fn": "MSstats::dataProcess",
+      "args": {
+        "raw": {
+          "value": "remove50missing = FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "logTrans": {
+          "value": "2",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "2"
+        },
+        "normalization": {
+          "value": "norm",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "\"equalizeMedians\""
+        },
+        "nameStandards": {
+          "value": "NULL",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "featureSubset": {
+          "value": "\"all\"",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "\"topN\""
+        },
+        "remove_uninformative_feature_outlier": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "min_feature_count": {
+          "value": "2",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "2"
+        },
+        "n_top_feature": {
+          "value": "3",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "100"
+        },
+        "summaryMethod": {
+          "value": "\"TMP\"",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "\"TMP\""
+        },
+        "equalFeatureVar": {
+          "value": "TRUE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "censoredInt": {
+          "value": "cens",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "\"NA\""
+        },
+        "MBimpute": {
+          "value": "a[[\"mb-impute\"]] == \"true\"",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "fix_missing": {
+          "value": "NULL",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "NULL"
+        },
+        "maxQuantileforCensored": {
+          "value": "0.999",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "0.999"
+        },
+        "use_log_file": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "append": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    },
+    {
+      "fn": "MSstats::groupComparison",
+      "args": {
+        "contrast.matrix": {
+          "value": "contrast",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "data": {
+          "value": "processed",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": ""
+        },
+        "save_fitted_models": {
+          "value": "TRUE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "log_base": {
+          "value": "2",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "2"
+        },
+        "use_log_file": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        },
+        "append": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "FALSE"
+        },
+        "verbose": {
+          "value": "FALSE",
+          "source": "installed package formals in omicstat-r-exp:20261015; see installed_api.json",
+          "pack": "D",
+          "function_default": "TRUE"
+        }
+      },
+      "status": "candidate_installed_api_verified"
+    }
+  ],
+  "status": "development_unsealed",
+  "installed_api_status": "candidate_verified",
+  "module_version": "0.1.0",
+  "captured_signatures": {
+    "MSstats::dataProcess": {
+      "package_version": "4.20.0",
+      "method": null,
+      "formals": {
+        "raw": "",
+        "logTrans": "2",
+        "normalization": "\"equalizeMedians\"",
+        "nameStandards": "NULL",
+        "featureSubset": "\"topN\"",
+        "remove_uninformative_feature_outlier": "FALSE",
+        "min_feature_count": "2",
+        "n_top_feature": "100",
+        "summaryMethod": "\"TMP\"",
+        "equalFeatureVar": "TRUE",
+        "censoredInt": "\"NA\"",
+        "MBimpute": "TRUE",
+        "remove50missing": "FALSE",
+        "fix_missing": "NULL",
+        "maxQuantileforCensored": "0.999",
+        "use_log_file": "TRUE",
+        "append": "FALSE",
+        "verbose": "TRUE",
+        "log_file_path": "NULL",
+        "numberOfCores": "1",
+        "aft_iterations": "90"
+      }
+    },
+    "MSstats::groupComparison": {
+      "package_version": "4.20.0",
+      "method": null,
+      "formals": {
+        "contrast.matrix": "",
+        "data": "",
+        "save_fitted_models": "TRUE",
+        "log_base": "2",
+        "use_log_file": "TRUE",
+        "append": "FALSE",
+        "verbose": "TRUE",
+        "log_file_path": "NULL",
+        "numberOfCores": "1"
+      }
+    }
+  }
+}

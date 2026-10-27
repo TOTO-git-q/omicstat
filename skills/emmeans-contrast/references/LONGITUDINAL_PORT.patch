@@ -1,0 +1,134 @@
+--- MedStat-pinned/selected.R
++++ OmicStat/longitudinal_ported.R
+@@ -5,8 +5,8 @@
+ check_longitudinal <- function(data, subject) {
+   tab <- table(data[[subject]])
+   if (all(tab <= 1)) {
+-    .lc_stop("MS_NOT_LONGITUDINAL", sprintf(
+-      "every value of --subject '%s' appears at most once in the data (%d rows, %d unique ids). This looks like repeated CROSS-SECTIONS (a different set of people each time), which is trend-analysis's job, not repeated MEASURES on the same people. If this really is longitudinal data, check --subject points at the participant id column, not a row id.",
++    .lc_stop("OS_INVALID_DESIGN", sprintf(
++      "every value of --subject '%s' appears at most once (%d rows, %d unique ids). Longitudinal inference requires repeated measurements of the same biological units, not different units at each time. Check the fitted subject column identifies biological units rather than individual rows.",
+       subject, nrow(data), length(tab)))
+   }
+   invisible(TRUE)
+@@ -16,7 +16,7 @@
+   time_levels <- time_levels %||% sort(unique(data[[time]]))
+   idx <- match(data[[time]], time_levels)
+   if (anyNA(idx)) {
+-    .lc_stop("MS_INVALID_PARAMETER", "scan_waves(): a --time value was not found in the inferred/declared time_levels; this should be unreachable.")
++    .lc_stop("OS_INVALID_PARAMETER", "scan_waves(): a --time value was not found in the inferred/declared time_levels; this should be unreachable.")
+   }
+   by_subj <- split(idx, data[[subject]])
+   is_prefix <- function(v) {
+@@ -51,13 +51,16 @@
+   m <- fit_result$model
+   n_rows <- nrow(prep$data)
+   ci_level <- 1 - alpha
+-  emmeans::emm_options(pbkrtest.limit = max(n_rows, 3000), lmerTest.limit = max(n_rows, 3000))
++  if (n_rows > 3000L) .lc_stop("OS_LIMIT_EXCEEDED", "finite-df longitudinal contrasts are limited to 3000 fitted rows; no automatic ceiling increase")
+   # Defect C10: for an lmer fit, emmeans picks its df method from lmer.df
+   # (default Kenward-Roger), NOT from --df-method, so a run that declared
+   # Satterthwaite silently computed Kenward-Roger. The declared method is now
+   # passed to every emmeans()/joint_tests() call.
+   lmer_df <- lc_lmer_df(fit_result, df_method_declared)
+-  emm_extra <- if (is.null(lmer_df)) list() else list(lmer.df = lmer_df)
++  emm_extra <- if (is.null(lmer_df)) list() else list(lmer.df = lmer_df,
++    pbkrtest.limit = 3000L, lmerTest.limit = 3000L,
++    disable.pbkrtest = lmer_df != "kenward-roger",
++    disable.lmerTest = lmer_df != "satterthwaite")
+   # WP-N6: an engine may carry extra emmeans arguments (the glmm engine's
+   # offset = 0, i.e. rates per ONE unit of exposure). Absent for every other
+   # engine, so their calls are unchanged.
+@@ -104,11 +107,12 @@
+   # reports a probability/rate, not a raw log-odds/log-rate. level= wires
+   # --alpha through to the actual interval width (not just its printed
+   # label) -- ci_level = 1 - alpha, computed once above.
+-  emm_df <- as.data.frame(summary(emm, type = emm_type, level = ci_level))
++  emm_df <- as.data.frame(summary(emm, type = emm_type, level = ci_level,
++    infer = c(TRUE, FALSE), adjust = "none", cross.adjust = "none"))
+   if (uses_time_c) names(emm_df)[names(emm_df) == ".lc_time_c"] <- prep$time
+ 
+   jt <- tryCatch(do.call(emmeans::joint_tests, c(list(m, data = prep$data), emm_extra)),
+-                 error = function(e) NULL)
++                 error = function(e) .lc_stop("OS_INVALID_RESULT", paste("same-model joint test failed:", conditionMessage(e))))
+ 
+   ct <- emmeans::contrast(emm, "revpairwise")
+   # adjust="none" is NOT the default for a "revpairwise" contrast object --
+@@ -119,9 +123,9 @@
+   # exactly 2 groups (a single contrast per timepoint has nothing to adjust
+   # for), wrong as soon as a third arm exists. adjust="none" here is what
+   # actually makes "raw" true.
+-  ct_raw <- as.data.frame(summary(ct, adjust = "none", infer = c(TRUE, TRUE), level = ci_level))
++  ct_raw <- as.data.frame(summary(ct, adjust = "none", cross.adjust = "none", infer = c(TRUE, TRUE), level = ci_level))
+   ct_adj <- if (!identical(multiplicity, "none")) {
+-    as.data.frame(summary(ct, by = NULL, adjust = multiplicity, infer = c(TRUE, TRUE), level = ci_level))
++    as.data.frame(summary(ct, by = NULL, adjust = multiplicity, cross.adjust = "none", infer = c(TRUE, TRUE), level = ci_level))
+   } else NULL
+   if (uses_time_c) {
+     names(ct_raw)[names(ct_raw) == ".lc_time_c"] <- prep$time
+@@ -140,22 +144,20 @@
+   ct_hi <- ct_raw$upper.CL %||% ct_raw$asymp.UCL
+   ci_finite <- is.finite(ct_lo) & is.finite(ct_hi)
+   if (nrow(ct_raw) && !any(p_finite) && !any(ci_finite)) {
+-    .lc_stop("MS_NOT_ESTIMABLE", sprintf(
++    .lc_stop("OS_NUMERICAL_DEGENERACY", sprintf(
+       "every one of the %d per-timepoint contrast(s) came back with a non-finite P value AND a non-finite confidence interval -- this is a degenerate fit (e.g. too few design/model degrees of freedom, or a corrupted subject/cluster id), not a real result. A draft built from these numbers would report every timepoint as 'not estimable', which is not a finding.",
+       nrow(ct_raw)))
+   }
+-  # Defense against the id-coercion failure mode directly: a contrast whose
+-  # standard error is exactly zero/NaN, or whose P value is exactly 0, is
+-  # not a legitimate Wald/t-based result (P == 0 exactly only happens when
+-  # the SE collapsed to 0, driving the test statistic to +/-Inf). This is
+-  # the specific signature a non-numeric --subject id silently breaking
+-  # geepack's cluster map leaves behind.
++  # Preserve the source refusal for nonpositive SE or P. An exact zero P
++  # can also result from numerical underflow; it is not proof of a broken
++  # model. This bounded port does not silently recompute log-tail P values
++  # or change the inherited guard to accept that case.
+   se_col <- if ("SE" %in% names(ct_raw)) ct_raw$SE else rep(NA_real_, nrow(ct_raw))
+   bad_se <- !is.na(se_col) & (se_col <= 0 | !is.finite(se_col))
+   bad_p0 <- !is.na(ct_raw$p.value) & ct_raw$p.value <= 0
+   if (any(bad_se) || any(bad_p0)) {
+-    .lc_stop("MS_DEGENERATE_CONTRAST", sprintf(
+-      "%d contrast(s) have a zero/non-finite standard error and/or a P value of exactly 0 -- not a legitimate result. This is the signature of a broken cluster/subject id map (e.g. a non-numeric --subject id silently corrupting geepack's id handling) or another degenerate fit. Check --subject '%s' identifies the same clusters the model was actually fit on before trusting any number from this run.",
++    .lc_stop("OS_NUMERICAL_DEGENERACY", sprintf(
++      "%d contrast(s) have a zero/non-finite standard error and/or P exactly 0. The inherited source guard refuses this case; zero P may also be numerical underflow. Check --subject '%s' and the original fit. No alternate model or tail-probability method was substituted.",
+       sum(bad_se | bad_p0), prep$subject))
+   }
+ 
+@@ -167,7 +169,7 @@
+   df_col <- if ("df" %in% names(ct_raw)) ct_raw$df else NA_real_
+   if (df_method_declared %in% c("Kenward-Roger", "Satterthwaite", "Between-Within", "Residual") &&
+       length(df_col) && all(is.infinite(df_col) | is.na(df_col))) {
+-    .lc_stop("MS_DF_METHOD_MISMATCH", sprintf(
++    .lc_stop("OS_INVALID_RESULT", sprintf(
+       "df_method='%s' was declared but emmeans returned Inf/NA degrees of freedom for every contrast -- it silently fell back to an asymptotic approximation. This should not happen given the pbkrtest.limit/lmerTest.limit set on this data (n=%d); if it does, the model object itself may not carry df information (check the engine).",
+       df_method_declared, n_rows))
+   }
+@@ -184,7 +186,7 @@
+                 "Satterthwaite" = "satterthwaite",
+                 NULL)
+   if (is.null(tok)) {
+-    .lc_stop("MS_INVALID_PARAMETER", sprintf(
++    .lc_stop("OS_INVALID_PARAMETER", sprintf(
+       "--df-method '%s' is not available for --engine lmer; use Kenward-Roger or Satterthwaite (Residual and Between-Within are mmrm-only).",
+       df_method_declared))
+   }
+@@ -209,7 +211,7 @@
+     key_adj <- paste(ct_adj$contrast, ct_adj[[time]], sep = "\r")
+     ord <- match(key_raw, key_adj)
+     if (anyNA(ord)) {
+-      .lc_stop("MS_SCHEMA_INTERNAL", "diff_effect_rows(): could not match every raw contrast row to its multiplicity-adjusted counterpart by (contrast, timepoint) -- the adjusted-P join would be unsafe to use.")
++      .lc_stop("OS_INVALID_RESULT", "diff_effect_rows(): could not match every raw contrast row to its multiplicity-adjusted counterpart by (contrast, timepoint) -- the adjusted-P join would be unsafe to use.")
+     }
+     p_adj <- ct_adj$p.value[ord]
+     p_meth <- rep(adjust_method, nrow(ct_raw))
+@@ -222,7 +224,7 @@
+     # breaks strict order() agreement even in a correct implementation).
+     ok_idx <- !is.na(ct_raw$p.value) & !is.na(p_adj)
+     if (any(ok_idx) && any(p_adj[ok_idx] < ct_raw$p.value[ok_idx] - 1e-8)) {
+-      .lc_stop("MS_SCHEMA_INTERNAL", "diff_effect_rows(): a multiplicity-adjusted P value is SMALLER than its own raw P value after the (contrast, timepoint) join -- every documented correction can only inflate P, so this means the join assigned some row the wrong contrast's adjusted P.")
++      .lc_stop("OS_INVALID_RESULT", "diff_effect_rows(): a multiplicity-adjusted P value is SMALLER than its own raw P value after the (contrast, timepoint) join -- every documented correction can only inflate P, so this means the join assigned some row the wrong contrast's adjusted P.")
+     }
+   }
+   # n_unweighted for a difference row: the timepoint's COMBINED two-group

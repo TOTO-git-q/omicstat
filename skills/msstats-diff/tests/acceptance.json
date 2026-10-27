@@ -1,0 +1,46 @@
+{
+  "schema": "omicstat.acceptance-fixture.v1",
+  "prepare": [
+    {
+      "script": "tests/prepare_acceptance.py",
+      "argv": [
+        "{fixtures}"
+      ]
+    }
+  ],
+  "canonical": {
+    "argv": [
+      "--input",
+      "{fixtures}/msstats_long.csv",
+      "--design",
+      "independent",
+      "--reference",
+      "A",
+      "--target",
+      "B",
+      "--normalization",
+      "none",
+      "--censored-int",
+      "NA",
+      "--mb-impute",
+      "false",
+      "--feature-id-type",
+      "simulation",
+      "--study-contract",
+      "{fixtures}/contract.json",
+      "--development-mode",
+      "--seed",
+      "20261015",
+      "--outdir",
+      "{outdir}"
+    ]
+  },
+  "anchor_runner": {
+    "script": "tests/anchors.R",
+    "argv": [
+      "{anchor_results}",
+      "{root}"
+    ]
+  },
+  "figure_policy": "required"
+}

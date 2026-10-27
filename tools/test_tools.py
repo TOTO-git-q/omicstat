@@ -203,7 +203,7 @@ class CheckDefaults(unittest.TestCase):
             + 'if (isTRUE(a$help)) os_print_help(SPEC)\n', encoding="utf-8")
         out = subprocess.run([sys.executable, str(HERE / "check_defaults.py"), str(self.fx.dir)], capture_output=True, text=True)
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
-        self.assertIn("6 flag(s) in --help", out.stdout)
+        self.assertIn("8 flag(s) in --help", out.stdout)  # six fixture flags plus two shared contract controls
 
 
 class LintR(unittest.TestCase):
